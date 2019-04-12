@@ -16,7 +16,7 @@ const customStyles = {
 
 const MojModal = (ovaj) => {
   ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekenda
-  if(!ovaj.state.showModal)
+  if(!ovaj.state.showModal) 
     return null;
   return(
     //ovo je citav modal, html mijenjate i tu nakon biljeske treba dodati textbox polje za unos azuriranje i brisanje biljeske
@@ -30,6 +30,11 @@ const MojModal = (ovaj) => {
               <b>Predmet: </b>{ovaj.props.termin.predmet} <br></br>
               <b>Sala: </b>{ovaj.props.termin.sala} <br></br>
               <b>Biljeska: </b>{ovaj.props.termin.biljeska} <br></br>
+              
+              <b>Unesi novu biljesku: </b> <br></br>
+              <input type="text" value = {ovaj.state.value}></input>
+              <i>ovaj.state.value</i>
+              <button className = 'btn btn-primary' onClick ={}>Unesi</button><br></br>
               <button className = 'btn btn-primary' onClick={ovaj.handleCloseModal}>Zatvori</button>
             </Modal>
     </div>

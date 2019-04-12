@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './MockListaPredmeta.js';
+import MockListaPredmeta from './MockListaPredmeta';
+import ReactDOM from 'react-dom';
 
 class App extends Component {
   render() {
@@ -18,11 +21,15 @@ class App extends Component {
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
+          </a>  
+          <button onClick={funkcija}>Dugme</button>
         </header>
       </div>
     );
   }
+}
+function funkcija(){
+  ReactDOM.render(<MockListaPredmeta />, document.getElementById('root'));
 }
 
 export default App;

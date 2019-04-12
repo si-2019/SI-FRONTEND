@@ -118,12 +118,13 @@ export class Body_Cell extends Component {
             if(response.data.success)
             {
               //signalna poruka kad je update-ano
-              alert("Uspjesno ste azurirali biljesku!");
+              alert("Doslo je do greske prilikom azuriranja biljeske!");
             }
             else
             {
               //signalna poruka kad nije update-ano
-              alert("Doslo je do greske prilikom azuriranja biljeske!");
+              
+              alert("Uspjesno ste azurirali biljesku!");
             }
             console.log(response);
            });    

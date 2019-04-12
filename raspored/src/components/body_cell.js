@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import Popup from 'react-popup';
-import Modal from 'react-modal'
+import Modal from 'react-modal';
 const customStyles = {
   content : {
     top                   : '50%',
@@ -16,7 +16,7 @@ const customStyles = {
 
 const MojModal = (ovaj) => {
   ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekenda
-  if(!ovaj.state.showModal) 
+  if(!ovaj.state.showModal)
     return null;
   return(
     //ovo je citav modal, html mijenjate i tu nakon biljeske treba dodati textbox polje za unos azuriranje i brisanje biljeske
@@ -30,11 +30,9 @@ const MojModal = (ovaj) => {
               <b>Predmet: </b>{ovaj.props.termin.predmet} <br></br>
               <b>Sala: </b>{ovaj.props.termin.sala} <br></br>
               <b>Biljeska: </b>{ovaj.props.termin.biljeska} <br></br>
-              
-              <b>Unesi novu biljesku: </b> <br></br>
-              <input type="text" value = {ovaj.state.value}></input>
-            
-              <button className = 'btn btn-primary' onClick={ovaj.props.termin.biljeska = "nesto"}>Unesi</button><br></br>
+              <b>Unesi novu biljesku</b><br></br>
+              <input type = "text" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
+              <button className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
               <button className = 'btn btn-primary' onClick={ovaj.handleCloseModal}>Zatvori</button>
             </Modal>
     </div>
@@ -49,6 +47,8 @@ export class Body_Cell extends Component {
     
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   
   handleOpenModal () {
@@ -58,6 +58,15 @@ export class Body_Cell extends Component {
   handleCloseModal () {
     this.setState({ showModal: false });
   }
+  handleChange(event) {
+    this.setState({title: event.target.value});
+  }
+
+  handleClick(event) {
+    this.setState({title: event.target.value});
+    this.props.termin.biljeska=this.state.title;
+  }
+  
   render() {
     if(this.props.redniBroj%2==0)
     {

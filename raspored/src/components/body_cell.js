@@ -99,7 +99,7 @@ export class Body_Cell extends Component {
             }
             else
             {
-              
+              alert("Doslo je do greske prilikom unosa biljeske!");
             }
             console.log(response);
            });               

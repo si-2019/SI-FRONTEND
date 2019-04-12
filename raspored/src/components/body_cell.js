@@ -54,11 +54,6 @@ export class Body_Cell extends Component {
     this.state = {
       showModal: false
     };
-
-    
-    
-    
-
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -73,12 +68,8 @@ export class Body_Cell extends Component {
   handleOpenModal () {
     this.setState({ showModal: true });
    
-
   }
   
-
-  
-
   handleCloseModal () {
     this.setState({ showModal: false });
   }
@@ -89,7 +80,6 @@ export class Body_Cell extends Component {
 
   handleClick(event) {
     this.setState({title: event.target.value});
-
     //ukoliko nema biljeska onda samo ubaci novu
     if(this.props.termin.biljeska == undefined || this.props.termin.biljeska==""){
       this.props.termin.biljeska = this.state.title;
@@ -105,11 +95,11 @@ export class Body_Cell extends Component {
             if(response.data.success)
             {
               //signalna poruka kad je dodan
-
+              alert("Uspjesno ste unijeli biljesku!");
             }
             else
             {
-              //signalna poruka kad nije dodan
+              
             }
             console.log(response);
            });               

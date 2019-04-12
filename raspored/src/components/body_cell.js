@@ -118,11 +118,12 @@ export class Body_Cell extends Component {
             if(response.data.success)
             {
               //signalna poruka kad je update-ano
-
+              alert("Uspjesno ste azurirali biljesku!");
             }
             else
             {
               //signalna poruka kad nije update-ano
+              
             }
             console.log(response);
            });    

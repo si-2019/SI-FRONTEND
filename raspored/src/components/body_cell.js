@@ -66,7 +66,15 @@ export class Body_Cell extends Component {
 
   handleClick(event) {
     this.setState({title: event.target.value});
-    this.props.termin.biljeska+=' -- ' + this.state.title;
+    //ukoliko nema biljeska onda samo ubaci novu
+    if(this.props.termin.biljeska == undefined){
+      this.props.termin.biljeska = this.state.title;
+    }
+    //ako postoji biljeska, onda samo doda novu, odvojenu sa ---
+    else{
+      this.props.termin.biljeska+=' --- ' + this.state.title;
+    }
+    
   }
   
   render() {

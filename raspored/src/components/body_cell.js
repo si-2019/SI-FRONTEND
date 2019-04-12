@@ -123,7 +123,7 @@ export class Body_Cell extends Component {
             else
             {
               //signalna poruka kad nije update-ano
-              
+              alert("Doslo je do greske prilikom azuriranja biljeske!");
             }
             console.log(response);
            });    

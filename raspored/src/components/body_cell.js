@@ -15,11 +15,12 @@ const customStyles = {
 
 
 const MojModal = (ovaj) => {
-  ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekenda
+  ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa
   if(!ovaj.state.showModal)
     return null;
   return(
     //ovo je citav modal, html mijenjate i tu nakon biljeske treba dodati textbox polje za unos azuriranje i brisanje biljeske
+    
     <div>
             <Modal 
                isOpen={ovaj.state.showModal}
@@ -58,13 +59,14 @@ export class Body_Cell extends Component {
   handleCloseModal () {
     this.setState({ showModal: false });
   }
+  
   handleChange(event) {
     this.setState({title: event.target.value});
   }
 
   handleClick(event) {
     this.setState({title: event.target.value});
-    this.props.termin.biljeska=this.state.title;
+    this.props.termin.biljeska+=' -- ' + this.state.title;
   }
   
   render() {

@@ -33,8 +33,8 @@ const MojModal = (ovaj) => {
               
               <b>Unesi novu biljesku: </b> <br></br>
               <input type="text" value = {ovaj.state.value}></input>
-              <i>ovaj.state.value</i>
-              <button className = 'btn btn-primary' onClick ={}>Unesi</button><br></br>
+            
+              <button className = 'btn btn-primary' onClick={ovaj.props.termin.biljeska = "nesto"}>Unesi</button><br></br>
               <button className = 'btn btn-primary' onClick={ovaj.handleCloseModal}>Zatvori</button>
             </Modal>
     </div>

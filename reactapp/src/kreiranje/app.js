@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class App extends Component {
   render() {
-    return (
+    return ( 
       <div className="App" style={{padding: '25px'}}>
         <h1>Kreiranje ankete</h1>
         <hr/>

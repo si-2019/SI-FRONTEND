@@ -8,5 +8,8 @@ describe('<PocetnaForma />', () => {
       expect(wrapper.find('form').exists()).toBe(true)
     })
   
-    
+    it('da li labela za ispisivanje broja studenata na predmetu', () => {
+      const wrapper = shallow(<PocetnaForma/>)
+      expect(wrapper.find('#brStudenata').exists()).toBe(true)
+    })
   })

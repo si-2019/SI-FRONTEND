@@ -12,6 +12,10 @@ class PocetnaForma extends Component{
                 
                 <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
                 <select className="form-control" id="odabirPredmeta" >
+                    <option>Predmet 1</option>
+                    <option>Predmet 2</option>
+                    <option>Predmet 3</option>
+                    <option>Predmet 4</option>
                 </select>
             </div>     
         </div>

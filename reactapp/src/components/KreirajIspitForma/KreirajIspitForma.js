@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import './KreirajIspitForma.css'
 
 class KreirajIspitForma extends Component{
+  
   render(){
     return(
-    <div>
+    <div className='col-4'>
       <form>
         <div className='form-group'>
           <label htmlFor="ispitnaNapomena">Napomena za ispit</label>

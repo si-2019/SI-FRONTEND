@@ -8,7 +8,7 @@ class Footer extends Component {
       return (
         <div className="Footer">           
             <Navbar expand="lg" fixed="bottom" variant="light" bg="light">
-                <Nav.Link href="#">Return</Nav.Link>
+                <Nav.Link href="./">Return</Nav.Link>
             </Navbar>
         </div>
       );

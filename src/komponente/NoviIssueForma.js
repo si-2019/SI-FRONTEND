@@ -22,7 +22,16 @@ function NoviIssueForma(props){
                         <option>Problem 5</option>
                     </select>
 
-                    <button onClick={zatvoriNoviIssue} type="button" className="btn btn-danger float-right" style={{marginLeft:'85px', width:'50px'}}>X</button>
+                    <button
+                        onClick={() =>
+                            window.confirm('Prekinuti pisanje issuea?') && zatvoriNoviIssue()
+                        }
+                        type="button"
+                        className="btn btn-danger float-right"
+                        style={{marginLeft:'85px', width:'50px'}}
+                    >
+                        X
+                    </button>
                 </div>
 
                 <div className="form-group row col-12" style={{marginTop:'5px', marginLeft:'2px'}}>                    

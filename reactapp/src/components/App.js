@@ -1,7 +1,7 @@
 import React from 'react'
 
 import KreirajIspitForma from './KreirajIspitForma'
-import InformacijeOIspituForma from './KreirajIspitForma/InformacijeOIspituForma';
+import InformacijeOIspituForma from './InformacijeOIspituForma/InformacijeOIspituForma';
 
 class App extends React.Component{
 

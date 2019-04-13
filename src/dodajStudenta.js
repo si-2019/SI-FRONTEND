@@ -7,8 +7,6 @@ import Tab from 'react-bootstrap/Tab'
 class DodajStudenta extends Component {
     render () {
         return (
-            //Ove tabove dodajete u neki svoj .js
-            
             <div className="dodajStudenta">
                 <h1>Student</h1>
             <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">

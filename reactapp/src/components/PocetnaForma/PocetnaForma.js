@@ -12,7 +12,8 @@ class PocetnaForma extends Component{
                 
             </div> 
             <div className='col-3'>
-                
+              <label htmlFor="brStudenata">Broj studenata na predmetu: </label><br/>
+              <label id="brStudenata" class='float-right'>14 </label>
             </div> 
             <div className='col-3'>
                 

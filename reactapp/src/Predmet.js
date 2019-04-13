@@ -10,12 +10,13 @@ class Predmet extends Component {
                 </div>
                 <div>
                     <ul>
-                        <li>Grupa</li>
-                        <li>Grupa</li>
-                        <li>Grupa</li>
-                        <li>Grupa</li>
-                        <li>Grupa</li>
-                        <li>Grupa</li>
+                        <li>Grupa1</li>
+                        <li>Grupa2</li>
+                        <li>Grupa3</li>
+                        <li>Grupa4</li>
+                        <li>Grupa5</li>
+                        <li>Grupa6</li>
+
                     </ul>
                 </div>
             </div>

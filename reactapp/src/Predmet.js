@@ -16,6 +16,7 @@ class Predmet extends Component {
                         <li>Grupa4</li>
                         <li>Grupa5</li>
                         <li>Grupa6</li>
+
                     </ul>
                 </div>
             </div>

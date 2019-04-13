@@ -9,6 +9,7 @@ const Navigation = () => {
       <NavLink to="/" className="col-sm-2">Student</NavLink>
       <NavLink to="/odsjek" className="col-sm-2">Odsjek</NavLink>
       <NavLink to="/profesor" className="col-sm-2">Profesor</NavLink>
+      <NavLink to="/asistent" className="col-sm-2">Asistent</NavLink>
     </div>
     </nav>
   );

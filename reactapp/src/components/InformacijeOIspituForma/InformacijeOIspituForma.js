@@ -10,7 +10,7 @@ class InformacijeOIspituForma extends Component {
             <label htmlFor="rokPrijave">Rok prijave: </label> <br />
             <input type="date" className="form-control" id="datetimep" />
             <label htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> <br/>
-            <input type="text"/>
+            <input type="text" className="form-control"/>
           </div>
         </form>
       </div>)

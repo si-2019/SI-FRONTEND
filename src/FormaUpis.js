@@ -34,6 +34,7 @@ class FormaUpis extends Component {
 
         return (
           <div className="col-md-2">
+          
             <form  onSubmit={this.OnSubmit} className="container-fluid">
               <label className="col-md-2">Ciklus </label>
               <input className="form-control" type="number" name="ciklus" value={ciklus} onChange={this.handleInputChange} /><br />

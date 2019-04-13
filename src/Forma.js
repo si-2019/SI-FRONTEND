@@ -43,45 +43,45 @@ class Forma extends Component {
         const { ime, prezime, index, datum, jmbg, email, mjesto, kanton, drzavljanstvo, telefon, spol, roditelj, adresa } = this.state;
 
         return (
-          <div className="col-md-4 col-md-offset-4">
+          <div className="col-md-4 col-md-offset-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
-              <label className="col-md-3">Ime </label>
-              <input  className="form-control " type="text" name="ime" value={ime} onChange={this.handleChange}/><br />
+              <label >Ime </label>
+              <input  className="form-control" type="text" name="ime" value={ime} onChange={this.handleChange} /><br />
               
-              <label className="col-md-3">Prezime </label>
-              <input className="form-control " type="text" name="prezime" value={prezime} onChange={this.handleChange} /><br />
+              <label >Prezime </label>
+              <input className="form-control" type="text" name="prezime" value={prezime} onChange={this.handleChange}  /><br />
 
-              <label className="col-md-3">Index </label>
-              <input className="form-control " type="text" name="index" value={index} onChange={this.handleChange} /><br />
+              <label >Index </label>
+              <input className="form-control " type="text" name="index" value={index} onChange={this.handleChange}/><br />
 
               <label >Datum rođenja </label>
               <input className="form-control " type="date" name="datum" value={datum} onChange={this.handleChange} /><br />
               
-              <label className="col-md-3">JMBG </label>
+              <label>JMBG </label>
               <input className="form-control " type="text" name="jmbg" value={jmbg} onChange={this.handleChange} /><br />
 
-              <label className="col-md-3">Email </label>
+              <label >Email </label>
               <input className="form-control " type="email" name="email" value={email} onChange={this.handleChange} /><br />
               
-              <label className="col-md-3">Mjesto rođenja </label>
+              <label >Mjesto rođenja </label>
               <input className="form-control " type="text" name="mjesto" value={mjesto} onChange={this.handleChange} /><br />
               
-              <label className="col-md-3">Kanton </label>
+              <label >Kanton </label>
               <input className="form-control " type="text" name="kanton" value={kanton} onChange={this.handleChange} /><br />
               
-              <label className="col-md-3">Državljanstvo </label>
+              <label>Državljanstvo </label>
               <input className="form-control " type="text" name="drzavljanstvo" value={drzavljanstvo} onChange={this.handleChange} /><br />
 
-              <label className="col-md-3">Telefon </label>
+              <label >Telefon </label>
               <input className="form-control " type="tel" name="telefon" value={telefon} onChange={this.handleChange} /><br />
               
-              <label className="col-md-3">Spol </label>
+              <label>Spol </label>
               <input className="form-control " type="text" name="spol" value={spol} onChange={this.handleChange} /><br />
               
               <label >Ime i prezime roditelja </label>
               <input className="form-control " type="text" name="roditelj" value={roditelj} onChange={this.handleChange} /><br />
               
-              <label className="col-md-3">Adresa </label>
+              <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />
               
               

@@ -7,4 +7,9 @@ describe('<KreirajIspitForma />', () => {
     const wrapper = shallow(<KreirajIspitForma/>)
     expect(wrapper.find('form').exists()).toBe(true)
   })
+
+  it('da li ima input za napomenu', () => {
+    const wrapper = shallow(<KreirajIspitForma/>)
+    expect(wrapper.find('#ispitnaNapomena').exists()).toBe(true)
+  })
 })

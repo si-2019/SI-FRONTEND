@@ -17,8 +17,19 @@ class PocetnaForma extends Component{
                     <option>Predmet 3</option>
                     <option>Predmet 4</option>
                 </select>
-            </div>     
-        </div>
+            
+                
+                <label htmlFor="odabirTipIspita">Tip Ispita: </label>
+                <select className="form-control2" id="odabirTipIspita" >
+                    <option>Prvi parcijalni</option>
+                    <option>Drugi parcijalni</option>
+                    <option>Integralni</option>
+                    <option>Usmeni</option>
+                    <option>Uvid</option>
+                </select>
+            </div>   
+          </div>  
+
       </form>
     </div>)
   }

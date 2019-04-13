@@ -9,17 +9,16 @@ class PocetnaForma extends Component{
         <div className='row'>
             
             <div className='col-3'>
-                
-                <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
+              <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
                 <select className="form-control" id="odabirPredmeta" >
                     <option>Predmet 1</option>
                     <option>Predmet 2</option>
                     <option>Predmet 3</option>
                     <option>Predmet 4</option>
                 </select>
-            
-                
-                <label htmlFor="odabirTipIspita">Tip Ispita: </label>
+           </div> 
+            <div className='col-3'>
+              <label htmlFor="odabirTipIspita">Tip Ispita: </label>
                 <select className="form-control2" id="odabirTipIspita" >
                     <option>Prvi parcijalni</option>
                     <option>Drugi parcijalni</option>
@@ -27,9 +26,15 @@ class PocetnaForma extends Component{
                     <option>Usmeni</option>
                     <option>Uvid</option>
                 </select>
-            </div>   
-          </div>  
-
+            </div> 
+            <div className='col-3'>
+                
+            </div> 
+            <div className='col-3'>
+                
+            </div>    
+            </div>
+>>>>>>> CHARLIE
       </form>
     </div>)
   }

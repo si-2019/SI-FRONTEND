@@ -6,6 +6,7 @@ class Navbar001 extends Component {
       return (
         <Nav className="navbar001_class">
             <Nav.Link href="student">Student</Nav.Link>
+            <Nav.Link href="unos_podataka">Unos podataka</Nav.Link>
         </Nav>
       );
     }

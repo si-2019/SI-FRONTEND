@@ -11,8 +11,13 @@ class Header extends Component {
                 <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
                 </Nav>
+ 
                 <a style={{color: 'white'}}class="" onclick="" href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</a>
+
+                <a style={{color: 'white'}}class="" onclick="" href="http://yiiisu.com/load.php?action=download&id=3" >Uputstvo</a>
+
             </Navbar>
+           
         </div>
       );
     }

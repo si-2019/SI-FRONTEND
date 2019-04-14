@@ -4,8 +4,8 @@ import Table_body_cell from './table_body_cell.js';
 export class Table_body_row extends Component {
   render() {
     return this.props.days.map((day) => (
-        <Table_body_cell day={day.title}/>
-    ))
+      <Table_body_cell key={day.id} day={day.title}/>
+  ))
   }
 }
 

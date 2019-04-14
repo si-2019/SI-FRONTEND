@@ -1,91 +1,95 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Table_body_row from './components/table_body_cell.js';
 import Table_head_row from './components/table_head_row.js';
 import uuid from 'uuid';
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
   state=
-  {
-    days:[
-      {
-        id: uuid.v4(),
-        title:'Ponedjeljak'
-      },
-      {
-        id: uuid.v4(),
-        title:'Utorak'
-      },
-      {
-        id: uuid.v4(),
-        title:'Srijeda'
-      },
-      {
-        id: uuid.v4(),
-        title:'Četvrtak'
-      },
-      {
-        id: uuid.v4(),
-        title:'Petak'
-      },
-      {
-        id: uuid.v4(),
-        title:'Subota'
-      },
-      {
-        id: uuid.v4(),
-        title:'Nedjelja'
-      }
-    ],
-    ispiti:[
-      {
-        id:  uuid.v4(),
-        title:'Usmeni ispit',
-        predmet:'Administracija racunarskih mreza',
-        datum:'09.04.2019', 
-        vrijeme:'17:30',
-        sala:'S10'
-      },
-      {
-        id:  uuid.v4(),
-        title:'Prvi parcijalni ispit',
-        predmet:'Softver Inzinjering',
-        datum:'11.04.2019', 
-        vrijeme:'13:00',
-        sala:'MA'
-      }
-    ],
-    termini:[
-      {
-        id:  uuid.v4(),
-        title:'Predavanje',
-        predmet:'Vjestacka inteligencija',
-        datum:'12.04.2019', 
-        vrijeme:'15:00',
-        sala:'S1'
-      },
-      {
-        id:  uuid.v4(),
-        title:'Tutorijal',
-        predmet:'Vjestacka inteligencija',
-        datum:'12.04.2019', 
-        vrijeme:'17:00',
-        sala:'S5'
-      }
-    ]  
+  {    
+    raspored:[
 
+    ]
   }
+  
+  sortCriteria = (a,b) =>
+  {    
+      if ((a.datum<b.datum) || (a.datum===b.datum && a.vrijeme <b.vrijeme))
+        return -1;
+      if (a.datum===b.datum && a.vrijeme ===b.vrijeme)
+        return 0;
+      return 1;    
+  }
+
+  createRaspored = () =>
+  {
+
+     
+let ispiti = [
+  {
+    id:  uuid.v4(),
+    title:'Usmeni ispit',
+    predmet:'Administracija racunarskih mreza',
+    datum:'2019/04/11', 
+    vrijeme:'14:30',
+    sala:'S10'
+  },
+  {
+    id:  uuid.v4(),
+    title:'Prvi parcijalni ispit',
+    predmet:'Softver Inzinjering',
+    datum:'2019/04/11', 
+    vrijeme:'13:00',
+    sala:'MA'
+  }
+];
+var termini = [
+  {
+    id:  uuid.v4(),
+    title:'Predavanje',
+    predmet:'Vjestacka inteligencija',
+    datum:'2019/04/12', 
+    vrijeme:'17:00',
+    sala:'S1'
+  },
+  {
+    id:  uuid.v4(),
+    title:'Tutorijal',
+    predmet:'Vjestacka inteligencija',
+    datum:'2019/04/12', 
+    vrijeme:'12:00',
+    sala:'S5'
+  }
+];
+
+    
+    ispiti.forEach((val, index) => {
+      this.state.raspored.push(val);
+    });
+    termini.forEach((val, index) => {
+      this.state.raspored.push(val);
+    });
+    this.state.raspored.sort(this.sortCriteria);
+
+  
+  }
+
+  
   render() {
+    this.createRaspored();
+
+
     return (
       <div className="App">
       <table>
+        <tbody>
       <tr>
-        <th>Vrijeme</th>
-        <Table_head_row days={this.state.days}/>
+        <th style={pocetnaKolonaStyle}>Vrijeme</th>
+        <Table_head_row days={days}/>
       </tr>
       <tr>
-        <td>17:30</td>
+        <td style={pocetnaKolonaStyle}>17:30</td>
         <td>Softver Inzinjering - Predavanje Sala S1 17:30</td>
         <td></td>
         <td></td>
@@ -95,7 +99,7 @@ class App extends Component {
         <td></td>
       </tr>
       <tr>
-        <td>18:30</td>
+        <td style={pocetnaKolonaStyle}>18:30</td>
         <td></td>
         <td></td>
         <td>Vjestacka inteligencija - Predavanje Sala S1 18:30</td>
@@ -105,7 +109,7 @@ class App extends Component {
         <td></td>
       </tr>
       <tr>
-        <td>19:30</td>
+        <td style={pocetnaKolonaStyle}>19:30</td>
         <td></td>
         <td></td>        
         <td></td>
@@ -114,11 +118,52 @@ class App extends Component {
         <td></td>
         <td></td>
       </tr>
+      </tbody>
       </table>
       </div>
        
     ) 
   }
 }
+
+const pocetnaKolonaStyle = {
+  width: '5vw',
+  backgroundColor: 'rgb(208, 214, 298)',
+  textAlign: 'center'
+  
+}
+
+const days =[
+  {
+    id: uuid.v4(),
+    title:'Ponedjeljak'
+  },
+  {
+    id: uuid.v4(),
+    title:'Utorak'
+  },
+  {
+    id: uuid.v4(),
+    title:'Srijeda'
+  },
+  {
+    id: uuid.v4(),
+    title:'Četvrtak'
+  },
+  {
+    id: uuid.v4(),
+    title:'Petak'
+  },
+  {
+    id: uuid.v4(),
+    title:'Subota'
+  },
+  {
+    id: uuid.v4(),
+    title:'Nedjelja'
+  }
+]; 
+
+
 
 export default App;

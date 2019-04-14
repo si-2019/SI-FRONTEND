@@ -16,7 +16,8 @@ const routing = (
         <Route path="/student" component={StranicaPredmeta} />
         <Route path="/unos_podataka" component={StranicaPredmeta} />
         <Route path="/ispiti" component={StranicaPredmeta} />  
-        <Route path="/obavijesti" component={StranicaPredmeta} />       
+        <Route path="/obavijesti" component={StranicaPredmeta} /> 
+        <Route path="/zadace" component={StranicaPredmeta} />       
       </div>
     </Router>
   )

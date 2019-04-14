@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 class Navbar001 extends Component {
     render() {
       return (
-        <div className="Navbar001">
-        
-        </div>
+        <Nav className="navbar001_class">
+            <Nav.Link href="student">Student</Nav.Link>
+        </Nav>
       );
     }
   }
   
   export default Navbar001;
-

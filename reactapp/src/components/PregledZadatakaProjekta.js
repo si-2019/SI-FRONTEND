@@ -3,7 +3,7 @@ import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 
 import { sviProjektiTrenutnogUsera } from "../api/projekti_zadaci";
 
-class PregledZadatakaProjekta extends Component {
+class PregledZadatakaProjekta extends Component { 
 
   constructor() {
     super();

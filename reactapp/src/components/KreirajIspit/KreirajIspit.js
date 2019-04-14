@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 
-class PocetnaForma extends Component{
+class KreirajIspit extends Component{
   
   render(){
     return(
@@ -9,7 +10,7 @@ class PocetnaForma extends Component{
         <div className='row'>
             
             <div className='col-3'>
-              <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
+            <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
                 <select className="form-control" id="odabirPredmeta" >
                     <option>Predmet 1</option>
                     <option>Predmet 2</option>
@@ -31,13 +32,20 @@ class PocetnaForma extends Component{
                 
             </div> 
             <div className='col-3'>
-                
-            </div>    
             </div>
->>>>>>> CHARLIE
+
+            </div>
+              <Link to="/kreiraj-ispit-detalji">
+                  <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
+              </Link>
+
+              <Link to="/kreirani-ispiti">
+                <button type="button" class="btn btn-primary">Kreirani ispiti</button>
+              </Link>
+            
       </form>
     </div>)
   }
 }
 
-export default PocetnaForma
+export default KreirajIspit

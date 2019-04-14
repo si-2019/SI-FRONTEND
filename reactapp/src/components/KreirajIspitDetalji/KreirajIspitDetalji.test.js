@@ -1,15 +1,15 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import KreirajIspitForma from './KreirajIspitForma'
+import KreirajIspitDetalji from './KreirajIspitDetalji'
 
-describe('<KreirajIspitForma />', () => {
+describe('<KreirajIspitDetalji />', () => {
   it('renderuje formu za unos podataka', () => {
-    const wrapper = shallow(<KreirajIspitForma/>)
+    const wrapper = shallow(<KreirajIspitDetalji/>)
     expect(wrapper.find('form').exists()).toBe(true)
   })
 
   it('da li ima input za napomenu', () => {
-    const wrapper = shallow(<KreirajIspitForma/>)
+    const wrapper = shallow(<KreirajIspitDetalji/>)
     expect(wrapper.find('#ispitnaNapomena').exists()).toBe(true)
   })
 })

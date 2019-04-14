@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class PocetnaForma extends Component{
+class KreirajIspit extends Component{
   
   render(){
     return(
@@ -27,4 +27,4 @@ class PocetnaForma extends Component{
   }
 }
 
-export default PocetnaForma
+export default KreirajIspit

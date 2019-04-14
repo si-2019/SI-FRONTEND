@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 
 export class Cell extends Component {
   render() {
-      
+      if(this.props.termin==undefined)
+      return (
+        <td style={tdStyle}>
+        </td>);
+        else 
     return (
-          <td style={tdStyle}>{this.props.redniBroj}
+          <td style={tdStyle}>{this.props.termin.datum + ' ' + this.props.termin.predmet + ' ' +  this.props.termin.title + this.props.termin.vrijeme}
 
           </td>
         

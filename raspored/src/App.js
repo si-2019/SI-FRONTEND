@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import axios from 'axios';
 import Table_head_cell from './components/table_head_cell.js';
 import './App.css';
+import { runInThisContext } from 'vm';
 
 class App extends Component {
   state=
@@ -62,6 +63,51 @@ class App extends Component {
     return vrijeme; 
   }
 
+  sljedeciDan(datum) // funkcija vraca datum sljedeceg dana
+  {
+    var today = new Date(datum);
+    var tomorrow = new Date();
+    tomorrow.setDate(today.getDate()+1);
+    
+    var dd = String(tomorrow.getDate()).padStart(2, '0');
+    var mm = String(tomorrow.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+    var yyyy = tomorrow.getFullYear();
+
+    datum = yyyy + '/' + mm + '/' + dd;
+    
+    return datum;
+
+    
+  }
+  prethodniDan(datum) // funkcija vraca datum prethodnog dana
+  {
+    var today = new Date(datum);
+    var yesterday = new Date();
+    yesterday.setDate(today.getDate()-1);
+    
+    var dd = String(yesterday.getDate()).padStart(2, '0');
+    var mm = String(yesterday.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+    var yyyy = yesterday.getFullYear();
+
+    datum = yyyy + '/' + mm + '/' + dd;
+    
+    return datum;
+    
+  }
+
+  prviDanuSedmici(datum) //funkcija vraca prvi dan u sedmici u kojoj je taj datum
+  {
+    let datumNovi = new Date(datum);
+    let brojIteracija = datumNovi.getDay()-1;    
+    while(brojIteracija!=0)
+    {
+      datum=this.prethodniDan(datum);
+      brojIteracija--;
+    }
+    return datum;
+  }
+
+
 
   createRaspored = () =>
   {
@@ -94,13 +140,13 @@ class App extends Component {
           trajanje:'30'
       },
       {
-      id:  4,
-      title:'Vjezbe',
-      predmet:'Linearna algebra i geometrija',
-      datum:'2019/04/14', 
-      vrijeme:'15:00',
-      sala:'S10',
-      trajanje:'60'
+          id:  4,
+          title:'Vjezbe',
+          predmet:'Linearna algebra i geometrija',
+          datum:'2019/04/14', 
+          vrijeme:'18:00',
+          sala:'S10',
+          trajanje:'60'
       }
   ]
   var spisakIspita=[
@@ -127,7 +173,7 @@ class App extends Component {
         title:'Usmeni ispit',
         predmet:'Tehnike programiranja',
         datum:'2019/04/11', 
-        vrijeme:'14:30',
+        vrijeme:'17:30',
         sala:'S9',
         trajanje:'30'
     },
@@ -136,7 +182,7 @@ class App extends Component {
         title:'Prvi parcijalni ispit',
         predmet:'Linearna algebra i geometrija',
         datum:'2019/04/11', 
-        vrijeme:'14:30',
+        vrijeme:'09:30',
         sala:'VA',
         trajanje:'180'
     },
@@ -144,7 +190,7 @@ class App extends Component {
         id:  5,
         title:'Drugi parcijalni ispit',
         predmet:'Objektno orijentisana analiza i dizajn',
-        datum:'2019/04/11', 
+        datum:'2019/04/12', 
         vrijeme:'14:30',
         sala:'S8',
         trajanje:'120'
@@ -176,8 +222,10 @@ spisakIspita.forEach((val, index) => {
       });  */   
        this.state.raspored.sort(this.sortCriteria);
 
+
        //Ovo dalje se desava nakon getanja ispita i termina
-       var vrijemeObaveze='09:00';
+
+       var vrijemeObaveze='08:00';
        while(vrijemeObaveze!='21:00')
         {
           this.state.vremenaRasporeda.push(vrijemeObaveze);                   
@@ -204,20 +252,88 @@ spisakIspita.forEach((val, index) => {
        this.state.vremenaRasporeda.sort();       
        console.log(this.state.vremenaRasporeda);
 
-       var headerRow = days.map((day) => (
-        <Table_head_cell key={day.id} day={day.title}/>
-      ));
+
+       let danas= new Date();
+       var dd = String(danas.getDate()).padStart(2, '0');
+       var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+       var yyyy = danas.getFullYear();   
+       let datum = yyyy + '/' + mm + '/' + dd;
+       datum = this.prviDanuSedmici(datum);
+
+       let matricaTermina =new Array(this.state.vremenaRasporeda.length);
+       for (var i = 0; i < matricaTermina.length; i++) {
+          matricaTermina[i] = new Array(7);
+          for(var j=0;j<matricaTermina[i].length;j++)
+            matricaTermina[i][j]=-1;
+       }
+       let datumFix = datum;
+
+       this.state.raspored.forEach((val,index) => {
+         datum=datumFix;
+         for(let dan=0;dan<7;dan++)
+         {
+          if(val.datum==datum)
+          {
+            
+            let lokalnoTrajanje = val.trajanje;
+            let indeksVremena=-1;
+            for(let j=0;j<this.state.vremenaRasporeda.length;j++)
+            {
+              if(val.vrijeme==this.state.vremenaRasporeda[++indeksVremena])
+              {
+                break;
+              }  
+            }
+            while(lokalnoTrajanje!=0)
+            {    
+              console.log(val.datum);
+              console.log(indeksVremena); 
+              console.log(dan);         
+              matricaTermina[indeksVremena][dan]=index;
+              let razdaljinaMinute = 0;
+              if(indeksVremena==this.state.vremenaRasporeda.length-1)
+              break;
+
+              if(this.state.vremenaRasporeda[indeksVremena][3]!=this.state.vremenaRasporeda[indeksVremena+1][3])
+              razdaljinaMinute=30;
+              else
+              razdaljinaMinute=60;
+
+              lokalnoTrajanje-=razdaljinaMinute;
+              indeksVremena++;
+            }
+            break; 
+          }
+          datum=this.sljedeciDan(datum);
+         }
+         
+
+        
+       });
+
+
+
+       
+       
       for (var i=0; i < this.state.vremenaRasporeda.length; i++) {
-          this.state.rendering.push(
+        let cells=[];
+        for(let u=0;u<7;u++)
+        {
+          if(matricaTermina[i][u]==-1)
+          {
+            // ako celija nije ispunjena
+            cells.push(<Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={undefined} ></Cell>);
+          }
+          else
+          {
+            cells.push(<Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={this.state.raspored[matricaTermina[i][u]]} ></Cell>);
+          }
+        }
+
+        this.state.rendering.push(
             <tr>
               <td style={pocetnaKolonaStyle}>{this.state.vremenaRasporeda[i]}</td>
-              <Cell dan='1' redniBroj={i} raspored={this.state.raspored}></Cell>
-              <Cell dan='2' redniBroj={i} raspored={this.state.raspored}></Cell>
-              <Cell dan='3' redniBroj={i} raspored={this.state.raspored}></Cell>
-              <Cell dan='4' redniBroj={i} raspored={this.state.raspored}></Cell>
-              <Cell dan='5' redniBroj={i} raspored={this.state.raspored}></Cell>
-              <Cell dan='6' redniBroj={i} raspored={this.state.raspored}></Cell>
-              <Cell dan='7' redniBroj={i} raspored={this.state.raspored}></Cell>            
+              {cells}            
             </tr>
           );
       }
@@ -229,11 +345,25 @@ spisakIspita.forEach((val, index) => {
 render() {
     this.createRaspored(); 
     console.log(this.state.raspored);
-    var headerRow = days.map((day) => (
-      <Table_head_cell key={day.id} day={day.title}/>
-    ));
+
+    let danas= new Date();
+       var dd = String(danas.getDate()).padStart(2, '0');
+       var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+       var yyyy = danas.getFullYear();   
+    let datum = yyyy + '/' + mm + '/' + dd;
+    datum = this.prviDanuSedmici(datum);
+    var headerRow = [];
+       days.forEach((day,index) => {
+
+         headerRow.push(
+          <Table_head_cell key={day.id} day={day.title} datum={datum}/>
+         );
+         datum = this.sljedeciDan(datum);
+
+       });
     
     console.log(this.state.rendering);
+    console.log(this.prviDanuSedmici('2019/04/10'));
     
     return (
               

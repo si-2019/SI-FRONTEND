@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import ReturnButton from './ReturnButton';
 
 
 class Footer extends Component {
@@ -8,7 +8,7 @@ class Footer extends Component {
       return (
         <div className="Footer">           
             <Navbar expand="lg" fixed="bottom" variant="light" bg="light">
-                <Nav.Link href="./">Return</Nav.Link>
+                <ReturnButton/>
             </Navbar>
         </div>
       );

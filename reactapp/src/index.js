@@ -14,6 +14,7 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route path="/predmet" component={StranicaPredmeta} />
         <Route path="/student" component={StranicaPredmeta} />
+        <Route path="/unos_podataka" component={StranicaPredmeta} />
       </div>
     </Router>
   )

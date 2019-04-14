@@ -3,6 +3,8 @@ import OdabirDana from './OdabirDana.js';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow } from 'enzyme';
+
+Enzyme.configure({ adapter: new Adapter() });
 it("Prikazuje formu za prikaz odabira dana", () => {
   const component = shallow(<OdabirDana />);
   expect(component).toMatchSnapshot();
@@ -33,9 +35,9 @@ it("Postoji li div za petak", () => {
 });
 it("Postoji li button za unos", () => {
     const wrapper = shallow(<OdabirDana />);
-    expect(wrapper.find("#b1").eb1xists()).toBe(true);
+    expect(wrapper.find("#b1").exists()).toBe(true);
 });
 it("Postoji li button za ponistavanje", () => {
     const wrapper = shallow(<OdabirDana />);
-    expect(wrapper.find("#b6").eb1xists()).toBe(true);
+    expect(wrapper.find("#b6").exists()).toBe(true);
 });

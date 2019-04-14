@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import StranicaPredmeta from './StranicaPredmeta';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import student001 from './NavBarStranice/student001';
 
 //import * as serviceWorker from './serviceWorker';
 
@@ -13,7 +14,7 @@ const routing = (
       <div>
         <Route exact path="/" component={App} />
         <Route path="/predmet" component={StranicaPredmeta} />
-        <Route path="/student" component={StranicaPredmeta} />
+        <Route path="/student" component={student001} />
         <Route path="/unos_podataka" component={StranicaPredmeta} />
         <Route path="/ispiti" component={StranicaPredmeta} />  
         <Route path="/obavijesti" component={StranicaPredmeta} /> 

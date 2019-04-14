@@ -14,3 +14,15 @@ describe('<PocetnaForma />', () => {
   
 
 })
+
+describe('<PocetnaForma/>', () =>{
+  it('renderuje formu za odabir ispitnog tipa', () =>{
+      const wrapper=shallow(<PocetnaForma/>)
+  expect(wrapper.find('form').exists()).toBe(true)
+  })
+  it('renderuje formu za odabir ispitnog tipa', () =>{
+    const wrapper=shallow(<PocetnaForma/>)
+    expect(wrapper.find('#odabirTipIspita').exists()).toBe(true)
+  })
+})
+  

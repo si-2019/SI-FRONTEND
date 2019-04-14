@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './components/PregledListeProjekata';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
@@ -9,3 +10,6 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
+Student-ima-mogucnost-pregleda-liste-projekata-koje-je-sam-kreirao-te-onih-u-koje-je-dodan-kako-bi-pristupio-svojim-projektima

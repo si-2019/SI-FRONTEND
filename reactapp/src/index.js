@@ -13,6 +13,7 @@ const routing = (
       <div>
         <Route exact path="/" component={App} />
         <Route path="/predmet" component={StranicaPredmeta} />
+        <Route path="/student" component={StranicaPredmeta} />
       </div>
     </Router>
   )

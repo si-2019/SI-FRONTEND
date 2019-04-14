@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import PregledZadatakaProjekta from './components/PregledZadatakaProjekta';
-import PregledListeProjekata from './components/PregledListeProjekata';
-import PrikazListeZadataka from './components/PrikazListeZadataka';
+
+import './components/PregledZadatakaProjekta/PregledZadatakaProjekta'
+import PregledZadatakaProjekta from './components/PregledZadatakaProjekta/PregledZadatakaProjekta';
+import { sviProjektiTrenutnogUsera } from './api/projekti_zadaci';
 
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
         <header className="App-header">
           <PrikazListeZadataka/>
         </header>
+        <PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}></PregledZadatakaProjekta>
       </div>
     );
   }

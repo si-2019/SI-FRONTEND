@@ -5,6 +5,8 @@ import axios from 'axios';
 import Table_head_cell from './components/table_head_cell.js';
 import './App.css';
 import { runInThisContext } from 'vm';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+
 
 class App extends Component {
   state=
@@ -115,41 +117,77 @@ class App extends Component {
       {
           id:  1,
           title:'Predavanje',
-          predmet:'Razvoj programskih rjesenja',
-          datum:'2019/04/13', 
-          vrijeme:'09:00',
-          sala:'S10',
+          predmet:'Projektovanje informacionih sistema',
+          datum:'2019/04/08', 
+          vrijeme:'12:00',
+          sala:'MA',
           trajanje:'120'
       },
       {
           id:  2,
           title:'Tutorijal',
-          predmet:'Softver Inzinjering',
-          datum:'2019/04/13', 
-          vrijeme:'15:00',
+          predmet:'Projektovanje informacionih sistema',
+          datum:'2019/04/08', 
+          vrijeme:'17:00',
           sala:'MA',
-          trajanje:'90'
+          trajanje:'60'
       },
       {
           id:  3,
           title:'Predavanje',
-          predmet:'Tehnike programiranja',
-          datum:'2019/04/14', 
-          vrijeme:'12:30',
-          sala:'S10',
-          trajanje:'30'
+          predmet:'Softver Inzinjering',
+          datum:'2019/04/09', 
+          vrijeme:'09:00',
+          sala:'S1',
+          trajanje:'180'
       },
       {
           id:  4,
           title:'Vjezbe',
-          predmet:'Linearna algebra i geometrija',
-          datum:'2019/04/14', 
+          predmet:'Projektovanje informacionih sistema',
+          datum:'2019/04/10', 
           vrijeme:'18:00',
-          sala:'S10',
-          trajanje:'60'
+          sala:'S5',
+          trajanje:'120'
+      },
+      {
+        id:  5,
+        title:'Predavanje',
+        predmet:'Administracija racunarskih mreza',
+        datum:'2019/04/11', 
+        vrijeme:'09:00',
+        sala:'S5',
+        trajanje:'180'
+      },
+      {
+        id:  6,
+        title:'Predavanje',
+        predmet:'Vjestacka inteligencija',
+        datum:'2019/04/11', 
+        vrijeme:'15:00',
+        sala:'S1',
+        trajanje:'120'
+      },
+      {
+        id:  7,
+        title:'Vjezbe',
+        predmet:'Vjestacka inteligencija',
+        datum:'2019/04/11', 
+        vrijeme:'20:00',
+        sala:'1-02',
+        trajanje:'60'
+      },
+      {
+        id:  8,
+        title:'Vjezbe',
+        predmet:'Administracija racunarskih mreza',
+        datum:'2019/04/12', 
+        vrijeme:'09:00',
+        sala:'1-03',
+        trajanje:'120'
       }
   ]
-  var spisakIspita=[
+  var spisakIspita=[/*
     {
         id:  1,
         title:'Usmeni ispit',
@@ -194,7 +232,7 @@ class App extends Component {
         vrijeme:'14:30',
         sala:'S8',
         trajanje:'120'
-    }
+    }*/
 ]
 spisakIspita.forEach((val, index) => {
   this.state.raspored.push(val);
@@ -203,7 +241,7 @@ spisakIspita.forEach((val, index) => {
   this.state.raspored.push(val);  
 });
 
-  /*  var spisakIspita;
+    /*var spisakIspita;
     var spisakTermina;
     axios.get("http://localhost:3001/getIspiti").then(function (response) {
       // handle success
@@ -219,7 +257,7 @@ spisakIspita.forEach((val, index) => {
        spisakTermina=JSON.parse(odzivTermini);   
        spisakTermina.forEach((val, index) => {
         this.state.raspored.push(val);  
-      });  */   
+      });   */ 
        this.state.raspored.sort(this.sortCriteria);
 
 
@@ -239,7 +277,7 @@ spisakIspita.forEach((val, index) => {
         let trajanjeObaveze = parseInt(val.trajanje);
         while(trajanjeObaveze!=0)
         {
-          if(!this.state.vremenaRasporeda.includes(vrijemeObaveze))
+          if(!this.state.vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
           {
             this.state.vremenaRasporeda.push(vrijemeObaveze);            
           }          
@@ -249,8 +287,7 @@ spisakIspita.forEach((val, index) => {
         }
        });
        
-       this.state.vremenaRasporeda.sort();       
-       console.log(this.state.vremenaRasporeda);
+       this.state.vremenaRasporeda.sort();
 
 
        let danas= new Date();
@@ -286,9 +323,7 @@ spisakIspita.forEach((val, index) => {
             }
             while(lokalnoTrajanje!=0)
             {    
-              console.log(val.datum);
-              console.log(indeksVremena); 
-              console.log(dan);         
+                  
               matricaTermina[indeksVremena][dan]=index;
               let razdaljinaMinute = 0;
               if(indeksVremena==this.state.vremenaRasporeda.length-1)
@@ -338,7 +373,7 @@ spisakIspita.forEach((val, index) => {
           );
       }
     /*}.bind(this)) 
-    }.bind(this))  */
+    }.bind(this)) */ 
   }
 
   
@@ -363,13 +398,15 @@ render() {
        });
     
     console.log(this.state.rendering);
-    console.log(this.prviDanuSedmici('2019/04/10'));
     
     return (
-              
+      
+     
+ 
                 <table>
                 <tbody>  
                   <tr>
+     
                     <th style={pocetnaKolonaStyle}>Vrijeme</th>            
                     {headerRow}
                     </tr>  

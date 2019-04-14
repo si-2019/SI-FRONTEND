@@ -20,7 +20,8 @@ const routing = (
         <Route path="/zadace" component={StranicaPredmeta} />  
         <Route path="/ankete" component={StranicaPredmeta} />  
         <Route path="/statistika" component={StranicaPredmeta} />  
-        <Route path="/raspored" component={StranicaPredmeta} />         
+        <Route path="/raspored" component={StranicaPredmeta} /> 
+        <Route path="/chat" component={StranicaPredmeta} />        
       </div>
     </Router>
   )

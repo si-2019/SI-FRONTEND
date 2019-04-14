@@ -1,7 +1,8 @@
 import React from 'react';
-
+import CategoryComponent from './CategoryComponent'
 
 function NoviIssueForma(props){
+
 
     function zatvoriNoviIssue(){
         document.getElementById('overlay').style.display = "none";
@@ -14,13 +15,7 @@ function NoviIssueForma(props){
 
                 <div className="row" style={{marginTop:'10px'}}>
                     <label className="col-1" style={{marginLeft:'12px', marginTop:'6px'}}>Naslov</label>
-                    <select className="form-control col-9" id="naslovSelect">
-                        <option>Problem 1</option>
-                        <option>Problem 2</option>
-                        <option>Problem 3</option>
-                        <option>Problem 4</option>
-                        <option>Problem 5</option>
-                    </select>
+                    <CategoryComponent> </CategoryComponent>
 
                     <button onClick={zatvoriNoviIssue} type="button" className="btn btn-danger float-right" style={{marginLeft:'85px', width:'50px'}}>X</button>
                 </div>

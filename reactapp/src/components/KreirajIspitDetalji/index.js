@@ -1,3 +1,3 @@
-import KreirajIspit from './KreirajIspit'
+import KreirajIspitDetalji from './KreirajIspitDetalji'
 
-export default KreirajIspit
+export default KreirajIspitDetalji

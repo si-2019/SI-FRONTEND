@@ -29,6 +29,7 @@ function NoviIssueForma(props){
                         type="button"
                         className="btn btn-danger float-right"
                         style={{marginLeft:'85px', width:'50px'}}
+                        id="zatvoriNoviIssue"
                     >
                         X
                     </button>

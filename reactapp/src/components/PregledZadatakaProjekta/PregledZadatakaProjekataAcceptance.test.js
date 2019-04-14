@@ -37,7 +37,10 @@ describe('Acceptance kriteriji testovi koji trebaju da odrede da li je odrađen 
             opis_projekta: "opis projekta 1",
             zadaci:  [
               {id: "1", opis: "opis projektnog zadatka 1", prioritet: "1", od_kad: "11.4.2019", do_kad: "23.4.2019", zavrsen: "NE", komentar: "" }, 
-              {id: "2", opis: "opis projektnog zadatka 2", prioritet: "3", od_kad: "12.4.2019", do_kad: "17.4.2019", zavrsen: "DA", komentar: "" }
+              {id: "2", opis: "opis projektnog zadatka 2", prioritet: "3", od_kad: "12.4.2019", do_kad: "17.4.2019", zavrsen: "DA", komentar: "" },
+              {id: "3", opis: "opis projektnog zadatka 3", prioritet: "3", od_kad: "12.4.2019", do_kad: "17.4.2019", zavrsen: "DA", komentar: "" },
+              {id: "4", opis: "opis projektnog zadatka 4", prioritet: "3", od_kad: "12.4.2019", do_kad: "17.4.2019", zavrsen: "DA", komentar: "" },
+              {id: "5", opis: "opis projektnog zadatka 5", prioritet: "3", od_kad: "12.4.2019", do_kad: "17.4.2019", zavrsen: "DA", komentar: "" }
             ]},
             {id: "2", 
             naziv_predmeta: "Predmet 1",

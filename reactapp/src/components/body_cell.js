@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class Body_Cell extends Component {
+export class Body_cell extends Component {
   render() {
     if(this.props.redniBroj%2==0)
     {
@@ -62,4 +62,4 @@ const tdStyleParan=
     width:'10vw', 
     backgroundColor:'lightgoldenrodyellow' 
 }
-export default Body_Cell
+export default Body_cell

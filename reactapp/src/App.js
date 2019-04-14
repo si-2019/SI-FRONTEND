@@ -1,7 +1,7 @@
-import React, { Suspense, Fragment, memo , Component} from "react";
+﻿import React, { Suspense, Fragment, memo , Component} from "react";
 import uuid from 'uuid';
 import axios from 'axios';
-import Body_Cell from './components/body_cell.js';
+import Body_cell from './components/body_cell.js';
 import Head_cell from './components/head_cell.js';
 import './App.css';
 import { runInThisContext } from 'vm';
@@ -153,11 +153,11 @@ const Helper = () => {
       {
         // ako celija nije ispunjena
         // u celiji cemo dalje testirati da li je termin undefined ili ne
-        cells.push(<Body_Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={undefined} ></Body_Cell>);
+        cells.push(<Body_cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={undefined} ></Body_cell>);
       }
       else
       {
-        cells.push(<Body_Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={raspored[matricaTermina[i][u]]} ></Body_Cell>);
+        cells.push(<Body_cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={raspored[matricaTermina[i][u]]} ></Body_cell>);
       }
     }
   rendering.push(
@@ -187,11 +187,14 @@ const Helper = () => {
 
   return (     
       <table>
-      <tbody>  
+        <thead>
         <tr>
           <th style={pocetnaKolonaStyle}>Vrijeme</th>            
           {headerRow}
         </tr>
+        </thead>
+      <tbody>  
+        
         {rendering}
         </tbody>
       </table> 
@@ -276,7 +279,9 @@ const povecajVrijemePolaSata = (vrijeme) =>
   const prviDanuSedmici = (datum) => //funkcija vraca prvi dan u sedmici u kojoj je taj datum
   {
     let datumNovi = new Date(datum);
-    let brojIteracija = datumNovi.getDay()-1;    
+    let brojIteracija = datumNovi.getDay()-1; 
+    if(brojIteracija==-1)
+    brojIteracija=6;   
     while(brojIteracija!=0)
     {
       datum=prethodniDan(datum);
@@ -293,7 +298,7 @@ render = () =>{
     return(
       <Fragment>    
         <Suspense fallback={<div>Loading...</div>}>
-           <Helper/>    
+           <Helper/>  
         </Suspense>
       </Fragment>        
     )

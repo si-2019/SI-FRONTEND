@@ -1,16 +1,17 @@
 {
-  "name": "raspored",
+  "name": "reactapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.14.7",
     "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.6",
-    "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
-    "uuid": "^3.3.2"
+    "typescript": "^3.4.3",
+    "axios": "0.18.0",
+    "react-cache": "2.0.0-alpha.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -7,10 +7,11 @@ const ProgressBar = (props) => {
     </div>
     )
 }
+const styleString= "width: " + props.percentage+"%";
 
 const Filler = (props) => {
     return  (
-    <div className="filler" style={{ width: 185}}>
+    <div className="filler" style={{styleString}}>
     <label>{props.percentage}%</label> </div>)
 }
 

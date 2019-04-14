@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ProgressbarZadace from './ProgressBar' 
+import ProgressbarZadace from './ProgressBar.js' 
 
 class App extends Component {
   render() {

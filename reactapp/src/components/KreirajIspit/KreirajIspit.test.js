@@ -1,0 +1,10 @@
+import React from 'react';
+import {shallow} from 'enzyme';
+import KreirajIspit from './KreirajIspit'
+
+describe('<KreirajIspit />', () => {
+    it('da li ima button-a za kreiranje ispita', () => {
+    const wrapper = shallow(<KreirajIspit/>)
+    expect(wrapper.find('#kreirajDugme').exists()).toBe(true)
+  })
+})

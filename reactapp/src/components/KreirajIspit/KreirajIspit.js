@@ -20,7 +20,7 @@ class KreirajIspit extends Component{
             </div> 
             <div className='col-3'>
                   <Link to="/kreiraj-ispit-detalji">
-                      <button type="button" class="btn btn-primary">Kreiraj</button>
+                      <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
                   </Link>
             </div>    
 

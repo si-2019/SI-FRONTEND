@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import { configure } from 'enzyme';
 import { mount, shallow, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ReactTestUtils from 'react-dom/test-utils';
 configure({ adapter: new Adapter() });
 
 import PregledZadatakaProjekta from './PregledZadatakaProjekta';
 
 describe('PregledZadatakaProjekta', () => {
+
+    it('Da li rendera uspjesno', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<PregledZadatakaProjekta />, div);
+        ReactDOM.unmountComponentAtNode(div);
+      });
 
     it("Postoji li select za odabir projekta", () => {
         const wrapper = shallow(<PregledZadatakaProjekta />);

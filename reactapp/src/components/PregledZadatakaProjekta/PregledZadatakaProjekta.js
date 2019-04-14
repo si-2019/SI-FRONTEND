@@ -1,26 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 
-import { sviProjektiTrenutnogUsera } from "../../api/projekti_zadaci";
-
 class PregledZadatakaProjekta extends Component { 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    let projekti = this.props.projekti;
+    let selektani_projekat = null;
+    if(projekti.length > 0) selektani_projekat = projekti[0];
 
     this.state = { 
-      projekti: [], 
-      selektani_projekat: null
+      projekti: this.props.projekti, 
+      selektani_projekat: selektani_projekat
     };
     
     this.renderTabela = this.renderTabela.bind(this);
-  }
-  
-  componentDidMount() {
-    let projekti = sviProjektiTrenutnogUsera().projekti;
-    this.setState({projekti: projekti});
-
-    if(projekti.length > 0) this.setState({selektani_projekat: projekti[0]});
   }
 
   renderTabela() {
@@ -52,7 +47,7 @@ class PregledZadatakaProjekta extends Component {
                       <td>{zadatak.zavrsen}</td>
                       <td>{zadatak.komentar}</td>
                     </tr>)
-                }) : ""
+                }) : null
           }
         </tbody>
       </Table>

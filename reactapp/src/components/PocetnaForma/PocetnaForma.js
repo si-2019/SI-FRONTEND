@@ -9,7 +9,7 @@ class PocetnaForma extends Component{
         <div className='row'>
             
             <div className='col-3'>
-                
+            Kreiranje ispita
             </div> 
             <div className='col-3'>
                 
@@ -18,7 +18,7 @@ class PocetnaForma extends Component{
                 
             </div> 
             <div className='col-3'>
-                
+                <button type="button" class="btn btn-primary" onClick={() => window.open( 'http://www.google.com')}>Kreiraj</button>
             </div>    
 
         </div>

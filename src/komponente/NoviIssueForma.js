@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {posaljiIssue} from '../MainPage.js'
 
 function NoviIssueForma(props){
 
@@ -10,7 +10,7 @@ function NoviIssueForma(props){
     return (
 
         <div>
-            <form>       
+            <form onSubmit={posaljiIssue}>       
 
                 <div className="row" style={{marginTop:'10px'}}>
                     <label className="col-1" style={{marginLeft:'12px', marginTop:'6px'}}>Naslov</label>

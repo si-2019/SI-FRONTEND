@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 
-import { sviProjektiTrenutnogUsera } from "../api/projekti_zadaci";
+import { sviProjektiTrenutnogUsera } from "../../api/projekti_zadaci";
 
 class PregledZadatakaProjekta extends Component {
 
@@ -39,11 +39,11 @@ class PregledZadatakaProjekta extends Component {
           </tr>
         </thead>
         <tbody>
-        { 
+          { 
           this.state.selektani_projekat != null ?
             this.state.selektani_projekat.zadaci.map((zadatak) => {
                   return (
-                    <tr>
+                    <tr key={i}>
                       <th scope="row">{i++}</th>
                       <td>{zadatak.opis}</td>
                       <td>{zadatak.prioritet}</td>
@@ -54,7 +54,6 @@ class PregledZadatakaProjekta extends Component {
                     </tr>)
                 }) : ""
           }
-
         </tbody>
       </Table>
     );

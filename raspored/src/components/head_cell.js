@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class Table_head_cell extends Component {
+export class Head_cell extends Component {
   render() {
     return (
       <React.Fragment>
@@ -10,4 +10,4 @@ export class Table_head_cell extends Component {
   }
 }
 
-export default Table_head_cell
+export default Head_cell

@@ -1,40 +1,43 @@
 import React, { Component } from 'react'
 
-export class Cell extends Component {
+export class Body_Cell extends Component {
   render() {
     if(this.props.redniBroj%2==0)
     {
+      // Ukoliko je paran red
       if(this.props.termin==undefined)
-      return (
-        <td style={tdStyleParan}>
-        </td>);
-        else 
-    return (
+      {
+        //Ako je celija prazna
+        return (
+          <td style={tdStyleParan}></td>
+        );
+      }     
+      else
+      {
+        return (
           <td style={tdStyleParan}><b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
-
           </td>
-        
-     
-    )
+        );
+      } 
     }
     else
     {
+      // Ukoliko je neparan red
       if(this.props.termin==undefined)
-      return (
-        <td style={tdStyleNeparan}>
-        </td>);
-        else 
-    return (
+      {
+        //Ako je celija prazna
+        return (
+          <td style={tdStyleNeparan}></td>
+        );
+      }     
+      else
+      {
+        return (
           <td style={tdStyleNeparan}><b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
-
           </td>
-        
-     
-    )
+        );
+      } 
     }
-  
-
-     
   }
 }
 
@@ -59,4 +62,4 @@ const tdStyleParan=
     width:'10vw', 
     backgroundColor:'lightgoldenrodyellow' 
 }
-export default Cell
+export default Body_Cell

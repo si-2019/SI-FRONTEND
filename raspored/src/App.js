@@ -1,13 +1,29 @@
 import React, { Suspense, Fragment, memo , Component} from "react";
-import Cell from './components/cell.js';
 import uuid from 'uuid';
 import axios from 'axios';
-import Table_head_cell from './components/table_head_cell.js';
+import Body_Cell from './components/body_cell.js';
+import Head_cell from './components/head_cell.js';
 import './App.css';
 import { runInThisContext } from 'vm';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import { unstable_createResource } from "react-cache";
 
+// Ovdje mozete naci bootstrap koji su vodje zajednicki odabrali
+// https://bootswatch.com/flatly/?fbclid=IwAR0TbcCAvWZITDDpSV-hrG_AbNkCwim-CSbOPmm6RtGqvbvvWj8nZHPOLc8
+// Ko ne zna, bootstrap je predefinisani css koji je vec neko napisao da bi dugmici, forme, tabele... izgledale
+// ugodno za oko i u skladu konceptima boja sa RG-a
+// takodjer poboljsavaju responzivnost u odnosu na razlicite velicine ekrana i browsera
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+
+
+
+
+// REACT nema bas opciju da u funkciji render pravimo asinhrone pozive sto je ovdje slucaj
+// pa nam treba fetcher i dodatna klasa, u ovom slucaju helper, koja se poziva u funkciji render
+// u helperu se vrsi read preko fetchera
+// takodjer dok se ucitavaju podaci pise loading dok se ne ucita cijela tabela
+// to se vidi kad prvi put pokrecete applikaciju pa nesto kao blinkuje na pocetku
+
+//Fetcheri i metode za citanje pomocu njih
 const FetcherTermini = unstable_createResource(() =>
   fetch("http://localhost:3001/getTermini").then(r => r.json())
 );
@@ -18,7 +34,10 @@ const FetcherIspiti = unstable_createResource(() =>
 
 const getDataTermini = () => FetcherTermini.read();
 const getDataIspiti = () => FetcherIspiti.read();
+
+// helper sadrzi svu logiku
 const Helper = () => {
+  
   var spisakTermina=getDataTermini();
   var spisakIspita = getDataIspiti();
 
@@ -32,162 +51,151 @@ const Helper = () => {
   });
 
   raspored.sort(sortCriteria);
+  //raspored sadrzi sve termine ispita i predavanja,vjezbi i to sortiran
+
   var vremenaRasporeda=[];
   var rendering=[];
 
+  //vremenaRasporeda su sva vremena sa lijeve strane rasporeda(samo polusatna) pri cemu su neovisno od
+  //termina koje imamo uvijek puni satovi od 08:00 do 20:00
+  //pored toga su dodani termini tipa pola 3, pola 7 ukoliko neki od datih termina pocinje ili zavrsava 
+  //u pola 3 ili pola 7
 
 
-       //Ovo dalje se desava nakon getanja ispita i termina
-
-       var vrijemeObaveze='08:00';
-       while(vrijemeObaveze!='21:00')
-        {
-          vremenaRasporeda.push(vrijemeObaveze);                   
-          vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
-          vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
-        }
-
-       raspored.forEach((val,index) => {
-
-        vrijemeObaveze = val.vrijeme;
-        let trajanjeObaveze = parseInt(val.trajanje);
-        while(trajanjeObaveze!=0)
-        {
-          if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
-          {
-            vremenaRasporeda.push(vrijemeObaveze);            
-          }          
-          trajanjeObaveze-=30;          
-          vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
-          
-        }
-       });
-       
-       vremenaRasporeda.sort();
-
-
-       let danas= new Date();
-       var dd = String(danas.getDate()).padStart(2, '0');
-       var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
-       var yyyy = danas.getFullYear();   
-       let datum = yyyy + '/' + mm + '/' + dd;
-       datum = prviDanuSedmici(datum);
-
-       let matricaTermina =new Array(vremenaRasporeda.length);
-       for (var i = 0; i < matricaTermina.length; i++) {
-          matricaTermina[i] = new Array(7);
-          for(var j=0;j<matricaTermina[i].length;j++)
-            matricaTermina[i][j]=-1;
-       }
-       let datumFix = datum;
-
-       raspored.forEach((val,index) => {
-         datum=datumFix;
-         for(let dan=0;dan<7;dan++)
-         {
-          if(val.datum==datum)
-          {
-            
-            let lokalnoTrajanje = val.trajanje;
-            let indeksVremena=-1;
-            for(let j=0;j<vremenaRasporeda.length;j++)
-            {
-              if(val.vrijeme==vremenaRasporeda[++indeksVremena])
-              {
-                break;
-              }  
-            }
-            while(lokalnoTrajanje!=0)
-            {    
-                  
-              matricaTermina[indeksVremena][dan]=index;
-              let razdaljinaMinute = 0;
-              if(indeksVremena==vremenaRasporeda.length-1)
-              break;
-
-              if(vremenaRasporeda[indeksVremena][3]!=vremenaRasporeda[indeksVremena+1][3])
-              razdaljinaMinute=30;
-              else
-              razdaljinaMinute=60;
-
-              lokalnoTrajanje-=razdaljinaMinute;
-              indeksVremena++;
-            }
-            break; 
-          }
-          datum=sljedeciDan(datum);
-         }
-         
-
-        
-       });
-
-
-
-       
-       
-      for (var i=0; i < vremenaRasporeda.length; i++) {
-        let cells=[];
-        for(let u=0;u<7;u++)
-        {
-          if(matricaTermina[i][u]==-1)
-          {
-            // ako celija nije ispunjena
-            cells.push(<Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={undefined} ></Cell>);
-          }
-          else
-          {
-            cells.push(<Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={raspored[matricaTermina[i][u]]} ></Cell>);
-          }
-        }
-
-        rendering.push(
-            <tr>
-              <td style={pocetnaKolonaStyle}>{vremenaRasporeda[i]}</td>
-              {cells}            
-            </tr>
-          );
-      }
-
-      danas= new Date();
-       var dd = String(danas.getDate()).padStart(2, '0');
-       var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
-       var yyyy = danas.getFullYear();   
-    datum = yyyy + '/' + mm + '/' + dd;
-    datum = prviDanuSedmici(datum);
-    var headerRow = [];
-       days.forEach((day,index) => {
-
-         headerRow.push(
-          <Table_head_cell key={day.id} day={day.title} datum={datum}/>
-         );
-         datum = sljedeciDan(datum);
-
-       });
-    
-    console.log(rendering);
-
-    return (
-      
+  var vrijemeObaveze='08:00';
+  while(vrijemeObaveze!='21:00')
+   {
+     vremenaRasporeda.push(vrijemeObaveze);                   
+     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+   }
+  raspored.forEach((val,index) => {
+   vrijemeObaveze = val.vrijeme;
+   let trajanjeObaveze = parseInt(val.trajanje);
+   while(trajanjeObaveze!=0)
+   {
+     if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
+     {
+       vremenaRasporeda.push(vrijemeObaveze);            
+     }          
+     trajanjeObaveze-=30;          
+     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+     //ovdje dodajemo termine koji su pola 3, pola 7...
      
- 
+   }
+  });
+  
+  vremenaRasporeda.sort();
+  let danas= new Date();
+  var dd = String(danas.getDate()).padStart(2, '0');
+  var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+  var yyyy = danas.getFullYear();   
+  //termin koji koristimo za datum je 2019/12/31
+  let datum = yyyy + '/' + mm + '/' + dd;
+  datum = prviDanuSedmici(datum);
+
+  //za navedeni datum trazimo prvi dan u sedmici kako bi mogli da prikazemo raspored za aktuelnu sedmicu
+
+  // sada kreiramo matricu termina koja je formata (broj vremena u rasporedu) X (broj dana u sedmici tj. 7)
+  let matricaTermina =new Array(vremenaRasporeda.length);
+  for (var i = 0; i < matricaTermina.length; i++) {
+     matricaTermina[i] = new Array(7);
+     for(var j=0;j<matricaTermina[i].length;j++)
+       matricaTermina[i][j]=-1;
+  }
+  //ukoliko je termin prazan u matrici je -1
+  let datumFix = datum;
+
+  //sljedeca forEach petlja popunjava matricu termina
+  raspored.forEach((val,index) => {
+    datum=datumFix;
+    for(let dan=0;dan<7;dan++)
+    {
+     if(val.datum==datum)
+     {
+       
+       let lokalnoTrajanje = val.trajanje;
+       let indeksVremena=-1;
+       for(let j=0;j<vremenaRasporeda.length;j++)
+       {
+         if(val.vrijeme==vremenaRasporeda[++indeksVremena])
+         {
+           break;
+         }  
+       }
+       while(lokalnoTrajanje!=0)
+       {    
+             
+         matricaTermina[indeksVremena][dan]=index;
+         let razdaljinaMinute = 0;
+         if(indeksVremena==vremenaRasporeda.length-1)
+         break;
+         if(vremenaRasporeda[indeksVremena][3]!=vremenaRasporeda[indeksVremena+1][3])
+         razdaljinaMinute=30;
+         else
+         razdaljinaMinute=60;
+         lokalnoTrajanje-=razdaljinaMinute;
+         indeksVremena++;
+       }
+       break; 
+     }
+     datum=sljedeciDan(datum);
+    }
+  });
+
+  // Sada imamo matricu termina i kreiramo gradivne elemente koje ima sama tabela
+       
+  for (var i=0; i < vremenaRasporeda.length; i++) {
+    let cells=[];
+    for(let u=0;u<7;u++)
+    {
+      if(matricaTermina[i][u]==-1)
+      {
+        // ako celija nije ispunjena
+        // u celiji cemo dalje testirati da li je termin undefined ili ne
+        cells.push(<Body_Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={undefined} ></Body_Cell>);
+      }
+      else
+      {
+        cells.push(<Body_Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={raspored[matricaTermina[i][u]]} ></Body_Cell>);
+      }
+    }
+  rendering.push(
+        <tr>
+          <td style={pocetnaKolonaStyle}>{vremenaRasporeda[i]}</td>
+          {cells}            
+        </tr>
+      );
+  }
+
+  //ovdje prebacujemo datum u nas format i popunjavamo celije zaglavlja
+
+  danas= new Date();
+  var dd = String(danas.getDate()).padStart(2, '0');
+  var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+  var yyyy = danas.getFullYear();   
+  datum = yyyy + '/' + mm + '/' + dd;  
+  datum = prviDanuSedmici(datum);
+  
+  var headerRow = [];
+  days.forEach((day,index) => {
+  headerRow.push(
+       <Head_cell key={day.id} day={day.title} datum={datum}/>
+      );
+      datum = sljedeciDan(datum);
+  });
+
+  return (     
       <table>
       <tbody>  
         <tr>
-
           <th style={pocetnaKolonaStyle}>Vrijeme</th>            
           {headerRow}
-          </tr>  
-          
-          {rendering}
+        </tr>
+        {rendering}
         </tbody>
-      </table>             
-
-);
-
-
-
-    
+      </table> 
+  );    
 }
 
 const sortCriteria = (a,b) =>
@@ -277,26 +285,17 @@ const povecajVrijemePolaSata = (vrijeme) =>
     return datum;
   }
 
-
-
-  
-
 class App extends Component {
-  state=
-  {    
-    
-  }
+
+state={}
   
 render = () =>{    
-    
-    return (
+    return(
       <Fragment>    
-    <Suspense fallback={<div>Loading...</div>}>
-    <Helper/>
-    
-    </Suspense>
-  </Fragment>          
-        
+        <Suspense fallback={<div>Loading...</div>}>
+           <Helper/>    
+        </Suspense>
+      </Fragment>        
     )
   }
 }
@@ -304,10 +303,10 @@ render = () =>{
 const pocetnaKolonaStyle = {
   width: '5vw',
   backgroundColor: 'rgb(208, 214, 298)',
-  textAlign: 'center'
-  
+  textAlign: 'center'  
 }
 
+// uuid nije obavezan al kreira unique id kad ga god pozoves
 const days =[
   {
     id: uuid.v4(),
@@ -337,10 +336,9 @@ const days =[
     id: uuid.v4(),
     title:'Nedjelja'
   }
-]; 
+];
 
-
-
+//memo sluzi nesto za kesiranje ako sam dobro shvatio async poziva al uglavnom sluzi svrsi
 export default React.memo(App);
 
 

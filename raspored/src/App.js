@@ -22,65 +22,44 @@ class App extends Component {
       return 1;    
   }
 
+
   createRaspored = () =>
   {
+    var spisakIspita;
+    var spisakTermina;
+    axios.get("http://localhost:3001/getIspiti").then(function (response) {
+      // handle success
+      let odzivIspiti = response.request.response;
+      spisakIspita=JSON.parse(odzivIspiti); 
+      spisakIspita.forEach((val, index) => {
+        this.state.raspored.push(val);
+       });
+       
+      axios.get("http://localhost:3001/getTermini").then(function (response) {
+       // handle success
+       let odzivTermini = response.request.response;
+       spisakTermina=JSON.parse(odzivTermini);   
+       spisakTermina.forEach((val, index) => {
+        this.state.raspored.push(val);
+        this.state.raspored.sort(this.sortCriteria);
 
-     
-let ispiti = [
-  {
-    id:  uuid.v4(),
-    title:'Usmeni ispit',
-    predmet:'Administracija racunarskih mreza',
-    datum:'2019/04/11', 
-    vrijeme:'14:30',
-    sala:'S10'
-  },
-  {
-    id:  uuid.v4(),
-    title:'Prvi parcijalni ispit',
-    predmet:'Softver Inzinjering',
-    datum:'2019/04/11', 
-    vrijeme:'13:00',
-    sala:'MA'
+       //Ovo se desava nakon getanja ispita i termina
+       
+       
+      
+      });     
+    }.bind(this)) 
+    }.bind(this))  
   }
-];
-var termini = [
-  {
-    id:  uuid.v4(),
-    title:'Predavanje',
-    predmet:'Vjestacka inteligencija',
-    datum:'2019/04/12', 
-    vrijeme:'17:00',
-    sala:'S1'
-  },
-  {
-    id:  uuid.v4(),
-    title:'Tutorijal',
-    predmet:'Vjestacka inteligencija',
-    datum:'2019/04/12', 
-    vrijeme:'12:00',
-    sala:'S5'
-  }
-];
+
+  
+render() {
+    this.createRaspored(); 
+    console.log(this.state.raspored);
+    
 
     
-    ispiti.forEach((val, index) => {
-      this.state.raspored.push(val);
-    });
-    termini.forEach((val, index) => {
-      this.state.raspored.push(val);
-    });
-    this.state.raspored.sort(this.sortCriteria);
-
-  
-  }
-
-  
-  render() {
-    this.createRaspored();
-
-
-    return (
+      return (
       <div className="App">
       <table>
         <tbody>
@@ -122,7 +101,8 @@ var termini = [
       </table>
       </div>
        
-    ) 
+    )
+      
   }
 }
 

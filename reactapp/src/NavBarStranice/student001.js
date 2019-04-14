@@ -13,7 +13,7 @@ class student001 extends Component {
         <h1>Stranica predmeta</h1>
         <br></br>
         <Navbar001/>
-        <TabelaStudenti/>
+        <h1>FUNKCIONALNOST ZA STUDENT OPCIJU - cekamo podatke</h1>
         <Footer/>
       </div>
     );

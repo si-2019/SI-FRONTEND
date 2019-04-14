@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "jquery": "^1.9.1",
     "popper.js": "^1.14.7",
     "react": "^16.8.6",

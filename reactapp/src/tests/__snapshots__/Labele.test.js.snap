@@ -1,0 +1,568 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Da li se prikazuju komponente 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Labele />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h3
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Ime profesora: 
+        </h3>,
+        " ",
+        <h3
+          className="imeProfesora"
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Dummy Ime
+        </h3>,
+        " ",
+        <br />,
+        <h3
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Broj ETCS bodova: 
+        </h3>,
+        " ",
+        <h3
+          className="brojETCSBodova"
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Dummy ETCS
+        </h3>,
+        " ",
+        <br />,
+        <h3
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Grupa: 
+        </h3>,
+        " ",
+        <h3
+          className="grupa"
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Dummy grupa
+        </h3>,
+        " ",
+        <br />,
+        <h3
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Opis predmeta: 
+        </h3>,
+        " ",
+        <h3
+          className="opisPredmeta"
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Dummy opis
+        </h3>,
+        " ",
+        <br />,
+      ],
+      "className": "labele",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Ime profesora: ",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Ime profesora: ",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Dummy Ime",
+          "className": "imeProfesora",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Dummy Ime",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Broj ETCS bodova: ",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Broj ETCS bodova: ",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Dummy ETCS",
+          "className": "brojETCSBodova",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Dummy ETCS",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Grupa: ",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Grupa: ",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Dummy grupa",
+          "className": "grupa",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Dummy grupa",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Opis predmeta: ",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Opis predmeta: ",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Dummy opis",
+          "className": "opisPredmeta",
+          "style": Object {
+            "display": "inline",
+          },
+        },
+        "ref": null,
+        "rendered": "Dummy opis",
+        "type": "h3",
+      },
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h3
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Ime profesora: 
+          </h3>,
+          " ",
+          <h3
+            className="imeProfesora"
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Dummy Ime
+          </h3>,
+          " ",
+          <br />,
+          <h3
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Broj ETCS bodova: 
+          </h3>,
+          " ",
+          <h3
+            className="brojETCSBodova"
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Dummy ETCS
+          </h3>,
+          " ",
+          <br />,
+          <h3
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Grupa: 
+          </h3>,
+          " ",
+          <h3
+            className="grupa"
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Dummy grupa
+          </h3>,
+          " ",
+          <br />,
+          <h3
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Opis predmeta: 
+          </h3>,
+          " ",
+          <h3
+            className="opisPredmeta"
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Dummy opis
+          </h3>,
+          " ",
+          <br />,
+        ],
+        "className": "labele",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Ime profesora: ",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Ime profesora: ",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Dummy Ime",
+            "className": "imeProfesora",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Dummy Ime",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Broj ETCS bodova: ",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Broj ETCS bodova: ",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Dummy ETCS",
+            "className": "brojETCSBodova",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Dummy ETCS",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Grupa: ",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Grupa: ",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Dummy grupa",
+            "className": "grupa",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Dummy grupa",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Opis predmeta: ",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Opis predmeta: ",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Dummy opis",
+            "className": "opisPredmeta",
+            "style": Object {
+              "display": "inline",
+            },
+          },
+          "ref": null,
+          "rendered": "Dummy opis",
+          "type": "h3",
+        },
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

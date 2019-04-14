@@ -13,6 +13,7 @@ class Navbar001 extends Component {
             <Nav.Link href="ankete">Ankete</Nav.Link>
             <Nav.Link href="statistika">Statistika</Nav.Link>
             <Nav.Link href="raspored">Raspored</Nav.Link>
+            <Nav.Link href="chat">Chat</Nav.Link>
         </Nav>
       );
     }

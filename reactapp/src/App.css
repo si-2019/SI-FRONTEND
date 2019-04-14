@@ -31,3 +31,36 @@
     transform: rotate(360deg);
   }
 }
+
+
+.progressBar {
+  position: relative;
+  height: 20px;
+  width: 350px;
+  border-radius: 50px;
+  border: 1px solid #333;
+}
+
+.filler {
+  background: #5DA598;
+  height: 100%;
+  border-radius: inherit;
+  transition: width .2s ease-in;
+}
+.zadaceLabela, .zadaceButton, .progressBar {
+  display: inline-block;
+}
+.zadaceButton, .zadaceLabela {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+}
+.zadaceButton {
+  height: 30px;
+  width: 100px;
+  border-radius: 10%;
+  font-size: 12pt;
+  background: aliceblue
+}

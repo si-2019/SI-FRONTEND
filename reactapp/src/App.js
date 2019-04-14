@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PregledZadatakaProjekta from './components/PregledZadatakaProjekta';
+import PregledListeProjekata from './components/PregledListeProjekata';
+
 
 class App extends Component {
   render() {

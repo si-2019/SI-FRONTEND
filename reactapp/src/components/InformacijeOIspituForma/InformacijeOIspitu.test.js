@@ -1,20 +1,20 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import InformacijeOIspituForma from './InformacijeOIspituForma'
+import InformacijeOIspitu from './InformacijeOIspitu'
 
-describe('<InformacijeOIspituForma />', () => {
+describe('<InformacijeOIspitu />', () => {
   it('renderuje formu za informacije o ispitu', () => {
-    const wrapper = shallow(<InformacijeOIspituForma/>)
+    const wrapper = shallow(<InformacijeOIspitu/>)
     expect(wrapper.find('form').exists()).toBe(true)
   })
 
   it('da li ima date time picker', () => {
-    const wrapper = shallow(<InformacijeOIspituForma/>)
+    const wrapper = shallow(<InformacijeOIspitu/>)
     expect(wrapper.find('#datetimep').exists()).toBe(true)
   })
 
   it('da li ima input polje za unos vremena', () => {
-    const wrapper = shallow(<InformacijeOIspituForma/>)
+    const wrapper = shallow(<InformacijeOIspitu/>)
     expect(wrapper.find('#vrijemeT').exists()).toBe(true)
   })
 })

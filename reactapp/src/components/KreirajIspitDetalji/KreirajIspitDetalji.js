@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class KreirajIspitForma extends Component{
+class KreirajIspitDetalji extends Component{
   
   render(){
     return(
@@ -15,4 +15,4 @@ class KreirajIspitForma extends Component{
   }
 }
 
-export default KreirajIspitForma
+export default KreirajIspitDetalji

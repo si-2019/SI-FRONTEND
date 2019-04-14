@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 class PregledZadatakaProjekta extends Component { 
 
   constructor(props) {

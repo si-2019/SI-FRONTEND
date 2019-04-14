@@ -30,7 +30,7 @@ class App extends Component {
         //var tekst=ajax.responseText;
         //var json=JSON.parse(tekst);
         //nakon kreiranja servisa bit će povezan sa formom
-        komponenta.setState({nazivPredmeta:"PIS", forma:"Predmet"});
+        komponenta.setState(thisState=>({nazivPredmeta:thisState.nazivPredmeta, forma:"Predmet"}));
       }
     }
     ajax.open("GET","#",true);

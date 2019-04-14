@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
 
-import InformacijeOIspituForma from './InformacijeOIspituForma';
+import InformacijeOIspitu from './InformacijeOIspitu';
 import KreirajIspit from './KreirajIspit';
 import KreirajIspitDetalji from './KreirajIspitDetalji'
 import KreiraniIspiti from './KreiraniIspiti';
@@ -16,7 +16,7 @@ class App extends React.Component{
     return(
       <div className='container'>
         <BrowserRouter>
-          <Route path='/info-o-ispitu' exact component={InformacijeOIspituForma}/>
+          <Route path='/info-o-ispitu' exact component={InformacijeOIspitu}/>
           <Route path='/kreiraj-ispit' exact component={KreirajIspit}/>
           <Route path='/kreiraj-ispit-detalji' exact component={KreirajIspitDetalji}/>
           <Route path='/kreirani-ispiti' exact component={KreiraniIspiti}/>

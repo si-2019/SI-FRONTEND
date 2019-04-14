@@ -6,6 +6,7 @@ import StranicaPredmeta from './StranicaPredmeta';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import student001 from './NavBarStranice/student001';
 import unos_podataka001 from './NavBarStranice/unos_podataka001';
+import ispiti001 from './NavBarStranice/ispiti001';
 
 //import * as serviceWorker from './serviceWorker';
 
@@ -17,7 +18,7 @@ const routing = (
         <Route path="/predmet" component={StranicaPredmeta} />
         <Route path="/student" component={student001} />
         <Route path="/unos_podataka" component={unos_podataka001} />
-        <Route path="/ispiti" component={StranicaPredmeta} />  
+        <Route path="/ispiti" component={ispiti001} />  
         <Route path="/obavijesti" component={StranicaPredmeta} /> 
         <Route path="/zadace" component={StranicaPredmeta} />  
         <Route path="/ankete" component={StranicaPredmeta} />  

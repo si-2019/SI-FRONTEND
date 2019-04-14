@@ -19,7 +19,8 @@ const routing = (
         <Route path="/obavijesti" component={StranicaPredmeta} /> 
         <Route path="/zadace" component={StranicaPredmeta} />  
         <Route path="/ankete" component={StranicaPredmeta} />  
-        <Route path="/statistika" component={StranicaPredmeta} />          
+        <Route path="/statistika" component={StranicaPredmeta} />  
+        <Route path="/raspored" component={StranicaPredmeta} />         
       </div>
     </Router>
   )

@@ -10,7 +10,7 @@ class KreirajIspit extends Component{
         <div className='row'>
             
             <div className='col-3'>
-                
+            Kreiranje ispita
             </div> 
             <div className='col-3'>
                 
@@ -19,6 +19,10 @@ class KreirajIspit extends Component{
                 
             </div> 
             <div className='col-3'>
+              <Link to="/kreiraj-ispit-detalji">
+                  <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
+              </Link>
+
               <Link to="/kreirani-ispiti">
                 <button type="button" class="btn btn-primary">Kreirani ispiti</button>
               </Link>

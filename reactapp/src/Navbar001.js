@@ -8,6 +8,7 @@ class Navbar001 extends Component {
             <Nav.Link href="student">Student</Nav.Link>
             <Nav.Link href="unos_podataka">Unos podataka</Nav.Link>
             <Nav.Link href="ispiti">Ispiti</Nav.Link>
+            <Nav.Link href="obavijesti">Obavijesti</Nav.Link>
         </Nav>
       );
     }

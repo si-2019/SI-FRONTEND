@@ -6,7 +6,9 @@ class PrikazPredmeta extends Component {
       <div className="PrikazPredmeta">
         <p>Test prikaza predmeta</p>
         <button>KLIK</button>
-        <p>{this.props.nazivPredmeta}</p>
+        <p>Predmet: {this.props.nazivPredmeta}</p>
+        <p>Opis projekta: {this.props.opisProjekta}</p>
+        <p>Broj mogućih bodova: {this.props.brojMogucihBodova}</p>
       </div>
     );
   }

@@ -8,18 +8,22 @@ class App extends Component {
     super(props);
     this.state={
       nazivPredmeta:"SI",
-      forma:"Mock"
+      forma:"Mock",
+      opisProjekta:"",
+      brojMogucihBodova:0
     }
     this.funkcija=this.funkcija.bind(this);
   }
   render() {
     if(this.state.forma=="Mock")
       return (    
-        <MockListaPredmeta funkcija={this.funkcija} nazivPredmeta={this.state.nazivPredmeta}/>
+        <MockListaPredmeta funkcija={this.funkcija} nazivPredmeta={this.state.nazivPredmeta} />
       );
     else 
       return(
-        <PrikazPredmeta nazivPredmeta={this.state.nazivPredmeta}/>
+        <PrikazPredmeta nazivPredmeta={this.state.nazivPredmeta}
+        opisProjekta={this.state.opisProjekta} 
+        brojMogucihBodova={this.state.brojMogucihBodova}/>
     )  
   };
   funkcija(){
@@ -30,24 +34,15 @@ class App extends Component {
         //var tekst=ajax.responseText;
         //var json=JSON.parse(tekst);
         //nakon kreiranja servisa bit će povezan sa formom
-        komponenta.setState(thisState=>({nazivPredmeta:thisState.nazivPredmeta, forma:"Predmet"}));
+        komponenta.setState(thisState=>({
+          nazivPredmeta:thisState.nazivPredmeta, 
+          forma:"Predmet", 
+          opisProjekta:"Projekat kreiranja informacionog sistema za fakultet",
+          brojMogucihBodova:50}));
       }
     }
     ajax.open("GET","#",true);
     ajax.send();
-    /*
-    if(this.state.forma=="Mock"){
-      this.setState({
-        nazivPredmeta:"ARM",
-          forma:"Predmet"
-      });
-    }
-    else{
-      this.setState({
-        nazivPredmeta:"SI",
-          forma:"Mock"
-      });
-      */
   }
 }
 export default App;

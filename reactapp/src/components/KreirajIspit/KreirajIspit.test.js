@@ -12,4 +12,8 @@ describe('<KreirajIspit />', () => {
     const wrapper = shallow(<KreirajIspit/>)
     expect(wrapper.find('button').exists()).toBe(true)
   })
+  it('renderuje formu za odabir ispitnog tipa', () =>{
+    const wrapper=shallow(<PocetnaForma/>)
+    expect(wrapper.find('#odabirTipIspita').exists()).toBe(true)
+  })
 })

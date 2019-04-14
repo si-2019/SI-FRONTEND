@@ -1,3 +1,3 @@
-import InfoOIspitu from './InformacijeOIspituForma';
+import InfoOIspitu from './InformacijeOIspitu';
 
 export default InfoOIspitu;

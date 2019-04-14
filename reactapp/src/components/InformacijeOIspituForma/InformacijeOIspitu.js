@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class InformacijeOIspituForma extends Component {
+class InformacijeOIspitu extends Component {
 
   render() {
     return (
@@ -17,4 +17,4 @@ class InformacijeOIspituForma extends Component {
   }
 }
 
-export default InformacijeOIspituForma
+export default InformacijeOIspitu

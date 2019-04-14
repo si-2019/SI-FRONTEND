@@ -6,6 +6,7 @@ describe('<KreirajIspit />', () => {
   it('da li ima button-a za kreiranje ispita', () => {
     const wrapper = shallow(<KreirajIspit/>)
     expect(wrapper.find('#kreirajDugme').exists()).toBe(true)
+  })
 
   it('renderuje dugme koje ga proslijedjuje na kreirane ispite', () => {
     const wrapper = shallow(<KreirajIspit/>)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-class App extends Component {
+class Popunjavanje extends Component {
   render() {
     return (
       <div className="App"  id="container">
@@ -57,6 +57,6 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Popunjavanje;
 
 

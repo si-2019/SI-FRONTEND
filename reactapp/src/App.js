@@ -7,6 +7,11 @@ import { sviProjektiTrenutnogUsera } from './api/projekti_zadaci';
 import PregledListeProjekata from './components/PregledListeProjekata/PregledListeProjekata';
 
 
+import './components/PregledZadatakaProjekta/PregledZadatakaProjekta'
+import PregledZadatakaProjekta from './components/PregledZadatakaProjekta/PregledZadatakaProjekta';
+import { sviProjektiTrenutnogUsera } from './api/projekti_zadaci';
+
+
 class App extends Component {
   render() {
     return (
@@ -14,8 +19,8 @@ class App extends Component {
         <header className="App-header">
           <PrikazListeZadataka/>
         </header>
-        <PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}></PregledZadatakaProjekta>;
-         
+        //<PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}></PregledZadatakaProjekta>;
+        <PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}></PregledZadatakaProjekta>
       </div>
     );
   }

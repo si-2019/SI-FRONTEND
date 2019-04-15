@@ -33,7 +33,7 @@ import React, { Component } from 'react';
       return (
         <div>
          <h2>{this.state.tech}</h2>
-          <select id = "dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
+          <select onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option value="Lista zadatak">Odaberite zadatak</option>
             <option value="Zadatak 1">Zadatak 1</option>
             <option value="Zadatak 2">Zadatak 2</option>

@@ -8,8 +8,3 @@ export function kreirajNoviIssue(){
     }    
 
 }
-
-export function zatvoriNoviIssue(){
-
-    document.getElementById("overlay").style.display = "none";
-}

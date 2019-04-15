@@ -10,6 +10,11 @@ import ispiti001 from './NavBarStranice/ispiti001';
 import obavijesti001 from './NavBarStranice/obavijesti001';
 import zadace001 from './NavBarStranice/zadace001';
 import ankete001 from './NavBarStranice/ankete001';
+import statistika001 from './NavBarStranice/statistika001';
+import raspored001 from './NavBarStranice/raspored001';
+import chat001 from './NavBarStranice/chat001';
+import forum001 from './NavBarStranice/forum001';
+import materijali001 from './NavBarStranice/materijali001';
 
 
 //import * as serviceWorker from './serviceWorker';
@@ -26,11 +31,11 @@ const routing = (
         <Route path="/obavijesti" component={obavijesti001} /> 
         <Route path="/zadace" component={zadace001} />  
         <Route path="/ankete" component={ankete001} />  
-        <Route path="/statistika" component={StranicaPredmeta} />  
-        <Route path="/raspored" component={StranicaPredmeta} /> 
-        <Route path="/chat" component={StranicaPredmeta} /> 
-        <Route path="/forum" component={StranicaPredmeta} /> 
-        <Route path="/materijali" component={StranicaPredmeta} />      
+        <Route path="/statistika" component={statistika001} />  
+        <Route path="/raspored" component={raspored001} /> 
+        <Route path="/chat" component={chat001} /> 
+        <Route path="/forum" component={forum001} /> 
+        <Route path="/materijali" component={materijali001} />      
       </div>
     </Router>
   )

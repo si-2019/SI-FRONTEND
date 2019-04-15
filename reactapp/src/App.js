@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import './App.css';
 import PredmetiSaDrugihSemestara from'./components/predmetiSaDrugihSemestara';
 import SpisakProfesora from './components/spisakProfesora';
+import SpisakAsistenata from './components/SpisakAsistenata';
 
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col>Belmin</Col>
-          <Col>Merima</Col>
+          <Col> <SpisakAsistenata></SpisakAsistenata></Col>
           <Col>ne koristimo sad</Col>
         </Row>
         <Row>

@@ -9,6 +9,7 @@ import unos_podataka001 from './NavBarStranice/unos_podataka001';
 import ispiti001 from './NavBarStranice/ispiti001';
 import obavijesti001 from './NavBarStranice/obavijesti001';
 import zadace001 from './NavBarStranice/zadace001';
+import ankete001 from './NavBarStranice/ankete001';
 
 
 //import * as serviceWorker from './serviceWorker';
@@ -24,7 +25,7 @@ const routing = (
         <Route path="/ispiti" component={ispiti001} />  
         <Route path="/obavijesti" component={obavijesti001} /> 
         <Route path="/zadace" component={zadace001} />  
-        <Route path="/ankete" component={StranicaPredmeta} />  
+        <Route path="/ankete" component={ankete001} />  
         <Route path="/statistika" component={StranicaPredmeta} />  
         <Route path="/raspored" component={StranicaPredmeta} /> 
         <Route path="/chat" component={StranicaPredmeta} /> 

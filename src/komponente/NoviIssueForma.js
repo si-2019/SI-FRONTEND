@@ -21,6 +21,20 @@ class NoviIssueForma extends React.Component {
     };
 
 
+                    <button
+                        onClick={() =>
+                            window.confirm('Prekinuti pisanje issuea?') && zatvoriNoviIssue()
+                        }
+                        type="button"
+                        className="btn btn-danger float-right"
+                        style={{marginLeft:'85px', width:'50px'}}
+                        id="zatvoriNoviIssue"
+                    >
+                        X
+                    </button>
+                </div>
+
+
     render() {
         let warning;
         if (this.state.issueText === '') {
@@ -50,9 +64,17 @@ class NoviIssueForma extends React.Component {
                             <option>Problem 5</option>
                         </select>
 
-                        <button onClick={this.zatvoriNoviIssue} type="button" className="btn btn-danger float-right"
-                                style={{marginLeft: '85px', width: '50px'}}>X
-                        </button>
+                        <button
+                        onClick={() =>
+                            window.confirm('Prekinuti pisanje issuea?') && zatvoriNoviIssue()
+                        }
+                        type="button"
+                        className="btn btn-danger float-right"
+                        style={{marginLeft:'85px', width:'50px'}}
+                        id="zatvoriNoviIssue"
+                    >
+                        X
+                    </button>
                     </div>
 
                     <div className="form-group row col-12" style={{marginTop: '5px', marginLeft: '2px'}}>

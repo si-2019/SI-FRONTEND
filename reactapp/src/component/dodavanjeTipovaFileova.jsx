@@ -37,7 +37,7 @@ class DodavanjeTipovaFileova extends React.Component {
               id="switchTip"
               name="customSwitch"
               label="DA"
-              onChange={this.props.podaci.istiTipoviFileova}
+              onChange={this.props.podaci.onChangeSviTipoviIsti}
             />
           </FormGroup>
           <FormGroup>
@@ -61,7 +61,7 @@ class DodavanjeTipovaFileova extends React.Component {
                   {/*Prolazim kroz sve kolone, ovo jedno je jedan element tog niza kolone, 
                                 i pomoću map se izdvajaju ti elementi. pravim novu kolonu i u svaku kolonu stavljam ove iste checkboxove
                                 */}
-                  {kolone.map(jedno => (
+                  {kolone.map((jedno, index) => (
                     <th scope="col">
                       <td>
                         {/*Za svaki ovaj checkbox pojedinačno  dodijelim tipa atribut jedno = Zadatak1 i svakom checkboxu dodijelim
@@ -72,9 +72,12 @@ class DodavanjeTipovaFileova extends React.Component {
                           <Input
                             type="checkbox"
                             id={jedno + "pdf"}
+                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
+                            checked = {this.props.podaci.state.listaTipova[index][0]}
                             onChange={e => {
                               this.props.podaci.state.trenutnaEkstenzija = "pdf";
-                              this.props.podaci.oznaciStaTreba(e);
+                              this.props.podaci.onChangeListaTipova(index,0);
+                             
                             }}
                           />{" "}
                           <Label check className="ml-4">
@@ -86,9 +89,12 @@ class DodavanjeTipovaFileova extends React.Component {
                           <Input
                             type="checkbox"
                             id={jedno + "zip"}
+                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
+                            checked = {this.props.podaci.state.listaTipova[index][1]}
                             onChange={e => {
                                 this.props.podaci.state.trenutnaEkstenzija = "zip";
-                              this.props.podaci.oznaciStaTreba(e);
+                                this.props.podaci.onChangeListaTipova(index,1);
+                                
                             }}
                           />{" "}
                           <Label check className="ml-4">
@@ -100,9 +106,12 @@ class DodavanjeTipovaFileova extends React.Component {
                           <Input
                             type="checkbox"
                             id={jedno + "m"}
+                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
+                            checked = {this.props.podaci.state.listaTipova[index][2]}
                             onChange={e => {
                                 this.props.podaci.state.trenutnaEkstenzija = "m";
-                              this.props.podaci.oznaciStaTreba(e);
+                                this.props.podaci.onChangeListaTipova(index,2);
+                               
                             }}
                           />{" "}
                           <Label check className="ml-4">
@@ -114,9 +123,12 @@ class DodavanjeTipovaFileova extends React.Component {
                           <Input
                             type="checkbox"
                             id={jedno + "doc"}
+                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
+                            checked = {this.props.podaci.state.listaTipova[index][3]}
                             onChange={e => {
                                 this.props.podaci.state.trenutnaEkstenzija = "doc";
-                              this.props.podaci.oznaciStaTreba(e);
+                                this.props.podaci.onChangeListaTipova(index,3);
+                                
                             }}
                           />{" "}
                           <Label check className="ml-4">
@@ -128,9 +140,12 @@ class DodavanjeTipovaFileova extends React.Component {
                           <Input
                             type="checkbox"
                             id={jedno + "txt"}
+                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
+                            checked = {this.props.podaci.state.listaTipova[index][4]}
                             onChange={e => {
                                 this.props.podaci.state.trenutnaEkstenzija = "txt";
-                              this.props.podaci.oznaciStaTreba(e);
+                                this.props.podaci.onChangeListaTipova(index,4);
+                               
                             }}
                           />{" "}
                           <Label check className="ml-4">

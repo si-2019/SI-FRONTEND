@@ -75,6 +75,32 @@ class KreiranjeZadace extends React.Component {
     });
   };
 
+  onChangeListaTipova = (i,j) =>{
+
+    var noviNiz = this.state.listaTipova;
+    if(this.state.sviTipoviIsti === false){
+      noviNiz[i][j] = !this.state.listaTipova[i][j];
+    }
+    else{
+      noviNiz[0][j] = !noviNiz[0][j]
+      for(var k=1;k<this.state.brojZadataka;k++){
+        noviNiz[k][j] = noviNiz[0][j];
+      }
+
+    }
+
+    this.setState({
+      listaTipova:noviNiz
+    })
+
+  }
+
+  onChangeSviTipoviIsti = () => {
+
+    var oznaceno = document.getElementById("switchTip");
+    this.setState({sviTipoviIsti: oznaceno.checked})
+
+  }
   
 
 
@@ -135,85 +161,6 @@ class KreiranjeZadace extends React.Component {
     //console.log(this.state.listaBodova);
     document.getElementById("ukupnoStanje").innerHTML = suma;
     
-  };
-
-
-  istiTipoviFileova = () => {
-    //Da li je označen onaj element na DA (Da li želite da svi zadaci imaju isti broj bodova)
-    var jeLoznaceno = document.getElementById("switchTip");
-
-    this.setState({sviTipoviIsti: jeLoznaceno.checked})
-
-    if (jeLoznaceno.checked === true) {
-
-      var niz = ["pdf", "doc", "m", "zip", "txt"];
-
-      //Ukoliko se izvršila promjena sa NE na DA, prođem kroz sve i označim da nisu čekirani jer mi je tako imalo smisla
-      //ID-evi ovih checkboxova su Zadatak + broj zadatka + koja im je ekstenzija primjer "Zadatak 1pdf" - sa odvojenim zadatak i ostalo :D
-      for (var j = 0; j < niz.length; j++) {
-        var s = document.getElementById("Zadatak 1" + niz[j]);
-        s.checked = false;
-      }
-
-      //Ovdje na promjenu disableam sve osim prvog i odznačim ih sve
-      for (var i = 1; i < this.state.brojZadataka; i++) {
-        var k = i + 1;
-
-        for (j = 0; j < niz.length; j++) {
-          s = document.getElementById("Zadatak " + k + niz[j]);
-          s.disabled = true;
-          s.checked = false;
-        }
-      }
-    } else {
-    
-      niz = ["pdf", "doc", "m", "zip", "txt"];
-
-      //Ovdje kad je na NE, ali radim slične stvari, haman iste :D
-      for (j = 0; j < niz.length; j++) {
-        s = document.getElementById("Zadatak 1" + niz[j]);
-        s.checked = false;
-      }
-
-      for (i = 1; i <  this.state.brojZadataka; i++) {
-        k = i + 1;
-
-        for (j = 0; j < niz.length; j++) {
-          s = document.getElementById("Zadatak " + k + niz[j]);
-          s.disabled = false;
-          s.checked = false;
-        }
-      }
-    }
-  };
-    
-  oznaciStaTreba = e => {
-    if (this.state.sviTipoviIsti === true) {
-      var p = document.getElementById("Zadatak 1" + this.state.trenutnaEkstenzija);
-
-      if (p.checked === true) {
-        //Preskoči prvi, ostale checkiraj
-        for (var i = 1; i <  this.state.brojZadataka; i++) {
-          var k = i + 1;
-          var s = document.getElementById("Zadatak " + k + this.state.trenutnaEkstenzija);
-          s.checked = true;
-        }
-      } else {
-        //Ako se promijeni da nije označen, i ostalim se skida da su označeni :D
-        for (i = 1; i <  this.state.brojZadataka; i++) {
-          k = i + 1;
-          s = document.getElementById("Zadatak " + k + this.state.trenutnaEkstenzija);
-          s.checked = false;
-        }
-        this.state.listaTipova = [];
-      }
-    }
-    /*var temp = this.state.listaTipova;
-    temp[e.target.id[8] - 1] = "." + this.state.trenutnaEkstenzija;
-    this.setState({
-      listaTipova: temp
-    });*/
-    //this.props.setListaTipova(this.state.listaTipova);
   };
 
 

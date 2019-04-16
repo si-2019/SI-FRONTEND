@@ -32,6 +32,7 @@ class DodavanjeTipovaFileova extends React.Component {
 
             {/*Ovdje se provjerava na onChange je li označeno DA ili NE */}
             <CustomInput
+              checked={this.props.podaci.state.sviTipoviIsti}
               type="switch"
               id="switchTip"
               name="customSwitch"
@@ -66,14 +67,14 @@ class DodavanjeTipovaFileova extends React.Component {
                         {/*Za svaki ovaj checkbox pojedinačno  dodijelim tipa atribut jedno = Zadatak1 i svakom checkboxu dodijelim
                                             novi id sa ekstenzijom, i onda na onChange mi je trebalo dvije stvari da se odrade pa imam ovu funkciju.
                                             Tu postavim ovu trenutnaEkstenzija iz statea i gore joj mogu pristupati i pozovem ovu označi šta treba :D i tako za svaki checkbox :D
-                                            */}
+                                            */}                      
                         <FormGroup check>
                           <Input
                             type="checkbox"
                             id={jedno + "pdf"}
                             onChange={e => {
                               this.props.podaci.state.trenutnaEkstenzija = "pdf";
-                              this.oznaciStaTreba(e);
+                              this.props.podaci.oznaciStaTreba(e);
                             }}
                           />{" "}
                           <Label check className="ml-4">

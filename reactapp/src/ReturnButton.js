@@ -6,7 +6,7 @@ class ReturnButton extends Component {
   
     render() {
       var currentLocation = this.props.location.pathname;
-      if(currentLocation=="/"){
+      if(currentLocation==="/"){
         return (
           <Nav.Link disabled href="/">Nazad na početnu</Nav.Link>
         )

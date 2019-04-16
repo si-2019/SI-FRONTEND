@@ -19,15 +19,15 @@ class KreiranjeZadace extends React.Component {
             ukupnoBodova: 0,
         }
     }
-    
+
     setAllState = () => {
         if(this.props === null) { // u pitanju je kreiranje i state su defaultni
             this.setState = () => {
                 this.state.idPredmeta = 1;
             }
         }
-        else { // u pitanju je azuriranje i state treba popuniti podacima
-            
+        else { // u pitanju je azuriranje i state treba popuniti podacima iz propsa koji sadrzi sve podatke
+
         }
 
     }

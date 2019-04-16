@@ -61,15 +61,17 @@ class KreiranjeZadace extends React.Component {
   };
 
   onChangeBrojZadataka = event => {
-
+    var noviBrojZadataka = event.target.value;
+    if(noviBrojZadataka>10) noviBrojZadataka=10;
+    if(noviBrojZadataka<1) noviBrojZadataka = 1;
     var novaListaTipova = [];
 
-    for(var i = 0; i<event.target.value; i++) {
+    for(var i = 0; i<noviBrojZadataka; i++) {
       novaListaTipova.push([false,false,false,false,false]);
     }
 
     this.setState({
-      brojZadataka: event.target.value,
+      brojZadataka: noviBrojZadataka,
       listaTipova: novaListaTipova,
       sviTipoviIsti: false
     });
@@ -105,15 +107,13 @@ class KreiranjeZadace extends React.Component {
 
 
   klik_isti_br_bod = () => {
-    //citam unesenu vrijednost
-    
+
     var isti_br_bod = parseInt(document.getElementById("brbod").value);
 
-    //provjeravamo da li je toggle on, ako jeste, onda popunimo textbox-ove iz tabele sa vrijednoscu koju unese u tekstualno polje
-    //ako toggle nije on, dzabe sto unosi
     var daLi = document.getElementById("customSwitch1").checked === true;
     this.setState({ sviBodoviIsti: daLi });
-      var noviNiz = [];
+    
+    var noviNiz = [];
     if (daLi) {
       var suma = 0;
 
@@ -125,13 +125,8 @@ class KreiranjeZadace extends React.Component {
             noviNiz.push(isti_br_bod);
         }
       }
-    
-      
-      //this.props.setListaBodova(noviNiz);
-      // this.setListaBodova(noviNiz);
-    // console.log(noviNiz);
+
       this.setState({ listaBodova: noviNiz });
-      //console.log(this.state.listaBodova);
       document.getElementById("ukupnoStanje").innerHTML = suma;
       this.setState({ ukupnoBodova: suma });
     }
@@ -139,26 +134,22 @@ class KreiranjeZadace extends React.Component {
   };
     
   unioBodove = () => {
-    //mijenja ukupno stanje na badge-u, mijenja atribut listaBodova
     var suma = 0;
 
     var noviNiz = [];
     for (let i = 1; i <= this.state.brojZadataka; i++) {
         if(document.getElementById(i)!==null){
-      if (document.getElementById(i).value !== "") {
-        //inace bude NaN
-        let temp = document.getElementById(i).value;
-        suma += parseInt(temp);
-        noviNiz.push(temp);
-      } 
-      else noviNiz.push(0);
+          if (document.getElementById(i).value !== "") {
+            let temp = document.getElementById(i).value;
+            suma += parseInt(temp);
+            noviNiz.push(temp);
+          } 
+          else noviNiz.push(0);
+        }
     }
-    }
-    // this.setListaBodova(noviNiz);
     
     this.setState({ listaBodova: noviNiz });
     this.setState({ ukupnoBodova:suma });
-    //console.log(this.state.listaBodova);
     document.getElementById("ukupnoStanje").innerHTML = suma;
     
   };

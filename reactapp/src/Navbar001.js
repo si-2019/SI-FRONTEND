@@ -16,6 +16,7 @@ class Navbar001 extends Component {
             <Nav.Link href="chat">Chat</Nav.Link>
             <Nav.Link href="forum">Forum</Nav.Link>
             <Nav.Link href="materijali">Materijali</Nav.Link>
+            <Nav.Link href="ispit">Ispit</Nav.Link>
         </Nav>
       );
     }

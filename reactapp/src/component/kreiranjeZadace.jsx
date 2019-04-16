@@ -39,11 +39,8 @@ class KreiranjeZadace extends React.Component {
         ukupnoBodova: 0,
         trenutnaEkstenzija:"pdf"
     }
-<<<<<<< HEAD
 
-=======
     /*
->>>>>>> 9e2cafd3eb5ab1583b9528a55c29e0452c9eef5b
     setAllState = () => {
         if(this.props === null) { // u pitanju je kreiranje i state su defaultni
             this.setState = () => {

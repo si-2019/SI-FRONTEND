@@ -147,6 +147,7 @@ class KreiranjeZadace extends React.Component {
         }
         }
        // this.setListaBodova(noviNiz);
+       
         this.setState({ listaBodova: noviNiz });
         this.setState({ ukupnoBodova:suma });
         //console.log(this.state.listaBodova);
@@ -237,6 +238,8 @@ class KreiranjeZadace extends React.Component {
 
 
     render() {
+        
+        console.log(this.state);
         return(
         <div>
             <OsnovniPodaci podaci={this}></OsnovniPodaci>

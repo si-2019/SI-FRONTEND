@@ -3,16 +3,12 @@ import "../bootstrap.css";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 class BodoviZadaca extends Component {
-  
-
-
-
   render() {
     var kolone = [];
     for (var i = 1; i <= this.props.podaci.state.brojZadataka; i++) {
       kolone.push(i);
     }
-    
+    //console.log(this.props.podaci);
     return (
       <div>
         <div className="card-header bg-primary text-light">

@@ -5,6 +5,7 @@ class Navbar001 extends Component {
     render() {
       return (
         <Nav className="navbar001_class">
+            <Nav.Link href="student">Student</Nav.Link>
             <Nav.Link href="ispit">Ispit</Nav.Link>
         </Nav>
       );
@@ -12,4 +13,3 @@ class Navbar001 extends Component {
   }
   
   export default Navbar001;
-

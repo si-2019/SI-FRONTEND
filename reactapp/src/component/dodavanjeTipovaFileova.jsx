@@ -28,7 +28,7 @@ class DodavanjeTipovaFileova extends React.Component {
             </h4>
           </div>
           <FormGroup tag="fieldset">
-            <legend>Da li svi brojZadataka imaju iste tipove fileova:</legend>
+            <legend>Da li svi zadaci imaju iste tipove fileova:</legend>
 
             {/*Ovdje se provjerava na onChange je li označeno DA ili NE */}
             <CustomInput

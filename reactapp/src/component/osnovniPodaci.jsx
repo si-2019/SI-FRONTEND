@@ -6,12 +6,7 @@ import "./../bootstrap.css";
 
 class OsnovniPodaci extends React.Component {
  
-    
-  
-
   render() {
-   
-
     return (
       <div>
         <div >
@@ -26,31 +21,28 @@ class OsnovniPodaci extends React.Component {
                 <Label for="naziv">Naziv:</Label>
                 {/*Tu ispod se nalazi onChange za spremanje naziva */}
                 <Input
-                 
+                  value={this.props.podaci.state.naziv}
                   type="text"
                   name="naziv"
                   id="naziv"
                   placeholder="Upišite naziv"
                   onChange={this.props.podaci.onChangeNaziv}
                 />
-                
               </FormGroup>
               <FormGroup>
                 <Label for="datum">Datum roka predaje:</Label>
                 <Input
-                  
+                  value={this.props.podaci.state.datum}
                   type="date"
                   name="datum"
                   id="datum"
                   onChange={this.props.podaci.onChangeDatum}
                 />
               </FormGroup>
-
               <FormGroup>
                 <Label for="vrijeme">Vrijeme roka predaje:</Label>
                 <Input
-                
-                    
+                  value={this.props.podaci.state.vrijeme}
                   type="time"
                   name="vrijeme"
                   id="vrijeme"
@@ -65,28 +57,21 @@ class OsnovniPodaci extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="brojZadataka">Broj zadataka:</Label>
-                {/*Tu ispod se nalazi onChange za spremanje brojaZadataka */}
-               <Input
-                  
+                <Input
+                  value = {this.props.podaci.state.brojZadataka}
                   type="number"
                   pattern="[0-9]{0,5}"
                   name="brojZadataka"
                   id="brojZadataka"
-                  value = {this.props.podaci.state.brojZadataka}
                   min={1}
                   max={10}
                   onChange={this.props.podaci.onChangeBrojZadataka}
                 /> 
               </FormGroup>
             </Form>
-        
           </div>
-         
         </div>
-        
-
       </div>
-
     );
   }
 }

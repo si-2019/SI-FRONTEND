@@ -3,6 +3,7 @@ import OsnovniPodaci from "./osnovniPodaci";
 import DodavanjeTipovaFileova from "./dodavanjeTipovaFileova";
 import BodoviZadaca from "./bodoviZadaca";
 import PreviewZadace from "./previewZadace";
+import {Button} from 'reactstrap'
 
 class KreiranjeZadace extends React.Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class KreiranjeZadace extends React.Component {
       listaTipova: [[false, false, false, false, false]],
       sviBodoviIsti: false,
       listaBodova: [],
-      ukupnoBodova: 0
+      ukupnoBodova: 0,
+      kreiranjeIliPreview: "Kreiranje"
     };
   }
   /*
@@ -35,9 +37,41 @@ class KreiranjeZadace extends React.Component {
 
     }
 */
-  handleClick = () => {
-    document.getElementById("PreviewZadaceButton").style.display = "none";
+
+  componentWillMount = () => {
+  }
+
+  componentDidMount = () => {
+    document.getElementById("kreiranje").style.display = "block";
+    document.getElementById("preview").style.display = "none";
+  }
+
+  handleClick = (event) => {
+    var name = event.target.name;
+    console.log(name);
+    switch(name) {
+      case "idiNaPreview": {
+        document.getElementById("kreiranje").style.display = "none";
+        document.getElementById("preview").style.display = "block";
+        this.setState({
+          kreiranjeIliPreview: "Preview"
+        });
+        break;
+      }
+      case "idiNaKreiranjeZadace": {
+        document.getElementById("kreiranje").style.display = "block";
+        document.getElementById("preview").style.display = "none";
+        this.setState({
+          kreiranjeIliPreview: "Kreiranje"
+        });
+        break;
+      }
+      default: {
+
+      }
+    }
   };
+
   onChangeNaziv = event => {
     this.setState({
       naziv: event.target.value
@@ -145,13 +179,20 @@ class KreiranjeZadace extends React.Component {
   render() {
     return (
       <div>
-        <OsnovniPodaci podaci={this} />
-        <DodavanjeTipovaFileova podaci={this} />
-        <BodoviZadaca podaci={this} />
-        <PreviewZadace podaci={this} />
-        <button id="PreviewZadaceButton" onClick={this.handleClick}>
-          Preview zadace
-        </button>
+        <div id="kreiranje">
+          <OsnovniPodaci podaci={this} />
+          <DodavanjeTipovaFileova podaci={this} />
+          <BodoviZadaca podaci={this} />
+          <Button id="idiNaPreview" name="idiNaPreview" onClick={this.handleClick} color="info">
+            Preview zadace
+          </Button>
+        </div>
+        <div id="preview">
+          <PreviewZadace podaci={this} />
+          <Button id="idiNaKreiranjeZadace" name="idiNaKreiranjeZadace" onClick={this.handleClick} color="info">
+            Kreiranje zadace
+          </Button>
+        </div>  
       </div>
     );
   }

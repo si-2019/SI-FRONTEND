@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Nav from 'react-bootstrap/Nav';
 
 class Predmet extends Component {
     state = {  }
@@ -6,7 +7,10 @@ class Predmet extends Component {
         return (
             <div>
                 <div>
-                    <h3>PREDMET</h3>
+                   
+                    <Nav className="mr-auto">
+                         <Nav.Link href="predmet"> <h3>PREDMET</h3></Nav.Link>
+                    </Nav>
                 </div>
                 <div>
                     <ul>

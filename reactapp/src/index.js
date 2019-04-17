@@ -4,7 +4,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 import App from './App.js';
-import ProfessorsAvailability from './ProfessorsAvailability/ProfessorsAvailability'
+import ProfessorsAvailability from './ECHO/ProfessorsAvailability/ProfessorsAvailability'
 import * as serviceWorker from './serviceWorker';
 
 const routing = (

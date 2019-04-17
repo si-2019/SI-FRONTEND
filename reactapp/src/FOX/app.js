@@ -13,9 +13,6 @@ class App extends Component {
         <Header/>
         <h1>Početna stranica</h1>
         <DanDatum/>
-        <Nav className="mr-auto">
-            <Nav.Link href="predmet">Predmet</Nav.Link>
-        </Nav>
         <Predmet/>
         <Footer/>
       </div>

@@ -5,7 +5,6 @@ class PreviewZadace extends Component {
   render() {
     var kolone = [];
     var zadaciCelije = [];
-    var ukupnoBodova = 0;
     var tipovi = [];
     for (var i = 0; i < this.props.podaci.state.brojZadataka; i++) {
       var tipoviZadatka = "";
@@ -20,7 +19,6 @@ class PreviewZadace extends Component {
         }
       }
       tipovi.push(tipoviZadatka);
-      ukupnoBodova += parseInt(this.props.podaci.state.listaBodova[i]);
       zadaciCelije.push(
         this.props.podaci.state.listaBodova[i] + " " + tipovi[i]
       );
@@ -51,7 +49,7 @@ class PreviewZadace extends Component {
                     " " +
                     this.props.podaci.state.vrijeme}
                 </th>
-                <th>{ukupnoBodova}</th>
+                <th>{this.props.podaci.state.ukupnoBodova}</th>
               </tr>
             </tbody>
           </Table>

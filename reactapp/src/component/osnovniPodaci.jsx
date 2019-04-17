@@ -58,11 +58,13 @@ class OsnovniPodaci extends Component {
                 <Input
                   value = {this.props.podaci.state.brojZadataka}
                   type="number"
-                  pattern="[0-9]{0,5}"
+                  pattern="(10|[1-9])"
+                  digitOnly
                   name="brojZadataka"
                   id="brojZadataka"
                   min={1}
                   max={10}
+                  step={1}
                   onChange={this.props.podaci.onChangeBrojZadataka}
                 /> 
               </FormGroup>

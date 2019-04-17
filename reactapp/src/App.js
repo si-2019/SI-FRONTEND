@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UnosInformacija from './UnosInformacija';
+
+import Lista  from './prikazListe';
+
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <UnosInformacija/>
-        
+
+         <Lista />
+
       </div>
     );
   }

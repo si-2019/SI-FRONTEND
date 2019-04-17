@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import Navbar001 from './Navbar001';
+
 
 class Header extends Component {
     render() {
@@ -8,9 +9,7 @@ class Header extends Component {
         <div className="Header">
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="#home">ETF</Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                </Nav>
+                <Navbar001 />
  
                 <a style={{color: 'white'}}class="" onclick="" href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</a>
 

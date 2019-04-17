@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { CustomInput, Form, FormGroup, Label, Input, Table } from "reactstrap";
 import "../bootstrap.css";
 
-class DodavanjeTipovaFileova extends React.Component {
+class DodavanjeTipovaFileova extends Component {
 
   render() {
     var kk = this.props.podaci.state.naziv;

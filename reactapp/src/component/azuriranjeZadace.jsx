@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {BrowserRouter, Route, Link} from 'react-router-dom';
-import { CustomInput, Form, FormGroup, Label, Input, Table } from "reactstrap";
 import KreiranjeZadace from './kreiranjeZadace';
 
-class AzuriranjeZadace extends React.Component {
+class AzuriranjeZadace extends Component {
     
     constructor(props) {
         super(props);
@@ -31,11 +30,9 @@ class AzuriranjeZadace extends React.Component {
         return(
         <div>
             <BrowserRouter>
-
                 <Link to="/KILO/kreiranjeZadace/?idPredmeta=3">
                     Kreiranje    
                 </Link>
-                
                 <Route path='/KILO/kreiranjeZadace/' exact component={KreiranjeZadace}/>
             </BrowserRouter>
         </div>)

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import KreiranjeZadace from './kreiranjeZadace';
 import AzuriranjeZadace from './azuriranjeZadace';
 
-class MainContent extends React.Component {
-
+class MainContent extends Component {
     constructor(props) {
         super(props);
         this.state = {

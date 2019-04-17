@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import OsnovniPodaci from "./osnovniPodaci";
 import DodavanjeTipovaFileova from "./dodavanjeTipovaFileova";
 import BodoviZadaca from "./bodoviZadaca";
 import PreviewZadace from "./previewZadace";
 import {Button} from 'reactstrap'
 
-class KreiranjeZadace extends React.Component {
+class KreiranjeZadace extends Component {
   constructor(props) {
     super(props);
     this.state = {

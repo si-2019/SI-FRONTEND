@@ -1,10 +1,8 @@
-import React from "react";
-import { Badge, Form, FormGroup, Label, Input, FormText, Button } from "reactstrap";
-
-
+import React, { Component } from "react";
+import { Form, FormGroup, Label, Input, FormText} from "reactstrap";
 import "./../bootstrap.css";
 
-class OsnovniPodaci extends React.Component {
+class OsnovniPodaci extends Component {
  
   render() {
     return (

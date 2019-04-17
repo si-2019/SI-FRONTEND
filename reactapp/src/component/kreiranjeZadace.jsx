@@ -281,10 +281,12 @@ class KreiranjeZadace extends Component {
             Greška!
           </ModalHeader>
           <ModalBody>
-            
+            {this.state.porukeGreske.map((poruka, indeks) => (
+                <p key={poruka + indeks} > {poruka} </p> 
+              ))}
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.ugasiModal}>
+            <Button color="primary" onClick={this.ugasiModal}>
               Cancel
             </Button>
           </ModalFooter>

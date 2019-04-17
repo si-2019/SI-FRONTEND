@@ -1,8 +1,18 @@
 import React, { Component } from "react";
+import {Button} from 'reactstrap';
 import "../bootstrap.css";
-//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class BodoviZadaca extends Component {
+/*
+  componentDidMount = () => {
+    if(this.props.podaci.state.sviBodoviIsti === false) {
+      document.getElementById("sviBodoviIstiButton").disabled = true
+    }
+    else{
+      document.getElementById("sviBodoviIstiButton").disabled = false
+    }  
+  }*/
+
   render() {
     var kolone = [];
     for (var i = 1; i <= this.props.podaci.state.brojZadataka; i++) {
@@ -40,13 +50,14 @@ class BodoviZadaca extends Component {
               className="form-control-static"
               onChange={this.props.podaci.onChangeSviBodoviIsti}
             />
-            <button
-              type="button"
+            <Button
+              id="sviBodoviIstiButton"
+              color="primary"
               className="btn bg-primary ml-3 "
               onClick={this.props.podaci.klik_isti_br_bod}
             >
               OK
-            </button>
+            </Button>
             <hr />
           </div>
         </div>

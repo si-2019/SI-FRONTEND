@@ -1,41 +1,61 @@
 import React, {Component, Fragment} from 'react';
 import EditIcon from '@material-ui/icons/Edit';
+import Pagination from 'rc-pagination'
+import localeInfo from 'rc-pagination/lib/locale/en_US';
 import './ProfessorsAvailability.css';
+import 'rc-pagination/assets/index.css';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class ProfessorsAvailability extends Component {
     constructor(){
         super();
         this.state={
-            professorsList: professorsList,
+            professorsList: [],
             page: 1,
+            size: 10,
+            total: 0,
             input: '',
         }
     }
     onChangeHandler(e){
+        console.log(e);
         this.setState({
             input: e.target.value,
+            page: 1,
         });
-        this.getTeachingStaffPagination();
+        this.componentDidMount();
     }
-
-    getTeachingStaffPagination() {
+    onChange(current, pageSize){
+        this.setState({
+           page: current,
+        });
+        this.componentDidMount();
+    }
+    static onStaffEdit(e){
+        console.log(e.target.value);
+    }
+    componentDidMount() {
+        var page = this.state.page - 1;
         fetch("http://localhost:8080/si2019/echo/getTeachingStaff", {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body:{
-                'page': this.state.input,
-                'size': 10,
+            body:JSON.stringify({
+                'page': page,
+                'size': this.state.size,
                 'search': this.state.input,
-            }
+            })
         })
-            .then(res => res.json())
+            .then(res => {return res.json()})
             .then(
                 (result) => {
+                    console.log("blaa" + result.totalPages);
                     this.setState({
-                        professorsList: result,
+                        professorsList: result.content,
+                        total: result.totalElements,
+
                     });
                 },
                 (error) => {
@@ -48,15 +68,16 @@ class ProfessorsAvailability extends Component {
     }
 
     render() {
-     var professors = this.state.professorsList
-            .map(prof => {
+        console.log(this.state.page);
+        var professors = this.state.professorsList
+            .map((prof) => {
             return(
-                <Fragment>
+                <Fragment key={prof.id}>
                     <tr>
-                        <td>{prof.name}</td>
+                        <td>{prof.ime} {prof.prezime}</td>
                         <td>{prof.email}</td>
-                        <td>{prof.title}</td>
-                        <td><a href="#"><EditIcon/></a></td>
+                        <td>{prof.titula}</td>
+                        <td><a onClick={ProfessorsAvailability.onStaffEdit.bind(prof)}><EditIcon/></a></td>
                     </tr>
                 </Fragment>
             )
@@ -82,6 +103,14 @@ class ProfessorsAvailability extends Component {
                         </tbody>
                     </table>
                 </div>
+                <Pagination
+                    current={this.state.page}
+                    total={this.state.total}
+                    pageSize={this.state.size}
+                    showPrevNextJumpers
+                    locale={localeInfo}
+                    onChange={this.onChange.bind(this)}
+                />
             </div>
         );
     }

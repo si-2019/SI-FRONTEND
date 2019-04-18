@@ -1,5 +1,4 @@
-import React, {Component, Fragment} from 'react'; 
-import { Form, Label, Table } from 'reactstrap';
+import React, {Component} from 'react'; 
 
 var sviProjektiTrenutnogUsera=['Projekat1', 'Projekat2'];
 
@@ -19,7 +18,7 @@ class PregledListeProjekata extends Component {
 
     kreirajTabelu() {
         return(
-            <Table>
+            <table id="tabelaProjekata">
                 <thead>
                     <tr>
                         <th>Naziv projekta</th>
@@ -40,18 +39,17 @@ class PregledListeProjekata extends Component {
                     }
                     
                 </tbody>
-            </Table>
+            </table>
         );
     }
 
     render() {
-        return(
-            <Fragment>
-                <Form>
-                    <Label>Svi projekti:</Label>
-                    {this.kreirajTabelu()}
-                </Form>
-            </Fragment>
+        return(  
+            <div>
+                <label>Svi projekti:</label>
+                {this.kreirajTabelu()}
+            </div>
+           
         );
     }
 }

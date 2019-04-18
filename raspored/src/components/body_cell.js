@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import Popup from 'react-popup';
 import Modal from 'react-modal';
+import { stringify } from 'querystring';
 const customStyles = {
   content : {
     top                   : '50%',
@@ -107,9 +108,10 @@ export class Body_Cell extends Component {
       }     
       else
       {
-        if(this.props.biljeska != null) {
+        if(this.props.termin.biljeska != undefined) {
         return (
           <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+      
            <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678135-sticky-note-128.png" height="20" width="20" ></img>
            <br></br>
               <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
@@ -118,8 +120,9 @@ export class Body_Cell extends Component {
          
         );
       
-      } 
-    else if(this.props.biljeska == null)
+      }
+
+    else if(this.props.termin.biljeska == undefined)
     return (
       <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
      
@@ -145,7 +148,7 @@ export class Body_Cell extends Component {
       }     
       else
       {
-        if(this.props.biljeska != null) {
+        if(this.props.termin.biljeska != undefined) {
         return (
           <td style={tdStyleNeparan}  onClick = {(this.state).showModal ? null : this.handleOpenModal}>
           <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678135-sticky-note-128.png" height="20" width="20"></img>
@@ -154,7 +157,7 @@ export class Body_Cell extends Component {
               
           </td>
         ); }
-        else if(this.props.biljeska == null) {
+        else if(this.props.termin.biljeska == undefined) {
           return (
             <td style={tdStyleNeparan}  onClick = {(this.state).showModal ? null : this.handleOpenModal}>
             

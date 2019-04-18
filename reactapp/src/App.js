@@ -3,6 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import PregledListeProjekata from './PregledListeProjekata';
 
+import Lista  from './prikazListe';
+
+
+
 class App extends Component {
   render() {
     return (
@@ -22,6 +26,9 @@ class App extends Component {
           </a>
         </header>
         <PregledListeProjekata />
+
+         <Lista />
+
       </div>
     );
   }

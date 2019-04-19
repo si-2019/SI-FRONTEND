@@ -26,16 +26,15 @@ class ProfessorsAvailability extends Component {
         this.componentDidMount();
     }
     onChange(current, pageSize){
+        console.log("JEL 2 " + current);
         this.setState({
            page: current,
-        });
-        this.componentDidMount();
+        }, this.componentDidMount)
     }
     static onStaffEdit(e){
         console.log(e.target.value);
     }
     componentDidMount() {
-        var page = this.state.page - 1;
         fetch("http://localhost:8080/si2019/echo/getTeachingStaff", {
             method: 'POST',
             headers: {
@@ -43,7 +42,7 @@ class ProfessorsAvailability extends Component {
                 'Content-Type': 'application/json',
             },
             body:JSON.stringify({
-                'page': page,
+                'page': this.state.page-1,
                 'size': this.state.size,
                 'search': this.state.input,
             })
@@ -68,7 +67,7 @@ class ProfessorsAvailability extends Component {
     }
 
     render() {
-        console.log(this.state.page);
+        console.log(this.state.professorsList);
         var professors = this.state.professorsList
             .map((prof) => {
             return(

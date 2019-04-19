@@ -7,8 +7,8 @@ import 'rc-pagination/assets/index.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class ProfessorsAvailability extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             professorsList: [],
             page: 1,
@@ -99,7 +99,7 @@ class ProfessorsAvailability extends Component {
                     </table>
                 </div>
                 <Pagination
-                    id="pagination"
+                    id="pagination" className="pagination-table"
                     current={this.state.page}
                     total={this.state.total}
                     pageSize={this.state.size}

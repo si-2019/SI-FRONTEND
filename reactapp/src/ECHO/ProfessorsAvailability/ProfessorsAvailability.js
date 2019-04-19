@@ -80,11 +80,11 @@ class ProfessorsAvailability extends Component {
         return (
             <div className="container">
                 <div className="row search-teachers shadow-border">
-                    <input type="text" placeholder="Search.." onChange={this.onChangeHandler.bind(this)}/>
+                    <input id="searchTeachingStaff" type="text" placeholder="Search.." onChange={this.onChangeHandler.bind(this)}/>
 
                 </div>
                 <div className="row">
-                    <table className="table table-bordered table-hover professors-table shadow-border">
+                    <table id="teachingStaffTable" className="table table-bordered table-hover professors-table shadow-border">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -99,6 +99,7 @@ class ProfessorsAvailability extends Component {
                     </table>
                 </div>
                 <Pagination
+                    id="pagination"
                     current={this.state.page}
                     total={this.state.total}
                     pageSize={this.state.size}

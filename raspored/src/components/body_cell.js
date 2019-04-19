@@ -108,7 +108,7 @@ export class Body_Cell extends Component {
       }     
       else
       {
-        if(this.props.termin.biljeska != undefined) {
+        if(this.props.termin.biljeska != null) {
         return (
           <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
       
@@ -122,7 +122,7 @@ export class Body_Cell extends Component {
       
       }
 
-    else if(this.props.termin.biljeska == undefined)
+    else if(this.props.termin.biljeska == null)
     return (
       <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
      
@@ -148,7 +148,7 @@ export class Body_Cell extends Component {
       }     
       else
       {
-        if(this.props.termin.biljeska != undefined) {
+        if(this.props.termin.biljeska != null) {
         return (
           <td style={tdStyleNeparan}  onClick = {(this.state).showModal ? null : this.handleOpenModal}>
           <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678135-sticky-note-128.png" height="20" width="20"></img>
@@ -157,7 +157,7 @@ export class Body_Cell extends Component {
               
           </td>
         ); }
-        else if(this.props.termin.biljeska == undefined) {
+        else if(this.props.termin.biljeska == null) {
           return (
             <td style={tdStyleNeparan}  onClick = {(this.state).showModal ? null : this.handleOpenModal}>
             

@@ -18,7 +18,6 @@ class ProfessorsAvailability extends Component {
         }
     }
     onChangeHandler(e){
-        console.log(e);
         this.setState({
             input: e.target.value,
             page: 1,
@@ -26,7 +25,6 @@ class ProfessorsAvailability extends Component {
         this.componentDidMount();
     }
     onChange(current, pageSize){
-        console.log("JEL 2 " + current);
         this.setState({
            page: current,
         }, this.componentDidMount)
@@ -50,7 +48,6 @@ class ProfessorsAvailability extends Component {
             .then(res => {return res.json()})
             .then(
                 (result) => {
-                    console.log("blaa" + result.totalPages);
                     this.setState({
                         professorsList: result.content,
                         total: result.totalElements,
@@ -67,7 +64,6 @@ class ProfessorsAvailability extends Component {
     }
 
     render() {
-        console.log(this.state.professorsList);
         var professors = this.state.professorsList
             .map((prof) => {
             return(

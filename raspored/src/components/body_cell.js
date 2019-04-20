@@ -33,9 +33,9 @@ const MojModal = (ovaj) => {
               <b>Tip aktivnosti: </b>{ovaj.props.termin.title} <br></br>
               <b>Predmet: </b>{ovaj.props.termin.predmet} <br></br>
               <b>Sala: </b>{ovaj.props.termin.sala} <br></br>
-              <b>Biljeska: </b>{ovaj.props.termin.biljeska} <br></br>
-              <b>Unesi novu/ažuriraj staru biljesku</b>    <br/>
-              <input type="text" className="form-control" aria-describedby="Unesi zabiljesku" placeholder="Biljeska" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
+              <b>Bilješka: </b>{ovaj.props.termin.biljeska} <br></br>
+              <b>Unesi novu/ažuriraj staru bilješku</b>    <br/>
+              <input type="text" className="form-control" aria-describedby="Unesi zabilješku" placeholder="Bilješka" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
               <br/>
               <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
               <button style={stylishRight} className = 'btn btn-secondary' onClick={ovaj.handleCloseModal}>Zatvori</button>

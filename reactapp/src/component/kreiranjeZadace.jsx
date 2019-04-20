@@ -124,7 +124,7 @@ class KreiranjeZadace extends Component {
     var name = event.target.name;
   
     switch(name) {
-      case "idiNaPreview": {
+      case "idiNaPreview": {  // prelazak sa kreiranja zadace na preview
 
         var porukeGreske = this.validation();
         
@@ -149,10 +149,13 @@ class KreiranjeZadace extends Component {
         }  
         break;
       }
-      case "idiNaKreiranjeZadace": {
+      case "idiNaKreiranjeZadace": {  // prelazak sa previewa na kreiranje zadace
         document.getElementById("kreiranje").style.display = "block";
         document.getElementById("preview").style.display = "none";
         break;
+      }
+      case "addZadatak" : { // kreiranje zadace
+        
       }
       default: {
 
@@ -304,6 +307,9 @@ class KreiranjeZadace extends Component {
           <PreviewZadace podaci={this} />
           <Button id="idiNaKreiranjeZadace" name="idiNaKreiranjeZadace" onClick={this.handleClick} color="info">
             Kreiranje zadace
+          </Button>
+          <Button id="addZadaca" name="addZadaca" onClick={this.handleClick} color="info">
+            Potvrdi
           </Button>
         </div>  
       </div>

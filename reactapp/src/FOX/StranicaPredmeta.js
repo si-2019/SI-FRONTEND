@@ -8,11 +8,10 @@ class StranicaPredmeta extends Component {
   render() {
     return (
       <div className="StranicaPredmeta">
-        <Header/>
+        <Header isPocetna={false}/>
         <br></br>
         <h1>Stranica predmeta</h1>
         <br></br>
-        <Navbar001/>
         <TabelaStudenti/>
         <Footer/>
       </div>

@@ -7,7 +7,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     {/*Promijeni na true za header početne stranice, false za header stranice predmeta */}
-    this.state = {isPocetna: false} 
+    this.state = {isPocetna: props.isPocetna} 
    }
     render() {
       const isPocetna = this.state.isPocetna;

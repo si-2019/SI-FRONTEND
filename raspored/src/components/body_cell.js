@@ -100,12 +100,12 @@ export class Body_Cell extends Component {
           .then(function (response) {
             if(response.data.success)
             {
-              //signalna poruka kad je dodano
+              //signalna poruka kad je dodan
 
             }
             else
             {
-              //signalna poruka kad nije dodano
+              //signalna poruka kad nije dodan
             }
             console.log(response);
            });               

@@ -9,7 +9,7 @@ class Predmet extends Component {
                 <div>
                    
                     <Nav className="mr-auto">
-                         <Nav.Link href="predmet"> <h3>PREDMET</h3></Nav.Link>
+                         <Nav.Link href="fox/StranicaPredmeta"> <h3>PREDMET</h3></Nav.Link>
                     </Nav>
                 </div>
                 <div>

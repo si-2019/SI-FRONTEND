@@ -6,6 +6,7 @@ import Charlie from './CHARLIE/app.js'
 import Delta from './DELTA/app.js'
 import Echo from './ECHO/app.js'
 import Fox from './FOX/app.js'
+import StranicaPredmeta from './FOX/StranicaPredmeta';
 import Golf from './GOLF/app.js'
 import Hotel from './HOTEL/app.js'
 import India from './INDIA/app.js'
@@ -18,7 +19,7 @@ import Oscar from './OSCAR/app.js'
 import Papa from './PAPA/app.js'
 import Romeo from './ROMEO/app.js'
 import Siera from './SIERA/app.js'
-import Tango from './TANGO/app.js'
+import Tango from './TANGO/App.js'
 import Uniform from './UNIFORM/app.js'
 import Header from './header'
 import Footer from './footer'
@@ -37,7 +38,8 @@ class App extends Component {
                 <Route path="/charlie" component={Charlie} />
                 <Route path="/delta" component={Delta} />
                 <Route path="/echo" component={Echo} />
-                <Route path="/fox" component={Fox} />
+                <Route exact path="/fox" component={Fox} />
+                <Route path="/fox/StranicaPredmeta" component={StranicaPredmeta} />
                 <Route path="/golf" component={Golf} />
                 <Route path="/hotel" component={Hotel} />
                 <Route path="/india" component={India} />

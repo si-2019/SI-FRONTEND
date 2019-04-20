@@ -12,7 +12,7 @@ class ReturnButton extends Component {
         )
       }
       return (
-        <Nav.Link href="/">Nazad na početnu</Nav.Link>
+        <Nav.Link href="/fox">Nazad na početnu</Nav.Link>
       )
     }
   }

@@ -36,6 +36,7 @@ class BodoviZadaca extends Component {
                 type="checkbox"
                 className="custom-control-input"
                 id="customSwitch1"
+                onChange={this.props.podaci.onChangeSviBodoviIsti}
               />
               <label className="custom-control-label" htmlFor="customSwitch1">
                 DA
@@ -48,12 +49,13 @@ class BodoviZadaca extends Component {
               id="brbod"
               type="text"
               className="form-control-static"
-              onChange={this.props.podaci.onChangeSviBodoviIsti}
+              
             />
             <Button
               id="sviBodoviIstiButton"
               color="primary"
               className="btn bg-primary ml-3 "
+            disabled={!this.props.podaci.state.sviBodoviIsti}
               onClick={this.props.podaci.klik_isti_br_bod}
             >
               OK

@@ -189,6 +189,9 @@ class KreiranjeZadace extends Component {
   onChangeSviBodoviIsti = () => {
     var daLi = document.getElementById("customSwitch1").checked === true;
     this.setState({ sviBodoviIsti: daLi });
+
+    if(daLi===true) document.getElementById("sviBodoviIstiButton").disabled=false;
+    else document.getElementById("sviBodoviIstiButton").disabled=true;
   };
 
   onChangeBrojZadataka = event => {

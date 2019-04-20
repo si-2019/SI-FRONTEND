@@ -37,8 +37,11 @@ const MojModal = (ovaj) => {
               <b>Unesi novu/ažuriraj staru bilješku</b>    <br/>
               <input type="text" className="form-control" aria-describedby="Unesi zabilješku" placeholder="Bilješka" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
               <br/>
+              <div style={divStyle}>
               <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
+              <button style={stylishCenter} type="button" class="btn btn-danger">Obriši</button>
               <button style={stylishRight} className = 'btn btn-secondary' onClick={ovaj.handleCloseModal}>Zatvori</button>
+              </div>
             </Modal>
     </div>
   );
@@ -256,4 +259,15 @@ const stylishRight=
 {
     float:'right'
 }
+const stylishCenter=
+{  
+  margin: '0 auto'  
+}
+const divStyle=
+{
+  display: 'flex',
+  justifyContent: 'center'
+}
+
+
 export default Body_Cell

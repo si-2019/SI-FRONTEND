@@ -113,8 +113,24 @@ export class Body_Cell extends Component {
     }
     //ako postoji biljeska, onda samo doda novu, odvojenu sa ---
     else{
-      //if(!this.state.title=="")
-      //this.props.termin.biljeska+=' --- ' + this.state.title;
+      console.log('http://localhost:3001/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
+        axios({
+          method:'get',
+          url:'http://localhost:3001/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
+          responseType:'json'
+        })
+          .then(function (response) {
+            if(response.data.success)
+            {
+              //signalna poruka kad je dodano
+
+            }
+            else
+            {
+              //signalna poruka kad nije dodano
+            }
+            console.log(response);
+           });    
     }
 
 

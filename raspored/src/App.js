@@ -25,11 +25,11 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 //Fetcheri i metode za citanje pomocu njih
 const FetcherTermini = unstable_createResource(() =>
-  fetch("http://localhost:3001/getTermini").then(r => r.json())
+  fetch("http://localhost:3001/getTermini/1").then(r => r.json())
 );
 
 const FetcherIspiti = unstable_createResource(() =>
-  fetch("http://localhost:3001/getIspiti").then(r => r.json())
+  fetch("http://localhost:3001/getIspiti/1").then(r => r.json())
 );
 
 const getDataTermini = () => FetcherTermini.read();
@@ -153,11 +153,11 @@ const Helper = () => {
       {
         // ako celija nije ispunjena
         // u celiji cemo dalje testirati da li je termin undefined ili ne
-        cells.push(<Body_Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={undefined} ></Body_Cell>);
+        cells.push(<Body_Cell key={(u+1)*10+i} idStudenta="1" dan={(u+1).toString()} redniBroj={i} termin={undefined} ></Body_Cell>);
       }
       else
       {
-        cells.push(<Body_Cell key={(u+1)*10+i} dan={(u+1).toString()} redniBroj={i} termin={raspored[matricaTermina[i][u]]} ></Body_Cell>);
+        cells.push(<Body_Cell key={(u+1)*10+i} idStudenta="1" dan={(u+1).toString()} redniBroj={i} termin={raspored[matricaTermina[i][u]]} ></Body_Cell>);
       }
     }
   rendering.push(

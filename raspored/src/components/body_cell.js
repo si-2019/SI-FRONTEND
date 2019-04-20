@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import Popup from 'react-popup';
 import Modal from 'react-modal';
 import { stringify } from 'querystring';
+import axios from 'axios';
 const customStyles = {
   content : {
     top                   : '50%',
@@ -13,6 +14,7 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
+
 
 
 const MojModal = (ovaj) => {
@@ -32,11 +34,11 @@ const MojModal = (ovaj) => {
               <b>Predmet: </b>{ovaj.props.termin.predmet} <br></br>
               <b>Sala: </b>{ovaj.props.termin.sala} <br></br>
               <b>Biljeska: </b>{ovaj.props.termin.biljeska} <br></br>
-              <b>Unesi novu biljesku</b><br></br>    
-            
-               <input type = "text" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
-              <button className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
-              <button className = 'btn btn-primary' onClick={ovaj.handleCloseModal}>Zatvori</button>
+              <b>Unesi novu biljesku</b>    <br/>
+              <input type="text" className="form-control" aria-describedby="Unesi zabiljesku" placeholder="Biljeska" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
+              <br/>
+              <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
+              <button style={stylishRight} className = 'btn btn-secondary' onClick={ovaj.handleCloseModal}>Zatvori</button>
             </Modal>
     </div>
   );
@@ -49,6 +51,8 @@ export class Body_Cell extends Component {
     this.state = {
       showModal: false
     };
+
+    
     
     
 
@@ -57,6 +61,10 @@ export class Body_Cell extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
+
+  componentDidMount () {
+    Modal.setAppElement('body');
+ }
   
   handleOpenModal () {
     this.setState({ showModal: true });
@@ -65,7 +73,7 @@ export class Body_Cell extends Component {
   }
   
 
-
+  
 
   handleCloseModal () {
     this.setState({ showModal: false });
@@ -79,12 +87,34 @@ export class Body_Cell extends Component {
     this.setState({title: event.target.value});
 
     //ukoliko nema biljeska onda samo ubaci novu
-    if(this.props.termin.biljeska == undefined){
+    if(this.props.termin.biljeska == undefined || this.props.termin.biljeska==""){
       this.props.termin.biljeska = this.state.title;
+      if(!(this.props.termin.biljeska == undefined || this.props.termin.biljeska==""))
+      {
+        console.log('http://localhost:3001/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
+        axios({
+          method:'get',
+          url:'http://localhost:3001/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
+          responseType:'json'
+        })
+          .then(function (response) {
+            if(response.data.success)
+            {
+              //signalna poruka kad je dodano
+
+            }
+            else
+            {
+              //signalna poruka kad nije dodano
+            }
+            console.log(response);
+           });               
+      }      
     }
     //ako postoji biljeska, onda samo doda novu, odvojenu sa ---
     else{
-      this.props.termin.biljeska+=' --- ' + this.state.title;
+      //if(!this.state.title=="")
+      //this.props.termin.biljeska+=' --- ' + this.state.title;
     }
 
 
@@ -112,7 +142,7 @@ export class Body_Cell extends Component {
         return (
           <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
       
-           <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678135-sticky-note-128.png" height="20" width="20" ></img>
+           <img src="slicicaZabiljeska.png" height="20" width="20" ></img>
            <br></br>
               <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
               <MojModal ovaj={this}></MojModal> 
@@ -151,7 +181,7 @@ export class Body_Cell extends Component {
         if(this.props.termin.biljeska != null) {
         return (
           <td style={tdStyleNeparan}  onClick = {(this.state).showModal ? null : this.handleOpenModal}>
-          <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678135-sticky-note-128.png" height="20" width="20"></img>
+          <img src="slicicaZabiljeska.png" height="20" width="20"></img>
            <br></br>   <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
               <MojModal ovaj={this}></MojModal>
               
@@ -200,5 +230,13 @@ const tdStyleParan=
     textAlign: 'left',
     width:'10vw', 
     backgroundColor:'lightgoldenrodyellow' 
+}
+const stylishLeft=
+{
+    float:'left'
+}
+const stylishRight=
+{
+    float:'right'
 }
 export default Body_Cell

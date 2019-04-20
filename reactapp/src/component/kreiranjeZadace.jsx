@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import OsnovniPodaci from "./osnovniPodaci";
 import DodavanjeTipovaFileova from "./dodavanjeTipovaFileova";
 import BodoviZadaca from "./bodoviZadaca";
@@ -154,8 +155,12 @@ class KreiranjeZadace extends Component {
         document.getElementById("preview").style.display = "none";
         break;
       }
-      case "addZadatak" : { // kreiranje zadace
-        
+      case "addZadaca" : { // kreiranje zadace
+        axios.post('http://localhost:6001/addZadaca', this.state)
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          });
       }
       default: {
 

@@ -7,7 +7,7 @@ import './App.css';
 import { runInThisContext } from 'vm';
 import { unstable_createResource } from "react-cache";
 
-// Ovdje mozete naci bootstrap koji su vodje zajednicki odabrali
+// Ovdje mozete nac bootstrap koji su vodje zajednicki odabrali
 // https://bootswatch.com/flatly/?fbclid=IwAR0TbcCAvWZITDDpSV-hrG_AbNkCwim-CSbOPmm6RtGqvbvvWj8nZHPOLc8
 // Ko ne zna, bootstrap je predefinisani css koji je vec neko napisao da bi dugmici, forme, tabele... izgledale
 // ugodno za oko i u skladu konceptima boja sa RG-a

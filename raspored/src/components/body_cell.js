@@ -34,7 +34,7 @@ const MojModal = (ovaj) => {
               <b>Predmet: </b>{ovaj.props.termin.predmet} <br></br>
               <b>Sala: </b>{ovaj.props.termin.sala} <br></br>
               <b>Biljeska: </b>{ovaj.props.termin.biljeska} <br></br>
-              <b>Unesi novu biljesku</b>    <br/>
+              <b>Unesi novu/ažuriraj staru biljesku</b>    <br/>
               <input type="text" className="form-control" aria-describedby="Unesi zabiljesku" placeholder="Biljeska" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
               <br/>
               <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
@@ -113,6 +113,7 @@ export class Body_Cell extends Component {
     }
     //ako postoji biljeska, onda samo doda novu, odvojenu sa ---
     else{
+      this.props.termin.biljeska = this.state.title;
       console.log('http://localhost:3001/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
         axios({
           method:'get',

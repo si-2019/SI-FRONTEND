@@ -52,12 +52,15 @@ export class Body_Cell extends Component {
   constructor () {
     super();
     this.state = {
-      showModal: false
+      showModal: false,
+      isHover: false
     };
 
     
     
     
+    this.handleHoverOn = this.handleHoverOn.bind(this);
+    this.handleHoverOff = this.handleHoverOff.bind(this);
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -68,6 +71,14 @@ export class Body_Cell extends Component {
 
   componentDidMount () {
     Modal.setAppElement('body');
+ }
+
+  handleHoverOn () {
+   this.setState({ isHover: true });
+ }
+
+  handleHoverOff () {
+  this.setState({ isHover: false });
  }
   
   handleOpenModal () {

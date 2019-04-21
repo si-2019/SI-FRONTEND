@@ -82,6 +82,7 @@ class BodoviZadaca extends Component {
                       data-index={index}
                       name="bodovi"
                       onChange={this.props.onChange}
+                      value={bod[jedno-1]}
 
                     />
                   </th>

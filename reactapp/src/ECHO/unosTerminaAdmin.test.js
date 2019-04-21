@@ -2,7 +2,7 @@ import React from "react";
 import UnosTermina from "./unosTermina";
 import UnosTerminaAdmin from "./unosTerminaAdmin";
 import { mount, shallow, render } from "enzyme";
-import "./setupTests.js";
+import "../setupTests.js";
 
 it("Da li se prikazuju komponente", () => {
   const component = shallow(<UnosTerminaAdmin />);

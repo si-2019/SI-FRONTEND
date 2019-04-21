@@ -21,7 +21,7 @@ class KreiranjeZadace extends Component {
         : 1,
       radnja: "Kreiranje",
       naziv: "",
-      datum: "2019-01-01",
+      datum: "2019-12-01",
       vrijeme: "23:59",
       postavka: null,
       brojZadataka: "1",
@@ -104,7 +104,7 @@ class KreiranjeZadace extends Component {
     if (data.naziv.length < 2 || data.naziv.length > 30) {
       porukeGreske.push("Naziv mora sadrzavati izmedju 2 i 30 karaktera!");
     }
-    if (data.brojZadataka.includes(".")) {
+    if (data.brojZadataka.toString().includes(".")) {
       porukeGreske.push("Broj zadataka mora biti cijeli broj!");
     }
     if (!this.datumValidan()) {
@@ -189,22 +189,23 @@ class KreiranjeZadace extends Component {
         break;
       }
       case "addZadaca": {
-        // slanje post zahtjeva za kreiranje zadace
-        if (this.props.confirmActionHandler) {
-          return this.props.confirmActionHandler(this.state);
-        }
-        axios.post("http://localhost:6001/addZadaca", this.state).then(res => {
-          if (res.status === 200) {
-            this.setState({ uspjehKreiranja: true });
-          } else if (res.status === 201) {
-            this.setState({ vecPostojiImeZadace: true });
-
-            // izbaciti Modal sa tekstom vec postoji zadaca sa istim imenom
-            //console.log("postoji zadaca sa unesenim nazivom");
-          } else {
-            this.setState({ neuspjehKreiranja: true });
+        if(this.state.radnja === "Kreiranje") {  
+          if (this.props.confirmActionHandler) {
+            return this.props.confirmActionHandler(this.state);
           }
-        });
+          axios.post("http://localhost:6001/addZadaca", this.state).then(res => {
+            if (res.status === 200) {
+              this.setState({ uspjehKreiranja: true });
+            } else if (res.status === 201) {
+              this.setState({ vecPostojiImeZadace: true });
+            } else {
+              this.setState({ neuspjehKreiranja: true });
+            }
+          });
+        }
+        else {
+          console.log("hahaha");
+        }  
       }
       default: {
       }
@@ -347,8 +348,8 @@ class KreiranjeZadace extends Component {
               </p>
             </ModalHeader>
             <ModalBody>
-              Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " +
-              {this.state.naziv} +".
+              Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " 
+              {this.state.naziv} ".
             </ModalBody>
             <ModalFooter>
               <Button color="warning" onClick={this.ugasiPorukuVecPostojiIme}>

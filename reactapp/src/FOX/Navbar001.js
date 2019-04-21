@@ -11,7 +11,8 @@ class Navbar001 extends Component {
             <Nav.Link href="obavijesti">Obavijesti</Nav.Link>
             <Nav.Link href="zadace">Zadace</Nav.Link>
             <Nav.Link href="ankete">Ankete</Nav.Link>
-            <Nav.Link href="statistika">Statistika</Nav.Link>  
+            <Nav.Link href="statistika">Statistika</Nav.Link>
+            
             <Nav.Link href="forum">Forum</Nav.Link>
             <Nav.Link href="materijali">Materijali</Nav.Link>
             <Nav.Link href="ispit">Ispit</Nav.Link>*/}

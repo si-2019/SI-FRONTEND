@@ -326,7 +326,7 @@ class KreiranjeZadace extends Component {
            <p className="text-warning"> <b>Upozorenje!</b></p>
           </ModalHeader>
           <ModalBody>
-         Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " +{this.state.naziv} ".
+         Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " +{this.state.naziv} +".
           </ModalBody>
           <ModalFooter>
             <Button color="warning" onClick={this.ugasiPorukuVecPostojiIme}>

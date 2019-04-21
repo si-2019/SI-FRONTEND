@@ -20,7 +20,7 @@ class KreiranjeZadace extends Component {
       sviTipoviIsti: false,
       listaTipova: [[false, false, false, false, false]],
       sviBodoviIsti: false,
-      listaBodova: [1,2,3,3,4],
+      listaBodova: [],
       ukupnoBodova: 0,
       validno: true,
       porukeGreske: []

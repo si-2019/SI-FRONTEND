@@ -53,8 +53,8 @@ const MojHover = (ovaj) => {
     return null; 
 
   return(
-    //ovo je citav modal, html mijenjate i tu nakon biljeske treba dodati textbox polje za unos azuriranje i brisanje biljeske
-    
+    //ovo je citav hover
+    //ako se celija hovera a ima biljesku, umjesto slicice se prikazuje biljeska    
     <div> 
       <b>{ovaj.props.termin.biljeska}</b>
          <MojModal ovaj={ovaj}></MojModal>      
@@ -97,12 +97,8 @@ export class Body_Cell extends Component {
  }
   
   handleOpenModal () {
-    this.setState({ showModal: true });   
-
+    this.setState({ showModal: true });
   }
-  
-
-  
 
   handleCloseModal () {
     this.setState({ showModal: false });
@@ -116,10 +112,11 @@ export class Body_Cell extends Component {
     this.setState({title: event.target.value});
 
     //ukoliko nema biljeska onda samo ubaci novu
-    if(this.props.termin.biljeska == undefined || this.props.termin.biljeska==""){
-      this.props.termin.biljeska = this.state.title;
-      if(!(this.props.termin.biljeska == undefined || this.props.termin.biljeska==""))
+    if(this.props.termin.biljeska == undefined || this.props.termin.biljeska=="")
+    {      
+      if(!(this.state.title == undefined || this.state.title==""))
       {
+        this.props.termin.biljeska = this.state.title;
         console.log('http://localhost:3001/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
         axios({
           method:'get',
@@ -140,10 +137,11 @@ export class Body_Cell extends Component {
            });               
       }      
     }
-    //ako postoji biljeska, onda samo doda novu, odvojenu sa ---
     else{
-      this.props.termin.biljeska = this.state.title;
-      console.log('http://localhost:3001/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
+      if(!(this.state.title == undefined || this.state.title==""))
+      {
+        this.props.termin.biljeska = this.state.title;
+        console.log('http://localhost:3001/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
         axios({
           method:'get',
           url:'http://localhost:3001/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
@@ -160,7 +158,8 @@ export class Body_Cell extends Component {
               //signalna poruka kad nije update-ano
             }
             console.log(response);
-           });    
+           });
+      }        
     }    
   }
 

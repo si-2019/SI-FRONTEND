@@ -163,18 +163,15 @@ class KreiranjeZadace extends Component {
 
         axios.post('http://localhost:6001/addZadaca', this.state)
           .then(res => {
-          //  var statusCode=200; //simuliram
-            // Obavjestiti ovisno o statusu je li okej ili nije okej
-            //if(statusCode===200){
 
-            //nmg da provjerim bez backenda-a
-            if(res.statusCode===200){
-                this.setState({uspjehKreiranja:true});
-              }
-              else{
-                this.setState({neuspjehKreiranja:true});
-              }
-
+            if(res.status === 200){
+              this.setState({uspjehKreiranja:true});
+            } else if(res.status === 201) {
+              // izbaciti Modal sa tekstom vec postoji zadaca sa istim imenom
+              console.log("postoji zadaca sa unesenim nazivom");
+            } else {
+              this.setState({neuspjehKreiranja:true});
+            }
           });
       }
       default: {
@@ -326,7 +323,7 @@ class KreiranjeZadace extends Component {
 
         <Modal isOpen={this.state.uspjehKreiranja}>
           <ModalHeader background-color={"danger"}>
-           <p className="text-danger"> <b>Dogodila se greška!</b></p>
+           <p className="text-danger"> <b>Uspjesno kreiranje!</b></p>
           </ModalHeader>
           <ModalBody>
          Kreiranje zadaće nije uspjelo.

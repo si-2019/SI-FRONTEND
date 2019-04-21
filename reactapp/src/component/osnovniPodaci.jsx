@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-import { Form, FormGroup, Label, Input, FormText} from "reactstrap";
+import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import "./../bootstrap.css";
 
 class OsnovniPodaci extends Component {
- 
   render() {
     return (
       <div>
-        <div >
-          <div className="formaKreiranjaZadace" >
+        <div>
+          <div className="formaKreiranjaZadace">
             <Form>
-            <div className="card-header bg-primary text-light mb-4">
-              <h4>
-                <b>Kreiraj zadaću</b>
-              </h4>
-            </div>
+              <div className="card-header bg-primary text-light mb-4">
+                <h4>
+                  <b>Kreiraj zadaću</b>
+                </h4>
+              </div>
               <FormGroup>
                 <Label for="naziv">Naziv:</Label>
                 {/*Tu ispod se nalazi onChange za spremanje naziva */}
@@ -24,7 +23,7 @@ class OsnovniPodaci extends Component {
                   name="naziv"
                   id="naziv"
                   placeholder="Upišite naziv"
-                  onChange={this.props.podaci.onChangeNaziv}
+                  onChange={this.props.onChange}
                 />
               </FormGroup>
               <FormGroup>
@@ -34,7 +33,7 @@ class OsnovniPodaci extends Component {
                   type="date"
                   name="datum"
                   id="datum"
-                  onChange={this.props.podaci.onChangeDatum}
+                  onChange={this.props.onChange}
                 />
               </FormGroup>
               <FormGroup>
@@ -45,7 +44,7 @@ class OsnovniPodaci extends Component {
                   name="vrijeme"
                   id="vrijeme"
                   placeholder="time placeholder"
-                  onChange={this.props.podaci.onChangeVrijeme}
+                  onChange={this.props.onChange}
                 />
               </FormGroup>
               <FormGroup>
@@ -56,7 +55,7 @@ class OsnovniPodaci extends Component {
               <FormGroup>
                 <Label for="brojZadataka">Broj zadataka:</Label>
                 <Input
-                  value = {this.props.podaci.state.brojZadataka}
+                  value={this.props.podaci.state.brojZadataka}
                   type="number"
                   pattern="(10|[1-9])"
                   digitOnly
@@ -65,8 +64,8 @@ class OsnovniPodaci extends Component {
                   min={1}
                   max={10}
                   step={1}
-                  onChange={this.props.podaci.onChangeBrojZadataka}
-                /> 
+                  onChange={this.props.onChange}
+                />
               </FormGroup>
             </Form>
           </div>

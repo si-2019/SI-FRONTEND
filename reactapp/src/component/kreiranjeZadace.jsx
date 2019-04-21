@@ -10,12 +10,13 @@ class KreiranjeZadace extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      
       idPredmeta: "",
       radnja: "Kreiranje",
       naziv: "",
       datum: "2019-01-01",
       vrijeme: "23:59",
-      postavka: "",
+      postavka: null,
       brojZadataka: "1",
       sviTipoviIsti: false,
       listaTipova: [[false, false, false, false, false]],
@@ -48,6 +49,7 @@ class KreiranjeZadace extends Component {
     document.getElementById("preview").style.display = "none";
   }
 
+// pocetak validacije
   datumValidan(){
     var trengodina=new Date().getFullYear()
     var trenmjesec=(new Date().getMonth()+1)
@@ -99,7 +101,7 @@ class KreiranjeZadace extends Component {
     }
       
     data.listaBodova.forEach(element => {
-      console.log(element)
+      
       if(parseFloat(element) <= 0) {
         porukeGreske.push("Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!");
         return porukeGreske;
@@ -120,6 +122,7 @@ class KreiranjeZadace extends Component {
 
     return porukeGreske;
   }
+// kraj validacije
 
   handleClick = (event) => {
     var name = event.target.name;
@@ -143,7 +146,6 @@ class KreiranjeZadace extends Component {
           });
         }
         else { 
-          console.log(porukeGreske);
           this.setState({
             validno: false
           });
@@ -155,11 +157,11 @@ class KreiranjeZadace extends Component {
         document.getElementById("preview").style.display = "none";
         break;
       }
-      case "addZadaca" : { // kreiranje zadace
+      case "addZadaca" : { // slanje post zahtjeva za kreiranje zadace
+
         axios.post('http://localhost:6001/addZadaca', this.state)
           .then(res => {
-            console.log(res);
-            console.log(res.data);
+            // Obavjestiti ovisno o statusu je li okej ili nije okej
           });
       }
       default: {
@@ -273,7 +275,6 @@ class KreiranjeZadace extends Component {
     this.setState({ listaBodova: noviNiz });
     this.setState({ ukupnoBodova: suma });
     document.getElementById("ukupnoStanje").innerHTML = suma;
-    console.log(this.state.listaBodova)
   };
 
   ugasiModal = event => {
@@ -283,7 +284,6 @@ class KreiranjeZadace extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div> 
         <div>

@@ -61,7 +61,7 @@ class DodavanjeTipovaFileova extends Component {
                               this.props.podaci.onChangeListaTipova(index,0);
                             }}
                           />{" "}
-                          <Label check className="ml-4">
+                          <Label check >
                             .pdf
                           </Label>
                         </FormGroup>
@@ -76,7 +76,7 @@ class DodavanjeTipovaFileova extends Component {
                                 this.props.podaci.onChangeListaTipova(index,1); 
                             }}
                           />{" "}
-                          <Label check className="ml-4">
+                          <Label check >
                             .zip
                           </Label>
                         </FormGroup>
@@ -91,7 +91,7 @@ class DodavanjeTipovaFileova extends Component {
                                 this.props.podaci.onChangeListaTipova(index,2);
                             }}
                           />{" "}
-                          <Label check className="ml-4">
+                          <Label check >
                             .m
                           </Label>
                         </FormGroup>
@@ -106,7 +106,7 @@ class DodavanjeTipovaFileova extends Component {
                                 this.props.podaci.onChangeListaTipova(index,3);
                             }}
                           />{" "}
-                          <Label check className="ml-4">
+                          <Label check >
                             .doc
                           </Label>
                         </FormGroup>
@@ -121,7 +121,7 @@ class DodavanjeTipovaFileova extends Component {
                                 this.props.podaci.onChangeListaTipova(index,4);
                             }}
                           />{" "}
-                          <Label check className="ml-4">
+                          <Label check >
                             .txt
                           </Label>
                         </FormGroup>

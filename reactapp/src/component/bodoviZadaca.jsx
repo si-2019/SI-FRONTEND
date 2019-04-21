@@ -3,24 +3,17 @@ import {Button} from 'reactstrap';
 import "../bootstrap.css";
 
 class BodoviZadaca extends Component {
-/*
-  componentDidMount = () => {
-    if(this.props.podaci.state.sviBodoviIsti === false) {
-      document.getElementById("sviBodoviIstiButton").disabled = true
-    }
-    else{
-      document.getElementById("sviBodoviIstiButton").disabled = false
-    }  
-  }*/
- 
+
 
  
+
 
   render() {
     var kolone = [];
     for (var i = 1; i <= this.props.podaci.state.brojZadataka; i++) {
       kolone.push(i);
     }
+
     if(this.props.podaci.state.listaBodova===[]){
       var bod=[];
       for(let j=1; j<=this.props.podaci.brojZadataka; j++)
@@ -30,6 +23,7 @@ class BodoviZadaca extends Component {
       bod=this.props.podaci.state.listaBodova;
     }
     
+
     return (
       <div >
         <div className="card-header bg-primary text-light">

@@ -4,6 +4,7 @@ import "./../bootstrap.css";
 
 class OsnovniPodaci extends Component {
   render() {
+    const { title } = this.props;
     return (
       <div>
         <div>
@@ -11,7 +12,7 @@ class OsnovniPodaci extends Component {
             <Form>
               <div className="card-header bg-primary text-light mb-4">
                 <h4>
-                  <b>Kreiraj zadaću</b>
+                  <b>{title ? title : "Kreiraj zadaću"}</b>
                 </h4>
               </div>
               <FormGroup>

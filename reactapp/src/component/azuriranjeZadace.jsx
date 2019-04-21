@@ -7,32 +7,27 @@ import {
   DropdownItem,
   Form
 } from "reactstrap";
-// import KreiranjeZadace from "./kreiranjeZadace";
+import KreiranjeZadace from "./kreiranjeZadace";
 import axios from "axios";
 
 class AzuriranjeZadace extends Component {
   constructor(props) {
     super(props);
+    const urlParams = new URLSearchParams(window.location.search);
     this.state = {
-      idPredmeta: "",
-      radnja: "",
-      naziv: "",
-      datum: "",
-      vrijeme: "",
-      postavka: "",
-      brojZadataka: "",
-      sviTipoviIsti: "",
-      listaTipova: "",
-      sviBodoviIsti: "",
-      listaBodova: "",
-      ukupnoBodova: "",
-      listaZadacaZaAzuriranje: ["nes", "n2w"]
+      idPredmet: urlParams.get("idPredmeta")
+        ? Number(urlParams.get("idPredmeta"))
+        : 1,
+      azuriranjeState: null,
+      listaZadacaZaAzuriranje: [],
+      dropdownOpen: false
     };
 
     this.toggle = this.toggle.bind(this);
-    this.state = {
-      dropdownOpen: false
-    };
+  }
+
+  componentDidMount() {
+    this.pokupiIzBaze();
   }
 
   toggle() {
@@ -42,20 +37,11 @@ class AzuriranjeZadace extends Component {
   }
 
   pokupiIzBaze = () => {
-    var noviNiz = [];
     axios.get("http://localhost:6001/getZadace").then(res => {
-      // res ti je onaj json niz zadaca sa id i naziv
-
-      for (var i = 0; i < res.data.length; i++) {
-        noviNiz.push(res.data[i].naziv);
-      }
-
       this.setState({
-        listaZadacaZaAzuriranje: noviNiz
+        listaZadacaZaAzuriranje: res.data
       });
     });
-    console.log(this.state.listaZadacaZaAzuriranje);
-    return this.state.listaZadacaZaAzuriranje;
   };
 
   setAllState = () => {
@@ -63,10 +49,8 @@ class AzuriranjeZadace extends Component {
   };
 
   render() {
-    var lista = this.pokupiIzBaze();
+    const lista = this.state.listaZadacaZaAzuriranje; // this.pokupiIzBaze();
     console.log(lista);
-
-    var lista2 = ["Zadaća 1", "Zadaća 2", "Zadaća 3"];
     return (
       <div>
         <Form>
@@ -80,28 +64,57 @@ class AzuriranjeZadace extends Component {
                   Lista zadaća za ažuriranje
                 </DropdownToggle>
                 <DropdownMenu>
-                  {lista2.map(jedno => (
-                    <DropdownItem scope="col" key={jedno + 200}>
-                      {jedno}
+                  {lista.map(item => (
+                    <DropdownItem
+                      onClick={this.handleDropdownClick(item.id)}
+                      scope="col"
+                      key={item.id}
+                    >
+                      {item.naziv}
                     </DropdownItem>
                   ))}
                 </DropdownMenu>
               </ButtonDropdown>
             </h4>
           </div>
-          <a href="/KILO/kreiranjeZadace/?idPredmeta=3">Kreiranje</a>
-          {/* 
-          <BrowserRouter>
-            <Route
-              path="/KILO/kreiranjeZadace/"
-              exact
-              component={KreiranjeZadace}
-            />
-          </BrowserRouter> */}
+          <a href={"/KILO/kreiranjeZadace/?idPredmeta=" + this.state.idPredmet}>
+            Kreiranje
+          </a>
         </Form>
+        <div>
+          {this.state.azuriranjeState && (
+            <KreiranjeZadace
+              title={"Azuriranje Zadace"}
+              confirmActionHandler={this.handleUpdateZadatak}
+              mainState={this.state.azuriranjeState}
+            />
+          )}
+        </div>
       </div>
     );
   }
+
+  handleDropdownClick = zadacaId => () => {
+    this.getZadacaById(zadacaId);
+  };
+
+  getZadacaById = async zadacaId => {
+    try {
+      const res = await axios.get(
+        `http://localhost:6001/getZadacaById/${zadacaId}`
+      );
+      console.log(res.data);
+      this.setState({
+        azuriranjeState: res.data
+      });
+    } catch (e) {
+      console.error("Error fetching zadaca by id", e);
+    }
+  };
+
+  handleUpdateZadatak = state => {
+    // TODO: update logic
+  };
 }
 
 export default AzuriranjeZadace;

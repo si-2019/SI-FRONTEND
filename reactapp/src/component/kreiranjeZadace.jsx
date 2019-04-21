@@ -14,8 +14,11 @@ import {
 class KreiranjeZadace extends Component {
   constructor(props) {
     super(props);
+    const urlParams = new URLSearchParams(window.location.search);
     this.state = {
-      idPredmeta: "",
+      idPredmet: urlParams.get("idPredmeta")
+        ? Number(urlParams.get("idPredmeta"))
+        : 1,
       radnja: "Kreiranje",
       naziv: "",
       datum: "2019-01-01",
@@ -29,23 +32,33 @@ class KreiranjeZadace extends Component {
       ukupnoBodova: 0,
       validno: true,
       porukeGreske: [],
-      uspjehKreiranja:false,
-      neuspjehKreiranja:false,
-      vecPostojiImeZadace:false
+      uspjehKreiranja: false,
+      neuspjehKreiranja: false,
+      vecPostojiImeZadace: false
     };
   }
-  /*
-    setAllState = () => {
-        if(this.props === null) { // u pitanju je kreiranje i state su defaultni
-            this.setState = () => {
-                this.state.idPredmeta = 1;
-            }
-        }
-        else { // u pitanju je azuriranje i state treba popuniti podacima iz propsa koji sadrzi sve podatke
 
-        }
-
+  handleChangeProps = props => {
+    if (props.mainState) {
+      console.log("AAA:", props.mainState);
+      this.setState({
+        ...this.state,
+        ...props.mainState
+      });
     }
+  };
+  /*
+  setAllState = () => {
+    if(this.props === null) { // u pitanju je kreiranje i state su defaultni
+      this.setState = () => {
+        this.state.idPredmeta = 1;
+      }
+    }
+    else { // u pitanju je azuriranje i state treba popuniti podacima iz propsa koji sadrzi sve podatke
+      
+    }
+    
+  }
   */
 
   componentWillMount = () => {};
@@ -53,8 +66,13 @@ class KreiranjeZadace extends Component {
   componentDidMount = () => {
     document.getElementById("kreiranje").style.display = "block";
     document.getElementById("preview").style.display = "none";
+    this.handleChangeProps(this.props);
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.mainState && this.props.mainState !== nextProps.mainState)
+      this.handleChangeProps(nextProps);
+  }
   // pocetak validacije
   datumValidan() {
     var trengodina = new Date().getFullYear();
@@ -172,22 +190,21 @@ class KreiranjeZadace extends Component {
       }
       case "addZadaca": {
         // slanje post zahtjeva za kreiranje zadace
+        if (this.props.confirmActionHandler) {
+          return this.props.confirmActionHandler(this.state);
+        }
+        axios.post("http://localhost:6001/addZadaca", this.state).then(res => {
+          if (res.status === 200) {
+            this.setState({ uspjehKreiranja: true });
+          } else if (res.status === 201) {
+            this.setState({ vecPostojiImeZadace: true });
 
-
-        axios.post('http://localhost:6001/addZadaca', this.state)
-          .then(res => {
-
-            if(res.status === 200){
-              this.setState({uspjehKreiranja:true});
-            } else if(res.status === 201) {
-              this.setState({vecPostojiImeZadace:true});
-
-              // izbaciti Modal sa tekstom vec postoji zadaca sa istim imenom
-              //console.log("postoji zadaca sa unesenim nazivom");
-            } else {
-              this.setState({neuspjehKreiranja:true});
-            }
-          });
+            // izbaciti Modal sa tekstom vec postoji zadaca sa istim imenom
+            //console.log("postoji zadaca sa unesenim nazivom");
+          } else {
+            this.setState({ neuspjehKreiranja: true });
+          }
+        });
       }
       default: {
       }
@@ -261,19 +278,20 @@ class KreiranjeZadace extends Component {
     });
   };
 
-  ugasiPorukuUspjeh=()=>{
-    this.setState({uspjehKreiranja:false});
-  }
+  ugasiPorukuUspjeh = () => {
+    this.setState({ uspjehKreiranja: false });
+  };
 
-  ugasiPorukuNeuspjeh=()=>{
-    this.setState({neuspjehKreiranja:false});
-  }
+  ugasiPorukuNeuspjeh = () => {
+    this.setState({ neuspjehKreiranja: false });
+  };
 
-  ugasiPorukuVecPostojiIme=()=>{
-    this.setState({vecPostojiImeZadace:false});
-  }
+  ugasiPorukuVecPostojiIme = () => {
+    this.setState({ vecPostojiImeZadace: false });
+  };
 
   render() {
+    console.log("AAAA:", this.state, this.props.mainState);
     return (
       <div>
         <div>
@@ -283,61 +301,68 @@ class KreiranjeZadace extends Component {
               {this.state.porukeGreske.map((poruka, indeks) => (
                 <p key={poruka + indeks}> {poruka} </p>
               ))}
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={this.ugasiModal}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
 
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.ugasiModal}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
+          <Modal isOpen={this.state.uspjehKreiranja}>
+            <ModalHeader background-color={"success"}>
+              <p className="text-success">
+                {" "}
+                <b>Čestitamo!</b>
+              </p>
+            </ModalHeader>
+            <ModalBody>Uspješno ste kreirali zadaću.</ModalBody>
+            <ModalFooter>
+              <Button color="success" onClick={this.ugasiPorukuUspjeh}>
+                OK
+              </Button>
+            </ModalFooter>
+          </Modal>
 
-        <Modal isOpen={this.state.uspjehKreiranja}>
-          <ModalHeader background-color={"success"}>
-           <p className="text-success"> <b>Čestitamo!</b></p>
+          <Modal isOpen={this.state.neuspjehKreiranja}>
+            <ModalHeader background-color={"danger"}>
+              <p className="text-danger">
+                {" "}
+                <b>Dogodila se greška!</b>
+              </p>
+            </ModalHeader>
+            <ModalBody>Kreiranje zadaće nije uspjelo.</ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={this.ugasiPorukuNeuspjeh}>
+                OK
+              </Button>
+            </ModalFooter>
+          </Modal>
 
-          </ModalHeader>
-          <ModalBody>
-         Uspješno ste kreirali zadaću.
-          </ModalBody>
-          <ModalFooter>
-            <Button color="success" onClick={this.ugasiPorukuUspjeh}>
-              OK
-            </Button>
-          </ModalFooter>
-        </Modal>
-
-        <Modal isOpen={this.state.neuspjehKreiranja}>
-          <ModalHeader background-color={"danger"}>
-           <p className="text-danger"> <b>Dogodila se greška!</b></p>
-          </ModalHeader>
-          <ModalBody>
-         Kreiranje zadaće nije uspjelo.
-          </ModalBody>
-          <ModalFooter>
-            <Button color="danger" onClick={this.ugasiPorukuNeuspjeh}>
-              OK
-            </Button>
-          </ModalFooter>
-        </Modal>
-
-        <Modal isOpen={this.state.vecPostojiImeZadace}>
-          <ModalHeader background-color={"warning"}>
-           <p className="text-warning"> <b>Upozorenje!</b></p>
-          </ModalHeader>
-          <ModalBody>
-         Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " +{this.state.naziv} +".
-          </ModalBody>
-          <ModalFooter>
-            <Button color="warning" onClick={this.ugasiPorukuVecPostojiIme}>
-              OK
-            </Button>
-          </ModalFooter>
-        </Modal>
-     
-      </div>
+          <Modal isOpen={this.state.vecPostojiImeZadace}>
+            <ModalHeader background-color={"warning"}>
+              <p className="text-warning">
+                {" "}
+                <b>Upozorenje!</b>
+              </p>
+            </ModalHeader>
+            <ModalBody>
+              Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " +
+              {this.state.naziv} +".
+            </ModalBody>
+            <ModalFooter>
+              <Button color="warning" onClick={this.ugasiPorukuVecPostojiIme}>
+                OK
+              </Button>
+            </ModalFooter>
+          </Modal>
+        </div>
         <div id="kreiranje">
-          <OsnovniPodaci onChange={this.handleChange} podaci={this} />
+          <OsnovniPodaci
+            title={this.props.title}
+            onChange={this.handleChange}
+            podaci={this}
+          />
           <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
           <BodoviZadaca onChange={this.handleChange} podaci={this} />
           <Button
@@ -357,7 +382,7 @@ class KreiranjeZadace extends Component {
             onClick={this.handleClick}
             color="info"
           >
-            Kreiranje zadace
+            Natrag
           </Button>
           <Button
             id="addZadaca"

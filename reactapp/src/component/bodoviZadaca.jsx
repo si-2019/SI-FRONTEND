@@ -30,9 +30,6 @@ class BodoviZadaca extends Component {
       bod=this.props.podaci.state.listaBodova;
     }
     
-
-
-    //console.log(this.props.podaci);
     return (
       <div >
         <div className="card-header bg-primary text-light">

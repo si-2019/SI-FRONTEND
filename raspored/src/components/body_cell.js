@@ -179,7 +179,7 @@ export class Body_Cell extends Component {
       }     
       else
       {
-        if(this.props.termin.biljeska != null) {
+        if(this.props.termin.biljeska != null && this.props.termin.biljeska!="") {
         return (
           <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
       
@@ -193,7 +193,7 @@ export class Body_Cell extends Component {
       
       }
 
-    else if(this.props.termin.biljeska == null)
+    else if(this.props.termin.biljeska == null || this.props.termin.biljeska=="")
     return (
       <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
      
@@ -219,7 +219,7 @@ export class Body_Cell extends Component {
       }     
       else
       {
-        if(this.props.termin.biljeska != null) {
+        if(this.props.termin.biljeska != null && this.props.termin.biljeska!="") {
         return (
           <td style={tdStyleNeparan}  onClick = {(this.state).showModal ? null : this.handleOpenModal}>
           <img src="slicicaZabiljeska.png" height="20" width="20"></img>
@@ -228,7 +228,7 @@ export class Body_Cell extends Component {
               
           </td>
         ); }
-        else if(this.props.termin.biljeska == null) {
+        else if(this.props.termin.biljeska == null || this.props.termin.biljeska=="") {
           return (
             <td style={tdStyleNeparan}  onClick = {(this.state).showModal ? null : this.handleOpenModal}>
             

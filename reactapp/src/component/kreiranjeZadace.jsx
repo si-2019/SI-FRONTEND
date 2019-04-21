@@ -30,7 +30,8 @@ class KreiranjeZadace extends Component {
       validno: true,
       porukeGreske: [],
       uspjehKreiranja:false,
-      neuspjehKreiranja:false
+      neuspjehKreiranja:false,
+      vecPostojiImeZadace:false
     };
   }
   /*
@@ -179,8 +180,10 @@ class KreiranjeZadace extends Component {
             if(res.status === 200){
               this.setState({uspjehKreiranja:true});
             } else if(res.status === 201) {
+              this.setState({vecPostojiImeZadace:true});
+
               // izbaciti Modal sa tekstom vec postoji zadaca sa istim imenom
-              console.log("postoji zadaca sa unesenim nazivom");
+              //console.log("postoji zadaca sa unesenim nazivom");
             } else {
               this.setState({neuspjehKreiranja:true});
             }
@@ -266,6 +269,10 @@ class KreiranjeZadace extends Component {
     this.setState({neuspjehKreiranja:false});
   }
 
+  ugasiPorukuVecPostojiIme=()=>{
+    this.setState({vecPostojiImeZadace:false});
+  }
+
   render() {
     return (
       <div>
@@ -309,6 +316,20 @@ class KreiranjeZadace extends Component {
           </ModalBody>
           <ModalFooter>
             <Button color="danger" onClick={this.ugasiPorukuNeuspjeh}>
+              OK
+            </Button>
+          </ModalFooter>
+        </Modal>
+
+        <Modal isOpen={this.state.vecPostojiImeZadace}>
+          <ModalHeader background-color={"warning"}>
+           <p className="text-warning"> <b>Upozorenje!</b></p>
+          </ModalHeader>
+          <ModalBody>
+         Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " +{this.state.naziv} ".
+          </ModalBody>
+          <ModalFooter>
+            <Button color="warning" onClick={this.ugasiPorukuVecPostojiIme}>
               OK
             </Button>
           </ModalFooter>

@@ -29,8 +29,7 @@ class BodoviZadaca extends Component {
     else{
       bod=this.props.podaci.state.listaBodova;
     }
-    console.log('bod je ');
-    console.log(bod);
+    
 
 
     //console.log(this.props.podaci);

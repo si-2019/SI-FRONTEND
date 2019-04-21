@@ -28,7 +28,9 @@ class KreiranjeZadace extends Component {
       listaBodova: [],
       ukupnoBodova: 0,
       validno: true,
-      porukeGreske: []
+      porukeGreske: [],
+      uspjehKreiranja:false,
+      neuspjehKreiranja:false
     };
   }
   /*
@@ -170,9 +172,22 @@ class KreiranjeZadace extends Component {
       case "addZadaca": {
         // slanje post zahtjeva za kreiranje zadace
 
-        axios.post("http://localhost:6001/addZadaca", this.state).then(res => {
-          // Obavjestiti ovisno o statusu je li okej ili nije okej
-        });
+
+        axios.post('http://localhost:6001/addZadaca', this.state)
+          .then(res => {
+          //  var statusCode=200; //simuliram
+            // Obavjestiti ovisno o statusu je li okej ili nije okej
+            //if(statusCode===200){
+
+            //nmg da provjerim bez backenda-a
+            if(res.statusCode===200){
+                this.setState({uspjehKreiranja:true});
+              }
+              else{
+                this.setState({neuspjehKreiranja:true});
+              }
+
+          });
       }
       default: {
       }
@@ -246,6 +261,14 @@ class KreiranjeZadace extends Component {
     });
   };
 
+  ugasiPorukuUspjeh=()=>{
+    this.setState({uspjehKreiranja:false});
+  }
+
+  ugasiPorukuNeuspjeh=()=>{
+    this.setState({neuspjehKreiranja:false});
+  }
+
   render() {
     return (
       <div>
@@ -256,6 +279,7 @@ class KreiranjeZadace extends Component {
               {this.state.porukeGreske.map((poruka, indeks) => (
                 <p key={poruka + indeks}> {poruka} </p>
               ))}
+<<<<<<< HEAD
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={this.ugasiModal}>
@@ -264,6 +288,45 @@ class KreiranjeZadace extends Component {
             </ModalFooter>
           </Modal>
         </div>
+=======
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.ugasiModal}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+
+        <Modal isOpen={this.state.uspjehKreiranja}>
+          <ModalHeader background-color={"success"}>
+           <p className="text-success"> <b>Čestitamo!</b></p>
+          </ModalHeader>
+          <ModalBody>
+         Uspješno ste kreirali zadaću.
+          </ModalBody>
+          <ModalFooter>
+            <Button color="success" onClick={this.ugasiPorukuUspjeh}>
+              OK
+            </Button>
+          </ModalFooter>
+        </Modal>
+
+        <Modal isOpen={this.state.neuspjehKreiranja}>
+          <ModalHeader background-color={"danger"}>
+           <p className="text-danger"> <b>Dogodila se greška!</b></p>
+          </ModalHeader>
+          <ModalBody>
+         Kreiranje zadaće nije uspjelo.
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" onClick={this.ugasiPorukuNeuspjeh}>
+              OK
+            </Button>
+          </ModalFooter>
+        </Modal>
+     
+      </div>
+>>>>>>> 57b5e36592e254d880a016b5d3dc7ff963f29025
         <div id="kreiranje">
           <OsnovniPodaci onChange={this.handleChange} podaci={this} />
           <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />

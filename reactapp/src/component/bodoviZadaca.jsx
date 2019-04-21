@@ -3,13 +3,32 @@ import { Button } from "reactstrap";
 import "../bootstrap.css";
 
 class BodoviZadaca extends Component {
+<<<<<<< HEAD
+=======
+
+
+ 
+
+
+>>>>>>> 57b5e36592e254d880a016b5d3dc7ff963f29025
   render() {
     var kolone = [];
     for (var i = 1; i <= this.props.podaci.state.brojZadataka; i++) {
       kolone.push(i);
     }
+
+    if(this.props.podaci.state.listaBodova===[]){
+      var bod=[];
+      for(let j=1; j<=this.props.podaci.brojZadataka; j++)
+      bod.push(" ");
+    }
+    else{
+      bod=this.props.podaci.state.listaBodova;
+    }
+    
+
     return (
-      <div>
+      <div >
         <div className="card-header bg-primary text-light">
           <h4>
             <b>Bodovi zadaće</b>
@@ -70,6 +89,7 @@ class BodoviZadaca extends Component {
                       data-index={index}
                       name="bodovi"
                       onChange={this.props.onChange}
+
                     />
                   </th>
                 ))}

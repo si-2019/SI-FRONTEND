@@ -12,15 +12,30 @@ class BodoviZadaca extends Component {
       document.getElementById("sviBodoviIstiButton").disabled = false
     }  
   }*/
+ 
+
+ 
 
   render() {
     var kolone = [];
     for (var i = 1; i <= this.props.podaci.state.brojZadataka; i++) {
       kolone.push(i);
     }
+    if(this.props.podaci.state.listaBodova===[]){
+      var bod=[];
+      for(let j=1; j<=this.props.podaci.brojZadataka; j++)
+      bod.push(" ");
+    }
+    else{
+      bod=this.props.podaci.state.listaBodova;
+    }
+    console.log('bod je ');
+    console.log(bod);
+
+
     //console.log(this.props.podaci);
     return (
-      <div>
+      <div >
         <div className="card-header bg-primary text-light">
           <h4>
             <b>Bodovi zadaće</b>
@@ -83,6 +98,8 @@ class BodoviZadaca extends Component {
                       className="form-control bg-primary text-light text-bold"
                       id={jedno}
                       onChange={this.props.podaci.unioBodove}
+                      value={bod[jedno-1]}
+
                     />
                   </th>
                 ))}

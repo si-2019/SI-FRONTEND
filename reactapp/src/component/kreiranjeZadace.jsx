@@ -325,14 +325,14 @@ class KreiranjeZadace extends Component {
         </Modal>
 
         <Modal isOpen={this.state.uspjehKreiranja}>
-          <ModalHeader background-color={"danger"}>
-           <p className="text-danger"> <b>Dogodila se greška!</b></p>
+          <ModalHeader background-color={"success"}>
+           <p className="text-success"> <b>Čestitamo!</b></p>
           </ModalHeader>
           <ModalBody>
-         Kreiranje zadaće nije uspjelo.
+         Uspješno ste kreirali zadaću.
           </ModalBody>
           <ModalFooter>
-            <Button color="danger" onClick={this.ugasiPorukuUspjeh}>
+            <Button color="success" onClick={this.ugasiPorukuUspjeh}>
               OK
             </Button>
           </ModalFooter>

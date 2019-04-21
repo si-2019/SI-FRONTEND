@@ -37,18 +37,28 @@ class KreiranjeZadace extends Component {
       vecPostojiImeZadace: false
     };
   }
-  /*
-    setAllState = () => {
-        if(this.props === null) { // u pitanju je kreiranje i state su defaultni
-            this.setState = () => {
-                this.state.idPredmeta = 1;
-            }
-        }
-        else { // u pitanju je azuriranje i state treba popuniti podacima iz propsa koji sadrzi sve podatke
 
-        }
-
+  handleChangeProps = props => {
+    if (props.mainState) {
+      console.log("AAA:", props.mainState);
+      this.setState({
+        ...this.state,
+        ...props.mainState
+      });
     }
+  };
+  /*
+  setAllState = () => {
+    if(this.props === null) { // u pitanju je kreiranje i state su defaultni
+      this.setState = () => {
+        this.state.idPredmeta = 1;
+      }
+    }
+    else { // u pitanju je azuriranje i state treba popuniti podacima iz propsa koji sadrzi sve podatke
+      
+    }
+    
+  }
   */
 
   componentWillMount = () => {};
@@ -56,8 +66,13 @@ class KreiranjeZadace extends Component {
   componentDidMount = () => {
     document.getElementById("kreiranje").style.display = "block";
     document.getElementById("preview").style.display = "none";
+    this.handleChangeProps(this.props);
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.mainState && this.props.mainState !== nextProps.mainState)
+      this.handleChangeProps(nextProps);
+  }
   // pocetak validacije
   datumValidan() {
     var trengodina = new Date().getFullYear();
@@ -175,7 +190,9 @@ class KreiranjeZadace extends Component {
       }
       case "addZadaca": {
         // slanje post zahtjeva za kreiranje zadace
-
+        if (this.props.confirmActionHandler) {
+          return this.props.confirmActionHandler(this.state);
+        }
         axios.post("http://localhost:6001/addZadaca", this.state).then(res => {
           if (res.status === 200) {
             this.setState({ uspjehKreiranja: true });
@@ -274,6 +291,7 @@ class KreiranjeZadace extends Component {
   };
 
   render() {
+    console.log("AAAA:", this.state, this.props.mainState);
     return (
       <div>
         <div>
@@ -340,7 +358,11 @@ class KreiranjeZadace extends Component {
           </Modal>
         </div>
         <div id="kreiranje">
-          <OsnovniPodaci onChange={this.handleChange} podaci={this} />
+          <OsnovniPodaci
+            title={this.props.title}
+            onChange={this.handleChange}
+            podaci={this}
+          />
           <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
           <BodoviZadaca onChange={this.handleChange} podaci={this} />
           <Button
@@ -360,7 +382,7 @@ class KreiranjeZadace extends Component {
             onClick={this.handleClick}
             color="info"
           >
-            Kreiranje zadace
+            Natrag
           </Button>
           <Button
             id="addZadaca"

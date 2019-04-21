@@ -90,16 +90,10 @@ export class Body_Cell extends Component {
 
   handleHoverOn () {
    this.setState({ isHover: true });
-   console.log("Dan: " + this.props.dan);   
-   console.log("RedniBroj: " + this.props.redniBroj);
-   console.log(true);
  }
 
   handleHoverOff () {
-  this.setState({ isHover: false });  
-  console.log("Dan: " + this.props.dan);   
-  console.log("RedniBroj: " + this.props.redniBroj);
-  console.log(false);
+  this.setState({ isHover: false });
  }
   
   handleOpenModal () {
@@ -213,7 +207,7 @@ export class Body_Cell extends Component {
         if(this.props.termin.biljeska != null && this.props.termin.biljeska!="") {
          if(this.state.isHover)
         return (
-          <td style={tdStyleParan} onMouseEnter = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onMouseLeave = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+          <td style={tdStyleParan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
       
            <MojHover ovaj={this}></MojHover>
            
@@ -225,7 +219,7 @@ export class Body_Cell extends Component {
         );
         else
         return(
-        <td style={tdStyleParan} onMouseEnter = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onMouseLeave = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+        <td style={tdStyleParan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
       
            <img src="slicicaZabiljeska.png" height="20" width="20" ></img>
            <br></br>
@@ -239,7 +233,7 @@ export class Body_Cell extends Component {
 
     else if(this.props.termin.biljeska == null || this.props.termin.biljeska=="")
     return (
-      <td style={tdStyleParan} onMouseEnter = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onMouseLeave = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+      <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
      
           <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
           <MojModal ovaj={this}></MojModal>
@@ -266,7 +260,7 @@ export class Body_Cell extends Component {
         if(this.props.termin.biljeska != null && this.props.termin.biljeska!="") {
           if(this.state.isHover)
         return (
-          <td style={tdStyleNeparan} onMouseEnter = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onMouseLeave = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+          <td style={tdStyleNeparan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
           <MojHover ovaj={this}></MojHover>
            <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
               <MojModal ovaj={this}></MojModal>
@@ -275,7 +269,7 @@ export class Body_Cell extends Component {
         );
       else
       return (
-        <td style={tdStyleNeparan} onMouseEnter = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onMouseLeave = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+        <td style={tdStyleNeparan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
         <img src="slicicaZabiljeska.png" height="20" width="20"></img>
          <br></br>   <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
             <MojModal ovaj={this}></MojModal>
@@ -285,7 +279,7 @@ export class Body_Cell extends Component {
      }
         else if(this.props.termin.biljeska == null || this.props.termin.biljeska=="") {
           return (
-            <td style={tdStyleNeparan} onMouseEnter = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onMouseLeave = {(this.state).isHover ? this.handleHoverOn : this.handleHoverOff} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+            <td style={tdStyleNeparan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
             
                 <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
                 <MojModal ovaj={this}></MojModal>

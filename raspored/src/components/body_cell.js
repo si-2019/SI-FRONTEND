@@ -39,7 +39,7 @@ const MojModal = (ovaj) => {
               <br/>
               <div style={divStyle}>
               <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
-              <button style={stylishCenter} type="button" class="btn btn-danger">Obriši</button>
+              <button style={stylishCenter} type="button" class="btn btn-danger" onClick= {ovaj.handleDestroy}>Obriši</button>
               <button style={stylishRight} className = 'btn btn-secondary' onClick={ovaj.handleCloseModal}>Zatvori</button>
               </div>
             </Modal>
@@ -63,6 +63,7 @@ export class Body_Cell extends Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleDestroy = this.handleDestroy.bind(this);
   }
 
   componentDidMount () {
@@ -126,19 +127,39 @@ export class Body_Cell extends Component {
           .then(function (response) {
             if(response.data.success)
             {
-              //signalna poruka kad je dodano
+              //signalna poruka kad je update-ano
 
             }
             else
             {
-              //signalna poruka kad nije dodano
+              //signalna poruka kad nije update-ano
             }
             console.log(response);
            });    
-    }
+    }    
+  }
 
+  handleDestroy(event) {
+    this.setState({title: event.target.value});
 
-    
+    this.props.termin.biljeska = this.state.title;
+    console.log('http://localhost:3001/deleteZabiljeska'+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
+      axios({
+        method:'get',
+        url:'http://localhost:3001/deleteZabiljeska'+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
+        responseType:'json'
+      })
+        .then(function (response) {
+          if(response.data.success)
+          {
+            //signalna poruka kad je uspjelo
+         }
+          else
+          {
+            //signalna poruka kad nije uspjelo
+          }
+          console.log(response);
+         });  
   }
 
 

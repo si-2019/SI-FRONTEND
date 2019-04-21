@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import {Button} from 'reactstrap';
+import { Button } from "reactstrap";
 import "../bootstrap.css";
 
 class BodoviZadaca extends Component {
-
   render() {
     var kolone = [];
     for (var i = 1; i <= this.props.podaci.state.brojZadataka; i++) {
@@ -26,7 +25,8 @@ class BodoviZadaca extends Component {
                 type="checkbox"
                 className="custom-control-input"
                 id="customSwitch1"
-                onChange={this.props.podaci.onChangeSviBodoviIsti}
+                name="sviBodoviIsti"
+                onChange={this.props.onChange}
               />
               <label className="custom-control-label" htmlFor="customSwitch1">
                 DA
@@ -35,17 +35,12 @@ class BodoviZadaca extends Component {
               <br />
             </div>
             <h5 className="card-title">Broj bodova:</h5>
-            <input
-              id="brbod"
-              type="text"
-              className="form-control-static"
-              
-            />
+            <input id="brbod" type="text" className="form-control-static" />
             <Button
               id="sviBodoviIstiButton"
               color="primary"
               className="btn bg-primary ml-3 "
-            disabled={!this.props.podaci.state.sviBodoviIsti}
+              disabled={!this.props.podaci.state.sviBodoviIsti}
               onClick={this.props.podaci.klik_isti_br_bod}
             >
               OK
@@ -66,13 +61,15 @@ class BodoviZadaca extends Component {
             </thead>
             <tbody>
               <tr className="bg-secondary text-light">
-                {kolone.map(jedno => (
+                {kolone.map((jedno, index) => (
                   <th scope="col" key={jedno}>
                     <input
                       type="text"
                       className="form-control bg-primary text-light text-bold"
                       id={jedno}
-                      onChange={this.props.podaci.unioBodove}
+                      data-index={index}
+                      name="bodovi"
+                      onChange={this.props.onChange}
                     />
                   </th>
                 ))}

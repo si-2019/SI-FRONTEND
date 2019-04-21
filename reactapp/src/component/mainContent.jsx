@@ -1,43 +1,26 @@
-import React, { Component } from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
-import KreiranjeZadace from './kreiranjeZadace';
-import AzuriranjeZadace from './azuriranjeZadace';
+import React, { Component } from "react";
+import { Router, Route, Redirect, Switch } from "react-router-dom";
+import KreiranjeZadace from "./kreiranjeZadace";
+import AzuriranjeZadace from "./azuriranjeZadace";
+import history from "../utils/history";
 
+const idPredmeta = 3;
 
 class MainContent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            routeNaKreiranje: false,
-            routeNaAzuriranje: false
-        }
-    }
-    
-    render() {
-        return(
-        <div>
-            
-            <BrowserRouter>
-            <div className="card-header bg-primary text-light  mb-4">
-                <h5>
-                    <Link to="/KILO/kreiranjeZadace/?idPredmeta=3">
-                        Kreiranje zadaće  
-                    </Link>
-                </h5>
-                <h5>
-                    <Link to="/KILO/azuriranjeZadace/?idPredmeta=3">
-                        Ažuriranje zadaće 
-                    </Link>
-                </h5>
-            </div>
-
-                <Route path='/KILO/kreiranjeZadace/'  exact component={KreiranjeZadace}/>
-                <Route path='/KILO/azuriranjeZadace/' exact component={AzuriranjeZadace}/>
-            </BrowserRouter>
-            
-        </div>
-        );
-    }
+  render() {
+    return (
+      <Router history={history}>
+        <Switch>
+          <Route path={"/KILO/kreiranjeZadace/"} component={KreiranjeZadace} />
+          <Route
+            path={"/KILO/azuriranjeZadace/"}
+            component={AzuriranjeZadace}
+          />
+          <Redirect to={"/KILO/kreiranjeZadace/?idPredmeta=" + idPredmeta} />
+        </Switch>
+      </Router>
+    );
+  }
 }
 
-export default MainContent
+export default MainContent;

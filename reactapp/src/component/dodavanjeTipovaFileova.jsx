@@ -2,8 +2,30 @@ import React, { Component } from "react";
 import { CustomInput, Form, FormGroup, Label, Input, Table } from "reactstrap";
 import "../bootstrap.css";
 
-class DodavanjeTipovaFileova extends Component {
+const FILE_TYPES = [
+  {
+    ekstenzija: ".pdf",
+    nazivEkstenzije: "pdf"
+  },
+  {
+    ekstenzija: ".zip",
+    nazivEkstenzije: "zip"
+  },
+  {
+    ekstenzija: ".m",
+    nazivEkstenzije: "m"
+  },
+  {
+    ekstenzija: ".doc",
+    nazivEkstenzije: "doc"
+  },
+  {
+    ekstenzija: ".txt",
+    nazivEkstenzije: "txt"
+  }
+];
 
+class DodavanjeTipovaFileova extends Component {
   render() {
     var kk = this.props.podaci.state.naziv;
     var kolone = [];
@@ -26,9 +48,9 @@ class DodavanjeTipovaFileova extends Component {
               checked={this.props.podaci.state.sviTipoviIsti}
               type="switch"
               id="switchTip"
-              name="customSwitch"
+              name="sviTipoviIsti"
               label="DA"
-              onChange={this.props.podaci.onChangeSviTipoviIsti}
+              onChange={this.props.onChange}
             />
           </FormGroup>
           <FormGroup>
@@ -36,7 +58,7 @@ class DodavanjeTipovaFileova extends Component {
               <thead>
                 <tr className="bg-primary text-light">
                   <th>Naziv zadaće</th>
-                  
+
                   {kolone.map(jedno => (
                     <th scope="col" key={jedno}>
                       {jedno}
@@ -49,82 +71,33 @@ class DodavanjeTipovaFileova extends Component {
                   <th scope="row">{kk}</th>
                   {kolone.map((jedno, index) => (
                     <th scope="col">
-                      <td>                   
-                        <FormGroup check>
-                          <Input
-                            type="checkbox"
-                            id={jedno + "pdf"}
-                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
-                            checked = {this.props.podaci.state.listaTipova[index][0]}
-                            onChange={e => {
-                              this.props.podaci.state.trenutnaEkstenzija = "pdf";
-                              this.props.podaci.onChangeListaTipova(index,0);
-                            }}
-                          />{" "}
-                          <Label check >
-                            .pdf
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                          <Input
-                            type="checkbox"
-                            id={jedno + "zip"}
-                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
-                            checked = {this.props.podaci.state.listaTipova[index][1]}
-                            onChange={e => {
-                                this.props.podaci.state.trenutnaEkstenzija = "zip";
-                                this.props.podaci.onChangeListaTipova(index,1); 
-                            }}
-                          />{" "}
-                          <Label check >
-                            .zip
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                          <Input
-                            type="checkbox"
-                            id={jedno + "m"}
-                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
-                            checked = {this.props.podaci.state.listaTipova[index][2]}
-                            onChange={e => {
-                                this.props.podaci.state.trenutnaEkstenzija = "m";
-                                this.props.podaci.onChangeListaTipova(index,2);
-                            }}
-                          />{" "}
-                          <Label check >
-                            .m
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                          <Input
-                            type="checkbox"
-                            id={jedno + "doc"}
-                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
-                            checked = {this.props.podaci.state.listaTipova[index][3]}
-                            onChange={e => {
-                                this.props.podaci.state.trenutnaEkstenzija = "doc";
-                                this.props.podaci.onChangeListaTipova(index,3);
-                            }}
-                          />{" "}
-                          <Label check >
-                            .doc
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                          <Input
-                            type="checkbox"
-                            id={jedno + "txt"}
-                            disabled = {this.props.podaci.state.sviTipoviIsti && index>0 }
-                            checked = {this.props.podaci.state.listaTipova[index][4]}
-                            onChange={e => {
-                                this.props.podaci.state.trenutnaEkstenzija = "txt";
-                                this.props.podaci.onChangeListaTipova(index,4);
-                            }}
-                          />{" "}
-                          <Label check >
-                            .txt
-                          </Label>
-                        </FormGroup>
+                      <td>
+                        {FILE_TYPES.map((item, jIndex) => (
+                          <FormGroup key={item.ekstenzija} check>
+                            <Input
+                              type="checkbox"
+                              id={jedno + item.nazivEkstenzije}
+                              disabled={
+                                this.props.podaci.state.sviTipoviIsti &&
+                                index > 0
+                              }
+                              checked={
+                                this.props.podaci.state.listaTipova[index][
+                                  jIndex
+                                ]
+                              }
+                              onChange={e => {
+                                this.props.podaci.state.trenutnaEkstenzija =
+                                  item.nazivEkstenzije;
+                                this.props.podaci.onChangeListaTipova(
+                                  index,
+                                  jIndex
+                                );
+                              }}
+                            />{" "}
+                            <Label check>{item.ekstenzija}</Label>
+                          </FormGroup>
+                        ))}
                       </td>
                     </th>
                   ))}

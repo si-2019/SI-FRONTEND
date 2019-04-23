@@ -175,6 +175,7 @@ export class Body_Cell extends Component {
 
   handleDestroy(event) {
     this.setState({title: event.target.value});
+    this.state.signalString="Uspjesno izbrisano";
 
     this.props.termin.biljeska = this.state.title;
     console.log('http://localhost:3001/deleteZabiljeska'+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);

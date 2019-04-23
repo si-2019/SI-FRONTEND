@@ -187,10 +187,12 @@ export class Body_Cell extends Component {
           var isTrueSet = (response.data.success == 'true'); 
           if(!isTrueSet)
           {
+            // Uspjesno brisanje
             this.state.signalString="Uspjesno izbrisano";
           }
           else
           {
+            // Neuspjesno brisanje
             this.state.signalString="Desila se greska pri brisanju";            
           }
           console.log(response);

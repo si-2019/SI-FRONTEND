@@ -188,12 +188,12 @@ export class Body_Cell extends Component {
           if(!isTrueSet)
           {
             // Uspjesno brisanje
-            this.state.setState({signalString:"Uspjesno izbrisano"});
+            this.setState({signalString:"Uspjesno izbrisano"});
           }
           else
           {
             // Neuspjesno brisanje
-            this.state.setState({signalString:"Desila se greska pri brisanju"});
+            this.setState({signalString:"Desila se greska pri brisanju"});
           }
           console.log(response);
          }.bind(this));  

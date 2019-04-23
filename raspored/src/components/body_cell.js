@@ -191,7 +191,7 @@ export class Body_Cell extends Component {
           }
           else
           {
-            
+            this.state.signalString="Desila se greska pri brisanju";            
           }
           console.log(response);
          }.bind(this));  

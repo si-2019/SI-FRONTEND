@@ -1,5 +1,33 @@
-import React, { Component } from 'react'
+import React, { Suspense, Fragment, memo , Component} from "react";
+import uuid from 'uuid';
+import axios from 'axios';
+import Body_Cell from './body_cell.js';
+import Head_cell from './head_cell.js';
+import './raspored.css';
+import { runInThisContext } from 'vm';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import { unstable_createResource } from "react-cache";
 
+
+//Fetcheri i metode za citanje pomocu njih
+const FetcherTermini = unstable_createResource(() =>
+  fetch("http://localhost:3001/getTermini/1").then(r => r.json())
+);
+
+const FetcherIspiti = unstable_createResource(() =>
+  fetch("http://localhost:3001/getIspiti/1").then(r => r.json())
+);
+
+const getDataTermini = () => FetcherTermini.read();
+const getDataIspiti = () => FetcherIspiti.read();
+
+const Helper = () => {
+
+  var spisakTermina = getDataTermini();
+  var spisakIspita  = getDataIspiti();
+
+
+}
 export class Raspored extends Component {
   render() {
     return (

@@ -171,7 +171,7 @@ const Helper = () => {
   });
 
   return ( 
-    <div id="glavni">    
+    <div>    
       <table>
       <tbody>  
         <tr>
@@ -185,6 +185,9 @@ const Helper = () => {
   );    
 }
 export class Raspored extends Component {
+
+  state={}
+
   render() {
     return (      
       <Fragment>    
@@ -194,6 +197,12 @@ export class Raspored extends Component {
       </Fragment>  
     )
   }
+}
+
+const pocetnaKolonaStyle = {
+  width: '5vw',
+  backgroundColor: 'rgb(208, 214, 298)',
+  textAlign: 'center'  
 }
 
 const sortCriteria = (a,b) =>

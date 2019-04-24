@@ -10,11 +10,10 @@ export class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route path="/" component={RasporedStudent}/>
           <Route path="/rasporedStudent" component={RasporedStudent}/>
           <Route path="/rasporedProfesor" component={RasporedProfesor}/>
-          <Route path="/rasporedSalaStudent" component={RasporedSalaStudent}/>
-          <Route path="/rasporedSalaProfesor" component={RasporedSalaProfesor}/>
+          <Route path="/rasporedSaleZaStudenta" component={RasporedSalaStudent}/>
+          <Route path="/rasporedSaleZaProfesora" component={RasporedSalaProfesor}/>
         
         </div>
       </BrowserRouter>

@@ -192,8 +192,6 @@ export class Raspored extends Component {
            <Helper/>    
         </Suspense>
       </Fragment>  
-        
-      
     )
   }
 }

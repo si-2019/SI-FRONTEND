@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 export class Raspored extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         
-      </div>
+      </React.Fragment>
     )
   }
 }

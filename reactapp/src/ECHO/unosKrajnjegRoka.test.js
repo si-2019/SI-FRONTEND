@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import UnosKrajnjegRoka from "./unosKrajnjegRoka.js";
-import "../setupTests.js";
+import "./setupTests.js";
 
 
 it('Provjerava da li postoji naslov.', () => {

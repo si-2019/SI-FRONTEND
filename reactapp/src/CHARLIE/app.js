@@ -18,7 +18,7 @@ class App extends Component {
         CHARLIE
         <BrowserRouter>
           <Route path='/charlie/info-o-ispitu' exact component={InformacijeOIspitu}/>
-          <Route path='/charlie/kreiraj-ispit' exact component={KreirajIspit}/>
+          <Route path='/charlie' exact component={KreirajIspit}/>
           <Route path='/charlie/kreiraj-ispit-detalji' exact component={KreirajIspitDetalji}/>
           <Route path='/charlie/kreirani-ispiti' exact component={KreiraniIspiti}/>
           <Route path='/charlie/pregled-studenata' exact component={PregledStudenata}/>

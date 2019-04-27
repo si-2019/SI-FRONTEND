@@ -18,7 +18,7 @@ const customStyles = {
 
 
 const MojModal = (ovaj) => {
-  ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa
+  ovaj=ovaj.ovaj; //sam ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa
   if(!ovaj.state.showModal)
     return null;
   return(

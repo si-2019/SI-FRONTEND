@@ -56,4 +56,9 @@ Form.propTypes = {
   autofocus: bool
 };
 
+Form.defautProps = {
+  placeholder: "",
+  autoFocus: false
+};
+
 export default Form;

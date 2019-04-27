@@ -1,8 +1,31 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+
 
 class KreirajIspit extends Component{
-  
+  state = {response:[], brojStudenata:0}
+
+  async componentDidMount(){
+    const {data} = await axios.get('http://localhost:3001/api/predmeti')
+    //const {data1} = await axios.get('http://localhost:3001/api/brojStudenata') - kad se napravi na BE
+    const data1=15 // hardkodirana vrijednost
+    this.setState({response:data})
+    this.setState({brojStudenata:data1})
+  }
+
+  renderOptions = () => {
+    if(!this.state.response) return
+    return this.state.response.map(element => 
+      <option>{element.naziv}</option>
+    );
+  }
+
+  brojStudenata = () => {
+    if(!this.state.brojStudenata) return
+    return this.state.brojStudenata
+  }
+
   render(){
     return(
     <div className='container'>
@@ -12,10 +35,7 @@ class KreirajIspit extends Component{
             <div className='col-3'>
             <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
                 <select className="form-control" id="odabirPredmeta" >
-                    <option>Predmet 1</option>
-                    <option>Predmet 2</option>
-                    <option>Predmet 3</option>
-                    <option>Predmet 4</option>
+                    {this.renderOptions()}
                 </select>
            </div> 
             <div className='col-3'>
@@ -29,7 +49,8 @@ class KreirajIspit extends Component{
                 </select>
             </div> 
             <div className='col-3'>
-                
+              <label htmlFor="brojStudenata">Broj studenata na predmetu: </label>
+              <label id="brojStudenata">{this.brojStudenata()}</label>
             </div> 
             <div className='col-3'>
             </div>

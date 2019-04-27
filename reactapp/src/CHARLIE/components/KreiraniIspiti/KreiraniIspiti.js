@@ -9,7 +9,28 @@ class KreiraniIspiti extends React.Component{
     this.setState({response:data})
   }
 
- 
+  renderItems = () => {
+    if(!this.state.response) return 
+    return this.state.response.map(element => 
+      <div className='container'>
+      <form>
+        <div className='row'>
+        <div className='col-4'>
+          <li style={{ listStyleType: "none" }}>{element.naziv}</li>
+        </div>
+        <div className='col-4'>
+          <li style={{ listStyleType: "none" }}>{element.tip_ispita}</li>
+        </div>
+        <div className='col-4'>
+          
+        </div>
+         
+        </div>
+        </form>
+        </div>
+
+    );
+  }
 
   render(){
     

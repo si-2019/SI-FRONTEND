@@ -22,6 +22,10 @@ class Form extends Component {
         <label htmlFor="ispitnaNapomena">{this.props.labelTitle}</label>
         {this.state.validationError && (
           <div className="alert alert-danger" role="alert">
+            <i
+              className="fas fa-exclamation-triangle"
+              style={{ marginRight: "5px" }}
+            />
             {this.state.validationErrorMessage}
           </div>
         )}
@@ -32,8 +36,7 @@ class Form extends Component {
           id={this.props.id}
           placeholder={this.props.placeholder}
           onBlur={e => {
-            const validationResult = validate(e, ["required", "deep"]);
-            console.log(validationResult);
+            const validationResult = validate(e, this.props.validations);
             let validationErrorMessage = "";
             validationResult.forEach(el => {
               validationErrorMessage += el + " ";
@@ -49,11 +52,12 @@ class Form extends Component {
   }
 }
 
-const { bool, string } = PropTypes;
+const { array, bool, string } = PropTypes;
 Form.propTypes = {
-  placeholder: string,
+  autofocus: bool,
   id: string,
-  autofocus: bool
+  placeholder: string,
+  validaitons: array
 };
 
 Form.defautProps = {

@@ -13,6 +13,7 @@ class KreirajIspitDetalji extends Component {
             labelTitle="Napomena za ispit"
             id="ispitnaNapomena"
             placeholder="Nemojte zaboraviti indeks..."
+            validations={["required"]}
           />
         </form>
       </div>

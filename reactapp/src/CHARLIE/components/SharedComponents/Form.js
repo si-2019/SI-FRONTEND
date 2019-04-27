@@ -5,23 +5,24 @@ const validate = (e, validations) => {
   return validations
     .map(validation => {
       if (validation === "required" && e.target.value.length === 0)
-        return false;
-      return true;
+        return "Polje je obavezno!";
+      else if (validation === "deep" && e.target.value.length === 0)
+        return "Polje je deep!";
+      return "";
     })
-    .includes(false);
+    .filter(res => res.length > 0);
 };
 
 class Form extends Component {
   state = { validationError: false, validationErrorMessage: "" };
 
   render() {
-    console.log(this.props);
     return (
       <div className="form-group">
         <label htmlFor="ispitnaNapomena">{this.props.labelTitle}</label>
         {this.state.validationError && (
           <div className="alert alert-danger" role="alert">
-            Polje je obavezno
+            {this.state.validationErrorMessage}
           </div>
         )}
         <input
@@ -31,7 +32,16 @@ class Form extends Component {
           id={this.props.id}
           placeholder={this.props.placeholder}
           onBlur={e => {
-            this.setState({ validationError: validate(e, ["required"]) });
+            const validationResult = validate(e, ["required", "deep"]);
+            console.log(validationResult);
+            let validationErrorMessage = "";
+            validationResult.forEach(el => {
+              validationErrorMessage += el + "\n";
+            });
+            this.setState({
+              validationError: validationResult.length > 0,
+              validationErrorMessage
+            });
           }}
         />
       </div>

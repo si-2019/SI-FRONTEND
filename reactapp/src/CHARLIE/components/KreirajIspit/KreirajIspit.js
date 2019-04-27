@@ -4,12 +4,14 @@ import axios from 'axios'
 
 
 class KreirajIspit extends Component{
-  state = {response:[]}
+  state = {response:[], brojStudenata:0}
 
   async componentDidMount(){
     const {data} = await axios.get('http://localhost:3001/api/predmeti')
-    console.log(data)
+    //const {data1} = await axios.get('http://localhost:3001/api/brojStudenata') - kad se napravi na BE
+    const data1=15 // hardkodirana vrijednost
     this.setState({response:data})
+    this.setState({brojStudenata:data1})
   }
 
   renderOptions = () => {
@@ -17,6 +19,11 @@ class KreirajIspit extends Component{
     return this.state.response.map(element => 
       <option>{element.naziv}</option>
     );
+  }
+
+  brojStudenata = () => {
+    if(!this.state.brojStudenata) return
+    return this.state.brojStudenata
   }
 
   render(){
@@ -42,7 +49,8 @@ class KreirajIspit extends Component{
                 </select>
             </div> 
             <div className='col-3'>
-                
+              <label htmlFor="brojStudenata">Broj studenata na predmetu: </label>
+              <label id="brojStudenata">{this.brojStudenata()}</label>
             </div> 
             <div className='col-3'>
             </div>

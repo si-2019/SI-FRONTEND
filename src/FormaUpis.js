@@ -25,8 +25,8 @@ class FormaUpis extends Component {
       OnSubmit = (event) =>{
         event.preventDefault()
         const data=this.state
-        console.log("Svi potrebni podaci: ", data)
-      }
+        console.log("Svi potrebni podaci: ", data)        
+    }
      
 
     render() {

@@ -36,7 +36,7 @@ class Form extends Component {
             console.log(validationResult);
             let validationErrorMessage = "";
             validationResult.forEach(el => {
-              validationErrorMessage += el + "\n";
+              validationErrorMessage += el + " ";
             });
             this.setState({
               validationError: validationResult.length > 0,

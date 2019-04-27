@@ -650,6 +650,7 @@ pre code {
       -ms-flex: 0 0 8.3333333333%;
           flex: 0 0 8.3333333333%;
   max-width: 8.3333333333%;
+ 
 }
 
 .col-2 {
@@ -2027,6 +2028,7 @@ pre code {
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  margin-top: 10px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2894,6 +2896,7 @@ fieldset:disabled a.btn {
 .btn-outline-primary {
   color: #2C3E50;
   border-color: #2C3E50;
+  margin-bottom: 10px;
 }
 
 .btn-outline-primary:hover {

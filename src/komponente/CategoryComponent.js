@@ -3,36 +3,44 @@ import axios from 'axios';
 
 class CategoryComponent extends React.Component {
 
-  constructor() {
-    super();
-        var responseArray;
-
+  constructor(props) {
+    super(props);
     this.state = {
-    	categoryArray: []
-
+      categoryArray: [],
+      categoryTitle: ''
     };
   }
 
   componentDidMount(){
-    axios.get('/getCategories').then( res => {
+    axios.get('/category/get').then( res => {
 
-      let displeyNames = [];
+      let displayNames = [];
       for(let i = 0; i < res.data.length; i++)
       {
-        displeyNames.push(res.data[i].DispleyName)
+        displayNames.push(res.data[i].DisplayName)
       }
     
-      this.setState({categoryArray: displeyNames, loading: true});
+      this.setState({categoryArray: displayNames, loading: true});
     })
-    
   }
+
+  onChangeTitle = (e) => {
+    this.setState({categoryTitle: e.target.value});
+    this.props.triggerGetTitleFromCategoryComponent(e.target.value) 
+  };
 
   render() {
     let options = [];
     for(let j = 0; j < this.state.categoryArray.length; j++)
       options.push(<option key={j}>{this.state.categoryArray[j]}</option>)
     return (
-      <select className="form-control col-9" id="naslovSelect">{options}</select>
+      <select
+        className="form-control col-9" 
+        id="naslovSelect"
+        onChange = {this.onChangeTitle}
+      >{options}
+      </select>
+      
      
     );
   }

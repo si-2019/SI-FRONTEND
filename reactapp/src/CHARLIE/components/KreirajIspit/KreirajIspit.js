@@ -17,6 +17,7 @@ class KreirajIspit extends Component{
                     <option>Predmet 3</option>
                     <option>Predmet 4</option>
                 </select>
+                <button type="button" class="btn btn-primary" id="nazadDugme" onClick={() => window.open( 'http://www.google.ba')}>Nazad</button>
            </div> 
             <div className='col-3'>
               <label htmlFor="odabirTipIspita">Tip Ispita: </label>

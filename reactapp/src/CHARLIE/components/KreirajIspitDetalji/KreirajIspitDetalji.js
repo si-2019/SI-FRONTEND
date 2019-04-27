@@ -1,18 +1,22 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
+import FormInput from "../SharedComponents/FormInput";
 
-class KreirajIspitDetalji extends Component{
-  
-  render(){
-    return(
-    <div className='col-4'>
-      <form>
-        <div className='form-group'>
-          <label htmlFor="ispitnaNapomena">Napomena za ispit</label>
-          <input type="text" className="form-control" id="ispitnaNapomena" placeholder="Nemojte zaboraviti indeks..."/>
-        </div>
-      </form>
-    </div>)
+class KreirajIspitDetalji extends Component {
+  state = { napomenaGreska: false };
+
+  render() {
+    return (
+      <div className="col-4">
+        <form>
+          <FormInput
+            labelTitle="Napomena za ispit"
+            id="ispitnaNapomena"
+            placeholder="Nemojte zaboraviti indeks..."
+          />
+        </form>
+      </div>
+    );
   }
 }
 
-export default KreirajIspitDetalji
+export default KreirajIspitDetalji;

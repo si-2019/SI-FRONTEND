@@ -33,16 +33,17 @@ class KreirajIspit extends Component{
                 
             </div> 
             <div className='col-3'>
-            </div>
-
-            </div>
-              <Link to="/kreiraj-ispit-detalji">
+            <Link to="/charlie/kreiraj-ispit-detalji">
                   <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
               </Link>
-
-              <Link to="/kreirani-ispiti">
+              <br />
+              <Link to="/charlie/kreirani-ispiti">
                 <button type="button" class="btn btn-primary">Kreirani ispiti</button>
               </Link>
+            </div>
+
+            </div>
+            
             
       </form>
     </div>)

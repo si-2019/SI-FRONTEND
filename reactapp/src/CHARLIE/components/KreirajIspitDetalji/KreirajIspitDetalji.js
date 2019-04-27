@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FormInput from "../SharedComponents/FormInput";
+import Form from "../SharedComponents/Form";
 
 class KreirajIspitDetalji extends Component {
   state = { napomenaGreska: false };
@@ -8,7 +8,8 @@ class KreirajIspitDetalji extends Component {
     return (
       <div className="col-4">
         <form>
-          <FormInput
+          <Form
+            autoFocus
             labelTitle="Napomena za ispit"
             id="ispitnaNapomena"
             placeholder="Nemojte zaboraviti indeks..."

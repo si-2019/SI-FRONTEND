@@ -8,6 +8,7 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "jquery": "^3.4.0",
     "popper.js": "^1.14.7",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-cache": "^2.0.0-alpha.1",

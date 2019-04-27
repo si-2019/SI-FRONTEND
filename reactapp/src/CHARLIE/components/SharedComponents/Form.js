@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 const validate = (e, validations) => {
   return validations
@@ -10,10 +11,11 @@ const validate = (e, validations) => {
     .includes(false);
 };
 
-class FormInput extends Component {
+class Form extends Component {
   state = { validationError: false, validationErrorMessage: "" };
 
   render() {
+    console.log(this.props);
     return (
       <div className="form-group">
         <label htmlFor="ispitnaNapomena">{this.props.labelTitle}</label>
@@ -23,7 +25,7 @@ class FormInput extends Component {
           </div>
         )}
         <input
-          autoFocus
+          autoFocus={this.props.autoFocus}
           type="text"
           className="form-control"
           id={this.props.id}
@@ -37,4 +39,11 @@ class FormInput extends Component {
   }
 }
 
-export default FormInput;
+const { bool, string } = PropTypes;
+Form.propTypes = {
+  placeholder: string,
+  id: string,
+  autofocus: bool
+};
+
+export default Form;

@@ -37,6 +37,7 @@ class KreirajIspit extends Component{
                 <select className="form-control" id="odabirPredmeta" >
                     {this.renderOptions()}
                 </select>
+                <button type="button" class="btn btn-primary" id="nazadDugme" onClick={() => window.open( 'http://www.google.ba')}>Nazad</button>
            </div> 
             <div className='col-3'>
               <label htmlFor="odabirTipIspita">Tip Ispita: </label>
@@ -53,16 +54,17 @@ class KreirajIspit extends Component{
               <label id="brojStudenata">{this.brojStudenata()}</label>
             </div> 
             <div className='col-3'>
-            </div>
-
-            </div>
-              <Link to="/kreiraj-ispit-detalji">
+            <Link to="/charlie/kreiraj-ispit-detalji">
                   <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
               </Link>
-
-              <Link to="/kreirani-ispiti">
+              <br />
+              <Link to="/charlie/kreirani-ispiti">
                 <button type="button" class="btn btn-primary">Kreirani ispiti</button>
               </Link>
+            </div>
+
+            </div>
+            
             
       </form>
     </div>)

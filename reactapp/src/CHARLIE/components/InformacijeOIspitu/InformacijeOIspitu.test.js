@@ -17,4 +17,8 @@ describe('<InformacijeOIspitu />', () => {
     const wrapper = shallow(<InformacijeOIspitu/>)
     expect(wrapper.find('#vrijemeT').exists()).toBe(true)
   })
+  it('da li ima input polje za unos datuma ispita', () =>{
+    const wrapper = shallow(<InformacijeOIspituForma/>)
+    expect(wrapper.find('#datetimep2').exists().toBe(true))
+  })
 })

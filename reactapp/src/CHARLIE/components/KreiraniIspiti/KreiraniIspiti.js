@@ -37,7 +37,9 @@ class KreiraniIspiti extends React.Component{
     return(
       <div>
         Kreirani ispiti
-          
+        <ul className="lista" id="listaIspita" >
+            {this.renderItems()}
+        </ul>
       </div>
     )
   }

@@ -1,34 +1,24 @@
 import React, { Suspense, Fragment, memo, Component } from "react";
 import { unstable_createResource } from "react-cache";
-
-
-const FetcherAddTheme = unstable_createResource(() =>
-    fetch("http://localhost:8000/addTheme", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        title: '{ this.state.naziv }',
-        description: '{ this.state.opis }',
-        timeCreated: Date.now()
-
-      })
-    }).then(r => r.json())
-  );
-  
-  const addTheme = () => FetcherAddTheme.read();
-
-
+import {
+  withRouter
+} from 'react-router-dom'
+import Lista from '../ListaTema/listaTema'
 
 class NovaTema extends Component {
   constructor() {
     super();
     this.state = {
       naziv: "",
-      opis: ""
+      opis: "",
+      stati:false
     };
+
+  }
+  stati = false;
+  handleSubmit = evt => {
+ 
+    this.setState({stati:true});
   }
 
   handleNazivTemeChange = evt => {
@@ -47,7 +37,7 @@ class NovaTema extends Component {
     const { naziv, opis } = this.state;
    
  evt.preventDefault()
- fetch("http://localhost:8000/addTheme", {
+ fetch("http://localhost:31919/addTheme", {
 method: 'POST',  
 body: JSON.stringify({
   IdPredmeta: '1',
@@ -89,11 +79,23 @@ fun(){
   }
 
   render() {
-    const isEnabled = this.MozeBitiUneseno();
+    if(this.state.stati==true)
+      return (<Lista/>);
+    else{
+      const isEnabled = this.MozeBitiUneseno();
 
+    
     return (
       <div className="row justify-content-center mt-5 ">
-        <div className="form-group bg-light col-md-4">
+        <div className="col-sm-auto">
+        <button color="primary" className="px-4"
+               onClick={this.handleSubmit} 
+                  >
+                  Login
+                </button>
+                
+        </div>
+        <div className="form-group bg-light col-md-4 p-4 ">
           <form onSubmit = {this.handleUnesi}>
             <p className="lead mb-1">Naziv Teme</p>
             <input
@@ -123,8 +125,9 @@ fun(){
         </div>
       </div>
     );
-  }
+  }}
 }
 
-export default NovaTema;
+//export default NovaTema;
 
+export default withRouter(NovaTema);

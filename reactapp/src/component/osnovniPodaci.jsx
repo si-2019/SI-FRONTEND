@@ -8,7 +8,7 @@ class OsnovniPodaci extends Component {
     return (
       <div>
         <div>
-          <div className="formaKreiranjaZadace">
+          <div id="formakreiraj" className="formaKreiranjaZadace">
             <Form>
               <div className="card-header bg-primary text-light mb-4">
                 <h4>

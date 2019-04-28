@@ -34,7 +34,7 @@ class DodavanjeTipovaFileova extends Component {
     }
 
     return (
-      <div>
+      <div id="tipovi">
         <Form>
           <div className="card-header bg-primary text-light  mb-4">
             <h4>

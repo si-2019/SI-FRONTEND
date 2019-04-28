@@ -4,19 +4,21 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <div className="card-header bg-primary text-light  mb-4">
-          <h5>
+        <div  id="hed" className="card-header bg-primary text-light  mb-4">
+          <h5 id="Kreiranje">
             <a
               onClick={this.handleRedirectClick}
               href="/KILO/kreiranjeZadace/?idPredmeta=3"
+             
             >
               Kreiranje zadaće
             </a>
           </h5>
-          <h5>
+          <h5 id="Azuriranje">
             <a
               onClick={this.handleRedirectClick}
               href="/KILO/azuriranjeZadace/?idPredmeta=3"
+              
             >
               Ažuriranje zadaće
             </a>

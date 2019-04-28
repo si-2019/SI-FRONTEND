@@ -21,7 +21,7 @@ class BodoviZadaca extends Component {
     
 
     return (
-      <div >
+      <div id="bodovi" >
         <div className="card-header bg-primary text-light">
           <h4>
             <b>Bodovi zadaće</b>

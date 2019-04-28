@@ -40,4 +40,4 @@ class Lista extends Component{
   }
 }
 
-export default withRouter(Lista);
+export default Lista;

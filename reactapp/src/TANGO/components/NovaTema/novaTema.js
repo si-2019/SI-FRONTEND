@@ -11,14 +11,14 @@ class NovaTema extends Component {
     this.state = {
       naziv: "",
       opis: "",
-      stati:false
+      povratak:false
     };
 
   }
-  stati = false;
+  povratak = false;
   handleSubmit = evt => {
  
-    this.setState({stati:true});
+    this.setState({povratak:true});
   }
 
   handleNazivTemeChange = evt => {
@@ -79,7 +79,7 @@ fun(){
   }
 
   render() {
-    if(this.state.stati==true)
+    if(this.state.povratak==true)
       return (<Lista/>);
     else{
       const isEnabled = this.MozeBitiUneseno();
@@ -128,6 +128,5 @@ fun(){
   }}
 }
 
-//export default NovaTema;
+export default NovaTema;
 
-export default withRouter(NovaTema);

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './app';
 import StranicaPredmeta from './StranicaPredmeta';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import student001 from './NavBarStranice/student001';
@@ -23,8 +23,8 @@ import materijali001 from './NavBarStranice/materijali001';
 const routing = (
     <Router>
       <div>
-        <Route exact path="/" component={App} />
-        <Route path="/predmet" component={StranicaPredmeta} />
+        <Route path="/fox" component={App} />
+        <Route path="/FOX/StranicaPredmeta" component={StranicaPredmeta} />
         <Route path="/student" component={student001} />
         <Route path="/unos_podataka" component={unos_podataka001} />
         <Route path="/ispiti" component={ispiti001} />  

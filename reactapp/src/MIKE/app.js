@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import PregledListeProjekata from './PregledListeProjekata';
 import Lista  from './prikazListe';
+import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta';
 import MockListaPredmeta from './MockListaPredmeta';
 
 class Mike extends Component {
@@ -28,7 +29,7 @@ class Mike extends Component {
       <Lista />
     );
     else if (this.state.forma=="listaProjekata") return (
-      <PregledListeProjekata />
+        <PregledListeProjekata />
     );
   }
   kreiranjeGrupe(){

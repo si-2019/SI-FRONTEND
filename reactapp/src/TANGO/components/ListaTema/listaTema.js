@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import LISTA_TEMA from './LISTA.js';
-
+import {
+  withRouter
+} from 'react-router-dom'
 class Tema extends Component{
   render(){
     console.log(this.props);

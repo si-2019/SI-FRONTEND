@@ -24,11 +24,11 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 //Fetcheri i metode za citanje pomocu njih
 const FetcherTermini = unstable_createResource(() =>
-  fetch("http://localhost:3001/getTermini/1").then(r => r.json())
+  fetch("http://localhost:31920/getTermini/1").then(r => r.json())
 );
 
 const FetcherIspiti = unstable_createResource(() =>
-  fetch("http://localhost:3001/getIspiti/1").then(r => r.json())
+  fetch("http://localhost:31920/getIspiti/1").then(r => r.json())
 );
 
 const getDataTermini = () => FetcherTermini.read();

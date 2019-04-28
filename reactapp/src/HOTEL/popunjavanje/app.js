@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 import './style.css';
+
+import axios from 'axios'; 
 class Popunjavanje extends Component {
+  state= {
+    imeKreator: '', 
+
+  }
+  componentDidMount() {
+    const { match: { params } } = this.props;
+
+    console.log("radii",params.id);
+    axios.get(`http://localhost:9123/getKreator/?idAnketa=${params.id}`)
+    .then((res) => {
+      this.setState({imeKreator:res.data.kreator}); 
+      console.log('res', res);
+    });
+  }
   render() {
     return (
       <div className="App"  id="container">
@@ -23,6 +39,10 @@ class Popunjavanje extends Component {
             <div class="card-body">
               <h6 class="card-title">Tip ankete</h6>
               <p class="card-text">Javna anketa</p>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Anketu kreirao</h6>
+              <p class="card-text">{this.state.imeKreator}</p>
             </div>
           </div>
          </div>

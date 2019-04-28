@@ -11,7 +11,7 @@ class PregledListeProjekata extends Component {
     componentDidMount() {
         //let proj=sviProjektiTrenutnogUsera().projekti;
         var sviProjektiTrenutnogUsera=['Projekat1', 'Projekat2'];
-        let proj=sviProjektiTrenutnogUsera;
+        let proj=sviProjektiTrenutnogUsera();
         this.setState({projekti:proj});
         if (proj.length != null) this.setState({ postoje_projekti:true});
     }

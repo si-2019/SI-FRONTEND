@@ -1,12 +1,10 @@
-import React, { Component } from "react";
-import NaslovnaTermin from "./NaslovnaTermin/naslovnaTermin";
+import React, { Component } from 'react';
 
 class App extends Component {
   render() {
     return (
       <div>
         <h1>ECHO</h1>
-        <NaslovnaTermin />
       </div>
     );
   }

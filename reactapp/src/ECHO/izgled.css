@@ -1,15 +1,23 @@
-.Pon,
-.Uto,
-.Sri,
-.Cet,
-.Pet {
-  float: left;
-  margin-top: 10%;
-  margin-left: 10%;
-  background-color: BurlyWood;
-  border: 1px solid white;
+.tabela,
+.prvi {
+  margin-left: 30%;
+  margin-top: 2%;
 }
-p {
-  margin-top: -2%;
-  margin-bottom: 1%;
+.tabela {
+  width: 20%;
+  border: 1px solid black;
+  border-color: black;
+  margin-bottom: 2%;
+  margin-left: 35%;
+}
+.prvi {
+  margin-left: 35%;
+}
+.prvi,
+.drugi {
+  width: 10%;
+}
+button {
+  width: 100px;
+  height: 25px;
 }

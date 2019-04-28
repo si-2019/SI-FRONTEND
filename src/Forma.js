@@ -40,6 +40,23 @@ class Forma extends Component {
         var nesto=JSON.stringify(data);
         console.log(nesto);
         //postRequest (data);
+        const xhr = new XMLHttpRequest();
+
+        const body = JSON.stringify(data);
+        xhr.open('POST', 'http://localhost:53026/api/korisnik/AddNewStudent', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = () => {
+          if(xhr.status === 200) {
+            const resp = xhr.responseText;
+            alert(resp);
+          }
+        }
+        xhr.onerror = () => {
+          console.log(xhr.statusText);
+        }
+        xhr.send(body);        
+      
+        // alert('Registrovan je korisnik: ', data.ime)
       }
      
 

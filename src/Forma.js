@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+//import { postRequest } from './actions/post';
+
 
 class Forma extends Component {
     constructor(props) {
@@ -35,7 +37,9 @@ class Forma extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
-        alert('Registrovan je korisnik: ', data.ime)
+        var nesto=JSON.stringify(data);
+        console.log(nesto);
+        //postRequest (data);
       }
      
 

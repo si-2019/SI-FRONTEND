@@ -19,7 +19,8 @@ class DodajStudenta extends Component {
                     <FormaUpis />
                 </Tab>
             </Tabs>
-</div>
+            
+            </div>
         )
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
-import Labele from "../components/Labele";
+import Labele from "./Labele";
 import { mount, shallow, render } from "enzyme";
-import "../setupTests"
+import "../../../setupTests"
 
 
 it("Da li se prikazuju komponente", () => {

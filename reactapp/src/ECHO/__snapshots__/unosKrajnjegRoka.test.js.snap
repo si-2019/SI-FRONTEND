@@ -1,0 +1,406 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Da li se prikazuju sve komponente 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <UnosKrajnjegRoka />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <form>
+        <label>
+          Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:
+        </label>
+        <br />
+        <div
+          id="KalendarZaUnos"
+        >
+          <DateTime
+            className=""
+            closeOnSelect={false}
+            closeOnTab={true}
+            dateFormat={true}
+            defaultValue=""
+            input={false}
+            inputProps={Object {}}
+            isValidDate={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onNavigateBack={[Function]}
+            onNavigateForward={[Function]}
+            onViewModeChange={[Function]}
+            strictParsing={true}
+            timeConstraints={Object {}}
+            timeFormat={true}
+            utc={false}
+          />
+        </div>
+        <button
+          id="Potvrda"
+        >
+          Unesi
+        </button>
+      </form>,
+      "className": "divFormaKrajnjegRoka",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <label>
+            Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:
+          </label>,
+          <br />,
+          <div
+            id="KalendarZaUnos"
+          >
+            <DateTime
+              className=""
+              closeOnSelect={false}
+              closeOnTab={true}
+              dateFormat={true}
+              defaultValue=""
+              input={false}
+              inputProps={Object {}}
+              isValidDate={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onNavigateBack={[Function]}
+              onNavigateForward={[Function]}
+              onViewModeChange={[Function]}
+              strictParsing={true}
+              timeConstraints={Object {}}
+              timeFormat={true}
+              utc={false}
+            />
+          </div>,
+          <button
+            id="Potvrda"
+          >
+            Unesi
+          </button>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:",
+          },
+          "ref": null,
+          "rendered": "Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:",
+          "type": "label",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <DateTime
+              className=""
+              closeOnSelect={false}
+              closeOnTab={true}
+              dateFormat={true}
+              defaultValue=""
+              input={false}
+              inputProps={Object {}}
+              isValidDate={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onNavigateBack={[Function]}
+              onNavigateForward={[Function]}
+              onViewModeChange={[Function]}
+              strictParsing={true}
+              timeConstraints={Object {}}
+              timeFormat={true}
+              utc={false}
+            />,
+            "id": "KalendarZaUnos",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "className": "",
+              "closeOnSelect": false,
+              "closeOnTab": true,
+              "dateFormat": true,
+              "defaultValue": "",
+              "input": false,
+              "inputProps": Object {},
+              "isValidDate": [Function],
+              "onBlur": [Function],
+              "onChange": [Function],
+              "onFocus": [Function],
+              "onNavigateBack": [Function],
+              "onNavigateForward": [Function],
+              "onViewModeChange": [Function],
+              "strictParsing": true,
+              "timeConstraints": Object {},
+              "timeFormat": true,
+              "utc": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesi",
+            "id": "Potvrda",
+          },
+          "ref": null,
+          "rendered": "Unesi",
+          "type": "button",
+        },
+      ],
+      "type": "form",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <form>
+          <label>
+            Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:
+          </label>
+          <br />
+          <div
+            id="KalendarZaUnos"
+          >
+            <DateTime
+              className=""
+              closeOnSelect={false}
+              closeOnTab={true}
+              dateFormat={true}
+              defaultValue=""
+              input={false}
+              inputProps={Object {}}
+              isValidDate={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onNavigateBack={[Function]}
+              onNavigateForward={[Function]}
+              onViewModeChange={[Function]}
+              strictParsing={true}
+              timeConstraints={Object {}}
+              timeFormat={true}
+              utc={false}
+            />
+          </div>
+          <button
+            id="Potvrda"
+          >
+            Unesi
+          </button>
+        </form>,
+        "className": "divFormaKrajnjegRoka",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <label>
+              Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:
+            </label>,
+            <br />,
+            <div
+              id="KalendarZaUnos"
+            >
+              <DateTime
+                className=""
+                closeOnSelect={false}
+                closeOnTab={true}
+                dateFormat={true}
+                defaultValue=""
+                input={false}
+                inputProps={Object {}}
+                isValidDate={[Function]}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onNavigateBack={[Function]}
+                onNavigateForward={[Function]}
+                onViewModeChange={[Function]}
+                strictParsing={true}
+                timeConstraints={Object {}}
+                timeFormat={true}
+                utc={false}
+              />
+            </div>,
+            <button
+              id="Potvrda"
+            >
+              Unesi
+            </button>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:",
+            },
+            "ref": null,
+            "rendered": "Unesite datum i vrijeme za krajnji rok unosa i promjene slobodnih termina za nastavno osoblje:",
+            "type": "label",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": "br",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <DateTime
+                className=""
+                closeOnSelect={false}
+                closeOnTab={true}
+                dateFormat={true}
+                defaultValue=""
+                input={false}
+                inputProps={Object {}}
+                isValidDate={[Function]}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onNavigateBack={[Function]}
+                onNavigateForward={[Function]}
+                onViewModeChange={[Function]}
+                strictParsing={true}
+                timeConstraints={Object {}}
+                timeFormat={true}
+                utc={false}
+              />,
+              "id": "KalendarZaUnos",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "",
+                "closeOnSelect": false,
+                "closeOnTab": true,
+                "dateFormat": true,
+                "defaultValue": "",
+                "input": false,
+                "inputProps": Object {},
+                "isValidDate": [Function],
+                "onBlur": [Function],
+                "onChange": [Function],
+                "onFocus": [Function],
+                "onNavigateBack": [Function],
+                "onNavigateForward": [Function],
+                "onViewModeChange": [Function],
+                "strictParsing": true,
+                "timeConstraints": Object {},
+                "timeFormat": true,
+                "utc": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesi",
+              "id": "Potvrda",
+            },
+            "ref": null,
+            "rendered": "Unesi",
+            "type": "button",
+          },
+        ],
+        "type": "form",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

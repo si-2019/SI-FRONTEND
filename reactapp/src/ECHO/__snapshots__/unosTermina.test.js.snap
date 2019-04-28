@@ -1,0 +1,1781 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Da li ima prikaz radnih dana za odabir u formi 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <UnosTermina
+    list={
+      Array [
+        "Ponedjeljak",
+        "Utorak",
+        "Srijeda",
+        "Četvrtak",
+        "Petak",
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div
+        className="form-group"
+      >
+        <h4
+          className="col"
+        >
+          Dodaj termin
+        </h4>
+        <div
+          className="col"
+        >
+          <label>
+            Dan u sedmici
+          </label>
+          <select
+            className="form-control m-2"
+            id="listaDana"
+          >
+            <option>
+              Ponedjeljak
+            </option>
+            <option>
+              Utorak
+            </option>
+            <option>
+              Srijeda
+            </option>
+            <option>
+              Četvrtak
+            </option>
+            <option>
+              Petak
+            </option>
+          </select>
+        </div>
+        <div
+          className="col"
+        >
+          <label>
+            Vrijeme
+          </label>
+          <input
+            className="form-control m-2"
+            id="satnica"
+            max="20:00"
+            min="08:00"
+            step="3600"
+            type="time"
+          />
+        </div>
+        <div
+          className="col"
+        >
+          <label>
+            Broj časova
+          </label>
+          <input
+            className="form-control m-2"
+            id="brCasova"
+            max="12"
+            min="1"
+            type="number"
+          />
+        </div>
+        <button
+          className="btn btn-primary m-2"
+          type="button"
+        >
+          Unesi
+        </button>
+      </div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h4
+            className="col"
+          >
+            Dodaj termin
+          </h4>,
+          <div
+            className="col"
+          >
+            <label>
+              Dan u sedmici
+            </label>
+            <select
+              className="form-control m-2"
+              id="listaDana"
+            >
+              <option>
+                Ponedjeljak
+              </option>
+              <option>
+                Utorak
+              </option>
+              <option>
+                Srijeda
+              </option>
+              <option>
+                Četvrtak
+              </option>
+              <option>
+                Petak
+              </option>
+            </select>
+          </div>,
+          <div
+            className="col"
+          >
+            <label>
+              Vrijeme
+            </label>
+            <input
+              className="form-control m-2"
+              id="satnica"
+              max="20:00"
+              min="08:00"
+              step="3600"
+              type="time"
+            />
+          </div>,
+          <div
+            className="col"
+          >
+            <label>
+              Broj časova
+            </label>
+            <input
+              className="form-control m-2"
+              id="brCasova"
+              max="12"
+              min="1"
+              type="number"
+            />
+          </div>,
+          <button
+            className="btn btn-primary m-2"
+            type="button"
+          >
+            Unesi
+          </button>,
+        ],
+        "className": "form-group",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Dodaj termin",
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": "Dodaj termin",
+          "type": "h4",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Dan u sedmici
+              </label>,
+              <select
+                className="form-control m-2"
+                id="listaDana"
+              >
+                <option>
+                  Ponedjeljak
+                </option>
+                <option>
+                  Utorak
+                </option>
+                <option>
+                  Srijeda
+                </option>
+                <option>
+                  Četvrtak
+                </option>
+                <option>
+                  Petak
+                </option>
+              </select>,
+            ],
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Dan u sedmici",
+              },
+              "ref": null,
+              "rendered": "Dan u sedmici",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <option>
+                    Ponedjeljak
+                  </option>,
+                  <option>
+                    Utorak
+                  </option>,
+                  <option>
+                    Srijeda
+                  </option>,
+                  <option>
+                    Četvrtak
+                  </option>,
+                  <option>
+                    Petak
+                  </option>,
+                ],
+                "className": "form-control m-2",
+                "id": "listaDana",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Ponedjeljak",
+                  },
+                  "ref": null,
+                  "rendered": "Ponedjeljak",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Utorak",
+                  },
+                  "ref": null,
+                  "rendered": "Utorak",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Srijeda",
+                  },
+                  "ref": null,
+                  "rendered": "Srijeda",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Četvrtak",
+                  },
+                  "ref": null,
+                  "rendered": "Četvrtak",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Petak",
+                  },
+                  "ref": null,
+                  "rendered": "Petak",
+                  "type": "option",
+                },
+              ],
+              "type": "select",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Vrijeme
+              </label>,
+              <input
+                className="form-control m-2"
+                id="satnica"
+                max="20:00"
+                min="08:00"
+                step="3600"
+                type="time"
+              />,
+            ],
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Vrijeme",
+              },
+              "ref": null,
+              "rendered": "Vrijeme",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "form-control m-2",
+                "id": "satnica",
+                "max": "20:00",
+                "min": "08:00",
+                "step": "3600",
+                "type": "time",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Broj časova
+              </label>,
+              <input
+                className="form-control m-2"
+                id="brCasova"
+                max="12"
+                min="1"
+                type="number"
+              />,
+            ],
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Broj časova",
+              },
+              "ref": null,
+              "rendered": "Broj časova",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "form-control m-2",
+                "id": "brCasova",
+                "max": "12",
+                "min": "1",
+                "type": "number",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesi",
+            "className": "btn btn-primary m-2",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": "Unesi",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="form-group"
+        >
+          <h4
+            className="col"
+          >
+            Dodaj termin
+          </h4>
+          <div
+            className="col"
+          >
+            <label>
+              Dan u sedmici
+            </label>
+            <select
+              className="form-control m-2"
+              id="listaDana"
+            >
+              <option>
+                Ponedjeljak
+              </option>
+              <option>
+                Utorak
+              </option>
+              <option>
+                Srijeda
+              </option>
+              <option>
+                Četvrtak
+              </option>
+              <option>
+                Petak
+              </option>
+            </select>
+          </div>
+          <div
+            className="col"
+          >
+            <label>
+              Vrijeme
+            </label>
+            <input
+              className="form-control m-2"
+              id="satnica"
+              max="20:00"
+              min="08:00"
+              step="3600"
+              type="time"
+            />
+          </div>
+          <div
+            className="col"
+          >
+            <label>
+              Broj časova
+            </label>
+            <input
+              className="form-control m-2"
+              id="brCasova"
+              max="12"
+              min="1"
+              type="number"
+            />
+          </div>
+          <button
+            className="btn btn-primary m-2"
+            type="button"
+          >
+            Unesi
+          </button>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h4
+              className="col"
+            >
+              Dodaj termin
+            </h4>,
+            <div
+              className="col"
+            >
+              <label>
+                Dan u sedmici
+              </label>
+              <select
+                className="form-control m-2"
+                id="listaDana"
+              >
+                <option>
+                  Ponedjeljak
+                </option>
+                <option>
+                  Utorak
+                </option>
+                <option>
+                  Srijeda
+                </option>
+                <option>
+                  Četvrtak
+                </option>
+                <option>
+                  Petak
+                </option>
+              </select>
+            </div>,
+            <div
+              className="col"
+            >
+              <label>
+                Vrijeme
+              </label>
+              <input
+                className="form-control m-2"
+                id="satnica"
+                max="20:00"
+                min="08:00"
+                step="3600"
+                type="time"
+              />
+            </div>,
+            <div
+              className="col"
+            >
+              <label>
+                Broj časova
+              </label>
+              <input
+                className="form-control m-2"
+                id="brCasova"
+                max="12"
+                min="1"
+                type="number"
+              />
+            </div>,
+            <button
+              className="btn btn-primary m-2"
+              type="button"
+            >
+              Unesi
+            </button>,
+          ],
+          "className": "form-group",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Dodaj termin",
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": "Dodaj termin",
+            "type": "h4",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Dan u sedmici
+                </label>,
+                <select
+                  className="form-control m-2"
+                  id="listaDana"
+                >
+                  <option>
+                    Ponedjeljak
+                  </option>
+                  <option>
+                    Utorak
+                  </option>
+                  <option>
+                    Srijeda
+                  </option>
+                  <option>
+                    Četvrtak
+                  </option>
+                  <option>
+                    Petak
+                  </option>
+                </select>,
+              ],
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Dan u sedmici",
+                },
+                "ref": null,
+                "rendered": "Dan u sedmici",
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <option>
+                      Ponedjeljak
+                    </option>,
+                    <option>
+                      Utorak
+                    </option>,
+                    <option>
+                      Srijeda
+                    </option>,
+                    <option>
+                      Četvrtak
+                    </option>,
+                    <option>
+                      Petak
+                    </option>,
+                  ],
+                  "className": "form-control m-2",
+                  "id": "listaDana",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Ponedjeljak",
+                    },
+                    "ref": null,
+                    "rendered": "Ponedjeljak",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Utorak",
+                    },
+                    "ref": null,
+                    "rendered": "Utorak",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Srijeda",
+                    },
+                    "ref": null,
+                    "rendered": "Srijeda",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Četvrtak",
+                    },
+                    "ref": null,
+                    "rendered": "Četvrtak",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Petak",
+                    },
+                    "ref": null,
+                    "rendered": "Petak",
+                    "type": "option",
+                  },
+                ],
+                "type": "select",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Vrijeme
+                </label>,
+                <input
+                  className="form-control m-2"
+                  id="satnica"
+                  max="20:00"
+                  min="08:00"
+                  step="3600"
+                  type="time"
+                />,
+              ],
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Vrijeme",
+                },
+                "ref": null,
+                "rendered": "Vrijeme",
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "form-control m-2",
+                  "id": "satnica",
+                  "max": "20:00",
+                  "min": "08:00",
+                  "step": "3600",
+                  "type": "time",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "input",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Broj časova
+                </label>,
+                <input
+                  className="form-control m-2"
+                  id="brCasova"
+                  max="12"
+                  min="1"
+                  type="number"
+                />,
+              ],
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Broj časova",
+                },
+                "ref": null,
+                "rendered": "Broj časova",
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "form-control m-2",
+                  "id": "brCasova",
+                  "max": "12",
+                  "min": "1",
+                  "type": "number",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "input",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesi",
+              "className": "btn btn-primary m-2",
+              "type": "button",
+            },
+            "ref": null,
+            "rendered": "Unesi",
+            "type": "button",
+          },
+        ],
+        "type": "div",
+      },
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;
+
+exports[`Da li se prikazuju komponente 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <UnosTermina />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div
+        className="form-group"
+      >
+        <h4
+          className="col"
+        >
+          Dodaj termin
+        </h4>
+        <div
+          className="col"
+        >
+          <label>
+            Dan u sedmici
+          </label>
+          <select
+            className="form-control m-2"
+            id="listaDana"
+          >
+            <option>
+              Ponedjeljak
+            </option>
+            <option>
+              Utorak
+            </option>
+            <option>
+              Srijeda
+            </option>
+            <option>
+              Četvrtak
+            </option>
+            <option>
+              Petak
+            </option>
+          </select>
+        </div>
+        <div
+          className="col"
+        >
+          <label>
+            Vrijeme
+          </label>
+          <input
+            className="form-control m-2"
+            id="satnica"
+            max="20:00"
+            min="08:00"
+            step="3600"
+            type="time"
+          />
+        </div>
+        <div
+          className="col"
+        >
+          <label>
+            Broj časova
+          </label>
+          <input
+            className="form-control m-2"
+            id="brCasova"
+            max="12"
+            min="1"
+            type="number"
+          />
+        </div>
+        <button
+          className="btn btn-primary m-2"
+          type="button"
+        >
+          Unesi
+        </button>
+      </div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h4
+            className="col"
+          >
+            Dodaj termin
+          </h4>,
+          <div
+            className="col"
+          >
+            <label>
+              Dan u sedmici
+            </label>
+            <select
+              className="form-control m-2"
+              id="listaDana"
+            >
+              <option>
+                Ponedjeljak
+              </option>
+              <option>
+                Utorak
+              </option>
+              <option>
+                Srijeda
+              </option>
+              <option>
+                Četvrtak
+              </option>
+              <option>
+                Petak
+              </option>
+            </select>
+          </div>,
+          <div
+            className="col"
+          >
+            <label>
+              Vrijeme
+            </label>
+            <input
+              className="form-control m-2"
+              id="satnica"
+              max="20:00"
+              min="08:00"
+              step="3600"
+              type="time"
+            />
+          </div>,
+          <div
+            className="col"
+          >
+            <label>
+              Broj časova
+            </label>
+            <input
+              className="form-control m-2"
+              id="brCasova"
+              max="12"
+              min="1"
+              type="number"
+            />
+          </div>,
+          <button
+            className="btn btn-primary m-2"
+            type="button"
+          >
+            Unesi
+          </button>,
+        ],
+        "className": "form-group",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Dodaj termin",
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": "Dodaj termin",
+          "type": "h4",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Dan u sedmici
+              </label>,
+              <select
+                className="form-control m-2"
+                id="listaDana"
+              >
+                <option>
+                  Ponedjeljak
+                </option>
+                <option>
+                  Utorak
+                </option>
+                <option>
+                  Srijeda
+                </option>
+                <option>
+                  Četvrtak
+                </option>
+                <option>
+                  Petak
+                </option>
+              </select>,
+            ],
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Dan u sedmici",
+              },
+              "ref": null,
+              "rendered": "Dan u sedmici",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <option>
+                    Ponedjeljak
+                  </option>,
+                  <option>
+                    Utorak
+                  </option>,
+                  <option>
+                    Srijeda
+                  </option>,
+                  <option>
+                    Četvrtak
+                  </option>,
+                  <option>
+                    Petak
+                  </option>,
+                ],
+                "className": "form-control m-2",
+                "id": "listaDana",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Ponedjeljak",
+                  },
+                  "ref": null,
+                  "rendered": "Ponedjeljak",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Utorak",
+                  },
+                  "ref": null,
+                  "rendered": "Utorak",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Srijeda",
+                  },
+                  "ref": null,
+                  "rendered": "Srijeda",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Četvrtak",
+                  },
+                  "ref": null,
+                  "rendered": "Četvrtak",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Petak",
+                  },
+                  "ref": null,
+                  "rendered": "Petak",
+                  "type": "option",
+                },
+              ],
+              "type": "select",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Vrijeme
+              </label>,
+              <input
+                className="form-control m-2"
+                id="satnica"
+                max="20:00"
+                min="08:00"
+                step="3600"
+                type="time"
+              />,
+            ],
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Vrijeme",
+              },
+              "ref": null,
+              "rendered": "Vrijeme",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "form-control m-2",
+                "id": "satnica",
+                "max": "20:00",
+                "min": "08:00",
+                "step": "3600",
+                "type": "time",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Broj časova
+              </label>,
+              <input
+                className="form-control m-2"
+                id="brCasova"
+                max="12"
+                min="1"
+                type="number"
+              />,
+            ],
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Broj časova",
+              },
+              "ref": null,
+              "rendered": "Broj časova",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "form-control m-2",
+                "id": "brCasova",
+                "max": "12",
+                "min": "1",
+                "type": "number",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesi",
+            "className": "btn btn-primary m-2",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": "Unesi",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="form-group"
+        >
+          <h4
+            className="col"
+          >
+            Dodaj termin
+          </h4>
+          <div
+            className="col"
+          >
+            <label>
+              Dan u sedmici
+            </label>
+            <select
+              className="form-control m-2"
+              id="listaDana"
+            >
+              <option>
+                Ponedjeljak
+              </option>
+              <option>
+                Utorak
+              </option>
+              <option>
+                Srijeda
+              </option>
+              <option>
+                Četvrtak
+              </option>
+              <option>
+                Petak
+              </option>
+            </select>
+          </div>
+          <div
+            className="col"
+          >
+            <label>
+              Vrijeme
+            </label>
+            <input
+              className="form-control m-2"
+              id="satnica"
+              max="20:00"
+              min="08:00"
+              step="3600"
+              type="time"
+            />
+          </div>
+          <div
+            className="col"
+          >
+            <label>
+              Broj časova
+            </label>
+            <input
+              className="form-control m-2"
+              id="brCasova"
+              max="12"
+              min="1"
+              type="number"
+            />
+          </div>
+          <button
+            className="btn btn-primary m-2"
+            type="button"
+          >
+            Unesi
+          </button>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h4
+              className="col"
+            >
+              Dodaj termin
+            </h4>,
+            <div
+              className="col"
+            >
+              <label>
+                Dan u sedmici
+              </label>
+              <select
+                className="form-control m-2"
+                id="listaDana"
+              >
+                <option>
+                  Ponedjeljak
+                </option>
+                <option>
+                  Utorak
+                </option>
+                <option>
+                  Srijeda
+                </option>
+                <option>
+                  Četvrtak
+                </option>
+                <option>
+                  Petak
+                </option>
+              </select>
+            </div>,
+            <div
+              className="col"
+            >
+              <label>
+                Vrijeme
+              </label>
+              <input
+                className="form-control m-2"
+                id="satnica"
+                max="20:00"
+                min="08:00"
+                step="3600"
+                type="time"
+              />
+            </div>,
+            <div
+              className="col"
+            >
+              <label>
+                Broj časova
+              </label>
+              <input
+                className="form-control m-2"
+                id="brCasova"
+                max="12"
+                min="1"
+                type="number"
+              />
+            </div>,
+            <button
+              className="btn btn-primary m-2"
+              type="button"
+            >
+              Unesi
+            </button>,
+          ],
+          "className": "form-group",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Dodaj termin",
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": "Dodaj termin",
+            "type": "h4",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Dan u sedmici
+                </label>,
+                <select
+                  className="form-control m-2"
+                  id="listaDana"
+                >
+                  <option>
+                    Ponedjeljak
+                  </option>
+                  <option>
+                    Utorak
+                  </option>
+                  <option>
+                    Srijeda
+                  </option>
+                  <option>
+                    Četvrtak
+                  </option>
+                  <option>
+                    Petak
+                  </option>
+                </select>,
+              ],
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Dan u sedmici",
+                },
+                "ref": null,
+                "rendered": "Dan u sedmici",
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <option>
+                      Ponedjeljak
+                    </option>,
+                    <option>
+                      Utorak
+                    </option>,
+                    <option>
+                      Srijeda
+                    </option>,
+                    <option>
+                      Četvrtak
+                    </option>,
+                    <option>
+                      Petak
+                    </option>,
+                  ],
+                  "className": "form-control m-2",
+                  "id": "listaDana",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Ponedjeljak",
+                    },
+                    "ref": null,
+                    "rendered": "Ponedjeljak",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Utorak",
+                    },
+                    "ref": null,
+                    "rendered": "Utorak",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Srijeda",
+                    },
+                    "ref": null,
+                    "rendered": "Srijeda",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Četvrtak",
+                    },
+                    "ref": null,
+                    "rendered": "Četvrtak",
+                    "type": "option",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Petak",
+                    },
+                    "ref": null,
+                    "rendered": "Petak",
+                    "type": "option",
+                  },
+                ],
+                "type": "select",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Vrijeme
+                </label>,
+                <input
+                  className="form-control m-2"
+                  id="satnica"
+                  max="20:00"
+                  min="08:00"
+                  step="3600"
+                  type="time"
+                />,
+              ],
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Vrijeme",
+                },
+                "ref": null,
+                "rendered": "Vrijeme",
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "form-control m-2",
+                  "id": "satnica",
+                  "max": "20:00",
+                  "min": "08:00",
+                  "step": "3600",
+                  "type": "time",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "input",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Broj časova
+                </label>,
+                <input
+                  className="form-control m-2"
+                  id="brCasova"
+                  max="12"
+                  min="1"
+                  type="number"
+                />,
+              ],
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Broj časova",
+                },
+                "ref": null,
+                "rendered": "Broj časova",
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "form-control m-2",
+                  "id": "brCasova",
+                  "max": "12",
+                  "min": "1",
+                  "type": "number",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "input",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesi",
+              "className": "btn btn-primary m-2",
+              "type": "button",
+            },
+            "ref": null,
+            "rendered": "Unesi",
+            "type": "button",
+          },
+        ],
+        "type": "div",
+      },
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

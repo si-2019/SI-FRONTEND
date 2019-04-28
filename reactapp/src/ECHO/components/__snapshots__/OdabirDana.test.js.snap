@@ -1,0 +1,1166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prikazuje formu za prikaz odabira dana 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <OdabirDana />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <header
+          className="App-header"
+        >
+          <h1>
+             Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+          </h1>
+        </header>,
+        <div
+          id="pon"
+        >
+          <h1>
+            PONEDJELJAK
+          </h1>
+        </div>,
+        <div
+          id="uto"
+        >
+          <h1>
+            UTORAK
+          </h1>
+        </div>,
+        <div
+          id="sri"
+        >
+          <h1>
+            SRIJEDA
+          </h1>
+        </div>,
+        <div
+          id="cet"
+        >
+          <h1>
+            ČETVRTAK
+          </h1>
+        </div>,
+        <div
+          id="pet"
+        >
+          <h1>
+            PETAK
+          </h1>
+        </div>,
+        <button
+          className="App-edit"
+          id="b1"
+        >
+          <h2>
+            Unesite termin/e
+          </h2>
+        </button>,
+        <button
+          className="App-edit"
+          id="b2"
+        >
+          <h2>
+            Unesite termin/e
+          </h2>
+        </button>,
+        <button
+          className="App-edit"
+          id="b3"
+        >
+          <h2>
+            Unesite termin/e
+          </h2>
+        </button>,
+        <button
+          className="App-edit"
+          id="b4"
+        >
+          <h2>
+            Unesite termin/e
+          </h2>
+        </button>,
+        <button
+          className="App-edit"
+          id="b5"
+        >
+          <h2>
+            Unesite termin/e
+          </h2>
+        </button>,
+        <button
+          className="App-ponisti"
+          id="b6"
+        >
+          <h2>
+            Poništite dan
+          </h2>
+        </button>,
+        <button
+          className="App-ponisti"
+          id="b7"
+        >
+          <h2>
+            Poništite dan
+          </h2>
+        </button>,
+        <button
+          className="App-ponisti"
+          id="b8"
+        >
+          <h2>
+            Poništite dan
+          </h2>
+        </button>,
+        <button
+          className="App-ponisti"
+          id="b9"
+        >
+          <h2>
+            Poništite dan
+          </h2>
+        </button>,
+        <button
+          className="App-ponisti"
+          id="b10"
+        >
+          <h2>
+            Poništite dan
+          </h2>
+        </button>,
+        <button
+          id="generisi"
+        >
+          <h1>
+            Generiši raspored
+          </h1>
+        </button>,
+      ],
+      "className": "App",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+             Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+          </h1>,
+          "className": "App-header",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+          },
+          "ref": null,
+          "rendered": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+          "type": "h1",
+        },
+        "type": "header",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            PONEDJELJAK
+          </h1>,
+          "id": "pon",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "PONEDJELJAK",
+          },
+          "ref": null,
+          "rendered": "PONEDJELJAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            UTORAK
+          </h1>,
+          "id": "uto",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "UTORAK",
+          },
+          "ref": null,
+          "rendered": "UTORAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            SRIJEDA
+          </h1>,
+          "id": "sri",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "SRIJEDA",
+          },
+          "ref": null,
+          "rendered": "SRIJEDA",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            ČETVRTAK
+          </h1>,
+          "id": "cet",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "ČETVRTAK",
+          },
+          "ref": null,
+          "rendered": "ČETVRTAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            PETAK
+          </h1>,
+          "id": "pet",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "PETAK",
+          },
+          "ref": null,
+          "rendered": "PETAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Unesite termin/e
+          </h2>,
+          "className": "App-edit",
+          "id": "b1",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesite termin/e",
+          },
+          "ref": null,
+          "rendered": "Unesite termin/e",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Unesite termin/e
+          </h2>,
+          "className": "App-edit",
+          "id": "b2",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesite termin/e",
+          },
+          "ref": null,
+          "rendered": "Unesite termin/e",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Unesite termin/e
+          </h2>,
+          "className": "App-edit",
+          "id": "b3",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesite termin/e",
+          },
+          "ref": null,
+          "rendered": "Unesite termin/e",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Unesite termin/e
+          </h2>,
+          "className": "App-edit",
+          "id": "b4",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesite termin/e",
+          },
+          "ref": null,
+          "rendered": "Unesite termin/e",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Unesite termin/e
+          </h2>,
+          "className": "App-edit",
+          "id": "b5",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Unesite termin/e",
+          },
+          "ref": null,
+          "rendered": "Unesite termin/e",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Poništite dan
+          </h2>,
+          "className": "App-ponisti",
+          "id": "b6",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Poništite dan",
+          },
+          "ref": null,
+          "rendered": "Poništite dan",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Poništite dan
+          </h2>,
+          "className": "App-ponisti",
+          "id": "b7",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Poništite dan",
+          },
+          "ref": null,
+          "rendered": "Poništite dan",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Poništite dan
+          </h2>,
+          "className": "App-ponisti",
+          "id": "b8",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Poništite dan",
+          },
+          "ref": null,
+          "rendered": "Poništite dan",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Poništite dan
+          </h2>,
+          "className": "App-ponisti",
+          "id": "b9",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Poništite dan",
+          },
+          "ref": null,
+          "rendered": "Poništite dan",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h2>
+            Poništite dan
+          </h2>,
+          "className": "App-ponisti",
+          "id": "b10",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Poništite dan",
+          },
+          "ref": null,
+          "rendered": "Poništite dan",
+          "type": "h2",
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            Generiši raspored
+          </h1>,
+          "id": "generisi",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Generiši raspored",
+          },
+          "ref": null,
+          "rendered": "Generiši raspored",
+          "type": "h1",
+        },
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <header
+            className="App-header"
+          >
+            <h1>
+               Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+            </h1>
+          </header>,
+          <div
+            id="pon"
+          >
+            <h1>
+              PONEDJELJAK
+            </h1>
+          </div>,
+          <div
+            id="uto"
+          >
+            <h1>
+              UTORAK
+            </h1>
+          </div>,
+          <div
+            id="sri"
+          >
+            <h1>
+              SRIJEDA
+            </h1>
+          </div>,
+          <div
+            id="cet"
+          >
+            <h1>
+              ČETVRTAK
+            </h1>
+          </div>,
+          <div
+            id="pet"
+          >
+            <h1>
+              PETAK
+            </h1>
+          </div>,
+          <button
+            className="App-edit"
+            id="b1"
+          >
+            <h2>
+              Unesite termin/e
+            </h2>
+          </button>,
+          <button
+            className="App-edit"
+            id="b2"
+          >
+            <h2>
+              Unesite termin/e
+            </h2>
+          </button>,
+          <button
+            className="App-edit"
+            id="b3"
+          >
+            <h2>
+              Unesite termin/e
+            </h2>
+          </button>,
+          <button
+            className="App-edit"
+            id="b4"
+          >
+            <h2>
+              Unesite termin/e
+            </h2>
+          </button>,
+          <button
+            className="App-edit"
+            id="b5"
+          >
+            <h2>
+              Unesite termin/e
+            </h2>
+          </button>,
+          <button
+            className="App-ponisti"
+            id="b6"
+          >
+            <h2>
+              Poništite dan
+            </h2>
+          </button>,
+          <button
+            className="App-ponisti"
+            id="b7"
+          >
+            <h2>
+              Poništite dan
+            </h2>
+          </button>,
+          <button
+            className="App-ponisti"
+            id="b8"
+          >
+            <h2>
+              Poništite dan
+            </h2>
+          </button>,
+          <button
+            className="App-ponisti"
+            id="b9"
+          >
+            <h2>
+              Poništite dan
+            </h2>
+          </button>,
+          <button
+            className="App-ponisti"
+            id="b10"
+          >
+            <h2>
+              Poništite dan
+            </h2>
+          </button>,
+          <button
+            id="generisi"
+          >
+            <h1>
+              Generiši raspored
+            </h1>
+          </button>,
+        ],
+        "className": "App",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+               Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+            </h1>,
+            "className": "App-header",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+            },
+            "ref": null,
+            "rendered": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+            "type": "h1",
+          },
+          "type": "header",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              PONEDJELJAK
+            </h1>,
+            "id": "pon",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "PONEDJELJAK",
+            },
+            "ref": null,
+            "rendered": "PONEDJELJAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              UTORAK
+            </h1>,
+            "id": "uto",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "UTORAK",
+            },
+            "ref": null,
+            "rendered": "UTORAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              SRIJEDA
+            </h1>,
+            "id": "sri",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "SRIJEDA",
+            },
+            "ref": null,
+            "rendered": "SRIJEDA",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              ČETVRTAK
+            </h1>,
+            "id": "cet",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "ČETVRTAK",
+            },
+            "ref": null,
+            "rendered": "ČETVRTAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              PETAK
+            </h1>,
+            "id": "pet",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "PETAK",
+            },
+            "ref": null,
+            "rendered": "PETAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Unesite termin/e
+            </h2>,
+            "className": "App-edit",
+            "id": "b1",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesite termin/e",
+            },
+            "ref": null,
+            "rendered": "Unesite termin/e",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Unesite termin/e
+            </h2>,
+            "className": "App-edit",
+            "id": "b2",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesite termin/e",
+            },
+            "ref": null,
+            "rendered": "Unesite termin/e",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Unesite termin/e
+            </h2>,
+            "className": "App-edit",
+            "id": "b3",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesite termin/e",
+            },
+            "ref": null,
+            "rendered": "Unesite termin/e",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Unesite termin/e
+            </h2>,
+            "className": "App-edit",
+            "id": "b4",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesite termin/e",
+            },
+            "ref": null,
+            "rendered": "Unesite termin/e",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Unesite termin/e
+            </h2>,
+            "className": "App-edit",
+            "id": "b5",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Unesite termin/e",
+            },
+            "ref": null,
+            "rendered": "Unesite termin/e",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Poništite dan
+            </h2>,
+            "className": "App-ponisti",
+            "id": "b6",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Poništite dan",
+            },
+            "ref": null,
+            "rendered": "Poništite dan",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Poništite dan
+            </h2>,
+            "className": "App-ponisti",
+            "id": "b7",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Poništite dan",
+            },
+            "ref": null,
+            "rendered": "Poništite dan",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Poništite dan
+            </h2>,
+            "className": "App-ponisti",
+            "id": "b8",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Poništite dan",
+            },
+            "ref": null,
+            "rendered": "Poništite dan",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Poništite dan
+            </h2>,
+            "className": "App-ponisti",
+            "id": "b9",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Poništite dan",
+            },
+            "ref": null,
+            "rendered": "Poništite dan",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              Poništite dan
+            </h2>,
+            "className": "App-ponisti",
+            "id": "b10",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Poništite dan",
+            },
+            "ref": null,
+            "rendered": "Poništite dan",
+            "type": "h2",
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              Generiši raspored
+            </h1>,
+            "id": "generisi",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Generiši raspored",
+            },
+            "ref": null,
+            "rendered": "Generiši raspored",
+            "type": "h1",
+          },
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

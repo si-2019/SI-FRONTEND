@@ -1,0 +1,872 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prikazuje formu za odabir dana 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <OdabirDana />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <header
+          className="App-header"
+        >
+          <h1>
+             Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+          </h1>
+        </header>,
+        <div
+          id="pon"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#282c34",
+            }
+          }
+        >
+          <h1>
+            PONEDJELJAK
+          </h1>
+        </div>,
+        <div
+          id="uto"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#282c34",
+            }
+          }
+        >
+          <h1>
+            UTORAK
+          </h1>
+        </div>,
+        <div
+          id="sri"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#282c34",
+            }
+          }
+        >
+          <h1>
+            SRIJEDA
+          </h1>
+        </div>,
+        <div
+          id="cet"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#282c34",
+            }
+          }
+        >
+          <h1>
+            ČETVRTAK
+          </h1>
+        </div>,
+        <div
+          id="pet"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#282c34",
+            }
+          }
+        >
+          <h1>
+            PETAK
+          </h1>
+        </div>,
+        <div
+          id="dugmad"
+        >
+          <div
+            id="polovina"
+          />
+          <div
+            id="polovina2"
+          >
+            <div
+              id="cetvrtina"
+            />
+            <div
+              id="cetvrtina2"
+            />
+          </div>
+        </div>,
+        <div
+          id="gen"
+        >
+          <button
+            id="generisi"
+          >
+            <h1>
+              Generiši raspored
+            </h1>
+          </button>
+        </div>,
+      ],
+      "className": "App",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+             Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+          </h1>,
+          "className": "App-header",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+          },
+          "ref": null,
+          "rendered": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+          "type": "h1",
+        },
+        "type": "header",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            PONEDJELJAK
+          </h1>,
+          "id": "pon",
+          "onClick": [Function],
+          "style": Object {
+            "backgroundColor": "#282c34",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "PONEDJELJAK",
+          },
+          "ref": null,
+          "rendered": "PONEDJELJAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            UTORAK
+          </h1>,
+          "id": "uto",
+          "onClick": [Function],
+          "style": Object {
+            "backgroundColor": "#282c34",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "UTORAK",
+          },
+          "ref": null,
+          "rendered": "UTORAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            SRIJEDA
+          </h1>,
+          "id": "sri",
+          "onClick": [Function],
+          "style": Object {
+            "backgroundColor": "#282c34",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "SRIJEDA",
+          },
+          "ref": null,
+          "rendered": "SRIJEDA",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            ČETVRTAK
+          </h1>,
+          "id": "cet",
+          "onClick": [Function],
+          "style": Object {
+            "backgroundColor": "#282c34",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "ČETVRTAK",
+          },
+          "ref": null,
+          "rendered": "ČETVRTAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1>
+            PETAK
+          </h1>,
+          "id": "pet",
+          "onClick": [Function],
+          "style": Object {
+            "backgroundColor": "#282c34",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "PETAK",
+          },
+          "ref": null,
+          "rendered": "PETAK",
+          "type": "h1",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              id="polovina"
+            />,
+            <div
+              id="polovina2"
+            >
+              <div
+                id="cetvrtina"
+              />
+              <div
+                id="cetvrtina2"
+              />
+            </div>,
+          ],
+          "id": "dugmad",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                null,
+                null,
+              ],
+              "id": "polovina",
+            },
+            "ref": null,
+            "rendered": Array [
+              null,
+              null,
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  id="cetvrtina"
+                />,
+                <div
+                  id="cetvrtina2"
+                />,
+              ],
+              "id": "polovina2",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    null,
+                    null,
+                  ],
+                  "id": "cetvrtina",
+                },
+                "ref": null,
+                "rendered": Array [
+                  null,
+                  null,
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": null,
+                  "id": "cetvrtina2",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <button
+            id="generisi"
+          >
+            <h1>
+              Generiši raspored
+            </h1>
+          </button>,
+          "id": "gen",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              Generiši raspored
+            </h1>,
+            "id": "generisi",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Generiši raspored",
+            },
+            "ref": null,
+            "rendered": "Generiši raspored",
+            "type": "h1",
+          },
+          "type": "button",
+        },
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <header
+            className="App-header"
+          >
+            <h1>
+               Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+            </h1>
+          </header>,
+          <div
+            id="pon"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#282c34",
+              }
+            }
+          >
+            <h1>
+              PONEDJELJAK
+            </h1>
+          </div>,
+          <div
+            id="uto"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#282c34",
+              }
+            }
+          >
+            <h1>
+              UTORAK
+            </h1>
+          </div>,
+          <div
+            id="sri"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#282c34",
+              }
+            }
+          >
+            <h1>
+              SRIJEDA
+            </h1>
+          </div>,
+          <div
+            id="cet"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#282c34",
+              }
+            }
+          >
+            <h1>
+              ČETVRTAK
+            </h1>
+          </div>,
+          <div
+            id="pet"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#282c34",
+              }
+            }
+          >
+            <h1>
+              PETAK
+            </h1>
+          </div>,
+          <div
+            id="dugmad"
+          >
+            <div
+              id="polovina"
+            />
+            <div
+              id="polovina2"
+            >
+              <div
+                id="cetvrtina"
+              />
+              <div
+                id="cetvrtina2"
+              />
+            </div>
+          </div>,
+          <div
+            id="gen"
+          >
+            <button
+              id="generisi"
+            >
+              <h1>
+                Generiši raspored
+              </h1>
+            </button>
+          </div>,
+        ],
+        "className": "App",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+               Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.
+            </h1>,
+            "className": "App-header",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+            },
+            "ref": null,
+            "rendered": " Klikom na odgovarajući pravougaonik odaberite dane u kojima imate slobodne termine.",
+            "type": "h1",
+          },
+          "type": "header",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              PONEDJELJAK
+            </h1>,
+            "id": "pon",
+            "onClick": [Function],
+            "style": Object {
+              "backgroundColor": "#282c34",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "PONEDJELJAK",
+            },
+            "ref": null,
+            "rendered": "PONEDJELJAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              UTORAK
+            </h1>,
+            "id": "uto",
+            "onClick": [Function],
+            "style": Object {
+              "backgroundColor": "#282c34",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "UTORAK",
+            },
+            "ref": null,
+            "rendered": "UTORAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              SRIJEDA
+            </h1>,
+            "id": "sri",
+            "onClick": [Function],
+            "style": Object {
+              "backgroundColor": "#282c34",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "SRIJEDA",
+            },
+            "ref": null,
+            "rendered": "SRIJEDA",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              ČETVRTAK
+            </h1>,
+            "id": "cet",
+            "onClick": [Function],
+            "style": Object {
+              "backgroundColor": "#282c34",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "ČETVRTAK",
+            },
+            "ref": null,
+            "rendered": "ČETVRTAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1>
+              PETAK
+            </h1>,
+            "id": "pet",
+            "onClick": [Function],
+            "style": Object {
+              "backgroundColor": "#282c34",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "PETAK",
+            },
+            "ref": null,
+            "rendered": "PETAK",
+            "type": "h1",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                id="polovina"
+              />,
+              <div
+                id="polovina2"
+              >
+                <div
+                  id="cetvrtina"
+                />
+                <div
+                  id="cetvrtina2"
+                />
+              </div>,
+            ],
+            "id": "dugmad",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  null,
+                  null,
+                ],
+                "id": "polovina",
+              },
+              "ref": null,
+              "rendered": Array [
+                null,
+                null,
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    id="cetvrtina"
+                  />,
+                  <div
+                    id="cetvrtina2"
+                  />,
+                ],
+                "id": "polovina2",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      null,
+                      null,
+                    ],
+                    "id": "cetvrtina",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    null,
+                    null,
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": null,
+                    "id": "cetvrtina2",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <button
+              id="generisi"
+            >
+              <h1>
+                Generiši raspored
+              </h1>
+            </button>,
+            "id": "gen",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <h1>
+                Generiši raspored
+              </h1>,
+              "id": "generisi",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Generiši raspored",
+              },
+              "ref": null,
+              "rendered": "Generiši raspored",
+              "type": "h1",
+            },
+            "type": "button",
+          },
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

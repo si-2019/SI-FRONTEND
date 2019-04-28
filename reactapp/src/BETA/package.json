@@ -1,0 +1,73 @@
+{
+<<<<<<< HEAD:package.json
+  "name": "student-support",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
+    "react-responsive-modal": "^3.6.0",
+    "react-scripts": "2.1.8",
+    "rodal": "^1.6.3"
+=======
+  "name": "reactapp",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "chai": "^4.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
+    "jest-enzyme": "^7.0.2",
+    "jquery": "^3.4.0",
+    "mocha": "^6.1.3",
+    "moment": "^2.24.0",
+    "popper.js": "^1.14.7",
+    "prop-types": "^15.7.2",
+    "rc-pagination": "^1.17.14",
+    "react": "^16.7.0-alpha.1",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-cache": "^2.0.0-alpha.1",
+    "react-datetime": "^2.16.3",
+    "react-dom": "^16.7.0-alpha.1",
+    "react-modal": "^3.8.1",
+    "react-popup": "^0.10.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "reactstrap": "^8.0.0",
+    "sinon": "^7.3.1",
+    "typescript": "^3.4.3"
+>>>>>>> 20fb3327a6f9c3dfb553b55c60e3c55e98792fca:reactapp/package.json
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+<<<<<<< HEAD:package.json
+  ]
+=======
+  ],
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5"
+  }
+>>>>>>> 20fb3327a6f9c3dfb553b55c60e3c55e98792fca:reactapp/package.json
+}

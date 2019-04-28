@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Form from "../SharedComponents/Form";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+
 
 class KreirajIspitDetalji extends Component {
   state = { napomenaGreska: false };
@@ -24,6 +26,9 @@ class KreirajIspitDetalji extends Component {
           <form>
             <Link to="/charlie">
               <button type="button" class="btn btn-danger">Odustani</button>
+            </Link>
+            <Link to="/charlie">
+              <button type="button" class="btn btn-primary">Kreiraj ispit</button>
             </Link>
           </form>
         </div>

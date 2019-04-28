@@ -25,10 +25,10 @@ class KreirajIspitDetalji extends Component {
         <div className="col-4">
           <form>
             <Link to="/charlie">
-              <button type="button" class="btn btn-danger">Odustani</button>
+              <button type="button" class="btn btn-primary" id="btnSpasi">Kreiraj ispit</button>
             </Link>
             <Link to="/charlie">
-              <button type="button" class="btn btn-primary">Kreiraj ispit</button>
+              <button type="button" class="btn btn-danger" id="btnPovratak">Odustani</button>
             </Link>
           </form>
         </div>

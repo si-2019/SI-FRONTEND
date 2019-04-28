@@ -8,7 +8,7 @@ class KreirajIspit extends Component{
 
   async componentDidMount(){
     const {data} = await axios.get('http://localhost:31903/api/predmeti')
-    //const {data1} = await axios.get('http://localhost:3001/api/brojStudenata') - kad se napravi na BE
+    //const {data1} = await axios.get('http://localhost:31903/api/brojStudenata') - kad se napravi na BE
     const data1=15 // hardkodirana vrijednost
     this.setState({response:data})
     this.setState({brojStudenata:data1})

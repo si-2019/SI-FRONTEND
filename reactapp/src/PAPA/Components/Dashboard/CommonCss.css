@@ -1,0 +1,12 @@
+.container-fluid {
+    overflow-x: hidden;
+}
+
+.list-group {
+    font-size: 15px;
+    margin: 5px 0px;
+}
+
+#left-column {
+    background-color: rgba(0, 38, 77, 0.8);
+}

@@ -1,13 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
+//import logo from './logo.svg';
+//import './App.css';
+import { Dashboard } from './Components/Dashboard/DashboardComponent';
+import './Components/Dashboard/CommonCss.css';
+import { blockStatement } from '@babel/types';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>PAPA</h1>
-      </div>
-    );
-  }
+function app() {
+  return (
+    <div class="container-fluid">
+      <Header/>
+      <Dashboard/>
+      <Footer/>
+    </div>
+  );
 }
 
-export default App;
+const Header = () => (
+  <div></div>
+);
+
+
+
+const Footer = () => (
+  <div class="row">footer should go here</div>
+);
+
+export default app;

@@ -31,6 +31,9 @@ const MojModal = (ovaj) => {
               <b>Tip aktivnosti: </b>{ovaj.props.termin.title} <br></br>
               <b>Predmet: </b>{ovaj.props.termin.predmet} <br></br>
               <b>Sala: </b>{ovaj.props.termin.sala} <br></br>
+
+              <b>Biljeska: </b>{ovaj.props.termin.biljeska} <br></br>
+
               <button className = 'btn btn-primary' onClick={ovaj.handleCloseModal}>Zatvori</button>
               
             

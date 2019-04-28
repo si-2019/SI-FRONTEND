@@ -30,7 +30,7 @@ const MojModal = (ovaj) => {
           
               <b>Tip aktivnosti: </b>{ovaj.props.termin.title} <br></br>
               <b>Predmet: </b>{ovaj.props.termin.predmet} <br></br>
-              <b>Sala: </b>{ovaj.props.termin.sala} <br></br>
+              <b>Sala: </b><a href="http://www.etf.unsa.ba">{ovaj.props.termin.sala}</a> <br></br>
 
               <b>Biljeska: </b>{ovaj.props.termin.biljeska} <br></br>
 

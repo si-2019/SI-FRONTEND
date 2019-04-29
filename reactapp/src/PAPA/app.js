@@ -3,14 +3,14 @@ import React from 'react';
 //import './App.css';
 import { Dashboard } from './Components/Dashboard/DashboardComponent';
 import './Components/Dashboard/CommonCss.css';
+import './Dashboard/CommonCss.css';
 import { blockStatement } from '@babel/types';
 
-function app() {
+
+function App() {
   return (
     <div class="container-fluid">
-      <Header/>
       <Dashboard/>
-      <Footer/>
     </div>
   );
 }
@@ -25,4 +25,4 @@ const Footer = () => (
   <div class="row">footer should go here</div>
 );
 
-export default app;
+export default App;

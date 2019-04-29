@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
 import ReturnButton from './ReturnButton';
-
 
 class Footer extends Component {
     render() {
       return (
         <div className="Footer">           
-            <Navbar expand="lg" fixed="bottom" variant="light" bg="light" className="justify-content-center">
-                <ReturnButton/>
-            </Navbar>
+            <div class="navbar navbar-expand-lg fixed-bottom navbar-light bg-light">
+              <ReturnButton/>
+            </div>
         </div>
       );
     }

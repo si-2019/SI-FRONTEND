@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Nav from 'react-bootstrap/Nav';
 import {withRouter} from 'react-router-dom';
 
 class ReturnButton extends Component {
@@ -8,11 +7,11 @@ class ReturnButton extends Component {
       var currentLocation = this.props.location.pathname;
       if(currentLocation==="/"){
         return (
-          <Nav.Link disabled href="/">Nazad na početnu</Nav.Link>
+          <a disabled href="/">Nazad na početnu</a>
         )
       }
       return (
-        <Nav.Link href="/fox">Nazad na početnu</Nav.Link>
+        <a href="/fox">Nazad na početnu</a>
       )
     }
   }

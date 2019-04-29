@@ -37,7 +37,7 @@ class AzuriranjeZadace extends Component {
   }
 
   pokupiIzBaze = () => {
-    axios.get("http://localhost:6001/getZadace").then(res => {
+    axios.get("http://localhost:31911/getZadace").then(res => {
       this.setState({
         listaZadacaZaAzuriranje: res.data
       });
@@ -60,10 +60,10 @@ class AzuriranjeZadace extends Component {
                 isOpen={this.state.dropdownOpen}
                 toggle={this.toggle}
               >
-                <DropdownToggle caret>
+                <DropdownToggle caret className="bg-primary">
                   Lista zadaća za ažuriranje
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu className="bg-primary">
                   {lista.map(item => (
                     <DropdownItem
                       onClick={this.handleDropdownClick(item.id)}
@@ -77,18 +77,18 @@ class AzuriranjeZadace extends Component {
               </ButtonDropdown>
             </h4>
           </div>
-          <a href={"/KILO/kreiranjeZadace/?idPredmeta=" + this.state.idPredmet}>
-            Kreiranje
-          </a>
+          
         </Form>
         <div>
           {this.state.azuriranjeState && (
             <KreiranjeZadace
-              title={"Azuriranje Zadace"}
-              confirmActionHandler={this.handleUpdateZadatak}
+              
+              title={"Ažuriranje zadaće"}
+              
               mainState={this.state.azuriranjeState}
             />
-          )}
+          )}  
+          {/* confirmActionHandler={this.handleUpdateZadatak} */}
         </div>
       </div>
     );
@@ -101,20 +101,21 @@ class AzuriranjeZadace extends Component {
   getZadacaById = async zadacaId => {
     try {
       const res = await axios.get(
-        `http://localhost:6001/getZadacaById/${zadacaId}`
+        `http://localhost:31911/getZadacaById/${zadacaId}`
       );
       console.log(res.data);
       this.setState({
         azuriranjeState: res.data
       });
+      
     } catch (e) {
       console.error("Error fetching zadaca by id", e);
     }
   };
-
+/*
   handleUpdateZadatak = state => {
     // TODO: update logic
-  };
+  };*/
 }
 
 export default AzuriranjeZadace;

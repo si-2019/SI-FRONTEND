@@ -1,28 +1,30 @@
 import React, { Component } from "react";
 import history from "../utils/history";
 class Header extends Component {
+  
   render() {
+    var nesta=100;
     return (
-      <div>
-        <div  id="hed" className="card-header bg-primary text-light  mb-4">
-          <h5 id="Kreiranje">
+      <div >
+        <div  id="hed" className="card-header bg-primary text-light mb-4" style= {{height:"50px"}}>
+          <h5>
             <a
               onClick={this.handleRedirectClick}
               href="/KILO/kreiranjeZadace/?idPredmeta=3"
              
             >
-              Kreiranje zadaće
+              Kreiranje zadaće     
             </a>
-          </h5>
-          <h5 id="Azuriranje">
-            <a
+            
+          
+          
+            <a className="ml-4"
               onClick={this.handleRedirectClick}
               href="/KILO/azuriranjeZadace/?idPredmeta=3"
               
-            >
-              Ažuriranje zadaće
+            >Ažuriranje zadaće
             </a>
-          </h5>
+        </h5>
         </div>
       </div>
     );

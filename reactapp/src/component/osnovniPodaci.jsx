@@ -12,7 +12,7 @@ class OsnovniPodaci extends Component {
             <Form>
               <div className="card-header bg-primary text-light mb-4">
                 <h4>
-                  <b>{title ? title : "Kreiraj zadaću"}</b>
+                  <b>{title ? title : "Kreiranje zadaće"}</b>
                 </h4>
               </div>
               <FormGroup>

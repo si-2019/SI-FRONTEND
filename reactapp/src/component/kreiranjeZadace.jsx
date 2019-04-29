@@ -16,6 +16,7 @@ class KreiranjeZadace extends Component {
     super(props);
     const urlParams = new URLSearchParams(window.location.search);
     this.state = {
+      idZadace : null,
       idPredmet: urlParams.get("idPredmeta")
         ? Number(urlParams.get("idPredmeta"))
         : 1,
@@ -189,11 +190,13 @@ class KreiranjeZadace extends Component {
         break;
       }
       case "addZadaca": {
+        
         if(this.state.radnja === "Kreiranje") {  
-          if (this.props.confirmActionHandler) {
+         /* if (this.props.confirmActionHandler) {
             return this.props.confirmActionHandler(this.state);
-          }
-          axios.post("http://localhost:6001/addZadaca", this.state).then(res => {
+          }*/
+          
+          axios.post("http://localhost:31911/addZadaca", this.state).then(res => {
             if (res.status === 200) {
               this.setState({ uspjehKreiranja: true });
             } else if (res.status === 201) {
@@ -203,8 +206,19 @@ class KreiranjeZadace extends Component {
             }
           });
         }
-        else {
-          console.log("hahaha");
+        
+        else if(this.state.radnja==="Azuriranje") {
+          
+          axios.put(`http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`, this.state).then(res => {
+            if (res.status === 200) {
+              this.setState({ uspjehKreiranja: true });
+            } else if (res.status === 201) {
+              this.setState({ vecPostojiImeZadace: true });
+            } else {
+              this.setState({ neuspjehKreiranja: true });
+            }
+          });
+         console.log('iddd:  '+this.props.mainState.idZadaca);
         }  
       }
       default: {
@@ -292,7 +306,10 @@ class KreiranjeZadace extends Component {
   };
 
   render() {
-    console.log("AAAA:", this.state, this.props.mainState);
+    var radnjaGlagol;
+    if(this.state.radnja==="Azuriranje")
+    radnjaGlagol="ažurirali";
+    else radnjaGlagol="kreirali";
     return (
       <div>
         <div>
@@ -317,7 +334,7 @@ class KreiranjeZadace extends Component {
                 <b>Čestitamo!</b>
               </p>
             </ModalHeader>
-            <ModalBody>Uspješno ste kreirali zadaću.</ModalBody>
+            <ModalBody>Uspješno ste {radnjaGlagol} zadaću.</ModalBody>
             <ModalFooter>
               <Button color="success" onClick={this.ugasiPorukuUspjeh}>
                 OK
@@ -332,7 +349,7 @@ class KreiranjeZadace extends Component {
                 <b>Dogodila se greška!</b>
               </p>
             </ModalHeader>
-            <ModalBody>Kreiranje zadaće nije uspjelo.</ModalBody>
+            <ModalBody> {this.state.radnja} zadaće nije uspjelo.</ModalBody>
             <ModalFooter>
               <Button color="danger" onClick={this.ugasiPorukuNeuspjeh}>
                 OK
@@ -377,19 +394,21 @@ class KreiranjeZadace extends Component {
         </div>
         <div id="preview">
           <PreviewZadace podaci={this} />
-          <Button
+          <Button 
+             className=" btn bg-primary ml-4"
             id="idiNaKreiranjeZadace"
             name="idiNaKreiranjeZadace"
             onClick={this.handleClick}
-            color="info"
+           
           >
             Natrag
           </Button>
           <Button
+            className=" btn bg-primary ml-4"
             id="addZadaca"
             name="addZadaca"
             onClick={this.handleClick}
-            color="info"
+           
           >
             Potvrdi
           </Button>

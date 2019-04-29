@@ -3,8 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Predmet from './Predmet';
 import DanDatum from './danDatum';
-import Nav from 'react-bootstrap/Nav';
-
 
 class App extends Component {
   render() {
@@ -13,7 +11,7 @@ class App extends Component {
         <Header isPocetna={true}/>
         <h1>Početna stranica</h1>
         <DanDatum/>
-        <Predmet/>
+        <Predmet/>  
         <Footer/>
       </div>
     );

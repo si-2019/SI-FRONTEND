@@ -14,9 +14,8 @@ class Navbar001 extends Component {
             <a href="forum">Forum</a>
             <a href="materijali">Materijali</a>
             <a href="ispit">Ispit</a>*/}
-          
-            <a href="zadace">Zadace</a>
-            <a href="ankete" > Ankete </a>
+            <a style={{ padding: '10px'}}href="zadace">Zadace</a>
+            <a href="ankete">Ankete</a>
             <a >Raspored</a>
             <a href="chat">Chat</a>
         </div>

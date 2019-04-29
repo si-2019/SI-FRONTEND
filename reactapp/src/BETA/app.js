@@ -52,7 +52,7 @@ class App extends Component {
             </button>
 
           </div>    
-
+          
           <Modal 
             open={open} 
             close={this.onCloseModal}
@@ -61,7 +61,7 @@ class App extends Component {
               <NoviIssueForma triggerOnCloseModal2 = {this.onCloseModal2}/>
             </div>
           </Modal>
-
+          
         </div>
       </div>
     );

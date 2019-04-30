@@ -37,9 +37,6 @@ class Forma extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
-        var nesto=JSON.stringify(data);
-        console.log(nesto);
-        //postRequest (data);
         const xhr = new XMLHttpRequest();
 
         const body = JSON.stringify(data);

@@ -6,6 +6,7 @@ class Obavijesti extends Component {
     render() {
         return (
           <div className="Obavijesti">
+          <Header isPocetna={false } />
           </div>
 
         );

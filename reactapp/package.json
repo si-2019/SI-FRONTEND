@@ -25,8 +25,9 @@
     "react-dom": "^16.7.0-alpha.1",
     "react-modal": "^3.8.1",
     "react-popup": "^0.10.0",
+    "react-responsive-modal": "^3.6.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^3.0.0",
     "reactstrap": "^8.0.0",
     "sinon": "^7.3.1",
     "typescript": "^3.4.3"

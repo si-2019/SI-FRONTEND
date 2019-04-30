@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container'
 
 class TabelaStudenti extends Component {
     render() {
       return (
-        <Container>
+        <div class ="container">
           <div className="TabelaStudenti">
-              <Table striped responsive bordered hover size="sm">
+              <table class="table">
                   <thead>
                       <tr>
                       <th>#</th>
@@ -36,9 +34,9 @@ class TabelaStudenti extends Component {
                       <td>7</td>
                       </tr>
                   </tbody>
-              </Table>
+              </table>
             </div>
-          </Container>
+          </div>
         
       );
     }

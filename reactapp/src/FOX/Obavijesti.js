@@ -10,13 +10,17 @@ class Obavijesti extends Component {
             <div class="col-sm-6">
             </div>
             <div class="col-sm-6">
+                <br>
+                Obavijesti
+                </br>
             </div>
             <div class= "col-sm-6">
             </div>
-          
+            <Footer/>
           </div>
 
         );
     }
 
 }
+export default Obavijesti;

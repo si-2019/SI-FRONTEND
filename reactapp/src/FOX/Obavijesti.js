@@ -6,7 +6,14 @@ class Obavijesti extends Component {
     render() {
         return (
           <div className="Obavijesti">
-          <Header isPocetna={false } />
+            <Header isPocetna={false } />
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+            </div>
+            <div class= "col-sm-6">
+            </div>
+          
           </div>
 
         );

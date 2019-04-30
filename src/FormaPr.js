@@ -34,7 +34,23 @@ class FormaPr extends Component {
       handleSubmit = (event) =>{
         event.preventDefault()
         const data=this.state
-        console.log("Svi potrebni podaci: ", data)
+        console.log("Svi potrebni podaci: ", data);
+
+        const xhr = new XMLHttpRequest();
+
+        const body = JSON.stringify(data);
+        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddProfessor', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = () => {
+          if(xhr.status === 200) {
+            const resp = xhr.responseText;
+            alert(resp);
+          }
+        }
+        xhr.onerror = () => {
+          console.log(xhr.statusText);
+        }
+        xhr.send(body); 
        
       }
      

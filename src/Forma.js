@@ -39,10 +39,11 @@ class Forma extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
+        
         const xhr = new XMLHttpRequest();
 
         const body = JSON.stringify(data);
-        xhr.open('POST', 'http://localhost:53026/api/korisnik/AddNewStudent', true);
+        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {

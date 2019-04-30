@@ -53,7 +53,6 @@ class Forma extends Component {
         }
         xhr.send(body);        
       
-        // alert('Registrovan je korisnik: ', data.ime)
       }
      
 
@@ -63,7 +62,7 @@ class Forma extends Component {
         return (
           <div className="col-md-4 col-md-offset-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
-              <label >Ime </label>
+              <label>Ime </label>
               <input  className="form-control" type="text" name="ime" value={ime} onChange={this.handleChange} /><br />
               
               <label >Prezime </label>

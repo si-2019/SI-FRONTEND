@@ -4,8 +4,8 @@ import Forma from './FormaOdsjek'
 class DodajOdsjek extends Component {
     render () {
         return (
-            <div className="dodajStudenta">
-                <h1>Odsjek</h1>
+            <div className="dodajStudenta" style={{color: "#2C3E50"}}>
+                <h1 style={{color: "#18BC9C"}}>Odsjek</h1>
                 <Forma />
             </div>
         )

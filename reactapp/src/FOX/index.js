@@ -25,6 +25,7 @@ const routing = (
       <div>
         <Route path="/fox" component={App} />
         <Route path="/FOX/StranicaPredmeta" component={StranicaPredmeta} />
+        <Route path="/fox/Obavijesti" component={Obavijesti} />
         <Route path="/student" component={student001} />
         <Route path="/unos_podataka" component={unos_podataka001} />
         <Route path="/ispiti" component={ispiti001} />  

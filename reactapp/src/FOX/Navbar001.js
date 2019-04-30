@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 const astyle= {
-
   padding: '10px'
 };
 
 class Navbar001 extends Component {
+  state = {}
     render() {
       return (
         <div className="navbar001_class">

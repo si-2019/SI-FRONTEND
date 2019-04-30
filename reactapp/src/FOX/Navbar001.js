@@ -15,7 +15,7 @@ class Navbar001 extends Component {
             <a href="forum">Forum</a>
             <a href="materijali">Materijali</a>
             <a href="ispit">Ispit</a>*/}
-            <a href="Obavijesti" > Obavijesti </a>
+            <a href="fox/Obavijesti" > Obavijesti </a>
             <a href="zadace">Zadace</a>
             <a >Raspored</a>
             <a href="chat">Chat</a>

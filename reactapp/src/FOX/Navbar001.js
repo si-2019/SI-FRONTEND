@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+const astyle= {
+  padding: '10px'
+};
 
 class Navbar001 extends Component {
   state = {}
@@ -15,10 +17,10 @@ class Navbar001 extends Component {
             <a href="forum">Forum</a>
             <a href="materijali">Materijali</a>
             <a href="ispit">Ispit</a>*/}
-            <a href="fox/Obavijesti" > Obavijesti </a>
-            <a href="zadace">Zadace</a>
-            <a >Raspored</a>
-            <a href="chat">Chat</a>
+            <a style={astyle} href="zadace">Zadace</a>
+            <a style={astyle} href="ankete">Ankete</a>
+            <a style= {astyle} href="raspored">Raspored</a>
+            <a style ={astyle} href="chat">Chat</a>
         </div>
       );
     }

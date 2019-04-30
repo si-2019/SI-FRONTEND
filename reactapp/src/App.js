@@ -40,7 +40,8 @@ class App extends Component {
                 <Route path="/delta" component={Delta} />
                 <Route path="/echo" component={Echo} />
                 <Route exact path="/fox" component={Fox} />
-                <Route path="/fox/StranicaPredmeta" component={StranicaPredmeta} />                
+                <Route path="/fox/StranicaPredmeta" component={StranicaPredmeta} /> 
+                <Route path="/fox/Obavijesti" component={Obavijesti} />                    
                 <Route path="/golf" component={Golf} />
                 <Route path="/hotel" component={Hotel} />
                 <Route path="/india" component={India} />

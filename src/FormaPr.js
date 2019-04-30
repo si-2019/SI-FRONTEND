@@ -8,7 +8,7 @@ class FormaPr extends Component {
           ime: '',
           prezime: '',
           roditelj: '',
-          spol: '',
+          spol: 'zensko',
           jmbg: '',
           titula: '',
           datum_rodjenja: '',
@@ -35,12 +35,18 @@ class FormaPr extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
-        alert('Registrovan je korisnik: ', data.ime)
+       
       }
      
 
+      handleOptionChange = changeEvent => {
+        this.setState({
+          spol: changeEvent.target.value
+        });
+      };
+
     render() {
-        const { ime, prezime, roditelj, spol, jmbg, titula, datum_rodjenja, mjesto_rodjenja,  kanton, drzavljanstvo, adresa,email, telefon } = this.state;
+        const { ime, prezime, roditelj, jmbg, titula, datum_rodjenja, mjesto_rodjenja,  kanton, drzavljanstvo, adresa,email, telefon } = this.state;
 
         return (
           <div className="col-md-4 col-md-offset-4" >
@@ -54,8 +60,9 @@ class FormaPr extends Component {
               <label >Ime i prezime jednog roditelja</label>
               <input className="form-control " type="text" name="roditelj" value={roditelj} onChange={this.handleChange}/><br />
 
-              <label >Spol </label>
-              <input className="form-control " type="text" name="spol" value={spol} onChange={this.handleChange} /><br />
+              <label className="radio-inline">Spol </label>
+              <input id="1" className="custom-control custom-radio" type="radio" value="zensko" onChange={this.handleOptionChange} checked={this.state.spol === "zensko"}/> Žensko
+              <input id="2" className="custom-control custom-radio" type="radio" value="musko" onChange={this.handleOptionChange} checked={this.state.spol === "musko"}/>Muško <br/><br/>
               
               <label>JMBG </label>
               <input className="form-control " type="text" name="jmbg" value={jmbg} onChange={this.handleChange} /><br />

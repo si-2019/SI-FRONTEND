@@ -16,7 +16,7 @@ class Predmet extends Component {
                     <div class="nav-item mr-auto">
                          <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
                     </div>
-                    <div class="nav-item mr-auto"c>
+                    <div class="nav-item mr-auto">
                          <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
                     </div>
                     <div class="nav-item mr-auto">

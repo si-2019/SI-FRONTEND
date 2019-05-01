@@ -11,6 +11,8 @@ class InformacijeOIspitu extends Component {
             <input type="date" className="form-control" id="datetimep" />
             <label htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> <br/>
             <input type="text" className="form-control" id="vrijemeT" />
+            <label htmlFor="datumIspita">Datum Ispita: </label> <br />
+            <input type="date" className="form-control" id="datetimep2" />
           </div>
         </form>
       </div>)

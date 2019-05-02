@@ -27,7 +27,6 @@ class App extends Component {
   render() {
     return ( 
       <div style={{padding: '25px', backgroundColor: 'white'}}>
-       {JSON.stringify(this.state)}
         <div className="row justify-content-center">
           <div className="">
             <h1>Kreiranje ankete</h1>
@@ -86,7 +85,22 @@ class App extends Component {
     );
   }
 
-  
+   kreirajAnketu() {
+      fetch(url + '/createAnketa', {
+        method: 'post',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          idNapravio: 1,
+          napravioIme: 'hamo hamic',
+          tipAnkete: this.state.vrstaAnkete,
+          naziv: this.state.nazivAnkete,
+          opisAnkete: this.state.opisAnkete,
+          datumIstekaAnkete: '2020-05-05'
+        })
+      }).then((res, err) => {
+        
+      })
+   }
 }
 
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../bootstrapflatly.css'
 import url from '../url'
 
 class App extends Component {
@@ -33,7 +32,7 @@ class App extends Component {
           </div>
         </div>
         <hr/>
-        Naziv ankete:
+        <h5>Naziv ankete:</h5>
         <div className="row">
           <div className="col-4">
             <input type="text" name="nazivAnkete" onChange={this.handleInputChange}/>

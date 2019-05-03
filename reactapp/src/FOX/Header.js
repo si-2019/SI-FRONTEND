@@ -14,17 +14,16 @@ class Header extends Component {
       let meni;
       if (isPocetna) {
         meni = <div>
-          <Navbar.Brand href="#home">ETF</Navbar.Brand>
-          <a style={{color: 'white'}}class="" onclick="" href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</a>
+          <a style={{color: 'white', padding: '20px'}}class="" onclick="" href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</a>
           <a style={{color: 'white'}}class="" onclick="" href="http://yiiisu.com/load.php?action=download&id=3" >Uputstvo</a>
         </div>  
       }
       else {meni = <Navbar001 />;}
       return (
         <div className="Header">
-            <Navbar bg="dark" variant="dark">               
+            <div class = "navbar bg-dark navbar-dark">               
                 {meni}
-            </Navbar>
+            </div>
            
         </div>
       );

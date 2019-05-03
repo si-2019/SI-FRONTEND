@@ -6,6 +6,8 @@ import Charlie from './CHARLIE/app.js'
 import Delta from './DELTA/app.js'
 import Echo from './ECHO/app.js'
 import Fox from './FOX/app.js'
+import StranicaPredmeta from './FOX/StranicaPredmeta'
+import Obavijesti from './FOX/Obavijesti'
 import Golf from './GOLF/app.js'
 import Hotel from './HOTEL/app.js'
 import India from './INDIA/app.js'
@@ -37,7 +39,9 @@ class App extends Component {
                 <Route path="/charlie" component={Charlie} />
                 <Route path="/delta" component={Delta} />
                 <Route path="/echo" component={Echo} />
-                <Route path="/fox" component={Fox} />
+                <Route exact path="/fox" component={Fox} />
+                <Route path="/fox/StranicaPredmeta" component={StranicaPredmeta} /> 
+                <Route path="/fox/Obavijesti" component={Obavijesti} />                    
                 <Route path="/golf" component={Golf} />
                 <Route path="/hotel" component={Hotel} />
                 <Route path="/india" component={India} />

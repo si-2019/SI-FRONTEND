@@ -5,7 +5,7 @@ import Navbar001 from '../../Navbar001';
 class Header extends Component {
   constructor(props) {
     super(props);
-    {/*Promijeni na true za header početne stranice, false za header stranice predmeta */}
+    /*Promijeni na true za header početne stranice, false za header stranice predmeta */
     this.state = {isPocetna: props.isPocetna} 
    }
     render() {

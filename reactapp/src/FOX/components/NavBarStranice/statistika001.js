@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
-import Navbar001 from '../Navbar001';
+import Header from '../components/Header';
+import Footer from '../Footer/Footer';
+import Navbar001 from '../../Navbar001';
 
 class statistika001 extends Component {
   render() {

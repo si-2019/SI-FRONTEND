@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReturnButton from './ReturnButton';
+import ReturnButton from '../ReturnButton/ReturnButton';
 
 class Footer extends Component {
     render() {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Predmet.css';
-
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 

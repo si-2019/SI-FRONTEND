@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Footer from '../Footer/Footer';
-import Navbar001 from '../../Navbar001';
+import Navbar001 from '../Navbar/Navbar001';
 
 class chat001 extends Component {
   render() {

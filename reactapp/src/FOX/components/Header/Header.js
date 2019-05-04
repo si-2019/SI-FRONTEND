@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Navbar001 from '../../Navbar001';
-
+import Navbar001 from '../Navbar/Navbar';
 
 class Header extends Component {
   constructor(props) {

@@ -69,7 +69,13 @@ class UnosTermina extends Component {
         idKabinet: 3, //hardkodirano
         vrijeme: this.state.vrijeme
       })
-    });
+    }).then(
+      this.setState({
+        alertMessage: "Uspješno ste unijeli termin",
+        alertVisible: true,
+        alertColor: "success"
+      })
+    );
   }
   toggle(x) {
     this.setState({ alertVisible: !this.state.alertVisible });

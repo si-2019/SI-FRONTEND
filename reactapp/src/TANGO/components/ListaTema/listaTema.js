@@ -1,91 +1,66 @@
 import React, {Component} from 'react';
-import LISTA_TEMA from './LISTA.js';
+import Teme from '../Tema';
+import DugmeZaSort from '../DugmeZaSort';
+import LISTA_PROBNA from './LISTA';
+ 
 import {
   withRouter
 } from 'react-router-dom'
 import { resolve } from 'path';
 
 const themesApi= 'http://localhost:31919/getThemes/'; //plus id teme
-const korisnikApi='http://localhost:31919/getUser/'; //plus id korisnika
 
-class Tema extends Component{
-  render(){
-    
-    const {idTeme,idPredmeta, idUser,description,title, timeCreated,brojKomentara}=this.props.tema;
-    //const {nazivTeme, slika,korisnickoIme,brojKomentara,datumStvaranja}=this.props.tema;
-    return(
-    <div>
-      <div className='naziv_teme' >
-        <p>{title}</p>
-        <input  className='stickyDugme' type='button' value="S"/>
-      </div>
-      <div className='datum_komentari'>
-        <p className='brKom' >
-            Br. komentara: {brojKomentara}
-        </p>
-        <p className='datStv'>
-            {timeCreated}
-        </p>
-      </div>  
-    </div>  
-    );
-  }
-}
 
-class Korisnik extends Component{
-  
-  render(){
-    const {id,ime,prezime, fotografija}= this.props.korisnik;
-    return(
-      <div className='slika_ime'>
-            <img src={fotografija} />
-            <p>{ime}</p>
-          </div>
-    );
-  }
-}
+
 class Lista extends Component{
   constructor() {
     super();
     this.state = {
-      teme: [],
-      ucitvanje:false,
-      ucitvanjeKorisnika:false
+      teme:[],
+      obrnut: false
     };
+    
   }
+  
   componentWillMount(){
-    this.setState({ucitvanje:true});
-    fetch(themesApi+'1')
+    this.setState({ucitavanje:true});
+    fetch(themesApi+'4')
       .then(response=>response.json())
-      .then(niz=>this.setState({teme:niz,ucitvanje:false}));
+      .then(teme=>this.setState({teme:teme,ucitavanje:false}));
+    //this.setState({teme:LISTA_PROBNA,ucitavanje:false});
   }
-
-  nadjiKorisnika = (idKorisnika) => {
-    this.setState({ucitvanjeKorisnika:true});
-    fetch(korisnikApi+idKorisnika)
-      .then(response=>response.json())
-      .then((korisnik)=>{this.setState({ucitvanjeKorisnika:false});resolve(korisnik);});
+ //                   dodaj ,obrnut
+  promjeniStateNiza (niz, obrnut, vm) {
+    let newState = this.state;
+    newState = {
+      teme:niz,
+      obrnut: obrnut
+    }
+    this.setState(newState);
+    
   }
+  
+  
 
   
   render(){
-    if(this.state.ucitvanje){
+    if(this.state.ucitavanje){
       return <p>Ucitavanje...</p>
     }
-    return(
-      //ovo je lista tema koju dobijemo sa servera
-      this.state.teme.map(TEMA =>{
-        
-        return (
-          <div className='tema'>
-            
-             <div className='slika_ime'>
-                {/* <Korisnik korisnik={korisnik}/> */}
-              </div>
-              <Tema key={TEMA.idTheme} tema={TEMA}/>
+      return(
+        <div>
+          <div>
+            <DugmeZaSort 
+              teme={this.state.teme} 
+              sortirajNiz={this.promjeniStateNiza.bind(this)}
+              obrnut={this.state.obrnut}
+            />
           </div>
-        );    
-        })
+          {/* <button onClick={() => {this.sortirajAZ(this.state.teme)}}>a-z</button> */}
+        <div>
+          <Teme teme={this.state.teme}/>
+        </div>
+        </div>
       );
   }
 }

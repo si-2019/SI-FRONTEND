@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import TabelaStudenti from './TabelaStudenti';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import TabelaStudenti from '../TabelaStudenti/TabelaStudenti';
 
 
 class StranicaPredmeta extends Component {

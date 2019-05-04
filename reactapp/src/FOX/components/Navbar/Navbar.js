@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import './Navbar.css';
+
 const astyle= {
-  padding: '10px'
+  padding: '10px',
+  color: 'white'
 };
 
 class Navbar001 extends Component {

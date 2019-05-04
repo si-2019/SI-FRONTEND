@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import Predmet from './Predmet';
-import DanDatum from './danDatum';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Predmet from '../Predmet/Predmet';
+import DanDatum from '../DanDatum/DanDatum';
 
 class App extends Component {
   render() {

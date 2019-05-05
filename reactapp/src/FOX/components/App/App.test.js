@@ -14,4 +14,10 @@ it ('renders <Header /> component inside <App /> component', () => {
     expect(wrapper.find("#Header").exists());
 })
 
+//Unit test za header
+it ('renders <Footer /> component inside <App /> component', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.find("#Footer").exists());
+})
+
 

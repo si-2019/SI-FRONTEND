@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
-import Odsjeci from './Odsjeci'
+import Odsjeci from './odsjeci'
 
-class ciklusi extends Component {
+class Ciklusi extends Component {
 
     constructor(props) {
         super(props)
@@ -37,19 +37,19 @@ class ciklusi extends Component {
                     <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(1)}>
                         <a href='#'>Prvi ciklus</a>
                     </li>
-                    {this.state.kliknut && <Odsjeci parametar = "prvi"/>}
+                    {this.state.kliknut && <Odsjeci ciklus = "prvi"/>}
                     <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(2)}>
                         <a href='#'>Drugi ciklus</a>
                     </li>
-                    {this.state.kliknut1 && <Odsjeci parametar = "drugi"/>}
+                    {this.state.kliknut1 && <Odsjeci ciklus = "drugi"/>}
                     <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(3)}> 
                         <a href='#'>Treci ciklus</a>
                     </li> 
-                    {this.state.kliknut2  && <Odsjeci parametar = "treci"/>}
+                    {this.state.kliknut2  && <Odsjeci ciklus = "treci"/>}
                 </ul>
             </div>
         )
     }
 }
 
-export default ciklusi
+export default Ciklusi

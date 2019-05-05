@@ -64,8 +64,8 @@ state = {response:[]}
       )
     }]
     return(
-      <div>
-        Kreirani ispiti
+      <div style={{paddingTop: "5%"}}>
+        <h3 style={{textAlign: "left", marginLeft: "1%"}}>Kreirani ispiti</h3>
         
       </div>
     );

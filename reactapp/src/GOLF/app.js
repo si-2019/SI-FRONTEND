@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import MojiPredmeti from './mojiPredmeti.js'
-import ciklusi from './ciklusi.js'
+import Ciklusi from './ciklusi.js'
 
 class App extends Component {
   render() {
@@ -18,7 +18,8 @@ class App extends Component {
                                 <a href='/Golf/mojiPredmeti'>Moji predmeti</a>
                             </li>
                         </ul>
-                     <Route path="/Golf" component={ciklusi} />
+                     <Route path="/Golf" component={Ciklusi} />
+                     
                     </div>
                     <div class='col-9'>
                         <Route exact path="/Golf" component={MojiPredmeti} />

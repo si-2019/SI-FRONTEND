@@ -8,10 +8,10 @@ class Tema extends Component{
       const {idTeme,idPredmeta, idUser,description,title, timeCreated,brojKomentara}=this.props.tema;
       
       return(
-      <div>
+      <div className='shadow-sm p-3 mb-5 bg-light rounded'>
         <div className='naziv_teme' >
-          <p>{title}</p>
-          <input  className='stickyDugme' type='button' value="S"/>
+          <a className="nav-link" href='#'>{title}</a>
+          <input  className='btn btn-primary btn-sm' type='button' value="S"/>
         </div>
         <div className='datum_komentari'>
           <p className='brKom' >

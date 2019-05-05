@@ -87,13 +87,7 @@ fun(){
     
     return (
       <div className="row justify-content-center mt-5 ">
-        <div className="col-sm-auto">
-        <button color="primary" className="px-4"
-               onClick={this.handleSubmit} 
-                  >
-                  Povratak
-                </button>
-                
+        <div className="col-sm-auto">      
         </div>
         <div className="form-group bg-light col-md-4 p-4 ">
           <form onSubmit = {this.handleUnesi}>
@@ -122,6 +116,9 @@ fun(){
               Unesi
             </button>
           </form>
+          <hr></hr>
+          <button color="primary" className="btn btn-primary my-1 btn-sm"
+          onClick={this.handleSubmit}> Povratak </button>
         </div>
       </div>
     );

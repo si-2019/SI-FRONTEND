@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 class KreirajIspit extends Component{
-  state = {response:[], brojStudenata:0}
+  state = {response:[], brojStudenata:0, validationError: false, validationErrorMessage: ""}
 
   async componentDidMount(){
     const {data} = await axios.get('http://localhost:31903/api/predmeti')

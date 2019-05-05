@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import MojiPredmeti from './mojiPredmeti.js'
+import ciklusi from './ciklusi.js'
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
         <h1>GOLF</h1>
         <div>
         <Router>
+    
                 <div class='row'>
                     <div class='col-3'>
                         <ul class="list-group">
@@ -16,10 +18,12 @@ class App extends Component {
                                 <a href='/Golf/mojiPredmeti'>Moji predmeti</a>
                             </li>
                         </ul>
+                     <Route path="/Golf" component={ciklusi} />
                     </div>
                     <div class='col-9'>
                         <Route exact path="/Golf" component={MojiPredmeti} />
                         <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
+                        
                     </div>
                 </div>
             </Router>

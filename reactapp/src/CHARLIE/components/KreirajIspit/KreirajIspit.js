@@ -57,6 +57,15 @@ class KreirajIspit extends Component{
             <Link to="/charlie/kreiraj-ispit-detalji">
                   <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
               </Link>
+              {this.state.validationError && (
+                <div className="alert alert-danger" role="alert">
+                  <i
+                    className="fas fa-exclamation-triangle"
+                    style={{ marginRight: "5px" }}
+                  />
+                  {this.state.validationErrorMessage}
+                </div>
+              )}
               <br />
               <Link to="/charlie/kreirani-ispiti">
                 <button type="button" class="btn btn-primary">Kreirani ispiti</button>

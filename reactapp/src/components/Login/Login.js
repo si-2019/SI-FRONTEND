@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react';
 import './login.css';
-
+var error = 'Greska';
 class Login extends Component {
     state = {
-      korisnickoIme: '',
-      sifra: ''
+        korisnickoIme: '',
+        sifra: ''
     }
 
   componentWillMount() {
@@ -20,16 +20,21 @@ class Login extends Component {
   }
   
   validirajFormu(){
-  alert("validations passed");
-  return true;
- }
+	var passwordRegex = /^[0-9a-z]+$/
+	if(this.state.sifra.length < 8){
+		error='Sifra mora imati preko 7 karaktera'; 
+		return false;
+		}
+	if(!this.state.korisnickoIme.match(passwordRegex)){error='Korisnicko ime ima nedozvoljen karakter'; return false;}
+	if(!this.state.sifra.match(passwordRegex)){error='Sifra ima nedozvoljen karakter'; return false;}
+	return true;		
+ 	}
   Submitaj = (e) => {
 	if(!this.validirajFormu()){
+	alert(error);
 	e.preventDefault();
 	return;
 	}
-	const {korisnickoIme, sifra} = this.state;
-	alert('Logovan sa korisnickim imenom: ${korisnickoIme} sifrom: ${sifra}');
   }
 	
 

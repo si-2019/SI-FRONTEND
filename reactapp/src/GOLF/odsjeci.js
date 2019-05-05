@@ -8,6 +8,9 @@ class Smjer extends Component {
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(1)}>
                         Računarstvo i informatika
                     </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Automatika i elektronika
+                    </li>
                 </ul>
             </div>
         )

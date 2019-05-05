@@ -66,7 +66,20 @@ state = {response:[]}
     return(
       <div style={{paddingTop: "5%"}}>
         <h3 style={{textAlign: "left", marginLeft: "1%"}}>Kreirani ispiti</h3>
-        
+        <ReactTable 
+            data={tableData}
+            columns={columns} 
+            defaultPageSize={5}
+            style={{
+              width: "98%",
+              marginLeft: "auto",
+              marginRight: "auto",
+              textAlign: "center"
+              
+            }}
+            className="-striped -highlight"
+        />
+        <br />
       </div>
     );
   }

@@ -27,6 +27,8 @@ class KreirajIspit extends Component{
   }
 
   validate = (e) => {
+    const subjectNAme = this.refs.odabirPredmeta.value
+    const typeOfExam = this.refs.odabirTipIspita.value
     
   }
 

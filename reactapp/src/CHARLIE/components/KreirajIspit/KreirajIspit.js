@@ -29,13 +29,14 @@ class KreirajIspit extends Component{
   validate = (e) => {
     const subjectNAme = this.refs.odabirPredmeta.value
     const typeOfExam = this.refs.odabirTipIspita.value
+    if(typeOfExam != "Usmeni" && typeOfExam != "Uvid") {
       const {data} = axios.get('http://localhost:31903/predmet/' + subjectNAme + '/' + typeOfExam)
       if(data > 4 || (data > 3 && typeOfExam == "Integralni")){
         e.preventDefault();
         this.setState({validationError: true})
         this.setState({validationErrorMessage : "Odabrani tip ispita je kreiran maksimalno puta"})
       }
-    
+    }
   }
 
   render(){

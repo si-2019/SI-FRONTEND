@@ -16,16 +16,6 @@ class App extends Component {
       <div className="container">
         CHARLIE
         <BrowserRouter>
-<<<<<<< HEAD
-          <Route path='/charlie/info-o-ispitu' exact component={InformacijeOIspitu}/>
-          <Route path='/charlie' exact component={KreirajIspit}/>
-          <Route path='/charlie/kreiraj-ispit-detalji' exact component={KreirajIspitDetalji}/>
-          <Route path='/charlie/kreirani-ispiti' exact component={KreiraniIspiti}/>
-          <Route path='/charlie/pregled-studenata' exact component={PregledStudenata}/>
-          <Route path='/charlie/prijava-ispita' exact component={PrijavaIspita}/>
-          <Route path='/charlie/prijavljeni-ispiti' exact component={PrijavljeniIspiti}/>
-          <Route path='/charlie/uredi-ispit' exact component={UrediIspit}/>
-=======
           <Route
             path="/charlie/info-o-ispitu"
             exact
@@ -58,7 +48,6 @@ class App extends Component {
           />
           <Route path="/charlie/uredi-ispit" exact component={UrediIspit} />
           <Route path="/charlie" exact component={KreirajIspit} />
->>>>>>> develop
         </BrowserRouter>
       </div>
     );

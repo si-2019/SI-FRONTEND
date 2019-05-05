@@ -26,6 +26,10 @@ class KreirajIspit extends Component{
     return this.state.brojStudenata
   }
 
+  validate = (e) => {
+    
+  }
+
   render(){
     return(
     <div className='container'>

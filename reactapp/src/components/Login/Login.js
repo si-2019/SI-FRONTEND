@@ -3,20 +3,25 @@ import './login.css';
 
 class Login extends Component {
     state = {
-        njumas: [
-            {
-                id: 2,
-                text: 'Ah što ćemo'
-            },
-            {
-                id: 142,
-                text: 'Kad ja moram'
-            }
-        ]
+      korisnickoIme: '',
+      sifra: ''
     }
 
   componentWillMount() {
     document.title = 'Login stranica'
+  }
+
+  pratiPromjenuKorisnickogImena = (e) => {
+    this.setState({korisnickoIme: e.target.value});
+  }
+
+  pratiPromjenuSifre = (e) => {
+    this.setState({sifra: e.target.value});
+  }
+
+  Submitaj = (e) => {
+    e.preventDefault();
+     //treba validirati ulaze
   }
 
   render () {
@@ -25,11 +30,11 @@ class Login extends Component {
         <div id="main">
           <form>
             <label htmlFor="korisnickoIme">Korisničko ime:</label>
-            <input type="text" name="korisnickoIme" />
+            <input type="text" name="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} />
             <label htmlFor="sifra">Šifra:</label>
-            <input type="password" name="sifra" />
+            <input type="password" name="sifra" onChange={this.pratiPromjenuSifre} />
 
-            <input type="submit" name="submit" value="Prijava"/>
+            <input type="submit" name="submit" value="Prijava" onSubmit={this.Submitaj}/>
           </form>
           
         </div>

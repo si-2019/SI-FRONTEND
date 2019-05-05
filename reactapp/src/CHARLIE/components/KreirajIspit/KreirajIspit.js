@@ -34,14 +34,14 @@ class KreirajIspit extends Component{
             
             <div className='col-3'>
             <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
-                <select className="form-control" id="odabirPredmeta" >
+                <select className="form-control" id="odabirPredmeta" ref="odabirPredmeta">
                     {this.renderOptions()}
                 </select>
                 <button type="button" class="btn btn-primary" id="nazadDugme" onClick={() => window.open( 'http://www.google.ba')}>Nazad</button>
            </div> 
             <div className='col-3'>
               <label htmlFor="odabirTipIspita">Tip Ispita: </label>
-                <select className="form-control2" id="odabirTipIspita" >
+                <select className="form-control2" id="odabirTipIspita" ref="odabirTipIspita">
                     <option>Prvi parcijalni</option>
                     <option>Drugi parcijalni</option>
                     <option>Integralni</option>

@@ -30,7 +30,19 @@ class TabelaStudenti extends Component {
     }
     
     render() {
-        console.log(this.state.studenti);
+        let listaIspita;
+        if (this.state.ispiti.length == 0) {
+            listaIspita = [
+                <th>Prvi parcijalni ispit</th>,
+                <th>Drugi parcijalni ispit</th>,
+                <th>Usmeni ispit</th>,
+            ];
+        }
+        else {
+            this.state.ispiti.map((ispit, i)=> {
+                return <th>{ispit.naziv}</th>
+            })
+        }
         return (
         <Container>
             <Table striped bordered hover size="sm" responsive>
@@ -41,11 +53,7 @@ class TabelaStudenti extends Component {
                     <th>Ime i Prezime</th>
                     <th>Prisustvo</th>
                     <th>Zadaće</th>
-                    {
-                        this.state.ispiti.map((ispit, i)=> {
-                            return <th>{ispit.naziv}</th>
-                        })
-                    }
+                    {listaIspita}
                     <th>Ukupno</th>
                     <th>Ocjena</th>
                     </tr>
@@ -53,7 +61,7 @@ class TabelaStudenti extends Component {
                 <tbody>
                     {
                         this.state.studenti.map((student, i) => {
-                            return <tr>
+                            return <tr key={student.index}>
                                 <td>{i+1}</td>
                                 <td>{student.index}</td>
                                 <td>{student.imePrezime}</td>

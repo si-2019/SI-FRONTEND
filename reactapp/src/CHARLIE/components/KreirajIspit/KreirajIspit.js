@@ -59,7 +59,7 @@ class KreirajIspit extends Component{
             </div> 
             <div className='col-3'>
             <Link to="/charlie/kreiraj-ispit-detalji">
-                  <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
+                  <button type="button" class="btn btn-primary" id="kreirajDugme" onClick={this.validate}>Kreiraj</button>
               </Link>
               {this.state.validationError && (
                 <div className="alert alert-danger" role="alert">

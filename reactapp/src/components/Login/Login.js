@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import './login.css';
 
 class Login extends Component {
@@ -18,23 +18,32 @@ class Login extends Component {
   pratiPromjenuSifre = (e) => {
     this.setState({sifra: e.target.value});
   }
-
+  
+  validirajFormu(){
+  alert("validations passed");
+  return true;
+ }
   Submitaj = (e) => {
-    e.preventDefault();
-     //treba validirati ulaze
+	if(!this.validirajFormu()){
+	e.preventDefault();
+	return;
+	}
+	const {korisnickoIme, sifra} = this.state;
+	alert('Logovan sa korisnickim imenom: ${korisnickoIme} sifrom: ${sifra}');
   }
+	
 
   render () {
     return (
       <div id="body">
         <div id="main">
-          <form>
+          <form onSubmit = {this.Submitaj}>
             <label htmlFor="korisnickoIme">Korisničko ime:</label>
-            <input type="text" name="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} />
+            <input type="text" name="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
             <label htmlFor="sifra">Šifra:</label>
-            <input type="password" name="sifra" onChange={this.pratiPromjenuSifre} />
+            <input type="password" name="sifra" onChange={this.pratiPromjenuSifre} required/>
 
-            <input type="submit" name="submit" value="Prijava" onSubmit={this.Submitaj}/>
+            <input type="submit" name="submit" value="Prijava"/>
           </form>
           
         </div>

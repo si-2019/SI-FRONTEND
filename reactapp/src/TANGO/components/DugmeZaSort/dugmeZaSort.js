@@ -78,19 +78,19 @@ class DugmeZaSort extends Component{
     
     render() {
           return(
-            <div>
-                <select id='sr' >
+            <div className="d-inline-flex justify-content-end p-2 bd-highlight">
+                <select className="form-control" id='sr' >
                     <option value='1'>Manji -> veci</option>
                     <option value='2'>Veci -> manji</option>
                 </select>
   
-                <select id='ss' >
+                <select className="form-control" id='ss' >
                     <option value='1'>A-Z</option>
                     <option value='2'>Datum</option>
                     <option value='3'>Komentari</option>
                 </select>
   
-                <input type='button' value='sortiraj' 
+                <input className="btn btn-info" type='button' value='sortiraj' 
                     onClick={()=>{this.pozoviFunkcijeSortiranja(this.props.teme, this.props.obrnut,'sr','ss')}}></input> 
             </div>
           );

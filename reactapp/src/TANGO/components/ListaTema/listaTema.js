@@ -56,6 +56,9 @@ class Lista extends Component{
               obrnut={this.state.obrnut}
             />
           </div>
+          <div>
+            <input type='text' class="form-control bg-white rounded" value="Search"></input>
+          </div>
           {/* <button onClick={() => {this.sortirajAZ(this.state.teme)}}>a-z</button> */}
         <div>
           <Teme teme={this.state.teme}/>

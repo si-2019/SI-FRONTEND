@@ -14,6 +14,9 @@ class Smjer extends Component {
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                     Elektroenergetika
                     </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Telekomunikacije
+                    </li>
                 </ul>
             </div>
         )

@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
-
+import './golf.css'
 class JedanPredmet extends Component {
   render() {
     return (
-        <p class="text-success">
-            {this.props.predmet.naziv}
-        </p>
+        <div id="predmet_kartica" class="card border-info mb-3" >
+        <div class="card-header">
+        <a href='/Golf/mojiPredmeti'>{this.props.predmet.naziv}</a>
+        </div>
+        <div class="card-body">
+        <p class="card-text">{this.props.predmet.opis}</p>
+        </div>
+        </div>
+
+  
     )
   }
 }

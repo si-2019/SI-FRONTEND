@@ -3,7 +3,9 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import MojiPredmeti from './mojiPredmeti.js'
 
 class App extends Component {
+
   render() {
+    
     return (
       <div>
         <h1>GOLF</h1>
@@ -19,7 +21,7 @@ class App extends Component {
                     </div>
                     <div class='col-9'>
                         <Route exact path="/Golf" component={MojiPredmeti} />
-                        <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
+                        <Route path="/Golf/mojiPredmeti" component={MojiPredmeti} />
                     </div>
                 </div>
             </Router>

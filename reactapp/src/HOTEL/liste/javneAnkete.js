@@ -12,16 +12,34 @@ class App extends React.Component {
         const items = this.state.items
         return (
             <div>
+
+                <table>
+                    <tr>
+                    <td>NAZIV ANKETE</td>
+                    <td>OPIS</td>
+                    <td>DATUM ISTEKA</td>
+                    <td>PRIKAZ ANKETE</td>
+                    <td>UREDI</td>
+                    <td>OBRIŠI</td>
+                    </tr>
+            
+
                 {items.ankete ? items.ankete.map(anketa => (
-                    <div>
-                        {anketa.naziv}
-                    </div>
+                    <tr>
+                    <th>{anketa.naziv}</th>
+                    <th>{anketa.opis}</th>
+                    <th>{anketa.datumIstekaAnkete}</th>
+                    <th> <button class="ButtoniTabela" type="button" id="prikaziButton" >PRIKAŽI</button> </th>
+                    <th> <button class="ButtoniTabela" type="button" id="urediButton" >UREDI</button> </th>
+                    <th> <button class="ButtoniTabela" type="button" id="obrisiButton" >OBRIŠI</button> </th>
+                    </tr>
                 )) : "Loading..."}
+                </table>
             </div>
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajAnkete', {
+        fetch(url + '/dajListuJavnihAnketa', {
             method: 'GET'
         })
         .then(res => res.json())

@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={{padding: '25px'}}>
-      <h1 id="naslov">Moje ankete</h1>
+      <h1 id="naslov">Ankete</h1>
       <Router>
         <div>
           <Route exact path ="/hotel/liste" component={MojeAnkete} />

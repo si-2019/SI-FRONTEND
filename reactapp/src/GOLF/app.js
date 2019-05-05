@@ -18,7 +18,7 @@ class App extends Component {
                                 <a href='/Golf/mojiPredmeti'>Moji predmeti</a>
                             </li>
                         </ul>
-                     <Route path="/Golf" component={Ciklusi} />
+                     <Ciklusi />
                      
                     </div>
                     <div class='col-9'>

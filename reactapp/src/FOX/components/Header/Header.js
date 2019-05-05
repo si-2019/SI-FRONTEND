@@ -12,14 +12,14 @@ class Header extends Component {
       let meni;
       if (isPocetna) {
         meni = <div>
-          <a style={{color: 'white', padding: '20px'}}class="" onclick="" href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</a>
-          <a style={{color: 'white'}}class="" onclick="" href="http://yiiisu.com/load.php?action=download&id=3" >Uputstvo</a>
+          <a style={{color: 'white', padding: '20px'}}className="logOut" onclick="" href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</a>
+          <a style={{color: 'white'}}className="" onclick="" href="http://yiiisu.com/load.php?action=download&id=3" >Uputstvo</a>
         </div>  
       }
       else {meni = <Navbar001 />;}
       return (
         <div className="Header">
-            <div class = "navbar bg-dark navbar-dark">               
+            <div className = "navbar bg-dark navbar-dark">               
                 {meni}
             </div>
            

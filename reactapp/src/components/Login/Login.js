@@ -31,7 +31,7 @@ class Login extends Component {
  	}
   Submitaj = (e) => {
 	if(!this.validirajFormu()){
-	alert(error);
+	document.getElementById('greske').innerText = error;
 	e.preventDefault();
 	return;
 	}
@@ -53,7 +53,7 @@ class Login extends Component {
           
         </div>
         <div id="greska">
-
+	<label id="greske"></label>
         </div>
         <div id="footer">
           Elektrotehnički fakultet u Sarajevu

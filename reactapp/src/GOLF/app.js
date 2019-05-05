@@ -4,7 +4,9 @@ import MojiPredmeti from './mojiPredmeti.js'
 import Ciklusi from './ciklusi.js'
 
 class App extends Component {
+
   render() {
+    
     return (
       <div>
         <h1>GOLF</h1>
@@ -24,7 +26,6 @@ class App extends Component {
                     <div class='col-9'>
                         <Route exact path="/Golf" component={MojiPredmeti} />
                         <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
-                        
                     </div>
                 </div>
             </Router>

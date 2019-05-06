@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from "react-router-dom";
+
+import Login from "./components/Login";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1>ROMEO</h1>
+      <div className="container">
+        ROMEO
+        <BrowserRouter>
+          <Route
+            path="/romeo/login"
+            exact
+            component={Login}
+          />
+          <Route path="/romeo" exact component={Login} />
+        </BrowserRouter>
       </div>
     );
   }

@@ -53,11 +53,11 @@ class Login extends Component {
         <div id="main">
           <form onSubmit = {this.Submitaj}>
             <label htmlFor="korisnickoIme">Korisničko ime:</label>
-            <input type="text" name="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
+            <input type="text" name="korisnickoIme" id="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
             <label htmlFor="sifra">Šifra:</label>
-            <input type="password" name="sifra" onChange={this.pratiPromjenuSifre} required/>
+            <input type="password" name="sifra" id="sifra" onChange={this.pratiPromjenuSifre} required/>
 
-            <input type="submit" name="submit" value="Prijava"/>
+            <input type="submit" name="submit" id="submit" value="Prijava"/>
           </form>
           
         </div>

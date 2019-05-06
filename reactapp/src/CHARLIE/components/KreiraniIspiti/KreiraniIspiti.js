@@ -17,6 +17,15 @@ class KreiraniIspiti extends React.Component{
         }],
     };
 }
+
+state = {response:[]}
+
+  async componentDidMount() {
+    const ispiti = await axios.get("http://localhost:31903/ispiti");
+    //Za svaki entry nadji ime predmeta na osnovu id-a
+    this.setState({ tableData: ispiti.data });
+  } 
+  
   render(){
     return(
       <div>

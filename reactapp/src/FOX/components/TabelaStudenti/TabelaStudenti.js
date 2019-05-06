@@ -30,7 +30,7 @@ class TabelaStudenti extends Component {
     }
     
     render() {
-        let listaIspita;
+        let listaIspita = [];
         if (this.state.ispiti.length == 0) {
             listaIspita = [
                 <th>Prvi parcijalni ispit</th>,
@@ -40,7 +40,8 @@ class TabelaStudenti extends Component {
         }
         else {
             this.state.ispiti.map((ispit, i)=> {
-                return <th>{ispit.naziv}</th>
+                listaIspita.push(<th>{ispit.naziv}</th>);
+               // return <th>{ispit.naziv}</th>
             })
         }
         return (

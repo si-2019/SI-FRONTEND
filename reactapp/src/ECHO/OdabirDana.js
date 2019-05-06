@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from "reactstrap";
 import './OdabirDana.css';
  
 var siva = '#282c34';
@@ -51,34 +52,42 @@ class OdabirDana extends Component {
     })
   }
   ponisti1(){
+    alert('Uspjesno ste ponistili termine za ponedjeljak')
     this.setState({
       prikaziMe:false,
-      color: siva
+      color: siva,
     })
   }
   ponisti2(){
+    alert('Uspjesno ste ponistili termine za utorak')
     this.setState({
       prikaziMe2:false,
-      color2: siva
+      color2: siva,
     })
   }
   ponisti3(){
+    alert('Uspjesno ste ponistili termine za srijedu')
     this.setState({
       prikaziMe3:false,
-      color3: siva
+      color3: siva,
     })
   }
   ponisti4(){
+    alert('Uspjesno ste ponistili termine za cetvrtak')
     this.setState({
       prikaziMe4: false,
-      color4:siva
+      color4:siva,
     })
   }
   ponisti5(){
+    alert('Uspjesno ste ponistili termine za petak')
     this.setState({
       prikaziMe5:false,
-      color5:siva
+      color5:siva,
     })
+  }
+  unesi(){
+    alert('Uspjesno ste spremili promjene')
   }
    render() {
      let boja=this.state.color ;
@@ -142,7 +151,7 @@ class OdabirDana extends Component {
         </div>
         </div>
         <div id="gen">
-        <button id = "generisi"><h1>Generiši raspored</h1></button>
+        <button id = "generisi" onClick={()=>this.unesi()}><h1>Generiši raspored</h1></button>
         </div>
       </div>
     );

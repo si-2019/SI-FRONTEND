@@ -5,7 +5,7 @@ class objavaStudent extends Component {
     return (
         <div class="card">
             <div class="card-body">
-            
+            <h4 class="card-title">Tutorijal</h4>
             </div>
         </div>
     );

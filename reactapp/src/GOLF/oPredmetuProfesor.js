@@ -4,12 +4,12 @@ class oPredmetuProfesor extends Component {
   render() {
   	const objave = [
   	{
-  		naslov: 'Naziv predmeta',
+  		naslov: 'O predmetu',
   	}
   	]
     return (
         <div>
-            <h2>{this.props.naslov}</h2>
+            <h3>{this.props.naslov}</h3>
         </div>
     );
   }

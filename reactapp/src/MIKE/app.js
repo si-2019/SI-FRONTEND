@@ -7,6 +7,9 @@ import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjePr
 import MockListaPredmeta from './MockListaPredmeta';
 
 
+
+
+
 class Mike extends Component {
   constructor(props){
     super(props);
@@ -17,8 +20,10 @@ class Mike extends Component {
     this.listaProjekata=this.listaProjekata.bind(this);
   }
   render() {
+   
     if(this.state.forma=="null") return (
       <div className="Mike">
+       
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekta studenta</button>
         <button>Rad na projektu</button>

@@ -16,7 +16,7 @@ class odabirDanaAdmin extends Component {
       color2:siva,
       color3: siva,
       color4: siva,
-      color5: siva
+      color5: siva      
     }
   }
  
@@ -54,31 +54,42 @@ class odabirDanaAdmin extends Component {
     this.setState({
       prikaziMe:false,
       color: siva
-    })
+    });  
+    alert("Uspješno ste poništili sve termine za odabranog profesora za dan ponedjeljak!"); 
   }
   ponisti2(){
     this.setState({
       prikaziMe2:false,
       color2: siva
-    })
+    });
+    alert("Uspješno ste poništili sve termine za odabranog profesora za dan utorak!"); 
   }
   ponisti3(){
     this.setState({
       prikaziMe3:false,
       color3: siva
-    })
+    });
+    alert("Uspješno ste poništili sve termine za odabranog profesora za dan srijedu!"); 
   }
   ponisti4(){
     this.setState({
       prikaziMe4: false,
       color4:siva
-    })
+    });
+  alert("Uspješno ste poništili sve termine za odabranog profesora za dan četvrtak!"); 
   }
   ponisti5(){
     this.setState({
       prikaziMe5:false,
       color5:siva
-    })
+    });
+  alert("Uspješno ste poništili sve termine za odabranog profesora za dan petak!"); 
+  }
+  funkcijaZaUnos(){
+    alert("Promjene su uspješno spremljene!");
+  }
+  funkcijaZaDane(){
+    alert("Dani za odabranog profesora su uspješno učitani");
   }
    render() {
      let boja=this.state.color ;
@@ -94,7 +105,7 @@ class odabirDanaAdmin extends Component {
         <div id="divOdabir">
         <div id ="odabir"><h1>Odaberite profesora</h1></div>
         <div id="selekt"><select id="selektt"><option>Profesor 1</option></select></div>
-        <div id="prikaz"><button id="dugme">Prikaži radne dane</button></div>
+        <div id="prikaz"><button id="dugme" onClick={()=>this.funkcijaZaDane()}>Prikaži radne dane</button></div>
         <div  id="selekt"><select id="selektt"><option>Ponedjeljak</option></select></div>
         <div><h1></h1></div>
         </div> 
@@ -150,7 +161,7 @@ class odabirDanaAdmin extends Component {
         </div>
         </div>
         <div id="gen">
-        <button id = "generisi"><h1>Generiši raspored</h1></button>
+        <button id = "generisi" onClick={()=>this.funkcijaZaUnos()}><h1>Generiši raspored</h1></button>
         </div>
       </div>
     );

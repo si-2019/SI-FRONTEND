@@ -1,34 +1,24 @@
 import React, { Suspense, Fragment, memo, Component } from "react";
 import { unstable_createResource } from "react-cache";
-
-
-const FetcherAddTheme = unstable_createResource(() =>
-    fetch("http://localhost:8000/addTheme", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        title: '{ this.state.naziv }',
-        description: '{ this.state.opis }',
-        timeCreated: Date.now()
-
-      })
-    }).then(r => r.json())
-  );
-  
-  const addTheme = () => FetcherAddTheme.read();
-
-
+import {
+  withRouter
+} from 'react-router-dom'
+import Lista from '../ListaTema/listaTema'
 
 class NovaTema extends Component {
   constructor() {
     super();
     this.state = {
       naziv: "",
-      opis: ""
+      opis: "",
+      povratak:false
     };
+
+  }
+  povratak = false;
+  handleSubmit = evt => {
+ 
+    this.setState({povratak:true});
   }
 
   handleNazivTemeChange = evt => {
@@ -47,7 +37,7 @@ class NovaTema extends Component {
     const { naziv, opis } = this.state;
    
  evt.preventDefault()
- fetch("http://localhost:8000/addTheme", {
+ fetch("http://localhost:31919/addTheme", {
 method: 'POST',  
 body: JSON.stringify({
   IdPredmeta: '1',
@@ -89,11 +79,17 @@ fun(){
   }
 
   render() {
-    const isEnabled = this.MozeBitiUneseno();
+    if(this.state.povratak==true)
+      return (<Lista/>);
+    else{
+      const isEnabled = this.MozeBitiUneseno();
 
+    
     return (
       <div className="row justify-content-center mt-5 ">
-        <div className="form-group bg-light col-md-4">
+        <div className="col-sm-auto">      
+        </div>
+        <div className="form-group bg-light col-md-4 p-4 ">
           <form onSubmit = {this.handleUnesi}>
             <p className="lead mb-1">Naziv Teme</p>
             <input
@@ -120,10 +116,13 @@ fun(){
               Unesi
             </button>
           </form>
+          <hr></hr>
+          <button color="primary" className="btn btn-primary my-1 btn-sm"
+          onClick={this.handleSubmit}> Povratak </button>
         </div>
       </div>
     );
-  }
+  }}
 }
 
 export default NovaTema;

@@ -1,18 +1,42 @@
 import React, { Component } from 'react';
 import './pocetna.css';
+import {Link} from 'react-router-dom';
+import color from '@material-ui/core/colors/deepPurple';
 class AnketePocetna extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1> ANKETE</h1>
-        </header>
-         <button className="App-edit" id = "kreiranje"><h1>Kreiraj anketu</h1></button>
-        <button className="App-edit" id = "popunjavanje"><h1>Popuni anketu</h1></button>
-        <button className="App-edit" id = "mojeAnkete"><h1>Moje ankete</h1></button>
-        <button className="App-edit" id = "javneAnkete"><h1>Javne ankete</h1></button>
-        <button className="App-edit" id = "rezultati"><h1>Rezultati anketa</h1></button>
+        <nav class="NavPadding" >
+          <h2>ANKETE</h2>
+            <div class="collapse navbar-collapse" id="navbarColor01"> </div>
+        </nav>
+
+        <div class="btn-group-vertical" data-toggle="buttons">
+          <br></br>
+          <Link to ="/HOTEL/kreiranje">
+          <button type="button" class="ButtonPadding" id="kreiranje" >Kreiraj anketu</button>
+          <br></br>
+          </Link>
+          <Link to="/HOTEL/popunjavanje">
+          <button type="button" class="ButtonPadding" id="popunjavanje">Popuni anketu</button>
+          <br></br>
+          </Link>
+          <Link to="/HOTEL/liste/mojeAnkete">
+          <button type="button" class="ButtonPadding" id="mojeAnkete">Moje ankete</button>
+          <br></br>
+          </Link>
+          <Link to="HOTEL/liste/javneAnkete">
+          <button type="button" class="ButtonPadding" id="javneAnkete">Javne ankete</button>
+          <br></br>
+          </Link>
+          <Link to="/HOTEL/rezultati">
+          <button type="button" class="ButtonPadding" id="rezultati">Rezultati anketa</button>
+          <br></br>
+          </Link>
+        </div>
       </div>
+
+      
     );
   }
 }

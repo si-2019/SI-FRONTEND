@@ -45,7 +45,6 @@ class TabelaStudenti extends Component {
             })
         }
         return (
-        <Container>
             <Table striped bordered hover size="sm" responsive>
                 <thead>
                     <tr>
@@ -92,8 +91,7 @@ class TabelaStudenti extends Component {
                     <td>7</td>
                     </tr>
                 </tbody>
-            </Table>
-        </Container>   
+            </Table>   
         );
     }
   }

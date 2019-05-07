@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar001 from '../Navbar/Navbar';
+import Navbar from 'react-bootstrap/Navbar'
 
 class Header extends Component {
   constructor(props) {
@@ -19,9 +20,10 @@ class Header extends Component {
       else {meni = <Navbar001 />;}
       return (
         <div className="Header">
-            <div className = "navbar bg-dark navbar-dark">               
+            {/*fixed="top"*/}
+            <Navbar bg="dark" variant="dark" expand="lg">               
                 {meni}
-            </div>
+            </Navbar>
            
         </div>
       );

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-
+import Moment from 'react-moment';
 class DodavanjeDatuma extends Component {
   render() {
     return (
-      <div>
-      </div>
+      <Moment format="DD/MM/YYYY  HH:mm">
+        {this.props.datumobjave.datum}
+      </Moment>
     )
   }
 }

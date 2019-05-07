@@ -19,20 +19,21 @@ class mojiPredmeti extends Component {
           opis: 'opis predmeta'
         }
       ],
-      datumobjave:[
-        {
+      datumobjave:{
           id:1,
           datum:Date.now()
         }
-      ]
+      
 
     }
+    console.log(this.state)
     return (
+      
         <div>
             <h1>Moji predmeti</h1>
             <SviPredmeti predmeti={this.state.svipredmeti} />
             <LiteraturaStudent />
-            <DodavanjeDatuma datum={this.state.datumobjave}/>
+            <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
         </div>
         
 

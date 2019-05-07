@@ -3,7 +3,6 @@ import history from "../utils/history";
 class Header extends Component {
   
   render() {
-    var nesta=100;
     return (
       <div >
         <div  id="hed" className="card-header bg-primary text-light mb-4" style= {{height:"50px"}}>
@@ -11,18 +10,18 @@ class Header extends Component {
             <a
               onClick={this.handleRedirectClick}
               href="/KILO/kreiranjeZadace/?idPredmeta=3"
-             
             >
               Kreiranje zadaće     
             </a>
-            
-          
-          
-            <a className="ml-4"
+            <a className="ml-5"
               onClick={this.handleRedirectClick}
               href="/KILO/azuriranjeZadace/?idPredmeta=3"
-              
             >Ažuriranje zadaće
+            </a>
+            <a className="ml-5"
+              onClick={this.handleRedirectClick}
+              href="/KILO/ocjenjivanjeZadace/?idPredmeta=3"
+            >Ocjenjivanje zadaće
             </a>
         </h5>
         </div>

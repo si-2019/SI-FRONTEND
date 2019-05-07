@@ -12,6 +12,7 @@ import {
 } from "../utils/kreiranje-zadace";
 
 class KreiranjeZadace extends Component {
+
   constructor(props) {
     super(props);
     const urlParams = new URLSearchParams(window.location.search);
@@ -20,7 +21,7 @@ class KreiranjeZadace extends Component {
       idPredmet: urlParams.get("idPredmeta")
         ? Number(urlParams.get("idPredmeta"))
         : 1,
-      radnja: "Kreiranje",
+      radnja: "Kreiranje", //Azuriranje
       naziv: "",
       datum: "2019-12-01",
       vrijeme: "23:59",
@@ -39,9 +40,13 @@ class KreiranjeZadace extends Component {
     };
   }
 
+
+  
+
+
   handleChangeProps = props => {
     if (props.mainState) {
-      console.log("AAA:", props.mainState);
+      //console.log("AAA:", props.mainState);
       this.setState({
         ...this.state,
         ...props.mainState
@@ -84,14 +89,14 @@ class KreiranjeZadace extends Component {
     var nasdan = Number.parseInt(this.state.datum.substring(8, 10));
 
     if (trengodina > nasagodina) return false;
-    if (trengodina == nasagodina && trenmjesec > nasmjesec) return false;
-    if (trengodina == nasagodina && trenmjesec == nasmjesec && trendan > nasdan)
+    if (trengodina === nasagodina && trenmjesec > nasmjesec) return false;
+    if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
       return false;
     if (
-      trengodina == nasagodina &&
-      trenmjesec == nasmjesec &&
-      trendan == nasdan &&
-      this.state.vrijeme != "23:59"
+      trengodina === nasagodina &&
+      trenmjesec === nasmjesec &&
+      trendan === nasdan &&
+      this.state.vrijeme !== "23:59"
     )
       return false;
     return true;
@@ -103,7 +108,7 @@ class KreiranjeZadace extends Component {
     var data = this.state;
 
     if (data.naziv.length < 2 || data.naziv.length > 30) {
-      porukeGreske.push("Naziv mora sadrzavati izmedju 2 i 30 karaktera!");
+      porukeGreske.push("Naziv mora sadržavati između 2 i 30 karaktera!");
     }
     if (data.brojZadataka.toString().includes(".")) {
       porukeGreske.push("Broj zadataka mora biti cijeli broj!");
@@ -133,7 +138,7 @@ class KreiranjeZadace extends Component {
     data.listaBodova.forEach(element => {
       if (parseFloat(element) <= 0) {
         porukeGreske.push(
-          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!"
+          "Bodovi moraju biti uneseni i broj bodova mora biti veći od 0!"
         );
         return porukeGreske;
       }
@@ -146,7 +151,7 @@ class KreiranjeZadace extends Component {
         return porukeGreske;
       }
       if (parseInt(element * 100) !== element * 100) {
-        porukeGreske.push("Broj bodova moze imati najvise dvije decimale!");
+        porukeGreske.push("Broj bodova može imati najviše dvije decimale!");
         return porukeGreske;
       }
     });
@@ -168,7 +173,7 @@ class KreiranjeZadace extends Component {
           porukeGreske: porukeGreske
         });
 
-        var valid = porukeGreske.length == 0 ? true : false;
+        var valid = porukeGreske.length === 0 ? true : false;
 
         if (valid) {
           document.getElementById("kreiranje").style.display = "none";
@@ -218,8 +223,8 @@ class KreiranjeZadace extends Component {
               this.setState({ neuspjehKreiranja: true });
             }
           });
-         console.log('iddd:  '+this.props.mainState.idZadaca);
         }  
+        break;
       }
       default: {
       }
@@ -314,8 +319,10 @@ class KreiranjeZadace extends Component {
       <div>
         <div>
           <Modal isOpen={!this.state.validno}>
-            <ModalHeader>Greška!</ModalHeader>
-            <ModalBody>
+            <ModalHeader >
+            <p className="text-danger">Greška!</p>
+            </ModalHeader>
+            <ModalBody >
               {this.state.porukeGreske.map((poruka, indeks) => (
                 <p key={poruka + indeks}> {poruka} </p>
               ))}
@@ -387,9 +394,9 @@ class KreiranjeZadace extends Component {
             id="idiNaPreview"
             name="idiNaPreview"
             onClick={this.handleClick}
-            color="info"
+            className="bg-primary"
           >
-            Preview zadace
+            Pregled zadaće
           </Button>
         </div>
         <div id="preview">

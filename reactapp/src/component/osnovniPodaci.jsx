@@ -59,7 +59,6 @@ class OsnovniPodaci extends Component {
                   value={this.props.podaci.state.brojZadataka}
                   type="number"
                   pattern="(10|[1-9])"
-                  digitOnly
                   name="brojZadataka"
                   id="brojZadataka"
                   min={1}

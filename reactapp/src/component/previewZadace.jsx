@@ -30,7 +30,7 @@ class PreviewZadace extends Component {
           <Table className="table table-bordered text-center bg-active border-solid">
             <thead>
               <tr className="bg-primary text-light">
-                <th>INFO</th>
+                <th>Naziv</th>
                 {kolone.map((zadatak, indeks) => (
                   <th key={zadatak + indeks}>{zadatak}</th>
                 ))}

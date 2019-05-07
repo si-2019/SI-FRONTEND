@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Form
-} from "reactstrap";
+import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form} from "reactstrap";
 import KreiranjeZadace from "./kreiranjeZadace";
 import axios from "axios";
 
@@ -50,7 +43,7 @@ class AzuriranjeZadace extends Component {
 
   render() {
     const lista = this.state.listaZadacaZaAzuriranje; // this.pokupiIzBaze();
-    console.log(lista);
+   // console.log(lista);
     return (
       <div>
         <Form>
@@ -61,7 +54,7 @@ class AzuriranjeZadace extends Component {
                 toggle={this.toggle}
               >
                 <DropdownToggle caret className="bg-primary">
-                  Lista zadaća za ažuriranje
+                  Lista zadaća
                 </DropdownToggle>
                 <DropdownMenu className="bg-primary">
                   {lista.map(item => (
@@ -103,13 +96,13 @@ class AzuriranjeZadace extends Component {
       const res = await axios.get(
         `http://localhost:31911/getZadacaById/${zadacaId}`
       );
-      console.log(res.data);
+      //console.log(res.data);
       this.setState({
         azuriranjeState: res.data
       });
       
     } catch (e) {
-      console.error("Error fetching zadaca by id", e);
+      console.error("Greška prilikom dobavljanja zadaće sa id-em ", e);
     }
   };
 /*

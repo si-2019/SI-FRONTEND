@@ -70,8 +70,7 @@ class DodavanjeTipovaFileova extends Component {
                 <tr>
                   <th scope="row">{kk}</th>
                   {kolone.map((jedno, index) => (
-                    <th scope="col">
-                      <td>
+                    <th scope="col" key={jedno}>
                         {FILE_TYPES.map((item, jIndex) => (
                           <FormGroup key={item.ekstenzija} check>
                             <Input
@@ -98,7 +97,6 @@ class DodavanjeTipovaFileova extends Component {
                             <Label check>{item.ekstenzija}</Label>
                           </FormGroup>
                         ))}
-                      </td>
                     </th>
                   ))}
                 </tr>

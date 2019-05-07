@@ -25,8 +25,42 @@ state = {response:[]}
     //Za svaki entry nadji ime predmeta na osnovu id-a
     this.setState({ tableData: ispiti.data });
   } 
-  
+
   render(){
+    const { tableData } = this.state;
+    const columns=[
+      {
+        Header: () => <strong>Naziv predmeta</strong>,
+        id: "idIspit",
+        accessor: 'idIspit',
+        minWidth: 80
+      },
+      {
+        Header:  () => <strong>Tip ispita</strong>,
+        id: "tipIspita",
+        accessor: 'tipIspita',
+        maxWidth: 200
+      },
+      {
+        Header:  () => <strong>Datum ispita</strong>,
+        id: "termin",
+        accessor: d => {
+          var t = new Date(d.termin);
+          return t.toUTCString();
+        },     
+        maxWidth: 150
+      },
+      {
+        
+        Header: '',
+        Cell: row => (
+          // U <div> ispod dodati dugmice
+          <div>
+            
+              
+          </div>
+      )
+    }]
     return(
       <div>
         Kreirani ispiti

@@ -48,7 +48,7 @@ state = {response:[]}
           var t = new Date(d.termin);
           return t.toUTCString();
         },     
-        maxWidth: 150
+        minWidth: 80
       },
       {
         
@@ -64,6 +64,21 @@ state = {response:[]}
     return(
       <div style={{paddingTop: "5%"}}>
           <h3 style={{textAlign: "left", marginLeft: "1%"}}>Kreirani ispiti</h3>
+          <ReactTable 
+            data={tableData}
+            columns={columns} 
+            defaultPageSize={5}
+            style={{
+              width: "98%",
+              marginLeft: "auto",
+              marginRight: "auto",
+              textAlign: "center"
+              
+            }}
+            className="-striped -highlight"
+            id="tabelica"
+        />
+        <br />
       </div>
     )
   }

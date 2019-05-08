@@ -4,8 +4,22 @@ class ListaPredmeta extends Component {
   state = {
     predmeti: ["Predmet1", "Predmet2", "Predmet3", "Predmet4", "Predmet5"],
     vidljiv: false,
-    znak: "+"
+    znak: "+",
+    trenutnoLogovaniStudentID: 1
   };
+
+  componentDidMount() {
+    axios
+      .get(
+        `http://localhost:31918/predmeti/odslusani/` +
+          this.state.trenutnoLogovaniStudentID
+      )
+      .then(res => {
+        console.log(res);
+        const predmeti = res.data.odslusaniPredmeti.map(obj => obj.naziv);
+        this.setState({ predmeti });
+      });
+  }
 
   toggle() {
     this.setState({
@@ -50,9 +64,7 @@ class ListaPredmeta extends Component {
         </div>
         <div className="row">
           <div className="align-self-start">
-            {this.state.vidljiv ? this.prikazPredmeta() : (
-                ""
-              )}
+            {this.state.vidljiv ? this.prikazPredmeta() : ""}
           </div>
         </div>
       </div>

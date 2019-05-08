@@ -1,0 +1,21 @@
+
+#predmet_kartica{
+    max-width: 60rem;
+}
+
+#drugi{
+    margin-left: 5%;
+}
+.treci{
+    margin-left: 8%;
+}
+
+#naslovObjave{
+    width: 20%;
+}
+.divsaokvirom{
+    margin-bottom:1%;
+    height:150px;
+    width:950px;
+    border: 1px solid black;
+}

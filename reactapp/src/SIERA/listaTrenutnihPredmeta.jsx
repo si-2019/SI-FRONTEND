@@ -1,9 +1,24 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class ListaPredmeta extends Component {
   state = {
-    predmeti: ["Predmet1", "Predmet2", "Predmet3", "Predmet4", "Predmet5"]
+    predmeti: ["Predmet1", "Predmet2", "Predmet3", "Predmet4", "Predmet5"],
+    trenutnoLogovaniStudentID: 1
   };
+
+  componentDidMount() {
+    axios
+      .get(
+        `http://localhost:31918/predmeti/trenutni/` +
+          this.state.trenutnoLogovaniStudentID
+      )
+      .then(res => {
+        console.log(res);
+        const predmeti = res.data.trenutniPredmeti.map(obj => obj.naziv);
+        this.setState({ predmeti });
+      });
+  }
 
   prikazPredmeta() {
     if (this.state.predmeti.length === 0) return <p>Nema predmeta</p>;
@@ -34,9 +49,7 @@ class ListaPredmeta extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="align-self-start">
-            {this.prikazPredmeta()}
-          </div>
+          <div className="align-self-start">{this.prikazPredmeta()}</div>
         </div>
       </div>
     );

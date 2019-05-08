@@ -1,42 +1,70 @@
 import React, {Component} from 'react';
-import LISTA_TEMA from './LISTA.js';
+import Teme from '../Tema';
+import DugmeZaSort from '../DugmeZaSort';
+import LISTA_PROBNA from './LISTA';
+ 
 import {
   withRouter
 } from 'react-router-dom'
-class Tema extends Component{
-  render(){
-    console.log(this.props);
-    const {nazivTeme, slika,korisnickoIme,brojKomentara,datumStvaranja}=this.props.tema;
-    console.log(nazivTeme);
-    return(
-      <div className='tema'>
-          <div className='slika_ime'>
-            <img src={slika} />
-            <p>{korisnickoIme}</p>
-          </div>
-           <div className='naziv_teme' >
-                <p>{nazivTeme}</p>
-                <input  className='stickyDugme' type='button' value="S"/>
-            </div>
-              <div className='datum_komentari'>
-                <p className='brKom' >
-                    Br. komentara: {brojKomentara}
-                </p>
-                <p className='datStv'>
-                    {datumStvaranja}
-                </p>
-              </div>
-      </div>
-    );
-  }
-}
+import { resolve } from 'path';
+
+const themesApi= 'http://localhost:31919/getThemes/'; //plus id teme
+
+
+
 class Lista extends Component{
+  constructor() {
+    super();
+    this.state = {
+      teme:[],
+      obrnut: false
+    };
+    
+  }
+  
+  componentWillMount(){
+    this.setState({ucitavanje:true});
+    fetch(themesApi+'4')
+      .then(response=>response.json())
+      .then(teme=>this.setState({teme:teme,ucitavanje:false}));
+    //this.setState({teme:LISTA_PROBNA,ucitavanje:false});
+  }
+ //                   dodaj ,obrnut
+  promjeniStateNiza (niz, obrnut, vm) {
+    let newState = this.state;
+    newState = {
+      teme:niz,
+      obrnut: obrnut
+    }
+    this.setState(newState);
+    
+  }
+  
+  
+
+  
   render(){
-    return(
-      //ovo je lista tema koju dobijemo sa servera
-      LISTA_TEMA.map(TEMA =>{
-          return (<Tema key={TEMA.id} tema={TEMA}/>);  }) 
-        )
+    if(this.state.ucitavanje){
+      return <p>Ucitavanje...</p>
+    }
+      return(
+        <div>
+          <div>
+            <DugmeZaSort 
+              teme={this.state.teme} 
+              sortirajNiz={this.promjeniStateNiza.bind(this)}
+              obrnut={this.state.obrnut}
+            />
+          </div>
+          <div>
+            <input type='text' class="form-control bg-white rounded" value="Search"></input>
+          </div>
+          {/* <button onClick={() => {this.sortirajAZ(this.state.teme)}}>a-z</button> */}
+        <div>
+          <Teme teme={this.state.teme}/>
+        </div>
+        </div>
+      );
   }
 }
 

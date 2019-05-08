@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import SviPredmeti from './SviPredmeti';
 import PropTypes from 'prop-types';
-import LiteraturaProfesor from './literaturaProfesor'
-import LiteraturaStudent from './literaturaStudent'
+import LiteraturaProfesor from './literaturaProfesor';
+import LiteraturaStudent from './literaturaStudent';
+import DodavanjeDatuma from './DodavanjeDatuma';
 class mojiPredmeti extends Component {
   render() {
     this.state={
@@ -17,15 +18,22 @@ class mojiPredmeti extends Component {
           naziv: 'VI',
           opis: 'opis predmeta'
         }
-      ]
+      ],
+      datumobjave:{
+          id:1,
+          datum:Date.now()
+        }
+      
+
     }
+    console.log(this.state)
     return (
+      
         <div>
             <h1>Moji predmeti</h1>
             <SviPredmeti predmeti={this.state.svipredmeti} />
-           
-        <LiteraturaStudent />
-
+            <LiteraturaStudent />
+            <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
         </div>
         
 

@@ -23,7 +23,24 @@ class FormaOdsjek extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
-        alert('Registrovan je korisnik: ', data.ime)
+        
+        const xhr = new XMLHttpRequest();
+
+        const body = JSON.stringify(data);
+
+        //Drugi URL
+        xhr.open('POST', 'http://localhost:31901/api/odsjek/AddNewOdsjek', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = () => {
+          if(xhr.status === 200) {
+            const resp = xhr.responseText;
+            alert(resp);
+          }
+        }
+        xhr.onerror = () => {
+          console.log(xhr.statusText);
+        }
+        xhr.send(body);  
       }
      
 

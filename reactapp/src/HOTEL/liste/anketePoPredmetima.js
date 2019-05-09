@@ -11,14 +11,15 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>          
-            <nav class="NavPadding" >
-                <h2>JAVNE ANKETE</h2>
+            <div>
+                <nav class="NavPadding">
+                <h2>SPISAK ANKETA PO PREDMETIMA</h2>
                 <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
             </nav>
 
             <br></br>
-                <table class="anketeTabela" align="center">
+
+            <table className="anketeTabela" align="center">
                     <tr>
                     <td>NAZIV ANKETE</td>
                     <td>OPIS</td>
@@ -27,16 +28,14 @@ class App extends React.Component {
                     <td>UREDI</td>
                     <td>OBRIŠI</td>
                     </tr>
-            
-
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
-                    <th>{anketa.naziv}</th>
-                    <th>{anketa.opis}</th>
-                    <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                    <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
+                        <th>{anketa.naziv}</th>
+                        <th>{anketa.opis}</th>
+                        <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
+                        <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
+                        <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
+                        <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
                     </tr>
                 )) : "Loading..."}
                 </table>
@@ -44,13 +43,19 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajListuJavnihAnketa', {
+        fetch(url + '/dajAnketeZaProfesoraPoPredmetima?idProfesora=1', {
             method: 'GET'
         })
         .then(res => res.json())
         .then(result => {
+            let niz = []
+            for(let key in result.ankete) {
+                niz = niz.concat(result.ankete[key].ankete)
+            }
             this.setState({
-                items: result
+                items: {
+                    ankete: niz
+                }
             })
         }, error => {
             this.setState({

@@ -12,6 +12,13 @@ class App extends React.Component {
         const items = this.state.items
         return (
             <div>
+                <nav class="NavPadding">
+                <h2>POPUNJENE ANKETE</h2>
+                <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
+            </nav>
+
+            <br></br>
+
                 {items.ankete ? items.ankete.map(anketa => (
                     <div>
                         {anketa.naziv}

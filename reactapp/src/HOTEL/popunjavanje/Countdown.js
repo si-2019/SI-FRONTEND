@@ -49,6 +49,7 @@ class Countdown extends Component {
     // calculate time difference between now and expected date
     if (diff >= (365.25 * 86400)) { // 365.25 * 24 * 60 * 60
       timeLeft.years = Math.floor(diff / (365.25 * 86400));
+      console.log("godine", timeLeft.years)
       diff -= timeLeft.years * 365.25 * 86400;
     }
     if (diff >= 86400) { // 24 * 60 * 60
@@ -85,6 +86,14 @@ class Countdown extends Component {
 
     return (
       <div className="Countdown">
+    
+        <span className="Countdown-col">
+          <span className="Countdown-col-element">
+              <strong>{this.addLeadingZeros(countDown.years)}</strong>
+              <span>{countDown.years === 1 ? 'Godina' : 'Godine'}</span>
+          </span>
+        </span>
+
         <span className="Countdown-col">
           <span className="Countdown-col-element">
               <strong>{this.addLeadingZeros(countDown.days)}</strong>

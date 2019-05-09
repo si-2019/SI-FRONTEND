@@ -29,7 +29,7 @@ class Popunjavanje extends Component {
     });
     axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
     .then((res) => {
-      
+      console.log(res.data.datumIstekaAnkete)
       this.setState({datumIstekaAnkete:res.data.datumIstekaAnkete}); 
       console.log('res', res);
     });

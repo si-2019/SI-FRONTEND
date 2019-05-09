@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './style.css';
+import Countdown from './Countdown'
 
 import axios from 'axios'; 
 class Popunjavanje extends Component {
   state= {
     imeKreator: '', 
-    datumKreiranjaAnkete: ''
+    datumKreiranjaAnkete: '', 
+    datumIstekaAnkete:'', 
 
   }
    formatDate (string) {
@@ -23,6 +25,12 @@ class Popunjavanje extends Component {
     .then((res) => {
       
       this.setState({datumKreiranjaAnkete:this.formatDate(res.data.datumKreiranja)}); 
+      console.log('res', res);
+    });
+    axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
+    .then((res) => {
+      
+      this.setState({datumIstekaAnkete:res.data.datumIstekaAnkete}); 
       console.log('res', res);
     });
   }
@@ -44,6 +52,10 @@ class Popunjavanje extends Component {
             <div class="card-body">
               <h6 class="card-title">Datum kreiranja</h6>
               <p class="card-text">{this.state.datumKreiranjaAnkete}</p>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Preostalo još </h6>
+              <Countdown date={this.state.datumIstekaAnkete}/>
             </div>
             <div class="card-body">
               <h6 class="card-title">Tip ankete</h6>

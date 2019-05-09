@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-responsive-modal'; //paket za gotove modale odnosno popup-e
 import './App.css';
 import NoviIssueForma from './komponente/NoviIssueForma.js';
+import IssueList from './komponente/issueList.js';
 
 class App extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class App extends Component {
               <NoviIssueForma triggerOnCloseModal2 = {this.onCloseModal2}/>
             </div>
           </Modal>
-          
+          <IssueList />
         </div>
       </div>
     );

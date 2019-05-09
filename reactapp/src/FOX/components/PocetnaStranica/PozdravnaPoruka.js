@@ -11,13 +11,13 @@ class PozdravnaPoruka extends Component {
     getAcademicYear = () => {
         //dobavimo podatke o akademskoj godini i semestru
         const akGod = '2018/19';
-        const semestar = 'ljetni';
+        const semestar = 'Ljetni';
         return semestar + ' semestar, ' + akGod;
     }
     render() { 
         return ( <div>
                     <p>{this.getWelcomeMessage()}</p>
-                    <p>{this.getAcademicYear}</p>
+                    <p>{this.getAcademicYear()}</p>
                 </div>  );
     }
 }

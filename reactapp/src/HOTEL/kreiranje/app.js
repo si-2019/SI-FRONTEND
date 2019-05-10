@@ -11,6 +11,7 @@ class App extends Component {
       anketaZaPredmet: true,
       vrstaAnkete: 'javna anketa',
       nazivAnkete: '',
+      opisAnkete: '',
       datumIstekaAnkete: new Date()
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
@@ -30,13 +31,15 @@ class App extends Component {
 
   handleDateChange(date) {
     this.setState({
-      datumIstekaAnkete: date
+      datumIstekaAnkete: date,
+      aa: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' ')
     });
   }
 
   render() {
     return ( 
       <div style={{padding: '25px', backgroundColor: 'white'}}>
+        {JSON.stringify(this.state)}
         <div className="row justify-content-center">
           <div className="">
             <h1>Kreiranje ankete</h1>
@@ -120,14 +123,16 @@ class App extends Component {
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
           idNapravio: 1,
-          napravioIme: 'hamo hamic',
+          idPredmet: 4,
           tipAnkete: this.state.vrstaAnkete,
           naziv: this.state.nazivAnkete,
           opisAnkete: this.state.opisAnkete,
-          datumIstekaAnkete: '2020-05-05'
+          datumIstekaAnkete: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' ')
         })
       }).then((res, err) => {
-        
+        this.setState({
+          error: err
+        })
       })
    }
 }

@@ -22,7 +22,7 @@ class BodoviZadaca extends Component {
 
     return (
       <div id="bodovi" >
-        <div className="card-header bg-primary text-light">
+        <div id="naslovB"className="card-header text-black">
           <h4>
             <b>Bodovi zadaće</b>
           </h4>
@@ -61,9 +61,9 @@ class BodoviZadaca extends Component {
           </div>
         </div>
         <div id="tabela">
-          <table className="table table-bordered text-center bg-active border-solid">
+          <table className="table table-bordered text-center border-solid">
             <thead>
-              <tr className="bg-primary text-light">
+              <tr  className="text-dark">
                 {kolone.map(jedno => (
                   <th scope="col" key={jedno + 200}>
                     {jedno}
@@ -72,7 +72,7 @@ class BodoviZadaca extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-secondary text-light">
+              <tr className="text-dark">
                 {kolone.map((jedno, index) => (
                   <th scope="col" key={jedno}>
                     <input

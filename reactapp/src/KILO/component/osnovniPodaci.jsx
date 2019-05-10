@@ -10,7 +10,7 @@ class OsnovniPodaci extends Component {
         <div>
           <div id="formakreiraj" className="formaKreiranjaZadace">
             <Form>
-              <div className="card-header bg-primary text-light mb-4">
+              <div id="naslovK" className="card-header  text-black mb-4 ">
                 <h4>
                   <b>{title ? title : "Kreiranje zadaće"}</b>
                 </h4>

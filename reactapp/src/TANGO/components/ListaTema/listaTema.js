@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 import { resolve } from 'path';
 
-const themesApi= 'http://localhost:31919/getThemes/'; //plus id teme
+const themesApi= 'http://localhost:31919/getThemes/:'; //plus id teme
 
 
 
@@ -55,6 +55,9 @@ class Lista extends Component{
               sortirajNiz={this.promjeniStateNiza.bind(this)}
               obrnut={this.state.obrnut}
             />
+          </div>
+          <div>
+            <input type='text' class="form-control bg-white rounded" value="Search"></input>
           </div>
           {/* <button onClick={() => {this.sortirajAZ(this.state.teme)}}>a-z</button> */}
         <div>

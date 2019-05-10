@@ -11,19 +11,17 @@ class Navbar001 extends Component {
     render() {
       return (
         <div className="navbar001_class">
-            {/*<a href="student">Student</a>
-            <a href="unos_podataka">Unos podataka</a>
-            <a href="ispiti">Ispiti</a>
-            <a href="obavijesti">Obavijesti</a>
-            <a href="ankete">Ankete</a>
-            <a href="statistika">Statistika</a>
-            <a href="forum">Forum</a>
-            <a href="materijali">Materijali</a>
-            <a href="ispit">Ispit</a>*/}
+            <a style={astyle} href="student">Student</a>
+            <a style={astyle} href="unos_podataka">Unos podataka</a>
+            <a style={astyle} href="ispiti">Ispiti</a>
+            <a style={astyle} href="obavijesti">Obavijesti</a>
             <a style={astyle} href="zadace">Zadace</a>
             <a style={astyle} href="ankete">Ankete</a>
-            <a style= {astyle} href="raspored">Raspored</a>
-            <a style ={astyle} href="chat">Chat</a>
+            <a style={astyle} href="statistika">Statistika</a>           
+            <a style={astyle} href="raspored">Raspored</a>
+            <a style={astyle} href="chat">Chat</a>
+            <a style={astyle} href="forum">Forum</a>
+            <a style={astyle} href="materijali">Materijali</a>
         </div>
       );
     }

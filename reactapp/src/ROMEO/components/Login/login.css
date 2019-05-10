@@ -1,0 +1,49 @@
+#body {
+    background-color: beige;
+}
+
+#main {
+    width: 100%;
+    background-color: aliceblue;
+    position: relative;
+}
+#greska {
+    background-color: red;
+}
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: cadetblue;
+    color: blue;
+    text-align: center;
+}
+
+form {
+    text-align: center;
+    max-width: 300px;
+    padding-top: 30px;
+    margin: 0 auto;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    border-radius: 25px;
+    background: #e0dbd8;
+    width: 100%;
+    margin:auto;
+    margin-bottom: 20px;
+}
+
+input[type=text]:focus, input[type="password"]:focus {
+    border: 3px solid #555;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    margin-bottom: 20px;
+}

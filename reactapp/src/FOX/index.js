@@ -32,11 +32,12 @@ const routing = (
         <Route path="/obavijesti" component={obavijesti001} /> 
         <Route path="/zadace" component={zadace001} />  
         <Route path="/ankete" component={ankete001} />  
+        <Route path="/materijali" component={materijali001} /> 
         <Route path="/statistika" component={statistika001} />  
         <Route path="/raspored" component={raspored001} /> 
         <Route path="/chat" component={chat001} /> 
         <Route path="/forum" component={forum001} /> 
-        <Route path="/materijali" component={materijali001} />      
+             
       </div>
     </Router>
   )

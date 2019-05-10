@@ -6,6 +6,7 @@ import Lista  from './prikazListe';
 import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta';
 import MockListaPredmeta from './MockListaPredmeta';
 import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
+import IzborVodje from './components/FormaZaIzborVodje';
 
 
 

@@ -5,6 +5,7 @@ import LiteraturaProfesor from './literaturaProfesor';
 import LiteraturaStudent from './literaturaStudent';
 import DodavanjeDatuma from './DodavanjeDatuma';
 import ObjavaStudent from './objavaStudent';
+import ObjavaProfesor from './objavaProfesor';
 class mojiPredmeti extends Component {
   render() {
     this.state={
@@ -23,7 +24,13 @@ class mojiPredmeti extends Component {
       datumobjave:{
           id:1,
           datum:Date.now()
-        }
+        },
+
+        fileovi:[
+          'prvi.pdf',
+          'drugi.pdf',
+          'treci.pdf'
+        ]
       
 
     }
@@ -36,6 +43,7 @@ class mojiPredmeti extends Component {
             <LiteraturaStudent></LiteraturaStudent>
             <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
             <ObjavaStudent naslov="Predavanje 1"></ObjavaStudent>
+            <ObjavaProfesor naslov="Predavanje 1" fileovi={this.state.fileovi}></ObjavaProfesor>
         </div>
         
 

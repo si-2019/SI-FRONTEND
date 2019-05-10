@@ -10,6 +10,9 @@ function App() {
       <div id="greska">
     
       </div>
+      <div id="footer">
+    
+      </div>
     </div>
   );
 }

@@ -39,7 +39,7 @@ class App extends Component {
   render() {
     return ( 
       <div style={{padding: '25px', backgroundColor: 'white'}}>
-        {JSON.stringify(this.state)}
+        
         <div className="row justify-content-center">
           <div className="">
             <h1>Kreiranje ankete</h1>

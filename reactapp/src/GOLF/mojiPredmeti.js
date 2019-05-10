@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import LiteraturaProfesor from './literaturaProfesor';
 import LiteraturaStudent from './literaturaStudent';
 import DodavanjeDatuma from './DodavanjeDatuma';
+import ObjavaStudent from './objavaStudent';
 class mojiPredmeti extends Component {
   render() {
     this.state={
@@ -32,8 +33,9 @@ class mojiPredmeti extends Component {
         <div>
             <h1>Moji predmeti</h1>
             <SviPredmeti predmeti={this.state.svipredmeti} />
-            <LiteraturaStudent />
+            <LiteraturaStudent></LiteraturaStudent>
             <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
+            <ObjavaStudent naslov="Predavanje 1"></ObjavaStudent>
         </div>
         
 

@@ -5,13 +5,13 @@ import './login.css';
 function App() {
   return (
     <div className="App">
-      <div id="main">
+      <div className="main">
     
       </div>
-      <div id="greska">
+      <div className="greska">
     
       </div>
-      <div id="footer">
+      <div className="footer">
         Elektrotehnički fakultet u Sarajevu
       </div>
     </div>

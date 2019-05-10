@@ -7,6 +7,9 @@ function App() {
       <div id="main">
     
       </div>
+      <div id="greska">
+    
+      </div>
     </div>
   );
 }

@@ -30,6 +30,10 @@ class mojiPredmeti extends Component {
           'prvi.pdf',
           'drugi.pdf',
           'treci.pdf'
+        ],
+        fileovi2:[
+          'prvi.pdf',
+          'drugi.pdf'
         ]
       
 
@@ -42,8 +46,8 @@ class mojiPredmeti extends Component {
             <SviPredmeti predmeti={this.state.svipredmeti} />
             <LiteraturaStudent></LiteraturaStudent>
             <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
-            <ObjavaStudent naslov="Predavanje 1"></ObjavaStudent>
-            <ObjavaProfesor naslov="Predavanje 1" fileovi={this.state.fileovi}></ObjavaProfesor>
+            <ObjavaStudent naslov="Predavanje 1" fileovi={this.state.fileovi2}></ObjavaStudent>
+            <ObjavaProfesor naslov="Tutorijal 2" fileovi={this.state.fileovi}></ObjavaProfesor>
         </div>
         
 

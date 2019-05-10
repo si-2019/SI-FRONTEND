@@ -11,7 +11,7 @@ function App() {
     
       </div>
       <div id="footer">
-    
+        Elektrotehnički fakultet u Sarajevu
       </div>
     </div>
   );

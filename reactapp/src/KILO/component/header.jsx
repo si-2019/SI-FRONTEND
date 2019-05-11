@@ -30,6 +30,15 @@ class Header extends Component {
               
             >Brisanje zadaće
             </a>
+
+
+            <a className="ml-4"
+              onClick={this.handleRedirectClick}
+              href="/KILO/student/"
+             
+            >Student  
+            </a>
+
         </h5>
         </div>
       </div>

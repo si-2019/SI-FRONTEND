@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./US_23.css";
+import "./App.css";
 import Tabela from "./komponente/tabela";
 
 class US_23 extends Component {

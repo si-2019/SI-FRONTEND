@@ -61,7 +61,7 @@ state = {response:[]}
               type="button"
               className="btn btn-primary"
               style={{ marginRight: "10%" }}
-              to={'/charlie/uredi-ispit/'}
+              to={'/charlie/uredi-ispit/${row.idIspit}'}
             >
               Uredi
             </Link>

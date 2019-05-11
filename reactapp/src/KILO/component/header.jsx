@@ -24,6 +24,12 @@ class Header extends Component {
               
             >Ažuriranje zadaće
             </a>
+            <a className="ml-4"
+              onClick={this.handleRedirectClick}
+              href="/KILO/brisanjeZadace/?idPredmeta=3"
+              
+            >Brisanje zadaće
+            </a>
         </h5>
         </div>
       </div>

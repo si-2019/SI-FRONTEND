@@ -59,6 +59,7 @@ state = {response:[]}
 
             <Link
               type="button"
+              id="btnUredi"
               className="btn btn-primary"
               style={{ marginRight: "10%" }}
               to={'/charlie/uredi-ispit/${row.idIspit}'}

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import DugmeMaterijali from "components/DugmeMaterijali";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h1>DELTA</h1>
+        <DugmeMaterijali />
       </div>
     );
   }

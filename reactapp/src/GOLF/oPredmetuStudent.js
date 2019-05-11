@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 
 class oPredmetuStudent extends Component {
   render() {
-  	const objave = [
-  	{
-  		naslov: 'O predmetu',
-  	}
-  	]
     return (
         <div>
-            <h3>{this.props.naslov}</h3>
+            <h3>O predmetu</h3>
         </div>
     );
   }

@@ -69,20 +69,21 @@ class Student extends Component{
     }
 
 
-    klikNaPoslati = () => {
-       // document.getElementById("tabelaPregledaZadaca").style.display="none";
-       // document.getElementById("prviPutSlanjeZadatka").style.display="block";
-       // document.getElementById("zadatakVecPoslan").style.display="none";
+    klikNaPoslati = (r,k) => {
+       document.getElementById("tabelaPregledaZadaca").style.display="none";
+       document.getElementById("prviPutSlanjeZadatka").style.display="block";
+       document.getElementById("zadatakVecPoslan").style.display="none";
 
-        console.log("state");
+       this.setState({
+           red: r,
+           kolona:k
+       });
 
     }
 
 
       render() {
         
-        console.log("ispise" + this.state.red, this.state.kolona);
-
         return (
           <div>
            <div id="tabelaPregledaZadaca">

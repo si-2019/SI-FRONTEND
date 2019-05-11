@@ -29,7 +29,7 @@ class TabelaPregledaZadaca extends Component {
                     <th>{zadatak}</th>
                     {this.props.podaci.state.potrebno[indeks].map((ostvareniBodovi, indeks2) => (
                         <th>{ostvareniBodovi}  
-                        {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] == 0 && <Icon type="indicator" name="attachment"  className=" ml-3" onClick = {this.props.podaci.klikNaPoslati}/>}  
+                        {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] == 0 && <Icon type="indicator" name="attachment"  className=" ml-3" onClick = {() => this.props.podaci.klikNaPoslati(indeks, indeks2)}/>}  
                         {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] == 1 && <Icon type="indicator" name="search" className=" ml-3"/>}  
                         {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] == 2 && <Icon type="indicator" name="ok" className=" ml-3"/>}  
                         {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] == 3 && <Icon type="indicator" name="error" className=" ml-3"/>}

@@ -4,17 +4,17 @@ import './index.css';
 import App from './app';
 import StranicaPredmeta from './StranicaPredmeta';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import student001 from './NavBarStranice/student001';
-import unos_podataka001 from './NavBarStranice/unos_podataka001';
-import ispiti001 from './NavBarStranice/ispiti001';
-import obavijesti001 from './NavBarStranice/obavijesti001';
-import zadace001 from './NavBarStranice/zadace001';
-import ankete001 from './NavBarStranice/ankete001';
-import statistika001 from './NavBarStranice/statistika001';
-import raspored001 from './NavBarStranice/raspored001';
-import chat001 from './NavBarStranice/chat001';
-import forum001 from './NavBarStranice/forum001';
-import materijali001 from './NavBarStranice/materijali001';
+import student001 from './components/NavBarStranice/student001';
+import unos_podataka001 from './components/NavBarStranice/unos_podataka001';
+import ispiti001 from './components/NavBarStranice/ispiti001';
+import obavijesti001 from './components/NavBarStranice/obavijesti001';
+import zadace001 from './components/NavBarStranice/zadace001';
+import ankete001 from './components/NavBarStranice/ankete001';
+import statistika001 from './components/NavBarStranice/statistika001';
+import raspored001 from './components/NavBarStranice/raspored001';
+import chat001 from './components/NavBarStranice/chat001';
+import forum001 from './components/NavBarStranice/forum001';
+import materijali001 from './components/NavBarStranice/materijali001';
 
 
 //import * as serviceWorker from './serviceWorker';
@@ -32,11 +32,12 @@ const routing = (
         <Route path="/obavijesti" component={obavijesti001} /> 
         <Route path="/zadace" component={zadace001} />  
         <Route path="/ankete" component={ankete001} />  
+        <Route path="/materijali" component={materijali001} /> 
         <Route path="/statistika" component={statistika001} />  
         <Route path="/raspored" component={raspored001} /> 
         <Route path="/chat" component={chat001} /> 
         <Route path="/forum" component={forum001} /> 
-        <Route path="/materijali" component={materijali001} />      
+             
       </div>
     </Router>
   )

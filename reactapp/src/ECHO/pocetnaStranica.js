@@ -25,7 +25,9 @@ class PocetnaStranica extends Component {
         return <NaslovnaTermin />;
     }
   }
-
+  goBack() {
+    window.location.reload();
+  }
   render() {
     return this.state.show ? (
       <main id="pocetna">
@@ -86,7 +88,18 @@ class PocetnaStranica extends Component {
         </div>
       </main>
     ) : (
-      <main>{this.prikaziKomponentu()}</main>
+      <main>
+        {this.prikaziKomponentu()}
+        <button
+          type="button"
+          id="nazad"
+          className="dugme"
+          className="btn btn-dark m-2"
+          onClick={this.goBack}
+        >
+          Nazad
+        </button>
+      </main>
     );
   }
 }

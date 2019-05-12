@@ -39,7 +39,11 @@ class App extends Component {
     });
   }
 
-  
+  dodajPitanje() {
+    this.setState({
+      pitanja: this.state.pitanja.concat([1])
+    })
+  }
 
   render() {
     return ( 

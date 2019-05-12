@@ -41,5 +41,4 @@ class StranicaPredmeta extends Component {
 }
 
 
-
 export default StranicaPredmeta;

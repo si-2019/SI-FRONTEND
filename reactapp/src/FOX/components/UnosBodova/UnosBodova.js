@@ -4,19 +4,17 @@ class UnosBodova extends  Component {
 render() {
 
     return(
-       <div classname="Unos">
-            <div class="col-sm-6">
-            <TabelaStudenti/>
-            </div>
-            
-            <div class="col-sm-6">
-            <TabelaStudenti/>
-            </div>
+         <Container>
+            <Row></Row>
 
-            <div class="col-sm-6">
-            <TabelaStudenti/>
-            </div>
-        </div>
+            <Row>
+            <Col md={{span: 6, offset: 3}} > { 'Samo naprijed idemoooo '}  </Col>
+            </Row>
+            <Row> 
+             
+            </Row>
+
+         </Container>
     );
      }
 }

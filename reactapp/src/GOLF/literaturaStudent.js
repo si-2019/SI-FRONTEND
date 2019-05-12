@@ -5,7 +5,7 @@ class LiteraturaStudent extends Component {
 
  	const literatura = [
  	{
- 		naslovLiterature: 'Osnove računarskih arhitektura, Novica Nosović, Sarajevo, 2003, Elektrotehnički fakultet Sarajevo'
+ 		naslovLiterature: 'Osnove računarskih arhitektura, Novica Nosović, Sarajevo, 2003, ETF'
  	}]
 
     return (

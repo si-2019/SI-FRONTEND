@@ -11,4 +11,9 @@ describe('Pregled detalja nekog predmeta na kojim je asistent', () => {
         expect(wrapper.find("#listaPredmeta").exists()).toBe(true);
     });
 
+    it("Postoji forma ", () => {
+        const wrapper = shallow(<PregledDetaljaPredmeta/>);
+        expect(wrapper.find("#detalji").exists()).toBe(true);
+    });
+
 });

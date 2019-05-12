@@ -13,10 +13,32 @@ class PregledDetaljaPredmeta extends Component {
             odabran_predmet:odabran_predmet
         };
 
-        
+        this.detaljiPredmeta = this.detaljiPredmeta.bind(this);
     }
 
-   
+    detaljiPredmeta() {
+        return (
+            this.state.odabran_predmet!=null ?
+            <form id="detalji">
+                <label>Id predmeta: {this.state.odabran_predmet.id}</label>
+                <br/>
+                <label>Id asistenta: {this.state.odabran_predmet.idAsistent}</label>
+                <br/>
+                <label>Id profesora: {this.state.odabran_predmet.idProfesor}</label>
+                <br/>
+                <label>Naziv predmeta: {this.state.odabran_predmet.naziv}</label>
+                <br/>
+                <label>ECTS: {this.state.odabran_predmet.ects}</label>
+                <br/>
+                <label>Ukupan broj predavanja na predmetu: {this.state.odabran_predmet.brojPredavanja}</label>
+                <br/>
+                <label>Ukupan broj vjezbi na predmetu: {this.state.odabran_predmet.brojVjezbi}</label>
+                <br/>
+                <label>Opis predmeta: {this.state.odabran_predmet.opis}</label>
+                <br/>
+            </form> : null
+        );
+    }
 
     prebaciNaDrugi(a) {
         this.setState({ odabran_predmet: a.target.value });
@@ -37,7 +59,8 @@ class PregledDetaljaPredmeta extends Component {
                     }
                 </select>
                 <br/>
-                
+                <label>Detalji odabranog predmeta</label>
+                {this.detaljiPredmeta()}
             </form>
             
         );

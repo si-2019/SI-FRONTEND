@@ -14,7 +14,6 @@ class App extends Component {
         <PozdravnaPoruka/>
         <DanDatum/>
         <Predmet/>
-        <UnosPrisustva/>  
         <Footer/>
       </div>
     );

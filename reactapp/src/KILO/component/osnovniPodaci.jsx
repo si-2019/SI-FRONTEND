@@ -66,6 +66,7 @@ class OsnovniPodaci extends Component {
                   max={10}
                   step={1}
                   onChange={this.props.onChange}
+                  disabled = {this.props.podaci.state.radnja=="Azuriranje"}
                 />
               </FormGroup>
             </Form>

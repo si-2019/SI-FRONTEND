@@ -78,9 +78,11 @@ class DodavanjeTipovaFileova extends Component {
                               type="checkbox"
                               id={jedno + item.nazivEkstenzije}
                               disabled={
-                                this.props.podaci.state.sviTipoviIsti &&
-                                index > 0
-                              }
+                                this.props.podaci.state.radnja=="Azuriranje"
+                                ||
+                                (this.props.podaci.state.sviTipoviIsti &&
+                                index > 0)
+                              } 
                               checked={
                                 this.props.podaci.state.listaTipova[index][
                                   jIndex

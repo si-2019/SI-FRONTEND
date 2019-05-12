@@ -57,8 +57,8 @@ componentDidMount(){
     return (
       <div>
         <h1>DELTA</h1>
-        <Labele/>
-        <BodoviNaIspitima/>
+        <Labele/><br/>
+        <BodoviNaIspitima/><br/>
         <Ocjena ispiti = {this.state.rezIspita} zadace = {this.state.zadace} prisustvo = {this.state.prisustvo}/>
       </div>
     );

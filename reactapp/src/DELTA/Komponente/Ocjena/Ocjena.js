@@ -30,11 +30,17 @@ export class Ocjena extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.state.ocjena}</h2>
+      <div style = {ocjenaStyle}>
+        <h2>Konačna ocjena: {this.state.ocjena}</h2>
       </div>
     )
   }
 }
+
+const ocjenaStyle = {
+    border: '1px solid black',
+    background: 'cyan',
+    display: 'inline-block'
+  }
 
 export default Ocjena

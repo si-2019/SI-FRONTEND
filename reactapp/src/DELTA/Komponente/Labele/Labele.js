@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class Labele extends Component {
   render() {
     return (
-      <div className = "labele">
+      <div className = "labele" style = {labeleStyle}>
         <h3 style = {labelaStil}>Ime profesora: </h3> <h3 className = "imeProfesora" style = {tekstStil}>Dummy Ime</h3> <br/>
 
         <h3 style = {labelaStil}>Broj ETCS bodova: </h3> <h3 className = "brojETCSBodova" style = {tekstStil}>Dummy ETCS</h3> <br/>
@@ -15,6 +15,12 @@ export class Labele extends Component {
       </div>
     )
   }
+}
+
+const labeleStyle = {
+  border: '1px solid black',
+  background: 'cyan',
+  display: 'inline-block' 
 }
 
 const labelaStil = {

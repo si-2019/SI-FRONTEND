@@ -35,15 +35,23 @@ export class BodoviNaIspitima extends Component {
     }
 
   render() {
-    return this.state.rezIspita.map((ispit)=>(
+    return <div style = {ispitiStyle}>
+    <h3>Bodovi na ispitima:</h3>
+    {this.state.rezIspita.map((ispit)=>(
         <BodoviNaIspitu 
             tip = {ispit.tip} 
             datum = {ispit.datum}
             bodovi = {ispit.bodovi} 
             polozen = {ispit.polozen}
         />
-    ));
+    ))};</div>
   }
 }
+
+const ispitiStyle = {
+    border: '1px solid black',
+    background: 'cyan',
+    display:"inline-block"
+  }
 
 export default BodoviNaIspitima

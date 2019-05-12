@@ -5,10 +5,10 @@ export class BodoviNaIspitu extends Component {
     return (
         //Ovdje ispisati sve podatke koji se dobiju o jednom ispitu sa servera, ovo su samo dummy podaci
       <div>
-          <h3>{this.props.tip}</h3>
-          <h3>Datum: {this.props.datum.toString()}</h3>
-          <h3>Bodova: {this.props.bodovi}</h3>
-          <h3>Polozen: {this.props.polozen.toString()}</h3><br/>
+          <h5>{this.props.tip}</h5>
+          <h5>Datum: {this.props.datum.toString()}</h5>
+          <h5>Bodova: {this.props.bodovi}</h5>
+          <h5>Polozen: {this.props.polozen.toString()}</h5><br/>
       </div>
     )
   }

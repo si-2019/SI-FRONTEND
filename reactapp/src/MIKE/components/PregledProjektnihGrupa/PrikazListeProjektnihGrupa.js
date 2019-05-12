@@ -45,14 +45,14 @@ import {Redirect} from 'react-router-dom';
       return (
         <div>
          <h2>{this.state.tech}</h2>
-          <select onChange={this.handleChange.bind(this)} value={this.state.tech}>
+          <select id="dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option value="Lista grupa">Odaberite grupu</option>
             <option value="Grupa 1">Grupa 1</option>
             <option value="Grupa 2">Grupa 2</option>
             <option value="Grupa 3">Grupa 3</option>
             <option value="Grupa 3">Grupa 4</option>
           </select>
-          <button style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
+          <button id="dugme" style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
          
         </div>
       )

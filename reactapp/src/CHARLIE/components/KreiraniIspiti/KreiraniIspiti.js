@@ -58,6 +58,7 @@ state = {response:[]}
           <div>
             <button
               type="button"
+              className="btn btn-danger"
             >
               Izbrisi
             </button>

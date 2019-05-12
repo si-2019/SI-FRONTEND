@@ -4,7 +4,8 @@ import KontaktPod from  './components/kontaktPod';
 import Stranice from './components/stranice';
 import Fotografija from './components/fotografija';
 import LicniPod from './components/licniPod';
-import { Container, Row, Col } from 'reactstrap';
+import axios from 'axios';
+
 
 
 

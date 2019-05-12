@@ -5,15 +5,14 @@ render() {
 
     return(
          <Container>
-            <Row></Row>
-
             <Row>
-            <Col md={{span: 6, offset: 3}} > { 'Samo naprijed idemoooo '}  </Col>
+                
+            </Row>
+            <Row>
+            <Col md={{span: 6, offset: 4}} > { 'Samo naprijed idemoooo '}  </Col>
             </Row>
             <Row> 
-             
             </Row>
-
          </Container>
     );
      }

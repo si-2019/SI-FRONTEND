@@ -13,7 +13,7 @@ import {Redirect} from 'react-router-dom';
     }
     renderRedirect = () => {
         if (this.state.redirect) {
-          return <Redirect to='google.com' />
+          return <Redirect to='/#' />
         }
       }
     render(){

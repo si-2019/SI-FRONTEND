@@ -9,28 +9,18 @@ class IssueList extends React.Component {
         super(props);
         this.state = {
             dataNew: [],
-            dataInProgress: [{
-                title: "loya",
-                message: "kkakdadja",
-                date: "12.13"
-            }],
-            dataResolved: [{
-                title: "pura",
-                message: "jajajajaj",
-                date: "12.14"
-            }],
+            dataInProgress: [],
+            dataResolved: [],
         }
     };
 
     componentDidMount() {
         axios.get('http://localhost:31902/issues').then( res => {
-            console.log(res);
             this.setState({
                 dataNew: res.data.new,
                 dataInProgress: res.data.inProgress,
                 dataResolved: res.data.resolved
             });
-            console.log(this.state);
         }).catch(err => console.log(err));
     }
 

@@ -25,7 +25,11 @@ class NoviIssueForma extends React.Component {
 
         axios.post('/issue/send', { issueTitle, issueText})
         .then((result) => {
-            alert("Uspjesno upisan issue"); //Ovdje treba pokupiti odgovor od backend-a, ali ne znam kako !!!!!
+        //Ovdje treba pokupiti odgovor od backend-a
+
+        if(result["data"]=="Uspjesno poslan issue!"){
+            alert("Issue uspješno poslan! ");
+        }
         });
     }
 

@@ -51,4 +51,4 @@ class DetaljiProjektneGrupe extends React.Component {
       }
 
 }
-export default DetaljiZadatka;
+export default DetaljiProjektneGrupe;

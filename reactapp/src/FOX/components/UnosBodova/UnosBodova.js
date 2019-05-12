@@ -6,12 +6,15 @@ render() {
     return(
        <div classname="Unos">
             <div class="col-sm-6">
+            <TabelaStudenti/>
             </div>
             
             <div class="col-sm-6">
+            <TabelaStudenti/>
             </div>
 
             <div class="col-sm-6">
+            <TabelaStudenti/>
             </div>
         </div>
     );

@@ -8,17 +8,15 @@ class TabelaUnosa extends Component {
     render() {
         return(
            <Container>
-            <Form.Group>
-                <Form.Row>
-                </Form.Row>
-                <Form.Row>
-                    <Form.Col md={{span: 2, offset: 4}} > 
+                <Row>
+                </Row>
+                <Row>
+                    <Col md={{span: 2, border: 'blue', offset: 4}} > 
                         <label> Index: </label>
                         <input type="text" name="name" />
-                        <Form.Button variant="primary">Pretrazi</Form.Button>
-                    </Form.Col>
-                </Form.Row>
-                </Form.Group>
+                        <Button variant="primary">Pretrazi</Button>
+                    </Col>
+                </Row>
            </Container>
 
         );

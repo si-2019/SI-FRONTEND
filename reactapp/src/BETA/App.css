@@ -33,7 +33,7 @@
 }
 
 #overlay {
-  	position:absolute;
+  position:absolute;
 	top:50%;
 	left:50%;
 	transform:translate(-50%, -50%);
@@ -49,4 +49,145 @@
 	height: 60%;
 	max-width: 100%;
 	background-color: rgba(100, 120, 192, 0.664);
+}
+
+#main {
+  width: 100%;
+  max-height: 470px;
+  min-height: 470px;
+  display: inline-block;
+}
+
+#left {
+  width: 20%;
+  background-color:  #007bff;
+  float: left;
+  max-height: 470px;
+  min-height: 470px;
+  
+}
+
+#right {
+  width: 80%;
+  float: right;
+  max-height: 470px;
+  min-height: 470px;
+}
+
+.row{
+  width: 100% !important;
+}
+
+#head{
+  width: 100%;
+  display: inline-block;
+  height: 50px;
+}
+
+#createNewIssue {
+  width: 20%;
+  height: 50px;
+  float: left;
+}
+
+#search-issue-tab{
+  width: 80%;
+  float: right;
+  height: 50px;
+  background-color: #007bff;
+}
+
+.left-buttons{
+  width: 100% !important;
+  height: 60px;
+  border: none !important;
+  text-align: left !important;
+  padding-left: 40px !important;
+}
+
+#tabs{
+  width: 100;
+}
+
+.tab-issue {
+  overflow-y: scroll;
+  max-height: 420px;
+  padding-top: 20px;
+}
+
+#naslov{
+  float:left;
+  width: 100px !important;
+  padding-left: 10px;
+  width: 70px !important;
+}
+
+#naslovSelect{
+  float: left !important;
+  width: 60% !important;
+  margin-top: 10px;
+}
+
+#formNoviIssue{
+  height: 100%;
+  background-color: #007bff;
+}
+
+#buttonSend{
+  margin-left: 10px;
+}
+
+#buttonDraft{
+  margin-left: 10px;
+}
+
+#closeIssueForm{
+  float:right !important;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#exampleTextarea{
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  #exampleInputFile{
+    width: 100%;
+  }
+
+  .class1{
+    width: 100% !important;
+    float: left;
+  }
+  
+  #naslov{
+    float:left;
+    width: 100px !important;
+    padding-left: 10px;
+    width: 70px !important;
+  }
+
+  #naslovSelect{
+    float: left !important;
+    width: 60% !important;
+    margin-top: 10px;
+  }
+
+  #naslovDiv{
+    display: inline-block !important;
+  }
+
+  #noviIssue{
+    height: 450px;
+    
+  }
+
+  #formNoviIssue{
+    height: 100%;
+  }
+
+  
+
 }

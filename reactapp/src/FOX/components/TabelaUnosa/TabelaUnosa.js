@@ -11,7 +11,11 @@ class TabelaUnosa extends Component {
 
                 </Row>
                 <Row>
-                    <Col><Col md={{span: 6, offset: 4}} > { }  </Col></Col>
+                    <Col md={{span: 6, offset: 4}} > 
+                        <label> Index: </label>
+                        <input type="text" name="name" />
+                        <Button variant="primary">Pretrazi</Button>
+                    </Col>
                 </Row>
            </Container>
 

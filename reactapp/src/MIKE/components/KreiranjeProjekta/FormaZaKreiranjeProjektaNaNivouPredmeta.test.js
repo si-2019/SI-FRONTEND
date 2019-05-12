@@ -12,7 +12,7 @@ describe('Kreiranje projekta na nivou predmeta', () => {
         shallow(<KreiranjeProjekta/>);
       });
 
-    it("Postoji li input za upis naziva projekta", () => {
+    it("Postoji li input za upis naziva projekta ", () => {
         const wrapper = shallow(<KreiranjeProjekta/>);
         expect(wrapper.find("input[type='text']").exists()).toBe(true);
     });

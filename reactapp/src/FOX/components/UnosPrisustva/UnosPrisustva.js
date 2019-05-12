@@ -32,6 +32,13 @@ class UnosPrisustva extends Component {
                 predavanje: false,
                 vjezba: false,
                 tutorijal: false
+            },
+            {
+                index: 5,
+                ime: "Marko Marković",
+                predavanje: false,
+                vjezba: false,
+                tutorijal: false
             }
         ]
     }

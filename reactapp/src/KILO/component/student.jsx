@@ -7,6 +7,7 @@ import PrviPutSlanjeZadatka from "./prviPutSlanjeZadatka";
 import ZadatakVecPoslan from "./zadatakVecPoslan";
 
 //user story 68 i user story 66 pushani skupa
+
 class Student extends Component {
   constructor(props) {
     super(props);
@@ -189,3 +190,4 @@ class Student extends Component {
 }
 
 export default Student;
+

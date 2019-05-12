@@ -9,6 +9,7 @@ import Fox from './FOX/components/App/app.js'
 import StranicaPredmeta from './FOX/components/StranicaPredmeta/StranicaPredmeta'
 import Obavijesti from './FOX/Obavijesti'
 import UnosPrisustva from './FOX/components/UnosPrisustva/UnosPrisustva'
+
 import Golf from './GOLF/app.js'
 import Hotel from './HOTEL/app.js'
 import India from './INDIA/app.js'
@@ -42,8 +43,12 @@ class App extends Component {
                 <Route path="/echo" component={Echo} />
                 <Route exact path="/fox" component={Fox} />
                 <Route path="/fox/StranicaPredmeta" component={StranicaPredmeta} /> 
+
+                <Route path="/fox/Obavijesti" component={Obavijesti} />                    
+
                 <Route path="/fox/Obavijesti" component={Obavijesti} /> 
                 <Route path="/fox/UnosPrisustva" component={UnosPrisustva} />                
+
                 <Route path="/golf" component={Golf} />
                 <Route path="/hotel" component={Hotel} />
                 <Route path="/india" component={India} />

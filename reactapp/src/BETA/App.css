@@ -131,6 +131,7 @@
 #formNoviIssue{
   height: 100%;
   background-color: #007bff;
+  max-width: 100%;
 }
 
 #buttonSend{

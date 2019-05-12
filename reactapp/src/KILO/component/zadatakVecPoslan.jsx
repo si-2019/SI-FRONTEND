@@ -57,22 +57,34 @@ class ZadatakVecPoslan extends Component {
     }
   };
 
+ 
+
+
+  
+
   render() {
-    var listOfTypes = this.state.listaTipova;
+    var listOfTypes = this.props.podaci.state.listaTipova;
+
 
     return (
       <div>
         <div className="card-header bg-primary text-light">
           <h4>
-            <b>Zadaća {this.state.brojZadace}. </b>
+
+            <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
+            <div name="idiNazad" onClick={this.props.podaci.handleClick}>
+
             <Icon
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
               onClick={this.handleClick}
-            />
+
+              
+            /></div>
           </h4>
-          <h5>Zadatak broj {this.state.brojZadatka}</h5>
+          <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
+
         </div>
         <br />
         <div className="card border-primary bg-primary text-light mb-3">
@@ -90,7 +102,9 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-                  placeholder={this.state.datumSlanja}
+
+                  placeholder={this.props.podaci.state.datumSlanja}
+
                   readOnly=""
                 />
               </fieldset>
@@ -103,7 +117,9 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-                  placeholder={this.state.vrijemeSlanja}
+
+                  placeholder={this.props.podaci.state.vrijemeSlanja}
+
                   readOnly=""
                 />
               </fieldset>
@@ -118,7 +134,9 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-                  placeholder={this.state.nazivFajla}
+
+                  placeholder={this.props.podaci.state.nazivFajla}
+
                   readOnly=""
                 />
               </fieldset>
@@ -131,7 +149,9 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-                  placeholder={this.state.velicinaFajla}
+
+                  placeholder={this.props.podaci.state.velicinaFajla}
+
                   readOnly=""
                 />
               </fieldset>{" "}
@@ -141,7 +161,9 @@ class ZadatakVecPoslan extends Component {
         <label className="control-label ml-3">Komentar:</label>
         <div className="card border-secondary ml-3 mr-3">
           <div className="card-body">
-            <p className="card-text">{this.state.komentar}</p>
+
+            <p className="card-text">{this.props.podaci.state.komentar}</p>
+
           </div>
         </div>
         <br />
@@ -149,7 +171,9 @@ class ZadatakVecPoslan extends Component {
           name="preuzmi"
           type="button"
           className="btn btn-primary ml-3"
-          onClick={this.handleClick}
+
+          onClick={this.props.podaci.handleClick}
+
         >
           <Icon type="indicator" name="sortDesc" className="mr-2" />
           Preuzmi datoteku
@@ -158,7 +182,9 @@ class ZadatakVecPoslan extends Component {
           name="pregled"
           type="button"
           className="btn btn-primary ml-5"
-          onClick={this.handleClick}
+
+          onClick={this.props.podaci.handleClick}
+
         >
           <Icon type="indicator" name="search" className="mr-2" />
           Pregled datoteke
@@ -190,7 +216,9 @@ class ZadatakVecPoslan extends Component {
           name="ponisti"
           type="button"
           className="btn btn-danger ml-5 text-body"
-          onClick={this.handleClick}
+
+          onClick={this.props.podaci.handleClick}
+
         >
           <Icon type="indicator" name="remove" className="mr-2" />
           Poništi
@@ -199,7 +227,8 @@ class ZadatakVecPoslan extends Component {
           name="posaljiZadatak"
           type="button"
           className="btn btn-primary ml-2"
-          onClick={this.handleClick}
+
+          onClick={this.props.podaci.handleClick}
         >
           Pošalji zadatak
         </button>

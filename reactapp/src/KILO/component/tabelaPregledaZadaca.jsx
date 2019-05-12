@@ -55,6 +55,7 @@ class TabelaPregledaZadaca extends Component {
         
     }
 
+
     render() { 
     var mogucaStanjaZadace = ["nije poslano", "nije pregledano", "pregledano", "prepisano", "komentar"];
         
@@ -65,7 +66,9 @@ class TabelaPregledaZadaca extends Component {
             <thead>
               <tr className="bg-primary text-light">
                 <th>INFO</th>
-                {this.state.listaZadataka.map((zadatak, indeks) => (
+
+                {this.props.podaci.state.listaZadataka.map((zadatak, indeks) => (
+
                   <th key={zadatak + indeks}>{zadatak}</th>
                 ))}
                 <th>Ukupan broj bodova</th>
@@ -75,22 +78,24 @@ class TabelaPregledaZadaca extends Component {
               </tr>
             </thead>
             <tbody>
-                {this.state.listaZadaca.map((zadatak, indeks) => (
+
+                {this.props.podaci.state.listaZadaca.map((zadatak, indeks) => (
                   <tr>
                     <th>{zadatak}</th>
-                    {this.state.potrebno[indeks].map((ostvareniBodovi, indeks2) => (
+                    {this.props.podaci.state.potrebno[indeks].map((ostvareniBodovi, indeks2) => (
                         <th>{ostvareniBodovi}  
-                        {this.state.stanjeZadacaPoZadacima[indeks][indeks2] == 0 && <Icon type="indicator" name="attachment"  className=" ml-3"/>}  
-                        {this.state.stanjeZadacaPoZadacima[indeks][indeks2] == 1 && <Icon type="indicator" name="search" className=" ml-3"/>}  
-                        {this.state.stanjeZadacaPoZadacima[indeks][indeks2] == 2 && <Icon type="indicator" name="ok" className=" ml-3"/>}  
-                        {this.state.stanjeZadacaPoZadacima[indeks][indeks2] == 3 && <Icon type="indicator" name="error" className=" ml-3"/>}
-                        {this.state.stanjeZadacaPoZadacima[indeks][indeks2] == 4 && <Icon type="indicator" name="commented" className=" ml-3"/>}
+                        {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] === 0 && <Icon type="indicator" name="attachment"  className=" ml-3" onClick = {() => this.props.podaci.klikNaPoslati(indeks, indeks2)}/>}  
+                        {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] === 1 && <Icon type="indicator" name="search" className=" ml-3" onClick = {() => this.props.podaci.klikNaVecPoslano(indeks, indeks2)}/>}  
+                        {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] === 2 && <Icon type="indicator" name="ok" className=" ml-3" onClick = {() => this.props.podaci.klikNaVecPoslano(indeks, indeks2)}/>}  
+                        {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] === 3 && <Icon type="indicator" name="error" className=" ml-3" onClick = {() => this.props.podaci.klikNaVecPoslano(indeks, indeks2)}/>}
+                        {this.props.podaci.state.stanjeZadacaPoZadacima[indeks][indeks2] === 4 && <Icon type="indicator" name="commented" className=" ml-3" onClick = {() => this.props.podaci.klikNaVecPoslano(indeks, indeks2)}/>}
                         </th>
                     ))}
-                    <th>{this.state.ukupnoBodova[indeks]}</th>
-                    <th>{this.state.moguceBodova[indeks]}</th>
+                    <th>{this.props.podaci.state.ukupnoBodova[indeks]}</th>
+                    <th>{this.props.podaci.state.moguceBodova[indeks]}</th>
                     <th>{<Icon type="indicator" name="save" className=" ml-3"/>}</th>
-                    <th>{this.state.rokZaPredaju[indeks]}</th>
+                    <th>{this.props.podaci.state.rokZaPredaju[indeks]}</th>
+
                   </tr>
                 ))}
             </tbody>

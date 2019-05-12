@@ -39,7 +39,11 @@ class KreiranjeProjekta extends Component {
                         </li>
                         <li class="points">
                             <label >Broj trenutno ostvarenih bodova</label>
+
                             <input type="number" name="count" id="bodovi" /> 
+
+                           <input type="number" name="count" /> 
+
                             <span>Unesite broj bodova</span>
                         </li>
                         <li class="input-append date form_datetime">

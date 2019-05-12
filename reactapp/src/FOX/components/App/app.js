@@ -4,6 +4,8 @@ import Footer from '../Footer/Footer';
 import Predmet from '../Predmet/Predmet';
 import DanDatum from '../PocetnaStranica/DanDatum';
 import PozdravnaPoruka from '../PocetnaStranica/PozdravnaPoruka';
+import UnosPrisustva from '../UnosPrisustva/UnosPrisustva';
+
 
 class App extends Component {
   render() {
@@ -12,7 +14,10 @@ class App extends Component {
         <Header isPocetna={true}/>
         <PozdravnaPoruka/>
         <DanDatum/>
+
         <Predmet/>  
+
+        <Predmet/>
         <Footer/>
       </div>
     );

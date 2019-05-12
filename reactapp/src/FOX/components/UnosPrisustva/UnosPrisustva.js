@@ -25,6 +25,13 @@ class UnosPrisustva extends Component {
                 predavanje: false,
                 vjezba: false,
                 tutorijal: false
+            },
+            {
+                index: 4,
+                ime: "Medo Medić",
+                predavanje: false,
+                vjezba: false,
+                tutorijal: false
             }
         ]
     }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Router, Route, Redirect, Switch } from "react-router-dom";
 import KreiranjeZadace from "./kreiranjeZadace";
 import AzuriranjeZadace from "./azuriranjeZadace";
+import history from "../utils/history";
+
 import BrisanjeZadace from "./brisanje";
 
 import history from "../utils/history";
@@ -19,6 +21,7 @@ class MainContent extends Component {
             path={"/KILO/azuriranjeZadace/"}
             component={AzuriranjeZadace}
           />
+
           <Route
             path={"/KILO/brisanjeZadace/"}
             component={BrisanjeZadace}

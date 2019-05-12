@@ -7,7 +7,6 @@ import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjePr
 import MockListaPredmeta from './MockListaPredmeta';
 import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
 import IzborVodje from './components/FormaZaIzborVodje';
-//import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
 
 
 

@@ -21,7 +21,11 @@ class Header extends Component {
       return (
         <div className="Header">
             {/*fixed="top"*/}
+
+            <Navbar bg="dark" variant="dark" expand="lg">               
+
             <Navbar bg="dark" variant="dark" expand="xl">               
+
                 {meni}
             </Navbar>
            

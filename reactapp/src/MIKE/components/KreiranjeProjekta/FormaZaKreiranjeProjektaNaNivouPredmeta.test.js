@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 import  KreiranjeProjekta  from './FormaZaKreiranjeProjektaNaNivouPredmeta';
 
-describe('Kreiranje projekta na nivou predmeta', () => {
+describe('Kreiranje projekta na nivou predmeta ', () => {
 
     it('Da li rendera uspjesno', () => {
         shallow(<KreiranjeProjekta/>);

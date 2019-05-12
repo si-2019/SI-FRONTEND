@@ -23,3 +23,9 @@
 .card{
     width: 85%;
 }
+.dugmic{
+    background: 'blue';
+    height:30px;
+    width:70px;
+    margin-left:165%;
+}

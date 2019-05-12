@@ -19,7 +19,15 @@ export class tabela extends Component {
         };
     } 
  
-  
+    izbrisiGrupu = () =>
+    {        
+        axios.post("http://localhost:3001/removeGroup/"+this.props.grupa.idGrupaTermina).then()
+        {
+            console.log("http://localhost:3001/removeGroup/"+this.props.grupa.idGrupaTermina)
+            document.location.reload();
+        };
+    }
+
   render() {
     var prijavljeniStudentiGrupe = [];
     for(var i=0;i<this.props.kapacitet;i++)
@@ -69,7 +77,7 @@ export class tabela extends Component {
               {prijavljeniStudentiGrupe}
           </tbody> 
           <tfoot>                    
-              <Footer_Cell redniBroj={this.props.redniBroj} lockState={this.props.lockState} stylish={stylish} poruka={poruka} redniBrojGrupe={this.props.grupa.idGrupaTermina}/>
+              <Footer_Cell redniBroj={this.props.redniBroj} lockState={this.props.lockState} izbrisiGrupu={this.izbrisiGrupu} stylish={stylish} poruka={poruka} redniBrojGrupe={this.props.grupa.idGrupaTermina}/>
           </tfoot>
       </table>
       </div>

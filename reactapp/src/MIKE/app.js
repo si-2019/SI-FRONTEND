@@ -11,7 +11,6 @@ import IzborVodje from './components/FormaZaIzborVodje';
 import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
 
 
-
 class Mike extends Component {
   constructor(props){
     super(props);

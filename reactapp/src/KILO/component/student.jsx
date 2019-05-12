@@ -21,8 +21,18 @@ class Student extends Component {
         [1, 2, 3],
         [1, 1, 3]
       ],
-      bodoviPoZadacimaZadaca: [[2, 3, 4], [1, 0, 3], [1, 2, 3], [0, 0, 3]],
-      potrebno: [[], [], [], []],
+      bodoviPoZadacimaZadaca: [
+        [2, 3, 4],
+        [1, 0, 3], 
+        [1, 2, 3], 
+        [0, 0, 3]
+      ],
+      potrebno: [
+        [], 
+        [], 
+        [], 
+        []
+      ],
       ukupnoBodova: [],
       moguceBodova: [],
       postavka: [],
@@ -32,10 +42,19 @@ class Student extends Component {
         "2020-12-01 23:59",
         "2020-12-01 23:59"
       ],
-      stanjeZadacaPoZadacima: [[0, 0, 0], [2, 2, 2], [3, 4, 0], [1, 1, 1]],
+      stanjeZadacaPoZadacima: [
+        [0, 0, 0], 
+        [2, 2, 2], 
+        [3, 4, 0], 
+        [1, 1, 1]
+      ],
       brojZadace: 0,
       brojZadatka: 0,
-      listaTipova: [".pdf", ".rar", ".doc"],
+      listaTipova: [
+        ".pdf", 
+        ".rar", 
+        ".doc"
+      ],
       datumSlanja: "25.05.19",
       vrijemeSlanja: "23:23",
       nazivFajla: "Zadatak1",
@@ -133,8 +152,8 @@ class Student extends Component {
         //ide na Edininu tabelu, back dugme
         //console.log("back Dugme aktivirano");
         document.getElementById("tabelaPregledaZadaca").style.display = "block";
-    document.getElementById("prviPutSlanjeZadatka").style.display = "none";
-    document.getElementById("zadatakVecPoslan").style.display = "none";
+        document.getElementById("prviPutSlanjeZadatka").style.display = "none";
+        document.getElementById("zadatakVecPoslan").style.display = "none";
         break;
       }
       case "preuzmi": {

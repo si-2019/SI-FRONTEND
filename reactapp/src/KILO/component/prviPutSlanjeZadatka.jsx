@@ -3,53 +3,7 @@ import "../bootstrap.css";
 import { Icon } from "@opuscapita/react-icons";
 
 class PrviPutSlanjeZadatka extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      brojZadace: 4,
-      brojZadatka: 3,
-      listaTipova: [".pdf", ".rar"]
-    };
-  }
 
-
-/*
-
-  handleClick = event => {
-    var ime = event.target.name; //name uzmem
-    if (ime === undefined) ime = "arrowLeft"; //ne znam sto nece da iscita name ikone
-    //console.log('ime je '+ime);
-    switch (ime) {
-       //ako je rok prosao, blokirati upload
-
-
-      case "posaljiZadatak": {
-        //poslati backendu fajl
-        var nazivUploada = document.getElementById("uploadButton").value;
-        console.log(nazivUploada);
-        break;
-      }
-      case "ponisti": {
-        document.getElementById("uploadButton").value = "";
-        break;
-      }
-
-      case "arrowLeft": {
-        //ide na Edininu tabelu, back dugme
-        console.log("back Dugme aktivirano");
-        break;
-      }
-      default:{
-        
-      }
-    }
-  };
-
-
-
-*/
-
-  
   render() {
     var listOfTypes = this.props.podaci.state.listaTipova;
 

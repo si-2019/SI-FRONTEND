@@ -37,6 +37,7 @@ class StranicaPredmeta extends Component {
         
       </div>
     );
+
   }
 }
 

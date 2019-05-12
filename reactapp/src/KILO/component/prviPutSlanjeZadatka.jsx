@@ -3,15 +3,7 @@ import "../bootstrap.css";
 import { Icon } from "@opuscapita/react-icons";
 
 class PrviPutSlanjeZadatka extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      brojZadace: 4,
-      brojZadatka: 3,
-      listaTipova: [".pdf", ".rar"]
-    };
-  }
-
+/*
   handleClick = event => {
     var ime = event.target.name; //name uzmem
     if (ime === undefined) ime = "arrowLeft"; //ne znam sto nece da iscita name ikone
@@ -42,22 +34,26 @@ class PrviPutSlanjeZadatka extends Component {
     }
   };
 
+
+*/
+
+  
   render() {
-    var listOfTypes = this.state.listaTipova;
+    var listOfTypes = this.props.podaci.state.listaTipova;
 
     return (
       <div>
         <div className="card-header bg-primary text-light">
           <h4>
-            <b>Zadaća {this.state.brojZadace}. </b>
+            <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
             <Icon
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
-              onClick={this.handleClick}
+              onClick={this.props.podaci.handleClick}
             />
           </h4>
-          <h5>Zadatak broj {this.state.brojZadatka}</h5>
+          <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
         </div>
         <br />
         <div className="form-group">
@@ -82,7 +78,7 @@ class PrviPutSlanjeZadatka extends Component {
           name="ponisti"
           type="button"
           className="btn btn-danger ml-5 text-body"
-          onClick={this.handleClick}
+          onClick={this.props.podaci.handleClick}
         >
           <Icon type="indicator" name="remove" className="mr-2" />
           Poništi
@@ -91,7 +87,7 @@ class PrviPutSlanjeZadatka extends Component {
           name="posaljiZadatak"
           type="button"
           className="btn btn-primary ml-5"
-          onClick={this.handleClick}
+          onClick={this.props.podaci.handleClick}
         >
           Pošalji zadatak
         </button>

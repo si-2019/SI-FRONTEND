@@ -10,7 +10,8 @@ class LiteraturaStudent extends Component {
 
     return (
         <div class="divsaokvirom" style="max-width: 60rem;">
-        <h4 class="card-title">{this.props.naslov}</h4>    
+        
+        <h4 class="naslov-literature">{this.props.naslov}</h4>    
         </div>
     );
   }

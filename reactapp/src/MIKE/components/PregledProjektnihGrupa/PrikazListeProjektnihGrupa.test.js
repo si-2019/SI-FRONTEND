@@ -10,6 +10,7 @@ describe('Odabir grupe iz liste projektnih grupa', () => {
     it('Da li rendera uspjesno', () => {
         shallow(<ListaGrupa/>);
     });
+    
 
     it("Postoji li div za odabir grupe", () => {
         const wrapper = shallow(<ListaGrupa/>);

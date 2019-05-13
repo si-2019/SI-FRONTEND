@@ -16,7 +16,6 @@ test('odabir vrste ankete', () => {
   expect(RadioButtons.length).toEqual(3) 
 })
 
-
 test('postoje polja za unos', () => {
   const Kreiranje = shallow(<App/>)
   const RadioButtons = Kreiranje.find('input[type="text"]')

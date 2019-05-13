@@ -6,6 +6,7 @@ import LiteraturaStudent from './literaturaStudent';
 import DodavanjeDatuma from './DodavanjeDatuma';
 import ObjavaStudent from './objavaStudent';
 import ObjavaProfesor from './objavaProfesor';
+import DodavanjeObjave from './dodavanjeObjave';
 class mojiPredmeti extends Component {
   render() {
     this.state={
@@ -48,6 +49,7 @@ class mojiPredmeti extends Component {
             <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
             <ObjavaStudent naslov="Predavanje 1" fileovi={this.state.fileovi2}></ObjavaStudent>
             <ObjavaProfesor naslov="Tutorijal 2" fileovi={this.state.fileovi}></ObjavaProfesor>
+            <DodavanjeObjave></DodavanjeObjave>
         </div>
         
 

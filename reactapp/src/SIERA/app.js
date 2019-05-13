@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import Potvrda from "./Potvrda";
 import PopUp from "./PopUp"
+import "./App.css";
 
+import ListaTrenutnihPredmeta from './listaTrenutnihPredmeta';
+
+import ListaOdslusanihPredmeta from './listaOdslusanihPredmeta';
 
 class App extends Component {
-  //komponenta potvrda ne treba ovdje da se poziva
   render() {
     return (
-      <div>
+      <div className="App">
         <h1>SIERA</h1>
-        <Potvrda 
-          successful="false" 
-          msg="hello"/> 
+
+        <ListaTrenutnihPredmeta/>
+
+        <ListaOdslusanihPredmeta/>
+
       </div>
     );
   }

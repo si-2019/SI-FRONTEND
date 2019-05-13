@@ -6,9 +6,9 @@ class Header extends Component {
     var nesta=100;
     return (
       <div >
-        <div  id="hed" className="card-header bg-primary text-light mb-4" style= {{height:"50px"}}>
+        <div  id="hed" className="card-header  mb-4" style= {{height:"50px"}}>
           <h5>
-            <a
+            <a id="Kreiranje"
               onClick={this.handleRedirectClick}
               href="/KILO/kreiranjeZadace/?idPredmeta=3"
              
@@ -18,12 +18,27 @@ class Header extends Component {
             
           
           
-            <a className="ml-4"
+            <a id= "Azuriranje" className="ml-4"
               onClick={this.handleRedirectClick}
               href="/KILO/azuriranjeZadace/?idPredmeta=3"
               
             >Ažuriranje zadaće
             </a>
+            <a className="ml-4"
+              onClick={this.handleRedirectClick}
+              href="/KILO/brisanjeZadace/?idPredmeta=3"
+              
+            >Brisanje zadaće
+            </a>
+
+
+            <a className="ml-4"
+              onClick={this.handleRedirectClick}
+              href="/KILO/student/"
+             
+            >Student  
+            </a>
+
         </h5>
         </div>
       </div>

@@ -42,29 +42,25 @@ class NoviIssueForma extends React.Component {
     render() {
         return (
 
-            <div id = "noviIssue">
+            <div>
 
-                <form onSubmit={this.handleSubmit}>
+                <form id = "formNoviIssue" onSubmit={this.handleSubmit}>
 
-                    <div className="row">
+                    <div id=" naslovDiv">
 
                         <label 
-                            className="col-1" 
+                            id="naslov"
                             style={{
                             marginLeft: '12px', 
                             marginTop: '16px'
                             }}
-                        >Naslov:
+                        >Title:
                         </label>
 
                         <CategoryComponent triggerGetTitleFromCategoryComponent = {this.onChangeTitleInCategoryComponent}
                         />
 
-                        <button 
-                            onClick={this.onButtonCloseClicked} 
-                            type="button" className="btn btn-danger float-right"
-                            style={{marginLeft: '85px', width: '50px'}}>X
-                        </button>
+                        <button type="button" type = "close" id = "closeIssueForm">X</button>
 
                     </div>
 
@@ -90,28 +86,30 @@ class NoviIssueForma extends React.Component {
                         <div className="custom-file col-8">
                             <input 
                                 type="file" 
-                                className="form-control-file" 
+                                className="form-control-file class1" 
                                 id="exampleInputFile"
                                 aria-describedby="fileHelp"
                             />
                         </div>
 
                         <button 
-                            type="submit" 
-                            className="btn btn-outline-primary col-2"
-                        >Snimi kao skicu
+                            id = "buttonDraft"
+                            className="btn btn-primary class1"
+                        >Save as draft
                         </button>
 
                         <button
+                            id = "buttonSend"
                             type="submit"
-                            className="btn btn-outline-primary col-2"
+                            className="btn btn-primary class1"
                             disabled={!this.state.issueText}
                             onClick={this.onSubmit}
-                        >Pošalji
+                        >Send issue
                         </button>
                         
                     </div>
                 </form>
+
             </div>
         
         );

@@ -35,7 +35,7 @@ class CategoryComponent extends React.Component {
       options.push(<option key={j}>{this.state.categoryArray[j]}</option>)
     return (
       <select
-        className="form-control col-9" 
+        className="form-control" 
         id="naslovSelect"
         onChange = {this.onChangeTitle}
       >{options}

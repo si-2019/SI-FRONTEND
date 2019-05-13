@@ -14,23 +14,23 @@ class AnketePocetna extends Component {
         <div class="btn-group-vertical" data-toggle="buttons">
           <br></br>
           <Link to ="/HOTEL/kreiranje">
-          <button type="button" class="ButtonPadding" id="kreiranje" >Kreiraj anketu</button>
+          <button type="button" class="btn btn-primary btn-lg" id="kreiranje" >KREIRAJ ANKETU</button>
           <br></br>
           </Link>
           <Link to="/HOTEL/popunjavanje">
-          <button type="button" class="ButtonPadding" id="popunjavanje">Popuni anketu</button>
+          <button type="button" class="btn btn-primary btn-lg" id="popunjavanje">POPUNI ANKETU</button>
           <br></br>
           </Link>
           <Link to="/HOTEL/liste/mojeAnkete">
-          <button type="button" class="ButtonPadding" id="mojeAnkete">Moje ankete</button>
+          <button type="button" class="btn btn-primary btn-lg" id="mojeAnkete">MOJE ANKETE</button>
           <br></br>
           </Link>
           <Link to="HOTEL/liste/javneAnkete">
-          <button type="button" class="ButtonPadding" id="javneAnkete">Javne ankete</button>
+          <button type="button" class="btn btn-primary btn-lg" id="javneAnkete">JAVNE ANKETE</button>
           <br></br>
           </Link>
           <Link to="/HOTEL/rezultati">
-          <button type="button" class="ButtonPadding" id="rezultati">Rezultati anketa</button>
+          <button type="button" class="btn btn-primary btn-lg" id="rezultati">REZULTATI ANKETA</button>
           <br></br>
           </Link>
         </div>

@@ -36,7 +36,7 @@ class DodavanjeTipovaFileova extends Component {
     return (
       <div id="tipovi">
         <Form>
-          <div className="card-header bg-primary text-light  mb-4">
+          <div id="naslovT" className="card-header text-black  mb-4">
             <h4>
               <b>Tipovi fileova za svaki zadatak</b>
             </h4>
@@ -54,9 +54,9 @@ class DodavanjeTipovaFileova extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Table className="table table-bordered text-center bg-active border-solid">
+            <Table bordered className="table table-bordered text-center">
               <thead>
-                <tr className="bg-primary text-light">
+                <tr className="text-dark">
                   <th>Naziv zadaće</th>
 
                   {kolone.map(jedno => (
@@ -78,9 +78,11 @@ class DodavanjeTipovaFileova extends Component {
                               type="checkbox"
                               id={jedno + item.nazivEkstenzije}
                               disabled={
-                                this.props.podaci.state.sviTipoviIsti &&
-                                index > 0
-                              }
+                                this.props.podaci.state.radnja=="Azuriranje"
+                                ||
+                                (this.props.podaci.state.sviTipoviIsti &&
+                                index > 0)
+                              } 
                               checked={
                                 this.props.podaci.state.listaTipova[index][
                                   jIndex

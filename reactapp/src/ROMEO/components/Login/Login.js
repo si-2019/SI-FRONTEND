@@ -51,7 +51,7 @@ class Login extends Component {
     return (
       <div id="body">
         <div id="main">
-          <form onSubmit = {this.Submitaj}>
+          <form onSubmit = {this.Submitaj} id="loginForma">
             <label htmlFor="korisnickoIme">Korisničko ime:</label>
             <input type="text" name="korisnickoIme" id="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
             <label htmlFor="sifra">Šifra:</label>
@@ -65,7 +65,7 @@ class Login extends Component {
 	        <label id="greske"></label>
         </div>
         <div id="footer">
-          Elektrotehnički fakultet u Sarajevu
+        &copy; 2019 Elektrotehnički fakultet u Sarajevu
         </div>
       </div>
     );

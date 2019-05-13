@@ -11,9 +11,14 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>
+            <div>          
+            <nav class="NavPadding" >
+                <h2>JAVNE ANKETE</h2>
+                <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
+            </nav>
 
-                <table>
+            <br></br>
+                <table class="anketeTabela" align="center">
                     <tr>
                     <td>NAZIV ANKETE</td>
                     <td>OPIS</td>
@@ -28,10 +33,10 @@ class App extends React.Component {
                     <tr>
                     <th>{anketa.naziv}</th>
                     <th>{anketa.opis}</th>
-                    <th>{anketa.datumIstekaAnkete}</th>
-                    <th> <button class="ButtoniTabela" type="button" id="prikaziButton" >PRIKAŽI</button> </th>
-                    <th> <button class="ButtoniTabela" type="button" id="urediButton" >UREDI</button> </th>
-                    <th> <button class="ButtoniTabela" type="button" id="obrisiButton" >OBRIŠI</button> </th>
+                    <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
+                    <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
+                    <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
+                    <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
                     </tr>
                 )) : "Loading..."}
                 </table>

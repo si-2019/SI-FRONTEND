@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./US_23.css";
+import "./App.css";
 import Tabela from "./komponente/tabela";
 
 class US_23 extends Component {
@@ -61,7 +61,7 @@ class US_23 extends Component {
         oznaceni.zahtjevi.push(objekat);
       }
       //post zahtjev
-      fetch("http://localhost:8080/obrada", {
+      fetch("http://localhost:31912/obrada", {
         method: "POST",
         headers: {
           Accept: "application/json",

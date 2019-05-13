@@ -4,6 +4,7 @@ import {BrowserRouter, Route} from 'react-router-dom'
 
 //US
 import US_23 from './US_23';
+import I_US_27 from './I_US_27';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <h1>LIMA</h1>
         <BrowserRouter>
           <Route path='/Lima/US_23' exact component={US_23}/>
+          <Route path='/Lima/I_US_27' exact component = {I_US_27}/>
         </BrowserRouter>
       </div>
     );

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Potvrda from "./Potvrda";
+import PopUp from "./PopUp"
 import "./App.css";
 
 import ListaTrenutnihPredmeta from './listaTrenutnihPredmeta';
 
 import ListaOdslusanihPredmeta from './listaOdslusanihPredmeta';
-
 
 class App extends Component {
   render() {

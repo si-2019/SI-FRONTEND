@@ -130,9 +130,8 @@ class Student extends Component {
 
   handleClick = event => {
     var ime = event.target.name; //name uzmem
-
-    if (ime === undefined) ime = "arrowLeft"; //ne znam sto nece da iscita name ikone
-
+console.log('medi '+ime);
+    
     switch (ime) {
       //ako je rok prosao, blokirati upload
 
@@ -143,18 +142,14 @@ class Student extends Component {
         break;
       }
       case "ponisti": {
-        document.getElementById("uploadButton").value = "";
+        var temp=document.getElementById("uploadButton").value;
+        if(temp==="") document.getElementById("uploadButton2").value="";
+        else document.getElementById("uploadButton").value="";
+        //imala 2 elementa sa istim id-em, pa je to pravilo probleme
         break;
       }
 
-      case "arrowLeft": {
-        //ide na Edininu tabelu, back dugme
-        //console.log("back Dugme aktivirano");
-        document.getElementById("tabelaPregledaZadaca").style.display = "block";
-        document.getElementById("prviPutSlanjeZadatka").style.display = "none";
-        document.getElementById("zadatakVecPoslan").style.display = "none";
-        break;
-      }
+      
       case "preuzmi": {
         //salji na rutu u backendu
         console.log("preuzmi button acitvated");
@@ -170,7 +165,13 @@ class Student extends Component {
       }
     }
   };
-
+  
+ handleBack=()=>{
+  document.getElementById("tabelaPregledaZadaca").style.display = "block";
+  document.getElementById("prviPutSlanjeZadatka").style.display = "none";
+  document.getElementById("zadatakVecPoslan").style.display = "none";
+  
+ }
   render() {
     return (
       <div>

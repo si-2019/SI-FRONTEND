@@ -20,7 +20,7 @@ class ZadatakVecPoslan extends Component {
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
-              
+              onClick={this.props.podaci.handleBack}
             /></div>
           </h4>
           <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
@@ -133,7 +133,7 @@ class ZadatakVecPoslan extends Component {
           </select>
         </div>
         <input
-          id="uploadButton"
+          id="uploadButton2"
           type="file"
           className="btn-outline-secondary ml-3"
         />

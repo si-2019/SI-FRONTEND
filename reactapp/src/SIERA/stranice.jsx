@@ -75,20 +75,16 @@ class Stranice extends Component {
             </button>
           </li>
         </ul>
-        <div>
-          <ModalnaKomponenta
-            show={this.state.otvorenModalLinkedIn}
-            onHide={zatvoriModalLinkedIn}
-            nazivPromjene="LinkedIn"
-          />
-        </div>
-        <div>
-          <ModalnaKomponenta
-            show={this.state.otvorenModalWebsite}
-            onHide={zatvoriModalWebsite}
-            nazivPromjene="Website"
-          />
-        </div>
+        <ModalnaKomponenta
+          show={this.state.otvorenModalLinkedIn}
+          onHide={zatvoriModalLinkedIn}
+          nazivpromjene="LinkedIn"
+        />
+        <ModalnaKomponenta
+          show={this.state.otvorenModalWebsite}
+          onHide={zatvoriModalWebsite}
+          nazivpromjene="Website"
+        />
       </div>
     );
   }

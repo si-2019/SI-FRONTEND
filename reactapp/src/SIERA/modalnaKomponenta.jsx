@@ -3,7 +3,23 @@ import "./bootstrap.css";
 import Modal from "react-bootstrap/Modal";
 
 class modalnaKomponenta extends Component {
-  state = {};
+  state = {
+    vrijednostInputa: ""
+  };
+
+  constructor(props) {
+    super(props);
+    this.promjenaInputa = this.promjenaInputa.bind(this);
+  }
+
+  posaljiZahtjev() {
+    console.log("Vrijednost inputa je " + this.state.vrijednostInputa);
+    this.props.onHide();
+  }
+
+  promjenaInputa(event) {
+    this.setState({ vrijednostInputa: event.target.value });
+  }
 
   render() {
     return (
@@ -19,22 +35,21 @@ class modalnaKomponenta extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body class="modal-body">
-          <label class="col-form-label" for="inputDefault">
-            {this.props.nazivPromjene}:
-          </label>
+          <label class="col-form-label">{this.props.nazivpromjene}:</label>
           <input
             type="text"
             class="form-control"
-            placeholder={this.props.nazivPromjene}
+            placeholder={this.props.nazivpromjene}
             id="inputDefault"
+            onChange={this.promjenaInputa}
           />
         </Modal.Body>
         <Modal.Footer>
-          <button class="btn btn-primary" onClick={this.props.onHide}>
+          <button class="btn btn-primary" onClick={() => this.posaljiZahtjev()}>
             Pošalji zahtjev
           </button>
           <button class="btn btn-secondary" onClick={this.props.onHide}>
-            Close
+            Zatvori
           </button>
         </Modal.Footer>
       </Modal>

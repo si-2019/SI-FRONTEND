@@ -28,7 +28,7 @@ posalji = (e)=>{
   var redni_broj=1;
     return(
       <>
-        <Form onSubmit={this.posalji}>
+        <Form onSubmit={this.posalji} variant="dark">
             <Form.Row>
             <Form.Group as={Col} controlId = "formIndex">
               <Form.Label>Unos indeksa.</Form.Label>
@@ -53,7 +53,6 @@ posalji = (e)=>{
         </tbody>
         </Table>
         
-        Deja-vu. I've been to space before hehe.
       </>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Table } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
@@ -25,7 +25,7 @@ posalji = (e)=>{
 });
 }
   render(){
-  
+  var redni_broj=1;
     return(
       <>
         <Form onSubmit={this.posalji}>
@@ -37,7 +37,21 @@ posalji = (e)=>{
             <Button variant = "primary" type ="submit"> Daj ispite </Button>
             </Form.Row>
         </Form>
-        <div>{this.state.rezultati.map(rez=>{return <h1>{rez.message[0]} {rez.message[1]} {rez.message[2]}</h1>})}</div>
+        <Table striped bordered hover>
+        <thead>
+        <tr>
+          <th>Redni broj</th>
+          <th>Indeks</th>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Datum ispita</th>
+          <th>Broj bodova</th>
+        </tr>
+        </thead>
+        <tbody>
+{this.state.rezultati.map(rez=>{return <tr><td>{redni_broj++}</td> <td>{rez.message[0]}</td> <td>{rez.message[1]}</td> <td>{rez.message[2]}</td> <td>{rez.message[3]}</td> <td>{rez.message[4]}</td></tr>})}
+        </tbody>
+        </Table>
         
         Deja-vu. I've been to space before hehe.
       </>

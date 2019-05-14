@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
-
-import DatumRodjenja from "./DatumRodjenja";
+import { BrowserRouter, Route } from "react-router-dom";
+import DatumRodjenja from "./DatumRodjenja.jsx";
 
 class App extends Component {
   render() {
@@ -10,8 +9,8 @@ class App extends Component {
         <h1>SIERA</h1>
         <BrowserRouter>
           <Route exact path="/Siera/datum-rodjenja" component={DatumRodjenja}></Route>
-        
         </BrowserRouter>
+        
       </div>
     );
   }

@@ -27,11 +27,11 @@ class DatumRodjenja extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="col-md-4">
                 <div className="alert alert-dismissible alert-danger">
                     <button type="button" className="close" data-dismiss="alert">&times;</button>
                     <strong>Oh snap!</strong> <a href="#" className="alert-link">Change a few things up</a> and try submitting again.
-            </div>
+                </div>
                 <div className="col-2" >
                     <button type="button" className="btn btn-info" id="datumRodjenja" onClick={this.handleClick}>Datum rodjenja</button>
                     <div style={{ height: "20px" }}></div>

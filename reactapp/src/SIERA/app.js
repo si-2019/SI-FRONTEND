@@ -32,11 +32,10 @@ class App extends Component {
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm">
-                  <KontaktPod />
-                  <Stranice />
-                </div>
-                <div class="col-sm">
                   <LicniPod />
+                </div>
+                <div className="col-sm">
+                <KontaktPod/>
                 </div>
               </div>
             </div>

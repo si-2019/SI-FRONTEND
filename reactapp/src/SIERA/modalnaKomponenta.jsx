@@ -7,7 +7,8 @@ import Potvrda from "./Potvrda";
 class modalnaKomponenta extends Component {
   state = {
     vrijednostInputa: "",
-    greska: [],
+    greska: null,
+    brojac: 1,
     trenutnoLogovaniStudentID: 1
   };
 
@@ -19,15 +20,31 @@ class modalnaKomponenta extends Component {
   posaljiZahtjev() {
     if (this.state.vrijednostInputa == "") {
       this.setState({ greska: true });
+      this.forceUpdate();
     } else {
       this.setState({ greska: false });
+      this.forceUpdate();
       console.log("Vrijednost inputa je " + this.state.vrijednostInputa);
-      this.props.onHide();
     }
   }
 
   promjenaInputa(event) {
     this.setState({ vrijednostInputa: event.target.value });
+  }
+
+  renderujPotvrdu() {
+    if (this.state.greska == false) {
+      console.log("Prvi uslov");
+      return (
+        <Potvrda key="1" successful="true" msg="Zahtjev je uspjesno poslan" />
+      );
+    } else if (this.state.greska == true) {
+      console.log("Drugi uslov");
+      return (
+        <Potvrda key="2" successful="false" msg="Polje ne smije biti prazno" />
+      );
+    }
+    return "";
   }
 
   render() {
@@ -38,11 +55,7 @@ class modalnaKomponenta extends Component {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        {this.state.greska ? (
-          <Potvrda successful="false" msg="Polje ne smije biti prazno" />
-        ) : (
-          ""
-        )}
+        {this.renderujPotvrdu()}
         <Modal.Header closeButton class="modal-header">
           <Modal.Title id="contained-modal-title-vcenter" class="modal-title">
             Unesite novu vrijednost polja

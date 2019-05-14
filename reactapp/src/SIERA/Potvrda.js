@@ -27,7 +27,7 @@ class Potvrda extends React.Component {
     const successful = this.props.successful;
     const msg = this.props.msg;
     let obj = {};
-    if (!successful) {
+    if (successful == "true") {
       obj = (
         <div className="col-2">
           <PopUp

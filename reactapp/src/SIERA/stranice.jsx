@@ -11,7 +11,8 @@ class Stranice extends Component {
     StudentID: 1,
     LinkedIn: "la",
     Website: "bla",
-    otvorenModal: false
+    otvorenModalLinkedIn: false,
+    otvorenModalWebsite: false
   };
   componentDidMount() {
     axios
@@ -27,13 +28,19 @@ class Stranice extends Component {
 
   posaljiZahtjevZaLinkedIn() {}
 
-  otvoriModal() {
-    console.log("Otvoreno");
-    this.setState({ otvorenModal: true });
+  otvoriModalLinkedIn() {
+    this.setState({ otvorenModalLinkedIn: true });
+  }
+
+  otvoriModalWebsite() {
+    this.setState({ otvorenModalWebsite: true });
   }
 
   render() {
-    let modalClose = () => this.setState({ otvorenModal: false });
+    let zatvoriModalLinkedIn = () =>
+      this.setState({ otvorenModalLinkedIn: false });
+    let zatvoriModalWebsite = () =>
+      this.setState({ otvorenModalWebsite: false });
     return (
       <div style={{ display: "inline-block" }}>
         <ul
@@ -49,7 +56,7 @@ class Stranice extends Component {
             <button
               class="btn btn-warning float-right"
               stlyle={{ float: "right" }}
-              onClick={() => this.otvoriModal()}
+              onClick={() => this.otvoriModalLinkedIn()}
             >
               Izmijeni
             </button>
@@ -59,12 +66,27 @@ class Stranice extends Component {
             <a href={this.state.Website} class="card-link">
               {this.state.Website}
             </a>
+            <button
+              class="btn btn-warning float-right"
+              stlyle={{ float: "right" }}
+              onClick={() => this.otvoriModalWebsite()}
+            >
+              Izmijeni
+            </button>
           </li>
         </ul>
         <div>
           <ModalnaKomponenta
-            show={this.state.otvorenModal}
-            onHide={modalClose}
+            show={this.state.otvorenModalLinkedIn}
+            onHide={zatvoriModalLinkedIn}
+            nazivPromjene="LinkedIn"
+          />
+        </div>
+        <div>
+          <ModalnaKomponenta
+            show={this.state.otvorenModalWebsite}
+            onHide={zatvoriModalWebsite}
+            nazivPromjene="Website"
           />
         </div>
       </div>

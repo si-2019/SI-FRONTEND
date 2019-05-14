@@ -20,12 +20,12 @@ class modalnaKomponenta extends Component {
         </Modal.Header>
         <Modal.Body class="modal-body">
           <label class="col-form-label" for="inputDefault">
-            Ime i prezime:
+            {this.props.nazivPromjene}:
           </label>
           <input
             type="text"
             class="form-control"
-            placeholder="Ime i prezime"
+            placeholder={this.props.nazivPromjene}
             id="inputDefault"
           />
         </Modal.Body>

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
-import KontaktPod from "./components/kontaktPod";
-import Stranice from "./components/stranice";
-import Fotografija from "./components/fotografija";
-import LicniPod from "./components/licniPod";
+import KontaktPod from "./kontaktPod";
+import Stranice from "./stranice";
+import Fotografija from "./fotografija";
+import LicniPod from "./licniPod.jsx";
 import axios from "axios";
 import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
@@ -33,7 +32,6 @@ class App extends Component {
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm">
-                  <Fotografija />
                   <KontaktPod />
                   <Stranice />
                 </div>
@@ -44,11 +42,6 @@ class App extends Component {
             </div>
           } />
         </BrowserRouter>
-        <div class="alert alert-dismissible alert-warning">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <h4 class="alert-heading">Warning!</h4>
-          <p class="mb-0">Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
-        </div>
       </div>
     );
   }

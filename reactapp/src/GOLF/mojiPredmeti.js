@@ -47,8 +47,8 @@ class mojiPredmeti extends Component {
             <SviPredmeti predmeti={this.state.svipredmeti} />
             <LiteraturaStudent></LiteraturaStudent>
             <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
-            <ObjavaStudent naslov="Predavanje 1" fileovi={this.state.fileovi2}></ObjavaStudent>
-            <ObjavaProfesor naslov="Tutorijal 2" fileovi={this.state.fileovi}></ObjavaProfesor>
+            <ObjavaStudent naslov="Predavanje 1" opisMaterijala="Opis predavanja..." fileovi={this.state.fileovi2}></ObjavaStudent>
+            <ObjavaProfesor naslov="Tutorijal 2" opisMaterijala="Opis tutorijala..."fileovi={this.state.fileovi}></ObjavaProfesor>
             <DodavanjeObjave></DodavanjeObjave>
         </div>
         

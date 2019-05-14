@@ -20,9 +20,9 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Route exact path='/Siera/lista-predmeta' render={() =>
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-sm">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-sm">
                   <ListaTrenutnihPredmeta />
                   <ListaOdslusanihPredmeta />
                 </div>
@@ -42,12 +42,16 @@ class App extends Component {
                 </div>
               </div>
             </div>
-          }/>
+          } />
         </BrowserRouter>
-          
+        <div class="alert alert-dismissible alert-warning">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <h4 class="alert-heading">Warning!</h4>
+          <p class="mb-0">Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+        </div>
       </div>
-        );
-      }
-    }
-    
-    export default App;
+    );
+  }
+}
+
+export default App;

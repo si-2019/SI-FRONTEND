@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import "./bootstrap.css";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
+import Potvrda from "./Potvrda";
 
 class modalnaKomponenta extends Component {
   state = {
-    vrijednostInputa: ""
+    vrijednostInputa: "",
+    greska: [],
+    trenutnoLogovaniStudentID: 1
   };
 
   constructor(props) {
@@ -13,8 +17,13 @@ class modalnaKomponenta extends Component {
   }
 
   posaljiZahtjev() {
-    console.log("Vrijednost inputa je " + this.state.vrijednostInputa);
-    this.props.onHide();
+    if (this.state.vrijednostInputa == "") {
+      this.setState({ greska: true });
+    } else {
+      this.setState({ greska: false });
+      console.log("Vrijednost inputa je " + this.state.vrijednostInputa);
+      this.props.onHide();
+    }
   }
 
   promjenaInputa(event) {
@@ -29,6 +38,11 @@ class modalnaKomponenta extends Component {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
+        {this.state.greska ? (
+          <Potvrda successful="false" msg="Polje ne smije biti prazno" />
+        ) : (
+          ""
+        )}
         <Modal.Header closeButton class="modal-header">
           <Modal.Title id="contained-modal-title-vcenter" class="modal-title">
             Unesite novu vrijednost polja

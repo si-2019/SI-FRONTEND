@@ -14,6 +14,7 @@ import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 
 class App extends Component {
+  
   render() {
     return (
       <div className="App">
@@ -31,12 +32,13 @@ class App extends Component {
           <Route exact path="/Siera/podaci-o-studentu" render={() =>
             <div class="container-fluid">
               <div class="row">
+                <div className="col-sm">
+                  <KontaktPod />
+                </div>
                 <div class="col-sm">
                   <LicniPod />
                 </div>
-                <div className="col-sm">
-                <KontaktPod/>
-                </div>
+
               </div>
             </div>
           } />

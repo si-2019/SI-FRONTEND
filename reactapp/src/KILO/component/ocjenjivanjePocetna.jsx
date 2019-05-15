@@ -55,7 +55,7 @@ class OcjenjivanjePocetna extends Component {
                 onClick={() => {this.props.podaci.pregledajZadacu(false);}}
                 multiple=""
                 className="custom-form-control ml-4 btn btn-danger"
-                onChange = {this.props.podaci.handleBackNaJednaZadaca.bind(this)}
+                onChange = {this.props.podaci.handleBackNaJednaZadaca.bind(this)} 
               >
                 {this.props.podaci.state.studentiNisuPoslali.map(clan => (
                   <option key={clan}>{clan}</option>
@@ -88,6 +88,7 @@ class OcjenjivanjePocetna extends Component {
                 multiple=""
                 className="custom-form-control ml-4 btn btn-success"
                 onChange = {this.props.podaci.handleBackNaJednaZadaca.bind(this)}
+                
               >
                 {this.props.podaci.state.studentiPregledano.map(clan => (
                   <option key={clan}>{clan}</option>

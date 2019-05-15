@@ -21,7 +21,7 @@ class Ocjenjivanje extends Component {
       student: "",
       zadaca: "",
       zadaciZadace: ["Zadatak 1", "Zadatak 2", "Zadatak 3", "Zadatak 4", "Zadatak 5"],
-      postavkaZadace: "postavkica",
+      postavkaZadace: "",
       moguciBodovi: [1,2,3,4,5],
       osvojeniBodovi: [1,1,1,1,1],
       rokZaPredaju: "2020-12-01 23:59", 
@@ -34,6 +34,12 @@ class Ocjenjivanje extends Component {
   }
 
   componentDidMount = () => {
+
+    if(this.state.listaZadaca[0]!="") {
+      this.setState({
+        zadaca: this.state.listaZadaca[0]
+      });
+    }
 
     this.sumirajBodove();
     this.ostvareniBodovi();
@@ -157,6 +163,11 @@ class Ocjenjivanje extends Component {
     this.setState({
       pregledana: parametar
     });
+  }
+
+  pozoviFunkcije = (parametar,p2) => {
+      this.pregledajZadacu(parametar);
+      this.handleBackNaJednaZadaca(p2);
   }
 
   render() {

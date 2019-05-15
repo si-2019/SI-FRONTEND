@@ -39,7 +39,7 @@ class OcjenjivanjeJednaZadaca extends Component {
                            <th>{this.props.podaci.state.zadaca}</th>
                            
                            {this.props.podaci.state.ostvareniMoguci.map((ostvareniBodovi, indeks2) => ( 
-                            <th>{ostvareniBodovi}
+                            <th key={ostvareniBodovi + indeks2}>{ostvareniBodovi}
                             {this.props.podaci.state.pregledana == false && <Icon type="indicator" name="attachment" className=" ml-3" onClick = {this.props.podaci.handleNaOcjenjivanjeJedanZadatak}/>}
                             {this.props.podaci.state.pregledana == true && <Icon type="indicator" name="ok" className=" ml-3" onClick = {this.props.podaci.handleNaOcjenjivanjeJedanZadatak}/>}
                             </th>
@@ -47,7 +47,7 @@ class OcjenjivanjeJednaZadaca extends Component {
                           
                            <th>{this.props.podaci.state.sumaOsvojeni}</th>
                            <th>{this.props.podaci.state.sumaMoguci}</th>
-                           <th>{this.props.podaci.state.postavkaZadace}</th>
+                           <th>{<Icon type="indicator" name="save" className=" ml-3"/>}</th>
                            <th>{this.props.podaci.state.rokZaPredaju}</th>
                           </tr>
                         </tbody>

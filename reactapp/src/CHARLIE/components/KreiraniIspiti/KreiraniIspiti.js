@@ -66,6 +66,12 @@ state = {response:[]}
             >
               Uredi
             </Link>
+            <button
+              type="button"
+              className="btn btn-danger"
+            >
+              Izbrisi
+            </button>
               
           </div>
       )

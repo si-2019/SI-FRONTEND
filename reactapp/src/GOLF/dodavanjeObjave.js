@@ -10,10 +10,7 @@ class DodavanjeObjave extends Component{
                 <div className="card-body">
                     <form>
                         Naslov: <br></br><input id="naslovObjave" type="text" name="naslovObjave" class="form-control mr-sm-2"></input>
-                        <button
-        className="dugmic"
-        
-        >Dodaj</button>
+                        <input className="dugmic" type="file" multiple></input>
                     </form>
                 </div>
             </div>

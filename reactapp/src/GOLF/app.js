@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import MojiPredmeti from './mojiPredmeti.js'
 import Ciklusi from './ciklusi.js'
+import proba from './proba.js'
 import semestarPredmeti from './semestarPredmeti.js'
 
 class App extends Component {
@@ -24,7 +25,7 @@ class App extends Component {
                      
                     </div>
                     <div class='col-9'>
-                        <Route exact path="/Golf" component={MojiPredmeti} />
+                        <Route exact path="/Golf" component={proba} />
                         <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
                         <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>                   
 				   </div>

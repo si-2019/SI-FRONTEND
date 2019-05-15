@@ -8,13 +8,13 @@ class modalnaKomponenta extends Component {
   state = {
     vrijednostInputa: "",
     greska: null,
-    brojac: 1,
     trenutnoLogovaniStudentID: 1
   };
 
   constructor(props) {
     super(props);
     this.promjenaInputa = this.promjenaInputa.bind(this);
+    this.brojac = 0;
   }
 
   posaljiZahtjev() {
@@ -36,18 +36,27 @@ class modalnaKomponenta extends Component {
     if (this.state.greska == false) {
       console.log("Prvi uslov");
       return (
-        <Potvrda key="1" successful="true" msg="Zahtjev je uspjesno poslan" />
+        <Potvrda
+          key={this.brojac}
+          successful="true"
+          msg="Zahtjev je uspjesno poslan"
+        />
       );
     } else if (this.state.greska == true) {
       console.log("Drugi uslov");
       return (
-        <Potvrda key="2" successful="false" msg="Polje ne smije biti prazno" />
+        <Potvrda
+          key={this.brojac}
+          successful="false"
+          msg="Polje ne smije biti prazno"
+        />
       );
     }
     return "";
   }
 
   render() {
+    ++this.brojac;
     return (
       <Modal
         {...this.props}

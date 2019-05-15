@@ -2,6 +2,10 @@ import React from "react";
 
 class PopUp extends React.Component {
   render() {
+    if (this.props.show == false) {
+      console.log("False je");
+      return null;
+    }
     return (
       <div className={this.props.class} style={this.props.style}>
         <button

@@ -7,8 +7,8 @@ class Potvrda extends React.Component {
     super();
     this.state = {
       idLogovanogStudenta: 1, //placeholder - treba API od autentifikacije
-      visible: "block",
-      isActive: false
+      isActive: false,
+      prikazi: true
     };
     this.handleVisible = this.handleVisible.bind(this);
   }
@@ -17,8 +17,8 @@ class Potvrda extends React.Component {
     this.setState(prevstate => {
       if (!prevstate.isActive) {
         return {
-          visible: "none",
-          isActive: true
+          isActive: true,
+          prikazi: false
         };
       }
     });
@@ -29,34 +29,34 @@ class Potvrda extends React.Component {
     let obj = {};
     if (successful == "true") {
       obj = (
-        <div className="col-2">
+        <div className="col-4">
           <PopUp
             class="alert alert-dismissible alert-success"
             style={{
               backgroundColor: "#14bb9d",
               borderColor: "#14bb9d",
-              color: "white",
-              display: this.state.visible
+              color: "white"
             }}
             boldiraniTekst="Ok!"
             ostaliTekst={msg}
+            show={this.state.prikazi}
             onClick={this.handleVisible}
           />
         </div>
       );
     } else {
       obj = (
-        <div className="col-2">
+        <div className="col-4">
           <PopUp
             class="alert alert-dismissible alert-danger"
             style={{
               backgroundColor: "#e74b3c",
               borderColor: "#e74b3c",
-              color: "white",
-              display: this.state.visible
+              color: "white"
             }}
             boldiraniTekst="Greška!"
             ostaliTekst={msg}
+            show={this.state.prikazi}
             onClick={this.handleVisible}
           />
         </div>

@@ -9,34 +9,50 @@ export default class I_US_27 extends Component{
     error: null,
     isLoaded: false,
     show:true,
-    rezultati:[]
+    rezultati:[],
+    indeks:0,
+    predmet:''
   };
   constructor(props) {
     super(props);
-    
+      this.updateIndeks = this.updateIndeks.bind(this);
+      this.updatePredmet = this.updatePredmet.bind(this);
   }
+  updateIndeks(event){
+    //u string indeks dodaje kako se unosi u TB
+    this.setState({indeks : event.target.value});
+  }
+  updatePredmet(event){
+    //u string predmet dodaje kako se unosi u TB
+    this.setState({predmet: event.target.value});
+  }
+  
 posalji = (e)=>{
   e.preventDefault();
-  console.log("UŠAO");
-  let podaci = [];
-  fetch('http://localhost:31912/Izvjestaji/dajDrugeParcijale').then(rez=>rez.json()).then(data=>{this.setState({rezultati:[...this.state.rezultati,data]})
-  podaci = data;
+  fetch('http://localhost:31912/Izvjestaji/dajDrugeParcijale/'+this.state.indeks+'/'+this.state.predmet)
+  .then(rez=>rez.json())
+  //.then(data=>{this.setState({rezultati:[...this.state.rezultati,data]})
+  .then(data=>{this.setState({rezultati:data})
   console.log(this.state.rezultati);
 });
 }
+
   render(){
   var redni_broj=1;
     return(
       <>
-        <Form onSubmit={this.posalji} variant="dark">
-            <Form.Row>
-            <Form.Group as={Col} controlId = "formIndex">
-              <Form.Label>Unos indeksa.</Form.Label>
-              <Form.Control/>
-            </Form.Group>
-            <Button variant = "primary" type ="submit"> Daj ispite </Button>
-            </Form.Row>
-        </Form>
+        <form onSubmit={this.posalji}>
+        Unos indeksa: <br /> Trenutno uneseni indeks:{this.state.indeks}
+        <input type = "text"  id="indeks" onChange={this.updateIndeks}></input>
+        <br />
+        Unos naziva predmeta: <br />
+        <br />
+        Trenutno uneseni predmet:{this.state.predmet}
+        <input type = "text"  id="predmet" onChange={this.updatePredmet}></input>
+        <input type="submit" id="dajRezultate" value="Daj rezultate"></input>
+        </form>
+
+
         <Table striped bordered hover>
         <thead>
         <tr>
@@ -49,7 +65,7 @@ posalji = (e)=>{
         </tr>
         </thead>
         <tbody>
-{this.state.rezultati.map(rez=>{return <tr><td>{redni_broj++}</td> <td>{rez.message[0]}</td> <td>{rez.message[1]}</td> <td>{rez.message[2]}</td> <td>{rez.message[3]}</td> <td>{rez.message[4]}</td></tr>})}
+{this.state.rezultati.map(rez=>{return <tr><td>{redni_broj++}</td> <td>{rez.indeks}</td> <td>{rez.ime}</td> <td>{rez.prezime}</td> <td>{rez.datumIspita}</td> <td>{rez.brojBodova}</td></tr>})}
         </tbody>
         </Table>
         

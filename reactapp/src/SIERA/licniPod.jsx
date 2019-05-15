@@ -6,8 +6,8 @@ import Fotografija from "./fotografija.jsx"
 import ModalComponent from "./Modal"
 
 class LicniPod extends Component {
-    constructor() {
-        super();
+    constructor(...args) {
+        super(...args);
         this.state = {
             ime: "DamirMasina",
             prezime: "Nekic",
@@ -19,10 +19,14 @@ class LicniPod extends Component {
             Drzavljanstvo: "Bih",
             StudentID: 1,
             modalShow: false,
-            noviInput: ""
+            noviInput: {
+                ime: null,
+                prezime: null,
+                drz: null,
+                promjenaIme:null,
+                promjenaDrz:null
+            }
         }
-        
-        this.handlePutRequest = this.handlePutRequest.bind(this);
     }
 
     componentDidMount() {
@@ -49,25 +53,7 @@ class LicniPod extends Component {
                 const drz = res.data.map(obj => obj.drzavljanstvo);
                 this.setState({ Drzavljanstvo: drz });
             });
-        
-    }
 
-    handlePutRequest(event) {
-        /*
-        console.log("lalalal");
-        event.preventDefault();
-       // console.log(event.target.elements.[name].value) 
-       const novoIme = event.currentTarget.ime.value;
-        axios.put(
-            "http://localhost:31918/studenti/update/imeprezime/" + this.state.studentID,
-            {
-                "ime":novoIme,
-                "prezime":event.target.prezime.value
-            }
-        ).then(res=>{
-            console.log(res.msg + ", " + res.success)
-        });
-        */
     }
     render() {
         let modalClose = () => this.setState({ modalShow: false });
@@ -107,22 +93,57 @@ class LicniPod extends Component {
                     tijeloModala={
                         <form>
                             <label class="col-form-label" for="inputDefault" >Ime</label>
-                            <input type="text" class="form-control" name="ime" />
+                            <input type="text" class="form-control" name="ime"
+                                onChange={
+                                    (event) => {
+                                        this.setState({
+                                            noviInput: {
+                                                ime: event.target.value,
+                                                prezime: this.state.noviInput.prezime,
+                                                drz: this.state.noviInput.drz,
+                                                promjenaDrz: this.state.noviInput.promjenaDrz,
+                                                promjenaIme:true
+                                            }
+
+                                        });
+                                    }
+                                } />
                             <label class="col-form-label" for="inputDefault" >Prezime</label>
-                            <input type="text" class="form-control" name="prezime" />
-                            <label class="col-form-label" for="inputDefault">Ime I Prezime Oca</label>
-                            <input type="text" class="form-control" name="imePrezimeOtac" />
-                            <label class="col-form-label" for="inputDefault">Ime I Prezime Majke</label>
-                            <input type="text" class="form-control" name="imePrezimeMajka" />
+                            <input type="text" class="form-control" name="prezime"
+                                onChange={
+                                    (event) => {
+                                        this.setState({
+                                            noviInput: {
+                                                ime: this.state.noviInput.ime,
+                                                prezime: event.target.value,
+                                                drz: this.state.noviInput.drz,
+                                                promjenaDrz: this.state.noviInput.promjenaDrz,
+                                                promjenaIme:true
+                                            }
+
+                                        });
+                                    }
+                                } />
+
                             <label class="col-form-label" for="inputDefault">Državljanstvo</label>
-                            <input type="text" class="form-control" name="drzavljanstvo" />
-                            <label class="col-form-label" for="inputDefault">Datum I Mjesto Rođenja</label>
-                            <input type="text" class="form-control" name="dat" />
-                            <label class="col-form-label" for="inputDefault">Index</label>
-                            <input type="text" class="form-control" name="index" />
-                            </form>
+                            <input type="text" class="form-control" name="drzavljanstvo"
+                                onChange={
+                                    (event) => {
+                                        this.setState({
+                                            noviInput: {
+                                                ime: this.state.noviInput.ime,
+                                                prezime: this.state.noviInput.prezime,
+                                                drz: event.target.value,
+                                                promjenaDrz: true,
+                                                promjenaIme:this.state.noviInput.promjenaIme
+                                            }
+                                        });
+                                    }
+                                } />
+                        </form>
                     }
-                    handlePutRequest = {this.handlePutRequest}
+                    handlePutRequest={this.handlePutRequest}
+                    noviInput={this.state.noviInput}
                 />
             </>
         );

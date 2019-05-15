@@ -29,7 +29,9 @@ class Ocjenjivanje extends Component {
       sumaOsvojeni: 0,
       sumaMoguci:0,
       ostvareniMoguci: [],
-      pregledana: false
+      pregledana: false,
+      defaultno: "",
+      renderajOpet:false
     };
   }
 
@@ -93,18 +95,34 @@ class Ocjenjivanje extends Component {
 
   handleBackNaJednaZadaca = (student) => {
   
-    this.setState({
-      student: student.target.value
-    });
+      if(student.target.value!=""){
+          this.setState({
+            student: student.target.value
+          });
 
-    document.getElementById("ocjenjivanjePocetna").style.display = "none";
-    document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
-    document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
+          document.getElementById("ocjenjivanjePocetna").style.display = "none";
+          document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
+          document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
+
+
+    }
+
   };
 
 
   handleBackNaJednaIzborZadace = () => {
   
+    if(this.state.renderajOpet==false){
+      this.setState({
+        renderajOpet:true
+      })
+    }
+    else{
+      this.setState({
+        renderajOpet:false
+      })
+    }
+
     document.getElementById("ocjenjivanjePocetna").style.display = "block";
     document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";

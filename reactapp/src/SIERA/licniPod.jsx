@@ -20,18 +20,18 @@ class LicniPod extends Component {
             imePrezimeMajke: "Nekic",
             Drzavljanstvo: "Bih",
             StudentID: 1,
+            fotka: null,
             modalShow: false,
             noviInput: {
                 ime: null,
                 prezime: null,
                 drz: null,
-                promjenaIme:null,
-                promjenaDrz:null,
-                promjenaFoto:null,
-                foto:null
+                promjenaIme: null,
+                promjenaDrz: null,
+                promjenaFoto: null,
+                foto: null
             }
         }
-        this.handleFileSelect = this.handleFileSelect.bind(this);
     }
 
     componentDidMount() {
@@ -41,6 +41,7 @@ class LicniPod extends Component {
                 this.state.StudentID
             )
             .then(res => {
+                console.log("ev me u getu");
                 const ime = res.data.map(obj => obj.ime);
                 this.setState({ ime: ime });
                 const prezime = res.data.map(obj => obj.prezime);
@@ -57,23 +58,9 @@ class LicniPod extends Component {
                 this.setState({ imePrezimeMajke: imePrezimeMajke });
                 const drz = res.data.map(obj => obj.drzavljanstvo);
                 this.setState({ Drzavljanstvo: drz });
+                const help = res.data.map(obj => obj.fotografija);
+                this.setState({ fotka: help });
             });
-    }
-    handleFileSelect(e) {
-        this.setState(
-               { noviInput: 
-                {
-                    ime: this.state.noviInput.ime,
-                    prezime: this.state.noviInput.prezime,
-                    promjenaIme: this.state.noviInput.promjenaIme,
-                    promjenaDrz: this.state.noviInput.promjenaDrz,
-                    drz: this.state.noviInput.drz,
-                    foto: e.target.files[0],
-                    promjenaFoto: true
-                }}
-           
-    );
-       
     }
     render() {
         let modalClose = () => this.setState({ modalShow: false });
@@ -86,11 +73,11 @@ class LicniPod extends Component {
                         <h5 className="card-title">{this.state.ime} {this.state.prezime}</h5>
                         <h6 className="card-subtitle text-muted"></h6>
                     </div>
-                    <Fotografija />
+                    <Fotografija fotografija={this.state.fotka} />
                     <ul class="list-group list-group-flush" style={{ width: "100%", display: "inline-block" }}>
                         <li class="card-header">
                             Lični Podaci
-                            <button type="button" class="btn btn-link" onClick={() => this.setState({ modalShow: true })} >Edit</button>
+                            <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })} >Edit</button>
                         </li>
                         <li class="list-group-item" >
                             <div><span class="badge badge-info">Datum i mjesto rođenja</span></div>
@@ -112,9 +99,28 @@ class LicniPod extends Component {
                     naslovModala="Lični Podaci"
                     tijeloModala={
                         <form>
-                            <Fotografija />
+                            <Fotografija fotografija={this.state.noviInput.foto} />
                             <br></br>
-                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" onClick={this.handleFileSelect}/>
+                            <input type="file" class="form-control-file" name="fileInput" aria-describedby="fileHelp"
+                                onChange={
+                                    (event) => {
+                                        this.setState(
+                                            {
+                                                noviInput:
+                                                {
+                                                    ime: this.state.noviInput.ime,
+                                                    prezime: this.state.noviInput.prezime,
+                                                    promjenaIme: this.state.noviInput.promjenaIme,
+                                                    promjenaDrz: this.state.noviInput.promjenaDrz,
+                                                    drz: this.state.noviInput.drz,
+                                                    foto: event.target.files[0],
+                                                    promjenaFoto: true
+                                                }
+                                            }
+
+                                        );
+                                    }}
+                            />
                             <br></br>
                             <label class="col-form-label" for="inputDefault" >Ime</label>
                             <input type="text" class="form-control" name="ime"
@@ -126,7 +132,7 @@ class LicniPod extends Component {
                                                 prezime: this.state.noviInput.prezime,
                                                 drz: this.state.noviInput.drz,
                                                 promjenaDrz: this.state.noviInput.promjenaDrz,
-                                                promjenaIme:true,
+                                                promjenaIme: true,
                                                 promjenaFoto: this.state.noviInput.promjenaFoto,
                                                 foto: this.state.noviInput.foto
                                             }
@@ -144,7 +150,7 @@ class LicniPod extends Component {
                                                 prezime: event.target.value,
                                                 drz: this.state.noviInput.drz,
                                                 promjenaDrz: this.state.noviInput.promjenaDrz,
-                                                promjenaIme:true,
+                                                promjenaIme: true,
                                                 promjenaFoto: this.state.noviInput.promjenaFoto,
                                                 foto: this.state.noviInput.foto
                                             }
@@ -163,7 +169,7 @@ class LicniPod extends Component {
                                                 prezime: this.state.noviInput.prezime,
                                                 drz: event.target.value,
                                                 promjenaDrz: true,
-                                                promjenaIme:this.state.noviInput.promjenaIme,
+                                                promjenaIme: this.state.noviInput.promjenaIme,
                                                 promjenaFoto: this.state.noviInput.promjenaFoto,
                                                 foto: this.state.noviInput.foto
                                             }
@@ -172,7 +178,6 @@ class LicniPod extends Component {
                                 } />
                         </form>
                     }
-                    handlePutRequest={this.handlePutRequest}
                     noviInput={this.state.noviInput}
                 />
             </>

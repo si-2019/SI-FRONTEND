@@ -6,20 +6,11 @@ class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false,
             studentID: 1,
             greska: null,
             brojac: 0
         }
-        this.handleClose = this.handleClose.bind(this);
         this.handlePutEvent = this.handlePutEvent.bind(this);
-    }
-    handleClose() {
-        this.setState(() => {
-            return {
-                isOpen: false
-            }
-        })
     }
     handlePutEvent() {
         if(this.props.noviInput.promjenaIme==null && this.props.noviInput.promjenaDrz==null && this.props.noviInput.promjenaFoto==null){
@@ -67,11 +58,13 @@ class ModalComponent extends React.Component {
                     .then(res => {
                         this.setState({ greska: false });
                         console.log("editovana slika");
+                        console.log(this.props.noviInput.foto);
                     })
                     .catch(res=>{
                         console.log("ne valja braca");
                     });
             }
+            
         }
         
     }
@@ -104,6 +97,7 @@ class ModalComponent extends React.Component {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
+            {this.renderujPotvrdu()}
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         {this.props.naslovModala}
@@ -118,7 +112,7 @@ class ModalComponent extends React.Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="button" class="btn btn-outline-danger" onClick={this.props.onHide}>Odustani</button>
-                    <button type="button" class="btn btn-primary" onClick={this.handlePutEvent}>Spasi Promjene</button>
+                    <button type="button" class="btn btn-primary" id="spasiBtn" onClick={this.handlePutEvent}>Spasi Promjene</button>
                 </Modal.Footer>
             </Modal>
         );

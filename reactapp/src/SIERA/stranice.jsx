@@ -9,8 +9,8 @@ class Stranice extends Component {
 
   state = {
     StudentID: 1,
-    LinkedIn: "la",
-    Website: "bla",
+    LinkedIn: "",
+    Website: "",
     otvorenModalLinkedIn: false,
     otvorenModalWebsite: false
   };
@@ -18,9 +18,10 @@ class Stranice extends Component {
     axios
       .get(`http://localhost:31918/studenti/` + this.state.StudentID)
       .then(res => {
-        const In = res.data.map(obj => obj.linkedin);
-        this.setState({ LinkedIn: In });
-
+        if (res.data.length > 0) {
+          const In = res.data.map(obj => obj.linkedin);
+          this.setState({ LinkedIn: In });
+        }
         const web = res.data.map(obj => obj.website);
         this.setState({ Website: web });
       });

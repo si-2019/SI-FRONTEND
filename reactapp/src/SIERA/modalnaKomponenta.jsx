@@ -20,11 +20,32 @@ class modalnaKomponenta extends Component {
   posaljiZahtjev() {
     if (this.state.vrijednostInputa == "") {
       this.setState({ greska: true });
-      this.forceUpdate();
     } else {
-      this.setState({ greska: false });
-      this.forceUpdate();
-      console.log("Vrijednost inputa je " + this.state.vrijednostInputa);
+      if (this.props.nazivpromjene == "LinkedIn") {
+        axios
+          .put(
+            `http://localhost:31918/studenti/update/linkedin/` +
+              this.state.trenutnoLogovaniStudentID,
+            { linkedin: this.state.vrijednostInputa }
+          )
+          .then(res => {
+            this.setState({ greska: false });
+            console.log(res);
+            console.log(res.data);
+          });
+      } else if (this.props.nazivpromjene == "Website") {
+        axios
+          .put(
+            `http://localhost:31918/studenti/update/website/` +
+              this.state.trenutnoLogovaniStudentID,
+            { website: this.state.vrijednostInputa }
+          )
+          .then(res => {
+            this.setState({ greska: false });
+            console.log(res);
+            console.log(res.data);
+          });
+      }
     }
   }
 
@@ -34,7 +55,6 @@ class modalnaKomponenta extends Component {
 
   renderujPotvrdu() {
     if (this.state.greska == false) {
-      console.log("Prvi uslov");
       return (
         <Potvrda
           key={this.brojac}
@@ -43,7 +63,6 @@ class modalnaKomponenta extends Component {
         />
       );
     } else if (this.state.greska == true) {
-      console.log("Drugi uslov");
       return (
         <Potvrda
           key={this.brojac}

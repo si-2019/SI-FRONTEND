@@ -110,6 +110,7 @@ class Ocjenjivanje extends Component {
   };
 
 
+
   handleBackNaJednaIzborZadace = () => {
   
     if(this.state.renderajOpet==false){
@@ -128,6 +129,8 @@ class Ocjenjivanje extends Component {
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
 
   };
+
+  
 
   handleNaOcjenjivanjeJedanZadatak = () => {
   
@@ -193,7 +196,7 @@ class Ocjenjivanje extends Component {
     return (
       <div>
         <div id="ocjenjivanjePocetna">
-          <OcjenjivanjePocetna podaci={this} />
+          <OcjenjivanjePocetna key={this.state.renderajOpet} podaci={this} />
         </div>
         <div>
           <div id="ocjenjivanjeJednaZadaca">
@@ -208,5 +211,7 @@ class Ocjenjivanje extends Component {
     );
   }
 }
+
+
 
 export default Ocjenjivanje;

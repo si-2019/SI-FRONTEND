@@ -61,7 +61,7 @@ class US_23 extends Component {
         oznaceni.zahtjevi.push(objekat);
       }
       //post zahtjev
-      fetch("http://localhost:8080/obrada", {
+      fetch("http://localhost:31912/obrada", {
         method: "POST",
         headers: {
           Accept: "application/json",

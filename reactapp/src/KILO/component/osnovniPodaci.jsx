@@ -48,9 +48,12 @@ class OsnovniPodaci extends Component {
                   onChange={this.props.onChange}
                 />
               </FormGroup>
-              <FormGroup>
+              <FormGroup encType="multipart/form-data">
                 <Label for="file">Postavka:</Label>
-                <Input type="file" name="file" id="file" />
+                <Input type="file" name="file" id="file" 
+                  files = {this.props.podaci.state.postavka}
+                  onChange={this.props.onChangePostavka}
+                />
                 <FormText color="muted">Ovo je opcionalna mogućnost</FormText>
               </FormGroup>
               <FormGroup>

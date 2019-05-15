@@ -19,8 +19,10 @@ class LicniPod extends Component {
             Drzavljanstvo: "Bih",
             StudentID: 1,
             modalShow: false,
-            noviInput:""
+            noviInput: ""
         }
+        
+        this.handlePutRequest = this.handlePutRequest.bind(this);
     }
 
     componentDidMount() {
@@ -47,11 +49,26 @@ class LicniPod extends Component {
                 const drz = res.data.map(obj => obj.drzavljanstvo);
                 this.setState({ Drzavljanstvo: drz });
             });
-        axios.put(
-
-        ).then();
+        
     }
-    
+
+    handlePutRequest(event) {
+        /*
+        console.log("lalalal");
+        event.preventDefault();
+       // console.log(event.target.elements.[name].value) 
+       const novoIme = event.currentTarget.ime.value;
+        axios.put(
+            "http://localhost:31918/studenti/update/imeprezime/" + this.state.studentID,
+            {
+                "ime":novoIme,
+                "prezime":event.target.prezime.value
+            }
+        ).then(res=>{
+            console.log(res.msg + ", " + res.success)
+        });
+        */
+    }
     render() {
         let modalClose = () => this.setState({ modalShow: false });
 
@@ -86,23 +103,26 @@ class LicniPod extends Component {
                 <ModalComponent
                     show={this.state.modalShow}
                     onHide={modalClose}
-                    modalTitle="Lični Podaci"
-                    modalBody={
-                        <>
-                            <label class="col-form-label" for="inputDefault" >Ime I Prezime</label>
-                            <input type="text" class="form-control" id="inputDefault"/>
+                    naslovModala="Lični Podaci"
+                    tijeloModala={
+                        <form>
+                            <label class="col-form-label" for="inputDefault" >Ime</label>
+                            <input type="text" class="form-control" name="ime" />
+                            <label class="col-form-label" for="inputDefault" >Prezime</label>
+                            <input type="text" class="form-control" name="prezime" />
                             <label class="col-form-label" for="inputDefault">Ime I Prezime Oca</label>
-                            <input type="text" class="form-control" id="inputDefault" />
+                            <input type="text" class="form-control" name="imePrezimeOtac" />
                             <label class="col-form-label" for="inputDefault">Ime I Prezime Majke</label>
-                            <input type="text" class="form-control" id="inputDefault" />
+                            <input type="text" class="form-control" name="imePrezimeMajka" />
                             <label class="col-form-label" for="inputDefault">Državljanstvo</label>
-                            <input type="text" class="form-control" id="inputDefault" />
+                            <input type="text" class="form-control" name="drzavljanstvo" />
                             <label class="col-form-label" for="inputDefault">Datum I Mjesto Rođenja</label>
-                            <input type="text" class="form-control" id="inputDefault" />
+                            <input type="text" class="form-control" name="dat" />
                             <label class="col-form-label" for="inputDefault">Index</label>
-                            <input type="text" class="form-control" id="inputDefault" />
-                    </>
+                            <input type="text" class="form-control" name="index" />
+                            </form>
                     }
+                    handlePutRequest = {this.handlePutRequest}
                 />
             </>
         );

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+﻿import React, { Component } from "react";
 import { Alert } from "reactstrap";
 
 class UnosTermina extends Component {
@@ -56,7 +56,7 @@ class UnosTermina extends Component {
     return true;
   }
   postTermin(event) {
-    fetch("http://localhost:8080/si2019/echo/unesiTermine", {
+    fetch("http://localhost:31905/si2019/echo/unesiTermine", {
       method: "POST",
       headers: {
         Accept: "application/json",

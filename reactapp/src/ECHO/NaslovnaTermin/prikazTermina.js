@@ -10,7 +10,7 @@ class PrikazTermina extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/si2019/echo/getZeljeniTerminByKorisnikId")
+    fetch("http://localhost:31905/si2019/echo/getZeljeniTerminByKorisnikId")
       .then(res => res.json())
       .then(json => {
         this.setState({

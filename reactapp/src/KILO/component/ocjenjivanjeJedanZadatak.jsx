@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Icon } from "@opuscapita/react-icons";
 
-
+ 
 class OcjenjivanjeJedanZadatak extends Component {
   render() {
     return (

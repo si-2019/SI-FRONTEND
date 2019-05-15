@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+ 
 class OcjenjivanjePocetna extends Component {
   render() {
     return (
@@ -39,6 +39,7 @@ class OcjenjivanjePocetna extends Component {
               <select
                 multiple=""
                 className="custom-form-control ml-4 btn btn-primary"
+                onChange = {this.props.podaci.postaviZadacu.bind(this)}
               >
                 {this.props.podaci.state.listaZadaca.map(clan => (
                   <option key={clan}>{clan}</option>
@@ -51,9 +52,10 @@ class OcjenjivanjePocetna extends Component {
                 zadaću:{" "}
               </h4>
               <select
-                onChange={this.props.podaci.handleBackNaJednaZadaca}
+                onClick={() => {this.props.podaci.pregledajZadacu(false);}}
                 multiple=""
                 className="custom-form-control ml-4 btn btn-danger"
+                onChange = {this.props.podaci.handleBackNaJednaZadaca.bind(this)}
               >
                 {this.props.podaci.state.studentiNisuPoslali.map(clan => (
                   <option key={clan}>{clan}</option>
@@ -66,9 +68,10 @@ class OcjenjivanjePocetna extends Component {
                 <b className="text-warning">nije pregledano:</b>{" "}
               </h4>
               <select
-                onChange={this.props.podaci.handleBackNaJednaZadaca}
+                onClick={() => {this.props.podaci.pregledajZadacu(false);}}
                 multiple=""
                 className="custom-form-control ml-4 btn btn-warning"
+                onChange = {this.props.podaci.handleBackNaJednaZadaca.bind(this)}
               >
                 {this.props.podaci.state.studentiNijePregledano.map(clan => (
                   <option key={clan}>{clan}</option>
@@ -81,9 +84,10 @@ class OcjenjivanjePocetna extends Component {
                 <b className="text-success">pregledane:</b>{" "}
               </h4>
               <select
-                onChange={this.props.podaci.handleBackNaJednaZadaca}
+                onClick={() => {this.props.podaci.pregledajZadacu(true);}}
                 multiple=""
                 className="custom-form-control ml-4 btn btn-success"
+                onChange = {this.props.podaci.handleBackNaJednaZadaca.bind(this)}
               >
                 {this.props.podaci.state.studentiPregledano.map(clan => (
                   <option key={clan}>{clan}</option>

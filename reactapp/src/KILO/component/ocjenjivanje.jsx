@@ -132,7 +132,11 @@ class Ocjenjivanje extends Component {
 
   
 
-  handleNaOcjenjivanjeJedanZadatak = () => {
+  handleNaOcjenjivanjeJedanZadatak = (indeks) => {
+
+    this.setState({
+      brojZadatka: indeks+1
+    });
   
     document.getElementById("ocjenjivanjePocetna").style.display = "none";
     document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";

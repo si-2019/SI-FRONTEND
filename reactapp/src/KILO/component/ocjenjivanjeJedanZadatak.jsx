@@ -8,7 +8,7 @@ class OcjenjivanjeJedanZadatak extends Component {
       <div>
         <div className="card-header bg-primary text-light">
           <h4>
-            <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
+            <b>Zadaća {this.props.podaci.state.zadaca}. </b>
             <Icon
               type="indicator"
               name="arrowLeft"

@@ -40,8 +40,8 @@ class OcjenjivanjeJednaZadaca extends Component {
                            
                            {this.props.podaci.state.ostvareniMoguci.map((ostvareniBodovi, indeks2) => ( 
                             <th key={ostvareniBodovi + indeks2}>{ostvareniBodovi}
-                            {this.props.podaci.state.pregledana == false && <Icon type="indicator" name="attachment" className=" ml-3" onClick = {this.props.podaci.handleNaOcjenjivanjeJedanZadatak}/>}
-                            {this.props.podaci.state.pregledana == true && <Icon type="indicator" name="ok" className=" ml-3" onClick = {this.props.podaci.handleNaOcjenjivanjeJedanZadatak}/>}
+                            {this.props.podaci.state.pregledana == false && <Icon type="indicator" name="attachment" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
+                            {this.props.podaci.state.pregledana == true && <Icon type="indicator" name="ok" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
                             </th>
                            ))}
                           

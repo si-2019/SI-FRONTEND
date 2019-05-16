@@ -14,6 +14,9 @@ function App() {
       <div className="menu">
     
       </div>
+      <div className="footer">
+        Elektrotehnički fakultet u Sarajevu
+      </div>
     </div>
   );
 }

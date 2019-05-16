@@ -33,7 +33,7 @@ class LicniPod extends Component {
             }
         }
     }
-
+   
     componentDidMount() {
         axios
             .get(
@@ -63,7 +63,11 @@ class LicniPod extends Component {
             });
     }
     render() {
-        let modalClose = () => this.setState({ modalShow: false });
+        let modalClose = () => {
+            this.setState({ modalShow: false });
+            
+            window.location.reload();
+        }
 
         return (
             <>
@@ -98,10 +102,10 @@ class LicniPod extends Component {
                     onHide={modalClose}
                     naslovModala="Lični Podaci"
                     tijeloModala={
-                        <form>
-                            <Fotografija fotografija={this.state.noviInput.foto} />
+                        <>
+                             <label class="col-form-label" for="inputDefault" >Nova fotografija</label>
                             <br></br>
-                            <input type="file" class="form-control-file" name="fileInput" aria-describedby="fileHelp"
+                            <input type="file" class="form-control-file" name="foto" aria-describedby="fileHelp"
                                 onChange={
                                     (event) => {
                                         this.setState(
@@ -176,7 +180,7 @@ class LicniPod extends Component {
                                         });
                                     }
                                 } />
-                        </form>
+                                </>
                     }
                     noviInput={this.state.noviInput}
                 />

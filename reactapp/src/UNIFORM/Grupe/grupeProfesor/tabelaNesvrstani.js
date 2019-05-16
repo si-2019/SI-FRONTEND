@@ -6,7 +6,14 @@ import axios from 'axios';
 
 export class tabela extends Component {
 
-   
+  dodajStudentaRandom = (idStudent,id) =>
+  {       
+      axios.post("http://localhost:31920/dodajStudentaRandomGroup/"+idStudent).then()
+      {
+          console.log("http://localhost:31920/dodajStudentaRandomGroup/"+idStudent);
+          document.location.reload();
+      };
+  }
   render() {
     
     var renderingCells =[];

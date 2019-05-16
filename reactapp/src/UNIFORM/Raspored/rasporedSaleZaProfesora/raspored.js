@@ -4,54 +4,46 @@ import axios from 'axios';
 import Body_Cell from './body_cell.js';
 import Head_cell from './head_cell.js';
 import './raspored.css';
-import { runInThisContext } from 'vm';
-import { unstable_createResource } from "react-cache";
-
-// Ovdje mozete naci bootstrap koji su vodje zajednicki odabrali
-// https://bootswatch.com/flatly/?fbclid=IwAR0TbcCAvWZITDDpSV-hrG_AbNkCwim-CSbOPmm6RtGqvbvvWj8nZHPOLc8
-// Ko ne zna, bootstrap je predefinisani css koji je vec neko napisao da bi dugmici, forme, tabele... izgledale
-// ugodno za oko i u skladu konceptima boja sa RG-a
-// takodjer poboljsavaju responzivnost u odnosu na razlicite velicine ekrana i browsera
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 
+export class Raspored extends Component {
 
-// REACT nema bas opciju da u funkciji render pravimo asinhrone pozive sto je ovdje slucaj
-// pa nam treba fetcher i dodatna klasa, u ovom slucaju helper, koja se poziva u funkciji render
-// u helperu se vrsi read preko fetchera
-// takodjer dok se ucitavaju podaci pise loading dok se ne ucita cijela tabela
-// to se vidi kad prvi put pokrecete applikaciju pa nesto kao blinkuje na pocetku
+  state={}
 
-//Fetcheri i metode za citanje pomocu njih
-const FetcherTermini = unstable_createResource(() =>
-  fetch("http://localhost:31920/getTermini/1").then(r => r.json())
-);
-
-const FetcherIspiti = unstable_createResource(() =>
-  fetch("http://localhost:31920/getIspiti/1").then(r => r.json())
-);
-
-const getDataTermini = () => FetcherTermini.read();
-const getDataIspiti = () => FetcherIspiti.read();
-
-// helper sadrzi svu logiku
-const Helper = () => {
+  componentDidMount = () =>{
+    fetch("http://localhost:31920/getTerminiSala/1/9")
+        .then(resTermini => resTermini.json())
+        .then(jsonTermini => {
+          fetch("http://localhost:31920/getIspitiSala/1/9")
+            .then(resIspiti => resIspiti.json())
+            .then(jsonIspiti => {
+              var raspored=[];
   
-  var spisakTermina=getDataTermini();
-  var spisakIspita = getDataIspiti();
+              jsonIspiti.forEach((val, index) => {
+      
+                raspored.push(val);
+               });
+               jsonTermini.forEach((val, index) => {
+                
+                raspored.push(val);  
+              });
+            
+              raspored.sort(sortCriteria);
+              this.setState({
+                isLoaded:true,
+                raspored:raspored
+              })
+            });
+          });
+  }
 
-  var raspored=[];
+  render() {
 
-  spisakIspita.forEach((val, index) => {
-    raspored.push(val);
-   });
-   spisakTermina.forEach((val, index) => {
-    raspored.push(val);  
-  });
-
-  raspored.sort(sortCriteria);
-  //raspored sadrzi sve termine ispita i predavanja,vjezbi i to sortiran
-
+    if(!this.state.isLoaded)
+    return <div>Loading...</div>;
+  
+  var raspored=this.state.raspored;
   var vremenaRasporeda=[];
   var rendering=[];
 
@@ -71,7 +63,7 @@ const Helper = () => {
   raspored.forEach((val,index) => {
    vrijemeObaveze = val.vrijeme;
    let trajanjeObaveze = parseInt(val.trajanje);
-   while(trajanjeObaveze!=0)
+   while(trajanjeObaveze>=0)
    {
      if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
      {
@@ -122,7 +114,7 @@ const Helper = () => {
            break;
          }  
        }
-       while(lokalnoTrajanje!=0)
+       while(lokalnoTrajanje>=0)
        {    
              
          matricaTermina[indeksVremena][dan]=index;
@@ -185,7 +177,7 @@ const Helper = () => {
   });
 
   return ( 
-    <div id="glavni">    
+    <div>    
       <table>
       <tbody>  
         <tr>
@@ -196,7 +188,14 @@ const Helper = () => {
         </tbody>
       </table> 
     </div>
-  );    
+  ); 
+  }
+}
+
+const pocetnaKolonaStyle = {
+  width: '5vw',
+  backgroundColor: 'rgb(208, 214, 298)',
+  textAlign: 'center'  
 }
 
 const sortCriteria = (a,b) =>
@@ -288,27 +287,6 @@ const povecajVrijemePolaSata = (vrijeme) =>
     return datum;
   }
 
-class Raspored extends Component {
-
-state={}
-  
-render = () =>{    
-    return(
-      <Fragment>    
-        <Suspense fallback={<div>Loading...</div>}>
-           <Helper/>    
-        </Suspense>
-      </Fragment>        
-    )
-  }
-}
-
-const pocetnaKolonaStyle = {
-  width: '5vw',
-  backgroundColor: 'rgb(208, 214, 298)',
-  textAlign: 'center'  
-}
-
 // uuid nije obavezan al kreira unique id kad ga god pozoves
 const days =[
   {
@@ -341,5 +319,5 @@ const days =[
   }
 ];
 
-//memo sluzi nesto za kesiranje ako sam dobro shvatio async poziva al uglavnom sluzi svrsi
-export default React.memo(Raspored);
+
+export default Raspored;

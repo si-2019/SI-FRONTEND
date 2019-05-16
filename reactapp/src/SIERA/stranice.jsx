@@ -1,43 +1,90 @@
-import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form'
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
+import ModalnaKomponenta from "./modalnaKomponenta";
 
 class Stranice extends Component {
-    state = {  
-        StudentID: 1,
-        LinkedIn : "la",
-        Website: "bla"
-    }
-    componentDidMount() {
-        axios
-          .get(
-            `http://localhost:31918/studenti/` +
-              this.state.StudentID
-          )
-          .then(res => {
-            
-            const In = res.data.map(obj => obj.linkedin);
-            this.setState({LinkedIn: In });
+  constructor(...args) {
+    super(...args);
+  }
 
-            
-            const web = res.data.map(obj => obj.website);
-            this.setState({Website: web });
-          });
-      }
-    render() { 
-        return (
-            <Form style={{ border:'2px solid #A9A9A9', height:"120px",marginTop:"10px"}}>
-            <Form.Group controlId="formGroupEmail" >
-                <Form.Label style={{fontWeight: "bold"}}>LinkedIn:   </Form.Label>
-                <Form.Label>{this.state.LinkedIn}</Form.Label>
-            </Form.Group>
-            <Form.Group controlId="formGroupEmail" >
-                <Form.Label style={{fontWeight: "bold"}}>Website:   </Form.Label>
-                <Form.Label>{this.state.Website} </Form.Label>
-            </Form.Group>
-        </Form>
-      );
-    }
+  state = {
+    StudentID: 1,
+    LinkedIn: "",
+    Website: "",
+    otvorenModalLinkedIn: false,
+    otvorenModalWebsite: false
+  };
+  componentDidMount() {
+    axios
+      .get(`http://localhost:31918/studenti/` + this.state.StudentID)
+      .then(res => {
+        const In = res.data.map(obj => obj.linkedin);
+        this.setState({ LinkedIn: In });
+        const web = res.data.map(obj => obj.website);
+        this.setState({ Website: web });
+      });
+  }
+
+  otvoriModalLinkedIn() {
+    this.setState({ otvorenModalLinkedIn: true });
+  }
+
+  otvoriModalWebsite() {
+    this.setState({ otvorenModalWebsite: true });
+  }
+
+  render() {
+    let zatvoriModalLinkedIn = () =>
+      this.setState({ otvorenModalLinkedIn: false });
+    let zatvoriModalWebsite = () =>
+      this.setState({ otvorenModalWebsite: false });
+    return (
+      <div style={{ display: "inline-block" }}>
+        <ul
+          class="list-group list-group-flush"
+          style={{ width: "100%", display: "inline-block" }}
+        >
+          <li class="card-header">Web Stranice</li>
+          <li class="list-group-item">
+            LinkedIn:&nbsp;
+            <a href={this.state.LinkedIn} class="card-link">
+              {this.state.LinkedIn}
+            </a>
+            <button
+              class="btn btn-warning float-right"
+              stlyle={{ float: "right" }}
+              onClick={() => this.otvoriModalLinkedIn()}
+            >
+              Izmijeni
+            </button>
+          </li>
+          <li class="list-group-item">
+            Website:&nbsp;
+            <a href={this.state.Website} class="card-link">
+              {this.state.Website}
+            </a>
+            <button
+              class="btn btn-warning float-right"
+              stlyle={{ float: "right" }}
+              onClick={() => this.otvoriModalWebsite()}
+            >
+              Izmijeni
+            </button>
+          </li>
+        </ul>
+        <ModalnaKomponenta
+          show={this.state.otvorenModalLinkedIn}
+          onHide={zatvoriModalLinkedIn}
+          nazivpromjene="LinkedIn"
+        />
+        <ModalnaKomponenta
+          show={this.state.otvorenModalWebsite}
+          onHide={zatvoriModalWebsite}
+          nazivpromjene="Website"
+        />
+      </div>
+    );
+  }
 }
- 
+
 export default Stranice;

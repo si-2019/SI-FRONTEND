@@ -21,6 +21,7 @@ class DropDownZavrsni extends React.Component {
             .get()
             .then();
     }
+    
     render() {
         return (
 
@@ -30,7 +31,7 @@ class DropDownZavrsni extends React.Component {
                     <div class="card" style={{ display: "inline-block" }}>
                         <div class="card-body">
                             <h3 class="card-title">Završni rad</h3>
-                            <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentore, kao i teme koje nude.</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
                             <div style={{ textAlign: "left" }}>
                                 <label class="col-form-label col-form-label-lg" for="inputLarge">Mentori</label>
                             </div>

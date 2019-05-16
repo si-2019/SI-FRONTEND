@@ -18,16 +18,12 @@ class Stranice extends Component {
     axios
       .get(`http://localhost:31918/studenti/` + this.state.StudentID)
       .then(res => {
-        if (res.data.length > 0) {
-          const In = res.data.map(obj => obj.linkedin);
-          this.setState({ LinkedIn: In });
-        }
+        const In = res.data.map(obj => obj.linkedin);
+        this.setState({ LinkedIn: In });
         const web = res.data.map(obj => obj.website);
         this.setState({ Website: web });
       });
   }
-
-  posaljiZahtjevZaLinkedIn() {}
 
   otvoriModalLinkedIn() {
     this.setState({ otvorenModalLinkedIn: true });

@@ -11,7 +11,6 @@ ReactDOM.render(<App />, document.getElementById("root"));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();*/
+import US_18 from "./US_18";
 
-import I_US_27 from './I_US_27';
-
-export default I_US_27;
+export default US_18;

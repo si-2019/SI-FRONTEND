@@ -41,7 +41,23 @@ export default class App extends React.Component {
         }
      }
     
-      
+      dodajOdgovor(event) {
+        let odgovori = this.state.odgovori
+        odgovori.splice(parseInt(event.target.name) + 1, 0, '')
+        this.setState({
+            odgovori
+        })
+      }
+
+      obrisiOdgovor(event) {
+        let odgovori = this.state.odgovori
+        if(odgovori.length == 2) 
+            return
+        odgovori.splice(JSON.parse(event.target.name), 1)
+        this.setState({
+            odgovori
+        })
+      }
 
     render() {
         return (

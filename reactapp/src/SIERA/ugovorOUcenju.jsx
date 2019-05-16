@@ -6,19 +6,19 @@ class UgovorOUcenju extends Component {
   render() {
     return (
       <div>
-        <div class="row" style={{ margin: "0px" }}>
-          <div class="col" />
-          <div class="col" style={{ textAlign: "center" }}>
-            <div class="card" style={{ display: "inline-block" }}>
-              <div class="card-body">
-                <h3 class="card-title">Ugovor o učenju</h3>
+        <div className="row" style={{ margin: "0px" }}>
+          <div className="col" />
+          <div className="col" style={{ textAlign: "center" }}>
+            <div className="card" style={{ display: "inline-block" }}>
+              <div className="card-body">
+                <h3 className="card-title">Ugovor o učenju</h3>
                 <div style={{ textAlign: "left" }}>
-                  <label class="col-form-label col-form-label-lg">
+                  <label className="col-form-label col-form-label-lg">
                     Godina studija
                   </label>
                 </div>
 
-                <select class="custom-select">
+                <select className="custom-select">
                   <option defaultValue="">Odaberite godinu studija</option>
                   <option value="1">1.</option>
                   <option value="2">2.</option>
@@ -31,11 +31,11 @@ class UgovorOUcenju extends Component {
                 </select>
 
                 <div style={{ textAlign: "left" }}>
-                  <label class="col-form-label col-form-label-lg">
-                    Godina studija
+                  <label className="col-form-label col-form-label-lg">
+                    Smjer
                   </label>
                 </div>
-                <select class="custom-select">
+                <select className="custom-select">
                   <option defaultValue="">Odaberite smjer</option>
                   <option value="1">RI</option>
                   <option value="2">AIE</option>
@@ -44,11 +44,11 @@ class UgovorOUcenju extends Component {
                 </select>
 
                 <div style={{ textAlign: "left" }}>
-                  <label class="col-form-label col-form-label-lg">
-                    Godina studija
+                  <label className="col-form-label col-form-label-lg">
+                    Semestar
                   </label>
                 </div>
-                <select class="custom-select">
+                <select className="custom-select">
                   <option defaultValue="">Odaberite semestar</option>
                   <option value="1">1.</option>
                   <option value="2">2.</option>
@@ -56,7 +56,7 @@ class UgovorOUcenju extends Component {
               </div>
             </div>
           </div>
-          <div class="col" />
+          <div className="col" />
         </div>
       </div>
     );

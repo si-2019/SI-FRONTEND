@@ -6,7 +6,18 @@ import axios from 'axios';
 
 export class tabela extends Component {
 
-  
+   
+  render() {
+    
+    var renderingCells =[];
+    for(var i=0;i<this.props.studenti.length;i++)
+    {
+        var vlasnikBool = false;
+        
+        renderingCells.push(
+            <Body_Cell lockState={this.props.lockState} dodajStudentaRandom={this.dodajStudentaRandom} redniBroj={i} student={this.props.studenti[i]} vlasnik={vlasnikBool}/>
+        );
+    }  
     
 
     return (

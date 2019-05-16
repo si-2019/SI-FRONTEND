@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import KontaktPod from "./kontaktPod";
-import Stranice from "./stranice";
-import Fotografija from "./fotografija";
 import LicniPod from "./licniPod.jsx";
-import axios from "axios";
-import Potvrda from "./Potvrda";
-import PopUp from "./PopUp";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";

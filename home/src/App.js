@@ -11,6 +11,9 @@ function App() {
       <div className="main">
     
       </div>
+      <div className="menu">
+    
+      </div>
     </div>
   );
 }

@@ -1,40 +1,20 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import axios from 'axios';
 
 class Fotografija extends Component {
-  state = {
-    StudentID: 1,
-    fotografija: "null"
-  };
-  componentDidMount() {
-    axios
-      .get(`http://localhost:31918/studenti/` + this.state.StudentID)
-      .then(res => {
-        const fotka = res.data.map(obj => obj.fotografija);
-        this.setState({ fotografija: fotka });
-      });
-  }
-  render() {
-    return (
-      <div style={{ display: "inline-block" }}>
-        <img
-          style={{ height: "200px", width: "100%", display: "block" }}
-          src={this.state.fotografija}
-        />
-
-        <button
-          type="button"
-          class="btn btn-secondary"
-          style={{
-            display: "inline-block"
-          }}
-        >
-          Odaberite sliku profila
-        </button>
-      </div>
-    );
-  }
-}
-
-export default Fotografija;
+    state = {
+        StudentID: 1
+    }
+    
+    
+    render() {
+        return (
+            <div style={{ display: "inline-block" }}>
+                <img style={{ height: "200px", width: "100%", display: "block" }} src={this.props.fotografija} />
+            </div>
+                );
+            }
+        }
+        
+        export default Fotografija;

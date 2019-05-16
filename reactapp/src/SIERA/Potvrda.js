@@ -29,35 +29,33 @@ class Potvrda extends React.Component {
     let obj = {};
     if (successful == "true") {
       obj = (
-        <div className="col-4">
+
+        <div >
           <PopUp
             class="alert alert-dismissible alert-success"
             style={{
-              backgroundColor: "#14bb9d",
-              borderColor: "#14bb9d",
-              color: "white"
+              width: "100%"
+
             }}
             boldiraniTekst="Ok!"
             ostaliTekst={msg}
             show={this.state.prikazi}
-            onClick={this.handleVisible}
           />
         </div>
       );
     } else {
       obj = (
-        <div className="col-4">
+        <div>
           <PopUp
             class="alert alert-dismissible alert-danger"
             style={{
-              backgroundColor: "#e74b3c",
-              borderColor: "#e74b3c",
-              color: "white"
+                width: "100%"
+
             }}
             boldiraniTekst="Greška!"
             ostaliTekst={msg}
             show={this.state.prikazi}
-            onClick={this.handleVisible}
+
           />
         </div>
       );

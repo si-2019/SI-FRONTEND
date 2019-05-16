@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./US_21.css";
 import Tabela from "./komponente/tabela";
 
-class US_23 extends Component {
+class US_21 extends Component {
   state = {};
   constructor(props) {
     super(props);
@@ -13,13 +13,13 @@ class US_23 extends Component {
     };
   }
   componentDidMount() {
-    //uzmi podatke iz baze sa get
+    //uzmi podatke iz baze sa ajax zahtjevom get
     fetch("http://localhost:31912/dajSveZahtjeve").then(
       result => {
         result.json().then(res => {
           this.setState({
             isLoaded: true,
-            redovi: res.zahtjevi //json "zahtjevi":[] 
+            redovi: res.zahtjevi //json "zahtjevi":[]
           });
         });
       },
@@ -32,7 +32,7 @@ class US_23 extends Component {
     );
   }
   onCheck = podatak => {
-    //onCheck checkbox promijeni atribut "oznacen"
+    //kada klikne na checkbox promijeni atribut oznacen suprotno od oonog sto je bio
     const redovi = this.state.redovi.map(r => {
       if (r.id === podatak.id) {
         if (r.oznacen === false) {
@@ -45,33 +45,6 @@ class US_23 extends Component {
     });
     this.setState({ redovi });
   };
-  //uzima oznacene redove i salje post
-  posalji = () => {
-    //oznaceni redovi
-    let pomocni = [];
-    for (let i = 0; i < this.state.redovi.length; i++) {
-      if (this.state.redovi[i].oznacen === true)
-        pomocni.push(this.state.redovi[i]);
-    }
-    if (pomocni.length === 0) alert("Niste oznacili niti jedan red.");
-    else {
-      let oznaceni = { zahtjevi: [] };
-      for (let i = 0; i < pomocni.length; i++) {
-        let objekat = { idZahtjeva: pomocni[i].id };
-        oznaceni.zahtjevi.push(objekat);
-      }
-      //post zahtjev
-      fetch("http://localhost:31912/obrada", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(oznaceni)
-      });
-      alert("Zahtjevi koji ste odabrali su obradjeni.", oznaceni);
-    }
-  };
   render() {
     const { error, isLoaded, redovi } = this.state;
     if (error) {
@@ -83,9 +56,6 @@ class US_23 extends Component {
         <React.Fragment>
           <main className="container">
             <Tabela redovi={redovi} onCheck={this.onCheck} />
-            <button onClick={this.posalji} type="button" className="btn btn-secondary ml-5">
-            Odaberi
-            </button>
           </main>
         </React.Fragment>
       );
@@ -93,4 +63,4 @@ class US_23 extends Component {
   }
 }
 
-export default US_23;
+export default US_21;

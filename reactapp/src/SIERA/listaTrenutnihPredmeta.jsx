@@ -11,7 +11,7 @@ class ListaPredmeta extends Component {
     axios
       .get(
         `http://localhost:31918/predmeti/trenutni/` +
-          this.state.trenutnoLogovaniStudentID
+        this.state.trenutnoLogovaniStudentID
       )
       .then(res => {
         console.log(res);
@@ -42,16 +42,17 @@ class ListaPredmeta extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="align-self-start">
-            <h5 className="text-muted">Lista trenutnih predmeta</h5>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="align-self-start">
+              <h5 className="text-muted">Lista trenutnih predmeta</h5>
+            </div>
+          </div>
+          <div className="row">
+            <div className="align-self-start">{this.prikazPredmeta()}</div>
           </div>
         </div>
-        <div className="row">
-          <div className="align-self-start">{this.prikazPredmeta()}</div>
-        </div>
-      </div>
+    
     );
   }
 }

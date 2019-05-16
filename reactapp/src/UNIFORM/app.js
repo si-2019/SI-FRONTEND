@@ -11,7 +11,7 @@ import { unstable_createResource } from "react-cache";
 // https://bootswatch.com/flatly/?fbclid=IwAR0TbcCAvWZITDDpSV-hrG_AbNkCwim-CSbOPmm6RtGqvbvvWj8nZHPOLc8
 // Ko ne zna, bootstrap je predefinisani css koji je vec neko napisao da bi dugmici, forme, tabele... izgledale
 // ugodno za oko i u skladu konceptima boja sa RG-a
-// takodjer poboljsavaju responzivnost u odnosu na razlicite velicine ekrana i browsera
+// takodjer poboljsavaju responzivnost u odnosu na razlicite velicne ekrana i browsera
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 

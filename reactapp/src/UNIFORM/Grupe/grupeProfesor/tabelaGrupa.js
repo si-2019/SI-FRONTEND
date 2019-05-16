@@ -10,24 +10,24 @@ import SelectRedoslijed from './selectRedoslijed.js';
 
 export class tabela extends Component {
 
-    odjaviStudenta = (index) =>
-    {     
-      
-        axios.post("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina).then()
-        {
-            console.log("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina)
-            document.location.reload();
-        };
-    } 
- 
-    izbrisiGrupu = () =>
-    {        
-        axios.post("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina).then()
-        {
-            console.log("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina)
-            document.location.reload();
-        };
-    }
+  odjaviStudenta = (index) =>
+  {     
+    
+      axios.post("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina).then()
+      {
+          console.log("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina)
+          document.location.reload();
+      };
+  } 
+
+  izbrisiGrupu = () =>
+  {        
+      axios.post("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina).then()
+      {
+          console.log("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina)
+          document.location.reload();
+      };
+  }
 
   render() {
     var prijavljeniStudentiGrupe = [];
@@ -43,8 +43,7 @@ export class tabela extends Component {
         prijavljeniStudentiGrupe.push(
             <Body_Cell lockState={this.props.lockState} odjaviStudenta={this.odjaviStudenta.bind(this,i)} student={this.props.grupa.studenti[i]} vlasnik={vlasnikBool}/>
         );
-    }  
-    
+    }      
     
     var poruka = "";
     var stylish = stylishCasual;
@@ -67,7 +66,6 @@ export class tabela extends Component {
       picker=(<DateTimePickerr idPredmet={this.props.idPredmet}/>);
       redoslijed=(<SelectRedoslijed trenutniRedoslijed={this.props.trenutniRedoslijed} idPredmet={this.props.idPredmet}/>);
     }
-
     
         
 

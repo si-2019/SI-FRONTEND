@@ -5,8 +5,7 @@ export class header_cell extends Component {
   render() {
     var text=this.props.naziv;
     
-    return (
-      
+    return (      
       <tr>
         <td style={stylish}>
           {text}

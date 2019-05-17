@@ -15,7 +15,7 @@ class FAQ extends React.Component {
 
 componentDidMount(){
     axios.get('http://localhost:31902/frequentIssue/get').then( res => {
-         
+         console.log("stigao get")
         
         this.setState({issues: res.data, loading: true});
       })
@@ -29,13 +29,13 @@ componentDidMount(){
                     <hr className="my-4"></hr>
 
 
-                    {issues.map((issue, i) =>
+                    {issues.map((issue) =>
                         <div className="card border-dark mb-3"  >
                             <div className="card-header">
                                 <h4 className="card-title">Naslov: {issue.naziv}</h4>
                             </div>
                             <div className="card-body">
-                                <p className="card-text">tekst issue:{issue.tekst}</p>
+                                <p className="card-text">{issue.tekst}</p>
 
                             </div>
 

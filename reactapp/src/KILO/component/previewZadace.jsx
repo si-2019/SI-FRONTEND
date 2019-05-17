@@ -6,12 +6,6 @@ class PreviewZadace extends Component {
     var kolone = [];
     var zadaciCelije = [];
     var tipovi = [];
-    for (var i = 0; i < this.props.podaci.state.brojZadataka; i++) {
-      var tipoviZadatka = "";
-      kolone.push("Zadatak " + (i + 1));
-      for (var j = 0; j < this.props.podaci.state.listaTipova[i].length; j++) {
-        if (this.props.podaci.state.listaTipova[i][j]) {
-
     for (var i = 0; i < this.props.podaci.brojZadataka; i++) {
       var tipoviZadatka = "";
       kolone.push("Zadatak " + (i + 1));
@@ -26,8 +20,6 @@ class PreviewZadace extends Component {
       }
       tipovi.push(tipoviZadatka);
       zadaciCelije.push(
-        this.props.podaci.state.listaBodova[i] + " " + tipovi[i]
-
         this.props.podaci.listaBodova[i] + " " + tipovi[i]
       );
     }
@@ -48,19 +40,11 @@ class PreviewZadace extends Component {
             </thead>
             <tbody>
               <tr>
-                <th>{this.props.podaci.state.naziv}</th>
-
                 <th>{this.props.podaci.naziv}</th>
                 {zadaciCelije.map((text, indeks2) => (
                   <th key={text + indeks2}>{text}</th>
                 ))}
                 <th>
-                  {this.props.podaci.state.datum +
-                    " " +
-                    this.props.podaci.state.vrijeme}
-                </th>
-                <th>{this.props.podaci.state.ukupnoBodova}</th>
-
                   {this.props.podaci.datum +
                     " " +
                     this.props.podaci.vrijeme}

@@ -13,7 +13,6 @@ class CategoryComponent extends React.Component {
 
   componentDidMount(){
     axios.get('http://localhost:31902/category/get').then( res => {
-      console.log("Maida")
       console.log(res)
       let displayNames = [];
       for(let i = 1; i < res.data.length; i++)

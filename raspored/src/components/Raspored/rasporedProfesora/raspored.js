@@ -24,11 +24,11 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 //Fetcheri i metode za citanje pomocu njih
 const FetcherTermini = unstable_createResource(() =>
-  fetch("http://localhost:31920/getTermini/1").then(r => r.json())
+  fetch("http://localhost:3001/getProfesorTermini/1").then(r => r.json())
 );
 
 const FetcherIspiti = unstable_createResource(() =>
-  fetch("http://localhost:31920/getIspiti/1").then(r => r.json())
+  fetch("http://localhost:3001/getProfesorIspiti/1").then(r => r.json())
 );
 
 const getDataTermini = () => FetcherTermini.read();
@@ -41,11 +41,13 @@ const Helper = () => {
   var spisakIspita = getDataIspiti();
 
   var raspored=[];
-
+  
   spisakIspita.forEach((val, index) => {
+    
     raspored.push(val);
    });
    spisakTermina.forEach((val, index) => {
+    
     raspored.push(val);  
   });
 
@@ -60,7 +62,7 @@ const Helper = () => {
   //pored toga su dodani termini tipa pola 3, pola 7 ukoliko neki od datih termina pocinje ili zavrsava 
   //u pola 3 ili pola 7
 
-
+  
   var vrijemeObaveze='08:00';
   while(vrijemeObaveze!='21:00')
    {
@@ -68,6 +70,11 @@ const Helper = () => {
      vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
      vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
    }
+
+   for(var u=0;u<vremenaRasporeda.length;u++)
+  {
+    console.log("////////////////////////// "+ vremenaRasporeda[u]);
+  }
   raspored.forEach((val,index) => {
    vrijemeObaveze = val.vrijeme;
    let trajanjeObaveze = parseInt(val.trajanje);
@@ -75,14 +82,25 @@ const Helper = () => {
    {
      if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
      {
-       vremenaRasporeda.push(vrijemeObaveze);            
+        vremenaRasporeda.push(vrijemeObaveze);            
      }          
      trajanjeObaveze-=30;          
      vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
      //ovdje dodajemo termine koji su pola 3, pola 7...
-     
+   }
+   if(trajanjeObaveze==0)
+   {
+    if(!vremenaRasporeda.includes(vrijemeObaveze))
+    {
+      vremenaRasporeda.push(vrijemeObaveze);            
+    }  
    }
   });
+  /*for(var u=0;u<vremenaRasporeda.length;u++)
+  {
+    console.log("------------------- "+ vremenaRasporeda[u]);
+  }
+     **/    
   
   vremenaRasporeda.sort();
   let danas= new Date();

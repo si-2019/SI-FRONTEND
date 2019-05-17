@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class dodavanjeObjave extends Component{
+class DodavanjeObjave extends Component{
     render(){
         return(
             <div className="card border-info mb-3">
@@ -10,6 +10,7 @@ class dodavanjeObjave extends Component{
                 <div className="card-body">
                     <form>
                         Naslov: <br></br><input id="naslovObjave" type="text" name="naslovObjave" class="form-control mr-sm-2"></input>
+                        <input className="dugmic" type="file" multiple></input>
                     </form>
                 </div>
             </div>
@@ -17,4 +18,4 @@ class dodavanjeObjave extends Component{
     }
 }
 
-export default dodavanjeObjave
+export default DodavanjeObjave

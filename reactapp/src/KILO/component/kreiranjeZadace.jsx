@@ -393,7 +393,6 @@ class KreiranjeZadace extends Component {
           </Button>
         </div>
         <div id="preview">
-          <PreviewZadace podaci={this} />
           <PreviewZadace podaci={this.state} />
           <Button 
              className=" btn bg-primary ml-4"

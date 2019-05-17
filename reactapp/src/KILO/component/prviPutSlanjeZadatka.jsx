@@ -3,41 +3,7 @@ import "../bootstrap.css";
 import { Icon } from "@opuscapita/react-icons";
 
 class PrviPutSlanjeZadatka extends Component {
-/*
-  handleClick = event => {
-    var ime = event.target.name; //name uzmem
-    if (ime === undefined) ime = "arrowLeft"; //ne znam sto nece da iscita name ikone
-    //console.log('ime je '+ime);
-    switch (ime) {
-       //ako je rok prosao, blokirati upload
 
-
-      case "posaljiZadatak": {
-        //poslati backendu fajl
-        var nazivUploada = document.getElementById("uploadButton").value;
-        console.log(nazivUploada);
-        break;
-      }
-      case "ponisti": {
-        document.getElementById("uploadButton").value = "";
-        break;
-      }
-
-      case "arrowLeft": {
-        //ide na Edininu tabelu, back dugme
-        console.log("back Dugme aktivirano");
-        break;
-      }
-      default:{
-        
-      }
-    }
-  };
-
-
-*/
-
-  
   render() {
     var listOfTypes = this.props.podaci.state.listaTipova;
 
@@ -50,7 +16,7 @@ class PrviPutSlanjeZadatka extends Component {
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
-              onClick={this.props.podaci.handleClick}
+              onClick={this.props.podaci.handleBack}
             />
           </h4>
           <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>

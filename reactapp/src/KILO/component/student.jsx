@@ -20,8 +20,18 @@ class Student extends Component {
         [1, 2, 3],
         [1, 1, 3]
       ],
-      bodoviPoZadacimaZadaca: [[2, 3, 4], [1, 0, 3], [1, 2, 3], [0, 0, 3]],
-      potrebno: [[], [], [], []],
+      bodoviPoZadacimaZadaca: [
+        [2, 3, 4],
+        [1, 0, 3], 
+        [1, 2, 3], 
+        [0, 0, 3]
+      ],
+      potrebno: [
+        [], 
+        [], 
+        [], 
+        []
+      ],
       ukupnoBodova: [],
       moguceBodova: [],
       postavka: [],
@@ -31,10 +41,19 @@ class Student extends Component {
         "2020-12-01 23:59",
         "2020-12-01 23:59"
       ],
-      stanjeZadacaPoZadacima: [[0, 0, 0], [2, 2, 2], [3, 4, 0], [1, 1, 1]],
+      stanjeZadacaPoZadacima: [
+        [0, 0, 0], 
+        [2, 2, 2], 
+        [3, 4, 0], 
+        [1, 1, 1]
+      ],
       brojZadace: 0,
       brojZadatka: 0,
-      listaTipova: [".pdf", ".rar", ".doc"],
+      listaTipova: [
+        ".pdf", 
+        ".rar", 
+        ".doc"
+      ],
       datumSlanja: "25.05.19",
       vrijemeSlanja: "23:23",
       nazivFajla: "Zadatak1",
@@ -111,9 +130,7 @@ class Student extends Component {
 
   handleClick = event => {
     var ime = event.target.name; //name uzmem
-
-    if (ime === undefined) ime = "arrowLeft"; //ne znam sto nece da iscita name ikone
-
+    
     switch (ime) {
       //ako je rok prosao, blokirati upload
 
@@ -124,18 +141,14 @@ class Student extends Component {
         break;
       }
       case "ponisti": {
-        document.getElementById("uploadButton").value = "";
+        var temp=document.getElementById("uploadButton").value;
+        if(temp==="") document.getElementById("uploadButton2").value="";
+        else document.getElementById("uploadButton").value="";
+        //imala 2 elementa sa istim id-em, pa je to pravilo probleme
         break;
       }
 
-      case "arrowLeft": {
-        //ide na Edininu tabelu, back dugme
-        //console.log("back Dugme aktivirano");
-        document.getElementById("tabelaPregledaZadaca").style.display = "block";
-    document.getElementById("prviPutSlanjeZadatka").style.display = "none";
-    document.getElementById("zadatakVecPoslan").style.display = "none";
-        break;
-      }
+      
       case "preuzmi": {
         //salji na rutu u backendu
         console.log("preuzmi button acitvated");
@@ -151,7 +164,13 @@ class Student extends Component {
       }
     }
   };
-
+  
+ handleBack=()=>{
+  document.getElementById("tabelaPregledaZadaca").style.display = "block";
+  document.getElementById("prviPutSlanjeZadatka").style.display = "none";
+  document.getElementById("zadatakVecPoslan").style.display = "none";
+  
+ }
   render() {
     return (
       <div>

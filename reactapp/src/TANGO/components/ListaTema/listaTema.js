@@ -8,8 +8,6 @@ import {
 } from 'react-router-dom'
 import { resolve } from 'path';
 
-
-const themesApi= 'http://localhost:31919/getThemes/:'; //plus id teme
 const themesApi= 'http://localhost:31919/getThemes/'; //plus id teme
 
 

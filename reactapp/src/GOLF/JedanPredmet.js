@@ -41,7 +41,7 @@ class JedanPredmet extends Component {
    axios.get(`http://localhost:31907/r3/dajPrivilegije/${this.state.idKorisnika}/${this.props.predmet.id}`).then(res =>{
      const nesto = res.data;
      console.log(nesto);
-      if(nesto == 1){
+      if(nesto.privilegija == 1){
         var varijabla = "/Golf/stranicaPredmetaProfesor/" + this.props.predmet.id + "/" + this.state.idKorisnika
         this.setState({
           link: varijabla
@@ -54,7 +54,7 @@ class JedanPredmet extends Component {
         })
       }
      this.setState({
-        priveligija: nesto
+        privilegija: nesto.privilegija
      })
    })
  }

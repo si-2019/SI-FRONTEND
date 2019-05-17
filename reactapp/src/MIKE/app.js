@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PregledListeProjekata from './PregledListeProjekata';
-import Lista  from './components/KreiranjeProjekta/prikazListe';
+import Lista  from './prikazListe';
 import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta';
 import MockListaPredmeta from './MockListaPredmeta';
 import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';

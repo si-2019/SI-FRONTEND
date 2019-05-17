@@ -12,30 +12,8 @@ class JedanPredmet extends Component {
       link: "",
       privilegija: 0
     };
-
-    /*this.funkcija = this.funkcija.bind(this);*/
   }
 
- /*funkcija(korisnik){
-   console.log(korisnik);
-   if(korisnik == 1) {
-    var nesto = "/Golf/stranicaPredmetaProfesor/" + this.props.predmet.id + "/" + this.state.idKorisnika;
-     this.setState({
-      link: nesto
-     });
-     
-   }
-   else {
-     console.log("Ušao u else");
-     var nesto = "/Golf/stranicaPredmetaStudent/" + this.props.predmet.id + "/" + this.state.idKorisnika
-     console.log(nesto);
-     this.setState({
-        link: nesto
-    });
-    console.log(nesto);
-     console.log(this.state.link);
-   }
- }*/
 
  componentDidMount(){
    axios.get(`http://localhost:31907/r3/dajPrivilegije/${this.state.idKorisnika}/${this.props.predmet.id}`).then(res =>{

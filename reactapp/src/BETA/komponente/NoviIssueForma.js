@@ -11,6 +11,9 @@ class NoviIssueForma extends React.Component {
         this.state = {
             issueText: '',
             issueTitle: 'Indeksi', //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
+            fileWrong: false,
             fileTooBig: false
         }
     }
@@ -43,6 +46,7 @@ class NoviIssueForma extends React.Component {
     fileChangedHandler = (event) => {
         if(event.target.files[0] == null){
             this.setState({fileTooBig : false});
+            this.setState({fileWrong : false});
         }
         else{
             if(event.target.files[0].size/1024/1024 > 25){
@@ -52,6 +56,13 @@ class NoviIssueForma extends React.Component {
             else{
                 this.setState({fileTooBig : false});
             }
+            
+            this.setState({fileWrong : true});
+            for(var i=0;i<this.state.allowedFiles.length;i++)
+                if(event.target.files[0].type == this.state.allowedFiles[i]){
+                    this.setState({fileWrong : false});
+                    break;
+                }
         }
         //let file_name = event.target.files[0].name;
         };
@@ -120,7 +131,7 @@ class NoviIssueForma extends React.Component {
                             id = "buttonSend"
                             type="submit"
                             className="btn btn-primary class1"
-                            disabled={!this.state.issueText || this.state.fileTooBig}
+                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                             onClick={this.onSubmit}
                         >Send issue
                         </button>

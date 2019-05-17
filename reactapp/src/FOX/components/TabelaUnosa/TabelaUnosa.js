@@ -10,23 +10,25 @@ import Button from 'react-bootstrap/Button'
 class TabelaUnosa extends Component {
     render() {
         return(
-           <Form style = {{justifyContent: 'center'}}>
+            
+            <Form>
                 <Form.Row>
-                    <Form.Label>  </Form.Label>
+                <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 18, marginTop:"20px"}}> Unos bodova za ispit  </Form.Label>  
                 </Form.Row>
-                
-           
-                <Form.Row style={{padding: {20}}}>
+            
+            <Form style={{ border:'2px solid', height:"300px",marginTop:"70px", paddingLeft: '80px'}}>
+                <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />
-                    <Button> Pretrazi </Button>   
+                    <Button style= {{paddingLeft: '10px'}}> Pretrazi </Button>   
                 </Form.Row>
                
-                <Form.Row md={{span: 4}}>
+                <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />
                 <Button> Unesi </Button>
                 </Form.Row>
+           </Form>
            </Form>
         );
     }

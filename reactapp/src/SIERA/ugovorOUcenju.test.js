@@ -7,12 +7,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 it("postoji prvi select", () => {
   const wrapper = shallow(<UgovorOUcenju />);
-  console.log(
-    wrapper
-      .find("select")
-      .at(0)
-      .debug()
-  );
   expect(
     wrapper
       .find("select")

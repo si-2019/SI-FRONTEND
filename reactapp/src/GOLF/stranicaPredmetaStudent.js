@@ -7,8 +7,7 @@ class stranicaPredmetaStudent extends Component {
           idPredmeta: props.match.params.idPredmeta,
           naziv: ""
         };
-    }
-    
+    }    
     componentDidMount(){
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.state.idPredmeta}`).then(res =>{
             this.setState({naziv:res.data.naziv})

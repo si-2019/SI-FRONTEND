@@ -4,6 +4,8 @@ import MojiPredmeti from './mojiPredmeti.js'
 import Ciklusi from './ciklusi.js'
 import proba from './proba.js'
 import semestarPredmeti from './semestarPredmeti.js'
+import StranicaPredmetaStudent from './stranicaPredmetaStudent'
+import StranicaPredmetaProfesor from './stranicaPredmetaProfesor.js'
 
 class App extends Component {
 
@@ -27,8 +29,11 @@ class App extends Component {
                     <div class='col-9'>
                         <Route exact path="/Golf" component={proba} />
                         <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
-                        <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>                   
-				   </div>
+                        <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>  
+                        <Route path="/Golf/stranicaPredmetaStudent/:idPredmeta/:idKorisnika" component={StranicaPredmetaStudent}/>
+                        <Route path="/Golf/stranicaPredmetaProfesor/:idPredmeta/:idKorisnika" component={StranicaPredmetaProfesor}/>
+                 
+				              </div>
                 </div>
             </Router>
         </div>

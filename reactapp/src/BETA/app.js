@@ -12,9 +12,6 @@ class App extends Component {
       open: false,  //open pokazuje da li formu treba prikazati ili ne
       activeContentId: 1
     };
-    this.onOpenModal = this.onOpenModal.bind(this)
-    this.onCloseModal = this.onCloseModal.bind(this)
-    console.log(this.props)
   }
 
   //Funkcija kojom se otvara forma
@@ -23,32 +20,14 @@ class App extends Component {
   };
 
   onCloseModal = () => {
-    this.setState({ open: false });
+    window.confirm('Prekinuti pisanje issuea?') && this.setState({ open: false });
   };
-
-  isClickedX = () => {
-    this.setState({
-      open: false
-    })
-  }
-
-  //Funkcija kojom se zatvara forma (ovo se moze iskoristiti npr da se forma zatvori kad se klikne
-  //na bilo sta izvan forme, ali mi to necemo jer nam treba da se zatvara samo na X, pa je funk prazna
-  onCloseModal = () => {
-  };
-
-  onCloseModal2 = (open) => {
-    this.setState({
-      open: false,
-      id: 1
-    })
-  }
 
   onChangeActiveId = (id) => {
     this.setState({
       activeContentId: id,
     })
-  }
+  };
 
 
   render() {
@@ -78,22 +57,22 @@ class App extends Component {
               <div id = "right">
                 <div 
                     id = "TrackIssuesContent" 
-                    style={{display : this.state.activeContentId == 1 ? 'inherit' : 'none'}}
+                    style={{display : this.state.activeContentId === 1 ? 'inherit' : 'none'}}
                 ><IssueList/>
                 </div>
                 <div 
                     id = "DraftsContent" 
-                    style={{display : this.state.activeContentId == 2 ? 'inherit' : 'none'}}
+                    style={{display : this.state.activeContentId === 2 ? 'inherit' : 'none'}}
                 >Drafts komponenta ide ovdje
                 </div>
                 <div 
                     id = "Archived" 
-                    style={{display : this.state.activeContentId == 3 ? 'inherit' : 'none'}}
+                    style={{display : this.state.activeContentId === 3 ? 'inherit' : 'none'}}
                 > Archived komponenta ide ovdje 
                 </div>
                 <div 
                     id = "FAQContent" 
-                    style={{display : this.state.activeContentId == 4 ? 'inherit' : 'none'}}
+                    style={{display : this.state.activeContentId === 4 ? 'inherit' : 'none'}}
                 > FAQ komponenta ide ovdje
                 </div>
               </div>
@@ -101,12 +80,14 @@ class App extends Component {
 
           </div>    
           
-          <Modal 
-            open={open} 
-            close={this.onCloseModal}
-            center id ="modal" >
+          <Modal
+            open={open}
+            center
+            id ="modal"
+            onClose={() => {}}
+          >
             <div id="overlay">
-              <NoviIssueForma triggerOnCloseModal2 = {this.onCloseModal2}/>
+              <NoviIssueForma onCloseModal={this.onCloseModal}/>
             </div>
           </Modal>
           

@@ -6,12 +6,13 @@ class UnosOcjene extends Component {
          return (
             <div>
             <Form>
-                <Form.Row>
+                <Form.Row style={{border: "2px solid"}}>
                 </Form.Row>
                 <Form.Row>
                     <Col md={{span: 5, offset: 4}}></Col>
                 </Form.Row>
-           
+                <Form.Row>
+                </Form.Row>
             </Form>
             </div>
          );

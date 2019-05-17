@@ -11,6 +11,7 @@ class NoviIssueForma extends React.Component {
         this.state = {
             issueText: '',
             issueTitle: 'Indeksi', //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            fileTooBig: false
         }
     }
     
@@ -38,7 +39,23 @@ class NoviIssueForma extends React.Component {
             issueTitle: title
         })
     };
-    
+
+    fileChangedHandler = (event) => {
+        if(event.target.files[0] == null){
+            this.setState({fileTooBig : false});
+        }
+        else{
+            if(event.target.files[0].size/1024/1024 > 25){
+                this.setState({fileTooBig : true});
+                alert("Ne možete poslati fajl veći od 25 MB");
+            }
+            else{
+                this.setState({fileTooBig : false});
+            }
+        }
+        //let file_name = event.target.files[0].name;
+        };
+
     render() {
         return (
 
@@ -89,6 +106,7 @@ class NoviIssueForma extends React.Component {
                                 className="form-control-file class1" 
                                 id="exampleInputFile"
                                 aria-describedby="fileHelp"
+                                onChange={this.fileChangedHandler}
                             />
                         </div>
 
@@ -102,7 +120,7 @@ class NoviIssueForma extends React.Component {
                             id = "buttonSend"
                             type="submit"
                             className="btn btn-primary class1"
-                            disabled={!this.state.issueText}
+                            disabled={!this.state.issueText || this.state.fileTooBig}
                             onClick={this.onSubmit}
                         >Send issue
                         </button>

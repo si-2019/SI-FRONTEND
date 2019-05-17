@@ -2,7 +2,26 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class UgovorOUcenju extends Component {
-  state = {};
+  state = {
+    trenutnoLogovaniStudentID: 1,
+    izabranaGodina: 1,
+    izabraniSmjer: 1,
+    izabraniSemestar: 1
+  };
+
+  promjenaGodineStudija(event) {
+    this.setState({ izabranaGodina: event.target.value });
+  }
+
+  promjenaSmjera(event) {
+    this.setState({ izabraniSmjer: event.target.value });
+  }
+
+  promjenaSemestra(event) {
+    this.setState({ izabraniSemestar: event.target.value });
+  }
+
+  prikaziCheckboxoveIzborniPredmeti() {}
   render() {
     return (
       <div>
@@ -18,9 +37,11 @@ class UgovorOUcenju extends Component {
                   </label>
                 </div>
 
-                <select className="custom-select">
-                  <option defaultValue="">Odaberite godinu studija</option>
-                  <option value="1">1.</option>
+                <select
+                  className="custom-select"
+                  onChange={e => this.promjenaGodineStudija(e)}
+                >
+                  <option defaultValue="1">1.</option>
                   <option value="2">2.</option>
                   <option value="3">3.</option>
                   <option value="4">4.</option>
@@ -35,9 +56,11 @@ class UgovorOUcenju extends Component {
                     Smjer
                   </label>
                 </div>
-                <select className="custom-select">
-                  <option defaultValue="">Odaberite smjer</option>
-                  <option value="1">RI</option>
+                <select
+                  className="custom-select"
+                  onChange={e => this.promjenaSmjera(e)}
+                >
+                  <option defaultValue="1">RI</option>
                   <option value="2">AIE</option>
                   <option value="3">EE</option>
                   <option value="4">TK</option>
@@ -48,9 +71,11 @@ class UgovorOUcenju extends Component {
                     Semestar
                   </label>
                 </div>
-                <select className="custom-select">
-                  <option defaultValue="">Odaberite semestar</option>
-                  <option value="1">1.</option>
+                <select
+                  className="custom-select"
+                  onChange={e => this.promjenaSemestra(e)}
+                >
+                  <option defaultValue="1">1.</option>
                   <option value="2">2.</option>
                 </select>
 
@@ -64,11 +89,8 @@ class UgovorOUcenju extends Component {
                     type="checkbox"
                     class="custom-control-input"
                     id="customCheck1"
-                    checked=""
                   />
-                  <label class="custom-control-label" for="customCheck1">
-                    Check this custom checkbox
-                  </label>
+                  <label class="custom-control-label">Izborni predmeti</label>
                 </div>
               </div>
             </div>

@@ -4,6 +4,8 @@ import './App.css';
 import NoviIssueForma from './komponente/NoviIssueForma.js';
 import LeftMenuStudent from './komponente/LeftMenuStudent.js';
 import IssueList from './komponente/issueList.js';
+import FAQ from './komponente/FAQ.js'
+import FAQSS from './komponente/FAQSS.js'
 
 class App extends Component {
   constructor(props) {
@@ -91,11 +93,14 @@ class App extends Component {
                     style={{display : this.state.activeContentId == 3 ? 'inherit' : 'none'}}
                 > Archived komponenta ide ovdje 
                 </div>
+
                 <div 
                     id = "FAQContent" 
                     style={{display : this.state.activeContentId == 4 ? 'inherit' : 'none'}}
-                > FAQ komponenta ide ovdje
-                </div>
+                >
+                 <FAQ/>
+                 </div>
+                
               </div>
             </div>
 

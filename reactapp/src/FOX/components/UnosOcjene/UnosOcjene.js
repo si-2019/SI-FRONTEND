@@ -4,7 +4,7 @@ class UnosOcjene extends Component {
      render()
      {
          return (
-            <div>
+            
             <Form>
                 <Form.Row style={{border: "2px solid"}}>
                 </Form.Row>
@@ -14,7 +14,7 @@ class UnosOcjene extends Component {
                 <Form.Row>
                 </Form.Row>
             </Form>
-            </div>
+        
          );
      }
 }

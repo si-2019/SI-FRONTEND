@@ -10,20 +10,22 @@ import Button from 'react-bootstrap/Button'
 class TabelaUnosa extends Component {
     render() {
         return(
-           <Form>
+           <Form style = {{justifyContent: 'center'}}>
                 <Form.Row>
                     <Form.Label>  </Form.Label>
                 </Form.Row>
                 
-                <Form.Row md = {{span: 8, offset: 6}}>
-                    <Form.Label> Index: 
+           
+                <Form.Row style={{padding: {20}}}>
+                    <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />
-                    </Form.Label>
                     <Button> Pretrazi </Button>   
                 </Form.Row>
-
-                <Form.Row md={{span: 4, offset}}>
-                
+               
+                <Form.Row md={{span: 4}}>
+                <Form.Label> Bodovi: </Form.Label>
+                <input type= "text" name="name" />
+                <Button> Unesi </Button>
                 </Form.Row>
            </Form>
         );

@@ -14,11 +14,7 @@ render() {
               <Form.Row>
                </Form.Row>
                <Form.Row>
-               </Form.Row>
-               <Form.Row md= {{ span: 2, offset : 4}}>
-               </Form.Row>
-               <Form.Row>
-                    <Col md= {{ span: 2, offset : 4}}>
+                    <Col md= {{ span: 5, offset : 4}}>
                     <TabelaUnosa/>
                     </Col>
                </Form.Row>

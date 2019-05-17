@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./bootstrap.min.css";
 
 class UgovorOUcenju extends Component {
   state = {
@@ -65,6 +66,8 @@ class UgovorOUcenju extends Component {
     this.prikaziIzborne();
   }
 
+  prikaziCheckBoxoveZaIzborne() {}
+
   render() {
     return (
       <div>
@@ -122,18 +125,33 @@ class UgovorOUcenju extends Component {
                   <option value="2">2.</option>
                 </select>
 
-                <div style={{ textAlign: "left" }}>
-                  <label className="col-form-label col-form-label-lg">
-                    Izborni predmeti
-                  </label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customCheck1"
-                  />
-                  <label class="custom-control-label">Izborni predmeti</label>
+                <div class="form-group">
+                  <div style={{ textAlign: "left" }}>
+                    <label className="col-form-label col-form-label-lg">
+                      Izborni predmeti
+                    </label>
+                  </div>
+
+                  {this.state.listaIzbornih.length === 0 ? (
+                    <p>Nema izbornih predmeta</p>
+                  ) : (
+                    ""
+                  )}
+                  {this.state.listaIzbornih.map((item, i) => (
+                    <div class="custom-control custom-checkbox" key={i}>
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="customCheck1"
+                      />
+                      <label
+                        class="custom-control-label"
+                        htmlFor="customCheck1"
+                      >
+                        {item}
+                      </label>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

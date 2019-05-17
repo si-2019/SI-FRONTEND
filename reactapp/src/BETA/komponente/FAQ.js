@@ -12,15 +12,7 @@ class FAQ extends React.Component {
             id: 4
         }
     }
-/*
-    componentDidMount(){
-        axios.get('https://swapi.co/api/people/?json').then( res => {
-         
-        
-          this.setState({issues: res.data.results, loading: true});
-        })
-      }
-*/
+
 componentDidMount(){
     axios.get('http://localhost:31902/frequentIssue/get').then( res => {
          
@@ -40,7 +32,7 @@ componentDidMount(){
                     {issues.map((issue, i) =>
                         <div className="card border-dark mb-3"  >
                             <div className="card-header">
-                                <h4 className="card-title">Naslov: {issue.name}</h4>
+                                <h4 className="card-title">Naslov: {issue.naziv}</h4>
                             </div>
                             <div className="card-body">
                                 <p className="card-text">tekst issue:{issue.tekst}</p>

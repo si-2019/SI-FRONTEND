@@ -7,8 +7,7 @@ class FAQ extends React.Component {
     constructor() {
         super();
         this.state = {
-            issues: [    
-            ],
+            issues: [ ],
             id: 4
         }
     }

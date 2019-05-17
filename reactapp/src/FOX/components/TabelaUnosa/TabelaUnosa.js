@@ -1,24 +1,28 @@
 import React, {Component } from 'react';
-import Footer from './components/Footer/Footer';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
+
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Button';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Form from 'react-bootstrap/Form';
 class TabelaUnosa extends Component {
 
 
     render() {
         return(
-           <Container>
-                <Row>
-                </Row>
-                <Row>
+           <Form>
+                <Form.Row>
+                </Form.Row>
+                <Form.Row>
                     <Col md={{span: 2, offset: 4}} > 
-                        <Label> Index: </Label>
-                        <Input type="text" name="name" />
-                        <Button variant="primary">Pretrazi</Button>
+                        <Form.Label> Index: 
+                          <input type="text" name="name" />
+                          </Form.Label>
                     </Col>
-                </Row>
-                
-           </Container>
+                </Form.Row>
+
+           </Form>
 
         );
 

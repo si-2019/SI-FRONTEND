@@ -142,11 +142,11 @@ class UgovorOUcenju extends Component {
                       <input
                         type="checkbox"
                         class="custom-control-input"
-                        id="customCheck1"
+                        id={"customCheck" + i}
                       />
                       <label
                         class="custom-control-label"
-                        htmlFor="customCheck1"
+                        htmlFor={"customCheck" + i}
                       >
                         {item}
                       </label>

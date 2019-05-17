@@ -53,6 +53,23 @@ class UgovorOUcenju extends Component {
                   <option value="1">1.</option>
                   <option value="2">2.</option>
                 </select>
+
+                <div style={{ textAlign: "left" }}>
+                  <label className="col-form-label col-form-label-lg">
+                    Izborni predmeti
+                  </label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="customCheck1"
+                    checked=""
+                  />
+                  <label class="custom-control-label" for="customCheck1">
+                    Check this custom checkbox
+                  </label>
+                </div>
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import LicniPod from "./licniPod.jsx";
 import axios from "axios";
 import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
+import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
@@ -100,8 +101,13 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-            )}
-          />
+          )} />
+          <Route exact path="/Siera/zavrsni-rad" render={() =>
+            <div class="container-fluid">
+              <DropDownZavrsni />
+            </div>
+
+          } />
         </BrowserRouter>
       </div>
     );

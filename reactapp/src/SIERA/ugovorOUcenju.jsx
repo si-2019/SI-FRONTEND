@@ -3,25 +3,68 @@ import axios from "axios";
 
 class UgovorOUcenju extends Component {
   state = {
-    trenutnoLogovaniStudentID: 1,
     izabranaGodina: 1,
     izabraniSmjer: 1,
-    izabraniSemestar: 1
+    izabraniSemestar: 1,
+    listaIzbornih: [],
+    hasError: false
   };
 
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+  }
+
   promjenaGodineStudija(event) {
-    this.setState({ izabranaGodina: event.target.value });
+    this.setState({ izabranaGodina: event.target.value }, function() {
+      console.log(this.state.izabranaGodina);
+      this.prikaziIzborne();
+    });
   }
 
   promjenaSmjera(event) {
-    this.setState({ izabraniSmjer: event.target.value });
+    this.setState({ izabraniSmjer: event.target.value }, function() {
+      console.log(this.state.izabraniSmjer);
+      this.prikaziIzborne();
+    });
   }
 
   promjenaSemestra(event) {
-    this.setState({ izabraniSemestar: event.target.value });
+    this.setState({ izabraniSemestar: event.target.value }, function() {
+      console.log(this.state.izabraniSemestar);
+      this.prikaziIzborne();
+    });
   }
 
-  prikaziCheckboxoveIzborniPredmeti() {}
+  prikaziIzborne() {
+    try {
+      axios
+        .get(
+          `http://localhost:31918/predmeti/` +
+            this.state.izabraniSmjer +
+            `/` +
+            this.state.izabranaGodina +
+            `/` +
+            this.state.izabraniSemestar
+        )
+        .then(res => {
+          const predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
+          const obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
+          const izborni = [];
+          for (var i = 0; i < obavezan.length; i++) {
+            if (obavezan[i] == "0") {
+              izborni.push(predmeti[i]);
+            }
+          }
+          this.setState({ listaIzbornih: izborni });
+          console.log(this.state.listaIzbornih);
+        });
+    } catch (e) {}
+  }
+
+  componentDidMount() {
+    this.prikaziIzborne();
+  }
+
   render() {
     return (
       <div>
@@ -41,7 +84,7 @@ class UgovorOUcenju extends Component {
                   className="custom-select"
                   onChange={e => this.promjenaGodineStudija(e)}
                 >
-                  <option defaultValue="1">1.</option>
+                  <option value="1">1.</option>
                   <option value="2">2.</option>
                   <option value="3">3.</option>
                   <option value="4">4.</option>
@@ -60,7 +103,7 @@ class UgovorOUcenju extends Component {
                   className="custom-select"
                   onChange={e => this.promjenaSmjera(e)}
                 >
-                  <option defaultValue="1">RI</option>
+                  <option value="1">RI</option>
                   <option value="2">AIE</option>
                   <option value="3">EE</option>
                   <option value="4">TK</option>
@@ -75,7 +118,7 @@ class UgovorOUcenju extends Component {
                   className="custom-select"
                   onChange={e => this.promjenaSemestra(e)}
                 >
-                  <option defaultValue="1">1.</option>
+                  <option value="1">1.</option>
                   <option value="2">2.</option>
                 </select>
 

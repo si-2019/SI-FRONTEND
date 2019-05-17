@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap'
 import CategoryComponent from '../komponente/CategoryComponent.js';
 import axios from 'axios'
 
@@ -17,11 +16,7 @@ class NoviIssueForma extends React.Component {
             fileTooBig: false
         }
     }
-    
-    onButtonCloseClicked = () => {
-        this.props.triggerOnCloseModal2('false') 
-    }
- 
+
     onSubmit = (e) => {
         e.preventDefault();
         // get our form data out of state
@@ -31,10 +26,10 @@ class NoviIssueForma extends React.Component {
         .then((result) => {
             alert("Uspjesno upisan issue"); //Ovdje treba pokupiti odgovor od backend-a, ali ne znam kako !!!!!
         });
-    }
+    };
 
     onChangeIssueText = (object) => {
-        this.setState({[object.target.name]: object.target.value})
+        this.setState({issueText: object.target.value})
     };
 
     onChangeTitleInCategoryComponent = (title) => {
@@ -72,7 +67,9 @@ class NoviIssueForma extends React.Component {
 
             <div>
 
-                <form id = "formNoviIssue" onSubmit={this.handleSubmit}>
+                <form id = "formNoviIssue"
+                      onSubmit={() => {}}
+                >
 
                     <div id=" naslovDiv">
 
@@ -88,7 +85,12 @@ class NoviIssueForma extends React.Component {
                         <CategoryComponent triggerGetTitleFromCategoryComponent = {this.onChangeTitleInCategoryComponent}
                         />
 
-                        <button type="button" type = "close" id = "closeIssueForm">X</button>
+                        <button
+                            type="button"
+                            className = "close"
+                            id = "closeIssueForm"
+                            onClick={this.props.onCloseModal}
+                        >X</button>
 
                     </div>
 

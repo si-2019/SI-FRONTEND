@@ -44,6 +44,20 @@ componentDidMount = () =>{
   }
 
 render = () =>{ 
+  if(!this.state.isLoaded)
+    return <div>Loading...</div>;
+
+    var dataPredmet = this.state.predmet;   
+    
+
+    var spisakGrupe=this.state.grupe;
+    var idStudent=1;
+
+    var indexGrupeLogovanogStudenta=-1;      
+    var nadjenStudent=false;
+
+    var maxKapacitet=0;
+    var rendering=[];
     
 
     for(var i=0;i<spisakGrupe.length;i++)

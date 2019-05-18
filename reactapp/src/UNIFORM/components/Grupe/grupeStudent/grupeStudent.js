@@ -44,7 +44,7 @@ componentDidMount = () =>{
   }
 
 render = () =>{ 
-  if(!this.state.isLoaded)
+    if(!this.state.isLoaded)
     return <div>Loading...</div>;
 
     var dataPredmet = this.state.predmet;   
@@ -59,7 +59,6 @@ render = () =>{
     var maxKapacitet=0;
     var rendering=[];
 
-    
     for(var i=0;i<spisakGrupe.length;i++)
     {
         if(!nadjenStudent)
@@ -78,8 +77,8 @@ render = () =>{
 
     var podnaslov="";
     var lockState=false;
-
     
+
     if(spisakGrupe.length>0)
     {
         var datum=spisakGrupe[0].rokPrijave.toString();
@@ -104,7 +103,6 @@ render = () =>{
     {
       podnaslov = (<h3 style={podnaslovStyle}>Nema definisanih grupa</h3>);
     }
-    
 
     for(var i=0;i<spisakGrupe.length;i++)
     {

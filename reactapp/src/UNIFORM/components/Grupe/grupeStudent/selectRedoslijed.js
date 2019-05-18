@@ -17,7 +17,10 @@ export class selectRedoslijed extends Component {
           {
             console.log("http://localhost:31920/promjenaRedoslijeda/")
             document.location.reload();
-          };          
+          };
+          
+    
+          
         } 
         
 
@@ -29,11 +32,14 @@ export class selectRedoslijed extends Component {
             if(this.props.trenutniRedoslijed.naziv=="Redoslijed prijavljivanja")
             {
                 this.setState({currentRedoslijed: "1"});
-            }                        
+            }
+                        
           }
         
        
         render() {
+          console.log('ddddddddddddddddddddddddd');
+          console.log(this.props.trenutniRedoslijed);
             if(!this.state.first)
             {
                 this.state.first=true;
@@ -44,7 +50,9 @@ export class selectRedoslijed extends Component {
                 }
                 else
                 {
+                    console.log(this.state.currentRedoslijed);
                     this.state.currentRedoslijed="1";
+                    console.log(this.state.currentRedoslijed);
                 }
                 
             }

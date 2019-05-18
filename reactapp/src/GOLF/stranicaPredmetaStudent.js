@@ -17,6 +17,7 @@ class stranicaPredmetaStudent extends Component {
         return(
             <div className="card border-info mb-3">
                 <h1 className="card-header">  {this.state.naziv}</h1>
+                <button onClick={this.klikNaDugme.bind(this)}>{this.state.text}</button>
             </div>
         )
     }

@@ -1,5 +1,25 @@
 import React from "react";
 import axios from "axios";
+import Potvrda from "./Potvrda";
+
+function renderujPotvrdu(greska) {
+    if (!greska) {
+        return (
+            <Potvrda
+                successful="true"
+                msg="Zahtjev je uspjesno poslan"
+            />
+        );
+    } else if (greska) {
+        return (
+            <Potvrda
+                successful="false"
+                msg="Polje ne smije biti prazno"
+            />
+        );
+    }
+    return "";
+}
 
 class DropDownZavrsni extends React.Component {
 
@@ -17,6 +37,7 @@ class DropDownZavrsni extends React.Component {
             profOpcije: [],
             temeOpcije: []
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
         //poslati get na studenta i get na profesore
@@ -35,7 +56,9 @@ class DropDownZavrsni extends React.Component {
         this.setState({profOpcije: profe});
         this.setState({temeOpcije:teme});
     }
-    
+    handleSubmit(){
+        
+    }
     render() {
         return (
 
@@ -64,7 +87,8 @@ class DropDownZavrsni extends React.Component {
                                         <option key={tema.value} value={tema.value}>{tema.display}</option>)}
                             </select>
                             <div style={{ visibility: "hidden" }}>dssffds</div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Potvrdi</button>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" onSubmit={this.handleSubmit}>Prijavi završni</button>
 
                         </div>
                     </div>

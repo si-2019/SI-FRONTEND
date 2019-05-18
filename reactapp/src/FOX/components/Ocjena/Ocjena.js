@@ -8,7 +8,12 @@ class Ocjena extends Components {
                 <Form.Row>
                     <Form.Label> Unos ocjene</Form.Label>
                 </Form.Row>
-                
+                <Form>
+                    <Form.Row>
+                        <Form.Label> Index: </Form.Label>
+                    </Form.Row>
+
+
 
 
             </Form>

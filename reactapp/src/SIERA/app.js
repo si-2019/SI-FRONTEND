@@ -53,6 +53,11 @@ class App extends Component {
                   Ugovor o učenju
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Siera/zavrsni-rad">
+                  Završni rad
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

@@ -6,13 +6,16 @@ class DropDownZavrsni extends React.Component {
     constructor() {
         super();
         this.state = {
-            profesori: [],
+            profesori: ["prvi", "drugi", "treci"],
+            teme: ["prva", "druga"],
             studentId: 1,
             student:
             {
                 ime: "hehe",
                 prezime: "lol"
-            }
+            },
+            profOpcije: [],
+            temeOpcije: []
         }
     }
     componentDidMount() {
@@ -20,6 +23,17 @@ class DropDownZavrsni extends React.Component {
         axios
             .get()
             .then();
+
+        //get za teme
+        axios
+            .get()
+            .then();
+        
+        let profe = this.state.profesori.map(prof => {return{value:prof, display:prof}});
+        let teme = this.state.teme.map(teme =>{return{value:teme, display:teme}});
+        console.log(profe);
+        this.setState({profOpcije: profe});
+        this.setState({temeOpcije:teme});
     }
     
     render() {
@@ -37,10 +51,17 @@ class DropDownZavrsni extends React.Component {
                             </div>
 
                             <select class="custom-select" required>
-                                <option selected="">Neko</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                {this.state.profOpcije.map(
+                                    (prof)=>
+                                        <option key={prof.value} value={prof.value}>{prof.display}</option>)}
+                            </select>
+                            <div style={{ textAlign: "left" }}>
+                                <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
+                            </div>
+                            <select class="custom-select" required>
+                                {this.state.temeOpcije.map(
+                                    (tema)=>
+                                        <option key={tema.value} value={tema.value}>{tema.display}</option>)}
                             </select>
                             <div style={{ visibility: "hidden" }}>dssffds</div>
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Potvrdi</button>

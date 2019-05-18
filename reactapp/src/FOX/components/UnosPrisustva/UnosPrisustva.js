@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { Dropdown } from 'react-bootstrap';
 
 
-class UnosPrisustva extends Component {
+class UnosPrisustva extends React.Component {
     state = {
         studenti: [
             {
@@ -76,6 +75,27 @@ class UnosPrisustva extends Component {
             tutorijalSvi: "izaberiOpciju"
         });
     }
+
+    handleChange = (event, index) => {
+        const {name, value} = event.target;
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                studenti: prevState.studenti.map(student => {
+                    if(student.index === index)
+                        return {
+                            ...student,
+                            [name]: value
+                        };
+                    return student;
+                })
+            }
+        })
+    }
+
+    handleSubmit = () => {
+        // Pripremiti sve podatke i poslati backendu u odgovarajućem formatu
+    }
     
     render() {
         return (
@@ -95,7 +115,7 @@ class UnosPrisustva extends Component {
                         <Form.Group as={Col} controlId="formGridVjezba">
                             <Form.Label>Vježba</Form.Label>
                             <Form.Control as="select" name="vjezbaSvi" value={this.state.vjezbaSvi} onChange={this.handleChangeSvi}>
-                                <option value="izaberiOpciju">Izabri opciju</option>
+                                <option value="izaberiOpciju">Izaberi opciju</option>
                                 <option value="da">Da</option>
                                 <option value="ne">Ne</option>
                                 <option value="-">-</option>
@@ -104,7 +124,7 @@ class UnosPrisustva extends Component {
                         <Form.Group as={Col} controlId="formGridTutorijal">
                             <Form.Label>Tutorijal</Form.Label>
                             <Form.Control as="select" name="tutorijalSvi" value={this.state.tutorijalSvi} onChange={this.handleChangeSvi}>
-                                <option value="izaberiOpciju">Izabri opciju</option>
+                                <option value="izaberiOpciju">Izaberi opciju</option>
                                 <option value="da">Da</option>
                                 <option value="ne">Ne</option>
                                 <option value="-">-</option>
@@ -123,50 +143,60 @@ class UnosPrisustva extends Component {
                     </Button>
                 </Form>
 
-                <Table striped bordered hover size="sm" responsive>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Index</th>
-                            <th>Ime i Prezime</th>
-                            <th>Predavanje</th>
-                            <th>Vježba</th>
-                            <th>Tutorijal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.studenti.map((student, counter) =>
+                <Form onSubmit={this.onSubmit}>
+                    <Table striped bordered hover size="sm" responsive>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Index</th>
+                                <th>Ime i Prezime</th>
+                                <th>Predavanje</th>
+                                <th>Vježba</th>
+                                <th>Tutorijal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.studenti.map((student, counter) =>
                                     <tr key={student.index}>
                                         <td>{counter + 1}</td>
                                         <td>{student.index}</td>
                                         <td>{student.ime}</td>
                                         <td>
-                                            <Form.Control as="select" name="predavanje" value={student.predavanje}>
+                                            <Form.Control as="select" name="predavanje" value={student.predavanje}
+                                                onChange={(event) => {this.handleChange(event, student.index)}}>
                                             <option value="da">Da</option>
                                             <option value="ne">Ne</option>
                                             <option value="-">-</option>
                                             </Form.Control>
                                         </td>
                                         <td>
-                                            <Form.Control as="select" name="vjezba" value={student.vjezba}>
+                                            <Form.Control as="select" name="vjezba" value={student.vjezba}
+                                                onChange={(event) => {this.handleChange(event, student.index)}}>
                                             <option value="da">Da</option>
                                             <option value="ne">Ne</option>
                                             <option value="-">-</option>
                                             </Form.Control>
                                         </td>
                                         <td>
-                                            <Form.Control as="select" name="tutorijal" value={student.tutorijal}>
+                                            <Form.Control as="select" name="tutorijal" value={student.tutorijal}
+                                                onChange={(event) => {this.handleChange(event, student.index)}}>
                                             <option value="da">Da</option>
                                             <option value="ne">Ne</option>
                                             <option value="-">-</option>
                                             </Form.Control>
                                         </td>
                                     </tr>
-                            )
-                        }
-                    </tbody>
-                </Table>
+                                )
+                            }
+                        </tbody>
+                    </Table>
+                    
+                    <Button variant="primary" type="submit">
+                        Sačuvaj
+                    </Button>
+
+                </Form>
             </div> 
         );
     }

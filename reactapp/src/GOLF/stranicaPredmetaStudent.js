@@ -60,6 +60,29 @@ class stranicaPredmetaStudent extends Component {
             idPredmet: idPredmeta
           })
     }
+
+    klikNaDugme() {
+        if (this.state.text.includes("Dodaj u moje predmete")) {
+            //poziva se funkcija dodaj
+        }
+        else if (this.state.text.includes("Ukloni iz mojih predmeta")) {
+            axios.get(`http://localhost:31907/r6/obrisi/${this.state.idKorisnika}/${this.state.idPredmeta}`).then(res =>{
+            const odgovor = res.data;
+
+            console.log(odgovor);
+             if(odgovor.obrisano == 1){
+               var pom1 = "Dodaj u moje predmete";
+               this.setState({
+                 text: pom1
+               })
+             }
+          })
+        }
+    }
+
+
+
+
     render(){
         return(
             <div className="card border-info mb-3">

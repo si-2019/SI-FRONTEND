@@ -6,9 +6,9 @@ class Ocjena extends Components {
         return (
             <Form>
                 <Form.Row>
-                    <Form.Label> Unos ocjene</Form.Label>
+                    <Form.Label style = {{ fontWeight: "bold"}}> Unos ocjene</Form.Label>
                 </Form.Row>
-                <Form>
+                <Form style= {{border: "2px solid" }}>
                     <Form.Row>
                         <Form.Label> Index: </Form.Label>
                         <input type="text" name="name"/>

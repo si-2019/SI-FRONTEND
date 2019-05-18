@@ -6,7 +6,8 @@ class DropDownZavrsni extends React.Component {
     constructor() {
         super();
         this.state = {
-            profesori: [],
+            profesori: ["prvi", "drugi", "treci"],
+            teme: ["prva", "druga"],
             studentId: 1,
             student:
             {
@@ -17,6 +18,11 @@ class DropDownZavrsni extends React.Component {
     }
     componentDidMount() {
         //poslati get na studenta i get na profesore
+        axios
+            .get()
+            .then();
+
+        //get za teme
         axios
             .get()
             .then();

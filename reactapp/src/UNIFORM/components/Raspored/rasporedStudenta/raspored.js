@@ -125,11 +125,37 @@ render = () =>{
      vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
    }
 
+  
+  raspored.forEach((val,index) => {
+    
+   vrijemeObaveze = val.vrijeme;
+   let trajanjeObaveze = parseInt(val.trajanje);
+   var i=0;
+   while(trajanjeObaveze>=0)
+   {
+    console.log(i++);
+     if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
+     {
+        vremenaRasporeda.push(vrijemeObaveze);            
+     }          
+     trajanjeObaveze-=30;          
+     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+     //ovdje dodajemo termine koji su pola 3, pola 7...
+   }
+   if(trajanjeObaveze==0)
+   {
+    if(!vremenaRasporeda.includes(vrijemeObaveze))
+    {
+      vremenaRasporeda.push(vrijemeObaveze);            
+    }  
+   }
+   
+  });
   for(var u=0;u<vremenaRasporeda.length;u++)
   {
     console.log("------------------- "+ vremenaRasporeda[u]);
   }
-    
+      
   
   vremenaRasporeda.sort();
   let danas= new Date();

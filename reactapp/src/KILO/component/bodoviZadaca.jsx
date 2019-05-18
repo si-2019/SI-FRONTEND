@@ -47,12 +47,16 @@ class BodoviZadaca extends Component {
               <br />
             </div>
             <h5 className="card-title">Broj bodova:</h5>
-            <input id="brbod" type="text" className="form-control-static" />
+            <input 
+                id="brbod" 
+                type="text" 
+                className="form-control-static" 
+                disabled = {this.props.podaci.state.radnja=="Azuriranje"}/>
             <Button
               id="sviBodoviIstiButton"
               color="primary"
               className="btn bg-primary ml-3 "
-              disabled={!this.props.podaci.state.sviBodoviIsti}
+              disabled={this.props.podaci.state.radnja=="Azuriranje" || !this.props.podaci.state.sviBodoviIsti}
               onClick={this.props.podaci.klik_isti_br_bod}
             >
               OK
@@ -83,7 +87,7 @@ class BodoviZadaca extends Component {
                       name="bodovi"
                       onChange={this.props.onChange}
                       value={bod[jedno-1]}
-
+                      disabled = {this.props.podaci.state.radnja=="Azuriranje"}
                     />
                   </th>
                 ))}

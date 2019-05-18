@@ -25,6 +25,12 @@ class Popunjavanje extends Component {
       this.setState({datumKreiranjaAnkete:this.formatDate(res.data.datumKreiranja)}); 
       console.log('res', res);
     });
+    axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
+    .then((res) => {
+      
+      this.setState({datumIstekaAnkete:this.formatDate(res.data.datumIstekaAnkete)}); 
+      console.log('res', res);
+    });
   }
   render() {
     return (
@@ -44,6 +50,10 @@ class Popunjavanje extends Component {
             <div class="card-body">
               <h6 class="card-title">Datum kreiranja</h6>
               <p class="card-text">{this.state.datumKreiranjaAnkete}</p>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Datum isteka ankete</h6>
+              <p class="card-text">{this.state.datumIstekaAnkete}</p>
             </div>
             <div class="card-body">
               <h6 class="card-title">Tip ankete</h6>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap'
 import CategoryComponent from '../komponente/CategoryComponent.js';
 import axios from 'axios'
 
@@ -11,13 +10,13 @@ class NoviIssueForma extends React.Component {
         this.state = {
             issueText: '',
             issueTitle: 'Indeksi', //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
+            fileWrong: false,
+            fileTooBig: false
         }
     }
-    
-    onButtonCloseClicked = () => {
-        this.props.triggerOnCloseModal2('false') 
-    }
- 
+
     onSubmit = (e) => {
         e.preventDefault();
         // get our form data out of state
@@ -31,10 +30,10 @@ class NoviIssueForma extends React.Component {
             alert("Issue uspješno poslan! ");
         }
         });
-    }
+    };
 
     onChangeIssueText = (object) => {
-        this.setState({[object.target.name]: object.target.value})
+        this.setState({issueText: object.target.value})
     };
 
     onChangeTitleInCategoryComponent = (title) => {
@@ -42,33 +41,60 @@ class NoviIssueForma extends React.Component {
             issueTitle: title
         })
     };
-    
+
+    fileChangedHandler = (event) => {
+        if(event.target.files[0] == null){
+            this.setState({fileTooBig : false});
+            this.setState({fileWrong : false});
+        }
+        else{
+            if(event.target.files[0].size/1024/1024 > 25){
+                this.setState({fileTooBig : true});
+                alert("Ne možete poslati fajl veći od 25 MB");
+            }
+            else{
+                this.setState({fileTooBig : false});
+            }
+            
+            this.setState({fileWrong : true});
+            for(var i=0;i<this.state.allowedFiles.length;i++)
+                if(event.target.files[0].type == this.state.allowedFiles[i]){
+                    this.setState({fileWrong : false});
+                    break;
+                }
+        }
+        //let file_name = event.target.files[0].name;
+        };
+
     render() {
         return (
 
-            <div id = "noviIssue">
+            <div>
 
-                <form onSubmit={this.handleSubmit}>
+                <form id = "formNoviIssue"
+                      onSubmit={() => {}}
+                >
 
-                    <div className="row">
+                    <div id=" naslovDiv">
 
                         <label 
-                            className="col-1" 
+                            id="naslov"
                             style={{
                             marginLeft: '12px', 
                             marginTop: '16px'
                             }}
-                        >Naslov:
+                        >Title:
                         </label>
 
                         <CategoryComponent triggerGetTitleFromCategoryComponent = {this.onChangeTitleInCategoryComponent}
                         />
 
-                        <button 
-                            onClick={this.onButtonCloseClicked} 
-                            type="button" className="btn btn-danger float-right"
-                            style={{marginLeft: '85px', width: '50px'}}>X
-                        </button>
+                        <button
+                            type="button"
+                            className = "close"
+                            id = "closeIssueForm"
+                            onClick={this.props.onCloseModal}
+                        >X</button>
 
                     </div>
 
@@ -94,28 +120,31 @@ class NoviIssueForma extends React.Component {
                         <div className="custom-file col-8">
                             <input 
                                 type="file" 
-                                className="form-control-file" 
+                                className="form-control-file class1" 
                                 id="exampleInputFile"
                                 aria-describedby="fileHelp"
+                                onChange={this.fileChangedHandler}
                             />
                         </div>
 
                         <button 
-                            type="submit" 
-                            className="btn btn-outline-primary col-2"
-                        >Snimi kao skicu
+                            id = "buttonDraft"
+                            className="btn btn-primary class1"
+                        >Save as draft
                         </button>
 
                         <button
+                            id = "buttonSend"
                             type="submit"
-                            className="btn btn-outline-primary col-2"
-                            disabled={!this.state.issueText}
+                            className="btn btn-primary class1"
+                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                             onClick={this.onSubmit}
-                        >Pošalji
+                        >Send issue
                         </button>
                         
                     </div>
                 </form>
+
             </div>
         
         );

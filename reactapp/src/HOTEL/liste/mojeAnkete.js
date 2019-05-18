@@ -15,7 +15,7 @@ class App extends React.Component {
         return (
             <div>
                 <nav class="NavPadding">
-                    <h2>MOJE ANKETE</h2>
+                    <h2 id="top">MOJE ANKETE</h2>
                     <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
                 </nav>
             
@@ -48,6 +48,7 @@ class App extends React.Component {
                     
                 )) : "Loading..."}
                 </table>
+                <a href="#top"><button type="button" class="btn btn-primary disabled" id="nazadNaVrhButton">NAZAD NA VRH</button></a>
             </div>
         )
     }

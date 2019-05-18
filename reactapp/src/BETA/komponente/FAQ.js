@@ -31,7 +31,7 @@ componentDidMount(){
                     {issues.map((issue) =>
                         <div className="card border-dark mb-3"  >
                             <div className="card-header">
-                                <h4 className="card-title">Naslov: {issue.naziv}</h4>
+                                <h4 className="card-title">{issue.naziv}</h4>
                             </div>
                             <div className="card-body">
                                 <p className="card-text">{issue.tekst}</p>

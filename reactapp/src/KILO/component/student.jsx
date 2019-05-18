@@ -130,6 +130,7 @@ class Student extends Component {
 
   handleClick = event => {
     var ime = event.target.name; //name uzmem
+console.log('medi '+ime);
     
     switch (ime) {
       //ako je rok prosao, blokirati upload

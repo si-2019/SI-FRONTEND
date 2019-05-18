@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import OcjenjivanjeJedanZadatak from "./ocjenjivanjeJedanZadatak";
 import OcjenjivanjePocetna from "./ocjenjivanjePocetna";
-import OcjenjivanjeJednaZadaca from "./ocjenjivanjeJednaZadaca";
 
 class Ocjenjivanje extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      listaZadaca: ["Prva", "Druga", "Zadaća 3", "Cetvrta", "Peta"],
+      listaZadaca: ["Prva", "Druga", "Treca", "Cetvrta", "Peta"],
       studentiNisuPoslali: ["Neko", "Nekic", "Medi", "Haker"],
       studentiNijePregledano: ["Mala Mu", "Nekic", "Medi", "Haker"],
       studentiPregledano: ["Charmander", "Nekic", "Medi", "Haker"],
@@ -17,35 +16,11 @@ class Ocjenjivanje extends Component {
       osvojeniBodovi: 0,
       prepisano: false,
       komentar: "Alles gute Brudeeer",
-      maxBrojBodovaZadatka: 5,
-      student: "",
-      zadaca: "",
-      zadaciZadace: ["Zadatak 1", "Zadatak 2", "Zadatak 3", "Zadatak 4", "Zadatak 5"],
-      postavkaZadace: "",
-      moguciBodovi: [1,2,3,4,5],
-      osvojeniBodovi: [1,1,1,1,1],
-      rokZaPredaju: "2020-12-01 23:59", 
-      stanjeZadatakaZadace: [0,1,2,3,4],
-      sumaOsvojeni: 0,
-      sumaMoguci:0,
-      ostvareniMoguci: [],
-      pregledana: false,
-      defaultno: "",
-      renderajOpet:false
+      maxBrojBodovaZadatka: 5
     };
   }
 
   componentDidMount = () => {
-
-    if(this.state.listaZadaca[0]!="") {
-      this.setState({
-        zadaca: this.state.listaZadaca[0]
-      });
-    }
-
-    this.sumirajBodove();
-    this.ostvareniBodovi();
-
     document.getElementById("ocjenjivanjePocetna").style.display = "block";
     document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
@@ -93,119 +68,23 @@ class Ocjenjivanje extends Component {
     }
   };
 
-  handleBackNaJednaZadaca = (student) => {
-  
-      if(student.target.value!=""){
-          this.setState({
-            student: student.target.value
-          });
-
-          document.getElementById("ocjenjivanjePocetna").style.display = "none";
-          document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
-          document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
-
-
-    }
-
-  };
-
-
-
-  handleBackNaJednaIzborZadace = () => {
-  
-    if(this.state.renderajOpet==false){
-      this.setState({
-        renderajOpet:true
-      })
-    }
-    else{
-      this.setState({
-        renderajOpet:false
-      })
-    }
-
-    document.getElementById("ocjenjivanjePocetna").style.display = "block";
-    document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
-    document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
-
-  };
-
-  
-
-  handleNaOcjenjivanjeJedanZadatak = (indeks) => {
-
-    this.setState({
-      brojZadatka: indeks+1
-    });
-  
+  handleBackNaJednaZadaca = () => {
+    //kada se nalazi na ocjenjivanju zadatka, back ga vodi na tvoju tabelu, (za 1 zadacu)
+    //kreiraj drugi handle back na ovaj fazon, koji ga vodi sa tvoje na pocetnu
     document.getElementById("ocjenjivanjePocetna").style.display = "none";
-    document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
-    document.getElementById("ocjenjivanjeJedanZadatak").style.display = "block";
-
+    document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
+    document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
   };
-
-  postaviZadacu = (zadaca) => {
-    
-    this.setState({
-      zadaca: zadaca.target.value
-    });
-
-  }
-
-  sumirajBodove = () => {
-
-    var sumaBodova = 0;
-
-    for(var i=0;i<this.state.moguciBodovi.length;i++) sumaBodova = sumaBodova + this.state.moguciBodovi[i];
-
-    this.setState({
-      sumaMoguci: sumaBodova
-    });
-
-    sumaBodova = 0;
-
-    for(var i=0;i<this.state.osvojeniBodovi.length;i++) sumaBodova = sumaBodova + this.state.osvojeniBodovi[i];
-
-    this.setState({
-      sumaOsvojeni: sumaBodova
-    });
-
-  }
-
-
-  ostvareniBodovi = () => {
-    var pomocniNiz = [];
-
-    for(var i=0;i<this.state.moguciBodovi.length;i++) pomocniNiz.push(this.state.osvojeniBodovi[i] + "/" + this.state.moguciBodovi[i]);
-
-    this.setState({
-      ostvareniMoguci: pomocniNiz
-    });
-  }
-
-  pregledajZadacu = (parametar) => {
-
-    this.setState({
-      pregledana: parametar
-    });
-  }
-
-  pozoviFunkcije = (parametar,p2) => {
-      this.pregledajZadacu(parametar);
-      this.handleBackNaJednaZadaca(p2);
-  }
 
   render() {
-    
     return (
       <div>
         <div id="ocjenjivanjePocetna">
-          <OcjenjivanjePocetna key={this.state.renderajOpet} podaci={this} />
+          <OcjenjivanjePocetna podaci={this} />
         </div>
         <div>
           <div id="ocjenjivanjeJednaZadaca">
             {/*ovdje ubaci svoju komponentu */}
-            <OcjenjivanjeJednaZadaca podaci={this}/>
           </div>
         </div>
         <div id="ocjenjivanjeJedanZadatak">
@@ -215,7 +94,5 @@ class Ocjenjivanje extends Component {
     );
   }
 }
-
-
 
 export default Ocjenjivanje;

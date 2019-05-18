@@ -27,6 +27,16 @@ class stranicaPredmetaStudent extends Component {
             pom1 = pom1 * 10;
         }
 
+        i = i-1;
+        var idPredmeta = 0;
+        var pom2 = 1;
+        var j = 0;
+        for(j = i; j>=0; j--) {
+            if(url.charAt(j).includes('/')) break;
+            idPredmeta = idPredmeta + parseInt(url.charAt(j)) * pom2;
+            pom2 = pom2 * 10;
+        }
+
     }
     render(){
         return(

@@ -12,79 +12,114 @@ class UnosPrisustva extends Component {
             {
                 index: 1,
                 ime: "Neko Nekić",
-                predavanje: null,
-                vjezba: false,
-                tutorijal: null
+                predavanje: "da",
+                vjezba: "ne",
+                tutorijal: "-"
             },
             {
                 index: 2,
                 ime: "Himzo Polovina",
-                predavanje: true,
-                vjezba: null,
-                tutorijal: true
+                predavanje: "da",
+                vjezba: "-",
+                tutorijal: "da"
             },
             {
                 index: 3,
                 ime: "Ivo Ivić",
-                predavanje: null,
-                vjezba: false,
-                tutorijal: false
+                predavanje: "-",
+                vjezba: "ne",
+                tutorijal: "ne"
             },
             {
                 index: 4,
                 ime: "Medo Medić",
-                predavanje: false,
-                vjezba: false,
-                tutorijal: false
+                predavanje: "ne",
+                vjezba: "ne",
+                tutorijal: "ne"
             },
             {
                 index: 5,
                 ime: "Marko Marković",
-                predavanje: null,
-                vjezba: false,
-                tutorijal: false
+                predavanje: "-",
+                vjezba: "ne",
+                tutorijal: "da"
             }
-        ]
+        ],
+        predavanjeSvi: "izaberiOpciju",
+        vjezbaSvi: "izaberiOpciju",
+        tutorijalSvi: "izaberiOpciju"
     }
 
     constructor(props) {
         super(props);
     }
+
+    handleChangeSvi = (event) => {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    }
+
+    handleSubmitSvi = (event) => {
+        event.preventDefault();
+        let s = this.state.studenti.map(student => {
+            return {
+                ...student,
+                predavanje: this.state.predavanjeSvi !== "izaberiOpciju" ? this.state.predavanjeSvi : student.predavanje,
+                vjezba: this.state.vjezbaSvi !== "izaberiOpciju" ? this.state.vjezbaSvi : student.vjezba,
+                tutorijal: this.state.tutorijalSvi !== "izaberiOpciju" ? this.state.tutorijalSvi : student.tutorijal
+            }
+        });
+        this.setState({
+            studenti: s,
+            predavanjeSvi: "izaberiOpciju",
+            vjezbaSvi: "izaberiOpciju",
+            tutorijalSvi: "izaberiOpciju"
+        });
+    }
     
     render() {
         return (
             <div>
-                <Form>
+                <Form onSubmit={this.handleSubmitSvi}>
                     <Form.Label>Unos prisustva za sve studente</Form.Label>
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridPredavanje">
                             <Form.Label>Predavanje</Form.Label>
-                            <Form.Control as="select">
-                                <option>Da</option>
-                                <option>Ne</option>
-                                <option>-</option>
+                            <Form.Control as="select" name="predavanjeSvi" value={this.state.predavanjeSvi} onChange={this.handleChangeSvi}>
+                                <option value="izaberiOpciju">Izaberi opciju</option>
+                                <option value="da">Da</option>
+                                <option value="ne">Ne</option>
+                                <option value="-">-</option>
                             </Form.Control>
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridVjezba">
                             <Form.Label>Vježba</Form.Label>
-                            <Form.Control as="select">
-                                <option>Da</option>
-                                <option>Ne</option>
-                                <option>-</option>
+                            <Form.Control as="select" name="vjezbaSvi" value={this.state.vjezbaSvi} onChange={this.handleChangeSvi}>
+                                <option value="izaberiOpciju">Izabri opciju</option>
+                                <option value="da">Da</option>
+                                <option value="ne">Ne</option>
+                                <option value="-">-</option>
                             </Form.Control>
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridTutorijal">
                             <Form.Label>Tutorijal</Form.Label>
-                            <Form.Control as="select">
-                                <option>Da</option>
-                                <option>Ne</option>
-                                <option>-</option>
+                            <Form.Control as="select" name="tutorijalSvi" value={this.state.tutorijalSvi} onChange={this.handleChangeSvi}>
+                                <option value="izaberiOpciju">Izabri opciju</option>
+                                <option value="da">Da</option>
+                                <option value="ne">Ne</option>
+                                <option value="-">-</option>
                             </Form.Control>
                         </Form.Group>
                     </Form.Row>
 
-                    <Button variant="primary" type="submit">
-                        Unesi
+                    <Button 
+                        variant="primary"
+                        type="submit"
+                        disabled={
+                            this.state.predavanjeSvi === "izaberiOpciju" &&
+                            this.state.vjezbaSvi === "izaberiOpciju" &&
+                            this.state.tutorijalSvi === "izaberiOpciju" ? true : false}>
+                        Ažuriraj tabelu
                     </Button>
                 </Form>
 
@@ -107,36 +142,24 @@ class UnosPrisustva extends Component {
                                         <td>{student.index}</td>
                                         <td>{student.ime}</td>
                                         <td>
-                                            <Form.Control as="select" defaultValue={
-                                                (student.predavanje && "Da") ||
-                                                (!student.predavanje && student.predavanje !== null && "Ne") ||
-                                                (student.predavanje === null && "-")
-                                                }>
-                                                <option>Da</option>
-                                                <option>Ne</option>
-                                                <option>-</option>
+                                            <Form.Control as="select" name="predavanje" value={student.predavanje}>
+                                            <option value="da">Da</option>
+                                            <option value="ne">Ne</option>
+                                            <option value="-">-</option>
                                             </Form.Control>
                                         </td>
                                         <td>
-                                            <Form.Control as="select" defaultValue={
-                                                (student.vjezba && "Da") ||
-                                                (!student.vjezba && student.vjezba !== null && "Ne") ||
-                                                (student.vjezba === null && "-")
-                                                }>
-                                                <option>Da</option>
-                                                <option>Ne</option>
-                                                <option>-</option>
+                                            <Form.Control as="select" name="vjezba" value={student.vjezba}>
+                                            <option value="da">Da</option>
+                                            <option value="ne">Ne</option>
+                                            <option value="-">-</option>
                                             </Form.Control>
                                         </td>
                                         <td>
-                                            <Form.Control as="select" defaultValue={
-                                                (student.tutorijal && "Da") ||
-                                                (!student.tutorijal && student.tutorijal !== null && "Ne") ||
-                                                (student.tutorijal === null && "-")
-                                                }>
-                                                <option>Da</option>
-                                                <option>Ne</option>
-                                                <option>-</option>
+                                            <Form.Control as="select" name="tutorijal" value={student.tutorijal}>
+                                            <option value="da">Da</option>
+                                            <option value="ne">Ne</option>
+                                            <option value="-">-</option>
                                             </Form.Control>
                                         </td>
                                     </tr>

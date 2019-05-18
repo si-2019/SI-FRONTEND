@@ -8,11 +8,11 @@ import './UnosPrisustvaForma.css';
 function UnosPrisustvaForma(props) {
     const daStyle = {
         color: "white",
-        background: "green"
+        background: "#28a745 "
     };
     const neStyle = {
         color: "white",
-        background: "red"
+        background: "#dc3545"
     };
 
     return (

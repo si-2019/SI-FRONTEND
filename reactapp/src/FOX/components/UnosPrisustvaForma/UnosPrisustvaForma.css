@@ -1,11 +1,11 @@
 option[value="da"] {
     color: white;
-    background: green;
+    background: #28a745 ;
 }
 
 option[value="ne"] {
     color: white;
-    background: red;
+    background: #dc3545;
 }
 
 option[value="-"] {

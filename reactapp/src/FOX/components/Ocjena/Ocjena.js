@@ -1,5 +1,8 @@
 import React, { Component} from 'react';
 import Form from 'react-bootstrap/Form'
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Button from 'react-bootstrap/Button'
 
 class Ocjena extends Components {
     render() {

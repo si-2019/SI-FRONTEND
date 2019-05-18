@@ -59,8 +59,7 @@ const povecajVrijemePolaSata = (vrijeme) =>
     var mm = String(tomorrow.getMonth() + 1).padStart(2, '0'); //Januar je 0!
     var yyyy = tomorrow.getFullYear();
 
-    datum = yyyy + '/' + mm + '/' + dd;
-    
+    datum = yyyy + '/' + mm + '/' + dd;    
     return datum;
 
     

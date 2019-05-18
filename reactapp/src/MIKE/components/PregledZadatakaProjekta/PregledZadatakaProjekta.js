@@ -79,9 +79,9 @@ class PregledZadatakaProjekta extends Component {
   }
 
   render() {
-    let detalji = <div></div>
+    let detalji = <div id="detalji"></div>
     if(this.state.selektovanRed && this.state.selektovanElement){
-      detalji = (<div>
+      detalji = (<div id="detalji">
         <h1>Prikaz detalja projektnog zadatka:</h1>
           <Label> {this.state.selektovanElement.opis} </Label><br></br>
           <Label>Prioritet: {this.state.selektovanElement.prioritet}</Label><br></br>

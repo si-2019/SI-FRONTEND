@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import './grupeProfesor.css';
+import './grupeStudent.css';
 
 export class header_cell extends Component {
   render() {
     var text=this.props.naziv;
-    return ( 
+    
+    return (
+      
       <tr>
         <td style={stylish}>
-          {text}
+          <b>{text}</b>
         </td>
       </tr>  
     )
@@ -18,6 +20,6 @@ export default header_cell
 
 const stylish=
 {
-  backgroundColor:"steelblue",
-  color:'white'
+  backgroundColor:"lemonchiffon"
+
 }

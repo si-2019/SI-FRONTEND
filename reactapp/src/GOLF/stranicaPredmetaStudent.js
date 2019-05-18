@@ -40,6 +40,18 @@ class stranicaPredmetaStudent extends Component {
         axios.get(`http://localhost:31907/r6/provjera/${idKorisnika}/${idPredmeta}`).then(res =>{
             const odgovor = res.data;
 
+            if(odgovor.veza == 1){
+                var pom1 = "Ukloni iz mojih predmeta";
+                this.setState({
+                  text: pom1
+                })
+              }
+              else if(odgovor.veza == 0) {
+                var pom2 = "Dodaj u moje predmete";
+                this.setState({
+                  text: pom2
+                })
+              }
            
           })
 

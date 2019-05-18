@@ -13,7 +13,8 @@ class DropDownZavrsni extends React.Component {
             {
                 ime: "hehe",
                 prezime: "lol"
-            }
+            },
+            profOpcije: []
         }
     }
     componentDidMount() {
@@ -26,6 +27,9 @@ class DropDownZavrsni extends React.Component {
         axios
             .get()
             .then();
+        let profe = this.state.profesori.map(prof => {return{value:prof, display:prof}});
+        console.log(profe);
+        this.setState({profOpcije: profe});
     }
     
     render() {
@@ -43,10 +47,9 @@ class DropDownZavrsni extends React.Component {
                             </div>
 
                             <select class="custom-select" required>
-                                <option selected="">Neko</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                {this.state.profOpcije.map(
+                                    (prof)=>
+                                        <option key={prof.value} value={prof.value}>{prof.display}</option>)}
                             </select>
                             <div style={{ visibility: "hidden" }}>dssffds</div>
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Potvrdi</button>

@@ -125,8 +125,11 @@ render = () =>{
      vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
    }
 
-  
-   
+  for(var u=0;u<vremenaRasporeda.length;u++)
+  {
+    console.log("------------------- "+ vremenaRasporeda[u]);
+  }
+    
   
   vremenaRasporeda.sort();
   let danas= new Date();

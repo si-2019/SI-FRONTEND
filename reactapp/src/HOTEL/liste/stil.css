@@ -47,3 +47,10 @@ table.anketeTabela th{
   background-color: darkcyan;
   border-color: darkcyan;
 }
+#nazadNaVrhButton{
+  background-color: darkcyan;
+  border-color: darkcyan;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

@@ -12,10 +12,12 @@ export class selectRedoslijed extends Component {
     
         changeRedoslijed = (event) =>
         {  
-          
-          
-    
-          
+          this.setState({value: event.target.value});
+          axios.post("http://localhost:31920/promjenaRedoslijeda/").then()
+          {
+            console.log("http://localhost:31920/promjenaRedoslijeda/")
+            document.location.reload();
+          };          
         } 
         
 

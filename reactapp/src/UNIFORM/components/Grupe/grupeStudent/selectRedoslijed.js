@@ -29,8 +29,7 @@ export class selectRedoslijed extends Component {
             if(this.props.trenutniRedoslijed.naziv=="Redoslijed prijavljivanja")
             {
                 this.setState({currentRedoslijed: "1"});
-            }
-                        
+            }                        
           }
         
        

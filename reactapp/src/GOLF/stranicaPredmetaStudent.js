@@ -10,13 +10,23 @@ class stranicaPredmetaStudent extends Component {
           idKorisnik: 0,
           idPredmet: 0
         };
-
-        };
     }    
     componentDidMount(){
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.state.idPredmeta}`).then(res =>{
             this.setState({naziv:res.data.naziv})
         })
+
+        var url = window.location.href;
+        
+        var idKorisnika = 0;
+        var pom1 = 1;
+        var i;
+        for(i = url.length-1; i >= 0; i--) {
+            if(url.charAt(i).includes('/')) break;
+            idKorisnika = idKorisnika + parseInt(url.charAt(i)) * pom1;
+            pom1 = pom1 * 10;
+        }
+
     }
     render(){
         return(

@@ -11,6 +11,7 @@ class Ocjena extends Components {
                 <Form>
                     <Form.Row>
                         <Form.Label> Index: </Form.Label>
+                        <input type="text" name="name"/>
                     </Form.Row>
 
 

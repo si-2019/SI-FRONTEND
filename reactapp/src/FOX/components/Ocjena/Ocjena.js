@@ -1,10 +1,18 @@
 import React, { Component} from 'react';
+import Form from 'react-bootstrap/Form'
 
 class Ocjena extends Components {
-    render() {}
-    return (
+    render() {
+        return (
+            <Form>
+                <Form.Row>
+                    <Form.Label> Unos ocjene</Form.Label>
+                </Form.Row>
+                
 
-    );
 
+            </Form>
+
+        );
     }
 }

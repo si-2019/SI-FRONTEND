@@ -12,13 +12,11 @@ class Ocjena extends Components {
                     <Form.Row>
                         <Form.Label> Index: </Form.Label>
                         <input type="text" name="name"/>
+                        <Button > Pretrazi</Button>
                     </Form.Row>
-
-
-
-
+                </Form>
             </Form>
-
         );
     }
 }
+export default Ocjena;

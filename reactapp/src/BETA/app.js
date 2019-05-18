@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Modal from 'react-responsive-modal'; //paket za gotove modale odnosno popup-e
 import './App.css';
-import NewIssueForm from './komponente/Student/NoviIssueForma.js';
+import NoviIssueForma from './komponente/Student/NoviIssueForma.js';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
-import AddNewCategoryForm from './komponente/SS/AddNewCategoryForm.js';
 import IssueList from './komponente/Student/issueList.js';
 
 class App extends Component {
@@ -107,7 +106,7 @@ class App extends Component {
             close={this.onCloseModal}
             center id ="modal" >
             <div id="overlay">
-              <NewIssueForm triggerOnCloseModal2 = {this.onCloseModal2}/>
+              <NoviIssueForma triggerOnCloseModal2 = {this.onCloseModal2}/>
             </div>
           </Modal>
           

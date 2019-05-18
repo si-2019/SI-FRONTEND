@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import PregledListeProjekata from './PregledListeProjekata';
 import Lista  from './prikazListe';
-import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta';
-import MockListaPredmeta from './MockListaPredmeta';
+import PregledZadatakaProjekta from './components/PregledZadatakaProjekta/PregledZadatakaProjekta';
+import { sviProjektiTrenutnogUsera } from './api/projekti_zadaci';
 
 class Mike extends Component {
   constructor(props){
@@ -14,13 +13,15 @@ class Mike extends Component {
     }
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
+    this.pregledZadatakaProjektaCall=this.pregledZadatakaProjektaCall.bind(this);
   }
+
   render() {
     if(this.state.forma=="null") return (
       <div className="Mike">
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekta studenta</button>
-        <button>Rad na projektu</button>
+        <button onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>
         <button>Kreiranje projekta na nivou predmeta</button>
         <button>Bodovanje projekta</button>
       </div>
@@ -30,6 +31,9 @@ class Mike extends Component {
     );
     else if (this.state.forma=="listaProjekata") return (
         <PregledListeProjekata />
+    )
+    else if(this.state.forma == "projektniZadaci") return (
+      <PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti} />
     );
   }
   kreiranjeGrupe(){
@@ -37,6 +41,9 @@ class Mike extends Component {
   }
   listaProjekata(){
     this.setState({forma:"listaProjekata"});
+  }
+  pregledZadatakaProjektaCall(){
+    this.setState({forma:"projektniZadaci"});
   }
 }
 

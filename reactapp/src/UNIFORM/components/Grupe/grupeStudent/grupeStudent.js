@@ -58,6 +58,26 @@ render = () =>{
 
     var maxKapacitet=0;
     var rendering=[];
+
+    
+    for(var i=0;i<spisakGrupe.length;i++)
+    {
+        if(!nadjenStudent)
+        {
+            for(var j=0;j<spisakGrupe[i].studenti.length;j++)
+            {
+                if(spisakGrupe[i].studenti[j].idStudent==idStudent.toString())
+                {
+                    indexGrupeLogovanogStudenta = i;
+                    nadjenStudent=true;
+                    break;    
+                }
+            }
+        }
+    }
+
+    var podnaslov="";
+    var lockState=false;
     
 
     for(var i=0;i<spisakGrupe.length;i++)

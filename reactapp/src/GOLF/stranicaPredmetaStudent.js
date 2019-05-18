@@ -5,7 +5,12 @@ class stranicaPredmetaStudent extends Component {
         super(props);
         this.state = {          
           idPredmeta: props.match.params.idPredmeta,
-          naziv: ""
+          naziv: "",
+          text: "",
+          idKorisnik: 0,
+          idPredmet: 0
+        };
+
         };
     }    
     componentDidMount(){

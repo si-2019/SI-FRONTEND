@@ -1,5 +1,6 @@
 import React from 'react';
 import UnosPrisustvaForma from '../UnosPrisustvaForma/UnosPrisustvaForma';
+import Header from '../Header/Header';
 
 
 class UnosPrisustva extends React.Component {
@@ -96,12 +97,15 @@ class UnosPrisustva extends React.Component {
     
     render() {
         return (
-            <UnosPrisustvaForma
-                data={this.state}
-                handleSubmit={this.handleSubmit}
-                handleSubmitSvi={this.handleSubmitSvi}
-                handleChange={this.handleChange}
-                handleChangeSvi={this.handleChangeSvi}/>
+            <div id="unosPrisustvaID">
+                <Header isPocetna={false}/>
+                <UnosPrisustvaForma
+                    data={this.state}
+                    handleSubmit={this.handleSubmit}
+                    handleSubmitSvi={this.handleSubmitSvi}
+                    handleChange={this.handleChange}
+                    handleChangeSvi={this.handleChangeSvi}/>
+            </div>
         );
     }
   }

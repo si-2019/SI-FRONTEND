@@ -12,12 +12,13 @@ class CategoryComponent extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('/category/get').then( res => {
+    axios.get('http://localhost:31902/category/get').then( res => {
 
       let displayNames = [];
-      for(let i = 0; i < res.data.length; i++)
+      console.log(res.data)
+      for(let i = 1; i < res.data.length; i++)
       {
-        displayNames.push(res.data[i].DisplayName)
+        displayNames.push(res.data[i].naziv)
       }
     
       this.setState({categoryArray: displayNames, loading: true});

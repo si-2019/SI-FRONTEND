@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import "./bootstrap.min.css"
@@ -188,6 +187,7 @@ class LicniPod extends Component {
         );
     }
 }
+
 
 
 export default LicniPod;

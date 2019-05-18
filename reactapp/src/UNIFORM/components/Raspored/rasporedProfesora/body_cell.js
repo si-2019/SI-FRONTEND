@@ -18,7 +18,7 @@ const customStyles = {
 
 
 const MojModal = (ovaj) => {
-  ovaj=ovaj.ovaj; //sam ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa
+  ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa
   if(!ovaj.state.showModal)
     return null;
   return(
@@ -117,7 +117,7 @@ export class Body_Cell extends Component {
 
   handleClick(event) {
     this.setState({title: event.target.value});
-
+    this.setState({ signalString: '' });
     //ukoliko nema biljeska onda samo ubaci novu
     if(this.props.termin.biljeska == undefined || this.props.termin.biljeska=="")
     {      
@@ -132,17 +132,18 @@ export class Body_Cell extends Component {
         })
           .then(function (response) {
             var isTrueSet = (response.data.success == 'true'); 
-            if(isTrueSet)
+            if(!isTrueSet)
             {
               //signalna poruka kad je dodan
-
+              this.setState({ signalString: 'Uspjesno dodano' });
             }
             else
             {
               //signalna poruka kad nije dodan
+              this.setState({ signalString: 'Nije uspjesno dodano' });
             }
             console.log(response.data.success);
-           });               
+           }.bind(this));               
       }      
     }
     else{
@@ -157,17 +158,18 @@ export class Body_Cell extends Component {
         })
           .then(function (response) {
             var isTrueSet = (response.data.success == 'true'); 
-            if(isTrueSet)
+            if(!isTrueSet)
             {
               //signalna poruka kad je update-ano
-
+              this.setState({ signalString: 'Uspjesno azurirano' });
             }
             else
             {
               //signalna poruka kad nije update-ano
+              this.setState({ signalString: 'Nije uspjesno azurirano' });
             }
             console.log(response);
-           });
+           }.bind(this));
       }        
     }    
   }

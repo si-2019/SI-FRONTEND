@@ -33,7 +33,7 @@ class ProfessorsAvailability extends Component {
         console.log(e.target.value);
     }
     componentDidMount() {
-        fetch("http://localhost:8080/si2019/echo/getTeachingStaff", {
+        fetch("http://localhost:31905/si2019/echo/getTeachingStaff", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

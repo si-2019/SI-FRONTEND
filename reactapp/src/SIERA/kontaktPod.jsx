@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
@@ -135,29 +136,10 @@ noviInput={this.state.noviInput}
 </>
 
           
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         );
     }
+
 }
 
 export default KontaktPod;

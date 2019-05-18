@@ -16,7 +16,7 @@ class PrviPutSlanjeZadatka extends Component {
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
-              onClick={this.props.podaci.handleClick}
+              onClick={this.props.podaci.handleBack}
             />
           </h4>
           <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>

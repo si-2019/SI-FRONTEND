@@ -10,12 +10,24 @@ class KreiraniIspiti extends React.Component{
     super();
 
     this.state = {
-        tableData: [{
-            idIspit: '',
-            tipIspita: '',
-            termin: ''
-        }],
+      tableData: [
+        {
+          idIspit: '1',
+          tipIspita: 'I parcijalni',
+          termin: '04/04/2019'
+        },
+        {
+          idIspit: '2',
+          tipIspita: 'Usmeni',
+          termin: '05/05/2019'
+        }
+      ],
     };
+}
+
+obrisiIspit = idIspit => {
+  console.log(idIspit);
+  this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== idIspit) });
 }
 
 state = {response:[]}
@@ -69,6 +81,7 @@ state = {response:[]}
             <button
               type="button"
               className="btn btn-danger"
+              onClick={() => this.obrisiIspit(row.row.idIspit)}
             >
               Izbrisi
             </button>

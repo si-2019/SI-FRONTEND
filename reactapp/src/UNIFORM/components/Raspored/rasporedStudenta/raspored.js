@@ -59,7 +59,8 @@ const povecajVrijemePolaSata = (vrijeme) =>
     var mm = String(tomorrow.getMonth() + 1).padStart(2, '0'); //Januar je 0!
     var yyyy = tomorrow.getFullYear();
 
-    datum = yyyy + '/' + mm + '/' + dd;    
+    datum = yyyy + '/' + mm + '/' + dd;
+    
     return datum;
 
     
@@ -101,33 +102,7 @@ state={
   isLoaded: false
 }
 
-componentDidMount = () => {  
-    fetch("http://localhost:31920/getStudentTermini/1")
-      .then(resTermini => resTermini.json())
-      .then(jsonTermini => {
-        fetch("http://localhost:31920/getStudentIspiti/1")
-          .then(resIspiti => resIspiti.json())
-          .then(jsonIspiti => {
-            var raspored=[];
 
-            jsonIspiti.forEach((val, index) => {
-    
-              raspored.push(val);
-             });
-             jsonTermini.forEach((val, index) => {
-              
-              raspored.push(val);  
-            });
-          
-            raspored.sort(sortCriteria);
-            this.setState({
-              isLoaded:true,
-              raspored:raspored
-            })
-          });
-        });
-  }
-  
 render = () =>{
   if(!this.state.isLoaded)
   return <div>Loading...</div>;
@@ -151,43 +126,13 @@ render = () =>{
    }
 
   
-  raspored.forEach((val,index) => {
-    
-   vrijemeObaveze = val.vrijeme;
-   let trajanjeObaveze = parseInt(val.trajanje);
-   var i=0;
-   while(trajanjeObaveze>=0)
-   {
-    console.log(i++);
-     if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
-     {
-        vremenaRasporeda.push(vrijemeObaveze);            
-     }          
-     trajanjeObaveze-=30;          
-     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
-     //ovdje dodajemo termine koji su pola 3, pola 7...
-   }
-   if(trajanjeObaveze==0)
-   {
-    if(!vremenaRasporeda.includes(vrijemeObaveze))
-    {
-      vremenaRasporeda.push(vrijemeObaveze);            
-    }  
-   }
    
-  });
-  /*for(var u=0;u<vremenaRasporeda.length;u++)
-  {
-    console.log("------------------- "+ vremenaRasporeda[u]);
-  }
-     **/    
   
   vremenaRasporeda.sort();
   let danas= new Date();
   var dd = String(danas.getDate()).padStart(2, '0');
   var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
   var yyyy = danas.getFullYear();   
-  //termin koji koristimo za datum je 2019/12/31
   let datum = yyyy + '/' + mm + '/' + dd;
   datum = prviDanuSedmici(datum);
 

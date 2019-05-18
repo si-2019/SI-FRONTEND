@@ -1,6 +1,5 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap'
-import CategoryComponent from '../komponente/CategoryComponent.js';
+import CategoryComponent from './CategoryComponent.js';
 import axios from 'axios'
 
 class NoviIssueForma extends React.Component {
@@ -11,13 +10,13 @@ class NoviIssueForma extends React.Component {
         this.state = {
             issueText: '',
             issueTitle: 'Indeksi', //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
+            fileWrong: false,
+            fileTooBig: false
         }
     }
-    
-    onButtonCloseClicked = () => {
-        this.props.triggerOnCloseModal2('false') 
-    }
- 
+
     onSubmit = (e) => {
         e.preventDefault();
         // get our form data out of state
@@ -27,10 +26,10 @@ class NoviIssueForma extends React.Component {
         .then((result) => {
             alert("Uspjesno upisan issue"); //Ovdje treba pokupiti odgovor od backend-a, ali ne znam kako !!!!!
         });
-    }
+    };
 
     onChangeIssueText = (object) => {
-        this.setState({[object.target.name]: object.target.value})
+        this.setState({issueText: object.target.value})
     };
 
     onChangeTitleInCategoryComponent = (title) => {
@@ -38,13 +37,35 @@ class NoviIssueForma extends React.Component {
             issueTitle: title
         })
     };
-    
+
+    fileChangedHandler = (event) => {
+        if(event.target.files[0] == null){
+            this.setState({fileTooBig : false});
+            this.setState({fileWrong : false});
+        }
+        else{
+            if(event.target.files[0].size/1024/1024 > 25){
+                this.setState({fileTooBig : true});
+                alert("Ne možete poslati fajl veći od 25 MB");
+            }
+            else{
+                this.setState({fileTooBig : false});
+            }
+            
+            this.setState({fileWrong : true});
+            for(var i=0;i<this.state.allowedFiles.length;i++)
+                if(event.target.files[0].type == this.state.allowedFiles[i]){
+                    this.setState({fileWrong : false});
+                    break;
+                }
+        }
+        //let file_name = event.target.files[0].name;
+        };
+
     render() {
         return (
 
-            <div>
-
-                <form id = "formNoviIssue" onSubmit={this.handleSubmit}>
+                <form id = "formNoviIssue" onSubmit={this.onSubmit}>
 
                     <div id=" naslovDiv">
 
@@ -60,7 +81,12 @@ class NoviIssueForma extends React.Component {
                         <CategoryComponent triggerGetTitleFromCategoryComponent = {this.onChangeTitleInCategoryComponent}
                         />
 
-                        <button type="button" type = "close" id = "closeIssueForm">X</button>
+                        <button
+                            type="button"
+                            className = "close"
+                            id = "closeIssueForm"
+                            onClick={this.props.onCloseModal}
+                        >X</button>
 
                     </div>
 
@@ -89,6 +115,7 @@ class NoviIssueForma extends React.Component {
                                 className="form-control-file class1" 
                                 id="exampleInputFile"
                                 aria-describedby="fileHelp"
+                                onChange={this.fileChangedHandler}
                             />
                         </div>
 
@@ -102,7 +129,7 @@ class NoviIssueForma extends React.Component {
                             id = "buttonSend"
                             type="submit"
                             className="btn btn-primary class1"
-                            disabled={!this.state.issueText}
+                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                             onClick={this.onSubmit}
                         >Send issue
                         </button>
@@ -110,7 +137,6 @@ class NoviIssueForma extends React.Component {
                     </div>
                 </form>
 
-            </div>
         
         );
     }

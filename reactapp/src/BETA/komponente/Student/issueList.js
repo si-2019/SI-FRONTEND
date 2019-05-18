@@ -1,7 +1,7 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Issue from './helpers/issue.js';
+import Issue from '../helpers/issue.js';
 import axios from 'axios';
 
 class IssueList extends React.Component {

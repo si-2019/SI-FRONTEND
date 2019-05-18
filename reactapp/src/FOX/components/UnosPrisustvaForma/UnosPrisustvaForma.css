@@ -1,0 +1,19 @@
+option[value="da"] {
+    color: white;
+    background: green;
+}
+
+option[value="ne"] {
+    color: white;
+    background: red;
+}
+
+option[value="-"] {
+    color: black;
+    background: white;
+}
+
+option[value="izaberiOpciju"] {
+    color: black;
+    background: white;
+}

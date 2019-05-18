@@ -1,8 +1,5 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import UnosPrisustvaForma from '../UnosPrisustvaForma/UnosPrisustvaForma';
 
 
 class UnosPrisustva extends React.Component {
@@ -99,105 +96,12 @@ class UnosPrisustva extends React.Component {
     
     render() {
         return (
-            <div>
-                <Form onSubmit={this.handleSubmitSvi}>
-                    <Form.Label>Unos prisustva za sve studente</Form.Label>
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="formGridPredavanje">
-                            <Form.Label>Predavanje</Form.Label>
-                            <Form.Control as="select" name="predavanjeSvi" value={this.state.predavanjeSvi} onChange={this.handleChangeSvi}>
-                                <option value="izaberiOpciju">Izaberi opciju</option>
-                                <option value="da">Da</option>
-                                <option value="ne">Ne</option>
-                                <option value="-">-</option>
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col} controlId="formGridVjezba">
-                            <Form.Label>Vježba</Form.Label>
-                            <Form.Control as="select" name="vjezbaSvi" value={this.state.vjezbaSvi} onChange={this.handleChangeSvi}>
-                                <option value="izaberiOpciju">Izaberi opciju</option>
-                                <option value="da">Da</option>
-                                <option value="ne">Ne</option>
-                                <option value="-">-</option>
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col} controlId="formGridTutorijal">
-                            <Form.Label>Tutorijal</Form.Label>
-                            <Form.Control as="select" name="tutorijalSvi" value={this.state.tutorijalSvi} onChange={this.handleChangeSvi}>
-                                <option value="izaberiOpciju">Izaberi opciju</option>
-                                <option value="da">Da</option>
-                                <option value="ne">Ne</option>
-                                <option value="-">-</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </Form.Row>
-
-                    <Button 
-                        variant="primary"
-                        type="submit"
-                        disabled={
-                            this.state.predavanjeSvi === "izaberiOpciju" &&
-                            this.state.vjezbaSvi === "izaberiOpciju" &&
-                            this.state.tutorijalSvi === "izaberiOpciju" ? true : false}>
-                        Ažuriraj tabelu
-                    </Button>
-                </Form>
-
-                <Form onSubmit={this.onSubmit}>
-                    <Table striped bordered hover size="sm" responsive>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Index</th>
-                                <th>Ime i Prezime</th>
-                                <th>Predavanje</th>
-                                <th>Vježba</th>
-                                <th>Tutorijal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.studenti.map((student, counter) =>
-                                    <tr key={student.index}>
-                                        <td>{counter + 1}</td>
-                                        <td>{student.index}</td>
-                                        <td>{student.ime}</td>
-                                        <td>
-                                            <Form.Control as="select" name="predavanje" value={student.predavanje}
-                                                onChange={(event) => {this.handleChange(event, student.index)}}>
-                                            <option value="da">Da</option>
-                                            <option value="ne">Ne</option>
-                                            <option value="-">-</option>
-                                            </Form.Control>
-                                        </td>
-                                        <td>
-                                            <Form.Control as="select" name="vjezba" value={student.vjezba}
-                                                onChange={(event) => {this.handleChange(event, student.index)}}>
-                                            <option value="da">Da</option>
-                                            <option value="ne">Ne</option>
-                                            <option value="-">-</option>
-                                            </Form.Control>
-                                        </td>
-                                        <td>
-                                            <Form.Control as="select" name="tutorijal" value={student.tutorijal}
-                                                onChange={(event) => {this.handleChange(event, student.index)}}>
-                                            <option value="da">Da</option>
-                                            <option value="ne">Ne</option>
-                                            <option value="-">-</option>
-                                            </Form.Control>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                    </Table>
-                    
-                    <Button variant="primary" type="submit">
-                        Sačuvaj
-                    </Button>
-
-                </Form>
-            </div> 
+            <UnosPrisustvaForma
+                data={this.state}
+                handleSubmit={this.handleSubmit}
+                handleSubmitSvi={this.handleSubmitSvi}
+                handleChange={this.handleChange}
+                handleChangeSvi={this.handleChangeSvi}/>
         );
     }
   }

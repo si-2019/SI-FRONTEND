@@ -48,7 +48,7 @@
 	width: 70%;
 	height: 60%;
 	max-width: 100%;
-	background-color: rgba(100, 120, 192, 0.664);
+	background-color: #B0C4DE;
 }
 
 #main {
@@ -60,7 +60,7 @@
 
 #left {
   width: 20%;
-  background-color:  #007bff;
+  background-color: #2C3E50;
   float: left;
   max-height: 470px;
   min-height: 470px;
@@ -88,13 +88,14 @@
   width: 20%;
   height: 50px;
   float: left;
+  
 }
 
 #search-issue-tab{
   width: 80%;
   float: right;
   height: 50px;
-  background-color: #007bff;
+  background-color: #2C3E50;
 }
 
 .left-buttons{
@@ -130,7 +131,6 @@
 
 #formNoviIssue{
   height: 100%;
-  background-color: #007bff;
   max-width: 100%;
 }
 
@@ -151,6 +151,35 @@
 #exampleTextarea{
   margin-top: 10px;
 }
+
+#addNewCategoryForm{
+  display: block;
+  width: 50% !important;
+  height: 300px !important;
+  margin: auto;
+}
+
+#addNewCatModalBody{
+  display: inline-block !important;
+}
+
+#naziv{
+  margin-left: 10px;
+}
+
+#addNewCategoryModal{
+  width: 50% !important;
+  margin: auto;
+}
+
+#addCategoryButton{
+  margin-top: 10px;
+}
+
+#addNewTitleDiv{
+  margin:auto;
+}
+
 
 @media only screen and (max-width: 600px) {
 

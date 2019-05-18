@@ -133,6 +133,7 @@ render = () =>{
   var dd = String(danas.getDate()).padStart(2, '0');
   var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
   var yyyy = danas.getFullYear();   
+  //termin koji koristimo za datum je 2019/12/31
   let datum = yyyy + '/' + mm + '/' + dd;
   datum = prviDanuSedmici(datum);
 

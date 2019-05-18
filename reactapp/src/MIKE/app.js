@@ -44,7 +44,7 @@ class Mike extends Component {
       <MockKreiranjeProjektaAsistent />
     );
     else if(this.state.forma=="uredjivanjeGrupe") return(
-      <InterfejsUredjivanjeClanovaGrupe/>
+      <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
     );
   }
   kreiranjeGrupe(){

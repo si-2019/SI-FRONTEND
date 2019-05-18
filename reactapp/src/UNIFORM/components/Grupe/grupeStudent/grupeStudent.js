@@ -78,6 +78,32 @@ render = () =>{
 
     var podnaslov="";
     var lockState=false;
+
+    
+    if(spisakGrupe.length>0)
+    {
+        var datum=spisakGrupe[0].rokPrijave.toString();
+        podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je: {datum}</h3>)
+
+        var danas = new Date();    
+        var dd = String(danas.getDate()).padStart(2, '0');
+        var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+        var yyyy = danas.getFullYear();
+        danas = yyyy + '-' + mm + '-' + dd;
+    
+       
+        if(datum && datum<danas)
+        {
+            podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je istekao</h3>);
+            lockState=true;
+        }           
+        else
+           podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je: {datum}</h3>)
+    }
+    else
+    {
+      podnaslov = (<h3 style={podnaslovStyle}>Nema definisanih grupa</h3>);
+    }
     
 
     for(var i=0;i<spisakGrupe.length;i++)

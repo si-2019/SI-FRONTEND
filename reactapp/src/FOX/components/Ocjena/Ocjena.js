@@ -9,10 +9,10 @@ class Ocjena extends Components {
                     <Form.Label style = {{ fontWeight: "bold"}}> Unos ocjene</Form.Label>
                 </Form.Row>
                 <Form style= {{border: "2px solid" }}>
-                    <Form.Row>
+                    <Form.Row style={{padding: '30px'}}>
                         <Form.Label> Index: </Form.Label>
                         <input type="text" name="name"/>
-                        <Button > Pretrazi</Button>
+                        <Button style= {{paddingLeft: '10px'}}> Pretrazi</Button>
                     </Form.Row>
                 </Form>
             </Form>

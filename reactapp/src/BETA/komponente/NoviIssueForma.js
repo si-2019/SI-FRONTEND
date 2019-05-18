@@ -26,7 +26,7 @@ class NoviIssueForma extends React.Component {
         .then((result) => {
         //Ovdje treba pokupiti odgovor od backend-a
 
-        if(result["data"]=="Uspjesno poslan issue!"){
+        if(result["data"]=="Uspjesan upis!"){
             alert("Issue uspješno poslan! ");
         }
         });

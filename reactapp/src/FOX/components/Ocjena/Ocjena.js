@@ -8,7 +8,7 @@ class Ocjena extends Components {
                 <Form.Row>
                     <Form.Label style = {{ fontWeight: "bold"}}> Unos ocjene</Form.Label>
                 </Form.Row>
-                <Form style= {{border: "2px solid" }}>
+                <Form style= {{border:'2px solid', height:"300px",marginTop:"70px", paddingLeft: '80px'}}>
                     <Form.Row style={{padding: '30px'}}>
                         <Form.Label> Index: </Form.Label>
                         <input type="text" name="name"/>

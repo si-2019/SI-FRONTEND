@@ -37,6 +37,16 @@ class stranicaPredmetaStudent extends Component {
             pom2 = pom2 * 10;
         }
 
+        axios.get(`http://localhost:31907/r6/provjera/${idKorisnika}/${idPredmeta}`).then(res =>{
+            const odgovor = res.data;
+
+           
+          })
+
+          this.setState({
+            idKorisnik: idKorisnika,
+            idPredmet: idPredmeta
+          })
     }
     render(){
         return(

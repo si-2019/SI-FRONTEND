@@ -26,6 +26,7 @@ class PrijavaIspita extends React.Component {
         </div>
         <Link
           type="button"
+          id="prijavljeniIspiti"
           className="btn btn-info"
           to="/charlie/prijavljeni-ispiti"
         >

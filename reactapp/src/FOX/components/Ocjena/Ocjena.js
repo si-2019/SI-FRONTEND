@@ -17,6 +17,9 @@ class Ocjena extends Component {
                         <input type="text" name="name"/>
                         <Button style= {{paddingLeft: '10px'}}> Pretrazi</Button>
                     </Form.Row>
+                    <Form.Row style= {{ padding: '30px'}}  >
+                    <Form.Label> Ocjena: </Form.Label> 
+                    </Form.Row>
                 </Form>
             </Form>
         );

@@ -10,9 +10,7 @@ class DropDownZavrsni extends React.Component {
             teme: [],
             studentId: 1,
             profId: 1, 
-            temaId: null,
-            profOpcije: [],
-            temeOpcije: []
+            temaId: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -55,10 +53,7 @@ class DropDownZavrsni extends React.Component {
                     console.log(res.error);
                 }
             );
-        let profe = this.state.profesori.map(prof => {return{value:prof, display:prof}});
-        let teme = this.state.teme.map(teme =>{return{value:teme, display:teme}});
-        this.setState({profOpcije: profe});
-        this.setState({temeOpcije:teme});
+        
     }
     handleSubmit(){
         
@@ -78,17 +73,15 @@ class DropDownZavrsni extends React.Component {
                             </div>
 
                             <select class="custom-select" required>
-                                {this.state.profOpcije.map(
+                                {this.state.profesori.map(
                                     (prof)=>
-                                        <option key={prof.value} value={prof.value}>{prof.display}</option>)}
+                                        <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>)}
                             </select>
                             <div style={{ textAlign: "left" }}>
                                 <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
                             </div>
                             <select class="custom-select" required>
-                                {this.state.temeOpcije.map(
-                                    (tema)=>
-                                        <option key={tema.value} value={tema.value}>{tema.display}</option>)}
+                                
                             </select>
                             <div style={{ visibility: "hidden" }}>dssffds</div>
                             

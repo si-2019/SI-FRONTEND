@@ -48,7 +48,6 @@ export class Raspored extends Component {
 
     var raspored=this.state.raspored;
 
-    
   var vremenaRasporeda=[];
   var rendering=[];
 
@@ -325,6 +324,5 @@ const days =[
     title:'Nedjelja'
   }
 ];
-
 
 export default Raspored;

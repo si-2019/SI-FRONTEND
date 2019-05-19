@@ -6,11 +6,18 @@ export default class App extends React.Component {
         super(props)
         this.state = {
             tekstPitanja: '',
-            odgovori: ['', '']
+            odgovori: ['', ''],
+            vrstaPitanja: 'single-choice'
         }
+        this.props.azurirajPitanje(this.state)
         this.handleInputChange = this.handleInputChange.bind(this)
         this.dodajOdgovor = this.dodajOdgovor.bind(this)
         this.obrisiOdgovor = this.obrisiOdgovor.bind(this)
+    }
+
+    setState(par) {
+        super.setState(par, () =>
+           this.props.azurirajPitanje(this.state))
     }
 
     handleKeyDown(e) {
@@ -30,8 +37,7 @@ export default class App extends React.Component {
             let odgovori = this.state.odgovori
             odgovori[parseInt(name)] = event.target.value
             this.setState({
-                odgovori,
-                bb: event.target.value + " " + name
+                odgovori
             })
         }
         else {

@@ -46,7 +46,7 @@ class PrijavljeniIspiti extends React.Component {
         <h1>Prijavljeni ispiti</h1>
         <Link
             type="button"
-            
+            to={`/charlie/prijava-ispita`}
           >
             Nazad
           </Link>

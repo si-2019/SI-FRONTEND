@@ -43,7 +43,42 @@ export class Raspored extends Component {
 
   render() {
 
-  
+  //sljedeca forEach petlja popunjava matricu termina
+  raspored.forEach((val,index) => {
+    datum=datumFix;
+    for(let dan=0;dan<7;dan++)
+    {
+     if(val.datum==datum)
+     {
+       
+       let lokalnoTrajanje = val.trajanje;
+       let indeksVremena=-1;
+       for(let j=0;j<vremenaRasporeda.length;j++)
+       {
+         if(val.vrijeme==vremenaRasporeda[++indeksVremena])
+         {
+           break;
+         }  
+       }
+       while(lokalnoTrajanje>=0)
+       {    
+             
+         matricaTermina[indeksVremena][dan]=index;
+         let razdaljinaMinute = 0;
+         if(indeksVremena==vremenaRasporeda.length-1)
+         break;
+         if(vremenaRasporeda[indeksVremena][3]!=vremenaRasporeda[indeksVremena+1][3])
+         razdaljinaMinute=30;
+         else
+         razdaljinaMinute=60;
+         lokalnoTrajanje-=razdaljinaMinute;
+         indeksVremena++;
+       }
+       break; 
+     }
+     datum=sljedeciDan(datum);
+    }
+  });
 
   // Sada imamo matricu termina i kreiramo gradivne elemente koje ima sama tabela
        

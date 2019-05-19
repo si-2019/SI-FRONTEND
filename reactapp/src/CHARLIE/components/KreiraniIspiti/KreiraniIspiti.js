@@ -68,7 +68,15 @@ state = {response:[]}
         Cell: row => (
           // U <div> ispod dodati dugmice
           <div>
-
+            <Link
+              type="button"
+              id="Studenti"
+              className="btn btn-primary"
+              style={{ marginRight: "10%" }}
+              to={'/charlie/pregled-studenata/${row.idIspit}'}
+            >
+              Uredi
+            </Link>
             <Link
               type="button"
               id="btnUredi"

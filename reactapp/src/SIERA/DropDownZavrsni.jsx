@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import Modal from "./Modal";
 class DropDownZavrsni extends React.Component {
 
     constructor() {
@@ -10,12 +10,14 @@ class DropDownZavrsni extends React.Component {
             teme: [],
             studentId: 1,
             profId: 1, 
-            temaId: null
+            temaId: null,
+            modalShow: false,
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handleChangeTema = this.handleChangeTema.bind(this);
     }
     componentDidMount() {
+       
         axios
             .get("http://localhost:31918/profesori")
             .then(res=>{
@@ -24,7 +26,8 @@ class DropDownZavrsni extends React.Component {
                         profesori: res.data.data,
                         profId: res.data.data[0].id
                     });
-
+                    console.log("profesori: " + this.state.profesori);
+                    console.log("profId: " + this.state.profId);
             })
             .catch(res=>{
                 console.log("Doslo je do greske! " + res.data);
@@ -56,18 +59,15 @@ class DropDownZavrsni extends React.Component {
             );
         
     }
-    handleChangeTema(selected){
-       //kao parametar se salje profin id
-       this.setState({
-           profId: selected
-       });
+    handleChangeTema(selectedId){
+       
        axios
-            .get("http://localhost:31918/profesori/temeZavrsni/" + this.state.profId)
+            .get("http://localhost:31918/profesori/temeZavrsni/" + selectedId)
             .then(res=>{
                 this.setState({
-                    teme: res.data.data
+                    teme: res.data.data,
+                    profId: selectedId
                 });
-                console.log(res.data);
                 if(this.state.teme.length==0){
                     this.setState({
                         temaId: null
@@ -86,10 +86,28 @@ class DropDownZavrsni extends React.Component {
                 }
             );
     }
-    handleSubmit(){
-        
+    handleClick(){
+        let modalClose = () => {
+            this.setState({ modalShow: false });
+            
+            window.location.reload();
+        }
+        if(this.state.temaId == null){
+            //ispisi gresku
+            console.log("greska!");
+        }
+        else if(this.state.temaId!=null){
+            return(
+                <Modal 
+                    show={this.state.modalShow}
+                    onHide={modalClose}
+                    naslovModala="haj!" />
+            );
+        }
+        else return "";
     }
     render() {
+        
         return (
 
             <div class="row" style={{ margin: "0px"}}>
@@ -106,7 +124,8 @@ class DropDownZavrsni extends React.Component {
                             <select class="custom-select" onChange={event=>{this.handleChangeTema(event.target.value)}}>
                                 {this.state.profesori.map(
                                     (prof)=>
-                                        <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>)}
+                                        <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
+                                )}
                             </select>
                             <div style={{ textAlign: "left" }}>
                                 <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
@@ -114,12 +133,12 @@ class DropDownZavrsni extends React.Component {
                             <select class="custom-select" >
                                 {this.state.teme.map(
                                     (teme)=>
-                                    <option key={teme.id} value={teme.id}>{teme.naziv}</option>
+                                        <option key={teme.id} value={teme.id}>{teme.naziv}</option>
                                 )}
                             </select>
                             <div style={{ visibility: "hidden" }}>dssffds</div>
                             
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" onSubmit={this.handleSubmit}>Prijavi završni</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block" onClick={this.handleClick}>Prijavi završni</button>
 
                         </div>
                     </div>

@@ -47,7 +47,6 @@ export class Raspored extends Component {
     return <div>Loading...</div>;
 
     var raspored=this.state.raspored;
-
     
   var vremenaRasporeda=[];
   var rendering=[];

@@ -47,7 +47,7 @@ class PrijavljeniIspiti extends React.Component {
         <Link
             
           >
-            
+            Nazad
           </Link>
       </div>
     );

@@ -1,58 +1,39 @@
 import React from "react";
 import axios from "axios";
-import Potvrda from "./Potvrda";
-
-function renderujPotvrdu(greska) {
-    if (!greska) {
-        return (
-            <Potvrda
-                successful="true"
-                msg="Zahtjev je uspjesno poslan"
-            />
-        );
-    } else if (greska) {
-        return (
-            <Potvrda
-                successful="false"
-                msg="Polje ne smije biti prazno"
-            />
-        );
-    }
-    return "";
-}
 
 class DropDownZavrsni extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            profesori: ["prvi", "drugi", "treci"],
-            teme: ["prva", "druga"],
+            profesori: [],
+            teme: [],
             studentId: 1,
-            student:
-            {
-                ime: "hehe",
-                prezime: "lol"
-            },
+            profId: 1, 
             profOpcije: [],
             temeOpcije: []
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-        //poslati get na studenta i get na profesore
         axios
-            .get()
-            .then();
-
-        //get za teme
+            .get("http://localhost:31918/profesori")
+            .then(res=>{
+                this.setState(
+                    {
+                        profesori: res.data,
+                        profId: res.data.data[0].id
+                    });
+                    console.log(res.data.data[0]);
+            })
+            .catch(res=>{
+                console.log("Doslo je do greske! " + res.data);
+            });
         axios
-            .get()
+            .get("http://localhost:31918/profesori/temezavrsni/" + this.state.profId)
             .then();
-        
         let profe = this.state.profesori.map(prof => {return{value:prof, display:prof}});
         let teme = this.state.teme.map(teme =>{return{value:teme, display:teme}});
-        console.log(profe);
         this.setState({profOpcije: profe});
         this.setState({temeOpcije:teme});
     }

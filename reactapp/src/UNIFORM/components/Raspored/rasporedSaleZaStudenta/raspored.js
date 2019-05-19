@@ -42,6 +42,44 @@ export class Raspored extends Component {
   }
 
   render() {
+    if(!this.state.isLoaded)
+    return <div>Loading...</div>;
+
+  
+  
+    var raspored=this.state.raspored;
+    
+    var vremenaRasporeda=[];
+    var rendering=[];
+  
+    //vremenaRasporeda su sva vremena sa lijeve strane rasporeda(samo polusatna) pri cemu su neovisno od
+    //termina koje imamo uvijek puni satovi od 08:00 do 20:00
+    //pored toga su dodani termini tipa pola 3, pola 7 ukoliko neki od datih termina pocinje ili zavrsava 
+    //u pola 3 ili pola 7
+  
+  
+    var vrijemeObaveze='08:00';
+    while(vrijemeObaveze!='21:00')
+     {
+       vremenaRasporeda.push(vrijemeObaveze);                   
+       vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+       vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+     }
+    raspored.forEach((val,index) => {
+     vrijemeObaveze = val.vrijeme;
+     let trajanjeObaveze = parseInt(val.trajanje);
+     while(trajanjeObaveze>=0)
+     {
+       if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
+       {
+         vremenaRasporeda.push(vrijemeObaveze);            
+       }          
+       trajanjeObaveze-=30;          
+       vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+       //ovdje dodajemo termine koji su pola 3, pola 7...
+       
+     }
+    });
 
     vremenaRasporeda.sort();
   let danas= new Date();
@@ -63,7 +101,7 @@ export class Raspored extends Component {
   }
   //ukoliko je termin prazan u matrici je -1
   let datumFix = datum;
-  
+
   //sljedeca forEach petlja popunjava matricu termina
   raspored.forEach((val,index) => {
     datum=datumFix;

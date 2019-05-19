@@ -15,6 +15,11 @@ class PrijavljeniIspiti extends React.Component {
       <Notifikacija 
         poruka={this.state.notifikacijaPoruka}
         background={background} 
+        onClick={() => this.setState({
+          notifikacija: false,
+          notifikacijaPoruka: '',
+          background:''
+        })} 
       />
     </div>)
   }

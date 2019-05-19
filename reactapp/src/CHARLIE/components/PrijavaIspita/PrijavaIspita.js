@@ -19,8 +19,11 @@ class PrijavaIspita extends React.Component {
       <div className="container">
         <h1>Prijava ispita</h1>
         <div id="vrsteIspita">
+        <IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
         <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>
-        <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />
+          {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
+          <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
+          <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />
         </div>
       </div>
     );

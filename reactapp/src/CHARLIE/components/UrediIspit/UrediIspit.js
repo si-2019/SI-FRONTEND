@@ -5,6 +5,7 @@ class UrediIspit extends React.Component{
     return(
       <div>
         Uredi ispit
+        <button type="button" class="btn btn-primary" id="btnPotvrdi">Potvrdi</button>
       </div>
     )
   }

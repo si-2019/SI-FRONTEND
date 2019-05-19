@@ -45,6 +45,7 @@ class PrijavljeniIspiti extends React.Component {
         {this.renderNotification()}
         <h1>Prijavljeni ispiti</h1>
         <Link
+            type="button"
             
           >
             Nazad

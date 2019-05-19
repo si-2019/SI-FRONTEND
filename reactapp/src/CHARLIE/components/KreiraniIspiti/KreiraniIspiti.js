@@ -40,7 +40,7 @@ obrisiIspit = () => {
   this.setState({
     modalShow: !this.state.modalShow
   });
-
+}
 
 state = {response:[]}
 
@@ -85,7 +85,7 @@ state = {response:[]}
               id="btnStud"
               className="btn btn-primary"
               style={{ marginRight: "10%" }}
-              to={'/charlie/pregled-studenata/${row.idIspit}'}
+              to={`/charlie/pregled-studenata/${row.idIspit}`}
             >
               Studenti
             </Link>
@@ -94,7 +94,7 @@ state = {response:[]}
               id="btnUredi"
               className="btn btn-primary"
               style={{ marginRight: "10%" }}
-              to={'/charlie/uredi-ispit/${row.idIspit}'}
+              to={`/charlie/uredi-ispit/${row.idIspit}`}
             >
               Uredi
             </Link>

@@ -9,7 +9,12 @@ class UrediIspit extends React.Component{
     modalShow: false
   }
   toggleModal = () => {
-    console.log("a")
+    this.setState({
+      modalShow: !this.state.modalShow
+    });
+  }
+
+  urediIspit = () => {
     this.setState({
       modalShow: !this.state.modalShow
     });

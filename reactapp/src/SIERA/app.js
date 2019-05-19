@@ -8,12 +8,14 @@ import axios from "axios";
 import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
+import ZadaceTabela from "./ZadaceTable";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
+import Zadace from "../FOX/FOXv4/components/Stranice/Zadace";
 
 class App extends Component {
   render() {
@@ -56,6 +58,11 @@ class App extends Component {
               <li class="nav-item">
                 <a class="nav-link" href="/Siera/zavrsni-rad">
                   Završni rad
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Siera/zadace">
+                  Zadace
                 </a>
               </li>
             </ul>
@@ -113,6 +120,12 @@ class App extends Component {
             </div>
 
           } />
+          <Route exact path="/Siera/zadace" render={()=>
+            <div class="container-fluid">
+              <ZadaceTabela/>
+            </div>
+
+          }/>
         </BrowserRouter>
       </div>
     );

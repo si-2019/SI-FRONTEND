@@ -18,12 +18,10 @@ class PrijavaIspita extends React.Component {
     return (
       <div className="container">
         <h1>Prijava ispita</h1>
-        <div>
-          <IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
-          <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>
-          <IspitCard ispiti={this.state.ispiti} tipIspita="Integralni ispit" />
-          <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" />
-          <IspitCard ispiti={this.state.ispiti} tipIspita="Uvid u radove" />
+        <div id="vrsteIspita">
+          {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
+          <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
+          <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />
         </div>
       </div>
     );

@@ -13,6 +13,7 @@ class DropDownZavrsni extends React.Component {
             temaId: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChangeTema = this.handleChangeTema.bind(this);
     }
     componentDidMount() {
         axios
@@ -55,6 +56,36 @@ class DropDownZavrsni extends React.Component {
             );
         
     }
+    handleChangeTema(selected){
+       //kao parametar se salje profin id
+       this.setState({
+           profId: selected
+       });
+       axios
+            .get("http://localhost:31918/profesori/temeZavrsni/" + this.state.profId)
+            .then(res=>{
+                this.setState({
+                    teme: res.data.data
+                });
+                console.log(res.data);
+                if(this.state.teme.length==0){
+                    this.setState({
+                        temaId: null
+                    })
+                }
+                else{
+                    this.setState({
+                        temaId: res.data.data[0].id
+                    })
+                }
+            })
+            .catch(
+                res=>{
+                    console.log("nesto ne valja");
+                    console.log(res.error);
+                }
+            );
+    }
     handleSubmit(){
         
     }
@@ -72,7 +103,7 @@ class DropDownZavrsni extends React.Component {
                                 <label class="col-form-label col-form-label-lg" for="inputLarge">Mentori</label>
                             </div>
 
-                            <select class="custom-select" required>
+                            <select class="custom-select" onChange={event=>{this.handleChangeTema(event.target.value)}}>
                                 {this.state.profesori.map(
                                     (prof)=>
                                         <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>)}
@@ -80,8 +111,11 @@ class DropDownZavrsni extends React.Component {
                             <div style={{ textAlign: "left" }}>
                                 <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
                             </div>
-                            <select class="custom-select" required>
-                                
+                            <select class="custom-select" >
+                                {this.state.teme.map(
+                                    (teme)=>
+                                    <option key={teme.id} value={teme.id}>{teme.naziv}</option>
+                                )}
                             </select>
                             <div style={{ visibility: "hidden" }}>dssffds</div>
                             

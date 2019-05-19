@@ -26,8 +26,10 @@ class KreiraniIspiti extends React.Component{
 }
 
 obrisiIspit = idIspit => {
-  console.log(idIspit);
-  this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== idIspit) });
+  if(window.confirm("Jeste li sigurni da želite obrisati ispit?")){ 
+    // brisanje ispita - treba poslati zahtjev na BE za brisanje ispita 
+    this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== idIspit) });
+  }
 }
 
 state = {response:[]}

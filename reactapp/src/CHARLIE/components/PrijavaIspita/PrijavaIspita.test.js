@@ -9,4 +9,10 @@ describe('<PrijavaIspita />', () => {
    
     expect(wrapper.find('#usmeniIspiti').exists()).toBe(true)
   })
+
+  it('da li postoji button za prijavljene ispite', () => {
+    const wrapper = shallow(<PrijavaIspita/>)
+   
+    expect(wrapper.find('#prijavljeniIspiti').exists()).toBe(true)
+  })
 }) 

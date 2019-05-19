@@ -24,6 +24,14 @@ class PrijavaIspita extends React.Component {
           <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
           <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />
         </div>
+        <Link
+          type="button"
+          id="prijavljeniIspiti"
+          className="btn btn-info"
+          to="/charlie/prijavljeni-ispiti"
+        >
+          Prijavljeni ispiti
+        </Link>
       </div>
     );
   }

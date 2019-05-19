@@ -10,6 +10,7 @@ class DropDownZavrsni extends React.Component {
             teme: [],
             studentId: 1,
             profId: 1, 
+            temaId: null,
             profOpcije: [],
             temeOpcije: []
         }
@@ -21,17 +22,39 @@ class DropDownZavrsni extends React.Component {
             .then(res=>{
                 this.setState(
                     {
-                        profesori: res.data,
+                        profesori: res.data.data,
                         profId: res.data.data[0].id
                     });
-                    console.log(res.data.data[0]);
+
             })
             .catch(res=>{
                 console.log("Doslo je do greske! " + res.data);
             });
+            //teme koje se vezu za 1 mentora
         axios
-            .get("http://localhost:31918/profesori/temezavrsni/" + this.state.profId)
-            .then();
+            .get("http://localhost:31918/profesori/temeZavrsni/" + this.state.profId)
+            .then(res=>{
+                this.setState({
+                    teme: res.data.data
+                });
+                console.log(this.state.teme);
+                if(this.state.teme.length==0){
+                    this.setState({
+                        temaId: null
+                    })
+                }
+                else{
+                    this.setState({
+                        temaId: res.data.data[0].id
+                    })
+                }
+            })
+            .catch(
+                res=>{
+                    console.log("nesto ne valja");
+                    console.log(res.error);
+                }
+            );
         let profe = this.state.profesori.map(prof => {return{value:prof, display:prof}});
         let teme = this.state.teme.map(teme =>{return{value:teme, display:teme}});
         this.setState({profOpcije: profe});

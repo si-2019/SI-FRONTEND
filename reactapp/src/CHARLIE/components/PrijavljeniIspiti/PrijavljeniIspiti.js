@@ -1,6 +1,7 @@
 import React from "react";
 import Notifikacija from '../SharedComponents/Notifikacija'
 import { Link } from "react-router-dom";
+
 class PrijavljeniIspiti extends React.Component {
   state = { notifikacija: false, notifikacijaPoruka:'', severity:'' };
 

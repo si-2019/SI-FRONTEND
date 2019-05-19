@@ -45,43 +45,42 @@ export class Raspored extends Component {
     if(!this.state.isLoaded)
     return <div>Loading...</div>;
 
-  
-  
     var raspored=this.state.raspored;
-    
-    var vremenaRasporeda=[];
-    var rendering=[];
-  
-    //vremenaRasporeda su sva vremena sa lijeve strane rasporeda(samo polusatna) pri cemu su neovisno od
-    //termina koje imamo uvijek puni satovi od 08:00 do 20:00
-    //pored toga su dodani termini tipa pola 3, pola 7 ukoliko neki od datih termina pocinje ili zavrsava 
-    //u pola 3 ili pola 7
-  
-  
-    var vrijemeObaveze='08:00';
-    while(vrijemeObaveze!='21:00')
-     {
-       vremenaRasporeda.push(vrijemeObaveze);                   
-       vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
-       vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
-     }
-    raspored.forEach((val,index) => {
-     vrijemeObaveze = val.vrijeme;
-     let trajanjeObaveze = parseInt(val.trajanje);
-     while(trajanjeObaveze>=0)
-     {
-       if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
-       {
-         vremenaRasporeda.push(vrijemeObaveze);            
-       }          
-       trajanjeObaveze-=30;          
-       vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
-       //ovdje dodajemo termine koji su pola 3, pola 7...
-       
-     }
-    });
 
-    vremenaRasporeda.sort();
+  var vremenaRasporeda=[];
+  var rendering=[];
+
+  //vremenaRasporeda su sva vremena sa lijeve strane rasporeda(samo polusatna) pri cemu su neovisno od
+  //termina koje imamo uvijek puni satovi od 08:00 do 20:00
+  //pored toga su dodani termini tipa pola 3, pola 7 ukoliko neki od datih termina pocinje ili zavrsava 
+  //u pola 3 ili pola 7
+
+
+  var vrijemeObaveze='08:00';
+  while(vrijemeObaveze!='21:00')
+   {
+     vremenaRasporeda.push(vrijemeObaveze);                   
+     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+   }
+  raspored.forEach((val,index) => {
+   vrijemeObaveze = val.vrijeme;
+   let trajanjeObaveze = parseInt(val.trajanje);
+   while(trajanjeObaveze>=0)
+   {
+     if(!vremenaRasporeda.includes(vrijemeObaveze) && vrijemeObaveze==val.vrijeme)
+     {
+       vremenaRasporeda.push(vrijemeObaveze);            
+     }          
+     trajanjeObaveze-=30;          
+     vrijemeObaveze=povecajVrijemePolaSata(vrijemeObaveze);
+     //ovdje dodajemo termine koji su pola 3, pola 7...
+     
+   }
+  });
+  
+  vremenaRasporeda.sort();
+
   let danas= new Date();
   var dd = String(danas.getDate()).padStart(2, '0');
   var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
@@ -325,6 +324,5 @@ const days =[
     title:'Nedjelja'
   }
 ];
-
 
 export default Raspored;

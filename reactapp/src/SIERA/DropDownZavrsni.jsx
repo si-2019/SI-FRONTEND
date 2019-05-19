@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import ModalComponent from "./Modal";
+import Modal from "react-bootstrap/Modal";
 class DropDownZavrsni extends React.Component {
 
     constructor() {
@@ -13,24 +13,27 @@ class DropDownZavrsni extends React.Component {
             temaId: null,
             otvori: false,
             selProf: null,
-            selTema:null
+            selTema: null
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeProf = this.handleChangeProf.bind(this);
-        this.handleChangeTema = this.handleChangeTema.bind(this);
         this.otvori = this.otvori.bind(this);
+        this.handlePost = this.handlePost.bind(this);
     }
     otvori() {
-        let trenutniProf = this.state.profesori.find(x=>x.id==this.state.profId);
-        
-        let trenutnaTema = this.state.teme.find(x=>x.id == this.state.temaId);
-       
+        let trenutniProf = this.state.profesori.find(x => x.id == this.state.profId);
+
+        let trenutnaTema = this.state.teme.find(x => x.id == this.state.temaId);
+
         this.setState({
-             otvori: true,
-             selProf: trenutniProf.ime + " " + trenutniProf.prezime,
-             selTema: trenutnaTema.naziv
-            });
-        
+            otvori: true,
+            selProf: trenutniProf.ime + " " + trenutniProf.prezime,
+            selTema: trenutnaTema.naziv
+        });
+
+    }
+    handlePost() {
+
     }
     componentDidMount() {
 
@@ -81,7 +84,7 @@ class DropDownZavrsni extends React.Component {
                 this.setState({
                     teme: res.data.data,
                     profId: selectedId
-                    
+
                 });
                 if (this.state.teme.length == 0) {
                     this.setState({
@@ -100,14 +103,9 @@ class DropDownZavrsni extends React.Component {
                     console.log(res.error);
                 }
             );
-           
-    }
-    handleChangeTema(selected)
-    {
+
     }
     handleClick() {
-
-        
 
         if (this.state.temaId == null) {
             //ispisi gresku
@@ -137,13 +135,13 @@ class DropDownZavrsni extends React.Component {
                                     {this.state.profesori.map(
                                         (prof) =>
                                             <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
-                                            
+
                                     )}
                                 </select>
                                 <div style={{ textAlign: "left" }}>
                                     <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
                                 </div>
-                                <select class="custom-select" onChange={event =>{ this.handleChangeTema(event.target.value)}} >
+                                <select class="custom-select" >
                                     {this.state.teme.map(
                                         (teme) =>
                                             <option key={teme.id} value={teme.id}>{teme.naziv}</option>
@@ -158,19 +156,36 @@ class DropDownZavrsni extends React.Component {
                     </div>
                     <div class="col"></div>
                 </div>
-                <ModalComponent
+                <Modal
+                    {...this.props}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
                     show={this.state.otvori}
-                    onHide={zatvoriModal}
-                    btnPotvrdi="Potvrdi"
-                    naslovModala="Prijava završnog rada"
-                    nazivPromjene="Da li ste sigurni da želite prijaviti završni rad?"
-                    tijeloModala={
-                        <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">Mentor: {this.state.selProf}</label>
-                            <br></br>
-                            <label class="col-form-label" for="inputDefault">Tema: {this.state.selTema}</label>
-                        </div>
-                    }
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Prijava završnog rada
+                        </Modal.Title>
+                    </Modal.Header>
+                    <form onSubmit={this.handlePost}>
+                        <Modal.Body>
+                            <h4>Da li ste sigurni da želite prijaviti završni rad?</h4>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">Mentor: {this.state.selProf}</label>
+                                    <br></br>
+                                    <label class="col-form-label" for="inputDefault">Tema: {this.state.selTema}</label>
+                                </div>
+                            </div>
+
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <button type="button" class="btn btn-outline-danger" onClick={zatvoriModal}>Odustani</button>
+                            <button type="submit" id="spasiBtn" class="btn btn-primary">Potvrdi</button>
+                        </Modal.Footer>
+                    </form>
+                </Modal>
                 />
             </>
         );

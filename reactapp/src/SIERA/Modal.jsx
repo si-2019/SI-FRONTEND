@@ -112,7 +112,9 @@ class ModalComponent extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <button type="button" class="btn btn-outline-danger" onClick={this.props.onHide}>Odustani</button>
+
                         <button type="submit" id="spasiBtn" class="btn btn-primary">{this.props.btnPotvrdi}</button>
+
                     </Modal.Footer>
                 </form>
             </Modal>
@@ -123,5 +125,7 @@ export default ModalComponent;
 
 //
 /*
+
 PROPS: modalBody, onHide (funkcija), modalTitle, nazivPromjene, noviInput (json), btnPotvrdi
+
 */

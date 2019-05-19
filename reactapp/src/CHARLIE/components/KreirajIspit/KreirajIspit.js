@@ -4,7 +4,9 @@ import axios from 'axios'
 
 
 class KreirajIspit extends Component{
+
   state = {response:[], brojStudenata:0, validationError: false, validationErrorMessage: ""}
+
 
   async componentDidMount(){
     const {data} = await axios.get('http://localhost:31903/api/predmeti')
@@ -26,6 +28,7 @@ class KreirajIspit extends Component{
     return this.state.brojStudenata
   }
 
+
   validate = (e) => {
     const subjectNAme = this.refs.odabirPredmeta.value
     const typeOfExam = this.refs.odabirTipIspita.value
@@ -39,6 +42,7 @@ class KreirajIspit extends Component{
     }
   }
 
+
   render(){
     return(
     <div className='container'>
@@ -47,14 +51,18 @@ class KreirajIspit extends Component{
             
             <div className='col-3'>
             <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
+
                 <select className="form-control" id="odabirPredmeta" ref="odabirPredmeta">
+
                     {this.renderOptions()}
                 </select>
                 <button type="button" class="btn btn-primary" id="nazadDugme" onClick={() => window.open( 'http://www.google.ba')}>Nazad</button>
            </div> 
             <div className='col-3'>
               <label htmlFor="odabirTipIspita">Tip Ispita: </label>
+
                 <select className="form-control2" id="odabirTipIspita" ref="odabirTipIspita">
+
                     <option>Prvi parcijalni</option>
                     <option>Drugi parcijalni</option>
                     <option>Integralni</option>
@@ -68,6 +76,7 @@ class KreirajIspit extends Component{
             </div> 
             <div className='col-3'>
             <Link to="/charlie/kreiraj-ispit-detalji">
+
                   <button type="button" class="btn btn-primary" id="kreirajDugme" onClick={this.validate}>Kreiraj</button>
               </Link>
               {this.state.validationError && (
@@ -79,6 +88,7 @@ class KreirajIspit extends Component{
                   {this.state.validationErrorMessage}
                 </div>
               )}
+
               <br />
               <Link to="/charlie/kreirani-ispiti">
                 <button type="button" class="btn btn-primary">Kreirani ispiti</button>

@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import SingleChoice from './SingleChoice'
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class App extends Component {
       opisAnkete: '',
       datumIstekaAnkete: new Date(),
       pitanja: [1]
+
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -38,6 +40,7 @@ class App extends Component {
       aa: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' ')
     });
   }
+
 
   dodajPitanje() {
     this.setState({
@@ -115,6 +118,7 @@ class App extends Component {
               </div>
               ) 
             }
+
             <h5>Pitanja:</h5>
             {this.state.pitanja.map(pitanje => {
                return (
@@ -127,6 +131,7 @@ class App extends Component {
               </button>
             </div>
             <hr/>
+
             <div className="row justify-content-center">
               <button className="btn btn-primary" onClick={this.kreirajAnketu}>
                 Kreiraj anketu

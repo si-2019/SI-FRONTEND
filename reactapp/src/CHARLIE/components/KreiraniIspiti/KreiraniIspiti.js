@@ -1,5 +1,7 @@
 import React from 'react'
+
 import Modal from "../SharedComponents/Modal";
+
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import ReactDOM from 'react-dom';
@@ -23,6 +25,7 @@ class KreiraniIspiti extends React.Component{
           termin: '05/05/2019'
         }
       ],
+
       modalShow: false,
       idIspit:0
     };
@@ -41,6 +44,7 @@ obrisiIspit = () => {
     modalShow: !this.state.modalShow
   });
 }
+
 
 state = {response:[]}
 
@@ -80,6 +84,7 @@ state = {response:[]}
         Cell: row => (
           // U <div> ispod dodati dugmice
           <div>
+
             <Link
               type="button"
               id="btnStud"
@@ -89,6 +94,7 @@ state = {response:[]}
             >
               Studenti
             </Link>
+
             <Link
               type="button"
               id="btnUredi"
@@ -100,9 +106,11 @@ state = {response:[]}
             </Link>
             <button
               type="button"
+
               id="btnIzbrisi"
               className="btn btn-danger"
               onClick={() => this.toggleModal(row.row.idIspit)}
+
             >
               Izbrisi
             </button>
@@ -112,7 +120,9 @@ state = {response:[]}
     }]
     return(
       <div style={{paddingTop: "5%"}}>
+
          {!this.state.modalShow && <div>
+
           <h3 style={{textAlign: "left", marginLeft: "1%"}}>Kreirani ispiti</h3>
           <ReactTable 
             data={tableData}
@@ -129,12 +139,14 @@ state = {response:[]}
             id="tabelica"
         />
         <br />
+
         </div>}
         {this.state.modalShow && 
         <Modal onClose={this.toggleModal} onConfirm={
           this.obrisiIspit
         }>
          </Modal>} 
+
       </div>
     )
   }

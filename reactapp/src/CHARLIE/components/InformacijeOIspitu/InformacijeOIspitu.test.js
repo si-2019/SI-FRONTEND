@@ -7,4 +7,5 @@ describe('<InformacijeOIspitu />', () => {
     const wrapper = shallow(<InformacijeOIspitu/>)
     expect(wrapper.find('form').exists()).toBe(true)
   })
+
 })

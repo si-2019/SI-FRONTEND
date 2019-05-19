@@ -15,8 +15,11 @@ class UrediIspit extends React.Component{
     return(
       <div>
         Uredi ispit
-        <button type="button" class="btn btn-primary" id="btnPotvrdi">Potvrdi</button>
-      </div>
+        <button type="button" class="btn btn-primary" id="btnPotvrdi" onClick={this.toggleModal}>Potvrdi</button>
+      {this.state.modalShow && 
+        <Modal onClose={this.toggleModal} onConfirm={this.toggleModal}>
+         </Modal>} 
+      </div> 
     )
   }
 }

@@ -45,7 +45,7 @@ class App extends Component {
                 <Route path="/fox/StranicaPredmeta" component={StranicaPredmeta} /> 
                 <Route path="/fox/Obavijesti" component={Obavijesti} /> 
                 <Route path="/fox/UnosPrisustva" component={UnosPrisustva} />      
-                <Route path="/fox/ UnosOcjene" component={ UnosOcjene} />              
+                <Route path="/fox/UnosOcjene" component={ UnosOcjene} />              
                 <Route path="/golf" component={Golf} />
                 <Route path="/hotel" component={Hotel} />
                 <Route path="/india" component={India} />

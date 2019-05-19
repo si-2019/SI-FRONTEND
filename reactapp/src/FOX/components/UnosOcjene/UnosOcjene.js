@@ -11,8 +11,8 @@ class UnosOcjene extends Component {
                 <Form.Row>
                 </Form.Row>
                 <Form.Row>
-                    <Col md={{span: 5, offset: 4}}>
-                        <Ocjena/>
+                    <Col md={{span: 8, offset: 4}}>
+                        <Form.Label> Nsto </Form.Label>
                     </Col>
                 </Form.Row>
                 <Form.Row>

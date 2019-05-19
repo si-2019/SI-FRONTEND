@@ -21,4 +21,11 @@ describe('<KreirajIspit />', () => {
     const wrapper=shallow(<KreirajIspit/>)
     expect(wrapper.find('#odabirTipIspita').exists()).toBe(true)
   })
+  it("shouldn't render an alert initially", () => {
+    const wrapper=shallow(<KreirajIspit/>)
+    wrapper.setState({ validationError: false })
+    expect(wrapper.find("[className='alert alert-danger']").exists()).toBe(
+      false
+    )
+  })
 })

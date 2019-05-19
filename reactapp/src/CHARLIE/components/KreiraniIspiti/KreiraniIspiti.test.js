@@ -9,5 +9,4 @@ describe('<KreiraniIspiti />', () => {
    
     expect(wrapper.find('#tabelica').exists()).toBe(true)
   })
-
 }) 

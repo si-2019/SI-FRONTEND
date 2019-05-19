@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Icon } from "@opuscapita/react-icons";
 
-
+ 
 class OcjenjivanjeJedanZadatak extends Component {
   render() {
     return (
       <div>
         <div className="card-header bg-primary text-light">
           <h4>
-            <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
+            <b>Zadaća {this.props.podaci.state.zadaca}. </b>
             <Icon
               type="indicator"
               name="arrowLeft"

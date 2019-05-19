@@ -20,6 +20,7 @@ class Ocjena extends Component {
                     <Form.Row style= {{ padding: '30px'}}  >
                     <Form.Label> Ocjena: </Form.Label> 
                     <input type="text" name="name"/> 
+                    <Button> Unesi </Button>
                     </Form.Row>
                 </Form>
             </Form>

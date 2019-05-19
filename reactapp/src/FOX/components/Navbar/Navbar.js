@@ -25,7 +25,7 @@ class Navbar001 extends Component {
               <Nav.Link href="student">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
                 <NavDropdown.Item href="UnosPrisustva">Prisustvo</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Ispiti</NavDropdown.Item>
+                <NavDropdown.Item href="UnosBodova">Ispiti</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Ocjene</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Teme</NavDropdown.Item>
               </NavDropdown>

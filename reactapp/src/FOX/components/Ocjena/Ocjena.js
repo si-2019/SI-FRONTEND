@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Button from 'react-bootstrap/Button'
 
-class Ocjena extends Components {
+class Ocjena extends Component {
     render() {
         return (
             <Form>

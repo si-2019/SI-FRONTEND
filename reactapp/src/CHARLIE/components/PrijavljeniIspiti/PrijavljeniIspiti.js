@@ -4,7 +4,6 @@ import Notifikacija from '../SharedComponents/Notifikacija'
 class PrijavljeniIspiti extends React.Component {
   state = { notifikacija: false, notifikacijaPoruka:'', severity:'' };
 
-
   renderNotification = () => {
     const {severity, notifikacija} = this.state
     let background

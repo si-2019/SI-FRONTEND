@@ -72,7 +72,8 @@ state = {response:[]}
               type="button"
               id="Studenti"
               className="btn btn-primary"
-              
+              style={{ marginRight: "10%" }}
+              to={'/charlie/pregled-studenata/${row.idIspit}'}
             >
               Uredi
             </Link>

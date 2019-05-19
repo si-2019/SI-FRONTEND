@@ -3,6 +3,8 @@ import url from '../url'
 import './style.css'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import SingleChoice from './SingleChoice'
+
 
 class App extends Component {
   constructor(props) {
@@ -12,12 +14,15 @@ class App extends Component {
       vrstaAnkete: 'javna anketa',
       nazivAnkete: '',
       opisAnkete: '',
-      datumIstekaAnkete: new Date()
+      datumIstekaAnkete: new Date(),
+      pitanja: [1]
+
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.kreirajAnketu = this.kreirajAnketu.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.dodajPitanje = this.dodajPitanje.bind(this);
   }
 
   handleRadioChange(event) {
@@ -34,6 +39,13 @@ class App extends Component {
       datumIstekaAnkete: date,
       aa: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' ')
     });
+  }
+
+
+  dodajPitanje() {
+    this.setState({
+      pitanja: this.state.pitanja.concat([1])
+    })
   }
 
   render() {
@@ -106,6 +118,20 @@ class App extends Component {
               </div>
               ) 
             }
+
+            <h5>Pitanja:</h5>
+            {this.state.pitanja.map(pitanje => {
+               return (
+               <SingleChoice />
+               )
+            })}
+            <div className="row justify-content-center">
+              <button className="btn btn-secondary" onClick={this.dodajPitanje} type="button">
+                Dodaj pitanje
+              </button>
+            </div>
+            <hr/>
+
             <div className="row justify-content-center">
               <button className="btn btn-primary" onClick={this.kreirajAnketu}>
                 Kreiraj anketu

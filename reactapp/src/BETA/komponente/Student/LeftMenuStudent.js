@@ -36,6 +36,7 @@ class LeftMenuStudent extends React.Component {
                     className="btn btn-primary left-buttons"
                     onClick = {()=>this.changeActiveId(4)}>FAQ
                 </button>
+    
             </div>
             
         );

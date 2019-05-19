@@ -7,11 +7,8 @@ import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjePr
 import MockListaPredmeta from './MockListaPredmeta';
 import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
 import IzborVodje from './components/FormaZaIzborVodje';
+import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe'
 //import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
-
-
-
-
 
 class Mike extends Component {
   constructor(props){
@@ -22,6 +19,7 @@ class Mike extends Component {
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
     this.mockKreiranjeProjektaAsistent=this.mockKreiranjeProjektaAsistent.bind(this);
+    this.uredjivanjeGrupe=this.uredjivanjeGrupe.bind(this);
   }
   render() {
    
@@ -33,6 +31,7 @@ class Mike extends Component {
         <button>Rad na projektu</button>
         <button onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
         <button>Bodovanje projekta</button>
+        <button onClick={this.uredjivanjeGrupe}>TEMP - uredjivanje grupe</button>
       </div>
     );
     else if (this.state.forma=="kreiranjeGrupe") return (
@@ -41,9 +40,12 @@ class Mike extends Component {
     else if (this.state.forma=="listaProjekata") return (
         <PregledListeProjekata />
     );
-    else if(this.state.forma="mockKreiranje") return(
+    else if(this.state.forma=="mockKreiranje") return(
       <MockKreiranjeProjektaAsistent />
-    )
+    );
+    else if(this.state.forma=="uredjivanjeGrupe") return(
+      <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
+    );
   }
   kreiranjeGrupe(){
     this.setState({forma:"kreiranjeGrupe"});
@@ -53,6 +55,9 @@ class Mike extends Component {
   }
   mockKreiranjeProjektaAsistent(){
     this.setState({forma:"mockKreiranje"});
+  }
+  uredjivanjeGrupe(){
+    this.setState({forma:"uredjivanjeGrupe"});
   }
 }
 

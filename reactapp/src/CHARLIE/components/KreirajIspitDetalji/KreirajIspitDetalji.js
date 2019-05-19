@@ -41,7 +41,12 @@ class KreirajIspitDetalji extends Component {
               <button type="submit" class="btn btn-primary">Kreiraj</button>
               <Link to="/charlie">
               <button type="button" class="btn btn-danger" id="btnPovratak">Odustani</button>
-            </Link>
+              </Link>
+
+              <label htmlFor="rokPrijave">Rok prijave: </label> <br />
+              <input type="date" className="form-control" id="datetimep" />
+              <label htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> <br/>
+              <input type="text" className="form-control" id="vrijemeT" />
             </form>
           </div>
         </div>

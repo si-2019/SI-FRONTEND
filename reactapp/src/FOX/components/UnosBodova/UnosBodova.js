@@ -1,21 +1,27 @@
 import React, { Component} from 'react';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Button';
+import TabelaUnosa from '../TabelaUnosa/TabelaUnosa';
+import Form from 'react-bootstrap/Form';
 
 class UnosBodova extends  Component {
 render() {
 
     return(
-         <Container>
-            <Row>
-                
-            </Row>
-            <Row>
-            <Col md={{span: 6, offset: 4}} > { 'Samo naprijed idemoooo '}  </Col>
-            </Row>
-            <Row> 
-            </Row>
-         </Container>
-    );
-     }
+        <div>
+          <Form>
+              <Form.Row>
+               </Form.Row>
+               <Form.Row>
+                    <Col md= {{ span: 5, offset : 4}}>
+                    <TabelaUnosa/>
+                    </Col>
+               </Form.Row>
+          </Form>
+          </div>
+     );
+ }
 }
 
 export default UnosBodova;

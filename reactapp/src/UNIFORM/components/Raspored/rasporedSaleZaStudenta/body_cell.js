@@ -16,7 +16,12 @@ const MojModal = (ovaj) => {
     //ovo je citav modal, html mijenjate i tu nakon biljeske treba dodati textbox polje za unos azuriranje i brisanje biljeske
     
     <div>
-            
+            <Modal 
+               isOpen={ovaj.state.showModal}
+               contentLabel="Minimal Modal Example"
+               style = {customStyles}
+            >             
+            </Modal>
     </div>
   );
 }

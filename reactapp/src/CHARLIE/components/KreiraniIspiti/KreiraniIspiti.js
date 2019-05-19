@@ -70,6 +70,9 @@ state = {response:[]}
           <div>
             <Link
               type="button"
+              id="Studenti"
+              className="btn btn-primary"
+              
             >
               Uredi
             </Link>

@@ -93,7 +93,7 @@ state = {response:[]}
             >
               Izbrisi
             </button>
-              
+            {/* napravljen button za brisanje               */}
           </div>
       )
     }]

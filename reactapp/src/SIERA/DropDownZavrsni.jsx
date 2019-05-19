@@ -20,6 +20,7 @@ class DropDownZavrsni extends React.Component {
         this.handleChangeProf = this.handleChangeProf.bind(this);
         this.otvori = this.otvori.bind(this);
         this.handlePost = this.handlePost.bind(this);
+        this.validateTema = this.validateTema.bind(this);
     }
     otvori() {
         let trenutniProf = this.state.profesori.find(x => x.id == this.state.profId);
@@ -111,6 +112,7 @@ class DropDownZavrsni extends React.Component {
                         temaId: res.data.data[0].id
                     })
                 }
+                this.validateTema(this.state.temaId);
             })
             .catch(
                 res => {
@@ -118,7 +120,7 @@ class DropDownZavrsni extends React.Component {
                     console.log(res.error);
                 }
             );
-
+           
     }
     handleClick() {
         if (this.state.temaId == null) {
@@ -128,6 +130,18 @@ class DropDownZavrsni extends React.Component {
         }
         else if (this.state.temaId != null) {
             this.otvori();
+        }
+    }
+    validateTema(id){
+        if(id==null){
+            this.setState({
+                greskaVis: "visible"
+            })
+        }
+        else{
+            this.setState({
+                greskaVis: "hidden"
+            })
         }
     }
     render() {
@@ -156,7 +170,7 @@ class DropDownZavrsni extends React.Component {
                                 <div style={{ textAlign: "left" }}>
                                     <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
                                 </div>
-                                <select class="custom-select" >
+                                <select class="custom-select" onChange={event =>{ this.validateTema(event.target.value)}} >
                                     {this.state.teme.map(
                                         (teme) =>
                                             <option key={teme.id} value={teme.id}>{teme.naziv}</option>

@@ -26,8 +26,10 @@ class KreiraniIspiti extends React.Component{
 }
 
 obrisiIspit = idIspit => {
-  console.log(idIspit);
-  this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== idIspit) });
+  if(window.confirm("Jeste li sigurni da želite obrisati ispit?")){ 
+    // brisanje ispita - treba poslati zahtjev na BE za brisanje ispita 
+    this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== idIspit) });
+  }
 }
 
 state = {response:[]}
@@ -70,12 +72,12 @@ state = {response:[]}
           <div>
             <Link
               type="button"
-              id="Studenti"
+              id="btnStud"
               className="btn btn-primary"
               style={{ marginRight: "10%" }}
               to={'/charlie/pregled-studenata/${row.idIspit}'}
             >
-              Uredi
+              Studenti
             </Link>
             <Link
               type="button"
@@ -88,6 +90,7 @@ state = {response:[]}
             </Link>
             <button
               type="button"
+              id="btnIzbrisi"
               className="btn btn-danger"
               onClick={() => this.obrisiIspit(row.row.idIspit)}
             >

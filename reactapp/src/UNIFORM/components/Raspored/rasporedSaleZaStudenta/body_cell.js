@@ -8,7 +8,18 @@ import axios from 'axios';
 
 
 
-
+const MojModal = (ovaj) => {
+  ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa
+  if(!ovaj.state.showModal)
+    return null;
+  return(
+    //ovo je citav modal, html mijenjate i tu nakon biljeske treba dodati textbox polje za unos azuriranje i brisanje biljeske
+    
+    <div>
+            
+    </div>
+  );
+}
 
 const MojHover = (ovaj) => {
   ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa

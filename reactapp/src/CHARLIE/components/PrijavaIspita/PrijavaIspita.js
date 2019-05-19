@@ -8,10 +8,10 @@ class PrijavaIspita extends React.Component {
 
   async componentDidMount() {
     //kad se uradi backend otkomentarisati..
-    //const ispiti = await axios.get("http://localhost:31903/ispiti");
+    const ispiti = await axios.get("http://localhost:31903/ispiti");
     //Filter po predmetima koje slusa student
     //Za svaki entry nadji ime predmeta na osnovu id-a
-    //this.setState({ ispiti: ispiti.data });
+    this.setState({ ispiti: ispiti.data });
   }
 
   render() {
@@ -19,7 +19,7 @@ class PrijavaIspita extends React.Component {
       <div className="container">
         <h1>Prijava ispita</h1>
         <div id="vrsteIspita">
-        <IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
+        <IspitCard ispiti={this.state.ispiti} tipIspita="Prvi parcijalni"/>
           {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
           <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
           <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />

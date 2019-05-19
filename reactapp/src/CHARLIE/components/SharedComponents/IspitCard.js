@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class IspitCard extends Component {
   renderIspit = () =>
     this.props.ispiti
@@ -7,9 +7,9 @@ class IspitCard extends Component {
       .map(el => (
         <li key={el.idIspit}>
           {el.idPredmet}
-          <button type="button" className="btn btn-primary">
-            Prijava
-          </button>
+          <Link to={`/charlie/informacije-o-ispitu/${el.idIspit}`} style={{float:"right"}}>
+                  Info o ispitu
+            </Link>
         </li>
       ));
 

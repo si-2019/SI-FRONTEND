@@ -23,6 +23,7 @@ class PrijavaIspita extends React.Component {
           {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
           <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
           <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />
+          <IspitCard ispiti={this.state.ispiti} tipIspita="Uvid u radove" id="uvidURadove" />
         </div>
         <Link
           type="button"

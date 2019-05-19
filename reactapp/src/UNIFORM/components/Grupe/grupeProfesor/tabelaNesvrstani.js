@@ -13,7 +13,7 @@ export class tabela extends Component {
           console.log("http://localhost:31920/dodajStudentaRandomGroup/"+idStudent);
           document.location.reload();
       };
-  }
+  } 
   render() {
     
     var renderingCells =[];

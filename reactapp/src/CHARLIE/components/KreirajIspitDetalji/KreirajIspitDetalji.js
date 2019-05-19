@@ -13,10 +13,18 @@ class KreirajIspitDetalji extends Component {
         <div className="row">
           <div className="col-4">
             <form>
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
               <label htmlFor="rokPrijave">Rok prijave: </label> <br />
               <input type="date" className="form-control" id="datetimep" />
               <label htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> <br/>
               <input type="text" className="form-control" id="vrijemeT" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
               <Form
                 autoFocus
                 labelTitle="Napomena za ispit"

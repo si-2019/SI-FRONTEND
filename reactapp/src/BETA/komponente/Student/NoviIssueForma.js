@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryComponent from '../komponente/CategoryComponent.js';
+import CategoryComponent from './CategoryComponent.js';
 import axios from 'axios'
 
 class NoviIssueForma extends React.Component {
@@ -65,11 +65,7 @@ class NoviIssueForma extends React.Component {
     render() {
         return (
 
-            <div>
-
-                <form id = "formNoviIssue"
-                      onSubmit={() => {}}
-                >
+                <form id = "formNoviIssue" onSubmit={this.onSubmit}>
 
                     <div id=" naslovDiv">
 
@@ -141,7 +137,6 @@ class NoviIssueForma extends React.Component {
                     </div>
                 </form>
 
-            </div>
         
         );
     }

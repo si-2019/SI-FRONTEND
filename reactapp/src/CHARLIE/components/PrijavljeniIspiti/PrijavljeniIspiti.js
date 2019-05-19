@@ -44,6 +44,13 @@ class PrijavljeniIspiti extends React.Component {
       <div>
         {this.renderNotification()}
         <h1>Prijavljeni ispiti</h1>
+        <Link
+            type="button"
+            className="btn btn-light"
+            to={`/charlie/prijava-ispita`}
+          >
+            Nazad
+          </Link>
       </div>
     );
   }

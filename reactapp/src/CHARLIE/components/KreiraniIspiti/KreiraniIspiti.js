@@ -68,7 +68,11 @@ state = {response:[]}
         Cell: row => (
           // U <div> ispod dodati dugmice
           <div>
-
+            <Link
+              type="button"
+            >
+              Uredi
+            </Link>
             <Link
               type="button"
               id="btnUredi"

@@ -1,4 +1,5 @@
 import React from 'react'
+import Modal from "../SharedComponents/Modal";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import ReactDOM from 'react-dom';
@@ -22,14 +23,24 @@ class KreiraniIspiti extends React.Component{
           termin: '05/05/2019'
         }
       ],
+      modalShow: false,
+      idIspit:0
     };
 }
 
-obrisiIspit = idIspit => {
-  if(window.confirm("Jeste li sigurni da želite obrisati ispit?")){ 
+toggleModal = (idIspit) => {
+  this.setState({
+    modalShow: !this.state.modalShow,
+    idIspit: idIspit
+  });
+}
+
+obrisiIspit = () => {
+  this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== this.state.idIspit) });
+  this.setState({
+    modalShow: !this.state.modalShow
+  });
     // brisanje ispita - treba poslati zahtjev na BE za brisanje ispita 
-    this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== idIspit) });
-  }
 }
 
 state = {response:[]}
@@ -92,7 +103,7 @@ state = {response:[]}
               type="button"
               id="btnIzbrisi"
               className="btn btn-danger"
-              onClick={() => this.obrisiIspit(row.row.idIspit)}
+              onClick={() => this.toggleModal(row.row.idIspit)}
             >
               Izbrisi
             </button>
@@ -102,6 +113,7 @@ state = {response:[]}
     }]
     return(
       <div style={{paddingTop: "5%"}}>
+         {!this.state.modalShow && <div>
           <h3 style={{textAlign: "left", marginLeft: "1%"}}>Kreirani ispiti</h3>
           <ReactTable 
             data={tableData}
@@ -118,6 +130,12 @@ state = {response:[]}
             id="tabelica"
         />
         <br />
+        </div>}
+        {this.state.modalShow && 
+        <Modal onClose={this.toggleModal} onConfirm={
+          this.obrisiIspit
+        }>
+         </Modal>} 
       </div>
     )
   }

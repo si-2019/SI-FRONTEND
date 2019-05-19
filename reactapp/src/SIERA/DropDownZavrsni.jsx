@@ -92,9 +92,9 @@ class DropDownZavrsni extends React.Component {
     render() {
         return (
 
-            <div class="row" style={{ margin: "0px" }}>
+            <div class="row" style={{ margin: "0px"}}>
                 <div class="col"></div>
-                <div class="col" style={{ textAlign: "center" }}>
+                <div class="col" style={{ textAlign: "center",  minWidth:"400px" }}>
                     <div class="card" style={{ display: "inline-block" }}>
                         <div class="card-body">
                             <h3 class="card-title">Završni rad</h3>

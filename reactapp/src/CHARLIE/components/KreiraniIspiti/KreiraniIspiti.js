@@ -40,8 +40,7 @@ obrisiIspit = () => {
   this.setState({
     modalShow: !this.state.modalShow
   });
-    // brisanje ispita - treba poslati zahtjev na BE za brisanje ispita 
-}
+
 
 state = {response:[]}
 

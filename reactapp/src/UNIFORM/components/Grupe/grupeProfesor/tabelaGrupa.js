@@ -10,6 +10,7 @@ import SelectRedoslijed from './selectRedoslijed.js';
 
 export class tabela extends Component {
 
+
   odjaviStudenta = (index) =>
   {     
     
@@ -43,7 +44,9 @@ export class tabela extends Component {
         prijavljeniStudentiGrupe.push(
             <Body_Cell lockState={this.props.lockState} odjaviStudenta={this.odjaviStudenta.bind(this,i)} student={this.props.grupa.studenti[i]} vlasnik={vlasnikBool}/>
         );
+
     }   
+
     
     var poruka = "";
     var stylish = stylishCasual;
@@ -66,6 +69,7 @@ export class tabela extends Component {
       picker=(<DateTimePickerr idPredmet={this.props.idPredmet}/>);
       redoslijed=(<SelectRedoslijed trenutniRedoslijed={this.props.trenutniRedoslijed} idPredmet={this.props.idPredmet}/>);
     }
+
         
 
     return (

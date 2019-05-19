@@ -13,7 +13,8 @@ class DropDownZavrsni extends React.Component {
             temaId: null,
             otvori: false,
             selProf: null,
-            selTema: null
+            selTema: null,
+            greskaVis: "hidden"
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeProf = this.handleChangeProf.bind(this);
@@ -32,7 +33,19 @@ class DropDownZavrsni extends React.Component {
         });
 
     }
-    handlePost() {
+    handlePost(e) {
+        e.preventDefault();
+        axios
+            .post("http://localhost:31918/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
+                isStudent: this.state.studentId,
+                idTema: this.state.temaId
+            })
+            .then(res => {
+                console.log("uspjesno poslan post");
+            })
+            .catch(res => {
+                console.log("greska u postu: " + res.data);
+            });
 
     }
     componentDidMount() {
@@ -59,12 +72,14 @@ class DropDownZavrsni extends React.Component {
                 });
                 if (this.state.teme.length == 0) {
                     this.setState({
-                        temaId: null
+                        temaId: null,
+                        selTema: null
                     })
                 }
                 else {
                     this.setState({
-                        temaId: res.data.data[0].id
+                        temaId: res.data.data[0].id,
+                        selTema: res.dara.data[0].naziv
                     })
                 }
             })
@@ -106,13 +121,13 @@ class DropDownZavrsni extends React.Component {
 
     }
     handleClick() {
-
         if (this.state.temaId == null) {
-            //ispisi gresku
-            console.log("greska!");
+           this.setState({
+               greskaVis: "visible"
+           })
         }
         else if (this.state.temaId != null) {
-
+            this.otvori();
         }
     }
     render() {
@@ -147,9 +162,9 @@ class DropDownZavrsni extends React.Component {
                                             <option key={teme.id} value={teme.id}>{teme.naziv}</option>
                                     )}
                                 </select>
-                                <div style={{ visibility: "hidden" }}>dssffds</div>
+                                <div style={{ visibility: this.state.greskaVis}}><p class="text-danger">Morate odabrati temu!</p></div>
 
-                                <button type="button" class="btn btn-primary btn-lg btn-block" onClick={() => this.otvori()}>Prijavi završni</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" onClick={this.handleClick}>Prijavi završni</button>
 
                             </div>
                         </div>
@@ -162,7 +177,9 @@ class DropDownZavrsni extends React.Component {
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
                     show={this.state.otvori}
+                    onHide={zatvoriModal}
                 >
+                    
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Prijava završnog rada
@@ -181,12 +198,11 @@ class DropDownZavrsni extends React.Component {
 
                         </Modal.Body>
                         <Modal.Footer>
-                            <button type="button" class="btn btn-outline-danger" onClick={zatvoriModal}>Odustani</button>
                             <button type="submit" id="spasiBtn" class="btn btn-primary">Potvrdi</button>
                         </Modal.Footer>
                     </form>
                 </Modal>
-                />
+
             </>
         );
     }

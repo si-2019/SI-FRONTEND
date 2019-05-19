@@ -43,6 +43,27 @@ export class Raspored extends Component {
 
   render() {
 
+    vremenaRasporeda.sort();
+  let danas= new Date();
+  var dd = String(danas.getDate()).padStart(2, '0');
+  var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
+  var yyyy = danas.getFullYear();   
+  //termin koji koristimo za datum je 2019/12/31
+  let datum = yyyy + '/' + mm + '/' + dd;
+  datum = prviDanuSedmici(datum);
+
+  //za navedeni datum trazimo prvi dan u sedmici kako bi mogli da prikazemo raspored za aktuelnu sedmicu
+
+  // sada kreiramo matricu termina koja je formata (broj vremena u rasporedu) X (broj dana u sedmici tj. 7)
+  let matricaTermina =new Array(vremenaRasporeda.length);
+  for (var i = 0; i < matricaTermina.length; i++) {
+     matricaTermina[i] = new Array(7);
+     for(var j=0;j<matricaTermina[i].length;j++)
+       matricaTermina[i][j]=-1;
+  }
+  //ukoliko je termin prazan u matrici je -1
+  let datumFix = datum;
+  
   //sljedeca forEach petlja popunjava matricu termina
   raspored.forEach((val,index) => {
     datum=datumFix;

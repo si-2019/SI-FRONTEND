@@ -42,12 +42,11 @@ posalji = (e)=>{
     return(
       <>
         <form onSubmit={this.posalji}>
-        Unos indeksa: <br /> Trenutno uneseni indeks:{this.state.indeks}
+        Unos indeksa: <br />
         <input type = "text"  id="indeks" onChange={this.updateIndeks}></input>
         <br />
         Unos naziva predmeta: <br />
         <br />
-        Trenutno uneseni predmet:{this.state.predmet}
         <input type = "text"  id="predmet" onChange={this.updatePredmet}></input>
         <input type="submit" id="dajRezultate" value="Daj rezultate"></input>
         </form>

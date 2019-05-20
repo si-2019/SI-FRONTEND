@@ -1,38 +1,31 @@
 import React, { Component} from 'react'
 import SviPredmeti from './SviPredmeti';
+import axios from 'axios';
+
 
 class semestarPredmeti extends Component {
 
-	 
-    render() {
-		
-	const{match: { params}}=this.props;
-	this.state={
-      predmetisemestra: [
-        {
-          id: 11,
-          naziv: 'Softver inženjering',
-          opis: 'A discipline that deals with the building of software systems which are so large that they are built by a team or teams of engineers.'
-        },
-        {
-          id: 12,
-          naziv: 'Vještačka inteligencija',
-          opis: 'Mogućnost primjere napredne tehnologije kao što je MATLAB –SIMULINK-FUZZY LOGIC TOOLBOX-NEURAL NETWORK TOOLBOX-GENETIC ALGORITHM TOOLBOX razvojno okruženje pri implementaciji sistema VI.'
-        }
-      ]
+  state={
+    predmeti: []
   }
-	
-        return(
-            <div>
-			
-			<h1>{'Ciklus: ' + params.ciklus}</h1>
-			<h1>{'Odsjek: ' + params.odsjek}</h1>
-            <h1>{'Semestar: ' + params.semestar}</h1>
 
-            <SviPredmeti predmeti={this.state.predmetisemestra} />
-            </div>
-        )
-    }
+  componentDidMount(){
+    axios.get(`http://localhost:31907/r1/predmeti/${this.props.match.params.ciklus}/${this.props.match.params.odsjek}/${this.props.match.params.semestar}`).then(res => {
+      const predmeti = res.data;
+      this.setState({
+        predmeti:predmeti.predmeti
+      });
+    })
+  }
+	 
+  render() {
+
+    return(
+      <div>
+        <SviPredmeti predmeti={this.state.predmeti} />
+      </div>  
+    )
+  }
 }
 
 export default semestarPredmeti

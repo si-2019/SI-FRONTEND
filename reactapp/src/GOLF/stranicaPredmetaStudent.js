@@ -1,43 +1,39 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 class stranicaPredmetaStudent extends Component {
-    constructor(props){
-        super(props);
-        this.state = {          
-          idPredmeta: props.match.params.idPredmeta,
-          naziv: "",
-          text: "",
-          idKorisnik: 0,
-          idPredmet: 0
-        };
-    }    
+
+    state = {
+      idPredmeta: 0,
+      idKorisnika: 0,
+      dodano: 0,
+      text: "",
+      naziv: ""
+    }
+  
     componentDidMount(){
-        axios.get(`http://localhost:31907/r5/dajNaziv/${this.state.idPredmeta}`).then(res =>{
-            this.setState({naziv:res.data.naziv})
+        axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.match.params.idPredmeta}`).then(res =>{
+            console.log(res)
+            const naziv = res.data.naziv;
+            axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
+                const odg = res2.data;
+                let tekst = "";
+                if(res2.data.veza == '1'){
+                  tekst='Ukloni iz mojih predmeta'
+                }
+                else{
+                  tekst='Dodaj u moje predmete'
+                }
+                this.setState({
+                  naziv: naziv,
+                  idPredmeta: this.props.match.params.idPredmeta,
+                  idKorisnika:this.props.match.params.idKorisnika,
+                  dodano: res2.data.veza,
+                  text: tekst
+                })
+            })
         })
 
-        var url = window.location.href;
-        
-        var idKorisnika = 0;
-        var pom1 = 1;
-        var i;
-        for(i = url.length-1; i >= 0; i--) {
-            if(url.charAt(i).includes('/')) break;
-            idKorisnika = idKorisnika + parseInt(url.charAt(i)) * pom1;
-            pom1 = pom1 * 10;
-        }
-
-        i = i-1;
-        var idPredmeta = 0;
-        var pom2 = 1;
-        var j = 0;
-        for(j = i; j>=0; j--) {
-            if(url.charAt(j).includes('/')) break;
-            idPredmeta = idPredmeta + parseInt(url.charAt(j)) * pom2;
-            pom2 = pom2 * 10;
-        }
-
-        axios.get(`http://localhost:31907/r6/provjera/${idKorisnika}/${idPredmeta}`).then(res =>{
+        /*axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnik}/${this.props.match.params.id}`).then(res =>{
             const odgovor = res.data;
 
             if(odgovor.veza == 1){
@@ -58,7 +54,7 @@ class stranicaPredmetaStudent extends Component {
           this.setState({
             idKorisnik: idKorisnika,
             idPredmet: idPredmeta
-          })
+          })*/
     }
 
     klikNaDugme() {
@@ -85,9 +81,15 @@ class stranicaPredmetaStudent extends Component {
 
     render(){
         return(
-            <div className="card border-info mb-3">
-                <h1 className="card-header">  {this.state.naziv}</h1>
-                <button onClick={this.klikNaDugme.bind(this)}>{this.state.text}</button>
+            <div>
+              <div class='row'>
+                <div class='col-9'>
+                  <h1>  {this.state.naziv}</h1>
+                </div>
+                <div class='col-3'>
+                  <button id='dd'type="button" class="btn btn-success">{this.state.text}</button>
+                </div>
+              </div>
             </div>
         )
     }

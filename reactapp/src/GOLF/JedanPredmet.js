@@ -8,7 +8,7 @@ class JedanPredmet extends Component {
   constructor(props){
     super(props);
     this.state = {
-      idKorisnika: 239,
+      idKorisnika: 1,
       link: "",
       privilegija: 0
     };
@@ -42,7 +42,6 @@ class JedanPredmet extends Component {
         <div id="predmet_kartica" class="card border-info mb-3" >
         <div class="card-header">
         <Link to={this.state.link}>{this.props.predmet.naziv}</Link>
-        {/*<a href='/Golf/mojiPredmeti'>{this.props.predmet.naziv}</a>*/}
         </div>
         <div class="card-body">
         <p class="card-text">{this.props.predmet.opis}</p>

@@ -6,21 +6,35 @@ class ZadaceTabela extends React.Component {
         return (
             <table class="table table-hover">
                 <tbody>
-                    <tr class="table-primary">
+                    <tr class="table-success">
                         <th scope="row">Akademska godina {this.props.akGod}</th>
-                        <td colSpan="2">Zadaca 1</td>
+                        {this.props.zadace.map(x =>
+                            <td colSpan="2">{x.naziv}</td>
+                        )}
                     </tr>
-                    <tr class="table-primary">
+                    <tr class="table-success">
                         <th scope="row" >Predmet</th>
-                        <td>Rok</td>
-                        <td>Ostvareni bodovi</td>
+                        {this.props.zadace.map(x =>
+                            <>
+                                <td>Rok</td>
+                                <td>Ostvareni bodovi</td>
+                            </>
+                        )}
+                    </tr>
+                    <tr class="table-light">
+                        <td>pred</td>
+                        {this.props.zadace.map(x =>
+                            <>
+                                <td>{x.rok}</td>
+                                <td>{x.ostvBodovi}</td>
+                            </>
+                        )}
                     </tr>
                 </tbody>
-
             </table>
         );
     }
 }
 export default ZadaceTabela;
 
-//prihvata props: akGodina, brojZadaca
+//prihvata props: akGodina, brojZadaca, zadace[]

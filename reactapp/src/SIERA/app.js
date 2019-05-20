@@ -8,7 +8,7 @@ import axios from "axios";
 import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
-import ZadaceTabela from "./ZadaceTable";
+import ZadaceSiera from "./Zadace";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
@@ -122,7 +122,7 @@ class App extends Component {
           } />
           <Route exact path="/Siera/zadace" render={()=>
             <div class="container-fluid">
-              <ZadaceTabela/>
+              <ZadaceSiera/>
             </div>
 
           }/>

@@ -115,11 +115,7 @@ class App extends Component {
             </div>
 
           } />
-          <Route exact path="/Siera/profil" render={()=>
-          <div class="containter-fluid">
-            <Profil />
-          </div>
-          } />
+          <Route exact path="/Siera/profil/:idStudenta" component={Profil} />
         </BrowserRouter>
 
       </div>

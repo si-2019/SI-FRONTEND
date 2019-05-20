@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { tsThisType } from '@babel/types';
 class stranicaPredmetaStudent extends Component {
 
     state = {
@@ -12,7 +13,6 @@ class stranicaPredmetaStudent extends Component {
   
     componentDidMount(){
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.match.params.idPredmeta}`).then(res =>{
-            console.log(res)
             const naziv = res.data.naziv;
             axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
                 const odg = res2.data;
@@ -32,46 +32,31 @@ class stranicaPredmetaStudent extends Component {
                 })
             })
         })
-
-        /*axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnik}/${this.props.match.params.id}`).then(res =>{
-            const odgovor = res.data;
-
-            if(odgovor.veza == 1){
-                var pom1 = "Ukloni iz mojih predmeta";
-                this.setState({
-                  text: pom1
-                })
-              }
-              else if(odgovor.veza == 0) {
-                var pom2 = "Dodaj u moje predmete";
-                this.setState({
-                  text: pom2
-                })
-              }
-           
-          })
-
-          this.setState({
-            idKorisnik: idKorisnika,
-            idPredmet: idPredmeta
-          })*/
     }
 
-    klikNaDugme() {
-        if (this.state.text.includes("Dodaj u moje predmete")) {
-            //poziva se funkcija dodaj
+    klikNaDugme = () => {
+        if(this.state.dodano==0){
+          axios.post(`http://localhost:31907/r1/dodajMojPredmet/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res => {
+            if(res.data.message=='OK'){
+              let tekst = 'Ukloni iz mojih predmeta'
+              let dodano = 1
+              this.setState({
+                text:tekst,
+                dodano:dodano
+              })
+            }
+          })
         }
-        else if (this.state.text.includes("Ukloni iz mojih predmeta")) {
-            axios.get(`http://localhost:31907/r6/obrisi/${this.state.idKorisnika}/${this.state.idPredmeta}`).then(res =>{
-            const odgovor = res.data;
-
-            console.log(odgovor);
-             if(odgovor.obrisano == 1){
-               var pom1 = "Dodaj u moje predmete";
-               this.setState({
-                 text: pom1
-               })
-             }
+        else{
+          axios.get(`http://localhost:31907/r6/obrisi/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res => {
+            if(res.data.obrisano==1){
+              let tekst = 'Dodaj u moje predmete'
+              let dodano = 0
+              this.setState({
+                text:tekst,
+                dodano:dodano
+              })
+            }
           })
         }
     }
@@ -87,7 +72,7 @@ class stranicaPredmetaStudent extends Component {
                   <h1>  {this.state.naziv}</h1>
                 </div>
                 <div class='col-3'>
-                  <button id='dd'type="button" class="btn btn-success">{this.state.text}</button>
+                  <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
             </div>

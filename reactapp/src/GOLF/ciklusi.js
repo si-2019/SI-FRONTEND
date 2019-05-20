@@ -32,7 +32,7 @@ class Ciklusi extends Component {
   
     render() {
         return(
-            <div id="navv" >
+            <div id="navv" class='side'>
                 <ul class="list-group">
                     <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(1)}>
                         <a href='#'>Prvi ciklus</a>

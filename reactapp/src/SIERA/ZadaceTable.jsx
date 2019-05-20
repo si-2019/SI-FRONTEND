@@ -37,4 +37,4 @@ class ZadaceTabela extends React.Component {
 }
 export default ZadaceTabela;
 
-//prihvata props: akGodina, brojZadaca, zadace[]
+//prihvata props: akGodina,  zadace[]

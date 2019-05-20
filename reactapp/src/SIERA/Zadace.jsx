@@ -6,7 +6,7 @@ class Zadace extends React.Component{
         super();
         this.state={
             studentId : 1,
-            akGodine: ["2017"],
+            akGodine: ["2017", "2018", "2019"],
             predmeti:["lala", "maca"],
             zadace:[{
                 naziv: "Zadaca 1",
@@ -16,20 +16,23 @@ class Zadace extends React.Component{
                 naziv:"Zadaca 2",
                 rok:"DD/MM/YYYY hehehehe",
                 ostvBodovi: "434"
+            },{
+                naziv:"Zadaca 3",
+                rok:"do besvijesti",
+                ostvBodovi: "lmao jos bi bodove"
             }]
         }
     }
-
     componentDidMount(){
-        //api koji ce vratit zadace za studenta + akademske godine i predmete
-        //trebace mi zadace za 1 predmet
     }
     render(){
         return(
+            <>
             <ZadaceTabela 
-                akGod={this.state.akGodine[0]}
+                akGodina={this.state.akGodine[0]}
                 zadace={this.state.zadace}
-                />
+            />
+            </>
         );
     }
 }

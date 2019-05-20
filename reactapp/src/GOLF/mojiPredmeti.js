@@ -22,10 +22,8 @@ class mojiPredmeti extends Component {
   }
 
   render() {
-    console.log(this.state.predmeti)
-
      return (      
-        <div>
+        <div id='mojiPredmeti'>
             <h1>Moji predmeti</h1>
             <SviPredmeti predmeti={this.state.predmeti} />
         </div>

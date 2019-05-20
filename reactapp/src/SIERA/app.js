@@ -4,6 +4,7 @@ import KontaktPod from "./kontaktPod";
 import Stranice from "./stranice";
 import Fotografija from "./fotografija";
 import LicniPod from "./licniPod.jsx";
+import Profil from "./ProfilStudenta";
 import axios from "axios";
 import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
@@ -58,6 +59,7 @@ class App extends Component {
                   Završni rad
                 </a>
               </li>
+              
             </ul>
           </div>
         </nav>
@@ -113,7 +115,13 @@ class App extends Component {
             </div>
 
           } />
+          <Route exact path="/Siera/profil" render={()=>
+          <div class="containter-fluid">
+            <Profil />
+          </div>
+          } />
         </BrowserRouter>
+
       </div>
     );
   }

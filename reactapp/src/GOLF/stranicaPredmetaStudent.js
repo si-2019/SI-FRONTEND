@@ -12,6 +12,7 @@ class stranicaPredmetaStudent extends Component {
     }
   
     componentDidMount(){
+      console.log(this.props)
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.match.params.idPredmeta}`).then(res =>{
             const naziv = res.data.naziv;
             axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{

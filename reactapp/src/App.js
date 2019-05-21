@@ -13,7 +13,7 @@ import UnosOcjene from './FOX/components/UnosOcjene/UnosOcjene'
 import UnosBodova from './FOX/components/UnosBodova/UnosBodova'
 import TemeZavrsnih from './FOX/components/UnosTeme/TemeZavrsnih'
 import Golf from './GOLF/app.js'
-import Hotel from './HOTEL/app.js'
+//import Hotel from './HOTEL/app.js'
 import India from './INDIA/app.js'
 import Juliet from './JULIET/app.js'
 import Kilo from './KILO/app.js'
@@ -51,7 +51,7 @@ class App extends Component {
                 <Route path="/fox/UnosBodova" component={UnosBodova} /> 
                 <Route path="/fox/TemeZavrsnih" component={TemeZavrsnih} />   
                 <Route path="/golf" component={Golf} />
-                <Route path="/hotel" component={Hotel} />
+               {/* <Route path="/hotel" component={Hotel} />*/ }
                 <Route path="/india" component={India} />
                 <Route path="/juliet" component={Juliet} />
                 <Route path="/kilo" component={Kilo} />

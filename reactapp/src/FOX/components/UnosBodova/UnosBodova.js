@@ -21,7 +21,7 @@ render() {
                </Form.Row>
                <Form.Row>
                     <Col md={{ span: 8, offset: 6}}>
-                    <Nav.Link> Nazad na listu ispita </Nav.Link>
+                    <Nav.Link href= "/fox/Ispiti"> Nazad na listu ispita </Nav.Link>
                     </Col>
                 </Form.Row>
 

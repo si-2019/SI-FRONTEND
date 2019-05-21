@@ -1,12 +1,11 @@
 import React, { Component} from 'react';
-import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Button';
 import TabelaUnosa from '../TabelaUnosa/TabelaUnosa';
 import Form from 'react-bootstrap/Form';
 import ReturnButton from '../ReturnButton/ReturnButton';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Button from 'react-bootstrap/Button';
+
 class UnosBodova extends  Component {
 render() {
 
@@ -23,8 +22,12 @@ render() {
                </Form.Row>
                <Form.Row>
                    <Col md= {{span: 8, offset: 6}}>
-                        <ReturnButton/>
+                        <ReturnButton style= {{color: "#2C3E50" }} />
                    </Col>
+                </Form.Row>
+                <Form.Row>
+                    <Button href=" /fox/Ispiti"> Nazad na listu ispita </Button>
+
                 </Form.Row>
                 
           </Form>

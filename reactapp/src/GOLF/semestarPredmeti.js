@@ -22,7 +22,7 @@ class semestarPredmeti extends Component {
 
     return(
       <div>
-        <SviPredmeti predmeti={this.state.predmeti} />
+        <SviPredmeti predmeti={this.state.predmeti} semestar={this.props.match.params.semestar}/>
       </div>  
     )
   }

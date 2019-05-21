@@ -30,8 +30,8 @@ class App extends Component {
                         <Route exact path="/Golf" component={proba} />
                         <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
                         <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>  
-                        <Route path="/Golf/stranicaPredmetaStudent/:idPredmeta/:idKorisnika" component={StranicaPredmetaStudent}/>
-                        <Route path="/Golf/stranicaPredmetaProfesor/:idPredmeta/:idKorisnika" component={StranicaPredmetaProfesor}/>
+                        <Route path="/Golf/stranicaPredmetaStudent/:idPredmeta/:idKorisnika/:idSemestra" component={StranicaPredmetaStudent}/>
+                        <Route path="/Golf/stranicaPredmetaProfesor/:idPredmeta/:idKorisnika/:idSemestra" component={StranicaPredmetaProfesor}/>
                  
 				              </div>
                 </div>

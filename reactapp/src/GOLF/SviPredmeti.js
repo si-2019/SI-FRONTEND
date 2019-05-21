@@ -3,7 +3,7 @@ import JedanPredmet from './JedanPredmet'
 class SviPredmeti extends Component {
   render() {
     return this.props.predmeti.map((x)=>(
-        <JedanPredmet key={x.id} predmet={x}/>
+        <JedanPredmet key={x.id} predmet={x} semestar={this.props.semestar}/>
     ));
   }
 }

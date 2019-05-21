@@ -12,14 +12,16 @@ class stranicaPredmetaStudent extends Component {
       idKorisnika: 0,
       dodano: 0,
       text: "",
-      naziv: ""
+      naziv: "",
+      sedmice: ['d','fds']
     }
   
     componentDidMount(){
-      console.log(this.props)
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.match.params.idPredmeta}`).then(res =>{
             const naziv = res.data.naziv;
-            axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
+            axios.get(`http://localhost:31907/r1/sedmice/${this.props.match.params.idSemestra}`).then(res3 => {
+              const sedmicee = res3.data.sedmice
+              axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
                 const odg = res2.data;
                 let tekst = "";
                 if(res2.data.veza == '1'){
@@ -33,9 +35,13 @@ class stranicaPredmetaStudent extends Component {
                   idPredmeta: this.props.match.params.idPredmeta,
                   idKorisnika:this.props.match.params.idKorisnika,
                   dodano: res2.data.veza,
-                  text: tekst
+                  text: tekst,
+                  sedmice: sedmicee
                 })
+                
+              })
             })
+            
         })
     }
 
@@ -82,7 +88,8 @@ class stranicaPredmetaStudent extends Component {
               </div>
               <OPredmetuStudent opis='sdsf' fileovi={['prvi.pdf','drugi.pdf','treci.pdf']}></OPredmetuStudent>
               <LiteraturaStudent/>
-              
+              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+'-'+sedmica.krajSedmice}></Sedmica>)}
+
             </div>
         )
     }

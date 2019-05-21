@@ -20,8 +20,8 @@ render() {
                     </Col>
                </Form.Row>
                <Form.Row>
-                    <Col md={{ span: 5, offset: 6}}>
-                    <Nav.Link > Nazad na listu ispita </Nav.Link>
+                    <Col md={{ span: 8, offset: 6}}>
+                    <Nav.Link> Nazad na listu ispita </Nav.Link>
                     </Col>
                 </Form.Row>
 

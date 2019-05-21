@@ -18,10 +18,16 @@ render() {
                     <TabelaUnosa/>
                     </Col>
                </Form.Row>
+               <Form.Row>
+                    <Col md={{ span: 5, offset: 4}}>
+                        
+                    </Col>
+                </Form.Row>
+
           </Form>
           </div>
-     );
- }
+        );
+    }
 }
 
 export default UnosBodova;

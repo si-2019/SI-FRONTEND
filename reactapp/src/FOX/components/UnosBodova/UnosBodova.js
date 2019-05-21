@@ -11,6 +11,7 @@ render() {
 
     return(
         <div>
+            <Header isPocetna={false}/>
           <Form>
               <Form.Row>
                </Form.Row>
@@ -20,7 +21,9 @@ render() {
                     </Col>
                </Form.Row>
                <Form.Row>
-                   <ReturnButton/>
+                   <Col md= {{span: 5, offset: 4}}>
+                        <ReturnButton/>
+                   </Col>
                 </Form.Row>
           </Form>
           </div>

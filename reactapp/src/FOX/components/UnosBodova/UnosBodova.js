@@ -22,10 +22,11 @@ render() {
                     </Col>
                </Form.Row>
                <Form.Row>
-                   <Col md= {{span: 8, offset: 5}}>
+                   <Col md= {{span: 8, offset: 6}}>
                         <ReturnButton/>
                    </Col>
                 </Form.Row>
+                
           </Form>
           </div>
      );

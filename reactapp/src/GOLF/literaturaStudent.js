@@ -10,11 +10,10 @@ class LiteraturaStudent extends Component {
 
     return (
         <div class="divsaokvirom">
-        	<div class="tip-literatura">Literatura</div>
-        		<div class="objava-literatura">
-        		<h4 class="naslov-literature">{this.props.naslov}</h4>    
+        	<h4 class='naslov'>Literatura</h4>
+        	 
         	</div>
-        </div>
+        
     );
   }
 }

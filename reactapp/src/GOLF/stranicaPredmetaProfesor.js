@@ -16,8 +16,8 @@ class stranicaPredmetaProfesor extends Component {
     }
     render(){
         return(
-            <div className="card border-info mb-3">
-                <h1 className="card-header">  {this.state.naziv}</h1>
+            <div>
+                <h1>{this.state.naziv}</h1>
             </div>
         )
     }

@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 class DodavanjeObjave extends Component{
     render(){
         return(
-            <div className="card border-info mb-3">
+            <div className="card border-success mb-3">
                 <div className="card-header">
-                    <a href="#"><h3>Dodavanje objave</h3></a>
+                    <a href="#"><h4>Dodavanje objave</h4></a>
                 </div>
                 <div className="card-body">
                     <form>

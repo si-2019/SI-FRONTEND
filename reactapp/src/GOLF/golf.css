@@ -15,20 +15,28 @@
 }
 .divsaokvirom{
     margin-bottom:1%;
-    height:150px;
-    width:950px;
-    border: 1px solid black;
+    width:85%;
+    border: 1px solid #18BC9C;
 }
 
 .card{
     width: 85%;
     margin-top: 10pt;
 }
+
+.opis{
+    margin-left: 10pt;
+    margin-top: 15pt;
+}
 .dugmic{
     background: 'blue';
     height:30px;
     width:50%;
     margin-left:2%;
+}
+
+.linkovi{
+    margin-left: 10pt;
 }
 
 #dd{
@@ -46,5 +54,10 @@
 .list-group{
     width:100%;
     margin-right: 0pt;
+}
+
+.naslov{
+    margin-left: 10pt;
+    margin-top: 5pt;
 }
 

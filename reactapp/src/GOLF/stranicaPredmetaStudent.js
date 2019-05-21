@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { tsThisType } from '@babel/types';
+import OPredmetuStudent from './oPredmetuStudent'
+import LiteraturaStudent from './literaturaStudent'
+import ObjavaSrudent from './objavaStudent'
+
 class stranicaPredmetaStudent extends Component {
 
     state = {
@@ -76,6 +79,7 @@ class stranicaPredmetaStudent extends Component {
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
+              
             </div>
         )
     }

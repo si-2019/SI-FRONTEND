@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Button';
 import TabelaUnosa from '../TabelaUnosa/TabelaUnosa';
 import Form from 'react-bootstrap/Form';
+import ReturnButton from '../ReturnButton/ReturnButton';
 
 class UnosBodova extends  Component {
 render() {
@@ -18,6 +19,9 @@ render() {
                     <TabelaUnosa/>
                     </Col>
                </Form.Row>
+               <Form.Row>
+                   <ReturnButton/>
+                </Form.Row>
           </Form>
           </div>
      );

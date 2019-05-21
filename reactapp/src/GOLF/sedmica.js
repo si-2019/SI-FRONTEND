@@ -5,6 +5,7 @@ class sedmica extends Component {
 
     return (
         <div class='divsaokvirom'>
+            <h4 class='naslov'>{this.props.naslov}</h4>
 
         </div>
     );

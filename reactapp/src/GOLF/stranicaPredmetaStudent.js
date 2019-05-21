@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import OPredmetuStudent from './oPredmetuStudent'
 import LiteraturaStudent from './literaturaStudent'
-import ObjavaSrudent from './objavaStudent'
+import ObjavaStudent from './objavaStudent'
+import Sedmica from './sedmica'
 
 class stranicaPredmetaStudent extends Component {
 
@@ -79,6 +80,8 @@ class stranicaPredmetaStudent extends Component {
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
+              <OPredmetuStudent opis='sdsf' fileovi={['prvi.pdf','drugi.pdf','treci.pdf']}></OPredmetuStudent>
+              <LiteraturaStudent/>
               
             </div>
         )

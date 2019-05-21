@@ -12,6 +12,7 @@ import UnosPrisustva from './FOX/components/UnosPrisustva/UnosPrisustva'
 import UnosOcjene from './FOX/components/UnosOcjene/UnosOcjene'
 import UnosBodova from './FOX/components/UnosBodova/UnosBodova'
 import TemeZavrsnih from './FOX/components/UnosTeme/TemeZavrsnih'
+import NovaTema from './FOX/components/UnosTeme/NovaTema'
 import Golf from './GOLF/app.js'
 //import Hotel from './HOTEL/app.js'
 import India from './INDIA/app.js'
@@ -50,6 +51,7 @@ class App extends Component {
                 <Route path="/fox/UnosOcjene" component={ UnosOcjene} />        
                 <Route path="/fox/UnosBodova" component={UnosBodova} /> 
                 <Route path="/fox/TemeZavrsnih" component={TemeZavrsnih} />   
+                <Route path="/fox/NovaTema" component={NovaTema} />   
                 <Route path="/golf" component={Golf} />
                {/* <Route path="/hotel" component={Hotel} />*/ }
                 <Route path="/india" component={India} />

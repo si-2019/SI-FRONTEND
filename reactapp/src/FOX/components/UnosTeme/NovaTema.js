@@ -5,9 +5,9 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import TabelaTeme from './TabelaTeme.js';
 
-class StranicaPredmeta extends Component {
+
+class NovaTema extends Component {
   render() {
     return (
       <div className="TemeZavrsnih">
@@ -20,20 +20,14 @@ class StranicaPredmeta extends Component {
           <Row>
             <Col>
             <br></br>
-            <h4>Pregled tema za završne radove na predmetu Predmet</h4>
+            <h4 className="justify-content-center">Dodavanje nove teme</h4>
             <br></br>
             </Col> 
           </Row>
-          <Row>
-            <Col></Col>
-            <Col>
-              <TabelaTeme />
-            </Col>
-            <Col></Col>
-          </Row>
           <Row className="justify-content-center">
-            <Button href="/fox/NovaTema" variant="primary" >Kreiraj novu temu</Button> 
+          {/*Dodaj formu*/}
           </Row>
+          
           
           <Row>
             <Footer/>
@@ -48,4 +42,4 @@ class StranicaPredmeta extends Component {
 }
 
 
-export default StranicaPredmeta;
+export default NovaTema;

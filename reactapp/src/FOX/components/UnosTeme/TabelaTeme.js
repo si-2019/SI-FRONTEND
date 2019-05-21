@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 
-class TabelaStudenti extends Component {
+class TabelaTeme extends Component {
     state = {
         teme: [
            /* {
@@ -75,4 +75,4 @@ class TabelaStudenti extends Component {
     }
   }
   
-  export default TabelaStudenti;
+  export default TabelaTeme;

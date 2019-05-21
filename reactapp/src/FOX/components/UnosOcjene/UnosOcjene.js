@@ -16,7 +16,12 @@ class UnosOcjene extends Component {
                     </Col>
                 </Form.Row>
                 <Form.Row>
+                    <Col md= {{span: 8, offset: 4}}>
+                        
                 </Form.Row>
+                <Form.Row>
+                </Form.Row>
+
             </Form>
             </div>
 

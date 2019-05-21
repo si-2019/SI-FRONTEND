@@ -27,7 +27,7 @@ class Navbar001 extends Component {
                 <NavDropdown.Item href="UnosPrisustva">Prisustvo</NavDropdown.Item>
                 <NavDropdown.Item href="UnosBodova">Ispiti</NavDropdown.Item>
                 <NavDropdown.Item href="UnosOcjene">Ocjene</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Teme</NavDropdown.Item>
+                <NavDropdown.Item href="TemeZavrsnih">Teme</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="ispiti">Ispiti</Nav.Link>
               <Nav.Link href="obavijesti">Obavijesti</Nav.Link>

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import './komponenta.css';
 
 class PregledZadatakaProjekta extends Component { 
   constructor(props) {
@@ -14,7 +15,8 @@ class PregledZadatakaProjekta extends Component {
       projekti: this.props.projekti, 
       selektani_projekat: selektani_projekat,
       selektovanElement : {},
-      selektovanRed : false
+      selektovanRed : false,
+      renderovanaTabela : false
     };
     
     this.renderTabela = this.renderTabela.bind(this);
@@ -27,7 +29,8 @@ class PregledZadatakaProjekta extends Component {
       projekti : this.state.projekti,
       selektani_projekat : this.state.selektani_projekat,
       selektovanElement: this.state.selektani_projekat.zadaci[idReda],
-      selektovanRed: true
+      selektovanRed: true,
+      renderovanaTabela : true
     });
   }
 
@@ -72,7 +75,7 @@ class PregledZadatakaProjekta extends Component {
     {
       if(this.state.projekti[i].id === val)
       {
-        this.setState({selektani_projekat: this.state.projekti[i]});
+        this.setState({selektani_projekat: this.state.projekti[i], renderovanaTabela : true, selektovanRed : false});
         return;
       }
     }    
@@ -80,10 +83,10 @@ class PregledZadatakaProjekta extends Component {
 
   render() {
     let detalji = <div id="detalji"></div>
-    if(this.state.selektovanRed && this.state.selektovanElement){
-      detalji = (<div id="detalji">
-        <h1>Prikaz detalja projektnog zadatka:</h1>
-          <Label> {this.state.selektovanElement.opis} </Label><br></br>
+    if(this.state.selektovanRed && this.state.selektovanElement && this.state.renderovanaTabela){
+      detalji = (<div className="mini-card" id="detalji">
+        <h1>#Detalji:</h1>
+          <Label className="white"> {this.state.selektovanElement.opis} </Label><br></br>
           <Label>Prioritet: {this.state.selektovanElement.prioritet}</Label><br></br>
           <Label>Trajanje projekta: {this.state.selektovanElement.od_kad} - {this.state.selektovanElement.do_kad}</Label><br></br>
           <Label>Završen projekat: {this.state.selektovanElement.zavrsen}</Label><br></br>

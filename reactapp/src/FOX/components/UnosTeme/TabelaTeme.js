@@ -6,7 +6,7 @@ import axios from 'axios';
 class TabelaStudenti extends Component {
     state = {
         teme: [
-            {
+           /* {
                 id: 1,
                 naziv: "Tema1",
                 opis: "Opis teme",
@@ -17,7 +17,7 @@ class TabelaStudenti extends Component {
                 id: 2,
                 naziv: "Tema2",
                 opis: "Opis teme",
-                odabrana: 1,
+                odabrana: 0,
                 student: "Neko Nekić"
             },
             {
@@ -26,7 +26,7 @@ class TabelaStudenti extends Component {
                 opis: "Opis teme",
                 odabrana: 1,
                 student: "Neko Nekić"
-            }
+            }*/
         ]
     }
 
@@ -36,10 +36,10 @@ class TabelaStudenti extends Component {
 
     componentDidMount() {
         //Promise
-       /* axios.get('http://localhost:31906/api/fox/')
+        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/1') //idPredmeta kao parametar
             .then(
-                res => this.setState({studenti: res.data})
-            );*/
+                res => this.setState({teme: res.data})
+            );
     }
     
     render() {

@@ -9,10 +9,7 @@ class semestarPredmeti extends Component {
     predmeti: []
   }
 
-  componentDidMount(){
-  }
-
-  componentWillReceiveProps(props){
+  ucitaj(props){
     let { ciklus, odsjek, semestar } = props.match.params;
     axios.get(`http://localhost:31907/r1/predmeti/${ciklus}/${odsjek}/${semestar}`).then(res => {
       const predmeti = res.data;
@@ -20,6 +17,14 @@ class semestarPredmeti extends Component {
         predmeti:predmeti.predmeti
       });
     })
+  }
+
+  componentDidMount(){
+    this.ucitaj(this.props)
+  }
+
+  componentWillReceiveProps(props){
+    this.ucitaj(props)
   }
 	 
   render() {

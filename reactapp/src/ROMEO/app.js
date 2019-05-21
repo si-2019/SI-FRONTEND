@@ -16,7 +16,7 @@ class App extends Component {
             component={Login}
           />
           <Route
-            path="/home"
+            path="/romeo/home"
             exact
             component={HomePage}
           />

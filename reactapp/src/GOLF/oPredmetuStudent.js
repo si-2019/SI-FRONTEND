@@ -6,7 +6,7 @@ class oPredmetuStudent extends Component {
   	
     return (
         
-        <div> ASDADASD
+        <div>
             <h3> O predmetu </h3>
             <h4> {this.props.opis} </h4>
         </div>

@@ -41,7 +41,7 @@ class Odsjeci extends Component {
 
     render(){
         return(
-            <div id="drugi">
+            <div id="drugi" class='side'>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(1)}>
                     <a href='#'>   Računarstvo i informatika</a>

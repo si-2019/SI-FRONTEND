@@ -22,7 +22,7 @@ class Navbar001 extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="student">Student</Nav.Link>
+              <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
                 <NavDropdown.Item href="UnosPrisustva">Prisustvo</NavDropdown.Item>
                 <NavDropdown.Item href="UnosBodova">Ispiti</NavDropdown.Item>

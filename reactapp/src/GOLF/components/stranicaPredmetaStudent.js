@@ -88,7 +88,7 @@ class stranicaPredmetaStudent extends Component {
               </div>
               <OPredmetuStudent opis='sdsf' fileovi={['prvi.pdf','drugi.pdf','treci.pdf']}></OPredmetuStudent>
               <LiteraturaStudent/>
-              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+'-'+sedmica.krajSedmice}></Sedmica>)}
+              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}></Sedmica>)}
 
             </div>
         )

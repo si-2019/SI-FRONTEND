@@ -20,13 +20,13 @@ class JedanPredmet extends Component {
      const nesto = res.data;
      console.log(nesto);
       if(nesto.privilegija == 1){
-        var varijabla = "/Golf/stranicaPredmetaProfesor/" + this.props.predmet.id + "/" + this.state.idKorisnika+"/"+this.props.semestar
+        var varijabla = "/Golf/stranicaPredmetaProfesor/" + this.props.predmet.id + "/" + this.state.idKorisnika
         this.setState({
           link: varijabla
         })
       }
       else {
-        var varijabla = "/Golf/stranicaPredmetaStudent/" + this.props.predmet.id + "/" + this.state.idKorisnika+"/"+this.props.semestar
+        var varijabla = "/Golf/stranicaPredmetaStudent/" + this.props.predmet.id + "/" + this.state.idKorisnika
         this.setState({
           link: varijabla
         })

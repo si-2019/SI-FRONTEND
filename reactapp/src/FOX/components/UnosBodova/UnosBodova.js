@@ -21,9 +21,7 @@ render() {
                </Form.Row>
                <Form.Row>
                    <Col md= {{span: 8, offset: 6}}>
-                        <ReturnButton style= {{color: "#2C3E50" }} />
-                        <Nav.Link href="/fox/Ispiti">Nazad na listu ispita</Nav.Link>
-                     
+                        <Nav.Link href="/fox">Nazad na pocetnu </Nav.Link>
                    </Col>
                 </Form.Row>
           </Form>

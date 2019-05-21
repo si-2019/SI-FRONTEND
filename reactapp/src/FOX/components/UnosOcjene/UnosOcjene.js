@@ -22,7 +22,7 @@ class UnosOcjene extends Component {
                         <Nav.Link href="/fox/StranicaPredmeta" > Nazad na stranicu predmeta </Nav.Link>
                    </Col>     
                      <Col md={{span: 8, offset: 5}}>
-                         <Nav.Link href=" "> Nazad na pocetnu </Nav.Link>
+                         <Nav.Link href=" /fox/StranicaPredmeta"> Nazad na pocetnu </Nav.Link>
                      </Col>
                 </Form.Row>
                 <Form.Row>

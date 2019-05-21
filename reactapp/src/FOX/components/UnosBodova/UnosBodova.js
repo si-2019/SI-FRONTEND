@@ -4,11 +4,10 @@ import TabelaUnosa from '../TabelaUnosa/TabelaUnosa';
 import Form from 'react-bootstrap/Form';
 import ReturnButton from '../ReturnButton/ReturnButton';
 import Header from '../Header/Header';
-import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
 
 class UnosBodova extends  Component {
 render() {
-
     return(
         <div>
             <Header isPocetna={false}/>
@@ -23,15 +22,10 @@ render() {
                <Form.Row>
                    <Col md= {{span: 8, offset: 6}}>
                         <ReturnButton style= {{color: "#2C3E50" }} />
+                        <Nav.Link href="/fox/Ispiti">Nazad na listu ispita</Nav.Link>
+                     
                    </Col>
                 </Form.Row>
-                <Form.Row>
-                    <Col md={{ span: 8, offset: 6}}>
-                        <Button href=" /fox/Ispiti"> Nazad na listu ispita </Button>
-                    </Col>
-
-                </Form.Row>
-                
           </Form>
           </div>
      );

@@ -25,14 +25,13 @@ class Ocjene extends React.Component{
     }
     render(){
         return(
-            <>
-
+            <div class="row" style={{padding:"20px"}}>
                  {this.state.akGodine.map(god=>
                     <TabelaOcjene 
                     predmeti = {god.predmeti} 
                     akGod = {god.naziv}
                     />)}
-               </>
+               </div>
             
         );
     }

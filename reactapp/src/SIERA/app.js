@@ -113,7 +113,7 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-          )} />
+            )} />
           <Route exact path="/Siera/zavrsni-rad" render={() =>
             <div class="container-fluid">
               <DropDownZavrsni />
@@ -122,8 +122,8 @@ class App extends Component {
 
           } />
           <Route exact path="/Siera/ocjene" render={() =>
-            <div class="container-fluid">
-            <Ocjene/>
+            <div class="container-fluid" >
+              <Ocjene />
             </div>
 
           } />

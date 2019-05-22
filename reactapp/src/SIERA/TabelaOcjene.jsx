@@ -4,8 +4,7 @@ class TabelaOcjene extends React.Component {
 
     render() {
         return (
-            <div>
-                <table class="table table-hover" style={{ maxWidth: "400px" }}>
+                <table class="table table-hover" style={{ maxWidth: "400px", float:"left", marginLeft:"20px" }}>
                     <tbody>
                         <tr class="table-success">
                             <th scope="row" colSpan="2">Akademska godina {this.props.akGod}</th>
@@ -23,7 +22,6 @@ class TabelaOcjene extends React.Component {
 
                     </tbody>
                 </table>
-            </div>
         );
     }
 }

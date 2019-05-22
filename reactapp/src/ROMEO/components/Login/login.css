@@ -1,8 +1,6 @@
 
-.card text-white bg-primary mb-3{
-    
-    padding-left: 20%;
-    padding-right: 20%;
+.card{
+    width: 100%;
 }
 
 .greska {

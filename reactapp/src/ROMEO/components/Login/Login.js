@@ -71,7 +71,7 @@ class Login extends Component {
 
     return (
       <div className="body">
-        <div className="card text-white bg-primary mb-3">
+        <div className="card text-white bg-primary " >
           <form onSubmit = {this.Submitaj} className="loginForma">
           <label for="exampleInputEmail1">Korisnicko ime:</label>
           <input type="email" className="korisnickoIme" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={this.pratiPromjenuKorisnickogImena} required></input>
@@ -85,7 +85,7 @@ class Login extends Component {
           </form>
           
         </div>
-        <div className="alert alert-dismissible alert-danger">
+        <div className="alert alert-dismissible alert-danger mb-0">
   <button type="button" className="close" data-dismiss="alert">&times;</button>
   <strong>Greška!</strong>
 </div>

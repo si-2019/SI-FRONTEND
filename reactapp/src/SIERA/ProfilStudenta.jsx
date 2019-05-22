@@ -9,8 +9,8 @@ class Profil extends React.Component {
         this.state = {
             studentId: 1,
             fotka: null,
-            ime: "bacam hejt",
-            prezime: "ovom predmetu",
+            ime: "Neko",
+            prezime: "Nekic",
             mail: "lol",
             website: "lala",
             linkedIn: "isnjksd",
@@ -23,7 +23,7 @@ class Profil extends React.Component {
         axios
             .get("http://localhost:31918/studenti/" + noviId)
             .then(res => {
-                console.log(res.data.error);
+                console.log(res.data[0]);
                 this.setState({
                     ime: res.data[0].ime,
                     prezime: res.data[0].prezime,

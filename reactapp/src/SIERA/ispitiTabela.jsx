@@ -62,7 +62,7 @@ class IspitiTabela extends Component {
       )
       .then(res => {
         const lista = res.data.akademskeGodine;
-        console.log(lista);
+        console.log(lista[0][0].predmeti);
         this.setState({ listaIspita: lista });
       });
   }
@@ -74,28 +74,39 @@ class IspitiTabela extends Component {
           <table class="table table-hover" key={i}>
             <tbody>
               <tr class="table-success" key={item[0].idGodine}>
-                <th scope="row">{item[0].nazivGodine} </th>
-                <td colSpan="2">I parcijalni</td>
-                <td colSpan="2">II parcijalni</td>
-                <td colSpan="2">Usmeni</td>
+                <th scope="row" colSpan="7" style={{ textAlign: "center" }}>
+                  Akademska godina: {item[0].nazivGodine}
+                </th>
               </tr>
-              <tr class="table-success" key={item.nazivGodine + i}>
-                <th scope="row">Predmet</th>
-                <td>Datum</td>
-                <td>Ostvareni bodovi</td>
-                <td>Datum</td>
-                <td>Ostvareni bodovi</td>
-                <td>Datum</td>
-                <td>Ostvareni bodovi</td>
-              </tr>
-              {item[0].predmeti.map(itemPredmet => (
-                <tr class="table-light" key={itemPredmet.nazivPredmeta}>
-                  <td scope="row">{itemPredmet.nazivPredmeta}</td>
+              {item[0].predmeti.map(itemPredmet => [
+                <tr class="table-success">
+                  {itemPredmet.ispiti.length == 0 ? "" : <td />}
+                  {itemPredmet.ispiti.map((itemIspiti, j) => (
+                    <td colSpan="2">{itemIspiti.nazivIspita}</td>
+                  ))}
+                </tr>,
+
+                <tr class="table-success">
+                  {itemPredmet.ispiti.length == 0 ? (
+                    ""
+                  ) : (
+                    <th scope="row">Predmet</th>
+                  )}
+                  {itemPredmet.ispiti.map(() => [
+                    <td>Datum</td>,
+                    <td>Ostvareni bodovi</td>
+                  ])}
+                </tr>,
+                <tr class="table-light">
+                  {itemPredmet.ispiti.length == 0
+                    ? ""
+                    : itemPredmet.nazivPredmeta}
                   {itemPredmet.ispiti.map(itemIspiti => [
-                    [<td>{itemIspiti.datum}</td>, <td>{itemIspiti.bodovi}</td>]
+                    <td>{itemIspiti.datum}</td>,
+                    <td>{itemIspiti.bodovi}</td>
                   ])}
                 </tr>
-              ))}
+              ])}
             </tbody>
           </table>
         ))}
@@ -115,5 +126,22 @@ class IspitiTabela extends Component {
                   ])}
                 </tr>
               ))}*/
+
+/*
+              <tr class="table-success" key={item[0].idGodine}>
+                <th scope="row">{item[0].nazivGodine} </th>
+                <td colSpan="2">I parcijalni</td>
+                <td colSpan="2">II parcijalni</td>
+                <td colSpan="2">Usmeni</td>
+              </tr>
+              <tr class="table-success" key={item.nazivGodine + i}>
+                <th scope="row">Predmet</th>
+                <td>Datum</td>
+                <td>Ostvareni bodovi</td>
+                <td>Datum</td>
+                <td>Ostvareni bodovi</td>
+                <td>Datum</td>
+                <td>Ostvareni bodovi</td>
+              </tr>*/
 
 export default IspitiTabela;

@@ -26,3 +26,32 @@ it('tabela ima klasu "table table-hover"', () => {
       .hasClass("table table-hover")
   ).toBeTruthy();
 });
+
+it("tabela ima tijelo", () => {
+  const wrapper = shallow(<IspitiTabela />);
+  expect(wrapper.find("tbody").exists()).toBeTruthy();
+});
+
+it("prvi red ima klasu table-success", () => {
+  const wrapper = shallow(<IspitiTabela />);
+  const rows = wrapper.find("tr");
+  const prviRed = rows.first().hasClass("table-success");
+  expect(prviRed).toBeTruthy();
+});
+
+it('prvo zaglavlje tabele ima tekst koji sadrzi rijec "Akademska godina"', () => {
+  const wrapper = shallow(<IspitiTabela />);
+  const rows = wrapper.find("tr");
+  const prvoZaglavlje = rows
+    .first()
+    .find("th")
+    .text()
+    .includes("Akademska godina");
+  expect(prvoZaglavlje).toBe(true);
+});
+
+it("postoji celija", () => {
+  const wrapper = shallow(<IspitiTabela />);
+  const celija = wrapper.find("td");
+  expect(celija.exists()).toBeTruthy();
+});

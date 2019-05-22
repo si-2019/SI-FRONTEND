@@ -46,4 +46,9 @@ describe('PregledZadatakaProjekta', () => {
         expect(wrapper.find("tbody").children().length).toBe(2);
     });
 
+    it("Da li postoji div unutar kojeg se dinamički rendaju podaci", () => {
+        const wrapper = shallow(<PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}/>);
+        expect(wrapper.find("#detalji") ? true : false).toBe(true);
+    });
+
 });

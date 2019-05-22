@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SviPredmeti from './SviPredmeti';
-import PropTypes from 'prop-types';
 
 class mojiPredmeti extends Component {
 
@@ -16,16 +15,15 @@ class mojiPredmeti extends Component {
       axios.get(`http://localhost:31907/r1/mojiPredmeti/${this.state.korisnik}?uloga=${uloga.uloga}`).then(res2 =>{
           const predmeti = res2.data;
           this.setState({
-            predmeti:predmeti
+            predmeti:predmeti.predmeti
           });
       })
     })
   }
 
   render() {
-     return (
-      
-        <div>
+     return (      
+        <div id='mojiPredmeti'>
             <h1>Moji predmeti</h1>
             <SviPredmeti predmeti={this.state.predmeti} />
         </div>

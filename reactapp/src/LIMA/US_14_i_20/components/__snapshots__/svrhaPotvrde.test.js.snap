@@ -1,0 +1,1051 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Komponenta besplatne potvrde se ispravno renda 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SvrhaPotvrde />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="col"
+        >
+          <p>
+             Odaberite svrhu:
+          </p>
+        </div>,
+        <div
+          className="col"
+        >
+          <ForwardRef
+            id="svrha_potvrde"
+            title="Izaberi svrhu"
+          >
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha1"
+              onClick={[Function]}
+            >
+              svrha1
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha2"
+              onClick={[Function]}
+            >
+              svrha2
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha3"
+              onClick={[Function]}
+            >
+              svrha3
+            </ForwardRef>
+          </ForwardRef>
+        </div>,
+      ],
+      "className": "row",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <p>
+             Odaberite svrhu:
+          </p>,
+          "className": "col",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": " Odaberite svrhu:",
+          },
+          "ref": null,
+          "rendered": " Odaberite svrhu:",
+          "type": "p",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <ForwardRef
+            id="svrha_potvrde"
+            title="Izaberi svrhu"
+          >
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha1"
+              onClick={[Function]}
+            >
+              svrha1
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha2"
+              onClick={[Function]}
+            >
+              svrha2
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha3"
+              onClick={[Function]}
+            >
+              svrha3
+            </ForwardRef>
+          </ForwardRef>,
+          "className": "col",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha1"
+                onClick={[Function]}
+              >
+                svrha1
+              </ForwardRef>,
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha2"
+                onClick={[Function]}
+              >
+                svrha2
+              </ForwardRef>,
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha3"
+                onClick={[Function]}
+              >
+                svrha3
+              </ForwardRef>,
+            ],
+            "id": "svrha_potvrde",
+            "title": "Izaberi svrhu",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "as": [Function],
+                "children": "svrha1",
+                "disabled": false,
+                "id": "svrha1",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "svrha1",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "as": [Function],
+                  "disabled": false,
+                },
+                "displayName": "DropdownItem",
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "as": [Function],
+                "children": "svrha2",
+                "disabled": false,
+                "id": "svrha2",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "svrha2",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "as": [Function],
+                  "disabled": false,
+                },
+                "displayName": "DropdownItem",
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": "3",
+              "nodeType": "function",
+              "props": Object {
+                "as": [Function],
+                "children": "svrha3",
+                "disabled": false,
+                "id": "svrha3",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "svrha3",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "as": [Function],
+                  "disabled": false,
+                },
+                "displayName": "DropdownItem",
+                "render": [Function],
+              },
+            },
+          ],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "DropdownButton",
+            "propTypes": Object {
+              "bsPrefix": [Function],
+              "disabled": [Function],
+              "href": [Function],
+              "id": [Function],
+              "menuRole": [Function],
+              "onClick": [Function],
+              "rootCloseEvent": [Function],
+              "size": [Function],
+              "title": [Function],
+              "variant": [Function],
+            },
+            "render": [Function],
+          },
+        },
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="col"
+          >
+            <p>
+               Odaberite svrhu:
+            </p>
+          </div>,
+          <div
+            className="col"
+          >
+            <ForwardRef
+              id="svrha_potvrde"
+              title="Izaberi svrhu"
+            >
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha1"
+                onClick={[Function]}
+              >
+                svrha1
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha2"
+                onClick={[Function]}
+              >
+                svrha2
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha3"
+                onClick={[Function]}
+              >
+                svrha3
+              </ForwardRef>
+            </ForwardRef>
+          </div>,
+        ],
+        "className": "row",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <p>
+               Odaberite svrhu:
+            </p>,
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": " Odaberite svrhu:",
+            },
+            "ref": null,
+            "rendered": " Odaberite svrhu:",
+            "type": "p",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <ForwardRef
+              id="svrha_potvrde"
+              title="Izaberi svrhu"
+            >
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha1"
+                onClick={[Function]}
+              >
+                svrha1
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha2"
+                onClick={[Function]}
+              >
+                svrha2
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha3"
+                onClick={[Function]}
+              >
+                svrha3
+              </ForwardRef>
+            </ForwardRef>,
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <ForwardRef
+                  as={[Function]}
+                  disabled={false}
+                  id="svrha1"
+                  onClick={[Function]}
+                >
+                  svrha1
+                </ForwardRef>,
+                <ForwardRef
+                  as={[Function]}
+                  disabled={false}
+                  id="svrha2"
+                  onClick={[Function]}
+                >
+                  svrha2
+                </ForwardRef>,
+                <ForwardRef
+                  as={[Function]}
+                  disabled={false}
+                  id="svrha3"
+                  onClick={[Function]}
+                >
+                  svrha3
+                </ForwardRef>,
+              ],
+              "id": "svrha_potvrde",
+              "title": "Izaberi svrhu",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "function",
+                "props": Object {
+                  "as": [Function],
+                  "children": "svrha1",
+                  "disabled": false,
+                  "id": "svrha1",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "svrha1",
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "as": [Function],
+                    "disabled": false,
+                  },
+                  "displayName": "DropdownItem",
+                  "render": [Function],
+                },
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "function",
+                "props": Object {
+                  "as": [Function],
+                  "children": "svrha2",
+                  "disabled": false,
+                  "id": "svrha2",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "svrha2",
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "as": [Function],
+                    "disabled": false,
+                  },
+                  "displayName": "DropdownItem",
+                  "render": [Function],
+                },
+              },
+              Object {
+                "instance": null,
+                "key": "3",
+                "nodeType": "function",
+                "props": Object {
+                  "as": [Function],
+                  "children": "svrha3",
+                  "disabled": false,
+                  "id": "svrha3",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "svrha3",
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "as": [Function],
+                    "disabled": false,
+                  },
+                  "displayName": "DropdownItem",
+                  "render": [Function],
+                },
+              },
+            ],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "DropdownButton",
+              "propTypes": Object {
+                "bsPrefix": [Function],
+                "disabled": [Function],
+                "href": [Function],
+                "id": [Function],
+                "menuRole": [Function],
+                "onClick": [Function],
+                "rootCloseEvent": [Function],
+                "size": [Function],
+                "title": [Function],
+                "variant": [Function],
+              },
+              "render": [Function],
+            },
+          },
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;
+
+exports[`Komponenta svrha potvrde se ispravno renda 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SvrhaPotvrde />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="col"
+        >
+          <p>
+             Odaberite svrhu:
+          </p>
+        </div>,
+        <div
+          className="col"
+        >
+          <ForwardRef
+            id="svrha_potvrde"
+            title="Izaberi svrhu"
+          >
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha1"
+              onClick={[Function]}
+            >
+              svrha1
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha2"
+              onClick={[Function]}
+            >
+              svrha2
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha3"
+              onClick={[Function]}
+            >
+              svrha3
+            </ForwardRef>
+          </ForwardRef>
+        </div>,
+      ],
+      "className": "row",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <p>
+             Odaberite svrhu:
+          </p>,
+          "className": "col",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": " Odaberite svrhu:",
+          },
+          "ref": null,
+          "rendered": " Odaberite svrhu:",
+          "type": "p",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <ForwardRef
+            id="svrha_potvrde"
+            title="Izaberi svrhu"
+          >
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha1"
+              onClick={[Function]}
+            >
+              svrha1
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha2"
+              onClick={[Function]}
+            >
+              svrha2
+            </ForwardRef>
+            <ForwardRef
+              as={[Function]}
+              disabled={false}
+              id="svrha3"
+              onClick={[Function]}
+            >
+              svrha3
+            </ForwardRef>
+          </ForwardRef>,
+          "className": "col",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha1"
+                onClick={[Function]}
+              >
+                svrha1
+              </ForwardRef>,
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha2"
+                onClick={[Function]}
+              >
+                svrha2
+              </ForwardRef>,
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha3"
+                onClick={[Function]}
+              >
+                svrha3
+              </ForwardRef>,
+            ],
+            "id": "svrha_potvrde",
+            "title": "Izaberi svrhu",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "as": [Function],
+                "children": "svrha1",
+                "disabled": false,
+                "id": "svrha1",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "svrha1",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "as": [Function],
+                  "disabled": false,
+                },
+                "displayName": "DropdownItem",
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "as": [Function],
+                "children": "svrha2",
+                "disabled": false,
+                "id": "svrha2",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "svrha2",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "as": [Function],
+                  "disabled": false,
+                },
+                "displayName": "DropdownItem",
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": "3",
+              "nodeType": "function",
+              "props": Object {
+                "as": [Function],
+                "children": "svrha3",
+                "disabled": false,
+                "id": "svrha3",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "svrha3",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "as": [Function],
+                  "disabled": false,
+                },
+                "displayName": "DropdownItem",
+                "render": [Function],
+              },
+            },
+          ],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "DropdownButton",
+            "propTypes": Object {
+              "bsPrefix": [Function],
+              "disabled": [Function],
+              "href": [Function],
+              "id": [Function],
+              "menuRole": [Function],
+              "onClick": [Function],
+              "rootCloseEvent": [Function],
+              "size": [Function],
+              "title": [Function],
+              "variant": [Function],
+            },
+            "render": [Function],
+          },
+        },
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="col"
+          >
+            <p>
+               Odaberite svrhu:
+            </p>
+          </div>,
+          <div
+            className="col"
+          >
+            <ForwardRef
+              id="svrha_potvrde"
+              title="Izaberi svrhu"
+            >
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha1"
+                onClick={[Function]}
+              >
+                svrha1
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha2"
+                onClick={[Function]}
+              >
+                svrha2
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha3"
+                onClick={[Function]}
+              >
+                svrha3
+              </ForwardRef>
+            </ForwardRef>
+          </div>,
+        ],
+        "className": "row",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <p>
+               Odaberite svrhu:
+            </p>,
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": " Odaberite svrhu:",
+            },
+            "ref": null,
+            "rendered": " Odaberite svrhu:",
+            "type": "p",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <ForwardRef
+              id="svrha_potvrde"
+              title="Izaberi svrhu"
+            >
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha1"
+                onClick={[Function]}
+              >
+                svrha1
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha2"
+                onClick={[Function]}
+              >
+                svrha2
+              </ForwardRef>
+              <ForwardRef
+                as={[Function]}
+                disabled={false}
+                id="svrha3"
+                onClick={[Function]}
+              >
+                svrha3
+              </ForwardRef>
+            </ForwardRef>,
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <ForwardRef
+                  as={[Function]}
+                  disabled={false}
+                  id="svrha1"
+                  onClick={[Function]}
+                >
+                  svrha1
+                </ForwardRef>,
+                <ForwardRef
+                  as={[Function]}
+                  disabled={false}
+                  id="svrha2"
+                  onClick={[Function]}
+                >
+                  svrha2
+                </ForwardRef>,
+                <ForwardRef
+                  as={[Function]}
+                  disabled={false}
+                  id="svrha3"
+                  onClick={[Function]}
+                >
+                  svrha3
+                </ForwardRef>,
+              ],
+              "id": "svrha_potvrde",
+              "title": "Izaberi svrhu",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "function",
+                "props": Object {
+                  "as": [Function],
+                  "children": "svrha1",
+                  "disabled": false,
+                  "id": "svrha1",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "svrha1",
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "as": [Function],
+                    "disabled": false,
+                  },
+                  "displayName": "DropdownItem",
+                  "render": [Function],
+                },
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "function",
+                "props": Object {
+                  "as": [Function],
+                  "children": "svrha2",
+                  "disabled": false,
+                  "id": "svrha2",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "svrha2",
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "as": [Function],
+                    "disabled": false,
+                  },
+                  "displayName": "DropdownItem",
+                  "render": [Function],
+                },
+              },
+              Object {
+                "instance": null,
+                "key": "3",
+                "nodeType": "function",
+                "props": Object {
+                  "as": [Function],
+                  "children": "svrha3",
+                  "disabled": false,
+                  "id": "svrha3",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "svrha3",
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "as": [Function],
+                    "disabled": false,
+                  },
+                  "displayName": "DropdownItem",
+                  "render": [Function],
+                },
+              },
+            ],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "DropdownButton",
+              "propTypes": Object {
+                "bsPrefix": [Function],
+                "disabled": [Function],
+                "href": [Function],
+                "id": [Function],
+                "menuRole": [Function],
+                "onClick": [Function],
+                "rootCloseEvent": [Function],
+                "size": [Function],
+                "title": [Function],
+                "variant": [Function],
+              },
+              "render": [Function],
+            },
+          },
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

@@ -1,14 +1,25 @@
 ﻿import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './login.css';
 
 var error = 'Greska';
 
 class Login extends Component {
+  constructor(props) {
+    super(props)
+    const token = localStorage.getItem("token")
 
-  state = {
+    let logiran = true
+    if(token == null) {
+      logiran = false
+    }
+
+    this.state = {
       korisnickoIme: '',
-      sifra: ''
-  }
+      sifra: '',
+      logiran
+    }
+}
 
   componentWillMount() {
     document.title = 'Login stranica'
@@ -40,14 +51,24 @@ class Login extends Component {
   }
    
   Submitaj = (e) => {
+    e.preventDefault();
 	  if(!this.validirajFormu()) {
 	    document.getElementById('greske').innerText = error;
-	    e.preventDefault();
-	    return;
-	  }
+	  } else {
+      //autentikacija uspjesna
+      this.setState({
+        logiran: true
+      })
+      localStorage.setItem("token", "hardcoded for now")
+      return <Redirect to="/romeo/home" />
+    }
   }
 	
   render () {
+    if(this.state.logiran) {
+      return <Redirect to="/romeo/home" />
+    }
+
     return (
       <div id="body">
         <div id="main">

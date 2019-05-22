@@ -22,6 +22,7 @@
 
 .card{
     width: 85%;
+    margin-top: 10pt;
 }
 .dugmic{
     background: 'blue';
@@ -29,3 +30,21 @@
     width:50%;
     margin-left:2%;
 }
+
+#dd{
+    margin-top: 10pt;
+}
+
+#glavni{
+    background-color: white;
+}
+
+.side{
+    background-color: #18BC9C;
+}
+
+.list-group{
+    width:100%;
+    margin-right: 0pt;
+}
+

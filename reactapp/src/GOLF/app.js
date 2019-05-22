@@ -16,11 +16,11 @@ class App extends Component {
         <div>
         <Router>
     
-                <div class='row'>
+                <div class='row' id='glavni'>
                     <div class='col-3'>
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href='/Golf/mojiPredmeti'>Moji predmeti</a>
+                                <a id='mpl' href='/Golf/mojiPredmeti'>Moji predmeti</a>
                             </li>
                         </ul>
                      <Ciklusi />

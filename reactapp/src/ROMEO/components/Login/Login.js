@@ -70,22 +70,23 @@ class Login extends Component {
     }
 
     return (
-      <div id="body">
-        <div id="main">
-          <form onSubmit = {this.Submitaj} id="loginForma">
+      <div class="body">
+        <div class="card text-white bg-primary mb-3">
+          <form onSubmit = {this.Submitaj} class="loginForma">
             <label htmlFor="korisnickoIme">Korisničko ime:</label>
-            <input type="text" name="korisnickoIme" id="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
-            <label htmlFor="sifra">Šifra:</label>
-            <input type="password" name="sifra" id="sifra" onChange={this.pratiPromjenuSifre} required/>
+            <input type="text" name="korisnickoIme" class="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
+            <label htmlFor="password">Password:</label>
+            <input type="password" name="sifra" class="sifra" onChange={this.pratiPromjenuSifre} required/>
 
-            <input type="submit" name="submit" id="submit" value="Prijava"/>
+            <button type="button" class="btn btn-secondary">LOGIN</button>
           </form>
           
         </div>
-        <div id="greska">
-	        <label id="greske"></label>
-        </div>
-        <div id="footer">
+        <div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Greška!</strong>
+</div>
+        <div class="footer">
         &copy; 2019 Elektrotehnički fakultet u Sarajevu
         </div>
       </div>

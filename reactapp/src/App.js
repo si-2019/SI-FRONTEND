@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Alpha from './ALPHA/app.js'
 import Beta from './BETA/app.js'
+import SSFAQ from './BETA/komponente/SS/SSFAQ.js'
 import Charlie from './CHARLIE/app.js'
 import Delta from './DELTA/app.js'
 import Echo from './ECHO/app.js'
@@ -39,7 +40,8 @@ class App extends Component {
             <div>
                 <Route exact path="/" component={Alpha} />
                 <Route path="/alpha" component={Alpha} />
-                <Route path="/beta" component={Beta} />
+                <Route exact path="/beta" component={Beta} />
+                <Route path="/beta/SSFrequentIssues" component={SSFAQ} />
                 <Route path="/charlie" component={Charlie} />
                 <Route path="/delta" component={Delta} />
                 <Route path="/echo" component={Echo} />

@@ -23,18 +23,18 @@ componentDidMount(){
         let issues = this.state.issues
         return (
             <div>
-                <div className="jumbotron">
-                    <h3>Frequently asked questions</h3>
+                
+                <h4 style={{ textAlign: 'center', color: 'primary' }}>Frequently asked questions</h4>
                     <hr className="my-4"></hr>
 
 
                     {issues.map((issue) =>
                         <div className="card border-dark mb-3"  >
-                            <div className="card-header">
-                                <h4 className="card-title">{issue.naziv}</h4>
+                            <div className="card-header" >
+                                <h4 className="card-title" style={{ textAlign: 'left'}}>Naslov: {issue.naziv}</h4>
                             </div>
-                            <div className="card-body">
-                                <p className="card-text">{issue.tekst}</p>
+                            <div className="card-body"  >
+                                <p className="card-text" style={{ textAlign: 'left'}}>Odgovor: {issue.tekst}</p>
 
                             </div>
 
@@ -42,7 +42,7 @@ componentDidMount(){
 
                         </div>
                     )}
-                </div>
+               
 
             </div>
         );

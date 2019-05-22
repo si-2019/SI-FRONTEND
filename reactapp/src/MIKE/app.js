@@ -22,10 +22,12 @@ class Mike extends Component {
       forma:"null"
     }
     this.kreiranjeNovogProjekta=this.kreiranjeNovogProjekta.bind(this);
+
+    this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
 
-    this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
+
     this.pregledZadatakaProjektaCall=this.pregledZadatakaProjektaCall.bind(this);
     this.mockKreiranjeProjektaAsistent=this.mockKreiranjeProjektaAsistent.bind(this);
     this.uredjivanjeGrupe=this.uredjivanjeGrupe.bind(this);
@@ -37,12 +39,11 @@ class Mike extends Component {
     if(this.state.forma=="null") return (
       <div className="Mike">
         <button onClick={this.kreiranjeNovogProjekta}>Unos podataka o novom projektu</button>
-       
+     
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekta studenta</button>
 
         <button onClick={this.pregledDetaljaPredmeta}>Pregled detalja predmeta</button>
-
         <button onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>
         <button onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
 
@@ -65,6 +66,7 @@ class Mike extends Component {
     else if(this.state.forma == "projektniZadaci") return (
       <PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti} />
     );
+
     else if(this.state.forma=="mockKreiranje") return(
       <MockKreiranjeProjektaAsistent />
     );
@@ -75,7 +77,6 @@ class Mike extends Component {
   kreiranjeNovogProjekta(){
     this.setState({forma:"kreiranjeProjekta"});
   }
-
   kreiranjeGrupe(){
     this.setState({forma:"kreiranjeGrupe"});
   }
@@ -86,7 +87,6 @@ class Mike extends Component {
   pregledDetaljaPredmeta(){
     this.setState({forma:"detaljiPredmeta"});
   };
-
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});
   }

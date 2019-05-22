@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'react-router-dom/Link';
 import './Predmet.css';
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
@@ -12,93 +13,60 @@ class Predmet extends Component {
                <Card style={{ width: '15rem', border: '0.5px solid gray' }}>
                     <Card.Body>
                          <Card.Title>
-                              <a href="fox/StranicaPredmeta"> <h3>PREDMET 1</h3> </a>
+                              <Link to="fox/stranicaPredmeta"> <h3>PREDMET 1</h3> </Link>
                          </Card.Title>
                          <Card.Text>
                               <ul>                   
-                                   <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa1</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa2</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa3</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa4</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa5</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa6</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa7</li></Link>
                               </ul>
                          </Card.Text>
                     </Card.Body>
                </Card>
 
-               <Card style={{ width: '15rem', border: '.5px solid gray' }}>
+               <Card style={{ width: '15rem', border: '0.5px solid gray' }}>
                     <Card.Body>
                          <Card.Title>
-                              <a href="fox/StranicaPredmeta"> <h3>PREDMET 2</h3> </a>
+                              <Link to="fox/stranicaPredmeta"> <h3>PREDMET 2</h3> </Link>
                          </Card.Title>
                          <Card.Text>
                               <ul>                   
-                                   <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa1</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa2</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa3</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa4</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa5</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa6</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa7</li></Link>
                               </ul>
                          </Card.Text>
                     </Card.Body>
                </Card>
 
-               <Card style={{ width: '15rem', border: '.5px solid gray' }}>
+               <Card style={{ width: '15rem', border: '0.5px solid gray' }}>
                     <Card.Body>
                          <Card.Title>
-                              <a href="fox/StranicaPredmeta"> <h3>PREDMET 3</h3> </a>
+                              <Link to="fox/stranicaPredmeta"> <h3>PREDMET 3</h3> </Link>
                          </Card.Title>
                          <Card.Text>
                               <ul>                   
-                                   <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa1</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa2</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa3</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa4</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa5</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa6</li></Link>
+                                   <Link to="fox/stranicaPredmeta"><li>Grupa7</li></Link>
                               </ul>
                          </Card.Text>
                     </Card.Body>
                </Card>
                </CardColumns>
-               {/*
-                <div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"> <h3>PREDMET</h3></a>
-                    </div>
-                </div>
-                <div>
-                    <ul>                   
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
-                    </div>
-
-                    </ul>
-                </div>
-               */}
             </div>
         );
     }

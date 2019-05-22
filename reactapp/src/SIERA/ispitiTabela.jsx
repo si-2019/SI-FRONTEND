@@ -3,57 +3,64 @@ import "./bootstrap.min.css";
 import axios from "axios";
 
 class IspitiTabela extends Component {
-  /*constructor(props) {
-    super(props);
-    this.state = {
-      listaIspita: [
+  state = {
+    listaIspita: [
+      [
         {
-          nazivGodine: "2015/2016",
+          idGodine: 11,
+          nazivGodine: "2018/19",
           predmeti: [
             {
-              podaciOPredmetu: "Predmet 1",
+              idPredmet: 4,
+              nazivPredmeta: "Projektovanje informacionih sistema",
+              ispiti: []
+            },
+            { idPredmet: 5, nazivPredmeta: "DS", ispiti: [] },
+            { idPredmet: 6, nazivPredmeta: "IEK", ispiti: [] },
+            { idPredmet: 7, nazivPredmeta: "VI", ispiti: [] },
+            {
+              idPredmet: 8,
+              nazivPredmeta: "ARM",
               ispiti: [
-                { datum: "20.03.2019", brojBodova: "17" },
-                { datum: "20.05.2019", brojBodova: "20" },
-                { datum: "10.07.2019", brojBodova: "40" }
+                {
+                  idIspita: 1,
+                  nazivIspita: "Prvi parcijalni",
+                  bodovi: 10,
+                  datum: "2019-05-01T09:00:00.000Z"
+                },
+                {
+                  idIspita: 4,
+                  nazivIspita: "Drugi parcijalni",
+                  bodovi: 12,
+                  datum: "2019-05-31T10:00:00.000Z"
+                }
               ]
             },
             {
-              podaciOPredmetu: "Predmet 2",
+              idPredmet: 9,
+              nazivPredmeta: "SI",
               ispiti: [
-                { datum: "10.03.2019", brojBodova: "14" },
-                { datum: "10.05.2019", brojBodova: "11" },
-                { datum: "04.07.2019", brojBodova: "25" }
-              ]
-            }
-          ]
-        },
-        {
-          nazivGodine: "2018/2019",
-          predmeti: [
-            {
-              podaciOPredmetu: "Predmet 3",
-              ispiti: [
-                { datum: "20.03.2019", brojBodova: "17" },
-                { datum: "20.05.2019", brojBodova: "20" },
-                { datum: "10.07.2019", brojBodova: "40" }
+                {
+                  idIspita: 2,
+                  nazivIspita: "Prvi parcijalni",
+                  bodovi: 18,
+                  datum: "2019-05-05T10:00:00.000Z"
+                }
               ]
             }
           ]
         }
       ],
-      brojacTr: 0
-    };
-  }*/
-
-  state = {
-    listaIspita: [],
+      [
+        {
+          idGodine: 12,
+          nazivGodine: "2017/18",
+          predmeti: [{ idPredmet: 12, nazivPredmeta: "RA", ispiti: [] }]
+        }
+      ]
+    ],
     trenutnoLogovaniStudentID: 1
   };
-
-  /*povecaj() {
-    this.state.brojacTr++;
-  }*/
 
   componentDidMount() {
     axios
@@ -68,7 +75,9 @@ class IspitiTabela extends Component {
 
   srediDatum(datum) {
     var n = datum.indexOf("T");
-    datum = datum.substring(0, n != -1 ? n : datum.length);
+    if (n != -1) {
+      datum = datum.substring(0, n != -1 ? n : datum.length);
+    }
     return datum;
   }
 
@@ -76,16 +85,16 @@ class IspitiTabela extends Component {
     return (
       <div>
         {this.state.listaIspita.map((item, i) => (
-          <table class="table table-hover" key={i}>
+          <table className="table table-hover" key={i}>
             <tbody>
-              <tr class="table-success" key={item[0].idGodine}>
+              <tr className="table-success" key={item[0].idGodine}>
                 <th scope="row" colSpan="7" style={{ textAlign: "center" }}>
                   Akademska godina: {item[0].nazivGodine}
                 </th>
               </tr>
               {item[0].predmeti.map(itemPredmet => [
                 <tr
-                  class="table-success"
+                  className="table-success"
                   key={
                     itemPredmet.idPredmet + item[0].nazivGodine + "naziviIspita"
                   }
@@ -102,7 +111,7 @@ class IspitiTabela extends Component {
                   ))}
                 </tr>,
                 <tr
-                  class="table-success"
+                  className="table-success"
                   key={
                     itemPredmet.idPredmet +
                     item[0].nazivGodine +
@@ -128,7 +137,7 @@ class IspitiTabela extends Component {
                   ])}
                 </tr>,
                 <tr
-                  class="table-light"
+                  className="table-light"
                   key={
                     itemPredmet.idPredmet + item[0].nazivGodine + "datumBodovi"
                   }
@@ -165,34 +174,5 @@ class IspitiTabela extends Component {
     );
   }
 }
-
-/*{item.predmeti.map(itemPredmet => (
-                <tr class="table-light" key={itemPredmet.podaciOPredmetu}>
-                  <td scope="row">{itemPredmet.podaciOPredmetu}</td>
-                  {itemPredmet.ispiti.map(itemIspiti => [
-                    [
-                      <td>{itemIspiti.datum}</td>,
-                      <td>{itemIspiti.brojBodova}</td>
-                    ]
-                  ])}
-                </tr>
-              ))}*/
-
-/*
-              <tr class="table-success" key={item[0].idGodine}>
-                <th scope="row">{item[0].nazivGodine} </th>
-                <td colSpan="2">I parcijalni</td>
-                <td colSpan="2">II parcijalni</td>
-                <td colSpan="2">Usmeni</td>
-              </tr>
-              <tr class="table-success" key={item.nazivGodine + i}>
-                <th scope="row">Predmet</th>
-                <td>Datum</td>
-                <td>Ostvareni bodovi</td>
-                <td>Datum</td>
-                <td>Ostvareni bodovi</td>
-                <td>Datum</td>
-                <td>Ostvareni bodovi</td>
-              </tr>*/
 
 export default IspitiTabela;

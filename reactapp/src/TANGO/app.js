@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
     
-      <div className='container'>
+      <div className='App'>
         Tango
         <BrowserRouter>
           <Route path='/Tango/Teme' exact component={Lista}/>

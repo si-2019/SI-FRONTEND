@@ -25,7 +25,7 @@ class Forma extends Component {
         axios.get ('https://jsonplaceholder.typicode.com/posts')
         .then(response => {
             console.log("Lista: ", response.data);
-            this.setState({lista: response.data});  
+            this.setState({lista: response.data});     
         })
         . catch (error =>{
             console.log(error)
@@ -35,8 +35,7 @@ class Forma extends Component {
     onChange = (e) => {
         var split=e.target.value.split(" - ");     
         //split 0: id, split 1: title 
-        this.setState({selectedValue: split[1], id: split[0], ime: split[1]})
-        console.log("AA", this.lista);
+        this.setState({selectedValue: split[1], id: split[0]})  
     }
 
 
@@ -74,18 +73,21 @@ class Forma extends Component {
 
     render() {
         const { ime, prezime, email, telefon, adresa, index, lista, selectedValue, id} = this.state;
-
+       
         return (
+          
           <div className="col-md-4 col-md-offset-4" >
             <br />
-                <p>Prikaz svih odsjeka: </p><br />
+                <p>Prikaz svih studenata: </p><br />
                 <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
                 {
+                  
                     //paziti sta se prikazuje, nece biti list.title!!!
                     //ako je length!=0 prikazati listu, u suprotnom vratiti null
                     lista.length ? lista.map(list => <option key={list.id}>{list.id} - {list.title}</option>): null
                 }
                 </select><br /><br />
+                
                 <br />
              
             <form  onSubmit={this.handleSubmit} className="container-fluid">

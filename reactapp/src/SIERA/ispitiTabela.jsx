@@ -79,31 +79,49 @@ class IspitiTabela extends Component {
                 </th>
               </tr>
               {item[0].predmeti.map(itemPredmet => [
-                <tr class="table-success">
-                  {itemPredmet.ispiti.length == 0 ? "" : <td />}
-                  {itemPredmet.ispiti.map((itemIspiti, j) => (
-                    <td colSpan="2">{itemIspiti.nazivIspita}</td>
+                <tr
+                  class="table-success"
+                  key={
+                    itemPredmet.idPredmet + item[0].nazivGodine + "naziviIspita"
+                  }
+                >
+                  {itemPredmet.ispiti.length == 0 ? null : <td />}
+                  {itemPredmet.ispiti.map(itemIspiti => (
+                    <td colSpan="2" style={{ textAlign: "center" }}>
+                      {itemIspiti.nazivIspita}
+                    </td>
                   ))}
                 </tr>,
-
-                <tr class="table-success">
-                  {itemPredmet.ispiti.length == 0 ? (
-                    ""
-                  ) : (
+                <tr
+                  class="table-success"
+                  key={
+                    itemPredmet.idPredmet +
+                    item[0].nazivGodine +
+                    "predmetDatumBodovi"
+                  }
+                >
+                  {itemPredmet.ispiti.length == 0 ? null : (
                     <th scope="row">Predmet</th>
                   )}
                   {itemPredmet.ispiti.map(() => [
-                    <td>Datum</td>,
-                    <td>Ostvareni bodovi</td>
+                    <td style={{ textAlign: "center" }}>Datum</td>,
+                    <td style={{ textAlign: "center" }}>Ostvareni bodovi</td>
                   ])}
                 </tr>,
-                <tr class="table-light">
-                  {itemPredmet.ispiti.length == 0
-                    ? ""
-                    : itemPredmet.nazivPredmeta}
+                <tr
+                  class="table-light"
+                  key={
+                    itemPredmet.idPredmet + item[0].nazivGodine + "datumBodovi"
+                  }
+                >
+                  {itemPredmet.ispiti.length == 0 ? null : (
+                    <td style={{ textAlign: "center" }}>
+                      {itemPredmet.nazivPredmeta}
+                    </td>
+                  )}
                   {itemPredmet.ispiti.map(itemIspiti => [
-                    <td>{itemIspiti.datum}</td>,
-                    <td>{itemIspiti.bodovi}</td>
+                    <td style={{ textAlign: "center" }}>{itemIspiti.datum}</td>,
+                    <td style={{ textAlign: "center" }}>{itemIspiti.bodovi}</td>
                   ])}
                 </tr>
               ])}

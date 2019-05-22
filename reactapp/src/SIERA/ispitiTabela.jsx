@@ -62,7 +62,6 @@ class IspitiTabela extends Component {
       )
       .then(res => {
         const lista = res.data.akademskeGodine;
-        console.log(lista[0][0].predmeti);
         this.setState({ listaIspita: lista });
       });
   }
@@ -87,7 +86,11 @@ class IspitiTabela extends Component {
                 >
                   {itemPredmet.ispiti.length == 0 ? null : <td />}
                   {itemPredmet.ispiti.map(itemIspiti => (
-                    <td colSpan="2" style={{ textAlign: "center" }}>
+                    <td
+                      colSpan="2"
+                      style={{ textAlign: "center" }}
+                      key={itemIspiti.idIspita}
+                    >
                       {itemIspiti.nazivIspita}
                     </td>
                   ))}
@@ -103,9 +106,19 @@ class IspitiTabela extends Component {
                   {itemPredmet.ispiti.length == 0 ? null : (
                     <th scope="row">Predmet</th>
                   )}
-                  {itemPredmet.ispiti.map(() => [
-                    <td style={{ textAlign: "center" }}>Datum</td>,
-                    <td style={{ textAlign: "center" }}>Ostvareni bodovi</td>
+                  {itemPredmet.ispiti.map(itemIspiti => [
+                    <td
+                      style={{ textAlign: "center" }}
+                      key={itemIspiti.idIspita + "datum"}
+                    >
+                      Datum
+                    </td>,
+                    <td
+                      style={{ textAlign: "center" }}
+                      key={itemIspiti.idIspita + "bodovi"}
+                    >
+                      Ostvareni bodovi
+                    </td>
                   ])}
                 </tr>,
                 <tr
@@ -120,8 +133,22 @@ class IspitiTabela extends Component {
                     </td>
                   )}
                   {itemPredmet.ispiti.map(itemIspiti => [
-                    <td style={{ textAlign: "center" }}>{itemIspiti.datum}</td>,
-                    <td style={{ textAlign: "center" }}>{itemIspiti.bodovi}</td>
+                    <td
+                      style={{ textAlign: "center" }}
+                      key={itemIspiti.idIspita + itemIspiti.datum}
+                    >
+                      {itemIspiti.datum}
+                    </td>,
+                    <td
+                      style={{ textAlign: "center" }}
+                      key={
+                        itemIspiti.idIspita +
+                        itemIspiti.datum +
+                        itemIspiti.bodovi
+                      }
+                    >
+                      {itemIspiti.bodovi}
+                    </td>
                   ])}
                 </tr>
               ])}

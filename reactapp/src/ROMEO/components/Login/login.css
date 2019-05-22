@@ -27,19 +27,24 @@
     padding-bottom: 10%;
 }
 
-.loginForma label {
 
-}
-
-.loginForma input[type="email"], .loginForma input[type="password"] {
+.loginForma input[type="email"]{
     border-radius: 25px;
     background: #e0dbd8;
     width: 100%;
     margin:auto;
-    margin-bottom: 20px;
 }
 
+.loginForma input[type="password"]{
+    border-radius: 25px;
+    background: #e0dbd8;
+    width: 100%;
+    margin-bottom: 5%;
 
+}
+.loginForma label{
+    margin-top: 5%;
+}
 
 .loginForma button{
     width: 40%;

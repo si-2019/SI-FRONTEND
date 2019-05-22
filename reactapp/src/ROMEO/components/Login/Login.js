@@ -76,7 +76,7 @@ class Login extends Component {
           <label for="exampleInputEmail1">Korisnicko ime:</label>
           <input type="email" className="korisnickoIme" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={this.pratiPromjenuKorisnickogImena} required></input>
           <small id="emailHelp" className="maliTekst">We'll never share your email with anyone else.</small>
-
+<br></br>
           <label for="exampleInputPassword1">Password:</label>
       <input type="password" className="sifra" id="exampleInputPassword1" placeholder="Password" onChange={this.pratiPromjenuSifre} required></input>
             

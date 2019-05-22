@@ -20,6 +20,7 @@ class Mike extends Component {
     this.state={
       forma:"null"
     }
+    
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
 
@@ -34,7 +35,7 @@ class Mike extends Component {
    
     if(this.state.forma=="null") return (
       <div className="Mike">
-       
+        
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekta studenta</button>
 
@@ -47,6 +48,7 @@ class Mike extends Component {
         <button onClick={this.uredjivanjeGrupe}>TEMP - uredjivanje grupe</button>
       </div>
     );
+    
     else if (this.state.forma=="kreiranjeGrupe") return (
       <Lista />
     );
@@ -66,6 +68,8 @@ class Mike extends Component {
       <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
     );
   }
+  
+
   kreiranjeGrupe(){
     this.setState({forma:"kreiranjeGrupe"});
   }

@@ -8,7 +8,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-
 const astyle= {
   padding: '10px',
   color: 'white'
@@ -18,32 +17,17 @@ class Navbar001 extends Component {
   state = {}
     render() {
       return (
-
-        <div className="navbar001_class">
-            <a style={astyle} href="student">Student</a>
-            <a style={astyle} href="unos_podataka">Unos podataka</a>
-            <a style={astyle} href="ispiti">Ispiti</a>
-            <a style={astyle} href="obavijesti">Obavijesti</a>
-            <a style={astyle} href="zadace">Zadace</a>
-            <a style={astyle} href="ankete">Ankete</a>
-            <a style={astyle} href="statistika">Statistika</a>           
-            <a style={astyle} href="raspored">Raspored</a>
-            <a style={astyle} href="chat">Chat</a>
-            <a style={astyle} href="forum">Forum</a>
-            <a style={astyle} href="materijali">Materijali</a>
-        </div>
-
         <Navbar bg="dark" variant="dark" expand="lg">
           <Navbar.Brand href="#home">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="student">Student</Nav.Link>
+              <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
                 <NavDropdown.Item href="UnosPrisustva">Prisustvo</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Ispiti</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Ocjene</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Teme</NavDropdown.Item>
+                <NavDropdown.Item href="UnosBodova">Ispiti</NavDropdown.Item>
+                <NavDropdown.Item href="UnosOcjene">Ocjene</NavDropdown.Item>
+                <NavDropdown.Item href="TemeZavrsnih">Teme</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="ispiti">Ispiti</Nav.Link>
               <Nav.Link href="obavijesti">Obavijesti</Nav.Link>

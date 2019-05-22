@@ -7,24 +7,19 @@ class PrviPutSlanjeZadatka extends Component {
   render() {
     var listOfTypes = this.props.podaci.state.listaTipova;
 
-
     return (
       <div>
         <div className="card-header bg-primary text-light">
           <h4>
-
             <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
-
             <Icon
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
-
-              onClick={this.props.podaci.handleClick}
+              onClick={this.props.podaci.handleBack}
             />
           </h4>
           <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
-
         </div>
         <br />
         <div className="form-group">
@@ -49,9 +44,7 @@ class PrviPutSlanjeZadatka extends Component {
           name="ponisti"
           type="button"
           className="btn btn-danger ml-5 text-body"
-
           onClick={this.props.podaci.handleClick}
-
         >
           <Icon type="indicator" name="remove" className="mr-2" />
           Poništi
@@ -60,9 +53,7 @@ class PrviPutSlanjeZadatka extends Component {
           name="posaljiZadatak"
           type="button"
           className="btn btn-primary ml-5"
-
           onClick={this.props.podaci.handleClick}
-
         >
           Pošalji zadatak
         </button>

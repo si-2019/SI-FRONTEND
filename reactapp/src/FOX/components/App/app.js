@@ -6,7 +6,6 @@ import DanDatum from '../PocetnaStranica/DanDatum';
 import PozdravnaPoruka from '../PocetnaStranica/PozdravnaPoruka';
 import UnosPrisustva from '../UnosPrisustva/UnosPrisustva';
 
-
 class App extends Component {
   render() {
     return (
@@ -14,9 +13,6 @@ class App extends Component {
         <Header isPocetna={true}/>
         <PozdravnaPoruka/>
         <DanDatum/>
-
-        <Predmet/>  
-
         <Predmet/>
         <Footer/>
       </div>

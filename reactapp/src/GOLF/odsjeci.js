@@ -41,24 +41,24 @@ class Odsjeci extends Component {
 
     render(){
         return(
-            <div id="drugi">
+            <div id="drugi" class='side'>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(1)}>
                     <a href='#'>   Računarstvo i informatika</a>
                     </li>
-                    {this.state.kliknutRI && this.props.ciklus == "prvi" &&<Semestri6 ciklus={this.props.ciklus} odsjek='ri'> </Semestri6> || this.state.kliknutRI  && <Semestri4 ciklus={this.props.ciklus} odsjek='ri'></Semestri4>}
+                    {this.state.kliknutRI && this.props.ciklus == "1" &&<Semestri6 ciklus={this.props.ciklus} odsjek='RI'> </Semestri6> || this.state.kliknutRI  && <Semestri4 ciklus={this.props.ciklus} odsjek='RI'></Semestri4>}
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(2)}>
                     <a href='#'>     Automatika i elektronika</a>
                     </li>
-                    {this.state.kliknutAiE && this.props.ciklus == "prvi" && <Semestri6 ciklus={this.props.ciklus} odsjek='aie'> </Semestri6> || this.state.kliknutAiE  && <Semestri4 ciklus={this.props.ciklus} odsjek='aie'></Semestri4>}
+                    {this.state.kliknutAiE && this.props.ciklus == "1" && <Semestri6 ciklus={this.props.ciklus} odsjek='AIE'> </Semestri6> || this.state.kliknutAiE  && <Semestri4 ciklus={this.props.ciklus} odsjek='AIE'></Semestri4>}
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(3)}>
                     <a href='#'> Elektroenergetika</a>
                     </li>
-                    {this.state.kliknutEE && this.props.ciklus == "prvi" && <Semestri6 ciklus={this.props.ciklus} odsjek='ee'> </Semestri6> || this.state.kliknutEE  && <Semestri4 ciklus={this.props.ciklus} odsjek='ee'></Semestri4>}
+                    {this.state.kliknutEE && this.props.ciklus == "1" && <Semestri6 ciklus={this.props.ciklus} odsjek='EE'> </Semestri6> || this.state.kliknutEE  && <Semestri4 ciklus={this.props.ciklus} odsjek='EE'></Semestri4>}
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(4)}>
                     <a href='#'> Telekomunikacije</a>
                     </li>
-                    {this.state.kliknutTK && this.props.ciklus == "prvi" && <Semestri6 ciklus={this.props.ciklus} odsjek='tk'> </Semestri6> || this.state.kliknutTK  && <Semestri4 ciklus={this.props.ciklus} odsjek='tk'></Semestri4>}
+                    {this.state.kliknutTK && this.props.ciklus == "1" && <Semestri6 ciklus={this.props.ciklus} odsjek='TK'> </Semestri6> || this.state.kliknutTK  && <Semestri4 ciklus={this.props.ciklus} odsjek='TK'></Semestri4>}
                 </ul>
             </div>
         )

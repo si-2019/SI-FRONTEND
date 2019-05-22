@@ -14,7 +14,7 @@ class US_23 extends Component {
   }
   componentDidMount() {
     //uzmi podatke iz baze sa get
-    fetch("http://localhost:8080/dajSveZahtjeve").then(
+    fetch("http://localhost:31912/dajSveZahtjeve").then(
       result => {
         result.json().then(res => {
           this.setState({
@@ -61,7 +61,7 @@ class US_23 extends Component {
         oznaceni.zahtjevi.push(objekat);
       }
       //post zahtjev
-      fetch("http://localhost:8080/obrada", {
+      fetch("http://localhost:31912/obrada", {
         method: "POST",
         headers: {
           Accept: "application/json",

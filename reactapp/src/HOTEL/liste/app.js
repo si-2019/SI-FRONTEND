@@ -4,6 +4,8 @@ import MojeAnkete from './mojeAnkete'
 import PopunjeneAnkete from './popunjeneAnkete'
 import JavneAnkete from './javneAnkete'
 import AnketePoPredmetima from './anketePoPredmetima'
+import RezultatiAnketa from './rezultatiAnketa'
+import SveAnkete from './sveAnkete'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 class App extends Component {
@@ -17,6 +19,8 @@ class App extends Component {
           <Route path="/hotel/liste/popunjeneAnkete" component={PopunjeneAnkete}/>
           <Route path="/hotel/liste/javneAnkete" component={JavneAnkete}/>
           <Route path="/hotel/liste/anketePoPredmetima" component={AnketePoPredmetima}/>
+          <Route path="/hotel/liste/rezultatiAnketa" component={RezultatiAnketa}/>
+          <Route path="/hotel/liste/sveAnkete" component={SveAnkete}/>
           </div>
         </Router>
 

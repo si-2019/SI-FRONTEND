@@ -3,61 +3,6 @@ import "../bootstrap.css";
 import { Icon } from "@opuscapita/react-icons";
 
 class ZadatakVecPoslan extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      brojZadace: 4,
-      brojZadatka: 3,
-      listaTipova: [".pdf", ".rar", ".doc"],
-      datumSlanja: "25.05.19",
-      vrijemeSlanja: "23:23",
-      nazivFajla: "Zadatak1",
-      velicinaFajla: "1MB",
-      komentar:
-        "zadaca je ok zadaca je ok zadaca je ok zadaca je ok zadaca je ok"
-    };
-  }
-
-  handleClick = event => {
-    var ime = event.target.name; //name uzmem
-    if (ime === undefined) ime = "arrowLeft"; //ne znam sto nece da iscita name ikone
-    switch (ime) {
-      //ako je rok prosao, blokirati upload
-
-      case "posaljiZadatak": {
-        //poslati backendu fajl
-        var nazivUploada = document.getElementById("uploadButton").value;
-        console.log(nazivUploada);
-        break;
-      }
-      case "ponisti": {
-        document.getElementById("uploadButton").value = "";
-        break;
-      }
-
-      case "arrowLeft": {
-        //ide na Edininu tabelu, back dugme
-        console.log("back Dugme aktivirano");
-        break;
-      }
-      case "preuzmi": {
-        //salji na rutu u backendu
-        console.log("preuzmi button acitvated");
-        break;
-      }
-
-      case "pregled": {
-        //salji na rutu u backendu
-        console.log("pregled button acitvated");
-        break;
-      }
-      default:{
-
-      }
-    }
-  };
-
- 
 
 
   
@@ -65,26 +10,20 @@ class ZadatakVecPoslan extends Component {
   render() {
     var listOfTypes = this.props.podaci.state.listaTipova;
 
-
     return (
       <div>
         <div className="card-header bg-primary text-light">
           <h4>
-
             <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
             <div name="idiNazad" onClick={this.props.podaci.handleClick}>
-
             <Icon
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
-              onClick={this.handleClick}
-
-              
+              onClick={this.props.podaci.handleBack}
             /></div>
           </h4>
           <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
-
         </div>
         <br />
         <div className="card border-primary bg-primary text-light mb-3">
@@ -102,9 +41,7 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-
                   placeholder={this.props.podaci.state.datumSlanja}
-
                   readOnly=""
                 />
               </fieldset>
@@ -117,9 +54,7 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-
                   placeholder={this.props.podaci.state.vrijemeSlanja}
-
                   readOnly=""
                 />
               </fieldset>
@@ -134,9 +69,7 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-
                   placeholder={this.props.podaci.state.nazivFajla}
-
                   readOnly=""
                 />
               </fieldset>
@@ -149,9 +82,7 @@ class ZadatakVecPoslan extends Component {
                 <input
                   className="form-control ml-3"
                   type="text"
-
                   placeholder={this.props.podaci.state.velicinaFajla}
-
                   readOnly=""
                 />
               </fieldset>{" "}
@@ -161,9 +92,7 @@ class ZadatakVecPoslan extends Component {
         <label className="control-label ml-3">Komentar:</label>
         <div className="card border-secondary ml-3 mr-3">
           <div className="card-body">
-
             <p className="card-text">{this.props.podaci.state.komentar}</p>
-
           </div>
         </div>
         <br />
@@ -171,9 +100,7 @@ class ZadatakVecPoslan extends Component {
           name="preuzmi"
           type="button"
           className="btn btn-primary ml-3"
-
           onClick={this.props.podaci.handleClick}
-
         >
           <Icon type="indicator" name="sortDesc" className="mr-2" />
           Preuzmi datoteku
@@ -182,9 +109,7 @@ class ZadatakVecPoslan extends Component {
           name="pregled"
           type="button"
           className="btn btn-primary ml-5"
-
           onClick={this.props.podaci.handleClick}
-
         >
           <Icon type="indicator" name="search" className="mr-2" />
           Pregled datoteke
@@ -208,7 +133,7 @@ class ZadatakVecPoslan extends Component {
           </select>
         </div>
         <input
-          id="uploadButton"
+          id="uploadButton2"
           type="file"
           className="btn-outline-secondary ml-3"
         />
@@ -216,9 +141,7 @@ class ZadatakVecPoslan extends Component {
           name="ponisti"
           type="button"
           className="btn btn-danger ml-5 text-body"
-
           onClick={this.props.podaci.handleClick}
-
         >
           <Icon type="indicator" name="remove" className="mr-2" />
           Poništi
@@ -227,7 +150,6 @@ class ZadatakVecPoslan extends Component {
           name="posaljiZadatak"
           type="button"
           className="btn btn-primary ml-2"
-
           onClick={this.props.podaci.handleClick}
         >
           Pošalji zadatak

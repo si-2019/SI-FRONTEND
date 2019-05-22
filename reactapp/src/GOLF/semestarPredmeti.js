@@ -1,21 +1,31 @@
 import React, { Component} from 'react'
+import SviPredmeti from './SviPredmeti';
+import axios from 'axios';
+
 
 class semestarPredmeti extends Component {
 
+  state={
+    predmeti: []
+  }
+
+  componentDidMount(){
+    axios.get(`http://localhost:31907/r1/predmeti/${this.props.match.params.ciklus}/${this.props.match.params.odsjek}/${this.props.match.params.semestar}`).then(res => {
+      const predmeti = res.data;
+      this.setState({
+        predmeti:predmeti.predmeti
+      });
+    })
+  }
 	 
-    render() {
-		
-	const{match: { params}}=this.props;
-	
-        return(
-            <div>
-			
-			<h1>{'Ciklus: ' + params.ciklus}</h1>
-			<h1>{'Odsjek: ' + params.odsjek}</h1>
-            <h1>{'Semestar: ' + params.semestar}</h1> 
-            </div>
-        )
-    }
+  render() {
+
+    return(
+      <div>
+        <SviPredmeti predmeti={this.state.predmeti} />
+      </div>  
+    )
+  }
 }
 
 export default semestarPredmeti

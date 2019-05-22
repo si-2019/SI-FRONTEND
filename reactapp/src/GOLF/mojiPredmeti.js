@@ -1,69 +1,34 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import SviPredmeti from './SviPredmeti';
-import PropTypes from 'prop-types';
-import LiteraturaProfesor from './literaturaProfesor';
-import LiteraturaStudent from './literaturaStudent';
-import DodavanjeDatuma from './DodavanjeDatuma';
-import ObjavaStudent from './objavaStudent';
-import ObjavaProfesor from './objavaProfesor';
+
 class mojiPredmeti extends Component {
+
+  state={
+    korisnik: 1,
+    predmeti:[],
+  }
+
+  componentDidMount(){
+    axios.get(`http://localhost:31907/r1/uloga/${this.state.korisnik}`).then(res => {
+      const uloga = res.data;
+      axios.get(`http://localhost:31907/r1/mojiPredmeti/${this.state.korisnik}?uloga=${uloga.uloga}`).then(res2 =>{
+          const predmeti = res2.data;
+          this.setState({
+            predmeti:predmeti.predmeti
+          });
+      })
+    })
+  }
+
   render() {
-    this.state={
-      svipredmeti: [
-        {
-          id: 1,
-          naziv: 'SI',
-          opis:' opis premeta '
-        },
-        {
-          id: 2,
-          naziv: 'VI',
-          opis: 'opis predmeta'
-        }
-      ],
-      datumobjave:{
-          id:1,
-          datum:Date.now()
-
-        }
-
-        },
-
-        fileovi:[
-          'prvi.pdf',
-          'drugi.pdf',
-          'treci.pdf'
-        ],
-        fileovi2:[
-          'prvi.pdf',
-          'drugi.pdf'
-        ]
-
-      
-
-    }
-    console.log(this.state)
-    return (
-      
-        <div>
+     return (      
+        <div id='mojiPredmeti'>
             <h1>Moji predmeti</h1>
-            <SviPredmeti predmeti={this.state.svipredmeti} />
-
-            <LiteraturaStudent />
-            <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
-
-            <LiteraturaStudent></LiteraturaStudent>
-            <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
-            <ObjavaStudent naslov="Predavanje 1" fileovi={this.state.fileovi2}></ObjavaStudent>
-            <ObjavaProfesor naslov="Tutorijal 2" fileovi={this.state.fileovi}></ObjavaProfesor>
-
+            <SviPredmeti predmeti={this.state.predmeti} />
         </div>
-        
-
     );
   }
 }
-SviPredmeti.propTypes={
-  svipredmeti: PropTypes.array.isRequired
-}
+
 export default mojiPredmeti;

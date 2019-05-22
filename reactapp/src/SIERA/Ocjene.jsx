@@ -14,15 +14,24 @@ class Ocjene extends React.Component{
                     ocjena: "10",
                     naziv: "guglanje"
                 }]
+            },{
+                naziv: "2018",
+                predmeti: [{
+                    ocjena: "7",
+                    naziv: "jupi"
+                }]
             }]
         }
     }
     render(){
         return(
-                <TabelaOcjene 
-                predmeti = {this.state.akGodine[0].predmeti} 
-                akGod = {this.state.akGodine[0].naziv}
-                />
+            <>
+                 {this.state.akGodine.map(god=>
+                    <TabelaOcjene 
+                    predmeti = {god.predmeti} 
+                    akGod = {god.naziv}
+                    />)}
+               </>
             
         );
     }

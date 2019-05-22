@@ -13,6 +13,7 @@ import IzborVodje from './components/FormaZaIzborVodje';
 import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe'
 //import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
 import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
+import UnosPodatakaONovomProjektu from './components/UnosPodatakaONovomProjektu/UnosPodatakaONovomProjektu';
 
 class Mike extends Component {
   constructor(props){
@@ -20,7 +21,7 @@ class Mike extends Component {
     this.state={
       forma:"null"
     }
-    
+    this.kreiranjeNovogProjekta=this.kreiranjeNovogProjekta.bind(this);
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
 
@@ -35,7 +36,8 @@ class Mike extends Component {
    
     if(this.state.forma=="null") return (
       <div className="Mike">
-        
+        <button onClick={this.kreiranjeNovogProjekta}>Unos podataka o novom projektu</button>
+       
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekta studenta</button>
 
@@ -48,7 +50,9 @@ class Mike extends Component {
         <button onClick={this.uredjivanjeGrupe}>TEMP - uredjivanje grupe</button>
       </div>
     );
-    
+    else if (this.state.forma=="kreiranjeProjekta") return (
+      <UnosPodatakaONovomProjektu />
+    );
     else if (this.state.forma=="kreiranjeGrupe") return (
       <Lista />
     );
@@ -68,7 +72,9 @@ class Mike extends Component {
       <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
     );
   }
-  
+  kreiranjeNovogProjekta(){
+    this.setState({forma:"kreiranjeProjekta"});
+  }
 
   kreiranjeGrupe(){
     this.setState({forma:"kreiranjeGrupe"});

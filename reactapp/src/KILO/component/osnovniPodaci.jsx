@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import axios from 'axios';
 import "./../bootstrap.css";
 
 class OsnovniPodaci extends Component {
   render() {
     const { title } = this.props;
+   /* var tekstOPrethodnojPostavci = "";
+    if(this.props.podaci.state.radnja === "Azuriranje") {
+      axios.get(`http://localhost:31911/getImeFajla/${this.props.podaci.state.idZadaca}`, ).then(res => {
+        if(res.data === "") { // nema fajla postavke za odabranu zadacu 
+          tekstOPrethodnojPostavci = "Nema fajla postavke za odabranu zadaću";
+        } else { // ima fajla postavke za odabranu zadacu
+          tekstOPrethodnojPostavci = "Naziv postavke: " + res.data;        } 
+      })
+    }*/
     return (
       <div>
         <div>
@@ -51,10 +61,10 @@ class OsnovniPodaci extends Component {
               <FormGroup encType="multipart/form-data">
                 <Label for="file">Postavka:</Label>
                 <Input type="file" name="file" id="file" 
-                  files = {this.props.podaci.state.postavka}
                   onChange={this.props.onChangePostavka}
                 />
-                <FormText color="muted">Ovo je opcionalna mogućnost</FormText>
+                <FormText color="info">Ovo je opcionalna mogućnost</FormText>
+               {/* <FormText color="info">{tekstOPrethodnojPostavci}</FormText> */}
               </FormGroup>
               <FormGroup>
                 <Label for="brojZadataka">Broj zadataka:</Label>

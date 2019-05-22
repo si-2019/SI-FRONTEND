@@ -24,7 +24,7 @@ class KreiranjeZadace extends Component {
       naziv: "",
       datum: "2019-12-01",
       vrijeme: "23:59",
-      postavka: [],
+      postavka: [null],
       brojZadataka: "1",
       sviTipoviIsti: false,
       listaTipova: [[false, false, false, false, false]],
@@ -41,7 +41,6 @@ class KreiranjeZadace extends Component {
 
   handleChangeProps = props => {
     if (props.mainState) {
-      console.log("AAA:", props.mainState);
       this.setState({
         ...this.state,
         ...props.mainState
@@ -183,17 +182,19 @@ class KreiranjeZadace extends Component {
         break;
       }
       case "addZadaca": {
-      
         const fData = new FormData();
 
-        var file = this.state.postavka[0];
-        if(file) {
-          fData.append('file', new Blob([file], {type: file.type}));
+        if(this.state.postavka[0] !== null) {
+          var file = this.state.postavka[0];
+          if(file) {
+            fData.append('file', new Blob([file], {type: file.type}));
+            fData.append('imeFajlaPostavke', file.name);
+          }
         }
-
         fData.append('state', JSON.stringify(this.state));
 
         if(this.state.radnja === "Kreiranje") { 
+          
           axios.post("http://localhost:31911/addZadaca", fData).then(res => {
             if (res.status === 200) {
               this.setState({ uspjehKreiranja: true });
@@ -206,7 +207,6 @@ class KreiranjeZadace extends Component {
         }
         
         else if(this.state.radnja==="Azuriranje") {
-          
           axios.put(`http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`, fData).then(res => {
             if (res.status === 200) {
               this.setState({ uspjehKreiranja: true });
@@ -216,7 +216,6 @@ class KreiranjeZadace extends Component {
               this.setState({ neuspjehKreiranja: true });
             }
           });
-         console.log('iddd:  '+this.props.mainState.idZadaca);
         }  
       }
       default: {

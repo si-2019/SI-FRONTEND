@@ -27,5 +27,9 @@ describe('<Login />', () => {
     const wrapper = shallow(<Login/>)
     expect(wrapper.find('#greska').exists()).toBe(true)
   })
+  it('da li postoji div footer', () => {
+    const wrapper = shallow(<Login/>)
+    expect(wrapper.find('#footer').exists()).toBe(true)
+  })
 
 })

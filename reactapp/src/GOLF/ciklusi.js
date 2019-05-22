@@ -32,20 +32,20 @@ class Ciklusi extends Component {
   
     render() {
         return(
-            <div id="navv" >
+            <div id="navv" class='side'>
                 <ul class="list-group">
                     <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(1)}>
                         <a href='#'>Prvi ciklus</a>
                     </li>
-                    {this.state.kliknut && <Odsjeci ciklus = "prvi"/>}
+                    {this.state.kliknut && <Odsjeci ciklus = "1"/>}
                     <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(2)}>
                         <a href='#'>Drugi ciklus</a>
                     </li>
-                    {this.state.kliknut1 && <Odsjeci ciklus = "drugi"/>}
+                    {this.state.kliknut1 && <Odsjeci ciklus = "2"/>}
                     <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(3)}> 
                         <a href='#'>Treci ciklus</a>
                     </li> 
-                    {this.state.kliknut2  && <Odsjeci ciklus = "treci"/>}
+                    {this.state.kliknut2  && <Odsjeci ciklus = "3"/>}
                 </ul>
             </div>
         )

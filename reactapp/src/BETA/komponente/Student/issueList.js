@@ -1,7 +1,7 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Issue from './helpers/issue.js';
+import Issue from '../helpers/issue.js';
 import axios from 'axios';
 
 class IssueList extends React.Component {
@@ -24,7 +24,7 @@ class IssueList extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('http://localhost:31902/issues').then( res => {
+        axios.get('http://localhost:31902/issues/get').then( res => {
             console.log(res);
             this.setState({
                 dataNew: res.data.new,

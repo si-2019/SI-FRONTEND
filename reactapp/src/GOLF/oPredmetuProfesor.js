@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 
 class oPredmetuProfesor extends Component {
   render() {
-  	const objave = [
-  	{
-  		naslov: 'O predmetu',
-  	}
-  	]
+  	
     return (
-        <div>
-            <h3>{this.props.naslov}</h3>
-        </div>
+      <div>
+          <h3> O predmetu </h3>
+          <h4> {this.props.opis} </h4>
+      </div>
     );
   }
 }

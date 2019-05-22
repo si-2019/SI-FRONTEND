@@ -66,6 +66,12 @@ class IspitiTabela extends Component {
       });
   }
 
+  srediDatum(datum) {
+    var n = datum.indexOf("T");
+    datum = datum.substring(0, n != -1 ? n : datum.length);
+    return datum;
+  }
+
   render() {
     return (
       <div>
@@ -137,7 +143,7 @@ class IspitiTabela extends Component {
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita + itemIspiti.datum}
                     >
-                      {itemIspiti.datum}
+                      {this.srediDatum(itemIspiti.datum)}
                     </td>,
                     <td
                       style={{ textAlign: "center" }}

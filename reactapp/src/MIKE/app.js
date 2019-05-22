@@ -69,6 +69,7 @@ class Mike extends Component {
 
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});
+  }
 
   mockKreiranjeProjektaAsistent(){
     this.setState({forma:"mockKreiranje"});

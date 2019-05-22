@@ -73,10 +73,13 @@ class Login extends Component {
       <div className="body">
         <div className="card text-white bg-primary mb-3">
           <form onSubmit = {this.Submitaj} className="loginForma">
-            <label htmlFor="korisnickoIme">Korisničko ime:</label>
-            <input type="text" name="korisnickoIme" className="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
-            <label htmlFor="password">Password:</label>
-            <input type="password" name="sifra" className="sifra" onChange={this.pratiPromjenuSifre} required/>
+          <label for="exampleInputEmail1">Korisnicko ime:</label>
+          <input type="email" className="korisnickoIme" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={this.pratiPromjenuKorisnickogImena} required></input>
+          <small id="emailHelp" className="maliTekst">We'll never share your email with anyone else.</small>
+
+          <label for="exampleInputPassword1">Password:</label>
+      <input type="password" className="sifra" id="exampleInputPassword1" placeholder="Password" onChange={this.pratiPromjenuSifre} required></input>
+            
 
             <button type="button" className="btn btn-secondary">LOGIN</button>
           </form>

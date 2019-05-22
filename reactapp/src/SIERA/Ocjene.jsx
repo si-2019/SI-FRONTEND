@@ -26,6 +26,7 @@ class Ocjene extends React.Component{
     render(){
         return(
             <>
+
                  {this.state.akGodine.map(god=>
                     <TabelaOcjene 
                     predmeti = {god.predmeti} 

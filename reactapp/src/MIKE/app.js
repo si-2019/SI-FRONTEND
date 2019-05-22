@@ -12,6 +12,7 @@ import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
 import IzborVodje from './components/FormaZaIzborVodje';
 import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe'
 //import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
+import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
 
 class Mike extends Component {
   constructor(props){
@@ -23,7 +24,6 @@ class Mike extends Component {
     this.listaProjekata=this.listaProjekata.bind(this);
 
     this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
-
     this.pregledZadatakaProjektaCall=this.pregledZadatakaProjektaCall.bind(this);
     this.mockKreiranjeProjektaAsistent=this.mockKreiranjeProjektaAsistent.bind(this);
     this.uredjivanjeGrupe=this.uredjivanjeGrupe.bind(this);
@@ -39,7 +39,6 @@ class Mike extends Component {
         <button onClick={this.listaProjekata}>Pregled projekta studenta</button>
 
         <button onClick={this.pregledDetaljaPredmeta}>Pregled detalja predmeta</button>
-
 
         <button onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>
         <button onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
@@ -57,7 +56,6 @@ class Mike extends Component {
     else if (this.state.forma=="detaljiPredmeta") return (
       <PregledDetaljaPredmeta />
     );
-
     else if(this.state.forma == "projektniZadaci") return (
       <PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti} />
     );
@@ -78,7 +76,6 @@ class Mike extends Component {
   pregledDetaljaPredmeta(){
     this.setState({forma:"detaljiPredmeta"});
   };
-
 
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});

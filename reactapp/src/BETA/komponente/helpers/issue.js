@@ -7,6 +7,8 @@ const Issue = (props) => {
                 <div>{issue.title}</div>
                 <div>{issue.message}</div>
                 <div>{issue.date}</div>
+                
+                <button /*onClick={this.props.markResolved.bind(this, id)}*/type="button" class="btn btn-primary">Resolved</button>
                 <hr/>
             </div>
             );

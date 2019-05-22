@@ -34,6 +34,15 @@ class IssueList extends React.Component {
             console.log(this.state);
         }).catch(err => console.log(err));
     }
+    markResolved = (id) =>{ //id mora poslat da se zna koji se brise
+        this.setState( this.state.dataInProgress.map(Issue =>{ //map prolazi kroz sve u nizu
+          if(Issue.id ===id){
+            Issue.status = "resoloved"
+          }
+          return Issue;
+        })
+      );
+      }
 
     render() {
         return (
@@ -45,14 +54,14 @@ class IssueList extends React.Component {
                     onSelect={key => this.setState({ key })}
                 >
                     <Tab className = "tab-issue" eventKey="new" title={`New (${this.state.dataNew.length})`}>
-                        <Issue  data={this.state.dataNew}/>
+                        <Issue  data={this.state.dataNew} markResolved={this.markResolved}/>
                     </Tab>
                     
                     <Tab eventKey="inProgress" title={`In progress (${this.state.dataInProgress.length})`}>
-                        <Issue className="tab-issue card" data={this.state.dataInProgress}/>
+                        <Issue className="tab-issue card" data={this.state.dataInProgress} markResolved={this.markResolved}/>
                     </Tab>
                     <Tab className = "tab-issue" eventKey="resolved" title={`Resolved (${this.state.dataResolved.length})`}>
-                        <Issue data={this.state.dataResolved}/>
+                        <Issue data={this.state.dataResolved}  markResolved={this.markResolved} />
                     </Tab>
                 </Tabs>
             </div>

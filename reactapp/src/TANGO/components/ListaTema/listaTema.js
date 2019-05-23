@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import Teme from '../Tema';
 import DugmeZaSort from '../DugmeZaSort';
 import LISTA_PROBNA from './LISTA';
- 
+
+
 import {
   withRouter
 } from 'react-router-dom'
@@ -49,6 +50,8 @@ class Lista extends Component{
     }
       return(
         <div>
+          <div>< button><a href="/Tango/NovaTema">Dodaj novu temu</a></button>
+ </div>
           <div>
             <DugmeZaSort 
               teme={this.state.teme} 

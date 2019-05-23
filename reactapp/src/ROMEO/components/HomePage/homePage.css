@@ -27,4 +27,11 @@
 .menu input[type="button"]{
     margin-top: 0;
     margin-left: 85%;
+    background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 12px;
+}
+.menu input[type="button"]:hover{
+    background-color: #e7e7e7;
 }

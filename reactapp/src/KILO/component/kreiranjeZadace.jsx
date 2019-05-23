@@ -24,7 +24,7 @@ class KreiranjeZadace extends Component {
       naziv: "",
       datum: "2019-12-01",
       vrijeme: "23:59",
-      postavka: null,
+      postavka: [null],
       brojZadataka: "1",
       sviTipoviIsti: false,
       listaTipova: [[false, false, false, false, false]],
@@ -41,28 +41,20 @@ class KreiranjeZadace extends Component {
 
   handleChangeProps = props => {
     if (props.mainState) {
-      console.log("AAA:", props.mainState);
       this.setState({
         ...this.state,
         ...props.mainState
       });
     }
   };
-  /*
-  setAllState = () => {
-    if(this.props === null) { // u pitanju je kreiranje i state su defaultni
-      this.setState = () => {
-        this.state.idPredmeta = 1;
-      }
-    }
-    else { // u pitanju je azuriranje i state treba popuniti podacima iz propsa koji sadrzi sve podatke
-      
-    }
-    
-  }
-  */
 
-  componentWillMount = () => {};
+  onChangePostavka = e => { // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
+    if(e) {
+      this.setState({
+        postavka : e.target.files
+      })
+    }
+  }
 
   componentDidMount = () => {
     document.getElementById("kreiranje").style.display = "block";
@@ -190,13 +182,20 @@ class KreiranjeZadace extends Component {
         break;
       }
       case "addZadaca": {
-        
-        if(this.state.radnja === "Kreiranje") {  
-         /* if (this.props.confirmActionHandler) {
-            return this.props.confirmActionHandler(this.state);
-          }*/
+        const fData = new FormData();
+
+        if(this.state.postavka[0] !== null) {
+          var file = this.state.postavka[0];
+          if(file) {
+            fData.append('file', new Blob([file], {type: file.type}));
+            fData.append('imeFajlaPostavke', file.name);
+          }
+        }
+        fData.append('state', JSON.stringify(this.state));
+
+        if(this.state.radnja === "Kreiranje") { 
           
-          axios.post("http://localhost:31911/addZadaca", this.state).then(res => {
+          axios.post("http://localhost:31911/addZadaca", fData).then(res => {
             if (res.status === 200) {
               this.setState({ uspjehKreiranja: true });
             } else if (res.status === 201) {
@@ -204,12 +203,11 @@ class KreiranjeZadace extends Component {
             } else {
               this.setState({ neuspjehKreiranja: true });
             }
-          });
+          }).catch(() => this.setState({ neuspjehKreiranja: true }));
         }
         
         else if(this.state.radnja==="Azuriranje") {
-          
-          axios.put(`http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`, this.state).then(res => {
+          axios.put(`http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`, fData).then(res => {
             if (res.status === 200) {
               this.setState({ uspjehKreiranja: true });
             } else if (res.status === 201) {
@@ -218,7 +216,6 @@ class KreiranjeZadace extends Component {
               this.setState({ neuspjehKreiranja: true });
             }
           });
-         console.log('iddd:  '+this.props.mainState.idZadaca);
         }  
       }
       default: {
@@ -379,6 +376,7 @@ class KreiranjeZadace extends Component {
           <OsnovniPodaci
             title={this.props.title}
             onChange={this.handleChange}
+            onChangePostavka={this.onChangePostavka}
             podaci={this}
           />
           <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
@@ -408,7 +406,6 @@ class KreiranjeZadace extends Component {
             id="addZadaca"
             name="addZadaca"
             onClick={this.handleClick}
-           
           >
             Potvrdi
           </Button>

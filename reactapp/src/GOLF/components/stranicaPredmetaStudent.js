@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { tsThisType } from '@babel/types';
+import OPredmetuStudent from './oPredmetuStudent'
+import LiteraturaStudent from './literaturaStudent'
+import ObjavaStudent from './objavaStudent'
+import Sedmica from './sedmica'
+
 class stranicaPredmetaStudent extends Component {
 
     state = {
@@ -8,14 +12,17 @@ class stranicaPredmetaStudent extends Component {
       idKorisnika: 0,
       dodano: 0,
       text: "",
-      naziv: ""
+      naziv: "",
+      sedmice: []
     }
   
     componentDidMount(){
-      console.log(this.props)
+      axios.get(`http://localhost:31907/r1/semestar/${this.props.match.params.idPredmeta}`).then(res4 =>{
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.match.params.idPredmeta}`).then(res =>{
             const naziv = res.data.naziv;
-            axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
+            axios.get(`http://localhost:31907/r1/sedmice/${res4.data.semestar}`).then(res3 => {
+              const sedmicee = res3.data.sedmice
+              axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
                 const odg = res2.data;
                 let tekst = "";
                 if(res2.data.veza == '1'){
@@ -29,10 +36,15 @@ class stranicaPredmetaStudent extends Component {
                   idPredmeta: this.props.match.params.idPredmeta,
                   idKorisnika:this.props.match.params.idKorisnika,
                   dodano: res2.data.veza,
-                  text: tekst
+                  text: tekst,
+                  sedmice: sedmicee
                 })
+                
+              })
             })
+            
         })
+      })
     }
 
     klikNaDugme = () => {
@@ -76,6 +88,10 @@ class stranicaPredmetaStudent extends Component {
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
+              <OPredmetuStudent opis='sdsf' fileovi={['prvi.pdf','drugi.pdf','treci.pdf']}></OPredmetuStudent>
+              <LiteraturaStudent/>
+              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}></Sedmica>)}
+
             </div>
         )
     }

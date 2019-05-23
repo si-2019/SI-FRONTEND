@@ -51,14 +51,14 @@ class IssueList extends React.Component {
         res.data.inProgress.forEach( async (issue) => {
             let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dip = issue.messages;
-            dIP.push({id: cip.data.id, title: cip.data.naziv, messages: dip});
+            dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
             let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dr = issue.messages;
-            dR.push({id: cr.data.id, title: cr.data.naziv, messages: dr});
+            dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
         });
 
         this.setStateAsync({dataNew: dN});

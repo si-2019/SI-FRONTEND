@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import axios from 'axios';
 class TabelaUnosa extends Component {
     state = {
         ispiti: [
@@ -24,9 +24,19 @@ class TabelaUnosa extends Component {
             }
         ]
     }
+    constructor(props){
+        super(props);
+    }
+    componentDidMount() {
+        axios.get('//')
+            .then(res => {
+                ispiti=res.data;
+                this.setstate ({ispiti});
+                }
+            )
+    }
     render() {
         return(
-            
             <Form>
                 <Form.Row>
                      <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 18, marginTop:"30px"}}> Unos bodova za ispit  </Form.Label>  
@@ -37,10 +47,13 @@ class TabelaUnosa extends Component {
                             <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                 Odaberite ispit
                             </Dropdown.Toggle>
+                            <Dropdown.Item> ispiti.thisstate() </Dropdown.Item>
+                            <Dropdown.Item> <ispiti.thisstate() </Dropdown.Item>
+                            <Dropdown.Item> </Dropdown.Item>
+
                         </Dropdown>
                     </Col>
                 </Form.Row>
-            
             <Form style={{ border:'2px solid', height:"300px",marginTop:"20px", paddingLeft: '80px'}}>
                 <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>

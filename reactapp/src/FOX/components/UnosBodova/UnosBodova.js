@@ -25,6 +25,7 @@ state = {
             }
         ]
 }
+
 render() {
     return(
         <div>
@@ -40,8 +41,8 @@ render() {
                     </Col>
                </Form.Row>
                <Form.Row>
-                    <Col md={{ span: 8, offset: 6}}>
-                    <Nav.Link href= "/fox/Ispiti"> Nazad na listu ispita </Nav.Link>
+                    <Col md={{ span: 8, offset: 5}}>
+                    <Nav.Link href= "/fox/Ispiti">     Nazad na listu ispita </Nav.Link>
                     <Footer/>
                     </Col>
                     

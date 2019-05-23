@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ListaPredmeta from '../ListaPredmeta/ListaPredmeta';
+import DrugiModuli from '../DrugiModuli/DrugiModuli';
 
 class Predmet extends Component {
   state = {postotakBodovaZadace:33, postotakBodovaIspiti:70}
@@ -64,6 +66,7 @@ class Predmet extends Component {
                   <div className="konacnaOcjena" style={{ width : 300, height: 'fit-content', padding:3 }}>
                     <b>Konačna ocjena: </b> 7
                   </div>
+                  <div className="row"><div><DrugiModuli/></div></div>
                 </div>
       
          

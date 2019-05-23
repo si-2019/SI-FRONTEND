@@ -50,7 +50,7 @@ class TabelaUnosa extends Component {
                     </select>
                     </Col>
                 </Form.Row>
-            <Form style={{ border:'2px solid', height:"300px",marginTop:"20px", paddingLeft: '80px'}}>
+            <Form style={{ border:'2px solid', height:"300px",marginTop:"30px", paddingLeft: '80px'}}>
                 <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />

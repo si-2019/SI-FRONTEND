@@ -11,7 +11,7 @@ import axios from 'axios';
 // this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
     state = {
-        ispiti: [
+        ispit: [
             {
              prvirok1: "I parcijalni",
              datum1:   "10.4.2019.",
@@ -25,18 +25,11 @@ class TabelaUnosa extends Component {
              datum: "1.9.2019"
             }
         ]
-    }
+}
     constructor(props){
         super(props);
     }
-    componentDidMount() {
-        axios.get('//')
-            .then(res => {
-               // ispiti=res.data;
-                //this.setstate ({ispiti});
-                }
-            )
-    }
+ 
     render() {
         return(
             <Form>
@@ -50,7 +43,7 @@ class TabelaUnosa extends Component {
                     title="Odaberite ispit"
                     id="dropdown-menu-align-right"
                     >
-                    <Dropdown.Item eventKey="1"> I parcijalni, 10.4.2019.</Dropdown.Item>
+                    <Dropdown.Item eventKey="1"> I parcijalni, 20.4.2019 </Dropdown.Item>
                     <Dropdown.Item eventKey="2">II parcijalni, 20.6.2019.</Dropdown.Item>
                     <Dropdown.Item eventKey="3">Popravni I parcijalni, 1.6.2019.</Dropdown.Item>
                     <Dropdown.Item eventKey="4">Popravni II parcijalni, 1.6.2019.</Dropdown.Item>
@@ -60,7 +53,9 @@ class TabelaUnosa extends Component {
                     </DropdownButton>
                     </Col>
                 </Form.Row>
+
             <Form style={{ border:'2px solid', height:"300px",marginTop:"20px", paddingLeft: '80px'}}>
+               
                 <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />

@@ -6,7 +6,9 @@ import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from 'axios';
+// this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
     state = {
         ispiti: [
@@ -30,8 +32,8 @@ class TabelaUnosa extends Component {
     componentDidMount() {
         axios.get('//')
             .then(res => {
-                ispiti=res.data;
-                this.setstate ({ispiti});
+               // ispiti=res.data;
+                //this.setstate ({ispiti});
                 }
             )
     }
@@ -43,12 +45,24 @@ class TabelaUnosa extends Component {
                 </Form.Row>
                 <Form.Row>
                     <Col md= {{ span: 4, offset: 4}}>
+                    <DropdownButton
+                    alignRight
+                    title="Dropdown right"
+                    id="dropdown-menu-align-right"
+                    >
+                    <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                    </DropdownButton>;
                         <Dropdown> 
                             <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                 Odaberite ispit
                             </Dropdown.Toggle>
-                            <Dropdown.Item> ispiti.thisstate() </Dropdown.Item>
-                            <Dropdown.Item> <ispiti.thisstate() </Dropdown.Item>
+                            <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                            <Dropdown.Item visible="false">  I parcijalni, 20.4.2019. </Dropdown.Item>
+                            <Dropdown.Item>  II parcijalni, 20.6.2019 </Dropdown.Item>
                             <Dropdown.Item> </Dropdown.Item>
 
                         </Dropdown>

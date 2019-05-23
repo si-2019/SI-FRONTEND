@@ -34,10 +34,10 @@ class TabelaUnosa extends Component {
                 <Form.Row>
                     <Col md= {{ span: 4, offset: 4}}>
                         <Dropdown> 
-                                <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                                    Odaberite ispit
-                                </Dropdown.Toggle>
-                            </Dropdown>
+                            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                Odaberite ispit
+                            </Dropdown.Toggle>
+                        </Dropdown>
                     </Col>
                 </Form.Row>
             
@@ -47,7 +47,6 @@ class TabelaUnosa extends Component {
                      <input type="text" name="name" />
                     <Button style= {{paddingLeft: '10px', color: 'success'}}> Pretrazi </Button>   
                 </Form.Row>
-               
                 <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />

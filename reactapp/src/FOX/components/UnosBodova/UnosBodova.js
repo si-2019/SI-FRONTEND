@@ -14,7 +14,6 @@ render() {
         <div>
             <Header isPocetna={false}/>
           <Form>
-
               <Form.Row>
                   <Col md={{ span: 5, offset: 4}}>
                    </Col>

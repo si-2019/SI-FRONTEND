@@ -13,7 +13,9 @@ class stranicaPredmetaStudent extends Component {
       dodano: 0,
       text: "",
       naziv: "",
-      sedmice: []
+      sedmice: [],
+      literatura: [],
+      oPredmetu: []
     }
   
     componentDidMount(){
@@ -23,26 +25,30 @@ class stranicaPredmetaStudent extends Component {
             axios.get(`http://localhost:31907/r1/sedmice/${res4.data.semestar}`).then(res3 => {
               const sedmicee = res3.data.sedmice
               axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
-                const odg = res2.data;
-                let tekst = "";
-                if(res2.data.veza == '1'){
-                  tekst='Ukloni iz mojih predmeta'
-                }
-                else{
-                  tekst='Dodaj u moje predmete'
-                }
-                this.setState({
-                  naziv: naziv,
-                  idPredmeta: this.props.match.params.idPredmeta,
-                  idKorisnika:this.props.match.params.idKorisnika,
-                  dodano: res2.data.veza,
-                  text: tekst,
-                  sedmice: sedmicee
+                axios.get(`http://localhost:31907/r3/dajLiteraturu/${this.props.match.params.idPredmeta}`).then(res4 =>{
+                  axios.get(`http://localhost:31907/r3/dajOPredmetu/${this.props.match.params.idPredmeta}`).then(res5 =>{
+                    const odg = res2.data;
+                    let tekst = "";
+                    if(res2.data.veza == '1'){
+                      tekst='Ukloni iz mojih predmeta'
+                    }
+                    else{
+                      tekst='Dodaj u moje predmete'
+                    }
+                    this.setState({
+                      naziv: naziv,
+                      idPredmeta: this.props.match.params.idPredmeta,
+                      idKorisnika:this.props.match.params.idKorisnika,
+                      dodano: res2.data.veza,
+                      text: tekst,
+                      sedmice: sedmicee,
+                      literatura: res4.data.file,
+                      oPredmetu: res5.data.file
+                    })
+                  })
                 })
-                
               })
-            })
-            
+            })  
         })
       })
     }
@@ -72,6 +78,8 @@ class stranicaPredmetaStudent extends Component {
             }
           })
         }
+
+        
     }
 
 
@@ -88,8 +96,8 @@ class stranicaPredmetaStudent extends Component {
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
-              <OPredmetuStudent opis='sdsf' fileovi={['prvi.pdf','drugi.pdf','treci.pdf']}></OPredmetuStudent>
-              <LiteraturaStudent/>
+              <OPredmetuStudent predmet={this.state.oPredmetu}></OPredmetuStudent>
+              <LiteraturaStudent nesto={this.state.literatura} opis='hahu'></LiteraturaStudent>
               {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}></Sedmica>)}
 
             </div>

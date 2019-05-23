@@ -20,14 +20,14 @@ render() {
                     </Col>
                </Form.Row>
                <Form.Row>
-                   <Col md= {{span: 8, offset: 6}}>
-                        <Nav.Link href="/fox">Nazad na pocetnu </Nav.Link>
-                   </Col>
+                    <Col md={{ span: 8, offset: 6}}>
+                    <Nav.Link href= "/fox/Ispiti"> Nazad na listu ispita </Nav.Link>
+                    </Col>
                 </Form.Row>
           </Form>
           </div>
-     );
- }
+        );
+    }
 }
 
 export default UnosBodova;

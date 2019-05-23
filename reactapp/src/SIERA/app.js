@@ -4,10 +4,12 @@ import KontaktPod from "./kontaktPod";
 import Stranice from "./stranice";
 import Fotografija from "./fotografija";
 import LicniPod from "./licniPod.jsx";
+import Profil from "./ProfilStudenta";
 import axios from "axios";
 import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
+import PrikaziStatus from "./PrikaziStatus.jsx";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
@@ -58,11 +60,13 @@ class App extends Component {
                   Završni rad
                 </a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="/Siera/ispiti">
                   Ispiti
                 </a>
               </li>
+
             </ul>
           </div>
         </nav>
@@ -109,15 +113,7 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-            )}
-          />
-          <Route
-            exact
-            path="/Siera/zavrsni-rad"
-            render={() => (
-              <div class="container-fluid">
-                <DropDownZavrsni />
-              </div>
+
             )}
           />
           <Route
@@ -129,7 +125,18 @@ class App extends Component {
               </div>
             )}
           />
+
+          <Route exact path="/Siera/zavrsni-rad" render={() =>
+            <div class="container-fluid">
+              <DropDownZavrsni />
+              <PrikaziStatus />
+            </div>
+
+          } />
+          <Route exact path="/Siera/profil/:idStudenta" component={Profil} />
+
         </BrowserRouter>
+
       </div>
     );
   }

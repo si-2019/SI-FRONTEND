@@ -25,7 +25,7 @@ class OcjenjivanjeJednaZadaca extends Component {
                         <thead>
                           <tr className="bg-primary text-light">
                             <th>INFO</th>
-                            {this.props.podaci.state.zadaciZadace.map((zadatak, indeks) => (
+                            {this.props.podaci.state.zadacaState.zadaciZadace.map((zadatak, indeks) => (
                               <th key={zadatak + indeks}>{zadatak}</th>
                             ))}
                             <th>Ukupan broj bodova</th>
@@ -40,15 +40,15 @@ class OcjenjivanjeJednaZadaca extends Component {
                            
                            {this.props.podaci.state.ostvareniMoguci.map((ostvareniBodovi, indeks2) => ( 
                             <th key={ostvareniBodovi + indeks2}>{ostvareniBodovi}
-                            {this.props.podaci.state.pregledana == false && <Icon type="indicator" name="attachment" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
-                            {this.props.podaci.state.pregledana == true && <Icon type="indicator" name="ok" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
+                            {this.props.podaci.state.zadacaState.pregledanZadatak[indeks2] == false && <Icon type="indicator" name="attachment" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
+                            {this.props.podaci.state.zadacaState.pregledanZadatak[indeks2] == true && <Icon type="indicator" name="ok" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
                             </th>
                            ))}
                           
                            <th>{this.props.podaci.state.sumaOsvojeni}</th>
                            <th>{this.props.podaci.state.sumaMoguci}</th>
-                           <th>{<Icon type="indicator" name="save" className=" ml-3"/>}</th>
-                           <th>{this.props.podaci.state.rokZaPredaju}</th>
+                           <th>{this.props.podaci.state.zadacaState.postavkaZadace}{<Icon type="indicator" name="save" className=" ml-3"/>}</th>
+                           <th>{this.props.podaci.state.zadacaState.rokZaPredaju}</th>
                           </tr>
                         </tbody>
                         

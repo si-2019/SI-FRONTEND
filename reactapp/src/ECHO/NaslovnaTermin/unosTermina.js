@@ -1,11 +1,13 @@
-﻿import React, { Component } from "react";
+import React, { Component } from "react";
 import { Alert } from "reactstrap";
+import Select from "react-select";
 
 class UnosTermina extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dan: "Pon",
+      prikazDana: "Ponedjeljak",
       vrijeme: "08:00",
       brCasova: 1,
       alertVisible: false,
@@ -19,10 +21,9 @@ class UnosTermina extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSelect(event) {
-    let x = event.target.value;
-    x = x.substr(0, 3);
-    this.setState({ dan: x });
+  handleSelect(element) {
+    this.setState({ dan: element.value });
+    this.setState({ prikazDana: element });
   }
 
   handleVrijemeInput(event) {
@@ -96,18 +97,19 @@ class UnosTermina extends Component {
             <h4 className="col">Dodaj termin</h4>
             <div className="col">
               <label>Dan u sedmici</label>
-              <select
-                className="form-control m-2"
+              <Select
+                className="form-group m-2"
                 id="listaDana"
-                value={this.state.dan}
+                value={this.state.prikazDana}
                 onChange={this.handleSelect}
-              >
-                <option>Ponedjeljak</option>
-                <option>Utorak</option>
-                <option>Srijeda</option>
-                <option>Cetvrtak</option>
-                <option>Petak</option>
-              </select>
+                options={[
+                  { value: "Pon", label: "Ponedjeljak" },
+                  { value: "Uto", label: "Utorak" },
+                  { value: "Sri", label: "Srijeda" },
+                  { value: "Cet", label: "Cetvrtak" },
+                  { value: "Pet", label: "Petak" }
+                ]}
+              />
             </div>
             <div className="col">
               <label>Vrijeme</label>

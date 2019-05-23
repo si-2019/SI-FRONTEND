@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import "./bootstrap.min.css"
@@ -183,11 +182,14 @@ class LicniPod extends Component {
                                 </>
                     }
                     noviInput={this.state.noviInput}
+                    btnPotvrdi = "Spasi promjene"
+
                 />
             </>
         );
     }
 }
+
 
 
 export default LicniPod;

@@ -29,11 +29,13 @@ class Potvrda extends React.Component {
     let obj = {};
     if (successful == "true") {
       obj = (
+
         <div >
           <PopUp
             class="alert alert-dismissible alert-success"
             style={{
               width: "100%"
+
             }}
             boldiraniTekst="Ok!"
             ostaliTekst={msg}
@@ -48,10 +50,12 @@ class Potvrda extends React.Component {
             class="alert alert-dismissible alert-danger"
             style={{
                 width: "100%"
+
             }}
             boldiraniTekst="Greška!"
             ostaliTekst={msg}
             show={this.state.prikazi}
+
           />
         </div>
       );

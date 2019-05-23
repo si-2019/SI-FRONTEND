@@ -3,6 +3,8 @@ import url from '../url'
 import './style.css'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import SingleChoice from './SingleChoice'
+import MultipleChoice from './MultipleChoice'
 
 class App extends Component {
   constructor(props) {
@@ -12,12 +14,23 @@ class App extends Component {
       vrstaAnkete: 'javna anketa',
       nazivAnkete: '',
       opisAnkete: '',
-      datumIstekaAnkete: new Date()
+      datumIstekaAnkete: new Date(),
+      pitanja: [],
+      vrstePitanja: [],
+      odabranaVrstaPitanja: 'single-choice'
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.kreirajAnketu = this.kreirajAnketu.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.dodajPitanje = this.dodajPitanje.bind(this);
+  }
+
+  azurirajPitanje = (state, i) => {
+    this.setState((st) => {
+      st.pitanja[i] = state
+      return st
+    })
   }
 
   handleRadioChange(event) {
@@ -36,6 +49,13 @@ class App extends Component {
     });
   }
 
+  dodajPitanje() {
+    this.setState({
+      pitanja: this.state.pitanja.concat([1]),
+      vrstePitanja: this.state.vrstePitanja.concat([this.state.odabranaVrstaPitanja])
+    })
+  }
+
   render() {
     return ( 
       <div style={{padding: '25px', backgroundColor: 'white'}}>
@@ -47,22 +67,24 @@ class App extends Component {
         </div>
         <hr/>
         <div>
-          <form id="forma">
+          <form>
             <h5>Naziv ankete:</h5>
             <div className="row">
               <div className="col-4">
-                <input type="text" className="form-control-plaintext inputText" name="nazivAnkete" onChange={this.handleInputChange}/>
+                <input type="text" className="form-control inputText" name="nazivAnkete" onChange={this.handleInputChange}/>
               </div>
             </div>
+            <br/>
             <h5>Opis ankete:</h5>
             <div className="row">
               <div className="col-4">
-                <input type="text" className="form-control-plaintext inputText" name="opisAnkete" onChange={this.handleInputChange}/>
+                <input type="text" className="form-control inputText" name="opisAnkete" onChange={this.handleInputChange}/>
               </div>
             </div>
+            <br />
             <h5>Datum isteka ankete:</h5>
             <div className="row">
-              <div className="col-4">
+              <div className="col-12">
                 <DatePicker
                             onChange={this.handleDateChange} 
                             selected={this.state.datumIstekaAnkete} 
@@ -72,6 +94,7 @@ class App extends Component {
                             />
               </div>
             </div>
+            <br/>
             <h5>Odaberite vrstu ankete:</h5>
             <div className="custom-control custom-radio">
               <input type="radio" id="customRadio1" name="vrstaAnketeRadio" value="javna anketa" className="custom-control-input" onChange={this.handleRadioChange} defaultChecked/>
@@ -106,6 +129,32 @@ class App extends Component {
               </div>
               ) 
             }
+            <h4>Pitanja:</h4>
+            {this.state.pitanja.map((pitanje, i) => {
+              switch(this.state.vrstePitanja[i]) {
+                case 'single-choice':
+                  return <SingleChoice azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
+                case 'multiple-choice':
+                  return <MultipleChoice azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
+              }
+            })}
+            <div class="row">
+              
+              <div class="form-group col-4 text-right">
+               <select class="form-control" id="exampleSelect1" name="odabranaVrstaPitanja" onChange={this.handleInputChange}>
+                  <option>single-choice</option>
+                  <option>multiple-choice</option>
+                  <option>textbox</option>
+                  <option>star-rating</option>
+                </select>
+              </div>
+              <div className="col-6 text-left">
+                <button className="btn btn-secondary" onClick={this.dodajPitanje} type="button">
+                  Dodaj pitanje
+                </button>
+              </div>
+            </div>
+            <hr/>
             <div className="row justify-content-center">
               <button className="btn btn-primary" onClick={this.kreirajAnketu}>
                 Kreiraj anketu
@@ -127,7 +176,8 @@ class App extends Component {
           tipAnkete: this.state.vrstaAnkete,
           naziv: this.state.nazivAnkete,
           opisAnkete: this.state.opisAnkete,
-          datumIstekaAnkete: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' ')
+          datumIstekaAnkete: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' '),
+          pitanja: this.state.pitanja
         })
       }).then((res, err) => {
         this.setState({

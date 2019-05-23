@@ -1,18 +1,31 @@
 import React, {Component} from 'react';
-import DugmeZaObjavu from '../DugmeZaObjavu';
 
 class Komentar extends Component {
     render() {
+        const {idComment,idUser, idTheme,text,timeCreated}=this.props.komentar;
+         return (
+                <div className='shadow-sm p-3 mb-5 bg-light rounded'>
+                    <p>{text}</p>
+                </div> 
+            );       
+        }
+    }   
 
-        return (
-            <div class="form-group">
-                <label for="tekstKomentara">Komentar</label>
-                <textarea class="form-control col-md-4" id="tekstKomentara" rows="3" ></textarea>
-                <DugmeZaObjavu/>
-          </div>
-         
+class Komentari extends Component {
+    render(){
+        console.log(this.props.komentari);
+        return(
+          this.props.komentari.map(KOMENTAR => {
+            return(
+            <div>
+              <Komentar key={KOMENTAR.idComment} komentar={KOMENTAR}/>
+            </div>
+            );
+          })
         );
-    }
+      }
 }
+ 
+export default Komentari;
 
-export default Komentar;
+

@@ -34,11 +34,6 @@ render() {
 
               <Form.Row>
                   <Col md={{ span: 5, offset: 4}}>
-                    <Dropdown> 
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Odaberite ispit
-                        </Dropdown.Toggle>
-                    </Dropdown>
                    </Col>
                </Form.Row>
                <Form.Row>

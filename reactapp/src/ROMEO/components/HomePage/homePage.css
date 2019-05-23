@@ -9,7 +9,12 @@
    padding-top: 3%;
    padding-bottom: 3%;
 }
-
+.menu{
+    width: 100%;
+    padding-bottom: 50%;
+    padding-top: 2%;
+    background-color: lightgrey;
+}
 .footer {
     left: 0;
     width: 100%;
@@ -18,12 +23,7 @@
     text-align: center;
    margin: 0 auto;
 }
-.menu{
-    width: 100%;
-    padding-bottom: 50%;
-    padding-top: 2%;
-    background-color: lightgrey;
-}
+
 .menu input[type="button"]{
     margin-top: 0;
     margin-left: 85%;

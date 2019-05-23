@@ -17,7 +17,7 @@ class Komentari extends Component {
         return(
           this.props.komentari.map(KOMENTAR => {
             return(
-            <div className='komentar'>
+            <div>
               <Komentar key={KOMENTAR.idComment} komentar={KOMENTAR}/>
             </div>
             );

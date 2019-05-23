@@ -67,6 +67,13 @@
   
 }
 
+#formica {
+  margin-top: 12px;
+  margin-left: 16px;
+  margin-right: 16 px;
+  margin-bottom: 1rem;
+}
+
 #right {
   width: 80%;
   float: right;
@@ -138,6 +145,12 @@
   margin-left: 10px;
 }
 
+#buttonObjavi{
+  margin-left: 10px;
+  float: 'left';
+   margin: 0 ;
+}
+
 #buttonDraft{
   margin-left: 10px;
 }
@@ -207,6 +220,7 @@
 
   #naslovDiv{
     display: inline-block !important;
+    
   }
 
   #noviIssue{
@@ -217,7 +231,9 @@
   #formNoviIssue{
     height: 100%;
   }
-
-  
-
+  #buttonZatvori{
+    margin-left: 85px ;
+    width: 50 px;
+    
+  }
 }

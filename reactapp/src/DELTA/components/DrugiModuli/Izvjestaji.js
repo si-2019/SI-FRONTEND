@@ -4,7 +4,7 @@ class Izvjestaj extends Component {
     render () {
 
         return(
-            <button className="izvjestajButton" type="button" class="btn btn-info"> Izvjestaj </button>
+            <a class="btn btn-outline-info m-2" href="/Lima/izvjestaji" role="button">Izvjestaji</a>
 
         );
     }

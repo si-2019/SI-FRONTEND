@@ -4,7 +4,7 @@ class Ankete extends Component {
     render () {
 
         return(
-            <button className="anketeButton" type="button" class="btn btn-info"> Ankete </button>
+            <a class="btn btn-outline-info m-2" href="/Hotel" role="button">Ankete</a>
 
         );
     }

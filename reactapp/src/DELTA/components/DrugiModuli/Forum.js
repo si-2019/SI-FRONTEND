@@ -4,7 +4,7 @@ class Forum extends Component {
     render () {
 
         return(
-            <button className="forumButton" type="button" class="btn btn-info"> Forum </button>
+            <a class="btn btn-outline-info m-2" href="/Tango/Teme" role="button">Forum</a>
 
         );
     }

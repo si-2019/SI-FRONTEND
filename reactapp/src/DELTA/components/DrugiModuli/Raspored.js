@@ -4,7 +4,7 @@ class Raspored extends Component {
     render () {
 
         return(
-            <button className="rasporedButton" type="button" class="btn btn-info"> Raspored </button>
+            <a class="btn btn-outline-info m-2" href="/Uniform" role="button">Raspored</a>
 
         );
     }

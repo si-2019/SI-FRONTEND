@@ -43,7 +43,7 @@ class Predmet extends Component {
                         </div>
                     </div>
                       <div className="col-3">
-                      <button className="zadaceButton" type="button" class="btn btn-primary"> Zadaće </button>
+                      <button className="zadaceButton" type="button" class="btn btn-primary btn-block"> Zadaće </button>
                     </div>
                 </div>
                 <br/>
@@ -58,7 +58,7 @@ class Predmet extends Component {
                     </div>
                   </div>
                   <div className="col-3">
-                    <button className="ispitiButton" type="button" class="btn btn-primary"> Ispiti </button>
+                    <button className="ispitiButton" type="button" class="btn btn-primary btn-block"> Ispiti </button>
                   </div>
                 </div>
                 <br/>

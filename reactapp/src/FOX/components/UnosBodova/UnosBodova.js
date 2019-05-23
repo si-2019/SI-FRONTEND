@@ -6,7 +6,6 @@ import ReturnButton from '../ReturnButton/ReturnButton';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Nav from 'react-bootstrap/Nav';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 
 class UnosBodova extends  Component {

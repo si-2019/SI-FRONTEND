@@ -21,34 +21,36 @@ class TabelaUnosa extends Component {
        const {data} = " ispit, datum";
         this.setState({response:data})
       }
+      renderOptions = () => {
+        if(!this.state.response) return
+        return this.state.response.map(element => 
+          <option>{element.naziv}</option>
+        );
+      }
+      handleChange= (event) => {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    }
+
     
- 
     render() {
         return(
             <Form>
                 <Form.Row>
-                     <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 18, marginTop:"30px"}}> Unos bodova za ispit  </Form.Label>  
+                     <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 25, marginTop:"30px", marginBottom: "30px"}}> Unos bodova za ispit  </Form.Label>  
                 </Form.Row>
                 <Form.Row>
-                    <Col md= {{ span: 4, offset: 4}}>
-                    <DropdownButton
-                    alignRight
-                    title="Odaberite ispit"
-                    id="dropdown-menu-align-right"
-                    >
-                    <Dropdown.Item eventKey="1"> I parcijalni, 20.4.2019 </Dropdown.Item>
-                    <Dropdown.Item eventKey="2">II parcijalni, 20.6.2019.</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">Popravni I parcijalni, 1.6.2019.</Dropdown.Item>
-                    <Dropdown.Item eventKey="4">Popravni II parcijalni, 1.6.2019.</Dropdown.Item>
-                    <Dropdown.Item eventKey="5">Septembraski I parcijalni, 1.9.2019.</Dropdown.Item>
-                    <Dropdown.Item eventKey="6">Septembarski II parcijalni, 1.9.2019.</Dropdown.Item>
-                    <Dropdown.Divider />
-                    </DropdownButton>
+                    <Col md= {{ span: 3, offset: 4}}>
+                    <select style={{placeholder: "Odaberite ispit" }}>
+                        <option>I parcijalni, 20.4.2019.</option>
+                        <option> II parcijalni, 20.6.2019.</option>
+                        <option>Popravni I parcijalni, 1.7.2019.</option>
+                        <option>Popravni II parcijalni, 1.7.2019.</option>
+                        <option>Integralni ispit 1.9.2019.</option>
+                    </select>
                     </Col>
                 </Form.Row>
-
             <Form style={{ border:'2px solid', height:"300px",marginTop:"20px", paddingLeft: '80px'}}>
-               
                 <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />

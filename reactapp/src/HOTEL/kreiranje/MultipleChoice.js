@@ -1,5 +1,4 @@
 import React from 'react'
-import './SingleChoiceStyle.css'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -7,7 +6,7 @@ export default class App extends React.Component {
         this.state = {
             tekstPitanja: '',
             odgovori: ['', ''],
-            vrstaPitanja: 'single-choice'
+            vrstaPitanja: 'multiple-choice'
         }
         this.props.azurirajPitanje(this.state)
         this.handleInputChange = this.handleInputChange.bind(this)
@@ -75,7 +74,7 @@ export default class App extends React.Component {
                     return (
                         <div className="row" style={{margin: "10px"}}>
                             <div className="col-1"></div>
-                            <input id="radioQuestion" type="radio" disabled/>
+                            <input id="radioQuestion" type="checkbox" disabled/>
                             <div class="form-group col-6" >
                                 <textarea placeholder="Unesi tekst odgovora" class="form-control" id="tekstPitanjaTextArea" value={this.state.odgovori[i]} name={`${i}`} rows="1" onChange={this.handleInputChange}></textarea>
                             </div>

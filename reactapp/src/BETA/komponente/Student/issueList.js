@@ -24,7 +24,7 @@ class IssueList extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('http://localhost:31902/issues').then( res => {
+        axios.get('http://localhost:31902/issues/get').then( res => {
             console.log(res);
             this.setState({
                 dataNew: res.data.new,

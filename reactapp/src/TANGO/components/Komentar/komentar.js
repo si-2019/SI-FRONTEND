@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-
-
 class Komentar extends Component {
     render() {
         const {idComment,idUser, idTheme,text,timeCreated}=this.props.komentar;

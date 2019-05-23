@@ -9,7 +9,7 @@ class NoviIssueForma extends React.Component {
         
         this.state = {
             issueText: '',
-            issueTitle: 'Indeksi', //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            issueTitle: '', //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
             allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
             fileWrong: false,
@@ -65,14 +65,21 @@ class NoviIssueForma extends React.Component {
         };
 
         saveAsDraft = () => {
+            
+            if(this.state.issueTitle.length == 0)
+                alert("Please, select a title!");
+                
+            else{
 
-            const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
+                const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
 
-            axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
-            .then((result) => {
-                alert(result.data)
-            });
-            this.props.onCloseModalAndSaveAsDraft();
+                axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+                .then((result) => {
+                    alert(result.data)
+                });
+                this.props.onCloseModalAndSaveAsDraft(); 
+            
+            }
             
         }
 

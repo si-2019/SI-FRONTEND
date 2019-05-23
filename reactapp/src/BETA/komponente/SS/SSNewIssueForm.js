@@ -10,7 +10,7 @@ class NoviIssueForma extends React.Component {
         super(props);
         
         this.state = {
-            issueTitle: 'Indeksi',
+            issueTitle: '',
             issueText: '',
             fileTooBig: false,
             openAddNewCategoryModal: false,
@@ -83,14 +83,21 @@ class NoviIssueForma extends React.Component {
         };
 
         saveAsDraft = () => {
+            
+            if(this.state.issueTitle.length == 0)
+                alert("Please, select a title!");
 
-            const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
+            else{
 
-            axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
-            .then((result) => {
-                alert(result.data)
-            });
-            this.props.onCloseModalAndSaveAsDraft(); // ----> TREBA STAVITI OVU FUNKCIJU U RODITELJA!!!!
+                const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
+
+                axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+                .then((result) => {
+                    alert(result.data)
+                });
+                this.props.onCloseModalAndSaveAsDraft(); // ----> TREBA STAVITI OVU FUNKCIJU U RODITELJA!!!!
+            
+            }
             
         }
 

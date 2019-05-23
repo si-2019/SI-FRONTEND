@@ -16,12 +16,12 @@ import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
+import IspitiTabela from "./ispitiTabela";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
           <a class="navbar-brand" href="/Siera">
             Početna
@@ -60,7 +60,13 @@ class App extends Component {
                   Završni rad
                 </a>
               </li>
-              
+
+              <li class="nav-item">
+                <a class="nav-link" href="/Siera/ispiti">
+                  Ispiti
+                </a>
+              </li>
+
             </ul>
           </div>
         </nav>
@@ -86,7 +92,6 @@ class App extends Component {
             render={() => (
               <div class="container-fluid">
                 <div class="row">
-
                   <div className="col-sm">
                     <KontaktPod />
                   </div>
@@ -105,11 +110,22 @@ class App extends Component {
                 <div class="row">
                   <div className="col-sm">
                     <UgovorOUcenju />
-
                   </div>
                 </div>
               </div>
-          )} />
+
+            )}
+          />
+          <Route
+            exact
+            path="/Siera/ispiti"
+            render={() => (
+              <div class="container-fluid">
+                <IspitiTabela />
+              </div>
+            )}
+          />
+
           <Route exact path="/Siera/zavrsni-rad" render={() =>
             <div class="container-fluid">
               <DropDownZavrsni />
@@ -118,6 +134,7 @@ class App extends Component {
 
           } />
           <Route exact path="/Siera/profil/:idStudenta" component={Profil} />
+
         </BrowserRouter>
 
       </div>

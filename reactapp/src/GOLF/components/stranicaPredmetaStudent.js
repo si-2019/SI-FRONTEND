@@ -79,10 +79,12 @@ class stranicaPredmetaStudent extends Component {
           })
         }
 
-        
+        axios.get(`http://localhost:31907/r3/dajObjave/${this.props.match.params.idPredmeta}`).then(res =>{
+
+        })
     }
 
-
+   
 
 
     render(){
@@ -97,7 +99,7 @@ class stranicaPredmetaStudent extends Component {
                 </div>
               </div>
               <OPredmetuStudent predmet={this.state.oPredmetu}></OPredmetuStudent>
-              <LiteraturaStudent nesto={this.state.literatura} opis='hahu'></LiteraturaStudent>
+              <LiteraturaStudent nesto={this.state.literatura}></LiteraturaStudent>
               {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}></Sedmica>)}
 
             </div>

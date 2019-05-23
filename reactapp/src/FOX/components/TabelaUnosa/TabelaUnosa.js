@@ -53,9 +53,11 @@ class TabelaUnosa extends Component {
                     <Dropdown.Item eventKey="1"> I parcijalni, 10.4.2019.</Dropdown.Item>
                     <Dropdown.Item eventKey="2">II parcijalni, 20.6.2019.</Dropdown.Item>
                     <Dropdown.Item eventKey="3">Popravni I parcijalni, 1.6.2019.</Dropdown.Item>
+                    <Dropdown.Item eventKey="4">Popravni II parcijalni, 1.6.2019.</Dropdown.Item>
+                    <Dropdown.Item eventKey="5">Septembraski I parcijalni, 1.9.2019.</Dropdown.Item>
+                    <Dropdown.Item eventKey="6">Septembarski II parcijalni, 1.9.2019.</Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                    </DropdownButton>;
+                    </DropdownButton>
                     </Col>
                 </Form.Row>
             <Form style={{ border:'2px solid', height:"300px",marginTop:"20px", paddingLeft: '80px'}}>

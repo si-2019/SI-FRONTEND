@@ -14,7 +14,10 @@ class DodajPredmet extends Component {
                     <Tab eventKey="home" title="Dodaj predmet">
                         <FormaPredmet />
                     </Tab>
-
+                    
+                    <Tab eventKey="profile" title="Dodaj profesora na predmet">
+                        <FormaProfPred />
+                    </Tab>
                   
                 </Tabs>
 </div>

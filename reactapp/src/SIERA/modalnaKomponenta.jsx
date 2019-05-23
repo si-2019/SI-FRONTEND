@@ -30,6 +30,7 @@ class modalnaKomponenta extends Component {
           )
           .then(res => {
             this.setState({ greska: false });
+            window.location.reload();
             console.log(res);
             console.log(res.data);
           });
@@ -42,6 +43,7 @@ class modalnaKomponenta extends Component {
           )
           .then(res => {
             this.setState({ greska: false });
+            window.location.reload();
             console.log(res);
             console.log(res.data);
           });

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Modal from 'react-responsive-modal'; //paket za gotove modale odnosno popup-e
 import './App.css';
-import NoviIssueForma from './komponente/Student/NoviIssueForma.js';
+import NoviIssueForma from './komponente/Student/NoviIssueForma';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js'
+
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class App extends Component {
       open: false,  //open pokazuje da li formu treba prikazati ili ne
       activeContentId: 1
     };
+    this.onOpenModal = this.onOpenModal.bind(this)
+    this.onCloseModal = this.onCloseModal.bind(this)
   }
 
   //Funkcija kojom se otvara forma
@@ -24,11 +27,28 @@ class App extends Component {
     window.confirm('Prekinuti pisanje issuea?') && this.setState({ open: false });
   };
 
+  onCloseModalAndSaveAsDraft = () => {
+    window.confirm('Save issue as draft and close?') && this.setState({ open: false });
+  };
+
   onChangeActiveId = (id) => {
     this.setState({
       activeContentId: id,
     })
   };
+
+  onCloseModal2 = (open) => {
+    this.setState({
+      open: false,
+      id: 1
+    })
+  }
+
+  onChangeActiveId = (id) => {
+    this.setState({
+      activeContentId: id,
+    })
+  }
 
 
   render() {
@@ -58,7 +78,7 @@ class App extends Component {
               <div id = "right">
                 <div 
                     id = "TrackIssuesContent" 
-                    style={{display : this.state.activeContentId === 1 ? 'inherit' : 'none'}}
+                    style={{display : this.state.activeContentId == 1 ? 'inherit' : 'none'}}
                 ><IssueList/>
                 </div>
                 <div 
@@ -91,7 +111,7 @@ class App extends Component {
             onClose={() => {}}
           >
             <div id="overlay">
-              <NoviIssueForma onCloseModal={this.onCloseModal}/>
+              <NoviIssueForma onCloseModal={this.onCloseModal} onCloseModalAndSaveAsDraft={this.onCloseModalAndSaveAsDraft}/>
             </div>
           </Modal>
           

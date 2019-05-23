@@ -13,7 +13,9 @@ class NoviIssueForma extends React.Component {
             allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
             fileWrong: false,
-            fileTooBig: false
+            fileTooBig: false,
+            procitaoStudent: 1,
+            procitalaSS: 0,
         }
     }
 
@@ -61,6 +63,18 @@ class NoviIssueForma extends React.Component {
         }
         //let file_name = event.target.files[0].name;
         };
+
+        saveAsDraft = () => {
+
+            const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
+
+            axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+            .then((result) => {
+                alert(result.data)
+            });
+            this.props.onCloseModalAndSaveAsDraft();
+            
+        }
 
     render() {
         return (
@@ -122,6 +136,8 @@ class NoviIssueForma extends React.Component {
                         <button 
                             id = "buttonDraft"
                             className="btn btn-primary class1"
+                            onClick={this.saveAsDraft}
+                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                         >Save as draft
                         </button>
 

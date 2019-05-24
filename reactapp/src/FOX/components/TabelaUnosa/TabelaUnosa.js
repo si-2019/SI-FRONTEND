@@ -95,18 +95,23 @@ class TabelaUnosa extends Component {
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />
                 <Button onClick={this.handleCli}> Unesi </Button>
-                <Form.Row >
+                </Form.Row>
+                <Form.Row style={{paddingLeft: '50px'}}>
                     <label style={{ visibility: this.state.greska}}>
-                        Uspješan unos.
+                        Uspješan unos
                     </label>
+                </Form.Row>
+                <Form.Row>
                     <label style={{ visibility: this.state.greska}}>
                         Pero Perić, 12345
                     </label>
+                </Form.Row>
+                <Form.Row>
                     <label style={{ visibility: this.state.greska}}>
                         20
                     </label>
                 </Form.Row>
-                </Form.Row>
+            
             </Form>
            </Form>
         );

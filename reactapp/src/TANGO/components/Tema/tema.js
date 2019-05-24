@@ -89,6 +89,7 @@ class Tema extends Component{
     render(){
       return(
         this.props.teme.map(TEMA => {
+          if(TEMA.korisnik != undefined)
           return(
           <div className='tema'>
             <div className='slika_ime'>

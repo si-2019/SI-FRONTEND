@@ -1,8 +1,6 @@
-import React, {Component } from 'react';
-
-import Container from 'react-bootstrap/Container';
+import React, {Component } from 'react
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Button';
+import Row from 'rect-bootstrap/Button';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
@@ -15,7 +13,6 @@ class TabelaUnosa extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
-    
     handleClick() {
         if (this.state.temaId == null) {
            this.setState({

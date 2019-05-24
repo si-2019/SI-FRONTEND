@@ -8,6 +8,7 @@ import TemeZavrsnih from '../UnosTeme/TemeZavrsnih';
 import StranicaPredmeta from '../StranicaPredmeta/StranicaPredmeta';
 import Home from '../Home/Home';
 import Obavijesti from '../../Obavijesti';
+import Ispiti from '../Ispiti/Ispiti';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
         <Route path="/fox/unosOcjene" component={UnosOcjene}/>
         <Route path="/fox/unosTeme" component={TemeZavrsnih}/>
         <Route path="/fox/obavijesti" component={Obavijesti}/>
+        <Route path="/fox/ispiti" component={Ispiti}/>
       </Router>
     );
   }

@@ -17,7 +17,7 @@ class TabelaUnosa extends Component {
             greskaVis: "hidden"
         }
         this.handleClick = this.handleClick.bind(this);
-      ispit: []
+      
     }
 
     handleClick() {
@@ -77,15 +77,20 @@ class TabelaUnosa extends Component {
                <Form.Row style={{paddingLeft: '100px'}}>
                 <label style={{ visibility: this.state.greskaVis}}>
                     Pero Perić, 12345
-                </label>
-
-                    <Button style= {{paddingLeft: '10px', color: 'success'}}> Pretrazi </Button>   
+                </label> 
 
                 </Form.Row>
                 <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />
                 <Button> Unesi </Button>
+                <Form.Row >
+                    <label style={{ visibility: this.state.greskaVis}}>
+                        Uspješan unos.
+                        Pero Perić, 12345
+                             20
+                    </label>
+                </Form.Row>
                 </Form.Row>
             </Form>
            </Form>

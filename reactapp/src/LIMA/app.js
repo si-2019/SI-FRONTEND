@@ -1,26 +1,27 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Route, Link } from "react-router-dom";
+import PotvrdeRouter from './Potvrde/PotvrdeRouter.js';
+import IzvjestajiRouter from './Izvjestaji/IzvjestajiRouter.js';
 
-//US
-import US_23 from "./US_23";
-import I_US_27 from "./I_US_27";
-import US_21 from "./US_21";
-import US_18 from "./US_18";
+function App() {
+  return (
+    <Fragment>
+      <Route path="/Lima/potvrde" component={PotvrdeRouter}/>
+      <Route path="/Lima/izvjestaji" component={IzvjestajiRouter} />
+      <Route exact path="/Lima/" component={Paths} />
+    </Fragment>
+  );
+}
 
-class App extends Component {
-  render() {
-    return (
-      <div className="containter">
-        <h1>LIMA</h1>
-        <BrowserRouter>
-          <Route path="/Lima/US_23" exact component={US_23} />
-          <Route path="/Lima/I_US_27" exact component={I_US_27} />
-          <Route path="/Lima/US_21" exact component={US_21} />
-          <Route path="/Lima/US_18" exact component={US_18} />
-        </BrowserRouter>
-      </div>
-    );
-  }
+function Paths() {
+  return (
+    <ul>
+      <li>
+        <Link to="/Lima/izvjestaji"><div className="btn btn-primary">Izvjestaji</div></Link>
+        <Link to="/Lima/potvrde"><div className="btn btn-primary">Potvrde</div></Link>
+      </li>
+    </ul>
+  );
 }
 
 export default App;

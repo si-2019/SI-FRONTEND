@@ -182,6 +182,8 @@ class LicniPod extends Component {
                                 </>
                     }
                     noviInput={this.state.noviInput}
+                    btnPotvrdi = "Spasi promjene"
+
                 />
             </>
         );

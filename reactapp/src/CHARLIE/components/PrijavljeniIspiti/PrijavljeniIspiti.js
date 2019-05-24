@@ -1,5 +1,6 @@
 import React from "react";
 import Notifikacija from '../SharedComponents/Notifikacija'
+import { Link } from "react-router-dom";
 
 class PrijavljeniIspiti extends React.Component {
   state = { notifikacija: false, notifikacijaPoruka:'', severity:'' };
@@ -44,9 +45,17 @@ class PrijavljeniIspiti extends React.Component {
       <div>
         {this.renderNotification()}
         <h1>Prijavljeni ispiti</h1>
+        <Link
+            type="button"
+            className="btn btn-light"
+            to={`/charlie/prijava-ispita`}
+          >
+            Nazad
+          </Link>
       </div>
     );
   }
 }
 
 export default PrijavljeniIspiti;
+

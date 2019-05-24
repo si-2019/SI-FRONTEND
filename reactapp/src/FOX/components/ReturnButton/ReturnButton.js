@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import Nav from 'react-bootstrap/Nav';
 import {withRouter} from 'react-router-dom';
 
 class ReturnButton extends Component {
   
     render() {
       var currentLocation = this.props.location.pathname;
-      if(currentLocation==="/"){
+      if(currentLocation=="/fox"){
         return (
-          <a disabled href="/">Nazad na početnu</a>
+          <Nav.Link disabled href="/fox">Nazad na početnu</Nav.Link>
         )
       }
       return (
-        <a href="/fox">Nazad na početnu</a>
+        <Nav.Link href="/fox">Nazad na početnu</Nav.Link>
       )
     }
   }

@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import TabelaTeme from './TabelaTeme.js';
 
 class StranicaPredmeta extends Component {
   render() {
@@ -25,7 +26,7 @@ class StranicaPredmeta extends Component {
           <Row>
             <Col></Col>
             <Col>
-              
+              <TabelaTeme />
             </Col>
             <Col></Col>
           </Row>

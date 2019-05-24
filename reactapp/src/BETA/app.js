@@ -4,7 +4,7 @@ import './App.css';
 import NoviIssueForma from './komponente/Student/NoviIssueForma.js';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
-import FAQ from './komponente/Student/FAQ.js'
+import FAQ from './komponente/Student/FAQ.js';
 
 class App extends Component {
   constructor(props) {
@@ -89,6 +89,7 @@ class App extends Component {
             center
             id ="modal"
             onClose={() => {}}
+            showCloseIcon={false}
           >
             <div id="overlay">
               <NoviIssueForma onCloseModal={this.onCloseModal}/>

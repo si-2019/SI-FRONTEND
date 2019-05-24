@@ -7,11 +7,16 @@ import { shallow } from 'enzyme';
 import { exportAllDeclaration } from '@babel/types';
 
 test('renders without crashing', () => {
-  shallow(<SingleChoice />);
+ shallow(<SingleChoice />);
 });
 
 test('dodavanje odgovora', () => {
   const SC = shallow(<SingleChoice/>)
+  shallow(<SingleChoice azurirajPitanje={() => console.log(123)} />);
+});
+
+test('dodavanje odgovora', () => {
+  const SC = shallow(<SingleChoice azurirajPitanje={() => console.log(123)}/>)
   const buttons = SC.find('button')
   const textarea = SC.find('textarea')
   expect(textarea.length).toEqual(3) 

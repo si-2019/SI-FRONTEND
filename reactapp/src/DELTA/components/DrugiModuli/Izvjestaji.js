@@ -4,7 +4,7 @@ class Izvjestaj extends Component {
     render () {
 
         return(
-            <a class="btn btn-outline-info m-2" href="/Lima/izvjestaji" role="button">Izvjestaji</a>
+            <a class="btn btn-outline-info m-2" style={{ width : 125}} href="/Lima/izvjestaji" role="button">Izvjestaji</a>
 
         );
     }

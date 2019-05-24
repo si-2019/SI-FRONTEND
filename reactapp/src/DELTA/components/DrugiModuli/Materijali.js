@@ -13,7 +13,7 @@ class Materijali extends Component {
         return(
             
         
-            <a class="btn btn-outline-info m-2" href="/Golf" role="button">Materijali</a>
+            <a class="btn btn-outline-info m-2 " style={{ width : 125}} href="/Golf" role="button">Materijali</a>
             );
     }
 }

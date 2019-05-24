@@ -2,7 +2,7 @@ import React, { Component } from "react";
 class ListaPredmeta extends Component {
   render() {
     return (
-      <div class="list-group">
+      <div class="list-group" style={{margin:-5}}>
         <a href="#" class="list-group-item list-group-item-action active">
           Softver Inženjering
         </a>

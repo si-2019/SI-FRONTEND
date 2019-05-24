@@ -12,7 +12,7 @@ class Ispiti extends Component {
                 <b>Ispiti</b>
             </div>
             <div className="col-6">
-                <div class="progress" style={{width:250, height:20}} >
+                <div class="progress" style={{width:250, height:25,  margin:5}} >
                   <div class="progress-bar" role="progressbar" style={{width: stringicIspiti}}  aria-valuenow={this.state.postotakBodovaIspiti} aria-valuemin="0" aria-valuemax="100">{this.state.postotakBodovaZadace}%</div>
                 </div>
             </div>

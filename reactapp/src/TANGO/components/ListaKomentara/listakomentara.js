@@ -7,7 +7,7 @@ import Komentar from '../Komentar';
 import ObjaviKomentar from '../ObjaviKomentar';
 //import LISTA_PROBNA from './LISTA';
 
-const themesApi= 'http://localhost:31919/getComments/'; //plus id teme
+const themesApi= 'http://localhost:31919/getReplys/'; //plus id teme
 
 class ListaKomentara extends Component {
     constructor() {
@@ -87,10 +87,11 @@ class ListaKomentara extends Component {
       }
     
       render(){
-      
+        
         if(this.state.ucitavanje){
           return <p>Ucitavanje...</p>
         }
+        alert(this.state.komentari);
           return(
             <div>
               <div>

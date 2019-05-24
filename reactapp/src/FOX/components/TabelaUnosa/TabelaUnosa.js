@@ -9,10 +9,18 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 class TabelaUnosa extends Component {
     constructor(props) {
-        super(props);
+        super();
         this.state = {
-          visibility: false
-        };
+            profesori: [],
+            teme: [],
+            studentId: 1,
+            profId: 1,
+            temaId: null,
+            otvori: false,
+            selProf: null,
+            selTema: null,
+            greskaVis: "hidden"
+        }
     this.toggleVisibility=this.toggleVisibility.bind(this)
     }
     
@@ -43,8 +51,9 @@ class TabelaUnosa extends Component {
                     <Button style= {{paddingLeft: '10px'}}> Pretrazi </Button>   
                 </Form.Row>
                 
-                <Form.Row>
+                <Form.Row style={{paddingLeft: '100px'}}>
                 <label> Pero Perić, 12345 </label>
+                <div style={{ visibility: this.state.greskaVis}}><p class="text-danger">Morate odabrati temu!</p></div>
                 </Form.Row>
 
                 <Form.Row style={{padding: '30px' }}>

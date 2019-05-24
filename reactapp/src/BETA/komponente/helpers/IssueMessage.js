@@ -7,11 +7,18 @@ const IssueMessage = (props) => {
         return (
             <ListGroup.Item key={index}>
                 <ListGroup.Item>
-                    {message.tekst}
+                    <div className="row">
+                        <div className="col-1">id:{message.id}</div>
+                        <div className="col-11">{message.tekst}</div>
+                    </div>
                 </ListGroup.Item>
                 <ListGroup.Item>
+                <div className="row">
+                        <div className="col-1"></div>
+                        <div className="col-11">
                     <Button variant="primary" type='submit'>Reply</Button>
                     <Button variant="primary" type='submit'>Delete</Button>
+                    </div></div>
                 </ListGroup.Item>
             </ListGroup.Item>
 

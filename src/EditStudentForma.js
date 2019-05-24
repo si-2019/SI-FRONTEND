@@ -21,7 +21,7 @@ class Forma extends Component {
 
       componentDidMount(){
         //Promijeniti URL
-        //
+        //http://localhost:31901/api/korisnik/getAllStudents
         axios.get ('https://jsonplaceholder.typicode.com/posts')
         .then(response => {
             console.log("Lista: ", response.data);

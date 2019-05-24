@@ -8,6 +8,26 @@ import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 class TabelaUnosa extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          visibility: false
+        };
+    this.toggleVisibility=this.toggleVisibility.bind(this)
+    }
+    
+    toggleVisibility(){
+      if (this.state.visibility=true){
+        this.setState = ({
+          visibility: false
+        });
+    }
+    else{
+       this.setState = ({
+          visibility: true
+        })
+    }
+}
     render() {
         return(
             
@@ -22,7 +42,11 @@ class TabelaUnosa extends Component {
                      <input type="text" name="name" />
                     <Button style= {{paddingLeft: '10px'}}> Pretrazi </Button>   
                 </Form.Row>
-               
+                
+                <Form.Row>
+                <label> Pero Perić, 12345 </label>
+                </Form.Row>
+
                 <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />

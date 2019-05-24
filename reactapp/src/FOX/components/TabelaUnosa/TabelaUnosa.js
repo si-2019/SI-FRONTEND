@@ -47,7 +47,7 @@ class TabelaUnosa extends Component {
         this.setState({[name]: value});
     }
 
-  
+
     render() {
         return(
             <Form>

@@ -9,12 +9,6 @@ import {
   Legend
 } from "recharts";
 
-const data = [
-  { name: "2016/2017", prosjek: 7.8 },
-  { name: "2017/2018", prosjek: 9 },
-  { name: "2018/2019", prosjek: 6.5 }
-];
-
 class Chart extends Component {
   render() {
     return (

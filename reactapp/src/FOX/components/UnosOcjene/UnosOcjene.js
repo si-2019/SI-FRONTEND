@@ -2,11 +2,15 @@ import React, { Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Ocjena from '../Ocjena/Ocjena';
 import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+import Header from '../Header/Header';
+
 class UnosOcjene extends Component {
      render()
      {
          return (
             <div>
+                <Header isPocetna={false}/>
             <Form>
                 <Form.Row>
                 </Form.Row>
@@ -16,11 +20,17 @@ class UnosOcjene extends Component {
                     </Col>
                 </Form.Row>
                 <Form.Row>
+                    <Col md= {{span: 8, offset: 5}}>
+                        <Nav.Link href="/fox/StranicaPredmeta" > Nazad na stranicu predmeta </Nav.Link>
+                   </Col>     
+                     <Col md={{span: 8, offset: 5}}>
+                         <Nav.Link href=" /fox/StranicaPredmeta"> Nazad na pocetnu </Nav.Link>
+                     </Col>
+                </Form.Row>
+                <Form.Row>
                 </Form.Row>
             </Form>
-            </div>
-
-        
+            </div>        
          );
      }
 }

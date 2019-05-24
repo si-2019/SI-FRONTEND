@@ -1,32 +1,83 @@
 import React, {Component} from 'react';
 import Komentari from '../Komentar';
 import DugmeZaSort from '../DugmeZaSort';
-import LISTA_PROBNA from './LISTA';
+import Paginacija from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
+//import LISTA_PROBNA from './LISTA';
 
-const themesApi= 'http://localhost:31919/get___/'; //plus id teme
+const themesApi= 'http://localhost:31919/getComments/'; //plus id teme
 
 class ListaKomentara extends Component {
     constructor() {
         super();
         this.state = {
           komentari:[],
+          podnizKomentara: [],
+          trenutnaStranica: 1,
+          maxPoStranici: 10,
           obrnut: false
         };        
       }
+
     componentWillMount(){
+        const url=window.location;
+        let noviUrl=new URL(url);
+        const idTeme=noviUrl.searchParams.get('idTeme');
         this.setState({ucitavanje:true});
-      /*  fetch(themesApi) //dodati po potrebi
+        fetch(themesApi+idTeme) 
           .then(response=>response.json())
-          .then(komentari=>this.setState({komentari:komentari,ucitavanje:false}));*/
-        this.setState({komentari:LISTA_PROBNA,ucitavanje:false});
-      }
+          .then(komentari=>{
+            var ts= this.state.trenutnaStranica - 1;
+            var leng= this.state.komentari.length;
+            this.setState({komentari:komentari, ucitavanje:true});
+            var ts= this.state.trenutnaStranica - 1;
+            var leng= this.state.komentari.length;
+            var pocetniPodniz = this.dajPodniz(ts,(leng>=10) ? 10 : leng);
+            this.setState({komentari:komentari, podnizKomentara: pocetniPodniz, ucitavanje:false})
+          });
+       // this.setState({komentari:LISTA_PROBNA,ucitavanje:false});
+    }
+
+
     promjeniStateNiza (niz, obrnut, vm) {
         let newState = this.state;
+        const trSt= this.state.trenutnaStranica - 1;
+        const mPS= this.state.maxPoStranici;
+        const ukBrKom=this.state.komentari.length;
+        var poc = trSt*mPS;
+        if(poc + mPS > ukBrKom)
+          var kr = ukBrKom;
+        else var kr = poc + mPS;
+        var podnizKomentara = this.dajPodniz(trSt*mPS, kr);
         newState = {
           komentari:niz,
+          podnizKomentara: podnizKomentara,
           obrnut: obrnut
         }
         this.setState(newState);        
+      }
+      
+      dajPodniz = (pocetak, kraj) =>{
+        var komentari=this.state.komentari;
+        var podnizKomentara= komentari.slice(pocetak, kraj);
+        return podnizKomentara;
+      }
+
+      handlePromjenuStranice = stranica => {
+        const trenutnaStranica= stranica - 1;
+        const maxPoStranici= this.state.maxPoStranici;
+        const ukupanBrojKomentara=this.state.komentari.length;
+        var pocetak = trenutnaStranica*maxPoStranici;
+        if(pocetak + maxPoStranici > ukupanBrojKomentara)
+          var kraj = ukupanBrojKomentara;
+        else var kraj = pocetak + maxPoStranici;
+        var podnizKomentara = this.dajPodniz(pocetak, kraj);
+        this.setState({ucitavanje:true});
+        this.setState({
+            podnizKomentara: podnizKomentara,
+            trenutnaStranica: stranica,
+            ucitavanje : false
+        })
       }
     
       render(){
@@ -48,6 +99,9 @@ class ListaKomentara extends Component {
               </div>
             <div>
             <Komentari komentari={this.state.komentari}/>
+            </div>
+            <div>
+              <Paginacija onChange={this.handlePromjenuStranice} current={this.state.trenutnaStranica} total={this.state.komentari.length}/>
             </div>
             </div>
           );

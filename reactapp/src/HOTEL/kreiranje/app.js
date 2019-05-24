@@ -115,27 +115,24 @@ class App extends Component {
               <label className="custom-control-label" for="customRadio3">Anketa za sve predmete</label>
             </div>
             
-            <hr/>
             { this.state.vrstaAnkete != 'anketa za predmet' || (
               <div>
                 <div className="form-group row">
-                  <div className="col-3">
+                  <div className="col-4">
                     <br/>
                     <label for="exampleSelect1">Predmet</label>
                     <select className="form-control" id="exampleSelect1">
                       <option>ARM</option>
                       <option>SI</option>
                       <option>OOI</option>
-                      <option>DM</option>
+                      <option>NA</option> 
                       <option>Algoritmi i Strukture Podataka</option>
                     </select>
                   </div>
                 </div>
-                <hr/>
               </div>
               ) 
             }
-
             <h5>Pitanja:</h5>
             {this.state.pitanja.map(pitanje => {
                return (
@@ -148,6 +145,7 @@ class App extends Component {
               </button>
             </div>
             <hr/>
+
 
 
             <h4>Pitanja:</h4>

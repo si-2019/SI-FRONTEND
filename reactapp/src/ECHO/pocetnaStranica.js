@@ -4,6 +4,7 @@ import "./pocetnaStranica.css";
 import NaslovnaTermin from "./NaslovnaTermin/naslovnaTermin";
 import UnosKrajnjegRoka from "./unosKrajnjegRoka";
 import PrikaziSaleForma from "./PrikaziSaleForma";
+import ProfessorsAvailability from "./ProfessorsAvailability/ProfessorsAvailability";
 
 class PocetnaStranica extends Component {
   constructor() {
@@ -23,6 +24,8 @@ class PocetnaStranica extends Component {
         return <PrikaziSaleForma />;
       case "terminProf":
         return <NaslovnaTermin />;
+      case "prof":
+        return <ProfessorsAvailability />;
     }
   }
   goBack() {
@@ -33,16 +36,15 @@ class PocetnaStranica extends Component {
       <main id="pocetna">
         <div className="row">
           <div className="col-sm-6">
-            <div className="card">
+            <div className="card" id="adminDiv">
               <div className="card-body">
                 <h5 className="card-title">Administracija</h5>
-                <p>Odaberite profesora</p>
-                <input
-                  className="form-control btn-block"
-                  type="text"
-                  placeholder="Pretraga"
-                  aria-label="Pretraga"
-                />
+                <button
+                  className="btn btn-dark btn-block"
+                  onClick={this.handleClick.bind(this, "prof")}
+                >
+                  Odaberite profesora
+                </button>
                 <button
                   className="btn btn-dark btn-block"
                   onClick={this.handleClick.bind(this, "terminAdmin")}
@@ -57,7 +59,7 @@ class PocetnaStranica extends Component {
                 </button>
               </div>
             </div>
-            <div>
+            <div id="saleDiv">
               <div className="card">
                 <div className="card-body">
                   <button
@@ -70,7 +72,7 @@ class PocetnaStranica extends Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-6" id="profDiv">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Profesor</h5>

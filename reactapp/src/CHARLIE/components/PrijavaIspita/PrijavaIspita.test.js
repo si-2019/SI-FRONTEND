@@ -15,4 +15,10 @@ describe('<PrijavaIspita />', () => {
    
     expect(wrapper.find('#prijavljeniIspiti').exists()).toBe(true)
   })
+
+  it('da li postoje uvidi u radove', () => {
+    const wrapper = shallow(<PrijavaIspita/>)
+   
+    expect(wrapper.find('#uvidURadove').exists()).toBe(true)
+  })
 }) 

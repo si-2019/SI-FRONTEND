@@ -4,7 +4,6 @@ import PregledListeProjekata from './PregledListeProjekata';
 import Lista  from './prikazListe';
 
 import PregledZadatakaProjekta from './components/PregledZadatakaProjekta/PregledZadatakaProjekta';
-import { sviProjektiTrenutnogUsera } from './api/projekti_zadaci';
 
 import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta';
 import MockListaPredmeta from './MockListaPredmeta';
@@ -12,6 +11,7 @@ import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
 import IzborVodje from './components/FormaZaIzborVodje';
 import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe'
 //import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
+import DostupniPredmetiZaGrupu from './components/DostupniPredmetiZaGrupu/DostupniPredmetiZaGrupu'
 import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
 
 class Mike extends Component {
@@ -30,8 +30,7 @@ class Mike extends Component {
 
   }
 
-  render() {
-   
+  render() {   
     if(this.state.forma=="null") return (
       <div className="Mike">
        
@@ -57,7 +56,7 @@ class Mike extends Component {
       <PregledDetaljaPredmeta />
     );
     else if(this.state.forma == "projektniZadaci") return (
-      <PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti} />
+      <PregledZadatakaProjekta/>
     );
     else if(this.state.forma=="mockKreiranje") return(
       <MockKreiranjeProjektaAsistent />

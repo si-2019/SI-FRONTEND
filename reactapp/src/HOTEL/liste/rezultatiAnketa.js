@@ -1,5 +1,6 @@
 import React from 'react';
-import url from '../url'
+import url from '../url';
+import {Link} from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props) {
@@ -28,13 +29,12 @@ class App extends React.Component {
                     <td>OBRIŠI</td>
                     </tr>
             
-
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
                     <th>{anketa.naziv}</th>
-                    <th>{anketa.opis}</th>
+                    <th>{anketa.opisAnkete}</th>
                     <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                    <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
+                    <th><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></a></th>
                     <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
                     <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
                     </tr>
@@ -45,11 +45,12 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajSveAnketeZaKojePostojeRezultati?idUloga=1', {
+        fetch(url + '/dajSveAnketeZaKojePostojeRezultati?idKorisnik=1', {
             method: 'GET'
         })
         .then(res => res.json())
         .then(result => {
+            console.log(result)
             this.setState({
                 items: result
             })

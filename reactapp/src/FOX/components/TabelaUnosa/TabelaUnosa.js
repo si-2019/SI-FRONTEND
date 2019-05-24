@@ -1,28 +1,61 @@
 import React, {Component } from 'react';
-
-import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Button';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import axios from 'axios';
+// this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
+    state = {
+        ispit: []
+    }
+    constructor(props){
+        super(props);
+    }
+    async componentDidMount(){
+       //const {data} = await axios.get('http://localhost:31900/api/fox/bodovi')
+       const {data} = " ispit, datum";
+        this.setState({response:data})
+      }
+      renderOptions = () => {
+        if(!this.state.response) return
+        return this.state.response.map(element => 
+          <option>{element.naziv}</option>
+        );
+      }
+      handleChange= (event) => {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    }
+
+    
     render() {
         return(
-            
             <Form>
                 <Form.Row>
-                <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 18, marginTop:"30px"}}> Unos bodova za ispit  </Form.Label>  
+                     <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 25, marginTop:"30px", marginBottom: "30px"}}> Unos bodova za ispit  </Form.Label>  
                 </Form.Row>
-            
-            <Form style={{ border:'2px solid', height:"300px",marginTop:"20px", paddingLeft: '80px'}}>
+                <Form.Row>
+                    <Col md= {{ span: 3, offset: 4}}>
+                    <select style={{placeholder: "Odaberite ispit" }}>
+                        <option>I parcijalni, 20.4.2019.</option>
+                        <option> II parcijalni, 20.6.2019.</option>
+                        <option>Popravni I parcijalni, 1.7.2019.</option>
+                        <option>Popravni II parcijalni, 1.7.2019.</option>
+                        <option>Integralni ispit 1.9.2019.</option>
+                    </select>
+                    </Col>
+                </Form.Row>
+            <Form style={{ border:'2px solid', height:"300px",marginTop:"30px", paddingLeft: '80px'}}>
                 <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />
-                    <Button style= {{paddingLeft: '10px'}}> Pretrazi </Button>   
+                    <Button style= {{paddingLeft: '10px', color: 'success'}}> Pretrazi </Button>   
                 </Form.Row>
-               
                 <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />

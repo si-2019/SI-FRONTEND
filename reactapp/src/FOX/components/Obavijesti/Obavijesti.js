@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import  Row  from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button'
 class Obavijesti extends Component {
     render() {
         return (
@@ -27,7 +28,12 @@ class Obavijesti extends Component {
               </Col>
               <Footer/>
             </Form.Row>
-          
+             
+              <Form.Row>
+              <Col md= {{span: 3, offset: 4 }}>
+              <Button> Sadrzaj: </Button>
+              </Col>
+              </Form.Row>
           </Form>
         );
     }

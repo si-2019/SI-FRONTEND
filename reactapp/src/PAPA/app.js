@@ -3,6 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Predmet from './komponente/Predmet.js'
+import Obavijestenja from './komponente/Obavjestenja';
+
+
 
 class App extends Component {
   render() {
@@ -13,7 +16,7 @@ class App extends Component {
             <Predmet />
           </Col>
           <Col>
-            Obavijestenja
+            <Obavijestenja/>
           </Col>
         </Row>
         <Row>

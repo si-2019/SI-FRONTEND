@@ -3,6 +3,8 @@ import Komentari from '../Komentar';
 import DugmeZaSort from '../DugmeZaSort';
 import Paginacija from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
+import Komentar from '../Komentar';
+import ObjaviKomentar from '../ObjaviKomentar';
 //import LISTA_PROBNA from './LISTA';
 
 const themesApi= 'http://localhost:31919/getComments/'; //plus id teme
@@ -15,7 +17,9 @@ class ListaKomentara extends Component {
           podnizKomentara: [],
           trenutnaStranica: 1,
           maxPoStranici: 10,
-          obrnut: false
+          obrnut: false,
+          nazivTeme :'',
+          id: 1
         };        
       }
 
@@ -23,6 +27,8 @@ class ListaKomentara extends Component {
         const url=window.location;
         let noviUrl=new URL(url);
         const idTeme=noviUrl.searchParams.get('idTeme');
+        this.setState({id:idTeme});
+
         this.setState({ucitavanje:true});
         fetch(themesApi+idTeme) 
           .then(response=>response.json())
@@ -100,6 +106,10 @@ class ListaKomentara extends Component {
             <div>
             <Komentari komentari={this.state.komentari}/>
             </div>
+            <div>
+            <ObjaviKomentar id={this.state.id} nazivTeme={this.state.nazivTeme}/>
+/>
+              </div>
             <div>
               <Paginacija onChange={this.handlePromjenuStranice} current={this.state.trenutnaStranica} total={this.state.komentari.length}/>
             </div>

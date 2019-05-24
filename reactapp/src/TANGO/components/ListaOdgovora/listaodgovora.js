@@ -13,13 +13,13 @@ class Odgovor extends Component {
       //  console.log(this.props.komentar.odgovori)
         return (
             this.props.komentar.odgovori.map(odg=>{
-                if(odg.idComment==this.props.id) {
+                if(odg.idComment==this.props.id && odg.korisnik!=undefined) {
                 return(
-                    <div  class="shadow p-5 mb-5 mt-0 bg-white rounded">
-                        <Korisnik key={odg.korisnik.idUser} korisnik={odg.korisnik}/>
+                    <div  class="shadow p-5 mb-2 ml-5 mr-5 mt-0 bg-white rounded">
+                        <Korisnik key={odg.korisnik.id} korisnik={odg.korisnik}/>
 
                         <div>
-                            <p> {odg.text} </p> 
+                        inherit     <p> {odg.text} </p> 
                         </div>
                           <div class="d-flex justify-content-end mr-2">
                             <p> {odg.timeCreated} </p> 
@@ -59,7 +59,7 @@ render(){
     return(
         this.state.komentari.map(komentar => {
                return (
-                   <div> 
+                   <div  style={{ padding:  "3px" }}> 
                        <Odgovor key={komentar.idComment} komentar={komentar} id={this.props.idComment}/>
                    </div>
                )

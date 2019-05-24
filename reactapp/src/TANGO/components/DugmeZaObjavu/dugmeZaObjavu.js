@@ -10,7 +10,6 @@ class DugmeZaObjavu extends Component {
           return;
         }
         const { idTeme, text } = this.props; 
-        console.log(idTeme);
           evt.preventDefault()
         fetch("http://localhost:31919/addComment", {
           method: 'POST',  

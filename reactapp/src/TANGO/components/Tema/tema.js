@@ -55,10 +55,9 @@ class Tema extends Component{
       return(
         <>
       <div className='shadow-sm p-3 mb-5 bg-light rounded' style={{ border: sticky ? "3px solid" : "" }}>
-      {sticky &&  <p> stocl </p>} 
         
           <div className='naziv_teme' >
-            <a className="nav-link" href={'/TANGO/Komentar/?idTheme='+ idTheme}>{title}</a>
+            <a className="nav-link" href={'/TANGO/Komentari/?idTheme='+ idTheme}>{title}</a>
             <input  className='btn btn-primary btn-sm' type='button' value="S" onClick={this.setSticky}/>
           </div>
           <div className='datum_komentari'>
@@ -72,7 +71,7 @@ class Tema extends Component{
           <div class="d-flex flex-row-reverse p-2">
             <button id="deleteBtn" className="btn btn-link" onClick={this.handleShow.bind(this)}> Obrisi </button>
             <Link to ={{
-                    pathname: '/Tango/Komentar',
+                    pathname: '/Tango/Komentari',
                     state: { nazivTeme:{title},
                               id: {idTheme} }
                   }}>

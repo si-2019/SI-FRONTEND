@@ -22,7 +22,8 @@ class Obavijesti extends Component {
             </Form.Row>
             <Form.Row>
               <Col md= {{span: 3, offset: 4 }}>
-              <Form.Label> Naslov: </Form.Label>
+              <Form.Label> Sadrzaj: </Form.Label>
+              <Form.Control as="textarea" rows="5" />
               </Col>
               <Footer/>
             </Form.Row>

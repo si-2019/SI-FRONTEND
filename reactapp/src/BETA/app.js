@@ -89,6 +89,7 @@ class App extends Component {
             center
             id ="modal"
             onClose={() => {}}
+            showCloseIcon={false}
           >
             <div id="overlay">
               <NoviIssueForma onCloseModal={this.onCloseModal}/>

@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div className="Home">
             <Header isPocetna={true}/>
-            <div style={{padding: "35px", textAlign: "center"}}>
+            <div style={{padding: "25px", textAlign: "center"}}>
                 <PozdravnaPoruka/>
                 <DanDatum/>
                 <Predmet/>

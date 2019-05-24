@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
+import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import Row from 'rect-bootstrap/Button';
+import Row from 'react-bootstrap/Button';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
@@ -13,6 +14,7 @@ class TabelaUnosa extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
+
     handleClick() {
         if (this.state.temaId == null) {
            this.setState({
@@ -39,7 +41,7 @@ class TabelaUnosa extends Component {
                
                 </Form.Row>
                 
-               <Form.Row style={{paddingLeft: '200px'}}>
+               <Form.Row style={{paddingLeft: '100px'}}>
                 <div style={{ visibility: this.state.greskaVis}}>
                     <label>Pero Perić, 12345</label>
                 </div>

@@ -49,7 +49,7 @@ class Tema extends Component{
 
     render(){
       
-      const {idTeme,idPredmeta, idUser,description,title, timeCreated,brojKomentara, sticky}=this.props.tema;
+      const {idTheme,idPredmeta, idUser,description,title, timeCreated,brojKomentara, sticky}=this.props.tema;
       this.state.sticky = sticky;
       return(
         <>
@@ -57,7 +57,7 @@ class Tema extends Component{
       {sticky &&  <p> stocl </p>} 
         
           <div className='naziv_teme' >
-            <a className="nav-link" href='#'>{title}</a>
+            <a className="nav-link" href={'/TANGO/Komentar/?idTheme='+ idTheme}>{title}</a>
             <input  className='btn btn-primary btn-sm' type='button' value="S" onClick={this.setSticky}/>
           </div>
           <div className='datum_komentari'>
@@ -70,7 +70,7 @@ class Tema extends Component{
           </div> 
           <div class="d-flex flex-row-reverse p-2">
             <button id="deleteBtn" className="btn btn-link" onClick={this.handleShow.bind(this)}> Obrisi </button>
-            <OpenDialog key={idTeme} naziv={title} id={this.props.tema.idTheme} show={this.state.show} close={this.handleClose}/>
+            <OpenDialog key={idTheme} naziv={title} id={this.props.tema.idTheme} show={this.state.show} close={this.handleClose}/>
           </div>
       </div>
       </>

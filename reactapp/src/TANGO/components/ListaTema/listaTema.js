@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Teme from '../Tema';
 import DugmeZaSort from '../DugmeZaSort';
+import Paginacija from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 import LISTA_PROBNA from './LISTA';
 
 
@@ -18,6 +20,9 @@ class Lista extends Component{
     super();
     this.state = {
       teme:[],
+      podnizTema: [],
+      trenutnaStranica: 1,
+      maxPoStranici: 10,
       obrnut: false
     };
     
@@ -25,22 +30,60 @@ class Lista extends Component{
   
   componentWillMount(){
     this.setState({ucitavanje:true});
-    fetch(themesApi+"idPredmeta=4&idUser=1")
+    fetch(themesApi+"4")
       .then(response=>response.json())
-      .then(teme=>this.setState({teme:teme,ucitavanje:false}));
+      .then(teme=>{
+        var ts= this.state.trenutnaStranica - 1;
+        var leng= this.state.teme.length;
+        this.setState({teme:teme, ucitavanje:true});
+        var ts= this.state.trenutnaStranica - 1;
+        var leng= this.state.teme.length;
+        var pocetniPodniz = this.dajPodniz(ts,(leng>=10) ? 10 : leng);
+        this.setState({teme:teme, podnizTema: pocetniPodniz, ucitavanje:false})
+      });
     //this.setState({teme:LISTA_PROBNA,ucitavanje:false});
   }
  //                   dodaj ,obrnut
   promjeniStateNiza (niz, obrnut, vm) {
     let newState = this.state;
+    const trSt= this.state.trenutnaStranica - 1;
+    const mPS= this.state.maxPoStranici;
+    const ukBrTe=this.state.teme.length;
+    var poc = trSt*mPS;
+    if(poc + mPS > ukBrTe)
+      var kr = ukBrTe;
+    else var kr = poc + mPS;
+    var podnizTema = this.dajPodniz(trSt*mPS, kr);
     newState = {
       teme:niz,
+      podnizTema: podnizTema,
       obrnut: obrnut
     }
     this.setState(newState);
-    
   }
   
+  dajPodniz = (pocetak, kraj) =>{
+    var teme=this.state.teme;
+    var podnizTema= teme.slice(pocetak, kraj);
+    return podnizTema;
+  }
+
+  handlePromjenuStranice = stranica => {
+    const trenutnaStranica= stranica - 1;
+    const maxPoStranici= this.state.maxPoStranici;
+    const ukupanBrojTema=this.state.teme.length;
+    var pocetak = trenutnaStranica*maxPoStranici;
+    if(pocetak + maxPoStranici > ukupanBrojTema)
+      var kraj = ukupanBrojTema;
+    else var kraj = pocetak + maxPoStranici;
+    var podnizTema = this.dajPodniz(pocetak, kraj);
+    this.setState({ucitavanje:true});
+    this.setState({
+        podnizTema: podnizTema,
+        trenutnaStranica: stranica,
+        ucitavanje : false
+    })
+  }
   
 
   
@@ -64,7 +107,10 @@ class Lista extends Component{
           </div>
           {/* <button onClick={() => {this.sortirajAZ(this.state.teme)}}>a-z</button> */}
         <div>
-          <Teme teme={this.state.teme}/>
+          <Teme teme={this.state.podnizTema}/>
+        </div>
+        <div>
+          <Paginacija onChange={this.handlePromjenuStranice} current={this.state.trenutnaStranica} total={this.state.teme.length}/>
         </div>
         </div>
       );

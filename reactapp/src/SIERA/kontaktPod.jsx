@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import ModalComponent from "./Modal1"
+import ModalComponent from "./Modal1";
+import Stranice from "./stranice.jsx";
 
 class KontaktPod extends Component {
     state = {
@@ -58,15 +59,7 @@ class KontaktPod extends Component {
                     <li class="list-group-item">Adresa: {this.state.adresa}</li>
                     <li class="list-group-item">Email: {this.state.email}</li>
                 </ul>
-                <ul class="list-group list-group-flush">
-                    <li class="card-header">Web Stranice</li>
-                    <li>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </li>
-                </ul>
+                <Stranice/>
             </div>
 
     <ModalComponent

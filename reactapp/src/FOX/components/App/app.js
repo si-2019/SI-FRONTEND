@@ -7,8 +7,8 @@ import UnosBodova from '../UnosBodova/UnosBodova';
 import TemeZavrsnih from '../UnosTeme/TemeZavrsnih';
 import StranicaPredmeta from '../StranicaPredmeta/StranicaPredmeta';
 import Home from '../Home/Home';
-import Obavijesti from '../../Obavijesti';
 import Ispiti from '../Ispiti/Ispiti';
+import Obavijesti from '../Obavijesti/Obavijesti';
 
 class App extends Component {
   render() {

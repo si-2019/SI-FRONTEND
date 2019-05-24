@@ -38,7 +38,6 @@ class PregledListeProjekata extends Component {
                             )
                         }):""
                     }
-                    
                 </tbody>
             </Table>
         );

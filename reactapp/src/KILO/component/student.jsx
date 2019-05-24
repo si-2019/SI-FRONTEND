@@ -134,32 +134,102 @@ class Student extends Component {
     document.getElementById("zadatakVecPoslan").style.display = "none";
   };
 
+  
+  
   klikNaPoslati = (r, k) => {
-    document.getElementById("tabelaPregledaZadaca").style.display = "none";
-    document.getElementById("prviPutSlanjeZadatka").style.display = "block";
-    document.getElementById("zadatakVecPoslan").style.display = "none";
+    //nasa = rok
+    var povratna_vrijednost;
+    var trengodina = new Date().getFullYear();
+    var trenmjesec = new Date().getMonth() + 1;
+    var trendan = new Date().getDate();
+   // console.log('g: '+trengodina+ ' m: '+trenmjesec+ ' d: '+trendan);
+    //console.log('broj zadace '+r);
+    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
+    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
+    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
+   // console.log('***g: '+nasagodina+ ' m: '+nasmjesec+ ' d: '+nasdan);
+    if (trengodina > nasagodina) povratna_vrijednost =false;
+    else if (trengodina == nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
+    else if (trengodina == nasagodina && trenmjesec == nasmjesec && trendan > nasdan)
+    povratna_vrijednost =false;
+    else if (
+      trengodina == nasagodina &&
+      trenmjesec == nasmjesec &&
+      trendan == nasdan &&
+      this.state.vrijeme != "23:59"
+    )
+      povratna_vrijednost= false;
+    else povratna_vrijednost= true;
 
-    axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
-//console.log(res.data);
-    this.setState({listaTipova:res.data});
-  });
+    
+//console.log('povratna je '+povratna_vrijednost);
+
+ //validacija ako je rok prosao, nema liste tipova
+    if(povratna_vrijednost) {
+      axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
+      this.setState({listaTipova:res.data});
+      
+    });
+    document.getElementById("uploadButton").disabled=false;
+  }
+   else {
+     this.setState({listaTipova:[]});
+     document.getElementById("uploadButton").disabled=true;
+   }
+    
     this.setState({
       brojZadace: r+1,
       brojZadatka: k+1
     });
+
+    document.getElementById("tabelaPregledaZadaca").style.display = "none";
+    document.getElementById("prviPutSlanjeZadatka").style.display = "block";
+    document.getElementById("zadatakVecPoslan").style.display = "none";
   };
 
   
 
   klikNaVecPoslano = (r, k) => {
-    document.getElementById("tabelaPregledaZadaca").style.display = "none";
-    document.getElementById("prviPutSlanjeZadatka").style.display = "none";
-    document.getElementById("zadatakVecPoslan").style.display = "block";
+    
 
-    axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
-//console.log(res.data);
-    this.setState({listaTipova:res.data});
-  });
+    var povratna_vrijednost;
+    var trengodina = new Date().getFullYear();
+    var trenmjesec = new Date().getMonth() + 1;
+    var trendan = new Date().getDate();
+    //console.log('g: '+trengodina+ ' m: '+trenmjesec+ ' d: '+trendan);
+    //console.log('broj zadace '+r);
+    //console.log(this.state.zadacaState.rokZaPredaju[r]);
+    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
+    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
+   
+    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
+   // console.log('***g: '+nasagodina+ ' m: '+nasmjesec+ ' d: '+nasdan);
+    if (trengodina > nasagodina) povratna_vrijednost =false;
+    else if (trengodina == nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
+    else if (trengodina == nasagodina && trenmjesec == nasmjesec && trendan > nasdan)
+    povratna_vrijednost =false;
+    else if (
+      trengodina == nasagodina &&
+      trenmjesec == nasmjesec &&
+      trendan == nasdan &&
+      this.state.vrijeme != "23:59"
+    )
+      povratna_vrijednost= false;
+    else povratna_vrijednost= true;
+    
+//console.log('povratna je '+povratna_vrijednost);
+
+ //validacija ako je rok prosao, nema liste tipova
+    if(povratna_vrijednost) {
+      axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
+      this.setState({listaTipova:res.data});
+      
+    });
+    document.getElementById("uploadButton2").disabled=false;
+  }
+   else{ this.setState({listaTipova:[]});
+   document.getElementById("uploadButton2").disabled=true;
+}
 
   axios.get("http://localhost:31911/popuniZadatakVecPoslan").then(res => { 
     //console.log(res.data);
@@ -175,6 +245,9 @@ class Student extends Component {
       brojZadace: r+1,
       brojZadatka: k+1
     });
+    document.getElementById("tabelaPregledaZadaca").style.display = "none";
+    document.getElementById("prviPutSlanjeZadatka").style.display = "none";
+    document.getElementById("zadatakVecPoslan").style.display = "block";
   };
 
   handleClick =  async event => {
@@ -247,6 +320,7 @@ class Student extends Component {
   document.getElementById("prviPutSlanjeZadatka").style.display = "none";
   document.getElementById("zadatakVecPoslan").style.display = "none";
   
+
  }
 
  

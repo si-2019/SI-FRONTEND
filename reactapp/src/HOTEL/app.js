@@ -8,15 +8,13 @@ import Liste from './liste/app.js'
 export default class Hotel extends React.Component {
     render() {
         return (
-            <Router>
                 <div>
                     <Route exact path="/hotel" component={Home} />
                     <Route path="/hotel/kreiranje/" component={Kreiranje} />
                     <Route path="/hotel/popunjavanje/:id" component={Popunjavanje} />
-                    <Route path="/hotel/rezultati" component={Rezultati} />
+                    <Route path="/hotel/rezultati/:id" component={Rezultati} />
                     <Route path="/hotel/liste" component={Liste} />
                 </div>
-            </Router>
         )
     }
 }

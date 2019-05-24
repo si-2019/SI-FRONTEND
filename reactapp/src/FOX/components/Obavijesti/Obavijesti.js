@@ -14,12 +14,12 @@ class Obavijesti extends Component {
                 <Form.Label style={{fontWeight: "bold", paddingLeft:'10px', fontSize: 18}}> Obavijesti </Form.Label>
               </Col>
             </Form.Row>
-            <row>
+            <Form.Row  style={{marginTop:"10px",}}>
                 <Col md= {{span: 3, offset: 4 }}>
-                <Form.Label style={{padding: '30px'}}> Naslov: </Form.Label>
+                <Form.Label> Naslov: </Form.Label>
                       <input type="text" class="form-control"></input>
                 </Col>
-            </row>
+            </Form.Row>
             <Footer/>
           </Form>
         );

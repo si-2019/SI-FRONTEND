@@ -4,16 +4,15 @@ import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './komponenta.css';
 
+import { sviProjektiTrenutnogUsera } from '../../api/projekti_zadaci';
+
 class PregledZadatakaProjekta extends Component { 
   constructor(props) {
     super(props);
-    let projekti = this.props.projekti;
-    let selektani_projekat = null;
-    if(projekti.length > 0) selektani_projekat = projekti[0];
 
     this.state = { 
-      projekti: this.props.projekti, 
-      selektani_projekat: selektani_projekat,
+      projekti: [], 
+      selektani_projekat: null,
       selektovanElement : {},
       selektovanRed : false,
       renderovanaTabela : false
@@ -23,11 +22,26 @@ class PregledZadatakaProjekta extends Component {
     this.clickDetalji = this.clickDetalji.bind(this);
   }
 
+  componentDidMount() {
+    sviProjektiTrenutnogUsera().then(res => {
+      console.log(JSON.stringify(res));
+
+      let projekti = res.data.projekti;
+      let selektani_projekat = null;
+      if(projekti.length > 0) selektani_projekat = projekti[0];
+
+      this.setState({
+        projekti: projekti,
+        selektani_projekat: selektani_projekat,
+        selektovanElement : {},
+        selektovanRed : false,
+        renderovanaTabela : false
+      });
+    });
+  }
 
   clickDetalji(idReda) {
     this.setState({
-      projekti : this.state.projekti,
-      selektani_projekat : this.state.selektani_projekat,
       selektovanElement: this.state.selektani_projekat.zadaci[idReda],
       selektovanRed: true,
       renderovanaTabela : true
@@ -42,7 +56,6 @@ class PregledZadatakaProjekta extends Component {
           <tr>
             <th>#</th>
             <th>Opis</th>
-            <th>Prioritet</th>
             <th>Od kada</th>
             <th>Do kada</th>
             <th>Zavrsen</th>
@@ -57,11 +70,10 @@ class PregledZadatakaProjekta extends Component {
                     <tr key={i} onClick={this.clickDetalji.bind(null, i-1)}>
                       <th scope="row">{i++}</th>
                       <td>{zadatak.opis}</td>
-                      <td>{zadatak.prioritet}</td>
-                      <td>{zadatak.od_kad}</td>
-                      <td>{zadatak.do_kad}</td>
+                      <td>{zadatak.otkad}</td>
+                      <td>{zadatak.dokad}</td>
                       <td>{zadatak.zavrsen}</td>
-                      <td>{zadatak.komentar}</td>
+                      <td>{zadatak.komentarAsistenta}</td>
                     </tr>)
                 }) : null
           }
@@ -87,22 +99,20 @@ class PregledZadatakaProjekta extends Component {
       detalji = (<div className="mini-card" id="detalji">
         <h1>#Detalji:</h1>
           <Label className="white"> {this.state.selektovanElement.opis} </Label><br></br>
-          <Label>Prioritet: {this.state.selektovanElement.prioritet}</Label><br></br>
-          <Label>Trajanje projekta: {this.state.selektovanElement.od_kad} - {this.state.selektovanElement.do_kad}</Label><br></br>
+          <Label>Trajanje projekta: {this.state.selektovanElement.otkad} - {this.state.selektovanElement.dokad}</Label><br></br>
           <Label>Završen projekat: {this.state.selektovanElement.zavrsen}</Label><br></br>
-          <Label>Komentar projektnog zadatka: {this.state.selektovanElement.komentar}</Label><br></br>
+          <Label>Komentar projektnog zadatka: {this.state.selektovanElement.komentarAsistenta}</Label><br></br>
       </div>);
     }
 
     return (
       <Fragment>
-
         <Form>
         <FormGroup>
           <Label >Vaši projekti: </Label>
           <Input type="select" name="select" onChange={(e)=>{this.selektan(e.target.value)}}>
             {this.state.projekti.map((projekat) => {
-                return (<option key={projekat.id} value={projekat.id}>{`${projekat.naziv_predmeta} (${projekat.opis_projekta.substring(0, 100)}...)`}</option>);
+                return (<option key={projekat.id} value={projekat.id}>{`${projekat.naziv_projekta} (${projekat.naziv_predmeta})`}</option>);
               })}
           </Input>
         </FormGroup>

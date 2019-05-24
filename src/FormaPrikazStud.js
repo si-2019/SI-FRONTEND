@@ -6,26 +6,20 @@ class FormaPrikazStud extends Component{
         super(props)
         
         this.initialState={
-            index: ''
+            Index: '1999'
         }
-        this.state = this.inistalState;
+        this.state = this.initialState;
     }
 
     handleChange = (event) => {
         event.preventDefault()
         this.setState({
-          [event.target.name]: event.target.value
+          index : event.target.value
         })
-    }
-    handleOptionChange = changeEvent => {
-        this.setState({
-          spol: changeEvent.target.value
-        });
-    }
+    };
 
     render(){
-
-        const{index} = this.state;
+        const{Index} = this.state;
 
         return(
             <form  onSubmit={this.handleSubmit} className="container-fluid">
@@ -38,7 +32,7 @@ class FormaPrikazStud extends Component{
                     </br>
                     
                     <div className ='col-md-1'>
-                        <input className="form-control " type="number" name="index" value={index} onChange={this.handleChange} />     
+                        <input className="form-control " type="number" name="index" value={Index} onChange={this.handleChange} />     
                     </div> 
                     
                     <div className='col-md-1'>

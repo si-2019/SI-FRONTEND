@@ -14,7 +14,8 @@ class TabelaUnosa extends Component {
     constructor(props) {
         super();
         this.state = {
-            greskaVis: "hidden"
+            greskaVis: "hidden",
+            greska: "hidden"
         }
         this.handleClick = this.handleClick.bind(this);
       
@@ -23,7 +24,8 @@ class TabelaUnosa extends Component {
     handleClick() {
         if (this.state.temaId == null) {
            this.setState({
-               greskaVis: "visible"
+               greskaVis: "visible",
+               greska: "visible"
            })
         }
         else if (this.state.temaId != null) {
@@ -85,7 +87,7 @@ class TabelaUnosa extends Component {
                 <input type= "text" name="name" />
                 <Button> Unesi </Button>
                 <Form.Row >
-                    <label style={{ visibility: this.state.greskaVis}}>
+                    <label style={{ visibility: this.state.greska}}>
                         Uspješan unos.
                         Pero Perić, 12345
                              20

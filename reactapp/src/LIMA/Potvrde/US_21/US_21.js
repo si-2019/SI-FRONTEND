@@ -48,9 +48,23 @@ class US_21 extends Component {
   render() {
     const { error, isLoaded, redovi } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return (
+        <React.Fragment>
+          <main className="container">
+            <div>Error: {error.message}</div>
+            <Tabela redovi={redovi} onCheck={this.onCheck} />
+          </main>
+        </React.Fragment>
+      );
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return (
+        <React.Fragment>
+          <main className="container">
+            <div>Loading...</div>
+            <Tabela redovi={redovi} onCheck={this.onCheck} />
+          </main>
+        </React.Fragment>
+      );
     } else {
       return (
         <React.Fragment>

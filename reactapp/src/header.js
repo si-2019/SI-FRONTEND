@@ -10,6 +10,6 @@ export default class App extends React.Component {
             <div style={{backgroundColor: "#00203f"}} class="nav-link active"> 
                 {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
             </div>
-        )
+        ) 
     }
 }

@@ -31,6 +31,18 @@ class Popunjavanje extends Component {
       this.setState({datumIstekaAnkete:this.formatDate(res.data.datumIstekaAnkete)}); 
       console.log('res', res);
     });
+    axios.get(`http://localhost:9123/getTipAnkete/?idAnketa=${params.id}`)
+    .then((res) => {
+      
+      this.setState({tipAnkete:this.formatDate(res.data.tipAnkete)}); 
+      console.log('res', res);
+    });
+    axios.get(`http://localhost:9123/getPredmet/?idAnketa=${params.id}`)
+    .then((res) => {
+      
+      this.setState({nazivPredmeta:this.formatDate(res.data.nazivPredmeta)}); 
+      console.log('res', res);
+    });
   }
   render() {
     return (
@@ -57,7 +69,11 @@ class Popunjavanje extends Component {
             </div>
             <div class="card-body">
               <h6 class="card-title">Tip ankete</h6>
-              <p class="card-text">Javna anketa</p>
+              <p class="card-text">{this.state.tipAnkete}</p>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Predmet</h6>
+              <p class="card-text">{this.state.nazivPredmeta}</p>
             </div>
             <div class="card-body">
               <h6 class="card-title">Anketu kreirao</h6>

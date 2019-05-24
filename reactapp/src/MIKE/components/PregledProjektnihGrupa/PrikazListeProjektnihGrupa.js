@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
+import DetaljiProjektneGrupe from './PrikazDetaljaProjektneGrupe';
 
   class ListaGrupa extends Component {
     constructor(props){
@@ -33,16 +34,18 @@ import {Redirect} from 'react-router-dom';
     constructor(props){
       super();
       this.state = {
-        tech: 'Grupe: '
+        tech: 'Grupe: ',
+        detalji:false
       };
     }
     handleChange(e){
       this.setState({
-        tech: e.target.value
+        tech: e.target.value,
+        detalji:true
       })
     }
     render(){
-      return (
+      if(this.state.detalji) return(
         <div>
          <h2>{this.state.tech}</h2>
           <select id="dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
@@ -52,8 +55,25 @@ import {Redirect} from 'react-router-dom';
             <option value="Grupa 3">Grupa 3</option>
             <option value="Grupa 3">Grupa 4</option>
           </select>
+          {/*
           <button id="dugme" style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
-         
+          */}
+          <DetaljiProjektneGrupe/>
+        </div>
+      )
+      else return (
+        <div>
+         <h2>{this.state.tech}</h2>
+          <select id="dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
+            <option value="Lista grupa">Odaberite grupu</option>
+            <option value="Grupa 1">Grupa 1</option>
+            <option value="Grupa 2">Grupa 2</option>
+            <option value="Grupa 3">Grupa 3</option>
+            <option value="Grupa 3">Grupa 4</option>
+          </select>
+          {/*
+          <button id="dugme" style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
+          */}
         </div>
       )
     }

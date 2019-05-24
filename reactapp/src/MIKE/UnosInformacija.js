@@ -1,4 +1,5 @@
 import React from "react";
+import InterfejsUredjivanjeClanovaGrupe from "./InterfejsUredjivanjeClanovaGrupe";
 
 class UnosInformacija extends React.Component {
     constructor(props) {
@@ -20,18 +21,16 @@ class UnosInformacija extends React.Component {
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit} >
-          <label class = "text">
-            Naziv projekta:
-          </label> 
-            <input type="text" value={this.state.value} onChange={this.handleChange} /> <br/>
+        <form onSubmit={this.handleSubmit}>
           <br/>
-          <label class = "text">
-            Opis projekta:
-          </label>
-            <input type="text" value={this.state.value} onChange={this.handleChange} /> <br/>
+          <p>Naziv projektne grupe:</p> 
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
           <br/>
-          <input type="submit" value="Submit" />
+          <p>Opis projekta:</p>
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <br/> <br/>
+          {/*<input type="submit" value="Submit" />*/}
+          <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
         </form>
       );
     }

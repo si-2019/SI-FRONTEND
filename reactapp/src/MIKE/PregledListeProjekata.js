@@ -1,11 +1,12 @@
 import React, {Component} from 'react'; 
+import ListaZadataka from './components/PrikazListeZadataka';
 
 var sviProjektiTrenutnogUsera=['Projekat1', 'Projekat2'];
 
 class PregledListeProjekata extends Component {
     constructor() {
         super();
-        this.state = { projekti:[], postoje_projekti:false };
+        this.state = { projekti:[], postoje_projekti:false, lista:false };
     }
 
     componentDidMount() {
@@ -31,7 +32,7 @@ class PregledListeProjekata extends Component {
                         this.state.projekti.map((projekti) => {
                             return (
                                 <tr>
-                                    <td>{projekti}</td>
+                                    <td onClick={()=>{this.setState((state)=>({projekti:state.projekti,postoje_projekti:state.postoje_projekti,lista:true}))}}>{projekti}</td>
                                     <td>{}</td>
                                 </tr>
                             )
@@ -44,12 +45,19 @@ class PregledListeProjekata extends Component {
     }
 
     render() {
+        if(!this.state.lista)
         return(  
             <div>
                 <label>Svi projekti:</label>
                 {this.kreirajTabelu()}
             </div>
-           
+        );
+        else return(
+            <div>
+                <label>Svi projekti:</label>
+                {this.kreirajTabelu()}
+                <ListaZadataka/>
+            </div>
         );
     }
 }

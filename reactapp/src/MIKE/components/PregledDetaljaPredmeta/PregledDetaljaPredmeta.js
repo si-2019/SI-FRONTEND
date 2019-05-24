@@ -49,7 +49,7 @@ class PregledDetaljaPredmeta extends Component {
         return(
             
             <form id="predmeti">
-                <label>Svi predmeti na kojim ste asistent </label>
+                {/*<label>Svi predmeti na kojim ste asistent </label>
                 <br/>
                 <select type="select" id="listaPredmeta" onChange={this.prebaciNaDrugi.bind(this)} value={this.state.odabran_predmet}>
                     
@@ -58,6 +58,7 @@ class PregledDetaljaPredmeta extends Component {
                         })
                     }
                 </select>
+                */}
                 <br/>
                 <label>Detalji odabranog predmeta</label>
                 {this.detaljiPredmeta()}

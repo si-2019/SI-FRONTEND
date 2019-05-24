@@ -20,7 +20,6 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     return (
       <div className="bs-component">
         <h3>Uredjivanje clanova grupe</h3>
-        <h4>Ime Prezime</h4>
         <h4>Grupa 4</h4>
         <div className="row">
           <div className="col-lg-4">

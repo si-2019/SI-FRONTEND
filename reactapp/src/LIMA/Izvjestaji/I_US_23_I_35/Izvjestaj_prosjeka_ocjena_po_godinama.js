@@ -7,18 +7,14 @@ class IzvjestajPoGodinama extends Component {
   state = {
     id_studenta: 2,
     predmeti: [
-      { godina: "2016 / 2017", ocjena: 9 },
-      { godina: "2017 / 2018", ocjena: 8 },
-      { godina: "2018 / 2019", ocjena: 9 },
-      { godina: "2017 / 2018", ocjena: 8 },
-      { godina: "2017 / 2018", ocjena: 8 },
-      { godina: "2018 / 2019", ocjena: 8 }
+      { godina: "2016/2017", ocjena: 9 },
+      { godina: "2017/2018", ocjena: 8 },
+      { godina: "2018/2019", ocjena: 9 },
+      { godina: "2017/2018", ocjena: 8 },
+      { godina: "2017/2018", ocjena: 8 },
+      { godina: "2018/2019", ocjena: 8 }
     ],
-    prosjek: [
-      { godina: "2016/2017", prosjek: 6.5 },
-      { godina: "2017/2018", prosjek: 8 },
-      { godina: "2018/2019", prosjek: 7.5 }
-    ]
+    prosjek: []
   };
   dajProsjek = predmeti => {
     let duzina = predmeti.length;
@@ -41,34 +37,42 @@ class IzvjestajPoGodinama extends Component {
     return prosjek;
   };
   async componentDidMount() {
+    let err = 0;
     var ocjene = await axios
       .get("http://localhost:31918/predmeti/" + this.state.id_studenta)
       .then(function(response) {
         return response.data.data;
+      })
+      .catch(error => {
+        err = 1;
+        return this.state.predmeti;
       });
 
     var godine = await axios
       .get("http://localhost:31918/akademskegodine/")
       .then(function(response) {
         return response.data.data;
+      })
+      .catch(error => {
+        err = 1;
       });
-
     let pred = [];
-    ocjene.map(ocjena => {
-      if (ocjena.ocjena != null) {
-        let o = [];
-        o.predmet = ocjena.idPredmet;
-        o.godina = godine.find(g => g.id === ocjena.idAkademskaGodina).naziv;
-        o.ocjena = ocjena.ocjena;
-        pred.push(o);
-      }
-    });
-
+    if (err === 0) {
+      ocjene.map(ocjena => {
+        if (ocjena.ocjena != null) {
+          let o = [];
+          o.predmet = ocjena.idPredmet;
+          o.godina = godine.find(g => g.id === ocjena.idAkademskaGodina).naziv;
+          o.ocjena = ocjena.ocjena;
+          pred.push(o);
+        }
+      });
+    } else {
+      pred = ocjene;
+    }
     pred.sort((a, b) => {
-      console.log(a.godina.substr(0, 4));
       return a.godina.substr(0, 4) - b.godina.substr(0, 4);
     });
-    console.log(pred);
     //let pred = this.state.predmeti.sort((a, b) => a.godina > b.godina);
     this.setState({ predmeti: pred });
     let p = this.dajProsjek(pred);

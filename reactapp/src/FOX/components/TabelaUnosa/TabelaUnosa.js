@@ -10,12 +10,27 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from 'axios';
 // this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
-    state = {
-        ispit: []
+
+    constructor(props) {
+        super();
+        this.state = {
+            greskaVis: "hidden"
+        }
+        this.handleClick = this.handleClick.bind(this);
+      ispit: []
     }
-    constructor(props){
-        super(props);
+
+    handleClick() {
+        if (this.state.temaId == null) {
+           this.setState({
+               greskaVis: "visible"
+           })
+        }
+        else if (this.state.temaId != null) {
+        }
     }
+
+  
     async componentDidMount(){
        //const {data} = await axios.get('http://localhost:31900/api/fox/bodovi')
        const {data} = " ispit, datum";
@@ -32,7 +47,7 @@ class TabelaUnosa extends Component {
         this.setState({[name]: value});
     }
 
-    
+  
     render() {
         return(
             <Form>
@@ -54,14 +69,25 @@ class TabelaUnosa extends Component {
                 <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />
+
+                    <Button style= {{paddingLeft: '10px', }} onClick={this.handleClick}> Pretrazi </Button>  
+               
+                </Form.Row>
+                
+               <Form.Row style={{paddingLeft: '100px'}}>
+                <label style={{ visibility: this.state.greskaVis}}>
+                    Pero Perić, 12345
+                </label>
+
                     <Button style= {{paddingLeft: '10px', color: 'success'}}> Pretrazi </Button>   
+
                 </Form.Row>
                 <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />
                 <Button> Unesi </Button>
                 </Form.Row>
-           </Form>
+            </Form>
            </Form>
         );
     }

@@ -17,7 +17,7 @@ class AnketePocetna extends Component {
           <button type="button" class="btn btn-primary btn-lg" id="kreiranje" >KREIRAJ ANKETU</button>
           <br></br>
           </Link>
-          <Link to="/HOTEL/popunjavanje">
+          <Link to="/HOTEL/popunjavanje/8">
           <button type="button" class="btn btn-primary btn-lg" id="popunjavanje">POPUNI ANKETU</button>
           <br></br>
           </Link>
@@ -29,7 +29,7 @@ class AnketePocetna extends Component {
           <button type="button" class="btn btn-primary btn-lg" id="javneAnkete">JAVNE ANKETE</button>
           <br></br>
           </Link>
-          <Link to="/HOTEL/rezultati">
+          <Link to="/HOTEL/liste/rezultatiAnketa">
           <button type="button" class="btn btn-primary btn-lg" id="rezultati">REZULTATI ANKETA</button>
           <br></br>
           </Link>

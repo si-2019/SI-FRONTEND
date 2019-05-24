@@ -4,9 +4,11 @@ import React, {Component } from 'react';
 class Obavijesti extends Component {
     render() {
         return (
-          <div>
-          <div className="Obavijesti">
-    
+          <Form.Row>
+            <Col md= {{span: 4, offset: 6 }}>
+              <div className="Obavijesti">
+            </Col>
+          </Form.Row>
             <div class="col-sm-6"> 
             </div>
             <div class="col-sm-6">

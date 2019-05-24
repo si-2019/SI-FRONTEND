@@ -5,7 +5,7 @@ import { Reply, Place, Message, CloudDownload, Delete, SlowMotionVideo, SlowMoti
 import { format } from 'date-fns';
 import ThreadDialog from './ThreadDialog';
 import Axios from 'axios';
-import { thisTypeAnnotation } from 'babel-types';
+//import { thisTypeAnnotation } from 'babel-types';
 
 class MessageList extends Component {
     constructor(props) {

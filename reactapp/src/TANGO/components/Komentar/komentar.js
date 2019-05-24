@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-
-
 class Komentar extends Component {
     render() {
         const {idComment,idUser, idTheme,text,timeCreated}=this.props.komentar;
@@ -19,7 +17,7 @@ class Komentari extends Component {
         return(
           this.props.komentari.map(KOMENTAR => {
             return(
-            <div className='komentar'>
+            <div>
               <Komentar key={KOMENTAR.idComment} komentar={KOMENTAR}/>
             </div>
             );

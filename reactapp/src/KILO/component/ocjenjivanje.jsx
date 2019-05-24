@@ -2,54 +2,125 @@ import React, { Component } from "react";
 import OcjenjivanjeJedanZadatak from "./ocjenjivanjeJedanZadatak";
 import OcjenjivanjePocetna from "./ocjenjivanjePocetna";
 import OcjenjivanjeJednaZadaca from "./ocjenjivanjeJednaZadaca";
+import axios from "axios";
+import { async } from "q";
 
 class Ocjenjivanje extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      listaZadaca: ["Prva", "Druga", "Zadaća 3", "Cetvrta", "Peta"],
-      studentiNisuPoslali: ["Neko", "Nekic", "Medi", "Haker"],
-      studentiNijePregledano: ["Mala Mu", "Nekic", "Medi", "Haker"],
-      studentiPregledano: ["Charmander", "Nekic", "Medi", "Haker"],
-      brojZadace: 2,
-      brojZadatka: 3,
+      listaZadaca: [{id: 1, naziv: "prva"}, {id: 2, naziv: "druga"}, {id: 0, naziv: "treca"}],
+      studentiNisuPoslali: [],
+      studentiNijePregledano: [],
+      studentiPregledano: [],
+      brojZadace: "",
+      brojZadatka: "",
       osvojeniBodovi: 0,
       prepisano: false,
       komentar: "Alles gute Brudeeer",
       maxBrojBodovaZadatka: 5,
       student: "",
-      zadaca: "",
-      zadaciZadace: ["Zadatak 1", "Zadatak 2", "Zadatak 3", "Zadatak 4", "Zadatak 5"],
-      postavkaZadace: "",
-      moguciBodovi: [1,2,3,4,5],
-      osvojeniBodovi: [1,1,1,1,1],
-      rokZaPredaju: "2020-12-01 23:59", 
-      stanjeZadatakaZadace: [0,1,2,3,4],
+      zadaca: "", 
       sumaOsvojeni: 0,
       sumaMoguci:0,
       ostvareniMoguci: [],
-      pregledana: false,
       defaultno: "",
-      renderajOpet:false
+      renderajOpet:false,
+      idZadace: "",
+      idStudenta: "",
+      uspjehOcjenjivanja: true,
+      zadacaState: {
+        zadaciZadace: [],
+        postavkaZadace: "",
+        moguciBodovi: [],
+        ostvareniBodovi: [],
+        rokZaPredaju: "",
+        stanjeZadatakaZadace: [],
+        pregledanZadatak: [],
+      }
     };
   }
 
   componentDidMount = () => {
+    this.pokupiStudenteKojimaNijePregledanaZadaca();
+    this.pokupiStudenteKojiNisuPoslaliZadacu();
+    this.pokupiStudenteKojimaJePregledanaZadaca();
+    this.pokupiZadace();
 
     if(this.state.listaZadaca[0]!="") {
       this.setState({
-        zadaca: this.state.listaZadaca[0]
+        zadaca: this.state.listaZadaca[0].naziv,
+        idZadace: this.state.listaZadaca[0].id,
       });
     }
 
-    this.sumirajBodove();
-    this.ostvareniBodovi();
 
     document.getElementById("ocjenjivanjePocetna").style.display = "block";
     document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
   };
+
+  pokupiStudenteKojimaJePregledanaZadaca = () => {
+    axios.get("http://localhost:31911/getStudenteKojiSuPoslaliZadacu").then(res => {
+      this.setState({
+        studentiPregledano: res.data
+      });
+    });
+  };
+  
+  pokupiStudenteKojiNisuPoslaliZadacu = () => {
+    axios.get("http://localhost:31911/getStudenteKojiNisuPoslaliZadacu").then(res => {
+      this.setState({
+        studentiNisuPoslali: res.data
+      });
+    });
+  };
+
+  pokupiStudenteKojimaNijePregledanaZadaca = () => {
+    axios.get("http://localhost:31911/getStudenteKojimaNijePregledanaZadaca").then(res => {
+      this.setState({
+        studentiNijePregledano: res.data
+      });
+    });
+  };
+
+  pokupiZadace = () => {
+    axios.get("http://localhost:31911/getZadace").then(res => {
+      this.setState({
+        listaZadaca: res.data
+      });
+    });
+  };
+
+  preuzmiDatoteku = () => {
+    axios.get("http://localhost:31911/getDatoteku").then(res => {
+    });
+  }
+
+  pregledDatoteke = () => {
+    axios.get("http://localhost:31911/getPregledDatoteke").then(res => {
+    });
+  }
+
+  pokupiZadacuStudenta = async (idZadace,idStudenta) => {
+
+    try {
+      const res = await axios.get(
+        `http://localhost:31911/getZadacuStudenta/${idZadace}/${idStudenta}`
+      );
+      this.setState({
+        zadacaState: res.data
+      });
+
+      this.sumirajBodove();
+      this.ostvareniBodovi();
+      
+    } catch (e) {
+      console.error("Error fetching zadaca by id", e);
+    }
+  }
+
 
   handleClick = event => {
     var ime = event.target.name; //name uzmem
@@ -71,7 +142,19 @@ class Ocjenjivanje extends Component {
         break;
       }
       case "ok": {
-        //salji podatke na rutu u backendu
+
+        axios.post("http://localhost:31911/ocijeniZadatak", this.state).then(res => {
+          if (res.status === 200) {
+            this.setState({ uspjehOcjenjivanja: true });
+          } else if (res.status === 201) {
+
+          } else {
+            this.setState({ uspjehOcjenjivanja: false });
+          }
+        });
+
+
+        this.handleBackNaJednaZadaca(this.state.student, this.state.idStudenta);
         console.log("ok button acitvated");
         break;
       }
@@ -93,21 +176,25 @@ class Ocjenjivanje extends Component {
     }
   };
 
-  handleBackNaJednaZadaca = (student) => {
-  
-      if(student.target.value!=""){
-          this.setState({
-            student: student.target.value
-          });
+  handleBackNaJednaZadaca = (student,idStudenta) => {
 
-          document.getElementById("ocjenjivanjePocetna").style.display = "none";
-          document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
-          document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
+      if(student!=""){
 
+        this.pokupiZadacuStudenta(this.state.idZadace, idStudenta);
+
+        this.setState({
+          student: student,
+          idStudenta: idStudenta
+        });
+
+        document.getElementById("ocjenjivanjePocetna").style.display = "none";
+        document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
+        document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
 
     }
 
   };
+
 
 
 
@@ -144,10 +231,11 @@ class Ocjenjivanje extends Component {
 
   };
 
-  postaviZadacu = (zadaca) => {
-    
+  postaviZadacu = (zadaca, id) => {
+
     this.setState({
-      zadaca: zadaca.target.value
+      zadaca: zadaca,
+      idZadace: id
     });
 
   }
@@ -156,7 +244,7 @@ class Ocjenjivanje extends Component {
 
     var sumaBodova = 0;
 
-    for(var i=0;i<this.state.moguciBodovi.length;i++) sumaBodova = sumaBodova + this.state.moguciBodovi[i];
+    for(var i=0;i<this.state.zadacaState.moguciBodovi.length;i++) sumaBodova = sumaBodova + this.state.zadacaState.moguciBodovi[i];
 
     this.setState({
       sumaMoguci: sumaBodova
@@ -164,7 +252,7 @@ class Ocjenjivanje extends Component {
 
     sumaBodova = 0;
 
-    for(var i=0;i<this.state.osvojeniBodovi.length;i++) sumaBodova = sumaBodova + this.state.osvojeniBodovi[i];
+    for(var i=0;i<this.state.zadacaState.ostvareniBodovi.length;i++) sumaBodova = sumaBodova + this.state.zadacaState.ostvareniBodovi[i];
 
     this.setState({
       sumaOsvojeni: sumaBodova
@@ -176,23 +264,11 @@ class Ocjenjivanje extends Component {
   ostvareniBodovi = () => {
     var pomocniNiz = [];
 
-    for(var i=0;i<this.state.moguciBodovi.length;i++) pomocniNiz.push(this.state.osvojeniBodovi[i] + "/" + this.state.moguciBodovi[i]);
+    for(var i=0;i<this.state.zadacaState.moguciBodovi.length;i++) pomocniNiz.push(this.state.zadacaState.ostvareniBodovi[i] + "/" + this.state.zadacaState.moguciBodovi[i]);
 
     this.setState({
       ostvareniMoguci: pomocniNiz
     });
-  }
-
-  pregledajZadacu = (parametar) => {
-
-    this.setState({
-      pregledana: parametar
-    });
-  }
-
-  pozoviFunkcije = (parametar,p2) => {
-      this.pregledajZadacu(parametar);
-      this.handleBackNaJednaZadaca(p2);
   }
 
   render() {

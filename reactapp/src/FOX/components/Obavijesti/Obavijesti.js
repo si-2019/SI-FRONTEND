@@ -12,7 +12,7 @@ class Obavijesti extends Component {
               <Header/>
             <Form.Row>
               <Col md= {{span: 4, offset: 5 }}>
-                <Form.Label style={{fontWeight: "bold", paddingLeft:'10px', fontSize: 18}}> Obavijesti </Form.Label>
+                <Form.Label style={{fontWeight: "bold", paddingLeft:'10px', fontSize: 20}}> Obavijesti </Form.Label>
               </Col>
             </Form.Row>
             <Form.Row  style={{marginTop:"10px",}}>
@@ -25,13 +25,17 @@ class Obavijesti extends Component {
               <Col md= {{span: 3, offset: 4 }}>
               <Form.Label> Sadrzaj: </Form.Label>
               <Form.Control as="textarea" rows="5" />
-              
               </Col>
-              <Form.Row>
+
+            </Form.Row>
+            <Form.Row>
+              
+              <Col md= {{span: 3, offset: 4 }}>
                 <Button> Sacuvaj </Button>
+              </Col>
               </Form.Row>
               <Footer/>
-            </Form.Row>
+           
           </Form>
         );
     }

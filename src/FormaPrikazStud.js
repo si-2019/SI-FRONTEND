@@ -1,31 +1,45 @@
 import React, {Component} from 'react'
-import { SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG } from 'constants';
+import axios from 'axios'
 
 class FormaPrikazStud extends Component{
     constructor(props){
         super(props)
         
         this.initialState={
+            lista: [],
             index: ''
         }
-        this.state = this.inistalState;
+        this.state = this.initialState
     }
+    componentDidMount(param){
+        var xhttp = new XMLHttpRequest();
+        var self = this;
+
+        xhttp.onreadystatechange = function(){
+            if (xhttp.readyState == 4 && xhttp.status == 200){
+                self.setState({
+                lista: JSON.parse(this.response)
+                });
+            }
+        }
+
+        //SA : "http://localhost:31901/api/korisnik/searchAssistant?ime="+param
+        //BEZ: "http://localhost:31901/api/korisnik/getAllAssistants"
+        if(param!='') xhttp.open("get", "https://jsonplaceholder.typicode.com/posts?userId="+param, true);
+        else xhttp.open("get", "https://jsonplaceholder.typicode.com/posts", true);
+        xhttp.send();
+    };
 
     handleChange = (event) => {
         event.preventDefault()
         this.setState({
-          [event.target.name]: event.target.value
+          index: event.target.value
         })
-    }
-    handleOptionChange = changeEvent => {
-        this.setState({
-          spol: changeEvent.target.value
-        });
     }
 
     render(){
 
-        const{index} = this.state;
+        const{lista, index} = this.state;
 
         return(
             <form  onSubmit={this.handleSubmit} className="container-fluid">
@@ -42,14 +56,54 @@ class FormaPrikazStud extends Component{
                     </div> 
                     
                     <div className='col-md-1'>
-                        <input type="submit" value="Submit" className="btn btn-success btn-block" /> <br /><br /> 
+                        <input type="submit" value="Pretraži" className="btn btn-success btn-block" onClick={()=>this.componentDidMount(index)}/> <br /><br /> 
                     </div>
                 </div>
 
                
                 <label > Tabelaran prikaz studenata:</label> <br />
                 
-
+                <table className="table table-sm table-primary"> 
+                <tr>
+                    <th >ID</th>
+                    <th >IME</th>
+                    <th >PREZIME</th>
+                    <th >INDEX</th>
+                    <th >DATUM ROĐENJA</th>
+                    <th >JMBG</th>
+                    <th >EMAIL</th>
+                    <th >MJESTO ROĐENJA</th>
+                    <th >KANTON</th>
+                    <th >DRŽAVLJANSTVO</th>
+                    <th >TELEFON</th>
+                    <th >SPOL</th>
+                    <th >IME RODITELJA</th>
+                    <th >ADRESA</th>
+                </tr>
+                {
+                    //paziti sta se prikazuje, nece biti list.title!!!
+                    //ako je length!=0 prikazati listu, u suprotnom vratiti null
+                
+                    lista.length ? lista.map(list => 
+                        <tr key={list.id}>
+                            <th><input className="form-control" type="text"  readOnly value={list.id}></input></th>
+                            <th><input className="form-control" type="text" value={list.body} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={list.title} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                        </tr>)
+                    : null
+                }
+                </table><br /><br />
             </form>  
         );
     }

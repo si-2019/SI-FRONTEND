@@ -106,7 +106,7 @@ class TabelaUnosa extends Component {
                         Pero Perić, 12345
                     </label>
                 </Form.Row>
-                <Form.Row style={{paddingLeft: '150px'}}>
+                <Form.Row style={{paddingLeft: '130px'}}>
                     <label style={{ visibility: this.state.greska}}>
                         20
                     </label>

@@ -27,6 +27,9 @@ class Obavijesti extends Component {
               <Form.Control as="textarea" rows="5" />
               
               </Col>
+              <Form.Row>
+                <Button> Sacuvaj </Button>
+              </Form.Row>
               <Footer/>
             </Form.Row>
           </Form>

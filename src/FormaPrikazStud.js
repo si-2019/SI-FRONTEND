@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+
 
 class FormaPrikazStud extends Component{
     constructor(props){
@@ -16,7 +16,7 @@ class FormaPrikazStud extends Component{
         var self = this;
 
         xhttp.onreadystatechange = function(){
-            if (xhttp.readyState == 4 && xhttp.status == 200){
+            if (xhttp.readyState === 4 && xhttp.status === 200){
                 self.setState({
                 lista: JSON.parse(this.response)
                 });
@@ -25,7 +25,7 @@ class FormaPrikazStud extends Component{
 
         //SA : "http://localhost:31901/api/korisnik/searchAssistant?ime="+param
         //BEZ: "http://localhost:31901/api/korisnik/getAllAssistants"
-        if(param!='') xhttp.open("get", "https://jsonplaceholder.typicode.com/posts?userId="+param, true);
+        if(param!=='') xhttp.open("get", "https://jsonplaceholder.typicode.com/posts?userId="+param, true);
         else xhttp.open("get", "https://jsonplaceholder.typicode.com/posts", true);
         xhttp.send();
     };

@@ -24,8 +24,6 @@ class PregledZadatakaProjekta extends Component {
 
   componentDidMount() {
     sviProjektiTrenutnogUsera().then(res => {
-      console.log(JSON.stringify(res));
-
       let projekti = res.data.projekti;
       let selektani_projekat = null;
       if(projekti.length > 0) selektani_projekat = projekti[0];

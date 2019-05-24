@@ -1,4 +1,4 @@
-import React, {Component } from 'react
+import React, {Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'rect-bootstrap/Button';
 import Header from '../Header/Header';
@@ -39,7 +39,7 @@ class TabelaUnosa extends Component {
                
                 </Form.Row>
                 
-               <Form.Row style={{paddingLeft: '100px'}}>
+               <Form.Row style={{paddingLeft: '200px'}}>
                 <div style={{ visibility: this.state.greskaVis}}>
                     <label>Pero Perić, 12345</label>
                 </div>

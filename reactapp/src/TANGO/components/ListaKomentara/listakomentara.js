@@ -24,7 +24,7 @@ class ListaKomentara extends Component {
         let noviUrl=new URL(url);
         const idTeme=noviUrl.searchParams.get('idTeme');
         this.setState({ucitavanje:true});
-        fetch(themesApi+'18') 
+        fetch(themesApi+idTeme) 
           .then(response=>response.json())
           .then(komentari=>{
             var ts= this.state.trenutnaStranica - 1;

@@ -73,7 +73,8 @@ class Tema extends Component{
             <button id="deleteBtn" className="btn btn-link" onClick={this.handleShow.bind(this)}> Obrisi </button>
             <Link to ={{
                     pathname: '/Tango/Komentar',
-                    state: { nazivTeme:{title} }
+                    state: { nazivTeme:{title},
+                              id: {idTheme} }
                   }}>
           <button type="button" class="btn btn-link" id="commentBtn" >Komentarisi</button>
           </Link>

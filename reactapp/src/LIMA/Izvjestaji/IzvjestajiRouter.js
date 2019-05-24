@@ -6,6 +6,7 @@ import I_US_30 from "./I_US_30";
 import I_US_25 from "./I_US_25";
 import I_US_26 from "./I_US_26";
 import IzvjestajPoGodinama from "./I_US_23_I_35/Izvjestaj_prosjeka_ocjena_po_godinama";
+import I_US_48 from "./I_US_48";
 
 function IzvjestajiRouter() {
   return (
@@ -19,6 +20,7 @@ function IzvjestajiRouter() {
         component={IzvjestajPoGodinama}
       />
       <Route exact path="/Lima/izvjestaji" component={Paths} />
+      <Route path="/Lima/izvjestaji/I_US_48" component={I_US_48} />
     </Fragment>
   );
 }
@@ -41,6 +43,9 @@ function Paths() {
         </Link>
         <Link to="/Lima/izvjestaji/IzvjestajProsjeka">
           <div className="btn btn-primary">Prosjek ocjena po godinama</div>
+        </Link>
+        <Link to="/Lima/izvjestaji/I_US_48">
+          <div className="btn btn-primary">I_US_48</div>
         </Link>
       </li>
     </ul>

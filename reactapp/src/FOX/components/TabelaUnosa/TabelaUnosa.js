@@ -23,21 +23,9 @@ class TabelaUnosa extends Component {
            })
         }
         else if (this.state.temaId != null) {
-            this.otvori();
         }
     }
-    otvori() {
-        let trenutniProf = this.state.profesori.find(x => x.id == this.state.profId);
-
-        let trenutnaTema = this.state.teme.find(x => x.id == this.state.temaId);
-
-        this.setState({
-            otvori: true,
-            selProf: trenutniProf.ime + " " + trenutniProf.prezime,
-            selTema: trenutnaTema.naziv
-        });
-
-    }
+ 
     render() {
         return(
             
@@ -50,15 +38,14 @@ class TabelaUnosa extends Component {
                 <Form.Row style={{padding: '30px'}}>
                     <Form.Label> Index: </Form.Label>
                      <input type="text" name="name" />
-                    <Button style= {{paddingLeft: '10px'}}> Pretrazi </Button>  
-                    <div style={{ visibility: this.state.greskaVis}}><p class="text-danger">Morate odabrati temu!</p></div>
-
-                    <button type="button" class="btn btn-primary btn-lg btn-block" onClick={this.handleClick}>Prijavi završni</button> 
+                    <Button style= {{paddingLeft: '10px', }} onClick={this.handleClick}> Pretrazi </Button>  
+               
                 </Form.Row>
                 
-                <Form.Row style={{paddingLeft: '100px'}}>
-                //<label> Pero Perić, 12345 </label>
-                //<div style={{ visibility: this.state.greskaVis}}><p class="text-danger">Morate odabrati temu!</p></div>
+               <Form.Row style={{paddingLeft: '100px'}}>
+                <div style={{ visibility: this.state.greskaVis}}>
+                    <label>Pero Perić, 12345</label>
+                </div>
                 </Form.Row>
 
                 <Form.Row style={{padding: '30px' }}>
@@ -66,7 +53,7 @@ class TabelaUnosa extends Component {
                 <input type= "text" name="name" />
                 <Button> Unesi </Button>
                 </Form.Row>
-           </Form>
+            </Form>
            </Form>
         );
     }

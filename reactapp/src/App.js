@@ -33,7 +33,7 @@ class App extends Component {
             <div>
                 <Route exact path="/" component={Alpha} />
                 <Route path="/alpha" component={Alpha} />
-                <Route path="/beta" component={Beta} />
+                <Route exact path="/beta" component={Beta} />
                 <Route path="/charlie" component={Charlie} />
                 <Route path="/delta" component={Delta} />
                 <Route path="/echo" component={Echo} />

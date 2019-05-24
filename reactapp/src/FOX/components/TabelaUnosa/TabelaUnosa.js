@@ -85,7 +85,7 @@ class TabelaUnosa extends Component {
                 <input type= "text" name="name" />
                 <Button> Unesi </Button>
                 <Form.Row >
-                    
+                    <label style={{ visibility: this.state.greskaVis}}>
                 </Form.Row>
                 </Form.Row>
             </Form>

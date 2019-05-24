@@ -42,11 +42,10 @@ class TabelaUnosa extends Component {
                 </Form.Row>
                 
                <Form.Row style={{paddingLeft: '100px'}}>
-                <div style={{ visibility: this.state.greskaVis}}>
-                    <label>Pero Perić, 12345</label>
-                </div>
+                <label style={{ visibility: this.state.greskaVis}}>
+                    Pero Perić, 12345
+                </label>
                 </Form.Row>
-
                 <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />

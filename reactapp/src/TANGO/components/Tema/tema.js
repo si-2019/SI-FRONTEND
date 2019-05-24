@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Korisnik from '../Korisnik';
 import OpenDialog from './openDialog';
+import {Link} from 'react-router-dom';
 
 class Tema extends Component{
 
@@ -70,6 +71,12 @@ class Tema extends Component{
           </div> 
           <div class="d-flex flex-row-reverse p-2">
             <button id="deleteBtn" className="btn btn-link" onClick={this.handleShow.bind(this)}> Obrisi </button>
+            <Link to ={{
+                    pathname: '/Tango/Komentar',
+                    state: { nazivTeme:{title} }
+                  }}>
+          <button type="button" class="btn btn-link" id="commentBtn" >Komentarisi</button>
+          </Link>
             <OpenDialog key={idTheme} naziv={title} id={this.props.tema.idTheme} show={this.state.show} close={this.handleClose}/>
           </div>
       </div>

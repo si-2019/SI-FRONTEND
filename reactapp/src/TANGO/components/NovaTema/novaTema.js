@@ -40,7 +40,7 @@ class NovaTema extends Component {
  fetch("http://localhost:31919/addTheme", {
 method: 'POST',  
 body: JSON.stringify({
-  IdPredmeta: '1',
+  IdPredmeta: '4',
   IdUser:'1',
   title:  naziv,
   description: opis,
@@ -57,17 +57,7 @@ headers:{
     alert(`Unos teme sa nazivom: ${naziv} i opisom: ${opis}`);
     return false;
   };
-fun(){
-  fetch("http://localhost:8000/addTheme", {
-    method: "POST",
-    
-    headers: {'Content-Type':'application/json'},
- body: {
-  "first_name": 'this.firstName.value'
- }
-  }).then(r => r.json()).then(t=>console.log(t));
-  return false;
-}
+
   MozeBitiUneseno() {
     const { naziv, opis } = this.state;
     return (
@@ -112,6 +102,7 @@ fun(){
             <button
               className="btn btn-primary btn-xs form-control"
               disabled={!isEnabled}
+              onClick={this.handleUnesi}
             >
               Unesi
             </button>

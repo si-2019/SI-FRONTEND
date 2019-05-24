@@ -35,7 +35,7 @@ class App extends React.Component {
                   
                                 <tr>
                                 <th>{anketa.naziv}</th>
-                                <th>{anketa.opis}</th>
+                                <th>{anketa.opisAnkete}</th>
                                 <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
                                 <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
                                 <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
@@ -53,7 +53,7 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajAnkete', {
+        fetch(url + '/dajMojeAnkete?idNapravio=1', {
             method: 'GET'
         })
         .then(res => res.json())

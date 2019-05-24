@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Komentari from '../Komentar';
 import DugmeZaSort from '../DugmeZaSort';
-import LISTA_PROBNA from './LISTA';
+//import LISTA_PROBNA from './LISTA';
 
-const themesApi= 'http://localhost:31919/get___/'; //plus id teme
+const themesApi= 'http://localhost:31919/getComments/'; //plus id teme
 
 class ListaKomentara extends Component {
     constructor() {
@@ -15,10 +15,10 @@ class ListaKomentara extends Component {
       }
     componentWillMount(){
         this.setState({ucitavanje:true});
-      /*  fetch(themesApi) //dodati po potrebi
+        fetch(themesApi+'18') 
           .then(response=>response.json())
-          .then(komentari=>this.setState({komentari:komentari,ucitavanje:false}));*/
-        this.setState({komentari:LISTA_PROBNA,ucitavanje:false});
+          .then(komentari=>this.setState({komentari:komentari,ucitavanje:false}));
+       // this.setState({komentari:LISTA_PROBNA,ucitavanje:false});
       }
     promjeniStateNiza (niz, obrnut, vm) {
         let newState = this.state;

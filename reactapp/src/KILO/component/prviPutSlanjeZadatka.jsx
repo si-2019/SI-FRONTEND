@@ -6,7 +6,7 @@ class PrviPutSlanjeZadatka extends Component {
 
   render() {
     var listOfTypes = this.props.podaci.state.listaTipova;
-
+    
     return (
       <div>
         <div className="card-header bg-primary text-light">

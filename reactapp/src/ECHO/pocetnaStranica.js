@@ -4,6 +4,7 @@ import "./pocetnaStranica.css";
 import NaslovnaTermin from "./NaslovnaTermin/naslovnaTermin";
 import UnosKrajnjegRoka from "./unosKrajnjegRoka";
 import PrikaziSaleForma from "./PrikaziSaleForma";
+import DodajNovuSalu from "./DodajNovuSalu";
 
 class PocetnaStranica extends Component {
   constructor() {
@@ -21,6 +22,8 @@ class PocetnaStranica extends Component {
         return <UnosKrajnjegRoka />;
       case "sale":
         return <PrikaziSaleForma />;
+      case "unesiSalu":
+        return <DodajNovuSalu />;
       case "terminProf":
         return <NaslovnaTermin />;
     }
@@ -64,7 +67,15 @@ class PocetnaStranica extends Component {
                     className="btn btn-dark btn-block"
                     onClick={this.handleClick.bind(this, "sale")}
                   >
-                    Sale
+                    Prikazi sale
+                  </button>
+                </div>
+                <div className="card-body">
+                  <button
+                    className="btn btn-dark btn-block"
+                    onClick={this.handleClick.bind(this, "unesiSalu")}
+                  >
+                    Unesi salu
                   </button>
                 </div>
               </div>

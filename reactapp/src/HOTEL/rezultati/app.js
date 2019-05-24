@@ -65,6 +65,7 @@ class Rezultati extends Component {
   }
   render() {
     const itemsSingle = this.state.singleChoicePitanjaState;
+    const itemsTextbox = this.state.textboxPitanjaState;
     console.log("items", itemsSingle);
     return (
       <div className="App"  id="container">
@@ -82,7 +83,7 @@ class Rezultati extends Component {
                             <div class="card-header"><h4 class="card-title">Info</h4></div>
                             <div class="card-body">
                               <h6 class="card-title">Predmet</h6>
-                              <p class="card-text">Osnove Elektrotehnike</p>
+                              <p class="card-text">{this.state.nazivPredmeta}</p>
                             </div>
                             <div class="card-body">
                               <h6 class="card-title">Datum kreiranja</h6>
@@ -95,10 +96,6 @@ class Rezultati extends Component {
                             <div class="card-body">
                               <h6 class="card-title">Tip ankete</h6>
                               <p class="card-text">{this.state.tipAnkete}</p>
-                            </div>
-                            <div class="card-body">
-                              <h6 class="card-title">Predmet</h6>
-                              <p class="card-text">{this.state.nazivPredmeta}</p>
                             </div>
                             <div class="card-body">
                               <h6 class="card-title">Anketu kreirao</h6>
@@ -131,7 +128,22 @@ class Rezultati extends Component {
                               </div>
                             )) : "..."}
                           </div>
+                        </div>
+                      )) : "Loading..."}
+                    </div>
+                    <div>
+                      {itemsTextbox.textboxPitanja ? itemsTextbox.textboxPitanja.map(pitanje => (
+                        <div class="card-body" style={{backgroundColor:'white'}}>
+                          <h6 class="card-title">Pitanje : {pitanje.tekstPitanja}</h6>
                           <br></br>
+                          <div>
+                            {pitanje.odgovori ? pitanje.odgovori.map(odgovor => (
+                              <div style={{alignItems:'left'}}>
+                                <p class="card-text">Odgovor : {odgovor.odgovor}</p>
+                                <br></br>
+                              </div>
+                            )) : "..."}
+                          </div>
                         </div>
                       )) : "Loading..."}
                     </div>

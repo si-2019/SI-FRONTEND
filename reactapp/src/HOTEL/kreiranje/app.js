@@ -6,7 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import SingleChoice from './SingleChoice'
 import MultipleChoice from './MultipleChoice'
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,18 +15,15 @@ class App extends Component {
       nazivAnkete: '',
       opisAnkete: '',
       datumIstekaAnkete: new Date(),
-
       pitanja: [],
       vrstePitanja: [],
       odabranaVrstaPitanja: 'single-choice'
-
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.kreirajAnketu = this.kreirajAnketu.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.dodajPitanje = this.dodajPitanje.bind(this);
-
   }
 
   azurirajPitanje = (state, i) => {
@@ -35,7 +31,6 @@ class App extends Component {
       st.pitanja[i] = state
       return st
     })
-
   }
 
   handleRadioChange(event) {
@@ -53,7 +48,6 @@ class App extends Component {
       aa: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' ')
     });
   }
-
 
   dodajPitanje() {
     this.setState({
@@ -133,21 +127,7 @@ class App extends Component {
               </div>
               ) 
             }
-            <h5>Pitanja:</h5>
-            {this.state.pitanja.map(pitanje => {
-               return (
-               <SingleChoice />
-               )
-            })}
-            <div className="row justify-content-center">
-              <button className="btn btn-secondary" onClick={this.dodajPitanje} type="button">
-                Dodaj pitanje
-              </button>
-            </div>
             <hr/>
-
-
-
             <h4>Pitanja:</h4>
             {this.state.pitanja.map((pitanje, i) => {
               switch(this.state.vrstePitanja[i]) {
@@ -174,7 +154,6 @@ class App extends Component {
               </div>
             </div>
             <hr/>
-
             <div className="row justify-content-center">
               <button className="btn btn-primary" onClick={this.kreirajAnketu}>
                 Kreiraj anketu

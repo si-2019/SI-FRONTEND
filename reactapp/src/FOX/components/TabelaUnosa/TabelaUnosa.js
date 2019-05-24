@@ -18,13 +18,23 @@ class TabelaUnosa extends Component {
             greska: "hidden"
         }
         this.handleClick = this.handleClick.bind(this);
-      
+        this.handleCli = this.handleCli.bind(this);
     }
 
     handleClick() {
         if (this.state.temaId == null) {
            this.setState({
                greskaVis: "visible",
+           })
+        }
+        else if (this.state.temaId != null) {
+        }
+    }
+    
+    handleCli() {
+        if (this.state.temaId == null) {
+           this.setState({
+               greska: "visible",
            })
         }
         else if (this.state.temaId != null) {
@@ -84,7 +94,7 @@ class TabelaUnosa extends Component {
                 <Form.Row style={{padding: '30px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />
-                <Button onClick={this.handleClick}> Unesi </Button>
+                <Button onClick={this.handleCli}> Unesi </Button>
                 <Form.Row >
                     <label style={{ visibility: this.state.greska}}>
                         Uspješan unos.

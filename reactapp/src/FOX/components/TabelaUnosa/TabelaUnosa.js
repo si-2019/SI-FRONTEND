@@ -86,6 +86,10 @@ class TabelaUnosa extends Component {
                 <Button> Unesi </Button>
                 <Form.Row >
                     <label style={{ visibility: this.state.greskaVis}}>
+                        Uspješan unos.
+                        Pero Perić, 12345
+                             20
+                    </label>
                 </Form.Row>
                 </Form.Row>
             </Form>

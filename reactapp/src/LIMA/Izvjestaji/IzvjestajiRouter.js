@@ -3,6 +3,7 @@ import { Route, Link } from "react-router-dom";
 
 import I_US_27 from "./I_US_27";
 import I_US_30 from "./I_US_30";
+import I_US_25 from "./I_US_25";
 import IzvjestajPoGodinama from "./I_US_23_I_35/Izvjestaj_prosjeka_ocjena_po_godinama";
 
 function IzvjestajiRouter() {
@@ -10,6 +11,7 @@ function IzvjestajiRouter() {
     <Fragment>
       <Route path="/Lima/izvjestaji/I_US_27" component={I_US_27} />
       <Route path="/Lima/izvjestaji/I_US_30" component={I_US_30} />
+      <Route path="/Lima/izvjestaji/I_US_25" component={I_US_25} />
       <Route
         path="/Lima/izvjestaji/IzvjestajProsjeka"
         component={IzvjestajPoGodinama}
@@ -28,6 +30,9 @@ function Paths() {
         </Link>
         <Link to="/Lima/izvjestaji/I_US_30">
           <div className="btn btn-primary">I_US_30</div>
+        </Link>
+        <Link to="/Lima/izvjestaji/I_US_25">
+          <div className="btn btn-primary">I_US_25</div>
         </Link>
         <Link to="/Lima/izvjestaji/IzvjestajProsjeka">
           <div className="btn btn-primary">Prosjek ocjena po godinama</div>

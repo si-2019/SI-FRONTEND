@@ -11,31 +11,21 @@ class TabelaUnosa extends Component {
     constructor(props) {
         super();
         this.state = {
-            profesori: [],
-            teme: [],
-            studentId: 1,
-            profId: 1,
-            temaId: null,
-            otvori: false,
-            selProf: null,
-            selTema: null,
             greskaVis: "hidden"
         }
-    this.toggleVisibility=this.toggleVisibility.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
     
-    toggleVisibility(){
-      if (this.state.visibility=true){
-        this.setState = ({
-          visibility: false
-        });
+    handleClick() {
+        if (this.state.temaId == null) {
+           this.setState({
+               greskaVis: "visible"
+           })
+        }
+        else if (this.state.temaId != null) {
+            this.otvori();
+        }
     }
-    else{
-       this.setState = ({
-          visibility: true
-        })
-    }
-}
     render() {
         return(
             

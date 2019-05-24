@@ -61,6 +61,16 @@ class Login extends Component {
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
       //autentikacija uspjesna
+      
+      //poziv api-a
+      fetch('http://localhost:31917/auth/login?username=${korisnickoIme}&password=${sifra}')
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.state
+          }
+        )
+
       this.setState({
         logiran: true
       })

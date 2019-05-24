@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 
-class FormaPrikazStud extends Component{
+class FormaPrikazProf extends Component{
     constructor(props){
         super(props)
         
         this.initialState={
             lista: [],
-            index: ''
+            id: ''
         }
         this.state = this.initialState
     }
@@ -30,42 +30,41 @@ class FormaPrikazStud extends Component{
     handleChange = (event) => {
         event.preventDefault()
         this.setState({
-          index: event.target.value
+          id: event.target.value
         })
     }
 
     render(){
 
-        const{lista, index} = this.state;
+        const{lista, id} = this.state;
 
         return(
             <div> 
                 <br />
-                <label>Unesite broj indexa za pretraživanje studenta:(ako ostavite ovo prazno, ispisat ce se svi studenti)</label>    
+                <label>Unesite id za pretraživanje profesora:(ako ostavite ovo prazno, ispisat ce se svi profesori)</label>    
               
                 <div className='row'>
                     <br>
                     </br>
                     
                     <div className ='col-md-1'>
-                        <input className="form-control " type="number" name="index" value={index} onChange={this.handleChange} />     
+                        <input className="form-control " type="number" name="id" value={id} onChange={this.handleChange} />     
                     </div> 
                     
                     <div className='col-md-1'>
-                        <button className="btn btn-success btn-block" onClick={()=> this.componentDidMount(index)}>Search</button>
+                        <button className="btn btn-success btn-block" onClick={()=> this.componentDidMount(id)}>Search</button>
                         <br /><br /> 
                     </div>
                 </div>
 
                
-                <label > Tabelaran prikaz studenata:</label> <br />
+                <label > Tabelaran prikaz profesora:</label> <br />
                 
                 <table className="table table-sm table-primary"> 
                 <tr>
                     <th >ID</th>
                     <th >IME</th>
                     <th >PREZIME</th>
-                    <th >INDEX</th>
                     <th >DATUM ROĐENJA</th>
                     <th >JMBG</th>
                     <th >EMAIL</th>
@@ -93,7 +92,6 @@ class FormaPrikazStud extends Component{
                             <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
                             <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
                             <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
                         </tr>)
                     : null
                 }
@@ -103,4 +101,4 @@ class FormaPrikazStud extends Component{
     }
 }
 
-export default FormaPrikazStud
+export default FormaPrikazProf

@@ -11,6 +11,7 @@ class Odgovor extends Component {
     
     render() {
       //  console.log(this.props.komentar.odgovori)
+      if(this.props.komentar.odgovori!=undefined)
         return (
             this.props.komentar.odgovori.map(odg=>{
                 if(odg.idComment==this.props.id && odg.korisnik!=undefined) {
@@ -31,6 +32,7 @@ class Odgovor extends Component {
             })
           
         );
+    return (<div></div>);
     }
 }
 

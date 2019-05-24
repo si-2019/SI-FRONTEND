@@ -11,6 +11,7 @@ import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
 import IzborVodje from './components/FormaZaIzborVodje';
 import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe'
 //import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
+import UnosPodatakaONovomProjektu from './components/UnosPodatakaONovomProjektu/UnosPodatakaONovomProjektu';
 import DostupniPredmetiZaGrupu from './components/DostupniPredmetiZaGrupu/DostupniPredmetiZaGrupu'
 import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
 import UnosInformacija from './UnosInformacija';
@@ -22,10 +23,14 @@ class Mike extends Component {
     this.state={
       forma:"null"
     }
+    this.kreiranjeNovogProjekta=this.kreiranjeNovogProjekta.bind(this);
+
+    this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
 
     this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
+
     this.pregledZadatakaProjektaCall=this.pregledZadatakaProjektaCall.bind(this);
     this.mockKreiranjeProjektaAsistent=this.mockKreiranjeProjektaAsistent.bind(this);
     this.unosInformacija=this.unosInformacija.bind(this);
@@ -35,15 +40,20 @@ class Mike extends Component {
   render() {   
     if(this.state.forma=="null") return (
       <div className="Mike">
-       
+        <button onClick={this.kreiranjeNovogProjekta}>Unos podataka o novom projektu</button>
+     
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekata studenta</button>
 
         <button onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
 
+        <button onClick={this.pregledDetaljaPredmeta}>Pregled detalja predmeta</button>
         <button onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>
         <button onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
       </div>
+    );
+    else if (this.state.forma=="kreiranjeProjekta") return (
+      <UnosPodatakaONovomProjektu />
     );
     else if (this.state.forma=="kreiranjeGrupe") return (
       <Lista submit={this.unosInformacija}/>
@@ -64,15 +74,20 @@ class Mike extends Component {
       <UnosInformacija/>
     )
   }
+  kreiranjeNovogProjekta(){
+    this.setState({forma:"kreiranjeProjekta"});
+  }
   kreiranjeGrupe(){
     this.setState({forma:"kreiranjeGrupe"});
   }
   listaProjekata(){
     this.setState({forma:"listaProjekata"});
   }
+
   pregledDetaljaPredmeta(){
     this.setState({forma:"detaljiPredmeta"});
   }
+
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});
   }

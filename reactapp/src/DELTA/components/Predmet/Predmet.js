@@ -49,7 +49,7 @@ class Predmet extends Component {
               </div>
             </div>
             <div className="row">
-              <div>
+              <div col-2>
                 <DrugiModuli />
               </div>
             </div>

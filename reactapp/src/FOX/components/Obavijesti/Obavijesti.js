@@ -20,7 +20,13 @@ class Obavijesti extends Component {
                       <input type="text" class="form-control"></input>
                 </Col>
             </Form.Row>
-            <Footer/>
+            <Form.Row>
+              <Col md= {{span: 3, offset: 4 }}>
+              <Form.Label> Naslov: </Form.Label>
+              </Col>
+              <Footer/>
+            </Form.Row>
+          
           </Form>
         );
     }

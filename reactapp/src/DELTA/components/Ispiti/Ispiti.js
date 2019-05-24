@@ -17,7 +17,7 @@ class Ispiti extends Component {
                 </div>
             </div>
               <div className="col-3">
-              <a class="btn btn-primary btn-block" href="/Charlie" role="button">Ispiti</a>
+              <a class="btn btn-primary btn-block" href="/Charlie" role="button">Ispiti </a>
             </div>
            </div>
         );

@@ -101,12 +101,12 @@ class TabelaUnosa extends Component {
                         Uspješan unos
                     </label>
                 </Form.Row>
-                <Form.Row>
+                <Form.Row style={{paddingLeft: '50px'}}>
                     <label style={{ visibility: this.state.greska}}>
                         Pero Perić, 12345
                     </label>
                 </Form.Row>
-                <Form.Row>
+                <Form.Row style={{paddingLeft: '50px'}}>
                     <label style={{ visibility: this.state.greska}}>
                         20
                     </label>

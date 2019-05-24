@@ -4,6 +4,21 @@ import DugmeZaObjavu from '../DugmeZaObjavu';
 
 
 class ObjaviKomentar extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+          komentar: ""
+         
+        };
+      }
+    
+      handleOdgovorChange = evt => {
+        this.setState({
+          komentar: evt.target.value
+        });
+      }
+
     render() {
      
         return(
@@ -13,10 +28,10 @@ class ObjaviKomentar extends Component {
                     <div class="card border-info mb-3">
                     <div class="card-header">Komentar</div>
                           <div class="card-body">
-                            {/*<h3 class="card-title">{this.props.location.state.nazivTeme.title}</h3>*/}
+                            <h3 class="card-title">{this.props.location.state.nazivTeme.title}</h3>
                             <div class="form-group">
-                            <textarea class="form-control"></textarea>
-                            <DugmeZaObjavu/>
+                            <textarea class="form-control" onChange={this.handleOdgovorChange}></textarea>
+                            <DugmeZaObjavu idTeme={this.props.location.state.id.idTheme} text={this.state.komentar}/>
                             </div>
                         </div>
                         </div>

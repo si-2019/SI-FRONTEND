@@ -1,0 +1,56 @@
+.App {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .anketa{
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color:  darkcyan;
+    float : center;
+    min-height: 5vh;
+    width : 15vw;
+    flex-direction: column;
+    font-size: 12px;
+    color: white;
+    border : 1px solid, black;
+  }
+ .dugmeObrisi, .dugmeUredi{
+    margin-left: auto;
+    margin-right: auto;
+  }
+table.anketeTabela{
+  color:black;
+  text-align: center;
+  border: none;
+  width: 800px;
+  align-content: center;
+}
+table.anketeTabela td{
+  color: white;
+  background: darkcyan;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  align-content: center;
+}
+table.anketeTabela th{
+  color: black;
+  background: white;
+  text-align: center;
+  font-size: 15px;
+  border: none;
+}
+#prikaziButton, #urediButton, #obrisiButton{
+  background-color: darkcyan;
+  border-color: darkcyan;
+}
+#nazadNaVrhButton{
+  background-color: darkcyan;
+  border-color: darkcyan;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

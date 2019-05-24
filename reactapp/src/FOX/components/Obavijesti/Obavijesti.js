@@ -25,15 +25,10 @@ class Obavijesti extends Component {
               <Col md= {{span: 3, offset: 4 }}>
               <Form.Label> Sadrzaj: </Form.Label>
               <Form.Control as="textarea" rows="5" />
+              
               </Col>
               <Footer/>
             </Form.Row>
-             
-              <Form.Row>
-              <Col md= {{span: 3, offset: 4 }}>
-              <Button> Sadrzaj: </Button>
-              </Col>
-              </Form.Row>
           </Form>
         );
     }

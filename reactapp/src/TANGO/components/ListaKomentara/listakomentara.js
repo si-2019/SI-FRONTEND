@@ -6,6 +6,7 @@ import 'rc-pagination/assets/index.css';
 import Komentar from '../Komentar';
 import ObjaviKomentar from '../ObjaviKomentar';
 //import LISTA_PROBNA from './LISTA';
+import {Link} from 'react-router-dom';
 
 const themesApi= 'http://localhost:31919/getReplys/'; //plus id teme
 
@@ -26,7 +27,7 @@ class ListaKomentara extends Component {
     componentWillMount(){
         const url=window.location;
         let noviUrl=new URL(url);
-        const idTeme=noviUrl.searchParams.get('idTeme');
+        const idTeme=noviUrl.searchParams.get('idTheme');
         this.setState({id:idTeme});
 
         this.setState({ucitavanje:true});
@@ -94,6 +95,13 @@ class ListaKomentara extends Component {
         alert(this.state.komentari);
           return(
             <div>
+              
+                 <Link to ={{
+                    pathname: '/Tango/Teme',
+                  
+                  }}>
+          <button color="primary" className="btn btn-primary my-1 btn-sm" >Povratak</button>
+          </Link>
               <div>
                 <DugmeZaSort 
                   komentari={this.state.komentari} 
@@ -109,7 +117,6 @@ class ListaKomentara extends Component {
             </div>
             <div>
             <ObjaviKomentar id={this.state.id} nazivTeme={this.state.nazivTeme}/>
-/>
               </div>
             <div>
               <Paginacija onChange={this.handlePromjenuStranice} current={this.state.trenutnaStranica} total={this.state.komentari.length}/>

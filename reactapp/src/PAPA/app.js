@@ -4,13 +4,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Predmet from './komponente/Predmet.js'
 import Obavijestenja from './komponente/Obavjestenja';
-
+import Calendar from './komponente/Calendar';
 
 
 class App extends Component {
   render() {
     return (
-      <Container>
+      <Container style={{borderColor:"red"}}>
         <Row>
           <Col>
             <Predmet />
@@ -21,7 +21,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col>
-            Calendar 
+            <Calendar /> 
           </Col>
         </Row>
         <Row>

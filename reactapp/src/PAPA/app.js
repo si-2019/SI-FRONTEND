@@ -29,7 +29,7 @@ class App extends Component {
           <Col>Graf</Col>
           <Col>Graf</Col>
         </Row>
-      </Container>
+      </Container> 
     );
   }
 }

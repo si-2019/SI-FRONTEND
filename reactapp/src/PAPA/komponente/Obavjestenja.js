@@ -35,17 +35,33 @@ class ObavjestenjaPapa extends Component {
     
   }
   obavjestenjaStudentskaSluzba(){
-    
+    apaApi.obavjestenjaStudentskaSluzba().then((res) => {
+      this.setState({
+        naslov:"Obavjestenja od studentske sluzbe",
+        lista:res.data,
+        showPredmet:false
+      });
+    }).catch((err) => {
+      this.setState({
+        naslov:"Obavjestenja od studentske sluzbe",
+        lista:[],
+        showPredmet:false
+      });
+    });
   }
   obavjestenjaProfesor(){
     papaApi.obavjestenjaProfesor().then((res) => {
       this.setState({
         naslov:"Obajvestenja od profesora",
-        lista:res.data});
+        lista:res.data,
+        showPredmet:false
+      });
     }).catch((err) => {
       this.setState({
         naslov:"Obavjestenja od profesora",
-        lista:[]});
+        lista:[],
+        showPredmet:false
+      });
     });
   }
   obavjestenjaAsistent(){
@@ -66,7 +82,7 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Trenutne prijeva za ispit",
         lista:niz,
-        showPredmet:true
+        showPredmet:false
       });
     }).catch((err) => {
       this.setState({

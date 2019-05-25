@@ -62,7 +62,17 @@ class PredmetOne extends Component {
     
   }
   trenutniSaDrugihOdsjeka(){
-    
+    papaApi.trenutniSaDrugihOdsjeka().then((res) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Predmeti sa drugih odsjeka",
+        lista:res.data});
+    }).catch((err)=>{
+      this.setState({
+        showPredmet:true,
+        naslov:"Predmeti sa drugih odsjeka",
+        lista:[]});
+    });
   }
   trenutniSaDrugihSemestara(){
     papaApi.trenutniSaDrugihSemestara().then((res) => {

@@ -35,7 +35,7 @@ class ObavjestenjaPapa extends Component {
     
   }
   obavjestenjaStudentskaSluzba(){
-    apaApi.obavjestenjaStudentskaSluzba().then((res) => {
+    papaApi.obavjestenjaStudentskaSluzba().then((res) => {
       this.setState({
         naslov:"Obavjestenja od studentske sluzbe",
         lista:res.data,

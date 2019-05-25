@@ -36,11 +36,17 @@ class papaApi{
     static obavjestenjaAsistent(){
         return axios.get('http://localhost:31916/papa/obavjestenjaAsistent', {params : {idStudent:id}});
     }
+    static rezultatiIspita(){
+        return axios.get('http://localhost:31916/papa/rezultatiIspita', {params : {idStudent:id}});
+    }
     static trenutniProfesori(){
         return axios.get('http://localhost:31916/papa/trenutniProfesori', {params : {idStudent:id}});
     }
     static sviIspita(){
         return axios.get('http://localhost:31916/papa/sviIspiti');
+    }
+    static neradniDani(){
+        return axios.get('http://localhost:31916/papa/neradniDani');
     }
 
 }

@@ -3,6 +3,9 @@ let id=1;
 
 class papaApi{
    
+    static trenutniPredmeti(){
+        return axios.get('http://localhost:31916/papa/trenutniPredmeti', {params : {idStudent:id}});
+    }
     static trenutniSaDrugihSemestara(){
         return axios.get('http://localhost:31916/papa/trenutniSaDrugihSemestara', {params : {idStudent:id}});
     }

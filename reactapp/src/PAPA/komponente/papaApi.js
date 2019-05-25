@@ -30,6 +30,9 @@ class papaApi{
     static obavjestenjaProfesor(){
         return axios.get('http://localhost:31916/papa/obavjestenjaProfesor', {params : {idStudent:id}});
     }
+    static obavjestenjaAsistent(){
+        return axios.get('http://localhost:31916/papa/obavjestenjaAsistent', {params : {idStudent:id}});
+    }
     static trenutniProfesori(){
         return axios.get('http://localhost:31916/papa/trenutniProfesori', {params : {idStudent:id}});
     }

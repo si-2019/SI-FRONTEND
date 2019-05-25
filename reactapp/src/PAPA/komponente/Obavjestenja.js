@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
-import papaApi from './papaApi'
+import Card from 'react-bootstrap/Card';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import papaApi from './papaApi';
+import predmetE from '../../ECHO/app';
 
 
 
@@ -14,7 +15,9 @@ class ObavjestenjaPapa extends Component {
     this.state = {  
                     boja:"white",
                     naslov: "Izaberite nacin prikazivanja",
-                    lista:[]
+                    lista:[],
+                    showPredmet:false,
+                    clicked: false
                  };
     this.obavjestenjaAdmin = this.obavjestenjaAdmin.bind(this); 
     this.obavjestenjaStudentskaSluzba = this.obavjestenjaStudentskaSluzba.bind(this); 
@@ -24,6 +27,7 @@ class ObavjestenjaPapa extends Component {
     this.ispitiPrijava = this.ispitiPrijava.bind(this); 
     this.rezultatiUsmenihIspita = this.rezultatiUsmenihIspita.bind(this); 
     this.rezultatiParcijalnihIspita = this.rezultatiParcijalnihIspita.bind(this); 
+    this.kliknutPredmet=this.kliknutPredmet.bind(this)
   }
 
   
@@ -54,11 +58,15 @@ class ObavjestenjaPapa extends Component {
       }
       this.setState({
         naslov:"Trenutne prijeva za ispit",
-        lista:niz});
+        lista:niz,
+        showPredmet:false
+      });
     }).catch((err) => {
       this.setState({
         naslov:"Trenutne prijave za ispit",
-        lista:[]});
+        lista:[],
+        showPredmet:false
+      });
     });
   }
   rezultatiParcijalnihIspita(){
@@ -67,6 +75,11 @@ class ObavjestenjaPapa extends Component {
   
   rezultatiUsmenihIspita(){
     
+  }
+  kliknutPredmet(){
+    if(this.state.showPredmet){
+        this.props.fija();      
+    }
   }
   render() {
     return (
@@ -94,7 +107,7 @@ class ObavjestenjaPapa extends Component {
           <div>
               <ul style={{listStyleType: "square"}}>
                 {this.state.lista.map(item => (
-                  <li style={{ margin: "1rem"}} key={item.id}>{item.obavjestenje}</li>
+                  <li style={{ margin: "1rem"}} key={item.id} onClick={this.kliknutPredmet.bind(this)} >{item.obavjestenje}</li>
                 ))}
               </ul>
           </div>

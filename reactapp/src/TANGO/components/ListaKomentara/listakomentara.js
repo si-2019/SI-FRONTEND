@@ -92,7 +92,6 @@ class ListaKomentara extends Component {
         if(this.state.ucitavanje){
           return <p>Ucitavanje...</p>
         }
-        alert(this.state.komentari);
           return(
             <div>
               

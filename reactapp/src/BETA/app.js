@@ -5,6 +5,7 @@ import NoviIssueForma from './komponente/Student/NoviIssueForma.js';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';
+import Drafts from './komponente/Student/Drafts.js';
 
 
 class App extends Component {
@@ -84,7 +85,7 @@ class App extends Component {
                 <div 
                     id = "DraftsContent" 
                     style={{display : this.state.activeContentId == 2 ? 'inherit' : 'none'}}
-                >Drafts komponenta ide ovdje
+                ><Drafts/>
                 </div>
                 <div 
                     id = "Archived" 

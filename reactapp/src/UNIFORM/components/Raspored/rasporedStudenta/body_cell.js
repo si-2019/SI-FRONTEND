@@ -37,6 +37,7 @@ const MojModal = (ovaj) => {
               <b>Unesi novu/ažuriraj staru bilješku</b>    <br/>
               <input type="text" className="form-control" aria-describedby="Unesi zabilješku" placeholder="Bilješka" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
               <br/>
+              <div id='successResult' style={successResult}>{ovaj.state.signalString}</div>
               
             </Modal>
     </div>

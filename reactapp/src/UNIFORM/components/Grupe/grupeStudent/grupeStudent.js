@@ -91,8 +91,7 @@ render = () =>{
         danas = yyyy + '-' + mm + '-' + dd;
     
        
-                   
-        else
+        
            podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je: {datum}</h3>)
     }
     else

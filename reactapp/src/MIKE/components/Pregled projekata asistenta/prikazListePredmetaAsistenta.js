@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
-import ListaGrupa from './components/PregledProjektnihGrupa/PrikazListeProjektnihGrupa';
+import PregledDetaljaPredmeta from './PregledDetaljaPredmeta';
+import ListaGrupa from './PrikazListeProjektnihGrupa';
 
   class ListaPredmetaAsistenta extends Component {
     constructor(props){

@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import PregledListeProjekata from './PregledListeProjekata';
-import Lista  from './prikazListe';
-
+import PregledListeProjekata from './components/Pregled projekata studenta/PregledListeProjekata';
+import Lista  from './components/Kreiranje projektne grupe/prikazListe';
 import PregledZadatakaProjekta from './components/PregledZadatakaProjekta/PregledZadatakaProjekta';
-
-import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta';
-import MockListaPredmeta from './MockListaPredmeta';
-import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
-import IzborVodje from './components/FormaZaIzborVodje';
-import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe'
-//import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
-import DostupniPredmetiZaGrupu from './components/DostupniPredmetiZaGrupu/DostupniPredmetiZaGrupu'
-import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
-import UnosInformacija from './UnosInformacija';
-import ListaPredmetaAsistenta from './prikazListePredmetaAsistenta';
+import KreiranjeProjekta from './components/Kreiranje projekta na nivou predmeta/FormaZaKreiranjeProjektaNaNivouPredmeta';
+import UnosInformacija from './components/Kreiranje projektne grupe/UnosInformacija';
+import ListaPredmetaAsistenta from './components/Pregled projekata asistenta/prikazListePredmetaAsistenta';
 
 class Mike extends Component {
   constructor(props){
@@ -24,12 +15,10 @@ class Mike extends Component {
     }
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
-
     this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
     this.pregledZadatakaProjektaCall=this.pregledZadatakaProjektaCall.bind(this);
     this.mockKreiranjeProjektaAsistent=this.mockKreiranjeProjektaAsistent.bind(this);
     this.unosInformacija=this.unosInformacija.bind(this);
-
   }
 
   render() {   
@@ -38,9 +27,7 @@ class Mike extends Component {
        
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekata studenta</button>
-
         <button onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-
         <button onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>
         <button onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
       </div>

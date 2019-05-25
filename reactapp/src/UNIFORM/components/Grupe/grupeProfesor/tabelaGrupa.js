@@ -24,8 +24,7 @@ export class tabela extends Component {
     {        
         axios.post("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina).then()
         {
-            console.log("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina)
-            document.location.reload();
+            
         };
     }
 

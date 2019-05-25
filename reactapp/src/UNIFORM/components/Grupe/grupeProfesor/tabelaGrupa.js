@@ -12,7 +12,11 @@ export class tabela extends Component {
 
   odjaviStudenta = (index) =>
   {     
-    
+    axios.post("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina).then()
+      {
+          console.log("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina)
+          document.location.reload();
+      };
       
   } 
 

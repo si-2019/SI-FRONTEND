@@ -38,7 +38,11 @@ const MojModal = (ovaj) => {
               <input type="text" className="form-control" aria-describedby="Unesi zabilješku" placeholder="Bilješka" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
               <br/>
               <div id='successResult' style={successResult}>{ovaj.state.signalString}</div>
-              
+              <div style={divStyle}>
+              <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
+              <button style={stylishCenter} type="button" class="btn btn-danger" onClick= {ovaj.handleDestroy}>Obriši</button>
+              <button style={stylishRight} className = 'btn btn-secondary' onClick={ovaj.handleCloseModal}>Zatvori</button>
+              </div>
             </Modal>
     </div>
   );

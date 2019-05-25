@@ -4,6 +4,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import papaApi from './papaApi';
+import { TramRounded } from '@material-ui/icons';
 
 
 
@@ -113,11 +114,49 @@ class ObavjestenjaPapa extends Component {
     });
   }
   rezultatiParcijalnihIspita(){
-   
+    papaApi.rezultatiIspita().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+        if (res.data[a].vrsta.includes("parcijalni")){
+           niz.push({
+            id:a,
+            obavjestenje:res.data[a].vrsta+" iz "+res.data[a].predmet + " osvojili ste " +res.data[a].brojBodova +"."
+          })
+        }
+      }
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati parcijalnih ispita",
+        lista:niz});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati parcijalnih ispita",
+        lista:[]});
+    });
   }
   
   rezultatiUsmenihIspita(){
-    
+    papaApi.rezultatiIspita().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+        if (res.data[a].vrsta.includes("zavrs")){
+           niz.push({
+            id:a,
+            obavjestenje:res.data[a].vrsta+" iz "+res.data[a].predmet + " osvojili ste " +res.data[a].brojBodova +"."
+          })
+        }
+      }
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati usmenih ispita",
+        lista:niz});
+    }).catch((err) =>{
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati usmenih ispita",
+        lista:[]});
+    });
   }
   kliknutPredmet(){
     if(this.state.showPredmet){

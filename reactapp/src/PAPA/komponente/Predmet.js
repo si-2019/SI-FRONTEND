@@ -14,8 +14,7 @@ class PredmetOne extends Component {
     this.state = {  
                     boja:"white",
                     naslov: "Izaberite nacin prikazivanja",
-                    lista:[],
-                    showPredmet:false
+                    lista:[]
                  };
     this.trenutniPredmeti = this.trenutniPredmeti.bind(this); 
     this.odslusaniPredmeti = this.odslusaniPredmeti.bind(this); 
@@ -36,7 +35,15 @@ class PredmetOne extends Component {
     
   }
   polozeniPredmeti(){
-    
+    papaApi.polozeniPredmeti().then((res) => {
+      this.setState({
+        naslov:"Polozeni predmeti",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        naslov:"Polozeni predmeti",
+        lista:[]});
+    });
   }
   nePolozeniPredmeti(){
     
@@ -47,7 +54,6 @@ class PredmetOne extends Component {
   trenutniSaDrugihSemestara(){
     papaApi.trenutniSaDrugihSemestara().then((res) => {
       this.setState({
-        showPredmet:true,
         naslov:"Predmeti sa drugih semestara",
         lista:res.data});
     }).catch((err) => {

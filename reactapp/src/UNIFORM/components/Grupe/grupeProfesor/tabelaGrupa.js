@@ -10,8 +10,12 @@ import SelectRedoslijed from './selectRedoslijed.js';
 
 export class tabela extends Component {
 
+  odjaviStudenta = (index) =>
+  {     
     
- 
+      
+  } 
+
     izbrisiGrupu = () =>
     {        
         axios.post("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina).then()

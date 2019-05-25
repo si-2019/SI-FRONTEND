@@ -59,6 +59,9 @@ class FAQ extends React.Component {
 
             this.setState({ issues: res.data, loading: true });
         })
+        .catch(function (error) {
+            console.log("error");
+          })
     }
 
 

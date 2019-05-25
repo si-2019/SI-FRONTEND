@@ -66,7 +66,12 @@ export default class Calendar extends React.Component {
     }
     
     ispitiSmijer(){
-        
+        this.setState({
+            showFakultet: false,
+            showGodine: false,
+            showSmijer: true,
+            showNeradniDani: false
+        });
     }
     ispitiGodina(){
         
@@ -237,7 +242,7 @@ export default class Calendar extends React.Component {
                     string=string+")"
                 }
                 else if( this.state.showNeradniDani ){
-                    string=string+list[i].naslov;
+                    string=string+list[i].naziv;
                 }
             }
         }

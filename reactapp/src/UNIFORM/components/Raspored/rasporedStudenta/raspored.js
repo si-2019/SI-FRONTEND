@@ -104,6 +104,7 @@ state={
 
 componentDidMount = () => {  
     fetch("http://localhost:31920/getStudentTermini/1")
+    .then(resTermini => resTermini.json())
   }
   
 render = () =>{

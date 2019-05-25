@@ -10,10 +10,12 @@ class NoviIssueForma extends React.Component {
         super(props);
         
         this.state = {
-            issueTitle: 'Indeksi',
+            issueTitle: '',
             issueText: '',
             fileTooBig: false,
             openAddNewCategoryModal: false,
+            procitaoStudent: 0,
+            procitalaSS: 1,
         }
     }
 
@@ -80,6 +82,26 @@ class NoviIssueForma extends React.Component {
         //let file_name = event.target.files[0].name;
         };
 
+        saveAsDraft = () => {
+            
+            if(this.state.issueTitle.length == 0)
+                alert("Please, select a title!");
+
+            else{
+
+                const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
+
+                axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+                .then((result) => {
+                    alert(result.data)
+                });
+                this.props.onCloseModalAndSaveAsDraft(); // ----> TREBA STAVITI OVU FUNKCIJU U RODITELJA!!!!
+            
+            }
+            
+        }
+
+
     render() {
         return (
 
@@ -140,6 +162,8 @@ class NoviIssueForma extends React.Component {
                         <button 
                             id = "buttonDraft"
                             className="btn btn-primary class1"
+                            onClick={this.saveAsDraft}
+                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                         >Save as draft
                         </button>
 

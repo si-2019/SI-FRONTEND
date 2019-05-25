@@ -2,10 +2,10 @@ import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Spinner from 'react-bootstrap/Spinner';
-import Issue from '../helpers/issue.js';
+import Issue from '../helpers/Draftt.js';
 import axios from 'axios';
 
-class IssueList extends React.Component {
+class Drafts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +34,7 @@ class IssueList extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('http://localhost:31902/issues/get');
+        const res = await axios.get('http://localhost:31902/issues/draft/get');
 
         let dN = [];
         let dIP = [];
@@ -44,7 +44,14 @@ class IssueList extends React.Component {
         res.data.new.forEach( async (issue) => {
             let cn = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dn = issue.messages;
-            dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
+            console.log("maida")
+            console.log(dn[0].draftStatus)
+            let novi = [];
+            for(let i = 0; i < dn.length; i++){
+                if(dn[0].draftStatus == true)
+                novi.push(dn[0]);
+            }
+            dN.push({id: issue.id, title: cn.data.naziv, messages: novi});
         });
 
         //inProgress
@@ -76,6 +83,7 @@ class IssueList extends React.Component {
                 </Spinner>
             );
         }
+        console.log(this.state.dataNew.length)
         return (
             <div >
                 <Tabs
@@ -129,4 +137,4 @@ class IssueList extends React.Component {
     }
 }
 
-export default IssueList;
+export default Drafts;

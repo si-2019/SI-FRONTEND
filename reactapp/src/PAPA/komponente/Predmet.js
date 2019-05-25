@@ -29,7 +29,16 @@ class PredmetOne extends Component {
   
   
   trenutniPredmeti(){
-   
+    papaApi.trenutniPredmeti().then((res) => {
+        this.setState({
+          showPredmet:true,
+          naslov:"Trenutni predmeti",
+          lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        naslov:"Trenutni predmeti",
+        lista:[]});
+    });
   }
   odslusaniPredmeti(){
     

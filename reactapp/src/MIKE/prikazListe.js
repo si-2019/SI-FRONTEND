@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PrikazPredmeta from './PrikazPredmeta'
 
   class Lista extends Component {
     constructor(props){
@@ -9,7 +10,7 @@ import React, { Component } from 'react';
         <form>
           <fieldset>
             <div>
-              <Select />        
+              <Select submit={this.props.submit}/>        
             </div>
           </fieldset>
          </form>
@@ -40,7 +41,8 @@ import React, { Component } from 'react';
             <option value="Projektovanje informacionih sistema">Projektovanje informacionih sistema</option>
             <option value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
           </select>
-         
+        <PrikazPredmeta opisProjekta={"Ovo je opis projekta koji je potrebno uraditi na odabranom predmetu"} brojMogucihBodova={20}/>
+        <button onClick={this.props.submit}>Dalje</button>
         </div>
       )
     }

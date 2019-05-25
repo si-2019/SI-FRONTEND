@@ -13,7 +13,7 @@ class OcjenjivanjeJedanZadatak extends Component {
               type="indicator"
               name="arrowLeft"
               className="mr-2 bg-light float-right"
-              onClick={this.props.podaci.handleBackNaJednaZadaca}
+              onClick={() => this.props.podaci.handleBackNaJednaZadaca(this.props.podaci.state.student,this.props.podaci.state.idStudenta)}
             />{" "}
           </h4>
           <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
@@ -25,7 +25,7 @@ class OcjenjivanjeJedanZadatak extends Component {
           className="btn btn-primary ml-3"
           onClick={this.props.podaci.handleClick}
         >
-          <Icon type="indicator" name="sortDesc" className="mr-2" />
+          <Icon type="indicator" name="sortDesc" className="mr-2" onClick = {this.props.podaci.preuzmiDatoteku()}/>
           Preuzmi datoteku
         </button>
         <button
@@ -34,7 +34,7 @@ class OcjenjivanjeJedanZadatak extends Component {
           className="btn btn-primary ml-5"
           onClick={this.props.podaci.handleClick}
         >
-          <Icon type="indicator" name="search" className="mr-2" />
+          <Icon type="indicator" name="search" className="mr-2" onClick = {this.props.podaci.pregledDatoteke()} />
           Pregled datoteke
         </button>
         <br />
@@ -59,7 +59,7 @@ class OcjenjivanjeJedanZadatak extends Component {
           <textarea
             className="form-control  ml-3 mr-3"
             placeholder="Ovdje napišite Vaš komentar."
-            id="exampleTextarea"
+            id="komentar"
             rows="4"
           />
           <small id="emailHelp" className="form-text text-muted ml-3">
@@ -72,11 +72,11 @@ class OcjenjivanjeJedanZadatak extends Component {
             <input
               type="checkbox"
               class="custom-control-input"
-              id="customSwitch1"
+              id="prepisanZadatak"
             />
             <label
               className="custom-control-label ml-3"
-              htmlFor="customSwitch1"
+              htmlFor="prepisanZadatak"
             >
               <h5>
                 Zadatak je <b className="text-danger">prepisan.</b>

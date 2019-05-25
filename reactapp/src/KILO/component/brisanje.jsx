@@ -60,11 +60,9 @@ class BrisanjeZadace extends Component{
           const res = await axios.get(
             `http://localhost:31911/getZadacaById/${zadacaId}`
           );
-          console.log(res.data);
           this.setState({
             brisanjeState: res.data
           });
-          console.log(this.state.brisanjeState)
           
         } catch (e) {
           console.error("Error fetching zadaca by id", e);
@@ -89,7 +87,6 @@ class BrisanjeZadace extends Component{
           };
       render() {
         const lista = this.state.listaZadacaZaBrisanje; // this.pokupiIzBaze();
-        console.log(lista);
         return (
           <div>
             <Form>

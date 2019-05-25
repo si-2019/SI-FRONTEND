@@ -25,6 +25,10 @@ class Login extends Component {
     document.title = 'Login stranica'
   }
 
+  componentDidMount() {
+    document.getElementById('dioGreske').style.display = "none";
+  }
+
   pratiPromjenuKorisnickogImena = (e) => {
     this.setState({korisnickoIme: e.target.value});
   }
@@ -53,7 +57,8 @@ class Login extends Component {
   Submitaj = (e) => {
     e.preventDefault();
 	  if(!this.validirajFormu()) {
-	    document.getElementById('greske').innerText = error;
+      document.getElementById('greske').innerText = error;
+      document.getElementById('dioGreske').style.display = "block";
 	  } else {
       //autentikacija uspjesna
       this.setState({
@@ -63,6 +68,11 @@ class Login extends Component {
       return <Redirect to="/romeo/home" />
     }
   }
+
+  UkloniGresku = (e) => {
+    document.getElementById('greske').innerText = "";
+      document.getElementById('dioGreske').style.display = "none";
+  }
 	
   render () {
     if(this.state.logiran) {
@@ -70,23 +80,26 @@ class Login extends Component {
     }
 
     return (
-      <div id="body">
-        <div id="main">
-          <form onSubmit = {this.Submitaj} id="loginForma">
-            <label htmlFor="korisnickoIme">Korisničko ime:</label>
-            <input type="text" name="korisnickoIme" id="korisnickoIme" onChange={this.pratiPromjenuKorisnickogImena} required />
-            <label htmlFor="sifra">Šifra:</label>
-            <input type="password" name="sifra" id="sifra" onChange={this.pratiPromjenuSifre} required/>
+      <div className="body">
+        <div className="card text-white bg-primary " >
+          <form className="loginForma">
+          <label for="exampleInputEmail1">Korisnicko ime:</label>
+          <input type="email" className="korisnickoIme" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
+<br></br>
+          <label for="exampleInputPassword1">Password:</label>
+      <input type="password" className="sifra" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
+            
 
-            <input type="submit" name="submit" id="submit" value="Prijava"/>
+            <button type="button" className="btn btn-secondary" onClick = {this.Submitaj} >LOGIN</button>
           </form>
           
         </div>
-        <div id="greska">
-	        <label id="greske"></label>
+        <div className="alert alert-dismissible alert-danger mb-0" id="dioGreske">
+          <button type="button" className="close" data-dismiss="alert" onClick = {this.UkloniGresku} >&times;</button>
+          <div id="greske"></div>
         </div>
-        <div id="footer">
-        &copy; 2019 Elektrotehnički fakultet u Sarajevu
+        <div className="footer">
+          &copy; 2019 Elektrotehnički fakultet u Sarajevu
         </div>
       </div>
     );

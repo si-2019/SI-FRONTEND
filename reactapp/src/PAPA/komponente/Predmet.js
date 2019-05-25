@@ -14,7 +14,8 @@ class PredmetOne extends Component {
     this.state = {  
                     boja:"white",
                     naslov: "Izaberite nacin prikazivanja",
-                    lista:[]
+                    lista:[],
+                    showPredmet:true
                  };
     this.trenutniPredmeti = this.trenutniPredmeti.bind(this); 
     this.odslusaniPredmeti = this.odslusaniPredmeti.bind(this); 
@@ -36,6 +37,7 @@ class PredmetOne extends Component {
           lista:res.data});
     }).catch((err) => {
       this.setState({
+        showPredmet:true,
         naslov:"Trenutni predmeti",
         lista:[]});
     });
@@ -46,10 +48,12 @@ class PredmetOne extends Component {
   polozeniPredmeti(){
     papaApi.polozeniPredmeti().then((res) => {
       this.setState({
+        showPredmet:true,
         naslov:"Polozeni predmeti",
         lista:res.data});
     }).catch((err) => {
       this.setState({
+        showPredmet:true,
         naslov:"Polozeni predmeti",
         lista:[]});
     });
@@ -64,11 +68,15 @@ class PredmetOne extends Component {
     papaApi.trenutniSaDrugihSemestara().then((res) => {
       this.setState({
         naslov:"Predmeti sa drugih semestara",
-        lista:res.data});
+        lista:res.data,
+        showPredmet:true
+    });
     }).catch((err) => {
       this.setState({
         naslov:"Predmeti sa drugih semestara",
-        lista:[]});
+        lista:[],
+        showPredmet:true
+       });
     });
   }
   trenutniAsistenti(){
@@ -86,12 +94,22 @@ class PredmetOne extends Component {
       }
       this.setState({
         naslov:"Profesori",
-        lista:niz});
+        lista:niz,
+        showPredmet:false
+      });
     }).catch((err) =>{
       this.setState({
         naslov:"Profesori",
-        lista:[]});
+        lista:[],
+        showPredmet:false
+      });
     });
+  }
+
+  kliknutPredmet(){
+    if(this.state.showPredmet){
+        this.props.fija();      
+    }
   }
 
   render() {
@@ -120,7 +138,7 @@ class PredmetOne extends Component {
           <div>
               <ul style={{listStyleType: "square"}}>
                 {this.state.lista.map(item => (
-                  <li style={{ margin: "1rem"}} key={item.id} >{item.naziv}</li>
+                  <li style={{ margin: "1rem"}} key={item.id} onClick={this.kliknutPredmet.bind(this)}>{item.naziv}</li>
                 ))}
               </ul>
           </div>

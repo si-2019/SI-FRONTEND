@@ -103,7 +103,7 @@ state={
 }
 
 componentDidMount = () => {  
-    
+    fetch("http://localhost:31920/getStudentTermini/1")
   }
   
 render = () =>{

@@ -38,7 +38,15 @@ class ObavjestenjaPapa extends Component {
     
   }
   obavjestenjaProfesor(){
-    
+    papaApi.obavjestenjaProfesor().then((res) => {
+      this.setState({
+        naslov:"Obajvestenja od profesora",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        naslov:"Obavjestenja od profesora",
+        lista:[]});
+    });
   }
   obavjestenjaAsistent(){
     

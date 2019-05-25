@@ -46,8 +46,7 @@ export default class Calendar extends React.Component {
                     dan:datum.format('D'),
                     mijesec:datum.format('MMMM')
                 });
-            }
-            console.log(niz); 
+            } 
             this.setState({
               ispiti:niz
             });
@@ -77,7 +76,34 @@ export default class Calendar extends React.Component {
         
     }
     neradniDani(){
-        
+        papaApi.neradniDani().then((res)=>{
+            console.log(res.data);
+            let niz=[];
+            for (let a = 0; a < res.data.length; a++ ) {
+                let datum=new moment(res.data[a].datum)
+                niz.push({
+                    naziv:res.data[a].naziv,
+                    dan:datum.format('D'),
+                    mijesec:datum.format('MMMM')
+                });
+            }
+            console.log(niz);
+            this.setState({
+                showFakultet: false,
+                showGodine: false,
+                showSmijer: false,
+                showNeradniDani: true,
+                neradniDani:niz
+            });
+        }).catch((err)=>{
+            this.setState({
+                showFakultet: false,
+                showGodine: false,
+                showSmijer: false,
+                showNeradniDani: true,
+                neradniDani:[]
+            });
+        });
     }
 
     weekdays = moment.weekdays(); //["Sunday", "Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday"]
@@ -224,15 +250,13 @@ export default class Calendar extends React.Component {
     containsObject = (obj, list) => {
         for (let i =  0; i < list.length; i++) {
             if (list[i].dan == obj.dan && list[i].mijesec == obj.mijesec) {
-                console.log(obj);
-                console.log(list);
                 return true;
             }
         }
         return false;
     }
     staTrebaPisati = (obj,list) => {
-        let string="";
+        let string=""+obj.dan;
         for (let i =  0; i < list.length; i++) {
             if (list[i].dan == obj.dan && list[i].mijesec == obj.mijesec) {
                 if(this.state.showFakultet || this.state.showGodine || this.state.showSmijer){
@@ -271,8 +295,12 @@ export default class Calendar extends React.Component {
                 let className = (d == this.currentDay() && a==moment().format('MMMM')? "day current-day": "day");
                 let selectedClass = (this.containsObject({dan: d, mijesec:a}, this.state.selectedDays ) ? " selected-day " : "");
                 let staPise;
-                if(this.state.showneradniDani) staPise = (this.containsObject({dan: d, mijesec:a}, this.state.neradniDani ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.neradniDani) : d);
-                else staPise = (this.containsObject({dan: d, mijesec:a}, this.state.ispiti ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.ispiti) : d);
+                if(this.state.showneradniDani) {
+                    staPise = (this.containsObject({dan: d, mijesec:a}, this.state.neradniDani ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.neradniDani) : d);
+                }
+                else{
+                    staPise = (this.containsObject({dan: d, mijesec:a}, this.state.ispiti ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.ispiti) : d);
+                }
                 daysInMonth.push(
                     <td key={d} className={className + selectedClass} >
                         {staPise}

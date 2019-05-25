@@ -105,6 +105,28 @@ state={
 componentDidMount = () => {  
     fetch("http://localhost:31920/getStudentTermini/1")
     .then(resTermini => resTermini.json())
+    .then(jsonTermini => {
+      fetch("http://localhost:31920/getStudentIspiti/1")
+        .then(resIspiti => resIspiti.json())
+        .then(jsonIspiti => {
+          var raspored=[];
+
+          jsonIspiti.forEach((val, index) => {
+  
+            raspored.push(val);
+           });
+           jsonTermini.forEach((val, index) => {
+            
+            raspored.push(val);  
+          });
+        
+          raspored.sort(sortCriteria);
+          this.setState({
+            isLoaded:true,
+            raspored:raspored
+          })
+        });
+      });
   }
   
 render = () =>{

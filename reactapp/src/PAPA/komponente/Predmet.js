@@ -90,7 +90,24 @@ class PredmetOne extends Component {
     });
   }
   trenutniAsistenti(){
-    
+    papaApi.trenutniAsistenti().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+        niz.push({
+          id:res.data[a].id,
+          naziv:res.data[a].ime+" "+res.data[a].prezime
+        })
+      }
+      this.setState({
+        showPredmet:false,
+        naslov:"Asistenti",
+        lista:niz});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Asistenti",
+        lista:[]});
+    });
   }
   
   trenutniProfesori(){

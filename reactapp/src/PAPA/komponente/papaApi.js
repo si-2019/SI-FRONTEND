@@ -15,6 +15,9 @@ class papaApi{
     static polozeniPredmeti(){
         return axios.get('http://localhost:31916/papa/polozeniPredmeti', {params : {idStudent:id}});
     }
+    static trenutniAsistenti(){
+        return axios.get('http://localhost:31916/papa/trenutniAsistenti', {params : {idStudent:id}});
+    }
     static ispitiPrijava(){
         return axios.get('http://localhost:31916/papa/ispitiPrijava', {params : {idStudent:id}});
     }

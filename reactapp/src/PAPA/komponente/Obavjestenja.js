@@ -32,7 +32,17 @@ class ObavjestenjaPapa extends Component {
   
   
   obavjestenjaAdmin(){
-    
+    papaApi.obavjestenjaAdmin().then((res) => {
+        this.setState({
+          showPredmet:false,
+          naslov:"Obajestenja od admina",
+          lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Obavjestenja od admin",
+        lista:[]});
+    });
   }
   obavjestenjaStudentskaSluzba(){
     papaApi.obavjestenjaStudentskaSluzba().then((res) => {

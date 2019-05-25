@@ -30,7 +30,7 @@ class App extends Component {
       <Container>
         <Row>
           <Col>
-            <Predmet />
+            <Predmet fija={this.fija}/>
           </Col>
           <Col>
             <Obavijestenja fija={this.fija}/>

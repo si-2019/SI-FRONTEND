@@ -90,7 +90,12 @@ render = () =>{
         var yyyy = danas.getFullYear();
         danas = yyyy + '-' + mm + '-' + dd;
     
-       
+        if(datum && datum<danas)
+        {
+            podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je istekao</h3>);
+            lockState=true;
+        }           
+        else
         
            podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je: {datum}</h3>)
     }

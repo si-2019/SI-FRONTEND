@@ -28,7 +28,10 @@ export default class Calendar extends React.Component {
         }
     
         this.ispitiFakultet=this.ispitiFakultet.bind(this);
-        
+        this.ispitiFakultet=this.ispitiFakultet.bind(this);
+        this.ispitiSmijer=this.ispitiSmijer.bind(this);
+        this.ispitiGodina=this.ispitiGodina.bind(this);
+        this.neradniDani=this.neradniDani.bind(this);
     }
     componentDidMount() {
         papaApi.sviIspita().then((res) => {
@@ -62,6 +65,15 @@ export default class Calendar extends React.Component {
         });
     }
     
+    ispitiSmijer(){
+        
+    }
+    ispitiGodina(){
+        
+    }
+    neradniDani(){
+        
+    }
 
     weekdays = moment.weekdays(); //["Sunday", "Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday"]
     weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -105,7 +117,7 @@ export default class Calendar extends React.Component {
         this.setState({
             dateContext: dateContext
         });
-        //this.props.onNextMonth && this.props.onNextMonth();
+        this.props.onNextMonth && this.props.onNextMonth();
     }
 
     prevMonth = () => {
@@ -296,6 +308,9 @@ export default class Calendar extends React.Component {
                     <ButtonGroup vertical >
                     <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
                         <Dropdown.Item eventKey="1" onClick={this.ispitiFakultet}>Ispiti na nivou fakulteta</Dropdown.Item>
+                        <Dropdown.Item eventKey="2" onClick={this.ispitiSmijer}>Ispiti po smijeru </Dropdown.Item>
+                        <Dropdown.Item eventKey="3" onClick={this.ispitiGodina}>Ispiti po godinama </Dropdown.Item>
+                        <Dropdown.Item eventKey="4" onClick={this.neradniDani}>Neradni dani</Dropdown.Item>
                     </DropdownButton>
                     </ButtonGroup>
                 </div>

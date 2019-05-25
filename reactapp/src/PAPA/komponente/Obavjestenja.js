@@ -75,7 +75,17 @@ class ObavjestenjaPapa extends Component {
     });
   }
   obavjestenjaAsistent(){
-    
+    papaApi.obavjestenjaAsistent().then((res) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Obajvestenja od asistenta",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Obajvestenja od asistenta",
+        lista:[]});
+    });
   }
   upisaneOcijene(){
    

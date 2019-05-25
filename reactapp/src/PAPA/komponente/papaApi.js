@@ -6,6 +6,9 @@ class papaApi{
     static trenutniSaDrugihSemestara(){
         return axios.get('http://localhost:31916/papa/trenutniSaDrugihSemestara', {params : {idStudent:id}});
     }
+    static polozeniPredmeti(){
+        return axios.get('http://localhost:31916/papa/polozeniPredmeti', {params : {idStudent:id}});
+    }
     static ispitiPrijava(){
         return axios.get('http://localhost:31916/papa/ispitiPrijava', {params : {idStudent:id}});
     }

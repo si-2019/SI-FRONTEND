@@ -59,7 +59,17 @@ class PredmetOne extends Component {
     });
   }
   nePolozeniPredmeti(){
-    
+    papaApi.nePolozeniPredmeti().then((res) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Nepolozeni predmeti",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Nepolozeni predmeti",
+        lista:[]});
+    });
   }
   trenutniSaDrugihOdsjeka(){
     papaApi.trenutniSaDrugihOdsjeka().then((res) => {

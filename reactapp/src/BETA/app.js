@@ -15,8 +15,6 @@ class App extends Component {
       open: false,  //open pokazuje da li formu treba prikazati ili ne
       activeContentId: 1
     };
-    this.onOpenModal = this.onOpenModal.bind(this)
-    this.onCloseModal = this.onCloseModal.bind(this)
   }
 
   //Funkcija kojom se otvara forma
@@ -37,20 +35,6 @@ class App extends Component {
       activeContentId: id,
     })
   };
-
-  onCloseModal2 = (open) => {
-    this.setState({
-      open: false,
-      id: 1
-    })
-  }
-
-  onChangeActiveId = (id) => {
-    this.setState({
-      activeContentId: id,
-    })
-  }
-
 
   render() {
     const { open } = this.state;

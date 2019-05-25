@@ -4,7 +4,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import papaApi from './papaApi';
-import predmetE from '../../ECHO/app';
 
 
 
@@ -59,7 +58,7 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Trenutne prijeva za ispit",
         lista:niz,
-        showPredmet:false
+        showPredmet:true
       });
     }).catch((err) => {
       this.setState({

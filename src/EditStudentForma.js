@@ -11,18 +11,16 @@ class Forma extends Component {
             id: '',
             ime: '',
             prezime: '',
-            index: '',
             email: '', 
             telefon: '',
-            adresa: ''  
+            adresa: '',
+            indeks: '' 
         }
        
       }
 
       componentDidMount(){
-        //Promijeniti URL
-        //http://localhost:31901/api/korisnik/getAllStudents
-        axios.get ('https://jsonplaceholder.typicode.com/posts')
+        axios.get ('http://localhost:31901/api/korisnik/getAllStudents')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -34,8 +32,10 @@ class Forma extends Component {
 
     onChange = (e) => {
         var split=e.target.value.split(" - ");     
-        //split 0: id, split 1: title 
-        this.setState({selectedValue: split[1], id: split[0]})  
+        this.setState({
+          selectedValue: split[1], id: split[0], ime: split[1], 
+          prezime: split[2], email: split[3], telefon: split[4] , adresa: split[5],   indeks: split[6]
+         })  
     }
 
 
@@ -46,7 +46,6 @@ class Forma extends Component {
         })
       }
 
-//Funkcija za backend
       handleSubmit = (event) =>{
         event.preventDefault()
         const data=this.state
@@ -55,7 +54,7 @@ class Forma extends Component {
         const xhr = new XMLHttpRequest();
         const body = JSON.stringify(data);
 
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/updateStudent', true);
+        xhr.open('POST','http://localhost:31901/api/korisnik/updateStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -72,7 +71,7 @@ class Forma extends Component {
      
 
     render() {
-        const { ime, prezime, email, telefon, adresa, index, lista, selectedValue, id} = this.state;
+        const { ime, prezime, email, telefon, adresa, indeks, lista, selectedValue, id} = this.state;
        
         return (
           
@@ -81,10 +80,9 @@ class Forma extends Component {
                 <p>Prikaz svih studenata: </p><br />
                 <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
                 {
-                  
-                    //paziti sta se prikazuje, nece biti list.title!!!
-                    //ako je length!=0 prikazati listu, u suprotnom vratiti null
-                    lista.length ? lista.map(list => <option key={list.id}>{list.id} - {list.title}</option>): null
+                  lista.length ? lista.map(list => 
+                  <option key={list.id}>{list.id} - {list.ime} - {list.prezime} - {list.email} - {list.telefon} - {list.adresa} - {list.indeks}</option>
+                  ): null
                 }
                 </select><br /><br />
                 
@@ -109,9 +107,8 @@ class Forma extends Component {
               <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />
 
-              <label>Index </label>
-              <input className="form-control" type="text" name="index" value={index} onChange={this.handleChange} /><br />
-              
+              <label>  indeks </label>
+              <input className="form-control" type="text" name="index" value={indeks} onChange={this.handleChange} /><br />
               
               <input type="submit" value="Edit" className="btn btn-success btn-block" />
              </form>

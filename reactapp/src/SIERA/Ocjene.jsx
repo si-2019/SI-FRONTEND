@@ -1,38 +1,39 @@
 import React from "react";
 import TabelaOcjene from "./TabelaOcjene";
-class Ocjene extends React.Component{
+import axios from "axios";
 
-    constructor(){
+class Ocjene extends React.Component {
+
+    constructor() {
         super();
-        this.state={
-            akGodine: [{
-                naziv: "2017",
-                predmeti: [{
-                    ocjena: "6",
-                    naziv: "cupanje trave"
-                },{
-                    ocjena: "10",
-                    naziv: "guglanje"
-                }]
-            },{
-                naziv: "2018",
-                predmeti: [{
-                    ocjena: "7",
-                    naziv: "jupi"
-                }]
-            }]
+        this.state = {
+            dummyOcjene: [],
+            idStudenta: 1
         }
     }
-    render(){
-        return(
-            <div class="row" style={{padding:"20px"}}>
-                 {this.state.akGodine.map(god=>
-                    <TabelaOcjene 
-                    predmeti = {god.predmeti} 
-                    akGod = {god.naziv}
+    componentDidMount() {
+        axios
+            .get("http://localhost:31918/ocjene/" + this.state.idStudenta)
+            .then(res => {
+                this.setState({
+                    dummyOcjene: res.data.ocjene
+                })
+                console.log(res.data.ocjene);
+            })
+            .catch(res => {
+                console.log(res.error);
+            });
+    }
+    render() {
+        return (
+            <div class="row" style={{ padding: "20px" }}>
+                {this.state.dummyOcjene.map(x =>
+                    <TabelaOcjene
+                        ocj={x[0].Ocjene}
+                        akGod={x[0].AkademskaGodina}
                     />)}
-               </div>
-            
+            </div>
+
         );
     }
 }

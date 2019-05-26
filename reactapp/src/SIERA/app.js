@@ -9,6 +9,7 @@ import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import PrikaziStatus from "./PrikaziStatus.jsx";
+import Prosjek from "./Prosjek.jsx";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
@@ -57,6 +58,11 @@ class App extends Component {
               <li class="nav-item">
                 <a class="nav-link" href="/Siera/zavrsni-rad">
                   Završni rad
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Siera/prosjek">
+                  Prosjek
                 </a>
               </li>
             </ul>
@@ -112,6 +118,12 @@ class App extends Component {
             <div class="container-fluid">
               <DropDownZavrsni />
               <PrikaziStatus />
+            </div>
+
+          } />
+           <Route exact path="/Siera/prosjek" render={() =>
+            <div class="container-fluid">
+              <Prosjek/>
             </div>
 
           } />

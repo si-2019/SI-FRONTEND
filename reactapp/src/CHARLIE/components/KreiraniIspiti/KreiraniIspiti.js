@@ -15,19 +15,13 @@ class KreiraniIspiti extends React.Component{
     this.state = {
       tableData: [
         {
-          idIspit: '1',
-          tipIspita: 'I parcijalni',
-          termin: '04/04/2019'
-        },
-        {
-          idIspit: '2',
-          tipIspita: 'Usmeni',
-          termin: '05/05/2019'
+          idIspit: '',
+          tipIspita: '',
+          termin: ''
         }
       ],
 
-      modalShow: false,
-      idIspit:0
+      modalShow: false
     };
 }
 
@@ -49,7 +43,8 @@ obrisiIspit = () => {
 state = {response:[]}
 
   async componentDidMount() {
-    const ispiti = await axios.get("http://localhost:31903/ispiti");
+    const profesorID = 234;
+    const ispiti = await axios.get(`http://localhost:31903/kreiraniIspiti/${profesorID}`);
     //Za svaki entry nadji ime predmeta na osnovu id-a
     this.setState({ tableData: ispiti.data });
   } 
@@ -88,9 +83,9 @@ state = {response:[]}
             <Link
               type="button"
               id="btnStud"
-              className="btn btn-primary"
+              className="btn btn-info"
               style={{ marginRight: "10%" }}
-              to={`/charlie/pregled-studenata/${row.idIspit}`}
+              to={`/charlie/pregled-studenata/${row.row.idIspit}`} 
             >
               Studenti
             </Link>
@@ -100,7 +95,7 @@ state = {response:[]}
               id="btnUredi"
               className="btn btn-primary"
               style={{ marginRight: "10%" }}
-              to={`/charlie/uredi-ispit/${row.idIspit}`}
+              to={`/charlie/uredi-ispit/${row.row.idIspit}`}
             >
               Uredi
             </Link>

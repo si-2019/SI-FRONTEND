@@ -4,31 +4,31 @@ import { mount, shallow, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-import { sviProjektiTrenutnogUsera } from '../../api/projekti_zadaci';
 import PregledZadatakaProjekta from './PregledZadatakaProjekta';
 
 describe('Acceptance kriteriji testovi koji trebaju da odrede da li je odrađen user story', () => {
     it("Treba da postoji select pomoću kojeg biramo ", () => {
-        const wrapper = shallow(<PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}/>);
+        const wrapper = shallow(<PregledZadatakaProjekta   />);
         expect(wrapper.find("Input").exists()).toBe(true);
     });
 
     it("Treba forma da postoji koja je renderovana", () => {
-        const wrapper = shallow(<PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}/>);
+        const wrapper = shallow(<PregledZadatakaProjekta   />);
         expect(wrapper.find("Form").exists()).toBe(true);
     });
 
     it("Treba da postoji tabela za prikaz zadataka", () => {
-        const wrapper = shallow(<PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}/>);
+        const wrapper = shallow(<PregledZadatakaProjekta   />);
         expect(wrapper.find("Table").exists()).toBe(true);
     });
 
     it("Tabela treba imati 2 reda (api/projektni_zadaci)", () => {
-        const wrapper = shallow(<PregledZadatakaProjekta projekti={sviProjektiTrenutnogUsera().projekti}/>);
+        const wrapper = shallow(<PregledZadatakaProjekta   />);
         expect(wrapper.find("tbody").children().length).toBe(2);
     });
 
-
+    // ne koriste se vise props za komponente.
+    /*
     it("Tabela treba da ima 5 redova i 5 opcija u selectu", () => {
 
         let novaTabela = [
@@ -73,5 +73,5 @@ describe('Acceptance kriteriji testovi koji trebaju da odrede da li je odrađen 
             expect(wrapper.find("Input").children().length).toBe(5);
             expect(wrapper.find("tbody").children().length).toBe(5);
         
-    });
+    });*/
 });

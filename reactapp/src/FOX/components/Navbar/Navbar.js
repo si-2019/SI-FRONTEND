@@ -18,16 +18,16 @@ class Navbar001 extends Component {
     render() {
       return (
         <Navbar bg="dark" variant="dark" expand="lg">
-          <Navbar.Brand href="#home">FOX</Navbar.Brand>
+          <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
-                <NavDropdown.Item href="UnosPrisustva">Prisustvo</NavDropdown.Item>
-                <NavDropdown.Item href="UnosBodova">Ispiti</NavDropdown.Item>
-                <NavDropdown.Item href="UnosOcjene">Ocjene</NavDropdown.Item>
-                <NavDropdown.Item href="TemeZavrsnih">Teme</NavDropdown.Item>
+                <NavDropdown.Item href="unosPrisustva">Prisustvo</NavDropdown.Item>
+                <NavDropdown.Item href="unosBodova">Ispiti</NavDropdown.Item>
+                <NavDropdown.Item href="unosOcjene">Ocjene</NavDropdown.Item>
+                <NavDropdown.Item href="unosTeme">Teme</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="ispiti">Ispiti</Nav.Link>
               <Nav.Link href="obavijesti">Obavijesti</Nav.Link>
@@ -37,7 +37,7 @@ class Navbar001 extends Component {
               <Nav.Link href="raspored">Raspored</Nav.Link>
               <Nav.Link href="chat">Chat</Nav.Link>
               <Nav.Link href="forum">Forum</Nav.Link>
-              <Nav.Link href="materijail">Materijali</Nav.Link>
+              <Nav.Link href="materijali">Materijali</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -4,7 +4,9 @@ import './App.css';
 import NoviIssueForma from './komponente/Student/NoviIssueForma.js';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
-import FAQ from './komponente/Student/FAQ.js'
+import FAQ from './komponente/Student/FAQ.js';
+import Drafts from './komponente/Student/Drafts.js';
+
 
 class App extends Component {
   constructor(props) {
@@ -24,12 +26,15 @@ class App extends Component {
     window.confirm('Prekinuti pisanje issuea?') && this.setState({ open: false });
   };
 
+  onCloseModalAndSaveAsDraft = () => {
+    window.confirm('Save issue as draft and close?') && this.setState({ open: false });
+  };
+
   onChangeActiveId = (id) => {
     this.setState({
       activeContentId: id,
     })
   };
-
 
   render() {
     const { open } = this.state;
@@ -58,17 +63,17 @@ class App extends Component {
               <div id = "right">
                 <div 
                     id = "TrackIssuesContent" 
-                    style={{display : this.state.activeContentId === 1 ? 'inherit' : 'none'}}
+                    style={{display : this.state.activeContentId == 1 ? 'inherit' : 'none'}}
                 ><IssueList/>
                 </div>
                 <div 
                     id = "DraftsContent" 
                     style={{display : this.state.activeContentId == 2 ? 'inherit' : 'none'}}
-                >Drafts komponenta ide ovdje
+                ><Drafts/>
                 </div>
                 <div 
                     id = "Archived" 
-                    style={{display : this.state.activeContentId === 3 ? 'inherit' : 'none'}}
+                    style={{display : this.state.activeContentId == 3 ? 'inherit' : 'none'}}
                 > Archived komponenta ide ovdje 
                 </div>
 
@@ -89,9 +94,10 @@ class App extends Component {
             center
             id ="modal"
             onClose={() => {}}
+            showCloseIcon={false}
           >
             <div id="overlay">
-              <NoviIssueForma onCloseModal={this.onCloseModal}/>
+              <NoviIssueForma onCloseModal={this.onCloseModal} onCloseModalAndSaveAsDraft={this.onCloseModalAndSaveAsDraft}/>
             </div>
           </Modal>
           

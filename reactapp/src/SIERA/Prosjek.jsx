@@ -40,29 +40,28 @@ class Prosjek extends Component {
 vratiGod = (provjeri,i) => {
     if(provjeri== 0 ) return;
     else return (
-        <>
+    
             
             <label style={{ textAlign: "left" }}>{++i}. godina: {provjeri}</label>  
             
-            </>
+    
     )
 }
 vratiZimski = (provjeri,i) => {
     if(provjeri== 0 ) return;
     else return (
-        <>
-             <div style={{ visibility: "hidden" }}>dssffds</div>
-        <label style={{ textAlign: "left" }}>Zimski semestar: {this.state.zimski[i]}</label>
-        </>
+    
+        <label style={{ textAlign: "left" }}>   Zimski semestar: {this.state.zimski[i]}</label>
+
     )
 }
 vratiLjetni = (provjeri,i) => {
     if(provjeri== 0 ) return;
     else return (
-        <>
     
-        <label style={{ textAlign: "left" }}>Zimski semestar: {this.state.ljetni[i]}</label>
-        </>
+    
+        <label style={{ textAlign: "left" }}>    Ljetni semestar: {this.state.ljetni[i]}</label>
+       
     )
 }
 
@@ -81,13 +80,19 @@ vratiLjetni = (provjeri,i) => {
                         <div style={{ visibility: "hidden" }}>dssffds</div>
                         <div>
                         {this.state.prosjekGodina.map((prosjek,index) =>(
-                             <div>
-                             <div style={{ visibility: "hidden" }}>dssffds</div>
+                            <div class="text-center">
+                             <div className="row" class="text-center" >
                              {this.vratiGod(prosjek,index)}
+                             </div>
+                             <div className="row" class="text-center">
                              {this.vratiZimski(prosjek,index)}
-                             <div style={{ visibility: "hidden" }}>dssffds</div> 
-                             {this.vratiLjetni(prosjek,index)}  
-                             <div style={{ visibility: "hidden" }}>dssffds</div>
+                             </div>
+                             <div className="row" class="text-center">
+                             {this.vratiLjetni(prosjek,index)} 
+                             </div>
+                            
+                             
+                        
                          </div>
                         ))}
                        

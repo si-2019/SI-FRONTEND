@@ -24,9 +24,9 @@ class NoviIssueForma extends React.Component {
         // get our form data out of state
         const { issueTitle, issueText } = this.state;
 
-        axios.post('/issue/send', { issueTitle, issueText})
+        axios.post('http://localhost:31902/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
         .then((result) => {
-            alert("Uspjesno upisan issue"); //Ovdje treba pokupiti odgovor od backend-a, ali ne znam kako !!!!!
+            alert(resilt.data); //Ovdje treba pokupiti odgovor od backend-a, ali ne znam kako !!!!!
         });
     };
 

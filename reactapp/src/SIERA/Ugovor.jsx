@@ -44,7 +44,7 @@ class Ugovor extends Component {
             });
     }
     handlePrikaz() {
-        const win = window.open("","_blank");
+        const win = window.open("", "_self");
         let html = '';
         
         html += '<html>';

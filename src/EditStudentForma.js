@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import { postRequest } from './actions/post'
 
 class Forma extends Component {
     constructor(props) {
@@ -50,10 +51,30 @@ class Forma extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
+        const body = JSON.stringify(data);
+       // postRequest(data)
+        let config = {
+          headers: {
+            'Content-Type': "text/plain",
+            'Content-Type': "application/json",
+            'Access-Control-Allow-Headers': 'Content-Type, Origin, X-Requested-With, Accept, Authorization',
+            'Access-Control-Request-Method': 'POST',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': 'true'
+          },
+          credentials: "include"
+        }
+
+        axios.post('http://localhost:31901/api/korisnik/updateStudent', body, config).then(response=>{
+          console.log(response)
+        }).catch(error=>{
+          console.log(error);
+        })
         
-        const xhr = new XMLHttpRequest();
+      /*  const xhr = new XMLHttpRequest();
         const body = JSON.stringify(data);
 
+        console.log(body);
         xhr.open('POST','http://localhost:31901/api/korisnik/updateStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
@@ -65,7 +86,7 @@ class Forma extends Component {
         xhr.onerror = () => {
           console.log(xhr.statusText);
         }
-        xhr.send(body);        
+        xhr.send(body);   */  
       
       }
      

@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-//import { postRequest } from './actions/post';
-
 
 class Forma extends Component {
     constructor(props) {
@@ -43,6 +41,7 @@ class Forma extends Component {
         const xhr = new XMLHttpRequest();
 
         const body = JSON.stringify(data);
+
         xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
@@ -54,7 +53,7 @@ class Forma extends Component {
         xhr.onerror = () => {
           console.log(xhr.statusText);
         }
-        xhr.send(body);        
+        xhr.send(body);      
       
       }
      

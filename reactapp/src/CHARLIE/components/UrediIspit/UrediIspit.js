@@ -61,6 +61,7 @@ class UrediIspit extends React.Component {
             <br></br>
             <label>Sala:</label>
             <input type="text" className="form-control" id="sala" />
+            <br></br>
             <input type="button" class="btn btn-primary" id="btnPotvrdi" value="Potvrdi" />
             <Link to="/charlie/kreirani-ispiti">
               <button type="button" class="btn btn-danger" id="btnPovratak">Odustani</button>

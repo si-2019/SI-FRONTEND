@@ -90,6 +90,16 @@ class Forma extends Component {
       
       }
      
+      promote(id){
+        const json={id};
+        axios.post("http://localhost:31901/api/korisnik/promoteStudentToAssistant", json)
+        .then(response=>{
+          console.log(response);
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+      }
 
     render() {
         const { ime, prezime, email, telefon, adresa, indeks, lista, selectedValue, id} = this.state;
@@ -132,7 +142,9 @@ class Forma extends Component {
               <input className="form-control" type="text" name="index" value={indeks} onChange={this.handleChange} /><br />
               
               <input type="submit" value="Edit" className="btn btn-success btn-block" />
-             </form>
+             </form><br />
+
+             <button className="btn btn-success btn-block" onClick={()=>this.promote(id)}>PROMOTE</button>
    
     </div>
         );

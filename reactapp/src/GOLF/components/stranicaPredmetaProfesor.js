@@ -10,29 +10,42 @@ class stranicaPredmetaProfesor extends Component {
         this.state = {          
           idPredmeta: props.match.params.idPredmeta,
           naziv: "",
-          sedmice: []
+          sedmice: [],
+          niz : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+          file : [],
+          oPredmetu: [],
+          literatura: [],
+          objave: []
         };
     }    
     componentDidMount(){
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.state.idPredmeta}`).then(res =>{
             axios.get(`http://localhost:31907/r1/semestar/${this.state.idPredmeta}`).then(res2 =>{
                 axios.get(`http://localhost:31907/r1/sedmice/${res2.data.semestar}`).then(res3 => {
-                    this.setState({
-                        naziv:res.data.naziv,
-                        sedmice: res3.data.sedmice
+                    axios.get(`http://localhost:31907/r3/dajOPredmetu/${this.state.idPredmeta}`).then(res4 =>{
+                        axios.get(`http://localhost:31907/r3/dajLiteraturu/${this.state.idPredmeta}`).then(res5 =>{
+                                this.setState({
+                                    naziv:res.data.naziv,
+                                    sedmice: res3.data.sedmice,
+                                    oPredmetu: res4.data.file,
+                                    literatura: res5.data.file
+                                }) 
                     })
+                    
                 })
             })
          
         })
-    }
+    })
+}
     render(){
         return(
             <div>
                 <h1>{this.state.naziv}</h1>
-                <OPredmetuProfesor opis='sdsf' fileovi={['prvi.pdf','drugi.pdf','treci.pdf']}></OPredmetuProfesor>
-                <LiteraturaProfesor/>
-              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}></Sedmica>)}
+                <OPredmetuProfesor predmet={this.state.oPredmetu}></OPredmetuProfesor>
+                <LiteraturaProfesor nesto={this.state.literatura}></LiteraturaProfesor>
+              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice} sedmice={sedmica.redniBrojSedmice} idPredmet={this.state.idPredmeta} student="nesto"></Sedmica>)}
+              {this.state.objave.map(objave =>  <Sedmica objava={this.state.objave}></Sedmica>)}
             </div>
         )
     }

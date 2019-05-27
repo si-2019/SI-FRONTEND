@@ -18,6 +18,7 @@ class KreirajIspitDetalji extends Component {
               <label htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> <br/>
               <input type="text" className="form-control" id="vrijemeT" />
               <label htmlFor="Kapacitet">Kapacitet: </label> <br />
+              <input type="text" className="form-control" id="kapacitet" />
               <Form
                 autoFocus
                 labelTitle="Napomena za ispit"

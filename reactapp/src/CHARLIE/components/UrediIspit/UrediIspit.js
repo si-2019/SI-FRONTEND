@@ -59,6 +59,7 @@ class UrediIspit extends React.Component {
               onChange={this.handleChange}></input>
             <label>minuta</label>
             <br></br>
+            <label>Sala:</label>
             <input type="button" class="btn btn-primary" id="btnPotvrdi" value="Potvrdi" />
             <Link to="/charlie/kreirani-ispiti">
               <button type="button" class="btn btn-danger" id="btnPovratak">Odustani</button>

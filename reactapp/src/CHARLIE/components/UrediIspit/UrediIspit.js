@@ -62,7 +62,7 @@ class UrediIspit extends React.Component {
             <form
               autoFocus
               labelTitle="Napomena za ispit"
-              id="ispitnaNapomena"
+              id="iNapomena"
               placeholder="Nemojte zaboraviti indeks..."
               validations={["required"]}
             />

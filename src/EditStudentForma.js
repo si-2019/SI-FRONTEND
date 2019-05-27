@@ -51,30 +51,21 @@ class Forma extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
-        const body = JSON.stringify(data);
-       // postRequest(data)
-        let config = {
-          headers: {
-            'Content-Type': "text/plain",
-            'Content-Type': "application/json",
-            'Access-Control-Allow-Headers': 'Content-Type, Origin, X-Requested-With, Accept, Authorization',
-            'Access-Control-Request-Method': 'POST',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true'
-          },
-          credentials: "include"
-        }
-
-        axios.post('http://localhost:31901/api/korisnik/updateStudent', body, config).then(response=>{
-          console.log(response)
-        }).catch(error=>{
-          console.log(error);
-        })
+        const body =
+        {  "id": data.id,
+            "ime": data.ime,
+            "prezime": data.prezime,
+            "email": data.email, 
+            "telefon": data.telefon,
+            "adresa": data.adresa,
+            "indeks": data.indeks
+        };
         
-      /*  const xhr = new XMLHttpRequest();
-        const body = JSON.stringify(data);
+        const xhr = new XMLHttpRequest();
+        
+        const body1=JSON.stringify(body);
+        console.log("Body1: ", body1);
 
-        console.log(body);
         xhr.open('POST','http://localhost:31901/api/korisnik/updateStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
@@ -86,7 +77,7 @@ class Forma extends Component {
         xhr.onerror = () => {
           console.log(xhr.statusText);
         }
-        xhr.send(body);   */  
+        xhr.send(body1);   
       
       }
      

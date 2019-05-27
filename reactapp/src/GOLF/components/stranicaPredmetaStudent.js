@@ -4,6 +4,7 @@ import OPredmetuStudent from './oPredmetuStudent'
 import LiteraturaStudent from './literaturaStudent'
 import ObjavaStudent from './objavaStudent'
 import Sedmica from './sedmica'
+import { Replay5Sharp } from '@material-ui/icons';
 
 class stranicaPredmetaStudent extends Component {
 
@@ -13,7 +14,11 @@ class stranicaPredmetaStudent extends Component {
       dodano: 0,
       text: "",
       naziv: "",
-      sedmice: []
+      sedmice: [],
+      oPredmetu: [],
+      literatura: [],
+      objave: [],
+      niz: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
     }
   
     componentDidMount(){
@@ -23,26 +28,31 @@ class stranicaPredmetaStudent extends Component {
             axios.get(`http://localhost:31907/r1/sedmice/${res4.data.semestar}`).then(res3 => {
               const sedmicee = res3.data.sedmice
               axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
-                const odg = res2.data;
-                let tekst = "";
-                if(res2.data.veza == '1'){
-                  tekst='Ukloni iz mojih predmeta'
-                }
-                else{
-                  tekst='Dodaj u moje predmete'
-                }
-                this.setState({
-                  naziv: naziv,
-                  idPredmeta: this.props.match.params.idPredmeta,
-                  idKorisnika:this.props.match.params.idKorisnika,
-                  dodano: res2.data.veza,
-                  text: tekst,
-                  sedmice: sedmicee
+                axios.get(`http://localhost:31907/r3/dajOPredmetu/${this.props.match.params.idPredmeta}`).then(res5 =>{
+                  axios.get(`http://localhost:31907/r3/dajLiteraturu/${this.props.match.params.idPredmeta}`).then(res6 =>{
+                      const odg = res2.data;
+                      let tekst = "";
+                      if(res2.data.veza == '1'){
+                      tekst='Ukloni iz mojih predmeta'
+                      }
+                      else{
+                        tekst='Dodaj u moje predmete'
+                      }
+                      this.setState({
+                        naziv: naziv,
+                        idPredmeta: this.props.match.params.idPredmeta,
+                        idKorisnika:this.props.match.params.idKorisnika,
+                        dodano: res2.data.veza,
+                        text: tekst,
+                        sedmice: sedmicee,
+                        oPredmetu: res5.data.file,
+                        literatura: res6.data.file
+                      })
+                 
+                  })
                 })
-                
               })
-            })
-            
+            }) 
         })
       })
     }
@@ -88,10 +98,11 @@ class stranicaPredmetaStudent extends Component {
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
-              <OPredmetuStudent opis='sdsf' fileovi={['prvi.pdf','drugi.pdf','treci.pdf']}></OPredmetuStudent>
-              <LiteraturaStudent/>
-              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}></Sedmica>)}
-
+              <OPredmetuStudent predmet={this.state.oPredmetu}></OPredmetuStudent>
+              <LiteraturaStudent nesto={this.state.literatura}></LiteraturaStudent>
+              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}  sedmice={sedmica.redniBrojSedmice} idPredmet={this.props.match.params.idPredmeta}></Sedmica>)}
+              
+              {/* {this.state.objave.map(file => [<a href='#' class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])} */}
             </div>
         )
     }

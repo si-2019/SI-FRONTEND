@@ -18,6 +18,7 @@ import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
+import Statistika from "./statistika";
 
 class App extends Component {
   render() {
@@ -59,6 +60,11 @@ class App extends Component {
               <li class="nav-item">
                 <a class="nav-link" href="/Siera/zavrsni-rad">
                   Završni rad
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Siera/statistika">
+                  Statistika
                 </a>
               </li>
             </ul>
@@ -107,7 +113,6 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-
             )}
           />
           <Route
@@ -120,16 +125,27 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/Siera/zavrsni-rad" render={() =>
-            <div class="container-fluid">
-              <DropDownZavrsni />
-              <PrikaziStatus />
-            </div>
+          <Route
+            exact
+            path="/Siera/zavrsni-rad"
+            render={() => (
+              <div class="container-fluid">
+                <DropDownZavrsni />
+                <PrikaziStatus />
+              </div>
+            )}
+          />
 
-          } />
-
+          <Route
+            exact
+            path="/Siera/statistika"
+            render={() => (
+              <div class="container-fluid">
+                <Statistika />
+              </div>
+            )}
+          />
         </BrowserRouter>
-
       </div>
     );
   }

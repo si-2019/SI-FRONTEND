@@ -4,14 +4,18 @@ import OpisMaterijala from './OpisMaterijala'
 
 
 class objavaStudent extends Component {
-  render() {
 
+  constructor(props){
+    super(props);
     this.state =  {
-    datumobjave:{
-      id:1,
-      datum:Date.now()
+      datumobjave: this.props.datumobjave
+  
     }
   }
+
+  render() {
+
+    
 
     return (
         <div class="card">

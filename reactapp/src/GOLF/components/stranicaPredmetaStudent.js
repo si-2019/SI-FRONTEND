@@ -100,7 +100,7 @@ class stranicaPredmetaStudent extends Component {
               </div>
               <OPredmetuStudent predmet={this.state.oPredmetu}></OPredmetuStudent>
               <LiteraturaStudent nesto={this.state.literatura}></LiteraturaStudent>
-              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}  sedmice={sedmica.redniBrojSedmice} idPredmet={this.props.match.params.idPredmeta}></Sedmica>)}
+              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}  sedmice={sedmica.redniBrojSedmice} idPredmet={this.props.match.params.idPredmeta} student="student"></Sedmica>)}
               
               {/* {this.state.objave.map(file => [<a href='#' class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])} */}
             </div>

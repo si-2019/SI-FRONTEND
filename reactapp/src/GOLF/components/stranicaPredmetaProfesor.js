@@ -44,7 +44,7 @@ class stranicaPredmetaProfesor extends Component {
                 <h1>{this.state.naziv}</h1>
                 <OPredmetuProfesor predmet={this.state.oPredmetu}></OPredmetuProfesor>
                 <LiteraturaProfesor nesto={this.state.literatura}></LiteraturaProfesor>
-              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice} sedmice={sedmica.redniBrojSedmice} idPredmet={this.state.idPredmeta}></Sedmica>)}
+              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice} sedmice={sedmica.redniBrojSedmice} idPredmet={this.state.idPredmeta} student="nesto"></Sedmica>)}
               {this.state.objave.map(objave =>  <Sedmica objava={this.state.objave}></Sedmica>)}
             </div>
         )

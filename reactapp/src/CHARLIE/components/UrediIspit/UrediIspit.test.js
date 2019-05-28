@@ -20,4 +20,9 @@ describe('<UrediIspit />', () => {
    
     expect(wrapper.find('#btnPotvrdi').exists()).toBe(true)
   })
+  it('da li ima input za napomenu', () => {
+    const wrapper = shallow(<UrediIspit/>)
+    expect(wrapper.find('#iNapomena').exists()).toBe(true)
+  })
+
 }) 

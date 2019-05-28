@@ -59,6 +59,14 @@ class UrediIspit extends React.Component {
               onChange={this.handleChange}></input>
             <label>minuta</label>
             <br></br>
+            <form
+              autoFocus
+              labelTitle="Napomena za ispit"
+              id="iNapomena"
+              placeholder="Nemojte zaboraviti indeks..."
+              validations={["required"]}
+            />
+            <br></br>
             <input type="button" class="btn btn-primary" id="btnPotvrdi" value="Potvrdi" />
             <Link to="/charlie/kreirani-ispiti">
               <button type="button" class="btn btn-danger" id="btnPovratak">Odustani</button>

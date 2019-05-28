@@ -98,7 +98,7 @@ class stranicaPredmetaStudent extends Component {
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
-              <OPredmetuStudent predmet={this.state.oPredmetu}></OPredmetuStudent>
+              <OPredmetuStudent predmet={this.state.oPredmetu} idpredmeta={this.state.idPredmeta}></OPredmetuStudent>
               <LiteraturaStudent nesto={this.state.literatura}></LiteraturaStudent>
               {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}  sedmice={sedmica.redniBrojSedmice} idPredmet={this.props.match.params.idPredmeta} student="student"></Sedmica>)}
               

@@ -3,6 +3,7 @@ import OPredmetuProfesor from './oPredmetuProfesor'
 import LiteraturaProfesor from './literaturaProfesor'
 import Sedmica from './sedmica'
 import axios from 'axios'
+import Dropdown from './dropdown'
 
 class stranicaPredmetaProfesor extends Component {
     constructor(props){
@@ -46,6 +47,9 @@ class stranicaPredmetaProfesor extends Component {
         return(
             <div>
                 <h1>{this.state.naziv}</h1>
+                <div class='col-3' key = "3">
+                  {this.state.dropdownAk.map(drop => [<Dropdown naslov={drop.prviDioAk+'/'+drop.drugiDioAk+'.'}></Dropdown>])}
+                </div>
                 <OPredmetuProfesor predmet={this.state.oPredmetu}></OPredmetuProfesor>
                 <LiteraturaProfesor nesto={this.state.literatura}></LiteraturaProfesor>
               {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice} sedmice={sedmica.redniBrojSedmice} idPredmet={this.state.idPredmeta} student="nesto"></Sedmica>)}

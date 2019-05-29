@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 import {
     Modal, 
     ModalFooter, 
@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import PreviewZadace from "./previewZadace";
 import axios from "axios";
-import KreiranjeZadace from "./kreiranjeZadace";
+
 
 //user story 68 i user story 66 pushani skupa
 class BrisanjeZadace extends Component{

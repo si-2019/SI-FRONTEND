@@ -3,7 +3,7 @@ import history from "../utils/history";
 class Header extends Component {
   
   render() {
-    var nesta=100;
+   
     return (
       <div >
         <div  id="hed" className="card-header  mb-4" style= {{height:"50px"}}>

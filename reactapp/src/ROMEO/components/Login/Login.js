@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './login.css';
+import axios from 'axios';
 
 var error = 'Greska';
 
@@ -60,22 +61,34 @@ class Login extends Component {
       document.getElementById('greske').innerText = error;
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
-      //autentikacija uspjesna
+      //validacija uspjesna
       
-      //poziv api-a
-      fetch('http://localhost:31917/auth/login?username=${korisnickoIme}&password=${sifra}')
-        .then(res => res.json())
-        .then(
-          (result) => {
-            this.state
-          }
-        )
+      var url = 'http://localhost:31917/auth/login';
 
-      this.setState({
-        logiran: true
-      })
-      localStorage.setItem("token", "hardcoded for now")
-      return <Redirect to="/romeo/home" />
+      var params = {
+        username: this.state.korisnickoIme,
+        password: this.state.sifra
+      }
+      
+      var headers = {
+        "Access-Control-Allow-Origin": "*"
+      }
+
+      //poziv api-a
+      axios.get(url, {params, headers}).then( res => {
+        var nes = res;
+        var data = res.data;
+        var aa = 0;
+
+        this.setState({
+          logiran: true
+        })
+        localStorage.setItem("token", "hardcoded for now")
+        return <Redirect to="/romeo/home" />
+      });
+
+      //nnekic1
+      //password
     }
   }
 
@@ -93,10 +106,10 @@ class Login extends Component {
       <div className="body">
         <div className="card text-white bg-primary " >
           <form className="loginForma">
-          <label for="exampleInputEmail1">Korisnicko ime:</label>
+          <label htmlFor="exampleInputEmail1">Korisnicko ime:</label>
           <input type="email" className="korisnickoIme" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
 <br></br>
-          <label for="exampleInputPassword1">Password:</label>
+          <label htmlFor="exampleInputPassword1">Password:</label>
       <input type="password" className="sifra" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
             
 

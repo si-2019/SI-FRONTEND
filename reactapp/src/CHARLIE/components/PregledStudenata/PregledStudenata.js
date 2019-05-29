@@ -8,7 +8,7 @@ class PregledStudenata extends React.Component{
         <Link
           type="button"
           className="btn btn-light"
-          
+          to="/charlie/prijava-ispita"
         >
           Nazad
         </Link>

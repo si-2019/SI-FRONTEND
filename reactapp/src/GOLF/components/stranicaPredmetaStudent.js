@@ -99,7 +99,9 @@ class stranicaPredmetaStudent extends Component {
                 <div class='col-9'>
                   <h1>  {this.state.naziv}</h1>
                 </div>
-                
+                <div class='col-3' key = "3">
+                  {this.state.dropdownAk.map(drop => [<Dropdown naslov={drop.prviDioAk+'/'+drop.drugiDioAk+'.'}></Dropdown>])}
+                </div>
                 <div class='col-3'>
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>

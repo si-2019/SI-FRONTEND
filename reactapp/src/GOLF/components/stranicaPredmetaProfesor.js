@@ -15,11 +15,14 @@ class stranicaPredmetaProfesor extends Component {
           file : [],
           oPredmetu: [],
           literatura: [],
-          objave: []
+          objave: [],
+          dropdownAk: []
         };
     }    
     componentDidMount(){
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.state.idPredmeta}`).then(res =>{
+          axios.get(`http://localhost:31907/r8/getAkademskaGodina/`).then(res =>{
+              const dropdownAkademske = res.data.prethodne2AG
             axios.get(`http://localhost:31907/r1/semestar/${this.state.idPredmeta}`).then(res2 =>{
                 axios.get(`http://localhost:31907/r1/sedmice/${res2.data.semestar}`).then(res3 => {
                     axios.get(`http://localhost:31907/r3/dajOPredmetu/${this.state.idPredmeta}`).then(res4 =>{
@@ -28,7 +31,8 @@ class stranicaPredmetaProfesor extends Component {
                                     naziv:res.data.naziv,
                                     sedmice: res3.data.sedmice,
                                     oPredmetu: res4.data.file,
-                                    literatura: res5.data.file
+                                    literatura: res5.data.file,
+                                    dropdownAk: dropdownAkademske
                                 }) 
                     })
                     

@@ -6,6 +6,7 @@ class PregledStudenata extends React.Component{
       <div>
         Pregled studenata
         <Link
+          type="button"
           
         >
           Nazad

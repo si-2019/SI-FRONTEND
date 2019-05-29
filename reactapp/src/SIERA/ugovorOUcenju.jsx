@@ -156,11 +156,17 @@ class UgovorOUcenju extends Component {
       .catch(res => {
         console.log(res.error);
       });
-
+      //dobavljanje smjerova
     axios
-      .get()
-      .then()
-      .catch();
+      .get("http://localhost:31918/odsjek")
+      .then(res=>{
+        this.setState({
+          sviSmjerovi: res.data.odsjeci
+        })
+      })
+      .catch(res=>{
+        console.log(res);
+      });
   }
   handlePrikaz() {
     //prikaz u prozoru
@@ -216,10 +222,9 @@ class UgovorOUcenju extends Component {
                   className="custom-select"
                   onChange={e => this.promjenaSmjera(e)}
                 >
-                  <option value="1">RI</option>
-                  <option value="2">AiE</option>
-                  <option value="3">TK</option>
-                  <option value="4">EE</option>
+                  {this.state.sviSmjerovi.map(x=>
+                     <option value={x.idOdsjek}>{x.naziv}</option>
+                    )}
                 </select>
 
                 <div style={{ textAlign: "left" }}>

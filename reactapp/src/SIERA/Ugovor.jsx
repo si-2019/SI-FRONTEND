@@ -12,28 +12,32 @@ class Ugovor extends Component {
             show: false,
             studentId: 1,
             pdfUrl: null,
-            numPages: null,
-            pageNumber: 1
+            ime: "Neko",
+            prezime: "Neko",
+            indeks: "00000"
         }
         this.handleCreate = this.handleCreate.bind(this);
         this.handlePrikaz = this.handlePrikaz.bind(this);
     }
 
     handleCreate() {
-        //saljemo post zahtjev s forme
-
-
-    }
-    onDocumentLoadSuccess = ({ numPages }) => {
-        this.setState({ numPages });
+        //kreiranje ugovora
+        /*
+        axios
+            .get("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
+                ime: this.state.ime,
+                prezime: this.state.prezime,
+                semestar: 
+            })
+            .then()
+            .catch();
+            */
     }
 
     componentDidMount() {
-        axios({
-            method: "get",
-            url: "http://localhost:31918/ugovori/url/" + this.state.studentId,
-
-        })
+        //dobavljanje ugovora za prikaz
+        axios
+            .get("http://localhost:31918/ugovori/url/" + this.state.studentId)
             .then(res => {
                 this.setState({
                     pdfUrl: res.data.link
@@ -42,8 +46,23 @@ class Ugovor extends Component {
             .catch(res => {
                 console.log(res.error);
             });
+        
+        //dobavljanje studenta
+        axios
+            .get("http://localhost:31918/studenti/" + this.state.studentId)
+            .then(res=>{
+                this.setState({
+                    ime: res.data.ime,
+                    prezime: res.data.prezime,
+                    indeks: res.data.index
+                });
+            })
+            .catch(res=>{
+                console.log(res.error);
+            });
     }
     handlePrikaz() {
+        //prikaz u prozoru
         const win = window.open("", "_self");
         let html = '';
         
@@ -57,12 +76,10 @@ class Ugovor extends Component {
           win.document.write(html);
         }, 0);
     }
-
+    //modal
     handleClose = () => {
         this.setState({ show: false });
     }
-
-
 
     handleShow = () => {
         this.setState({ show: true });
@@ -77,7 +94,7 @@ class Ugovor extends Component {
                             <div class="card-body">
                                 <div style={{ visibility: "hidden" }}>dssffds</div>
                                 <div style={{ visibility: "hidden" }}>dssffds</div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" onClick={this.handleShow}>Kreiraj ugovor</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" onClick={this.handleCreate}>Kreiraj ugovor</button>
                                 <div style={{ visibility: "hidden" }}>dssffds</div>
                                 <div style={{ visibility: "hidden" }}>dssffds</div>
 

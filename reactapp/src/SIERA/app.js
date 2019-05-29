@@ -9,7 +9,6 @@ import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import PrikaziStatus from "./PrikaziStatus.jsx";
-import Ugovor from "./Ugovor.jsx";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
@@ -104,7 +103,6 @@ class App extends Component {
                 <div class="row">
                   <div className="col-sm">
                     <UgovorOUcenju />
-                    <Ugovor />
                   </div>
                 </div>
               </div>

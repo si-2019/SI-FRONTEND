@@ -7,9 +7,9 @@ class FormaPredmet extends Component {
         this.initialState = {
           naziv: '',
           ects: '',
-          broj_predavanja: '',
-          broj_tutorijala: '',
-          broj_vjezbi: '',
+          brojPredavanja: '',
+          brojVjezbi: '',
+          opis: ''
          
         }
     
@@ -32,7 +32,7 @@ class FormaPredmet extends Component {
         const xhr = new XMLHttpRequest();
 
         const body = JSON.stringify(data);
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddProfessor', true);
+        xhr.open('POST', 'http://localhost:31901/api/predmet/AddNewPredmet', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -55,7 +55,7 @@ class FormaPredmet extends Component {
       };
 
     render() {
-        const { naziv, ects, broj_predavanja, broj_tutorijala, broj_vjezbi } = this.state;
+        const { naziv, ects, brojPredavanja, brojVjezbi, opis } = this.state;
 
         return (
           <div className="col-md-4 col-md-offset-4" >
@@ -69,11 +69,12 @@ class FormaPredmet extends Component {
               <label >Broj predavanja</label>
               <input className="form-control" type="number" name="brojPredavanja"  onChange={this.handleChange}  /><br />
 
-              <label >Broj tutorijala</label>
-              <input className="form-control " type="number" name="brojTutorijala"  onChange={this.handleChange}/><br />
+             
 
               <label >Broj vježbi</label>
               <input className="form-control " type="number" name="brojVjezbi"  onChange={this.handleChange}/><br />
+              <label >Opis</label>
+              <input className="form-control " type="text" name="opis"  onChange={this.handleChange}/><br />
 
             
              

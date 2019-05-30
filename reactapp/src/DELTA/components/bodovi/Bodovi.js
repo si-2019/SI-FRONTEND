@@ -5,9 +5,9 @@ class Bodovi extends Component {
     getProgressBarStil = ()=>{
         const stringicBodovi = this.state.postotakBodova+"%";
         var boja = 'red';
-        if (this.state.postotakBodova < 20)
+        if (this.state.postotakBodova < 55)
             boja = 'red';
-        else if (this.state.postotakBodova >= 20 && this.state.postotakBodova <= 49)
+        else if (this.state.postotakBodova >= 55 && this.state.postotakBodova < 80)
             boja  = 'yellow';
         else
             boja = 'green';

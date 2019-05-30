@@ -55,7 +55,9 @@ class Mike extends Component {
       <UnosInformacija/>
     )
     else if(this.state.forma=="generisanjeGrupe") return(
-      <GenerisanjeGrupa/>
+      <GenerisanjeGrupa idAsistent={2} predmeti={[
+        {nazivPredmeta:"Softver Inženjering",idProjekat:1, brojStudenata:50},
+        {nazivPredmeta:"Vještačka inteligencija",idProjekat:2, brojStudenata:30}]}/>
     )
   }
   kreiranjeGrupe(){

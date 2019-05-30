@@ -1,6 +1,7 @@
 import React from 'react';
 import UnosPrisustvaForma from '../UnosPrisustvaForma/UnosPrisustvaForma';
 import Header from '../Header/Header';
+import UnosPrisustvaSedmice from '../UnosPrisustvaSedmice/UnosPrisustvaSedmice';
 
 
 class UnosPrisustva extends React.Component {
@@ -99,12 +100,15 @@ class UnosPrisustva extends React.Component {
         return (
             <div id="unosPrisustvaID">
                 <Header isPocetna={false}/>
+                <div style={{padding: "25px", textAlign: "center"}}>
+                <UnosPrisustvaSedmice/>
                 <UnosPrisustvaForma
                     data={this.state}
                     handleSubmit={this.handleSubmit}
                     handleSubmitSvi={this.handleSubmitSvi}
                     handleChange={this.handleChange}
                     handleChangeSvi={this.handleChangeSvi}/>
+                </div>
             </div>
         );
     }

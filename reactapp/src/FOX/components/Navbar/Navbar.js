@@ -13,11 +13,11 @@ const astyle= {
   color: 'white'
 };
 
-class Navbar001 extends Component {
+class NavbarFox extends Component {
   state = {}
     render() {
       return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar height="100px" bg="dark" variant="dark" expand="lg">
           <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -45,4 +45,4 @@ class Navbar001 extends Component {
     }
   }
   
-  export default Navbar001;
+  export default NavbarFox;

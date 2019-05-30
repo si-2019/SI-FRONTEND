@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navbar001 from '../Navbar/Navbar';
-import Navbar from 'react-bootstrap/Navbar'
+import NavbarFox from '../Navbar/Navbar';
+import Navbar from 'react-bootstrap/Navbar';
 
 class Header extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Header extends Component {
           <a style={{color: 'white'}}className="" onclick="" href="http://yiiisu.com/load.php?action=download&id=3" >Uputstvo</a>
         </div>  
       }
-      else {meni = <Navbar001 />;}
+      else {meni = <NavbarFox />;}
       return (
         <div className="Header">
             {/*fixed="top"*/}

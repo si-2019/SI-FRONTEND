@@ -61,9 +61,8 @@ class Login extends Component {
       document.getElementById('greske').innerText = error;
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
-      //validacija uspjesna
-      
-      var url = 'http://localhost:31917/auth/login';
+
+      /*var url = 'http://localhost:31917/auth/login';
 
       var params = {
         username: this.state.korisnickoIme,
@@ -85,7 +84,18 @@ class Login extends Component {
         })
         localStorage.setItem("token", "hardcoded for now")
         return <Redirect to="/romeo/home" />
-      });
+      });*/
+
+      //validacija uspjesna
+      if(this.state.korisnickoIme == "nepostojeci") {
+        //autentikacija neuspjesna
+        document.getElementById('greske').innerText = "Korisnik ne postoji";
+        document.getElementById('dioGreske').style.display = "block";
+      } else {
+        //autentikacija uspjesna
+      }
+
+      
 
       //nnekic1
       //password

@@ -4,7 +4,7 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Link from 'react-router-dom/Link';
 
-const UnosPrisustvaSedmice = () => {
+const UnosPrisustvaSedmice = (props) => {
     const sedmice = [
         "Sedmica 1",
         "Sedmica 2",
@@ -27,11 +27,11 @@ const UnosPrisustvaSedmice = () => {
             <CardDeck>
                 <Card style={{ border: '0.5px solid gray' }} className="text-center">
                     {
-                        sedmice.slice(0, 7).map(s => {
+                        sedmice.slice(0, 7).map((s, index) => {
                             return (
                                 <ListGroup variant="flush">
                                     <ListGroup.Item>
-                                        <Link to="fox/stranicaPredmeta"> {s} </Link>
+                                        <Link to="UnosPrisustva" onClick={() => props.handleClickSedmica(index + 1)}> {s} </Link>
                                     </ListGroup.Item>
                                 </ListGroup>
                             );
@@ -40,11 +40,11 @@ const UnosPrisustvaSedmice = () => {
                 </Card>
                 <Card style={{ border: '0.5px solid gray' }} className="text-center">
                     {
-                        sedmice.slice(7, 14).map(s => {
+                        sedmice.slice(7, 14).map((s, index) => {
                             return (
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item>
-                                        <Link to="fox/stranicaPredmeta"> {s} </Link>
+                                    <ListGroup.Item >
+                                        <Link to="UnosPrisustva" onClick={() => props.handleClickSedmica(index + 1)}> {s} </Link>
                                     </ListGroup.Item>
                                 </ListGroup>
                             );

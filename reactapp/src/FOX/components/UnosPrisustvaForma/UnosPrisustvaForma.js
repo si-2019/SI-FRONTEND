@@ -18,9 +18,10 @@ function UnosPrisustvaForma(props) {
     return (
         <div id="unosPrisustvaFormaID">
             <Form onSubmit={props.handleSubmitSvi}>
+            <h4><b>Unos prisustva za sedmicu {props.data.sedmica}</b><br/><br/></h4>
                 <Form.Row>
                     <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <h4>Unos prisustva za sve studente</h4>
+                        <h5>Unos prisustva za sve studente</h5>
                     </Col>
                 </Form.Row>
                 
@@ -90,7 +91,7 @@ function UnosPrisustvaForma(props) {
             <Form onSubmit={props.onSubmit}>
                 <Form.Row>
                     <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <h4>Unos prisustva pojedinačno</h4>
+                        <h5>Unos prisustva pojedinačno</h5>
                     </Col>
                 </Form.Row>
 

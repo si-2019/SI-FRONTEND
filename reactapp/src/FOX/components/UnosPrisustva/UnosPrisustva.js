@@ -45,7 +45,8 @@ class UnosPrisustva extends React.Component {
         ],
         predavanjeSvi: "izaberiOpciju",
         vjezbaSvi: "izaberiOpciju",
-        tutorijalSvi: "izaberiOpciju"
+        tutorijalSvi: "izaberiOpciju",
+        sedmica: 0
     }
 
     constructor(props) {
@@ -95,19 +96,30 @@ class UnosPrisustva extends React.Component {
     handleSubmit = () => {
         // Pripremiti sve podatke i poslati backendu u odgovarajućem formatu
     }
+
+    handleClickSedmica = (brojSedmice) => {
+        this.setState({sedmica: brojSedmice});
+    }
     
     render() {
         return (
             <div id="unosPrisustvaID">
                 <Header isPocetna={false}/>
                 <div style={{padding: "25px", textAlign: "center"}}>
-                <UnosPrisustvaSedmice/>
-                <UnosPrisustvaForma
-                    data={this.state}
-                    handleSubmit={this.handleSubmit}
-                    handleSubmitSvi={this.handleSubmitSvi}
-                    handleChange={this.handleChange}
-                    handleChangeSvi={this.handleChangeSvi}/>
+                    {
+                        this.state.sedmica !== 0 &&
+                            <UnosPrisustvaForma
+                                data={this.state}
+                                handleSubmit={this.handleSubmit}
+                                handleSubmitSvi={this.handleSubmitSvi}
+                                handleChange={this.handleChange}
+                                handleChangeSvi={this.handleChangeSvi}/>
+                    }
+                    {   
+                        this.state.sedmica === 0 &&
+                            <UnosPrisustvaSedmice
+                                handleClickSedmica={this.handleClickSedmica}/>
+                    }
                 </div>
             </div>
         );

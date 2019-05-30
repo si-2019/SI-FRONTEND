@@ -30,7 +30,6 @@ class StranicaPredmeta extends Component {
         </Container>
         <Footer/>
       </div>
-
     );
 
   }

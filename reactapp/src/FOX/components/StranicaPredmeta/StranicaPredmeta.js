@@ -10,12 +10,8 @@ class StranicaPredmeta extends Component {
   render() {
     return (
       <div className="StranicaPredmeta">
+        <Header isPocetna={false}/>
         <Container fluid>
-          <Row>
-            <Col>
-              <Header isPocetna={false}/>
-            </Col>
-          </Row>
           <Row>
             <Col>
             <br></br>

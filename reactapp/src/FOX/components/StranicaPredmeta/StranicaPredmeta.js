@@ -27,11 +27,8 @@ class StranicaPredmeta extends Component {
             </Col>
             <Col></Col>
           </Row>
-          <Row>
-            <Footer/>
-          </Row>
         </Container>
-        
+        <Footer/>
       </div>
 
     );

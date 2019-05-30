@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import './Navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
@@ -17,7 +13,7 @@ class NavbarFox extends Component {
   state = {}
     render() {
       return (
-        <Navbar bg="dark" variant="dark" expand="xl">
+        <Navbar bg="dark" variant="dark" expand="lg">
           <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

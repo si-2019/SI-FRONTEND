@@ -25,7 +25,7 @@ const UnosPrisustvaSedmice = () => {
     return (
         <div>
             <CardDeck>
-                <Card style={{ width: '200px', border: '0.5px solid gray' }} className="text-center">
+                <Card style={{ border: '0.5px solid gray' }} className="text-center">
                     {
                         sedmice.slice(0, 7).map(s => {
                             return (
@@ -38,7 +38,7 @@ const UnosPrisustvaSedmice = () => {
                         })
                     }
                 </Card>
-                <Card style={{ width: '200px', border: '0.5px solid gray' }} className="text-center">
+                <Card style={{ border: '0.5px solid gray' }} className="text-center">
                     {
                         sedmice.slice(7, 14).map(s => {
                             return (

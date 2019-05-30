@@ -4,13 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const astyle= {
-  padding: '10px',
-  color: 'white'
-};
-
 class NavbarFox extends Component {
-  state = {}
     render() {
       return (
         <Navbar bg="dark" variant="dark" expand="lg">

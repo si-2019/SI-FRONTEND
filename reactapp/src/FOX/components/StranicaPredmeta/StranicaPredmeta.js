@@ -5,11 +5,12 @@ import TabelaStudenti from '../TabelaStudenti/TabelaStudenti';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../../ZajednickiCSS.css'
 
 class StranicaPredmeta extends Component {
   render() {
     return (
-      <div className="StranicaPredmeta">
+      <div className="StranicaPredmeta" className="footerDno">
         <Header isPocetna={false}/>
         <Container fluid>
           <Row>

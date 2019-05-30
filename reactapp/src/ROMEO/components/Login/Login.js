@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './login.css';
 
@@ -81,6 +81,12 @@ class Login extends Component {
 
     return (
       <div className="body">
+        <div className="header">
+          <img 
+            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
+            alt="new"
+          />
+        </div>
         <div className="card text-white bg-primary " >
           <form className="loginForma">
           <label for="exampleInputEmail1">Korisnicko ime:</label>

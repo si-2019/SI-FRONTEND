@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import SingleChoice from './SingleChoice'
 import MultipleChoice from './MultipleChoice'
+import StarRating from './StarRating'
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class App extends Component {
   render() {
     return ( 
       <div style={{padding: '25px', backgroundColor: 'white'}}>
-        
+         
         <div className="row justify-content-center">
           <div className="">
             <h1>Kreiranje ankete</h1>
@@ -135,6 +136,8 @@ class App extends Component {
                   return <SingleChoice azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
                 case 'multiple-choice':
                   return <MultipleChoice azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
+                case 'star-rating':
+                  return <StarRating azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
               }
             })}
             <div class="row">

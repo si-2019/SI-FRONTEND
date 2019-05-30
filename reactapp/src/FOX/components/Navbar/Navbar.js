@@ -17,7 +17,7 @@ class NavbarFox extends Component {
   state = {}
     render() {
       return (
-        <Navbar height="100px" bg="dark" variant="dark" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="xl">
           <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

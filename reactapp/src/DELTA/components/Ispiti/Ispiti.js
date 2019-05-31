@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 class Ispiti extends Component {  
-    state = {postotakBodovaZadace:33, postotakBodovaIspiti:70}
+    state = {postotakBodovaZadace:33, postotakBodovaIspiti:70, ispitiObavjestenje:""}
+
+    async componentDidMount(){
+        //hardkoridana vrijednost dok se ne kreira bekend za listu predmeta
+        const idPredmeta=8;
+        
+        const {data} = await axios.get('http://localhost:31904/ispitObavjestenje/'+idPredmeta);
+        this.setState({ispitiObavjestenje:data});
+      }
 
     getProgressBarStil = ()=>{
         const stringicIspiti = this.state.postotakBodovaIspiti+"%";
@@ -28,7 +38,13 @@ class Ispiti extends Component {
                 </div>
             </div>
               <div className="col-3">
-              <a class="btn btn-primary btn-block" href="/Charlie" role="button">Ispiti</a>
+                  <div className="row">
+                        <a class="btn btn-primary btn-block" href="/Charlie" role="button">Ispiti</a>
+                  </div>
+                  <div className="row">
+                        <p class="text-danger" style={{padding:"10px"}}>{this.state.ispitiObavjestenje}</p>
+                  </div>
+              
             </div>
            </div>
         );

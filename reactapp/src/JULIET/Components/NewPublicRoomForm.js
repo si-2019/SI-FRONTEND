@@ -22,7 +22,7 @@ export class NewPublicRoomForm extends Component {
     return (
       <div className="new-room-form">
         <form onSubmit={this.handleSubmit}>
-            <input className="input-group mb-3 message-input" style={inputStyle} onChange={this.handleChange} type='text' placeholder='Create public room...' value={this.state.roomName} />
+            <input className="input-group mb-3 juliet-message-input" style={inputStyle} onChange={this.handleChange} type='text' placeholder='Create public room...' value={this.state.roomName} />
             <button id='create-room-btn' type="submit" style={{width: '10%'}}>+</button>
         </form>
       </div>

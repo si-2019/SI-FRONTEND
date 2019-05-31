@@ -86,38 +86,38 @@ class EventPlanner extends Component {
           otherEvents = this.state.events.filter(event=>!this.isToday(event) && !this.didPass(event));}
         return(
                 <div style={{width: '100%', padding: '10px 0'}}>     
-                    <div className="section-h" onClick={(e) => {
+                    <div className="juliet-section-h" onClick={(e) => {
                             let node = document.getElementById('all-planners')
                             let display = node.style.display;
-                            node.style.display = display == "block" ? 'none' : "block";
+                            node.style.display = display === "block" ? 'none' : "block";
                             node = document.getElementById('arrow-planners');
                             let innerHTML = node.innerHTML; 
                             console.log(innerHTML);
-                            node.innerHTML = innerHTML == "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
+                            node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
                         }}>
-                        <div className="section-header"><h5>Event planner</h5></div>
+                        <div className="juliet-section-header"><h5>Event planner</h5></div>
                         <i id="arrow-planners" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                     </div> 
                     <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="all-planners">
-                        <button id='create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: 'rgb(0,0,0,0.8)', color: 'white', borderRadius: '10px'}}>Create a new event</button>
+                        <button id='juliet-create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: 'rgb(0,0,0,0.8)', color: 'white', borderRadius: '10px'}}>Create a new event</button>
                         {
                             this.state.showForm?
                             <NewEventForm addEvent={this.addEvent}/>
                             :null
                         }
-                        <div className="section-header section-element"><h6>Next 24h</h6></div>
+                        <div className="juliet-section-header juliet-section-element"><h6>Next 24h</h6></div>
                         {todaysEvents ? 
                             todaysEvents.map((event, index) => {
                                 const active = this.isNow(event)===true ?'active':'';
                                 const activeText = this.isNow(event)===true ?' ACTIVE!':'';
-                                return <li className={"event"+active } key={index}>{ event.naziv+ ' @ '+new Intl.DateTimeFormat('it-IT',options).format(new Date( Date.parse(event.pocetak)))+activeText} </li>
+                                return <li className={"juliet-event"+active } key={index}>{ event.naziv+ ' @ '+new Intl.DateTimeFormat('it-IT',options).format(new Date( Date.parse(event.pocetak)))+activeText} </li>
                             })
                             :
                             null }
-                        <div className="section-header section-element"><h6>Later events</h6></div>
+                        <div className="juliet-section-header juliet-section-element"><h6>Later events</h6></div>
                         {otherEvents ? 
                             otherEvents.map((event, index) => (
-                                <li className={"event" } key={index}>{ event.naziv+ ' @ '+new Intl.DateTimeFormat('it-IT',options).format(new Date( Date.parse(event.pocetak)))} </li>
+                                <li className={"juliet-event" } key={index}>{ event.naziv+ ' @ '+new Intl.DateTimeFormat('it-IT',options).format(new Date( Date.parse(event.pocetak)))} </li>
                             ))
                             :
                             null  }   

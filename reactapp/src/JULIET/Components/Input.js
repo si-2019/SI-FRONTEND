@@ -63,18 +63,18 @@ class Input extends Component {
             showEmojiPicker,
           } = this.state;
         return (
-            <form onSubmit={this.handleSubmit} className="input-field">
-                <input className="input-group mb-3 message-input" type="text" style={inputStyle}
+            <form onSubmit={this.handleSubmit} className="juliet-input-field">
+                <input className="input-group mb-3 juliet-message-input" type="text" style={inputStyle}
                 placeholder={this.state.porukaPlaceholder} onChange={this.handleChange} value={this.state.message} />
                 
-                <ul className="emoji-popup">
+                <ul className="juliet-emoji-popup">
                     {showEmojiPicker ? (
                     <Picker set="emojione" onSelect={this.addEmoji} />
                     ) : null}
                 </ul>
                 <button
                     type="button"
-                    className="toggle-emoji"
+                    className="juliet-toggle-emoji"
                     onClick={this.toggleEmojiPicker}>
                     <Smile />
                 </button>

@@ -60,7 +60,7 @@ export class NewEventForm extends Component {
               endDate={this.state.endDate}
               onChange={this.handleChangeEnd}
           />
-            <button id='create-event-btn' type="submit">+</button>
+            <button id='juliet-create-event-btn' type="submit">+</button>
         </form>
       </div>
     )

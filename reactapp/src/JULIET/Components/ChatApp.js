@@ -3,13 +3,10 @@ import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import Input from './Input';
 import MessageList from './MessageList';
 import '../styles/ChatApp.css';
-import RoomList from './RoomList';
-import { instanceLocator, testToken, testRoomId, apiUrl, secretKey } from './../config.js'
+import { instanceLocator, testToken, testRoomId} from './../config.js'
 import UsersList from './UsersList';
 import TypingIndicator from './TypingIndicator';
 import '../styles/ChatApp.css';
-import CreateRoom from './CreateRoom';
-import AddUser from './AddUser';
 import UploadFile from './UploadFile';
 import Axios from 'axios';
 import {SwatchesPicker} from 'react-color';
@@ -17,7 +14,6 @@ import { Droplet } from 'react-feather';
 import FileSidebar from './FileSidebar';
 import Members from './Members';
 import PinnedMessages from './PinnedMessages';
-import NewPublicRoomForm from './NewPublicRoomForm';
 import EventPlanner  from './EventPlanner';
 import BlockedUsers  from './BlockedUsers';
 
@@ -103,7 +99,7 @@ class ChatApp extends Component {
             .then(currentUser => {
                 this.setState({ currentUser: currentUser }, () => { 
                     Axios.get('http://localhost:31910/colorscheme/' + this.state.currentUser.id).then(res => {
-                        if (res.data == 0) { // korisnik nema svoj colorscheme
+                        if (res.data === 0) { // korisnik nema svoj colorscheme
                             this.setState({
                                 colorForUser: null
                             });
@@ -374,7 +370,7 @@ class ChatApp extends Component {
         const url = 'http://localhost:31910/pinovanePoruke/' + message.id;
         //console.log(url);
         Axios.get(url).then(res => {
-            if (res.data == 0) { // ne postoji u bazi
+            if (res.data === 0) { // ne postoji u bazi
                 let trenutnaPoruka = {
                     messageCreatedAt: message.createdAt,
                     messageId: message.id + '',
@@ -416,7 +412,7 @@ class ChatApp extends Component {
             colorForUser: color.hex
         }, () => {
             Axios.get('http://localhost:31910/colorscheme/' + this.state.currentUser.id).then(res => {
-                if (res.data == 0) {
+                if (res.data === 0) {
                     Axios.post('http://localhost:31910/colorscheme', {
                         colorId: color, 
                         userId: this.state.currentUser.id
@@ -499,9 +495,9 @@ class ChatApp extends Component {
             showColorPicker,
         } = this.state;
         return ( 
-            <div className="chat-app-wrapper">
+            <div className="juliet-chat-app-wrapper">
 
-                <div style={{'background': colorScheme}} className="list-wrapper">
+                <div style={{'background': colorScheme}} className="juliet-list-wrapper">
                     <UsersList 
                         openPrivateChat={this.openPrivateChat} 
                         users={this.state.users} 
@@ -519,33 +515,33 @@ class ChatApp extends Component {
                     />
                 </div>
 
-                <div className="msg-wrapper">
+                <div className="juliet-msg-wrapper">
                     
-                    <div className="messages">
+                    <div className="juliet-messages">
                         <MessageList currentId={this.props.currentId} replyToMessage={this.handleReply} currentRoom={this.state.currentRoom}
                             messages={this.state.messages.slice(0).slice(-30)} pinMessage={this.pinMessage} downloadClick={this.downloadClick} deleteClick={this.deleteClick}
                             users={this.state.users}/>
                         <TypingIndicator typingUsers={this.state.typingUsers} />
                     </div>
                     
-                    <div className="input-all">
+                    <div className="juliet-input-all">
                         <Input onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
                         <UploadFile onSubmit={this.uploadFile} />
-                        <ul className="colors-popup" onMouseLeave={this.toggleColorPicker} >
+                        <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >
                         {this.state.showColorPicker ? 
                             <SwatchesPicker onChange={this.handleColorChange}/> 
                         : null}
                         </ul>
                         {/* <button
                             type="button"
-                            className="toggle-colors"
+                            className="juliet-toggle-colors"
                             onClick={this.toggleColorPicker}>
                             <Droplet />
                         </button> */}
                     </div>
                     
                 </div>
-                <div style={{'background': colorScheme}} className="list-wrapper juliet-right-wrapper">
+                <div style={{'background': colorScheme}} className="juliet-list-wrapper juliet-right-wrapper">
                     <BlockedUsers blockAUser={this.blockAUser}/>
                     <Members 
                         openPrivateChat={this.openPrivateChat} 

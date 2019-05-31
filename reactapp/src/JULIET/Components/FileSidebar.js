@@ -44,15 +44,15 @@ class FileSidebar extends Component {
         const resultFiles = this.state.files.filter(f => this.state.input === '' || f.naziv.toLowerCase().includes(this.state.input.toLowerCase()) || f.posiljaoc.toLowerCase()===this.state.input.toLowerCase() || f.posiljaoc.toLowerCase().includes(this.state.input.toLowerCase()));
         return(
             <div style={{width: '100%', padding: '10px 0'}}>     
-                <div className="section-h" onClick={(e) => {
+                <div className="juliet-section-h" onClick={(e) => {
                         let node = document.getElementById('shared-files')
                         let display = node.style.display;
-                        node.style.display = display == "block" ? 'none' : "block";
+                        node.style.display = display === "block" ? 'none' : "block";
                         node = document.getElementById('arrow-files');
                         let innerHTML = node.innerHTML; 
-                        node.innerHTML = innerHTML == "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
+                        node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
                     }}>
-                    <div className="section-header"><h5>Shared files</h5></div>
+                    <div className="juliet-section-header"><h5>Shared files</h5></div>
                     <i id="arrow-files" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                 </div> 
                 <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="shared-files">

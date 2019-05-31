@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../styles/CreateRoom.css';
 class CreateRoom extends Component{
     constructor(props) {
         super(props);
@@ -27,7 +26,7 @@ class CreateRoom extends Component{
         return (
         // <button id='create-room-btn' type="submit">+</button>
             <form onSubmit={this.handleSubmit} className="new-room-form">
-                <input className="input-group mb-3 message-input" type="text" style={inputStyle}
+                <input className="input-group mb-3 juliet-message-input" type="text" style={inputStyle}
                 placeholder="Create private room..." onChange={this.handleChange} value={this.state.roomName} />
                 <button id='create-private-room-btn' type="submit" style={{width: '10%'}}>+</button>
                 {/* <input className="btn btn-outline-primary" style={buttonStyle} type="submit" value="Create" /> */}

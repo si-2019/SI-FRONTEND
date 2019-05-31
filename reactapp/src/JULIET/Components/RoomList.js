@@ -21,7 +21,7 @@ class RoomList extends Component {
                         <h6>Public Rooms</h6>
                         {this.props.rooms.filter(room => !room.isPrivate).map((room, index) => {
                             const active = this.props.room.id === room.id ? "active" : "";
-                            return <li className={"room" + active} onClick={() => this.props.joinRoomById(room.id)}
+                            return <li className={"juliet-room" + active} onClick={() => this.props.joinRoomById(room.id)}
                             key={index}>#{room.name}</li>
                         })}
                         <h6>Joinable Public Rooms</h6>

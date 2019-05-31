@@ -45,7 +45,7 @@
   to { transform: rotate(360deg); }
 }
 
-.chat-button {
+.juliet-chat-button {
   right: 10px;
   bottom: 10px;
   background: #5E0565;
@@ -59,7 +59,7 @@
   cursor: pointer;
 }
 
-.message-input  {
+.juliet-message-input  {
   background: white;
 
   /* width: 60%; */
@@ -69,7 +69,7 @@
   font-size: 15px;  
 }
 
-.input-field {
+.juliet-input-field {
   padding: 5px 10px 5px 10px;
   height: 60%;
   border-radius: 0.45em;
@@ -79,14 +79,14 @@
   flex-direction: row;
   margin: auto;
   text-align: center;
-  border: 1px solid #7856AD;
+  border: 1px solid rgb(0, 0, 0, 0.8);
 }
 
-.input-field > :nth-child(1n) {
+.juliet-input-field > :nth-child(1n) {
   margin: auto;
 }
 
-.toggle-colors {
+.juliet-toggle-colors {
   border: none;
   width: 50px;
   height: 50px;
@@ -96,17 +96,17 @@
   justify-content: center;
 }
 
-.toggle-colors svg {
+.juliet-toggle-colors svg {
   width: 28px;
   height: 28px;
 }
 
-.toggle-emoji svg {
+.juliet-toggle-emoji svg {
   width: 28px;
   height: 28px;
 }
 
-.emoji-popup {
+.juliet-emoji-popup {
   bottom: 110px !important; 
   transform: none !important; 
   position: fixed !important; 
@@ -115,7 +115,7 @@
   top: auto !important; 
 }
 
-.colors-popup {
+.juliet-colors-popup {
   bottom: 1pc !important; 
   transform: none !important; 
   position: fixed !important; 

@@ -1,10 +1,10 @@
-.chat-app-wrapper{
+.juliet-chat-app-wrapper {
     height: 100%;
     display: flex;
     flex-direction: row;
 }
 
-.list-wrapper {
+.juliet-list-wrapper {
     width: 20%;
     border-right: 1px solid rgb(0,0,0,0.2);
     padding: 0 12px 0 15px;
@@ -16,54 +16,40 @@
     border-left: 1px solid rgb(0,0,0,0.2);
 }
 
-ul {
-    padding: 0px;
-    margin: 0px;
-}
-
-ul {
-    overflow: hidden;
-}
-
-ul:hover {
-    overflow-y: scroll;
-    
-}
-
-ul::-webkit-scrollbar {
+.Juliet-App ul::-webkit-scrollbar {
     width: 0.66rem;
     padding-right: 3px;
     background: transparent;
 }
   
   /* Track */
-ul::-webkit-scrollbar-track {
+.Juliet-App ul::-webkit-scrollbar-track {
     /* box-shadow: inset 0 0 5px grey;  */
     border-radius: 5px;
 }
    
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+.Juliet-App  ::-webkit-scrollbar-thumb {
     background: #4f5a63    ; 
     border-radius: 5px;
   }
   
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+.Juliet-App  ::-webkit-scrollbar-thumb:hover {
     background: #212529; 
   }
 
-.msg-wrapper{
+.juliet-msg-wrapper {
     width: 60%;
     overflow: hidden;
 }
 
-.msg-wrapper .juliet-container {
+.juliet-msg-wrapper .juliet-container {
     height: calc(100% - 20px);
     padding: 0px;
 }
 
-.input-all {
+.juliet-input-all {
     padding: 0 10px 10px 10px;
     height: 15%;
     /* border-top: 1px solid rgb(0,0,0,0.2); */
@@ -71,15 +57,10 @@ ul::-webkit-scrollbar-track {
     background: white;
 }
 
-.input-all > * {
+.juliet-input-all > * {
     background: white;
 }
 
-.messages {
+.juliet-messages {
     height: 85%;
 }
-/* .create-room-wrapper{ */
-    /* display: grid; */
-    /* grid-row: 2/3; */
-    /* grid-template-columns: 50% 50%; */
-/* } */

@@ -1,6 +1,8 @@
 import React from 'react';
 import UnosPrisustvaForma from '../UnosPrisustvaForma/UnosPrisustvaForma';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import '../../ZajednickiCSS.css';
 
 
 class UnosPrisustva extends React.Component {
@@ -97,7 +99,7 @@ class UnosPrisustva extends React.Component {
     
     render() {
         return (
-            <div id="unosPrisustvaID">
+            <div id="unosPrisustvaID" className="footerDno">
                 <Header isPocetna={false}/>
                 <UnosPrisustvaForma
                     data={this.state}
@@ -105,6 +107,8 @@ class UnosPrisustva extends React.Component {
                     handleSubmitSvi={this.handleSubmitSvi}
                     handleChange={this.handleChange}
                     handleChangeSvi={this.handleChangeSvi}/>
+                <Footer/>
+                
             </div>
         );
     }

@@ -127,7 +127,7 @@ class ZadatakVecPoslan extends Component {
             multiple=""
             className="custom-form-control ml-4 btn btn-outline-primary"
           >
-            {listOfTypes.map(clan => (
+            {(!this.props.podaci.state.blokirajSelect2)&&listOfTypes.map(clan => (
               <option key={clan}>{clan}</option>
             ))}
           </select>

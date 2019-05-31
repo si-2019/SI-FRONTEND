@@ -43,8 +43,8 @@ class sedmica extends Component {
         <div class='divsaokvirom'>
             {/* <h4>Sedmica:{this.props.sedmice}</h4> */}
             <h4 class='naslov'>{this.props.naslov}</h4>
-            {this.state.objave.map(file => <ObjavaStudent naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
-            {this.state.objave1.map(file => <ObjavaProfesor naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaProfesor>)}
+            {this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
+            {this.state.objave1.map(file => <ObjavaProfesor idpredmeta={this.props.idpredmeta}naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaProfesor>)}
         </div>
     );
   }

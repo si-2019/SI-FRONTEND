@@ -51,9 +51,10 @@ class stranicaPredmetaProfesor extends Component {
                 <div class='col-3' key = "3">
                   {this.state.dropdownAk.map(drop => [<Dropdown naslov={drop.prviDioAk+'/'+drop.drugiDioAk+'.'}></Dropdown>])}
                 </div>
-                <OPredmetuProfesor predmet={this.state.oPredmetu}></OPredmetuProfesor>
+           
+                <OPredmetuProfesor predmet={this.state.oPredmetu} idpredmeta={this.state.idPredmeta}></OPredmetuProfesor>
                 <LiteraturaProfesor nesto={this.state.literatura}></LiteraturaProfesor>
-              {this.state.sedmice.map(sedmica => <Sedmica naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice} sedmice={sedmica.redniBrojSedmice} idPredmet={this.state.idPredmeta} student="nesto"></Sedmica>)}
+              {this.state.sedmice.map(sedmica => <Sedmica idpredmeta={this.state.idPredmeta} naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice} sedmice={sedmica.redniBrojSedmice} idPredmet={this.state.idPredmeta} student="nesto"></Sedmica>)}
               {this.state.objave.map(objave =>  <Sedmica objava={this.state.objave}></Sedmica>)}
             </div>
         )

@@ -4,6 +4,7 @@ import OPredmetuStudent from './oPredmetuStudent'
 import LiteraturaStudent from './literaturaStudent'
 import ObjavaStudent from './objavaStudent'
 import Sedmica from './sedmica'
+import Dropdown from './dropdown'
 import { Replay5Sharp } from '@material-ui/icons';
 
 class stranicaPredmetaStudent extends Component {
@@ -18,13 +19,16 @@ class stranicaPredmetaStudent extends Component {
       oPredmetu: [],
       literatura: [],
       objave: [],
-      niz: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+      niz: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+      dropdownAk: []
     }
   
     componentDidMount(){
       axios.get(`http://localhost:31907/r1/semestar/${this.props.match.params.idPredmeta}`).then(res4 =>{
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.match.params.idPredmeta}`).then(res =>{
             const naziv = res.data.naziv;
+            axios.get(`http://localhost:31907/r8/getAkademskaGodina/`).then(res =>{
+              const dropdownAkademske = res.data.prethodne2AG
             axios.get(`http://localhost:31907/r1/sedmice/${res4.data.semestar}`).then(res3 => {
               const sedmicee = res3.data.sedmice
               axios.get(`http://localhost:31907/r6/provjera/${this.props.match.params.idKorisnika}/${this.props.match.params.idPredmeta}`).then(res2 =>{
@@ -46,9 +50,10 @@ class stranicaPredmetaStudent extends Component {
                         text: tekst,
                         sedmice: sedmicee,
                         oPredmetu: res5.data.file,
-                        literatura: res6.data.file
+                        literatura: res6.data.file,
+                        dropdownAk: dropdownAkademske
                       })
-                 
+                    })
                   })
                 })
               })
@@ -89,10 +94,13 @@ class stranicaPredmetaStudent extends Component {
 
     render(){
         return(
-            <div>
-              <div class='row'>
+            <div key = "1"> 
+              <div class='row' key = "2">
                 <div class='col-9'>
                   <h1>  {this.state.naziv}</h1>
+                </div>
+                <div class='col-3' key = "3">
+                  {this.state.dropdownAk.map(drop => [<Dropdown naslov={drop.prviDioAk+'/'+drop.drugiDioAk+'.'}></Dropdown>])}
                 </div>
                 <div class='col-3'>
                   <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
@@ -101,8 +109,9 @@ class stranicaPredmetaStudent extends Component {
               <OPredmetuStudent predmet={this.state.oPredmetu} idpredmeta={this.state.idPredmeta}></OPredmetuStudent>
               <LiteraturaStudent nesto={this.state.literatura}></LiteraturaStudent>
               {this.state.sedmice.map(sedmica => <Sedmica idpredmeta={this.state.idPredmeta} naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice}  sedmice={sedmica.redniBrojSedmice} idPredmet={this.props.match.params.idPredmeta} student="student"></Sedmica>)}
+
               
-              {/* {this.state.objave.map(file => [<a href='#' class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])} */}
+              {/* {this.state.objave.map(file => [<a href='#' class='card-link' key='6'>{file.naziv}</a>,<br key='7'></br>])} */}
             </div>
         )
     }

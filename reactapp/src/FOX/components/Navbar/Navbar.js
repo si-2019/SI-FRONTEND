@@ -12,14 +12,14 @@ class NavbarFox extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"> 
-              <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
+              <Nav.Link href="StranicaPredmeta?predmetId=Tehnike Programiranja">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
                 <NavDropdown.Item href="unosPrisustva">Prisustvo</NavDropdown.Item>
                 <NavDropdown.Item href="unosBodova">Ispiti</NavDropdown.Item>
                 <NavDropdown.Item href="unosOcjene">Ocjene</NavDropdown.Item>
                 <NavDropdown.Item href="unosTeme">Teme</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="ispiti">Ispiti</Nav.Link>
+              <Nav.Link href="/fox/ispiti">Ispiti</Nav.Link>
               <Nav.Link href="obavijesti">Obavijesti</Nav.Link>
               <Nav.Link href="zadace">Zadaće</Nav.Link>
               <Nav.Link href="ankete">Ankete</Nav.Link>

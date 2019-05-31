@@ -30,6 +30,7 @@
     "node-sass": "^4.12.0",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
+    "query-string": "^6.5.0",
     "rc-pagination": "^1.17.14",
     "react": "^16.7.0-alpha.1",
     "react-bootstrap": "^1.0.0-beta.8",

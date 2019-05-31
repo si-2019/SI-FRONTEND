@@ -57,22 +57,18 @@ class TabelaPredmeti extends  React.Component {
         var brojac = 0;
         console.log(data2);
         const columns = [{
-          Header: 'Tip',
           accessor: 'tip',
-          Cell: props => <span onClick={this.funkcija} value={data2[brojac++].tip}>{props.value}</span>
+          Cell: props => <span onClick={this.funkcija} value={data2[brojac++].tip}  >{props.value}</span>
         },
         {
-          Header: 'Datum',
           accessor: 'datum',
           Cell: props => <span className='datum'>{props.value}</span>
         },
         {
-          Header: 'Sala',
           accessor: 'sala',
           Cell: props => <span className='sala'>{props.value}</span>
         },
         {
-          Header: 'BrStudenata',
           accessor: 'brstudenata',
           Cell: props => <span className='brstudenata'>{props.value}</span>
         }]

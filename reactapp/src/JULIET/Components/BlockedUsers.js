@@ -36,9 +36,9 @@ class BlockedUsers extends Component {
 
     render(){
         return(
-            <form  onSubmit={this.onSubmit.bind(this)} style={{width: '100%'}}>
+            <form  onSubmit={this.onSubmit.bind(this)} style={{width: '100%', paddingTop: '5px'}}>
                 <input  type="text" style={inpStyle} placeholder="Block User" onChange={this.handleChange} value={this.state.user} />
-                <input  id="event-button" className="btn btn-outline-primary" type="submit" value="Block this user" style={{width: '100%', background: 'rgb(0,0,0,0.3)', color: 'white', border: 'none'}}/>
+                <input  id="event-button" className="btn btn-outline-primary" type="submit" value="Block this user" style={{width: '100%', background: 'rgb(0,0,0,0.8)', color: 'white', border: 'none'}}/>
             </form>
         )
     }
@@ -50,7 +50,7 @@ const inpStyle = {
     borderRadius : '0.25rem',
     height: '40px',
     width: '100%',
-    margin: '2px',
+    marginBottom: '4px',
     padding: '3px 6px',
     border: '0.5px solid rgb(0,0,0,0.4)'
 }

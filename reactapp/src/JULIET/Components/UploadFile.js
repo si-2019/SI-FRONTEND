@@ -132,8 +132,7 @@ const uploadStyle = {
     width: '3em',
     float: 'right',
     color: 'white',
-    border: '1px solid #7856AD',
-    background: '#7856AD'
+    background: 'rgb(0, 0, 0, 0.8)'
 }
 
 export default UploadFile;

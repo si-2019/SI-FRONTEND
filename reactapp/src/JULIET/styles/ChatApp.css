@@ -16,13 +16,6 @@
     border-left: 1px solid rgb(0,0,0,0.2);
 }
 
-/* .room-wrapper{
-    overflow: auto;
-    width: 20%;
-    border-right: 1px solid rgb(0,0,0,0.2);
-    padding: 0px 12px 0px 10px;
-} */
-
 ul {
     padding: 0px;
     margin: 0px;
@@ -61,8 +54,8 @@ ul::-webkit-scrollbar-track {
   }
 
 .msg-wrapper{
-    width: 65%;
-    /* overflow: hidden; */
+    width: 60%;
+    overflow: hidden;
 }
 
 .msg-wrapper .juliet-container {

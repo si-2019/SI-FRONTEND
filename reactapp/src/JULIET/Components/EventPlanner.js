@@ -99,7 +99,7 @@ class EventPlanner extends Component {
                         <i id="arrow-planners" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                     </div> 
                     <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="all-planners">
-                        <button id='create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: 'rgb(0,0,0,0.4)', color: 'white', borderRadius: '10px'}}>Create a new event</button>
+                        <button id='create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: 'rgb(0,0,0,0.8)', color: 'white', borderRadius: '10px'}}>Create a new event</button>
                         {
                             this.state.showForm?
                             <NewEventForm addEvent={this.addEvent}/>

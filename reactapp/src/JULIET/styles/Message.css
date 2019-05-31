@@ -97,6 +97,7 @@
   margin-top: 5px;
   color: black;
   word-wrap: break-word;
+  line-height: initial;
 }
 
 .juliet-message {

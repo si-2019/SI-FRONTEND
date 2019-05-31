@@ -24,7 +24,7 @@ class  Signup extends Component {
                 <form onSubmit={this.handleSubmit} className="form juliet-form">
                     <label htmlFor="email">What is your email?</label>
                     <input type="email" name="username" onChange={this.handleChange} className="juliet-input" />
-                    <button className="juliet-submit">Submit</button>
+                    <button className="juliet-submit juliet-signup-button">Submit</button>
                 </form>
             </div>
         )

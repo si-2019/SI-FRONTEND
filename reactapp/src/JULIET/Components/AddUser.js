@@ -44,9 +44,8 @@ const inputStyle = {
     marginRight: '3%',
     padding: '3px 6px',
     borderRadius: '10px',
-    border: 'border-right: 1px solid rgb(0,0,0,0.2)',
     display: 'inline-block',
-    border: '0.5px solid rgb(0, 0, 0, 0.6)'
+    border: '0.5px solid rgb(0, 0, 0, 0.4)'
 
 }
 export default AddUser;

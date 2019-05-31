@@ -166,7 +166,7 @@ class MessageList extends Component {
                             <RoomName currentRoom={this.props.currentRoom}/>
                         </h4>
                     </div>
-                    <input className="pretragaText" placeholder="Pretraži poruke po frazi ili po datumu u formatu DD.MM.YYYY" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
+                    <input className="pretraga-text" placeholder="Pretraži poruke po frazi ili po datumu u formatu DD.MM.YYYY" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
                 <ul style={listStyle} className="list-group message-list">
                     {listSrc.map((message, index) => (

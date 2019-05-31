@@ -75,10 +75,11 @@ class FileSidebar extends Component {
 
 const fileSearchCSS ={
     padding:'3px 6px',
-    marginBottom:'10px',
-    width: '90%',
-    borderRadius: '10px',
-    border: '0.5px solid rgb(0,0,0,0.2)'
+    marginBottom:'5px',
+    width: '100%',
+    height: '35px',
+    borderRadius: '5px',
+    border: '0.5px solid rgb(0,0,0,0.4)'
 };
 
 export default FileSidebar;

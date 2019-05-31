@@ -26,6 +26,10 @@
     cursor: pointer;
   }
   
+.juliet-signup-button {
+  margin-top: 5px;
+}
+
 .juliet-input {
     display: block;
     width: 100%;

@@ -4,9 +4,7 @@
   height: calc(100% - 38px);
   position: absolute;
   background: white;
-  /* overflow: auto; */
-  /* overflow-y: scroll; */
-  /* overflow-x: hidden; */
+  overflow: hidden;
 }
 
 .Juliet-App > * {

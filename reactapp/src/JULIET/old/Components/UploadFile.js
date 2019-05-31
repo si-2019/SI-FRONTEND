@@ -114,13 +114,10 @@ class UploadFile extends Component{
 }
 
 const formStyle = {
-    width: '100%',
+    width: '90%',
     justifyContent: 'center',
-    // marginLeft: '1em',
-    // marginRight: '1em',
-    margin: 'auto',
-    height: '40%',
-    padding: '4px 0 4px 0'
+    marginLeft: '1em',
+    marginRight: '1em'
 }
 
 const fileStyle = {
@@ -129,11 +126,7 @@ const fileStyle = {
 }
 
 const uploadStyle = {
-    width: '3em',
-    float: 'right',
-    color: 'white',
-    border: '1px solid #7856AD',
-    background: '#7856AD'
+    width: '3em'
 }
 
 export default UploadFile;

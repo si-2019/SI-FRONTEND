@@ -78,7 +78,7 @@ class Input extends Component {
                     onClick={this.toggleEmojiPicker}>
                     <Smile />
                 </button>
-                {/* <input className="btn btn-outline-primary" style={buttonStyle} type="submit" value={this.state.buttonValue} /> */}
+                <input className="btn btn-outline-primary" style={buttonStyle} type="submit" value={this.state.buttonValue} />
             </form>
         )
     }
@@ -91,11 +91,7 @@ const buttonStyle = {
 
 const inputStyle = {
     width: '100%',
-    padding: '0',
-    height: '60%',
-    position: 'relative',
-    top: '0',
-    bottom: '0'
+    padding: '0'
 }
 
 export default Input;

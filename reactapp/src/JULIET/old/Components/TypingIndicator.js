@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 class TypingIndicator extends Component {
     render(){
-      console.log("OHOHOHOHOH");
         if (this.props.typingUsers.length > 0) {
             return (
               <div style={divStyle}>
@@ -16,12 +15,8 @@ class TypingIndicator extends Component {
 }
 
 const divStyle = {
-    // border: '1px solid #fcfcfc',
-    marginTop: '0px',
-    fontSize: '12px',
-    color: 'rgb(0,0,0,0.5)',
-    padding: '4px 10px',
-    height: '20px'
+    border: '2px solid #5E0565',
+    marginTop: '0px'
 }
 
 export default TypingIndicator

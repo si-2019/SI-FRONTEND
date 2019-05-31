@@ -1,33 +1,127 @@
-.App {
+.Juliet-App {
   text-align: center;
   width: 100%;
-  height: 100%;
-  position: fixed;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  height: calc(100% - 38px);
+  position: absolute;
+  background: white;
+  /* overflow: auto; */
+  /* overflow-y: scroll; */
+  /* overflow-x: hidden; */
 }
 
-.App-logo {
+.Juliet-App > * {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.Juliet-App *:focus {
+  outline: none;
+  border-color: black;
+}
+
+.Juliet-App > h4 {
+  font-size: 1.5rem;
+}
+
+.Juliet-App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
-.App-header {
+.Juliet-App-header {
   background-color: #222;
   height: 150px;
-  padding: 20px;
+  /* padding: 20px; */
   color: white;
 }
 
-.App-title {
+.Juliet-App-title {
   font-size: 1.5em;
 }
 
-.App-intro {
+.Juliet-App-intro {
   font-size: large;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.chat-button {
+  right: 10px;
+  bottom: 10px;
+  background: #5E0565;
+  height: 50px;
+  font-size: 16px;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 0;
+  box-shadow: 1px 1px 4px 1px grey;
+  cursor: pointer;
+}
+
+.message-input  {
+  background: white;
+
+  /* width: 60%; */
+  height: 40px;
+  border: 0;
+  /* border-top: 1px solid #e0e0e0; */
+  font-size: 15px;  
+}
+
+.input-field {
+  padding: 5px 10px 5px 10px;
+  height: 60%;
+  border-radius: 0.45em;
+  width: 100%;
+  display: flex;
+  box-shadow: none;
+  flex-direction: row;
+  margin: auto;
+  text-align: center;
+  border: 1px solid #7856AD;
+}
+
+.input-field > :nth-child(1n) {
+  margin: auto;
+}
+
+.toggle-colors {
+  border: none;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-colors svg {
+  width: 28px;
+  height: 28px;
+}
+
+.toggle-emoji svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emoji-popup {
+  bottom: 110px !important; 
+  transform: none !important; 
+  position: fixed !important; 
+  right: 75px !important; 
+  left: auto !important; 
+  top: auto !important; 
+}
+
+.colors-popup {
+  bottom: 1pc !important; 
+  transform: none !important; 
+  position: fixed !important; 
+  right: auto !important; 
+  left: auto !important; 
+  top: auto !important; 
 }

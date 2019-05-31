@@ -42,6 +42,7 @@ class stranicaPredmetaProfesor extends Component {
          
         })
     })
+  })
 }
     render(){
         return(

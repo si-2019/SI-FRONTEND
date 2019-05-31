@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ListaPredmeta from "../ListaPredmeta/ListaPredmeta";
-import OpisPredmeta from "../OpisPredmeta/OpisPredmeta";
 
-class Predmet extends Component {
+class Pocetna extends Component {
 
   render() {
     return (
@@ -11,11 +10,10 @@ class Predmet extends Component {
           <div className="col-4">
           <ListaPredmeta />
           </div>
-        <OpisPredmeta />
         </div>
       </div>
     );
   }
 }
 
-export default Predmet;
+export default Pocetna;

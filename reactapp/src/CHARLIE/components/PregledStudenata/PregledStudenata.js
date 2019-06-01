@@ -7,7 +7,7 @@ class PregledStudenata extends React.Component{
       <div>
         Pregled studenata
         <Link to="/charlie/kreirani-ispiti">
-          <button type="button" class="btn btn-primary">Nazad</button>
+          <button type="button" class="btn btn-primary" id="vratiMeNazad">Nazad</button>
         </Link>
       </div>
     )

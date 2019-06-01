@@ -6,5 +6,9 @@ class IspitiForma extends Component {
     constructor(props) {
       super(props);
       const {termin}=props;
+      this.state = {
+        termin: termin || new Date()
+      };
     }
+    
 }

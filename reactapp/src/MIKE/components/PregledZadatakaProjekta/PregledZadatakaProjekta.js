@@ -65,7 +65,7 @@ class PregledZadatakaProjekta extends Component {
           this.state.selektani_projekat != null ?
             this.state.selektani_projekat.zadaci.map((zadatak) => {
                   return (
-                    <tr key={i} onClick={this.clickDetalji.bind(null, i-1)}>
+                    <tr key={zadatak.idProjektnogZadatka} onClick={this.clickDetalji.bind(null, i-1)}>
                       <th scope="row">{i++}</th>
                       <td>{zadatak.opis}</td>
                       <td>{zadatak.otkad}</td>

@@ -32,7 +32,7 @@ const sviProjektiTrenutnogUsera = () => {
       ]
     };
   
-    resolve(projekti);
+    resolve({data: projekti});
   });
 }
 
@@ -66,7 +66,7 @@ const predmetiZaNovuProjektnuGrupu = () => {
       ]
     };
   
-    resolve(predmeti);
+    resolve({data: predmeti});
   });
 }
 

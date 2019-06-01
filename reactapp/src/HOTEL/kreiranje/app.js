@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import SingleChoice from './SingleChoice'
 import MultipleChoice from './MultipleChoice'
-
+import StarRating from './StarRating'
 
 class App extends Component {
   constructor(props) {
@@ -16,18 +16,15 @@ class App extends Component {
       nazivAnkete: '',
       opisAnkete: '',
       datumIstekaAnkete: new Date(),
-
       pitanja: [],
       vrstePitanja: [],
       odabranaVrstaPitanja: 'single-choice'
-
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.kreirajAnketu = this.kreirajAnketu.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.dodajPitanje = this.dodajPitanje.bind(this);
-
   }
 
   azurirajPitanje = (state, i) => {
@@ -35,7 +32,6 @@ class App extends Component {
       st.pitanja[i] = state
       return st
     })
-
   }
 
   handleRadioChange(event) {
@@ -54,7 +50,6 @@ class App extends Component {
     });
   }
 
-
   dodajPitanje() {
     this.setState({
       pitanja: this.state.pitanja.concat([1]),
@@ -65,7 +60,7 @@ class App extends Component {
   render() {
     return ( 
       <div style={{padding: '25px', backgroundColor: 'white'}}>
-        
+         
         <div className="row justify-content-center">
           <div className="">
             <h1>Kreiranje ankete</h1>
@@ -133,21 +128,7 @@ class App extends Component {
               </div>
               ) 
             }
-            <h5>Pitanja:</h5>
-            {this.state.pitanja.map(pitanje => {
-               return (
-               <SingleChoice />
-               )
-            })}
-            <div className="row justify-content-center">
-              <button className="btn btn-secondary" onClick={this.dodajPitanje} type="button">
-                Dodaj pitanje
-              </button>
-            </div>
             <hr/>
-
-
-
             <h4>Pitanja:</h4>
             {this.state.pitanja.map((pitanje, i) => {
               switch(this.state.vrstePitanja[i]) {
@@ -155,6 +136,8 @@ class App extends Component {
                   return <SingleChoice azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
                 case 'multiple-choice':
                   return <MultipleChoice azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
+                case 'star-rating':
+                  return <StarRating azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
               }
             })}
             <div class="row">
@@ -174,7 +157,6 @@ class App extends Component {
               </div>
             </div>
             <hr/>
-
             <div className="row justify-content-center">
               <button className="btn btn-primary" onClick={this.kreirajAnketu}>
                 Kreiraj anketu

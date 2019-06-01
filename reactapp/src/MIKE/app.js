@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import PregledListeProjekata from './PregledListeProjekata';
-import Lista  from './prikazListe';
-
+import PregledListeProjekata from './components/Pregled projekata studenta/PregledListeProjekata';
+import Lista  from './components/Kreiranje projektne grupe/prikazListe';
 import PregledZadatakaProjekta from './components/PregledZadatakaProjekta/PregledZadatakaProjekta';
-
-import KreiranjeProjekta from './components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta';
-import MockListaPredmeta from './MockListaPredmeta';
-import MockKreiranjeProjektaAsistent from './MockKreiranjeProjektaAsistent';
-import IzborVodje from './components/FormaZaIzborVodje';
-import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe'
-//import GenerisanjeProjektneGrupe from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje'
-import UnosPodatakaONovomProjektu from './components/UnosPodatakaONovomProjektu/UnosPodatakaONovomProjektu';
-import DostupniPredmetiZaGrupu from './components/DostupniPredmetiZaGrupu/DostupniPredmetiZaGrupu'
-import PregledDetaljaPredmeta from './components/PregledDetaljaPredmeta/PregledDetaljaPredmeta';
-import UnosInformacija from './UnosInformacija';
-import ListaPredmetaAsistenta from './prikazListePredmetaAsistenta';
+import KreiranjeProjekta from './components/Kreiranje projekta na nivou predmeta/FormaZaKreiranjeProjektaNaNivouPredmeta';
+import UnosInformacija from './components/Kreiranje projektne grupe/UnosInformacija';
+import ListaPredmetaAsistenta from './components/Pregled projekata asistenta/prikazListePredmetaAsistenta';
+import GenerisanjeGrupa from './components/Generisanje projektnih grupa/GenerisanjeGrupa';
+import GenerisiProjektnuGrupu from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje';
 
 class Mike extends Component {
   constructor(props){
@@ -23,37 +15,26 @@ class Mike extends Component {
     this.state={
       forma:"null"
     }
-    this.kreiranjeNovogProjekta=this.kreiranjeNovogProjekta.bind(this);
-
-    this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
-
     this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
-
     this.pregledZadatakaProjektaCall=this.pregledZadatakaProjektaCall.bind(this);
     this.mockKreiranjeProjektaAsistent=this.mockKreiranjeProjektaAsistent.bind(this);
     this.unosInformacija=this.unosInformacija.bind(this);
-
+    this.generisanjeGrupe=this.generisanjeGrupe.bind(this);
   }
 
   render() {   
     if(this.state.forma=="null") return (
       <div className="Mike">
-        <button onClick={this.kreiranjeNovogProjekta}>Unos podataka o novom projektu</button>
-     
+       
         <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
         <button onClick={this.listaProjekata}>Pregled projekata studenta</button>
-
         <button onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-
-        <button onClick={this.pregledDetaljaPredmeta}>Pregled detalja predmeta</button>
         <button onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>
         <button onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+        <button onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
       </div>
-    );
-    else if (this.state.forma=="kreiranjeProjekta") return (
-      <UnosPodatakaONovomProjektu />
     );
     else if (this.state.forma=="kreiranjeGrupe") return (
       <Lista submit={this.unosInformacija}/>
@@ -70,12 +51,14 @@ class Mike extends Component {
     else if(this.state.forma=="KreiranjeAsistent") return(
       <KreiranjeProjekta />
     );
-    else if(this.state.forma="unosInformacija") return(
+    else if(this.state.forma=="unosInformacija") return(
       <UnosInformacija/>
     )
-  }
-  kreiranjeNovogProjekta(){
-    this.setState({forma:"kreiranjeProjekta"});
+    else if(this.state.forma=="generisanjeGrupe") return(
+      <GenerisanjeGrupa idAsistent={2} predmeti={[
+        {nazivPredmeta:"Softver Inženjering",idProjekat:1, brojStudenata:50},
+        {nazivPredmeta:"Vještačka inteligencija",idProjekat:2, brojStudenata:30}]}/>
+    )
   }
   kreiranjeGrupe(){
     this.setState({forma:"kreiranjeGrupe"});
@@ -83,11 +66,9 @@ class Mike extends Component {
   listaProjekata(){
     this.setState({forma:"listaProjekata"});
   }
-
   pregledDetaljaPredmeta(){
     this.setState({forma:"detaljiPredmeta"});
   }
-
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});
   }
@@ -96,6 +77,9 @@ class Mike extends Component {
   }
   unosInformacija(){
     this.setState({forma:"unosInformacija"});
+  }
+  generisanjeGrupe(){
+    this.setState({forma:"generisanjeGrupe"});
   }
 }
 

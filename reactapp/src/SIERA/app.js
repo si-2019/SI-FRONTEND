@@ -10,6 +10,7 @@ import Potvrda from "./Potvrda";
 import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import PrikaziStatus from "./PrikaziStatus.jsx";
+import Prosjek from "./Prosjek.jsx";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
@@ -60,13 +61,6 @@ class App extends Component {
                   Završni rad
                 </a>
               </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/Siera/ispiti">
-                  Ispiti
-                </a>
-              </li>
-
             </ul>
           </div>
         </nav>
@@ -133,7 +127,6 @@ class App extends Component {
             </div>
 
           } />
-          <Route exact path="/Siera/profil/:idStudenta" component={Profil} />
 
         </BrowserRouter>
 

@@ -28,8 +28,8 @@ class PrviPutSlanjeZadatka extends Component {
             multiple=""
             className="custom-form-control ml-4 btn btn-outline-primary"
           >
-            {listOfTypes.map(clan => (
-              <option key={clan}>{clan}</option>
+            {(!this.props.podaci.state.blokirajSelect)&&listOfTypes.map(clan => (
+              <option key={clan+2000}>{clan}</option>
             ))}
           </select>
         </div>

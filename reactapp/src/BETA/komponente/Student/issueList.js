@@ -26,7 +26,6 @@ class IssueList extends React.Component {
         }
     };
 
-
     setStateAsync(state) {
         return new Promise((resolve) => {
             this.setState(state, resolve)
@@ -77,7 +76,6 @@ class IssueList extends React.Component {
                 </Spinner>
             );
         }
-        console.log(this.state.dataNew.length)
         return (
             <div >
                 <Tabs

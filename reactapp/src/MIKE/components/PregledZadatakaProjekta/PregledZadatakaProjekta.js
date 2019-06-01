@@ -83,7 +83,7 @@ class PregledZadatakaProjekta extends Component {
   selektan(val) {
     for(let i=0; i<this.state.projekti.length; i++)
     {
-      if(this.state.projekti[i].id === val)
+      if(this.state.projekti[i].id == val)
       {
         this.setState({selektani_projekat: this.state.projekti[i], renderovanaTabela : true, selektovanRed : false});
         return;

@@ -4,24 +4,41 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Predmet from './komponente/Predmet.js'
 import Obavijestenja from './komponente/Obavjestenja';
-
+import Calendar from './komponente/Calendar';
+import PredmetE from '../GOLF/app';
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        pozvanafija: false
+    }
+    this.fija=this.fija.bind(this)
+    
+}
+
+  fija=()=>{
+    this.setState({
+      pozvanafija:true
+    });
+  }
+
   render() {
-    return (
+    var ispis=(
       <Container>
         <Row>
           <Col>
-            <Predmet />
+            <Predmet fija={this.fija}/>
           </Col>
           <Col>
-            <Obavijestenja/>
+            <Obavijestenja fija={this.fija}/>
           </Col>
         </Row>
         <Row>
           <Col>
-            Calendar 
+            <Calendar /> 
           </Col>
         </Row>
         <Row>
@@ -30,6 +47,11 @@ class App extends Component {
           <Col>Graf</Col>
         </Row>
       </Container>
+    )
+    return (
+       <div>
+         {this.state.pozvanafija ? <PredmetE /> : ispis}
+       </div>
     );
   }
 }

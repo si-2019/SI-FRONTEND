@@ -5,8 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 class Footer extends Component {
     render() {
       return (
-        <div className="Footer">           
-            <Navbar expand="lg" fixed="bottom" variant="light" bg="light" className="justify-content-center">
+        <div className="Footer" style={{position: "absolute", bottom: "0", width: "100%"}}>           
+            <Navbar expand="lg" variant="light" bg="dark" className="justify-content-center" style={{height: "50px"}}>
                 <ReturnButton/>
             </Navbar>
         </div>

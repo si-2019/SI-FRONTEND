@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
-import papaApi from './papaApi'
+import Card from 'react-bootstrap/Card';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import papaApi from './papaApi';
+import { TramRounded } from '@material-ui/icons';
 
 
 
@@ -14,7 +15,9 @@ class ObavjestenjaPapa extends Component {
     this.state = {  
                     boja:"white",
                     naslov: "Izaberite nacin prikazivanja",
-                    lista:[]
+                    lista:[],
+                    showPredmet:false,
+                    clicked: false
                  };
     this.obavjestenjaAdmin = this.obavjestenjaAdmin.bind(this); 
     this.obavjestenjaStudentskaSluzba = this.obavjestenjaStudentskaSluzba.bind(this); 
@@ -24,21 +27,66 @@ class ObavjestenjaPapa extends Component {
     this.ispitiPrijava = this.ispitiPrijava.bind(this); 
     this.rezultatiUsmenihIspita = this.rezultatiUsmenihIspita.bind(this); 
     this.rezultatiParcijalnihIspita = this.rezultatiParcijalnihIspita.bind(this); 
+    this.kliknutPredmet=this.kliknutPredmet.bind(this)
   }
 
   
   
   obavjestenjaAdmin(){
-    
+    papaApi.obavjestenjaAdmin().then((res) => {
+        this.setState({
+          showPredmet:false,
+          naslov:"Obajestenja od admina",
+          lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Obavjestenja od admin",
+        lista:[]});
+    });
   }
   obavjestenjaStudentskaSluzba(){
-    
+    papaApi.obavjestenjaStudentskaSluzba().then((res) => {
+      this.setState({
+        naslov:"Obavjestenja od studentske sluzbe",
+        lista:res.data,
+        showPredmet:false
+      });
+    }).catch((err) => {
+      this.setState({
+        naslov:"Obavjestenja od studentske sluzbe",
+        lista:[],
+        showPredmet:false
+      });
+    });
   }
   obavjestenjaProfesor(){
-    
+    papaApi.obavjestenjaProfesor().then((res) => {
+      this.setState({
+        naslov:"Obajvestenja od profesora",
+        lista:res.data,
+        showPredmet:false
+      });
+    }).catch((err) => {
+      this.setState({
+        naslov:"Obavjestenja od profesora",
+        lista:[],
+        showPredmet:false
+      });
+    });
   }
   obavjestenjaAsistent(){
-    
+    papaApi.obavjestenjaAsistent().then((res) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Obajvestenja od asistenta",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Obajvestenja od asistenta",
+        lista:[]});
+    });
   }
   upisaneOcijene(){
    
@@ -54,19 +102,66 @@ class ObavjestenjaPapa extends Component {
       }
       this.setState({
         naslov:"Trenutne prijeva za ispit",
-        lista:niz});
+        lista:niz,
+        showPredmet:false
+      });
     }).catch((err) => {
       this.setState({
         naslov:"Trenutne prijave za ispit",
-        lista:[]});
+        lista:[],
+        showPredmet:false
+      });
     });
   }
   rezultatiParcijalnihIspita(){
-   
+    papaApi.rezultatiIspita().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+        if (res.data[a].vrsta.includes("parcijalni")){
+           niz.push({
+            id:a,
+            obavjestenje:res.data[a].vrsta+" iz "+res.data[a].predmet + " osvojili ste " +res.data[a].brojBodova +"."
+          })
+        }
+      }
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati parcijalnih ispita",
+        lista:niz});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati parcijalnih ispita",
+        lista:[]});
+    });
   }
   
   rezultatiUsmenihIspita(){
-    
+    papaApi.rezultatiIspita().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+        if (res.data[a].vrsta.includes("zavrs")){
+           niz.push({
+            id:a,
+            obavjestenje:res.data[a].vrsta+" iz "+res.data[a].predmet + " osvojili ste " +res.data[a].brojBodova +"."
+          })
+        }
+      }
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati usmenih ispita",
+        lista:niz});
+    }).catch((err) =>{
+      this.setState({
+        showPredmet:true,
+        naslov:"Rezultati usmenih ispita",
+        lista:[]});
+    });
+  }
+  kliknutPredmet(){
+    if(this.state.showPredmet){
+        this.props.fija();      
+    }
   }
   render() {
     return (
@@ -94,7 +189,7 @@ class ObavjestenjaPapa extends Component {
           <div>
               <ul style={{listStyleType: "square"}}>
                 {this.state.lista.map(item => (
-                  <li style={{ margin: "1rem"}} key={item.id}>{item.obavjestenje}</li>
+                  <li style={{ margin: "1rem"}} key={item.id} onClick={this.kliknutPredmet.bind(this)} >{item.obavjestenje}</li>
                 ))}
               </ul>
           </div>

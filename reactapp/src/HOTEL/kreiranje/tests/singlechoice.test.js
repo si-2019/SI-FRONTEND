@@ -7,11 +7,6 @@ import { shallow } from 'enzyme';
 import { exportAllDeclaration } from '@babel/types';
 
 test('renders without crashing', () => {
- shallow(<SingleChoice />);
-});
-
-test('dodavanje odgovora', () => {
-  const SC = shallow(<SingleChoice/>)
   shallow(<SingleChoice azurirajPitanje={() => console.log(123)} />);
 });
 

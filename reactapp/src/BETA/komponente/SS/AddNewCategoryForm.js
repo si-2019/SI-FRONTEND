@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import axios from 'axios';
 
 class AddNewCategoryForm extends React.Component {
@@ -20,7 +20,6 @@ class AddNewCategoryForm extends React.Component {
         const naziv  = this.state.categoryName;
         axios.post('http://localhost:31902/category/add', {naziv})
         .then((result) => {
-            //Ovdje treba pokupiti odgovor od backend-a!!!!! -----> NIJE DOVRŠENO!!!
             alert(result.data);
         });
 

@@ -17,7 +17,8 @@ class stranicaPredmetaProfesor extends Component {
           oPredmetu: [],
           literatura: [],
           objave: [],
-          dropdownAk: []
+          dropdownAk: [],
+          nazivAg: ""
         };
     }    
     componentDidMount(){
@@ -43,13 +44,18 @@ class stranicaPredmetaProfesor extends Component {
         })
     })
   })
+  axios.get(`http://localhost:31907/r1/nazivTrenutneAkademskeGodine`).then(res10 => {
+        this.setState({
+            nazivAg: res10.data.naziv
+        })
+  })
 }
     render(){
         return(
             <div>
                 <h1>{this.state.naziv}</h1>
                 <div>
-                  <Dropdown godine={this.state.dropdownAk}/>
+                  <Dropdown godine={this.state.dropdownAk} nazivAg = {this.state.nazivAg}/>
                 </div>
                 <OPredmetuProfesor predmet={this.state.oPredmetu} idpredmeta={this.state.idPredmeta}></OPredmetuProfesor>
                 <LiteraturaProfesor nesto={this.state.literatura}></LiteraturaProfesor>

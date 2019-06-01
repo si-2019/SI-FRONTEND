@@ -20,10 +20,12 @@ class stranicaPredmetaStudent extends Component {
       literatura: [],
       objave: [],
       niz: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
-      dropdownAk: []
+      dropdownAk: [],
+      nazivAkademskeGodine: ""
     }
   
     componentDidMount(){
+      axios.get(`http://localhost:31907/r1/nazivTrenutneAkademskeGodine`).then(res10 => {
       axios.get(`http://localhost:31907/r1/semestar/${this.props.match.params.idPredmeta}`).then(res4 =>{
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.match.params.idPredmeta}`).then(res =>{
             const naziv = res.data.naziv;
@@ -52,7 +54,8 @@ class stranicaPredmetaStudent extends Component {
                         sedmice: sedmicee,
                         oPredmetu: res5.data.file,
                         literatura: res6.data.file,
-                        dropdownAk: dropdownAkademske
+                        dropdownAk: dropdownAkademske,
+                        nazivAkademskeGodine: res10.data.naziv
                       })
                       console.log(this.state)
                     })
@@ -61,7 +64,9 @@ class stranicaPredmetaStudent extends Component {
               })
             }) 
         })
+       })
       })
+        
     }
 
     klikNaDugme = () => {
@@ -106,7 +111,7 @@ class stranicaPredmetaStudent extends Component {
                 </div>
               </div>
               <div>
-                  <Dropdown godine={this.state.dropdownAk}/>
+                  <Dropdown godine={this.state.dropdownAk} nazivAg={this.state.nazivAkademskeGodine}/>
                 </div>
               <OPredmetuStudent predmet={this.state.oPredmetu} idpredmeta={this.state.idPredmeta}></OPredmetuStudent>
               <LiteraturaStudent nesto={this.state.literatura}></LiteraturaStudent>

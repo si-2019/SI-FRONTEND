@@ -26,7 +26,16 @@ class IspitiForma extends Component {
                         width: "30%",
                         marginRight: "20px"
                     }} >
-                        
+                    <div className="form-group">
+                        <label htmlFor="termin">Termin:</label>
+                        <DatePicker
+                            id="termin"
+                            selected={this.state.termin}
+                            onChange={this.handleTerminChange}
+                            disabled={disabled}
+                            value={termin}
+                        />
+                    </div>
                 </div>
             </form>
         </div>

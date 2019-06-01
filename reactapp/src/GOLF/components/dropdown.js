@@ -21,7 +21,7 @@ class dropdown extends React.Component {
           Akademska godina
         </button>
         <div className={menuClass} aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">{this.props.naslov}</a>
+          {this.props.godine.map(naslov => <a class="dropdown-item" href='#'>{naslov}</a>)}
         </div>
       </div>
     );

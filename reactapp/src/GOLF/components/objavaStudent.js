@@ -38,7 +38,7 @@ class objavaStudent extends Component {
             <div class="card-body">
             <h5 class="card-title">{this.props.naslov}</h5>
             <OpisMaterijala opisMaterijala={this.props.opisMaterijala}></OpisMaterijala>
-              {this.props.fileovi.map(predmet => [<a href='#' onClick={this.skiniFile.bind(this,predmet,this.props.idpredmeta)} class='card-link' key='1'>{predmet}</a>,<br key='2'></br>])}
+              {this.props.fileovi.map(predmet => [<a href='#' onClick={this.skiniFile.bind(this,predmet,this.props.idpredmeta)} class='card-link'>{predmet}</a>,<br></br>])}
             <DodavanjeDatuma datumobjave={this.state.datumobjave}></DodavanjeDatuma>
             </div>
         </div>

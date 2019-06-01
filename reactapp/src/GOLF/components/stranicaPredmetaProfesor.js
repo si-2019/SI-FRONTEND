@@ -23,7 +23,7 @@ class stranicaPredmetaProfesor extends Component {
     componentDidMount(){
         axios.get(`http://localhost:31907/r5/dajNaziv/${this.state.idPredmeta}`).then(res =>{
           axios.get(`http://localhost:31907/r8/getAkademskaGodina/`).then(res =>{
-              const dropdownAkademske = res.data.prethodne2AG
+              const dropdownAkademske = res.data.godine
             axios.get(`http://localhost:31907/r1/semestar/${this.state.idPredmeta}`).then(res2 =>{
                 axios.get(`http://localhost:31907/r1/sedmice/${res2.data.semestar}`).then(res3 => {
                     axios.get(`http://localhost:31907/r3/dajOPredmetu/${this.state.idPredmeta}`).then(res4 =>{
@@ -48,10 +48,9 @@ class stranicaPredmetaProfesor extends Component {
         return(
             <div>
                 <h1>{this.state.naziv}</h1>
-                <div class='col-3' key = "3">
-                  {this.state.dropdownAk.map(drop => [<Dropdown naslov={drop.prviDioAk+'/'+drop.drugiDioAk+'.'}></Dropdown>])}
+                <div>
+                  <Dropdown godine={this.state.dropdownAk}/>
                 </div>
-           
                 <OPredmetuProfesor predmet={this.state.oPredmetu} idpredmeta={this.state.idPredmeta}></OPredmetuProfesor>
                 <LiteraturaProfesor nesto={this.state.literatura}></LiteraturaProfesor>
               {this.state.sedmice.map(sedmica => <Sedmica idpredmeta={this.state.idPredmeta} naslov={sedmica.pocetakSedmice+' - '+sedmica.krajSedmice} sedmice={sedmica.redniBrojSedmice} idPredmet={this.state.idPredmeta} student="nesto"></Sedmica>)}

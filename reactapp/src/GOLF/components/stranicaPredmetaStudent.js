@@ -5,7 +5,6 @@ import LiteraturaStudent from './literaturaStudent'
 import ObjavaStudent from './objavaStudent'
 import Sedmica from './sedmica'
 import Dropdown from './dropdown'
-import { Replay5Sharp } from '@material-ui/icons';
 
 class stranicaPredmetaStudent extends Component {
 
@@ -111,7 +110,7 @@ class stranicaPredmetaStudent extends Component {
                 </div>
               </div>
               <div>
-                  <Dropdown godine={this.state.dropdownAk} nazivAg={this.state.nazivAkademskeGodine}/>
+                  <Dropdown godine={this.state.dropdownAk} nazivAg={this.state.nazivAkademskeGodine} idPredmeta={this.props.match.params.idPredmeta} idKorisnika={this.props.match.params.idKorisnika}/>
                 </div>
               <OPredmetuStudent predmet={this.state.oPredmetu} idpredmeta={this.state.idPredmeta}></OPredmetuStudent>
               <LiteraturaStudent nesto={this.state.literatura}></LiteraturaStudent>

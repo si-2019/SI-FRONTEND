@@ -10,5 +10,10 @@ class IspitiForma extends Component {
         termin: termin || new Date()
       };
     }
+    handleTerminChange = e => {
+        this.setState({
+          termin: e.target
+        });
+      };
     
 }

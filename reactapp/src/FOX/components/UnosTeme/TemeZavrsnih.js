@@ -10,12 +10,8 @@ class StranicaPredmeta extends Component {
   render() {
     return (
       <div className="TemeZavrsnih">
+        <Header isPocetna={false}/>
         <Container fluid>
-          <Row>
-            <Col>
-              <Header isPocetna={false}/>
-            </Col>
-          </Row>
           <Row>
             <Col style={{textAlign: "center"}}>
             <br></br>
@@ -30,11 +26,8 @@ class StranicaPredmeta extends Component {
             </Col>
             <Col></Col>
           </Row>
-          <Row>
-            <Footer/>
-          </Row>
         </Container>
-        
+        <Footer/>
       </div>
 
     );

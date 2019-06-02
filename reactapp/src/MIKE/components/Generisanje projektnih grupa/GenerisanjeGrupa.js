@@ -94,7 +94,6 @@ class GenerisanjeGrupa extends Component {
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
 					var tekst=ajax.responseText;
-					console.log(tekst);
 					if(tekst.length==0) return;
 					var json=JSON.parse(tekst);
 					var jsonNovi=[];

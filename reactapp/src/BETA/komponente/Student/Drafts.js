@@ -48,8 +48,8 @@ class Drafts extends React.Component {
             console.log(dn[0].draftStatus)
             let novi = [];
             for(let i = 0; i < dn.length; i++){
-                if(dn[0].draftStatus == true)
-                novi.push(dn[0]);
+                if(dn[i].draftStatus == true)
+                novi.push(dn[i]);
             }
             dN.push({id: issue.id, title: cn.data.naziv, messages: novi});
         });
@@ -58,14 +58,24 @@ class Drafts extends React.Component {
         res.data.inProgress.forEach( async (issue) => {
             let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dip = issue.messages;
-            dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
+            let novi = [];
+            for(let i = 0; i < dip.length; i++){
+                if(dip[i].draftStatus == true)
+                novi.push(dip[i]);
+            }
+            dIP.push({id: issue.id, title: cip.data.naziv, messages: novi});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
             let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dr = issue.messages;
-            dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
+            let novi = [];
+            for(let i = 0; i < dr.length; i++){
+                if(dr[i].draftStatus == true)
+                novi.push(dr[i]);
+            }
+            dR.push({id: issue.id, title: cr.data.naziv, messages: novi});
         });
 
         this.setStateAsync({dataNew: dN});

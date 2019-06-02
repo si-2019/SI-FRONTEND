@@ -8,35 +8,54 @@ import Button from 'react-bootstrap/Button'
 class Obavijesti extends Component {
     render() {
         return (
-          <Form>
-              <Header/>
+          <div>
+            <Header isPocetna={false}/>
+
+            <Form>
             <Form.Row>
-              <Col md= {{span: 4, offset: 5 }}>
-                <Form.Label style={{fontWeight: "bold", paddingLeft:'10px', fontSize: 20}}> Obavijesti </Form.Label>
-              </Col>
-            </Form.Row>
-            <Form.Row  style={{marginTop:"10px",}}>
-                <Col md= {{span: 3, offset: 4 }}>
-                <Form.Label> Naslov: </Form.Label>
-                      <input type="text" class="form-control"></input>
+                <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
+                    <br/>
+                    <h4>Obavijesti</h4>
+                    <br/>
                 </Col>
             </Form.Row>
-            <Form.Row>
-              <Col md= {{span: 3, offset: 4 }}>
-              <Form.Label> Sadrzaj: </Form.Label>
-              <Form.Control as="textarea" rows="5" />
-              </Col>
 
-            </Form.Row>
             <Form.Row>
-              
-              <Col md= {{span: 3, offset: 4 }}>
-                <Button> Sacuvaj </Button>
-              </Col>
-              </Form.Row>
-              <Footer/>
-           
-          </Form>
+                <Col style={{textAlign: "right"}}>
+                    <Form.Label> Naslov: </Form.Label>
+                </Col>
+                <Col lg="4">
+                    <Form.Control type="text" name="name">
+                    </Form.Control>
+                </Col>
+                <Col></Col>
+            </Form.Row>
+
+            <br/>
+
+            <Form.Row>
+                <Col style={{textAlign: "right"}}>
+                    <Form.Label> Sadržaj: </Form.Label>
+                </Col>
+                <Col lg="4">
+                    <Form.Control as="textarea" rows="5">
+                    </Form.Control>
+                </Col>
+                <Col></Col>
+                
+            </Form.Row>
+
+            <br/>
+
+            <Form.Row>
+                <Col style={{textAlign: "center"}}>
+                  <Button> Sačuvaj </Button>
+                </Col>
+            </Form.Row>
+            </Form>
+
+            <Footer/>
+          </div>
         );
     }
 }

@@ -44,7 +44,7 @@ const UnosPrisustvaSedmice = (props) => {
                             return (
                                 <ListGroup variant="flush">
                                     <ListGroup.Item >
-                                        <Link to="UnosPrisustva" onClick={() => props.handleClickSedmica(index + 1)}> {s} </Link>
+                                        <Link to="UnosPrisustva" onClick={() => props.handleClickSedmica(index + 8)}> {s} </Link>
                                     </ListGroup.Item>
                                 </ListGroup>
                             );

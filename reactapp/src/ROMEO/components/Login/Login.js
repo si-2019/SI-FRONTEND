@@ -61,31 +61,40 @@ class Login extends Component {
       document.getElementById('greske').innerText = error;
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
-      //validacija uspjesna
-      
-      var url = 'http://localhost:31917/auth/login';
 
-      var params = {
+      var baseUrl = 'http://localhost:31917';
+
+      var body = {
         username: this.state.korisnickoIme,
         password: this.state.sifra
       }
       
       var headers = {
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
       }
 
-      //poziv api-a
-      axios.get(url, {params, headers}).then( res => {
-        var nes = res;
-        var data = res.data;
-        var aa = 0;
+      axios.post(baseUrl + '/login', body, headers).then((res) => {
+        var dat = res.data;
+        console.log(dat);
 
-        this.setState({
+        /*this.setState({
           logiran: true
         })
         localStorage.setItem("token", "hardcoded for now")
-        return <Redirect to="/romeo/home" />
+        return <Redirect to="/romeo/home" />*/
       });
+
+      //validacija uspjesna
+      if(this.state.korisnickoIme == "nepostojeci") {
+        //autentikacija neuspjesna
+        document.getElementById('greske').innerText = "Korisnik ne postoji";
+        document.getElementById('dioGreske').style.display = "block";
+      } else {
+        //autentikacija uspjesna
+      }
+
+      
 
       //nnekic1
       //password

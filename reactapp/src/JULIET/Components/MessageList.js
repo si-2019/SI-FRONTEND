@@ -4,8 +4,17 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import { Reply, Place, Message, CloudDownload, Delete, SlowMotionVideo, SlowMotionVideoOutlined } from '@material-ui/icons';
 import { format } from 'date-fns';
 import ThreadDialog from './ThreadDialog';
+import Message_ from './Message_'
 import Axios from 'axios';
-//import { thisTypeAnnotation } from 'babel-types';
+import { thisTypeAnnotation } from 'babel-types';
+
+function RoomName(props) {
+    console.log(typeof props.currentRoom.name)
+    if(!props.currentRoom.name) return '';
+    if (!props.currentRoom.isPrivate)
+        return "#" + props.currentRoom.name;
+    return props.currentRoom.name;
+}
 
 class MessageList extends Component {
     constructor(props) {
@@ -143,33 +152,37 @@ class MessageList extends Component {
         this.setState({
           input: e.target.value,
         })
-    }
+      }
 
     render() {
-        const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input)
-                                                        || d.senderId === this.state.input.toLowerCase());
+        console.log(this.props.users.length);
+        console.log(this.props.messages.length);
+        const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input));
         return (
-            <div className="container">
-            <input className="pretragaText" placeholder="Pretraži po frazi, pošiljaocu ili po datumu u formatu DD.MM.YYYY" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
-                <ul style={listStyle} className="list-group message-list">
+            <div className="juliet-container">
+                <div className="juliet-message-header">
+                    <div className="juliet-name-of-room">
+                        <h4>
+                            <RoomName currentRoom={this.props.currentRoom}/>
+                        </h4>
+                    </div>
+                    <input className="juliet-pretraga-text" placeholder="Pretraži poruke po frazi ili po datumu u formatu DD.MM.YYYY" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
+                </div>
+                <ul style={listStyle} className="list-group juliet-message-list">
                     {listSrc.map((message, index) => (
-                        <li
-                            className="list-group-item" style={messageStyle} key={index}>
-                            <h4 className="message-sender" onClick={this.props.openPrivateChat}>{message.senderId}</h4>
-                            {
-                               this.props.usersAvatars.get(message.senderId) ? 
-                                    <img src={this.props.usersAvatars.get(message.senderId)} style={imgStyle} alt="Nema slike"/> :
-                                    null
-                            }
-                            <p style={messageTextStyle} className="message-text" >
-                                {message.text}
-                            </p>
-                            <div className="actions">
+                        <li className="list-group-item juliet-hover-message" style={messageStyle} key={index}>
+                            <Message_
+                                openPrivateChat={this.props.openPrivateChat}
+                                text={message.text}
+                                user={this.props.users.filter(d => d.id === message.senderId)[0]}
+                                date={message.createdAt}
+                            />
+                            <div className="juliet-actions">
                                 {
                                     message.text.substr(0, 16) === 'Downloaduj file:' ?
                                     <div>
                                         <Tooltip title="Download file">
-                                            <IconButton color="primary" onClick={() => this.handleDownloadClick(message)}
+                                            <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDownloadClick(message)}
                                                 style={{ float: 'right' }}>
                                                 <CloudDownload />
                                             </IconButton>
@@ -177,7 +190,7 @@ class MessageList extends Component {
                                         {
                                             message.senderId === this.props.currentId || this.state.adminUser ?
                                             <Tooltip title="Delete file">
-                                                <IconButton color="primary" onClick={() => this.handleDeleteClick(message, index)}
+                                                <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDeleteClick(message, index)}
                                                     style={{ float: 'right' }}>
                                                     <Delete />
                                                 </IconButton>
@@ -189,19 +202,19 @@ class MessageList extends Component {
                                 }
 
                                 <Tooltip title="Pin message">
-                                    <IconButton color="primary" onClick={() => this.handlePinMessage(message)}
+                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handlePinMessage(message)}
                                         style={{ float: 'right' }}>
                                         <Place />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Reply">
-                                    <IconButton color="primary" onClick={() => this.replyToMessage(message)}
+                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.replyToMessage(message)}
                                         style={{ float: 'right' }}>
                                         <Reply />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Start thread">
-                                    <IconButton color="primary" onClick={() => this.handleDialogOpen(message)}
+                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDialogOpen(message)}
                                         style={{ float: 'right' }}>
                                         <Message />
                                     </IconButton>
@@ -216,7 +229,6 @@ class MessageList extends Component {
                                     current={this.props.currentId}
                                 />
                             </div>
-                            <p className="timeDiv"> {format(new Date(message.createdAt), 'DD.MM.YYYY. - HH:mm')} </p>
                         </li>
                     ))
                     }
@@ -224,27 +236,21 @@ class MessageList extends Component {
                         ref={(el) => { this.messagesEnd = el; }}>
                     </div>
                 </ul>
-
             </div>
         )
     }
 }
 
-const messageTextStyle = {
-    color: 'black',
-    border: "1px solid #7856AD",
-    padding: '10px',
-    width: 'auto'
-}
 
 const listStyle = {
-    overflowX: 'hidden',
-    height: '100%',
+    height: 'calc(100% - 65px)',
     textAlign: 'left'
 }
 
 const messageStyle = {
-    alignContent: 'center'
+    alignContent: 'center',
+    border: 'none',
+    paddingLeft: '2rem'
 }
 
 const imgStyle = {

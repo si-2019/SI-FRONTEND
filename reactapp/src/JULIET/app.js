@@ -6,6 +6,7 @@ import ChatApp from './Components/ChatApp';
 import {instanceLocator, secretKey} from './config.js';
 import { default as Chatkit } from '@pusher/chatkit-server';
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 const chatkit = new Chatkit({
   instanceLocator: instanceLocator,
@@ -52,18 +53,20 @@ class App extends Component {
     })
   }
 
+
   render() {
     let view = '';
-
+    console.log()
     if (this.state.currentView === "ChatMessage") {
       view = <ChatMessage changeView={this.changeView} />
     } else if (this.state.currentView === "signup") {
       view = <Signup onSubmit={this.createUser} />
     } else if (this.state.currentView === "chatApp") {
-      view = <ChatApp currentId={this.state.currentId} />
+      console.log(this.state.currentUsername)
+      view = <ChatApp currentId={this.state.currentId} chatkit={chatkit}/>
     }
     return (
-      <div className="App">
+      <div className="Juliet-App">
         {view}
       </div>
     );

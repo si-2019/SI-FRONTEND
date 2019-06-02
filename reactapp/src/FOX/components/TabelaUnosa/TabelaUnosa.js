@@ -1,13 +1,7 @@
 import React, {Component } from 'react';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Button';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import axios from 'axios';
 // this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
 
@@ -63,56 +57,82 @@ class TabelaUnosa extends Component {
         return(
             <Form>
                 <Form.Row>
-                     <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 25, marginTop:"30px", marginBottom: "30px"}}> Unos bodova za ispit  </Form.Label>  
-                </Form.Row>
-                <Form.Row>
-                    <Col md= {{ span: 3, offset: 4}}>
-                    <select style={{placeholder: "Odaberite ispit" }}>
-                        <option>I parcijalni, 20.4.2019.</option>
-                        <option> II parcijalni, 20.6.2019.</option>
-                        <option>Popravni I parcijalni, 1.7.2019.</option>
-                        <option>Popravni II parcijalni, 1.7.2019.</option>
-                        <option>Integralni ispit 1.9.2019.</option>
-                    </select>
+                    <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
+                        <br/>
+                        <h4>Unos bodova za ispit</h4>
+                        <br/>
                     </Col>
                 </Form.Row>
-            <Form style={{ border:'2px solid', height:"300px",marginTop:"30px", paddingLeft: '80px'}}>
-                <Form.Row style={{padding: '30px'}}>
-                    <Form.Label> Index: </Form.Label>
-                     <input type="text" name="name" />
 
-                    <Button style= {{paddingLeft: '10px', }} onClick={this.handleClick}> Pretrazi </Button>  
-               
+                <Form.Row>
+                    <Form.Group as={Col} sm={{span: 4, offset: 4}}>
+                        <Form.Control
+                            as="select">
+                            <option>I parcijalni, 20.4.2019.</option>
+                            <option> II parcijalni, 20.6.2019.</option>
+                            <option>Popravni I parcijalni, 1.7.2019.</option>
+                            <option>Popravni II parcijalni, 1.7.2019.</option>
+                            <option>Integralni ispit 1.9.2019.</option>
+                        </Form.Control>
+                    </Form.Group>
                 </Form.Row>
-                
-               <Form.Row style={{paddingLeft: '100px'}}>
-                <label style={{ visibility: this.state.greskaVis}}>
-                    Pero Perić, 12345
-                </label> 
 
+                <hr/>
+
+                <Form.Row>
+                    <Col style={{textAlign: "right"}}>
+                        <Form.Label> Index: </Form.Label>
+                    </Col>
+                    <Col lg="2">
+                        <Form.Control type="text" name="name">
+                        </Form.Control>
+                    </Col>
+                    <Col>
+                        <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                    </Col>
                 </Form.Row>
-                <Form.Row style={{padding: '25px' }}>
-                <Form.Label> Bodovi: </Form.Label>
-                <input type= "text" name="name" />
-                <Button onClick={this.handleCli}> Unesi </Button>
+
+                <Form.Row>
+                    <Col style={{textAlign: "center"}}>
+                        <br/>
+                        <label style={{ visibility: this.state.greskaVis}}>
+                            Pero Perić, 12345
+                        </label> 
+                    </Col>
                 </Form.Row>
-                <Form.Row style={{paddingLeft: '100px'}}>
-                    <label style={{ visibility: this.state.greska}}>
-                        Uspješan unos
-                    </label>
+
+                <hr/>
+
+                <Form.Row>
+                    <Col style={{textAlign: "right"}}>
+                        <Form.Label> Bodovi: </Form.Label>
+                    </Col>
+                    <Col lg="2">
+                        <Form.Control type="text" name="name">
+                        </Form.Control>
+                    </Col>
+                    <Col>
+                    <Button> Unesi </Button>
+                    </Col>
                 </Form.Row>
-                <Form.Row style={{paddingLeft: '100px'}}>
-                    <label style={{ visibility: this.state.greska}}>
-                        Pero Perić, 12345
-                    </label>
+
+                <Form.Row>
+                    <Col style={{textAlign: "center"}}>
+                        <br/>
+                        <label style={{ visibility: this.state.greska}}>
+                            Uspješan unos
+                        </label>
+                        <br/>
+                        <label style={{ visibility: this.state.greska}}>
+                            Pero Perić, 12345
+                        </label>
+                        <br/>
+                        <label style={{ visibility: this.state.greska}}>
+                            20
+                        </label>
+                        <br/>
+                    </Col>
                 </Form.Row>
-                <Form.Row style={{paddingLeft: '130px'}}>
-                    <label style={{ visibility: this.state.greska}}>
-                        20
-                    </label>
-                </Form.Row>
-            
-            </Form>
            </Form>
         );
     }

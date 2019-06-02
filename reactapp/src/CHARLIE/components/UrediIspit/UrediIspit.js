@@ -34,6 +34,13 @@ class UrediIspit extends React.Component {
 
   onChangeRokPrijave = datumRokaPrijave => this.setState({ datumRokaPrijave })
 
+
+  onKapacitetChange = e => {
+    this.setState({
+      kapacitet: e.target
+    });
+  };
+
   render() {
     return (
       <div className="col-xs-12 col-sm-12">

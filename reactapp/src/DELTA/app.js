@@ -7,7 +7,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>Predmeti:</h1>
         <BrowserRouter>
           <Route path="/delta" exact component={Predmet} />
         </BrowserRouter>

@@ -20,7 +20,7 @@ class Predmet extends Component {
               <b>Predmet:</b> Softver inzenjering
             </div>
             <div className="row">
-              <b>Odgovorni nastavnik:</b> Novica Nosovic
+              <b>Odgovorni nastavnik:</b> <a href="/Juliet">Novica Nosovic</a>
             </div>
             <div className="row">
               <b>Opis predmeta:</b>

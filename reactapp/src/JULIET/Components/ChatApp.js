@@ -551,7 +551,7 @@ class ChatApp extends Component {
                         chatkit={this.props.chatkit}
                         addUser={this.addUser}
                     />
-                    <FileSidebar downloadClick={this.downloadClick}/>
+                    <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id}/>
                     <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
                     <EventPlanner currentId={this.props.currentId}/> 
                 </div>

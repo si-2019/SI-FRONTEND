@@ -132,7 +132,7 @@ class UsersList extends Component {
                         }
                         
                         <h5 className="juliet-section-header">Users</h5>
-                        {listSrc.filter((user) => (currentUser.customData === null || 
+                        {listSrc.filter((user) => (!currentUser.customData || 
                             typeof currentUser.customData.favoriteUsers !== "undefined" && !currentUser.customData.favoriteUsers.includes(user.id))).map((user, index) => {
                             return <li onClick={() => this.props.openPrivateChat(user.id)} 
                             className="juliet-user" key={index}>  

@@ -17,7 +17,7 @@ class FileSidebar extends Component {
     }
 
     componentWillMount(){
-        Axios.get('http://localhost:31910/files')
+        Axios.get('http://localhost:31910/files' + this.props.roomId);
         .then(res => 
             this.setState({
                 files: res.data

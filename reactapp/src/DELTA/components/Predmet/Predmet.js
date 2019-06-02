@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ListaPredmeta from "../ListaPredmeta/ListaPredmeta";
+import Predmeti from "../PredmetiKlik/Predmet";
 import DrugiModuli from "../DrugiModuli/DrugiModuli";
 import Ispiti from "../Ispiti/Ispiti";
 import Zadace from "../Zadace/Zadace";
@@ -13,14 +14,14 @@ class Predmet extends Component {
       <div className="container">
         <div className="row">
           <div className="col-4">
-            <ListaPredmeta />
+            <Predmeti /> 
           </div>
           <div className="col-8">
             <div className="row">
-              <b>Predmet:</b> Softver inzenjering
+              <b>Predmet: </b> Softver inzenjering
             </div>
             <div className="row">
-              <b>Odgovorni nastavnik:</b> <a href="/Juliet">Novica Nosovic</a>
+              <b>Odgovorni nastavnik: </b> <a href="/Juliet">Novica Nosovic</a>
             </div>
             <div className="row">
               <b>Opis predmeta:</b>
@@ -38,6 +39,7 @@ class Predmet extends Component {
             <br />
 
             <Zadace />
+            obavijest
             <br />
             <Ispiti />
             <br />

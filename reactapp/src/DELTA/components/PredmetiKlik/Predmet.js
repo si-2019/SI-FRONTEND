@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 //import './delta.css';
 import ListaPredmeta from "./ListaPredmeta";
+import { BrowserRouter, Route } from "react-router-dom";
 
 class Predmet extends Component {
 
@@ -29,6 +30,7 @@ class Predmet extends Component {
                     {this.state.kliknut && <ListaPredmeta/>}
                 </ul>
             </div>
+            
             //dohvatiti iz baze predmete i izlistati ih
         );
     }

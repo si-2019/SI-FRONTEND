@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 //import'./delta.css';
+import { BrowserRouter, Route } from "react-router-dom";
 
 class ListaPredmeta extends Component {
 
@@ -11,7 +12,8 @@ class ListaPredmeta extends Component {
             kliknut1: false,
             kliknut2: false,
             kliknut3: false,
-            kliknut4: false
+            kliknut4: false,
+            kliknut5: false
         }
     }
 
@@ -31,32 +33,41 @@ class ListaPredmeta extends Component {
                 kliknut3: !this.state.kliknut3
             })
         }
-        else{
+        else if(br===4){
             this.setState({
                 kliknut4: !this.state.kliknut4
+            })
+        }
+        else{
+            this.setState({
+                kliknut5: !this.state.kliknut5
             })
         }
     } 
 
     render() {
         return(
-            <div id="predmeti" class='side'>
+            <div id="predmeti" class='side' style={{margin:-5}}>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(1)}>
-                    <a href='#'> Predmet1</a>
+                    <a href='#'> Softver inženjering</a>
                     </li>
                     {this.state.kliknut1}
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(2)}>
-                    <a href='#'> Predmet2</a>
+                    <a href='#'> Vještačka Inteligencija</a>
                     </li>
                     {this.state.kliknut2}
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(3)}>
-                    <a href='#'> Predmet3</a>
+                    <a href='#'> Projektovanje informacionih sistema</a>
                     </li>
                     {this.state.kliknut3}
                     <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(4)}>
-                    <a href='#'> Predmet4</a>
+                    <a href='#'> Administracija Računarskih Mreža</a>
                     {this.state.kliknut4}
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" onClick = {() => this.Otvori(5)}>
+                    <a href='#'> Završni rad</a>
+                    {this.state.kliknut5}
                     </li>
                 </ul>
             </div>

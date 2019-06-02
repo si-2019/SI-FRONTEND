@@ -56,4 +56,17 @@ const tdStyleParan=
     width:'10vw', 
     backgroundColor:'lightgoldenrodyellow' 
 }
+
+const tdStyleNeparan=
+{
+    rowspan:'5',
+    border:'2px solid #504c4c',
+    textAlign:'center',
+    padding:'8px',
+    textAlign: 'left',
+    width:'10vw', 
+    backgroundColor: 'white' 
+}
+
+
 export default Body_cell

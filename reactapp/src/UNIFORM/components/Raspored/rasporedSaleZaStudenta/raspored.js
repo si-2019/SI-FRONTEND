@@ -42,11 +42,13 @@ export class Raspored extends Component {
   }
 
   render() {
+
     if(!this.state.isLoaded)
     return <div>Loading...</div>;
 
     var raspored=this.state.raspored;
 
+    
   var vremenaRasporeda=[];
   var rendering=[];
 
@@ -80,7 +82,6 @@ export class Raspored extends Component {
   });
   
   vremenaRasporeda.sort();
-
   let danas= new Date();
   var dd = String(danas.getDate()).padStart(2, '0');
   var mm = String(danas.getMonth() + 1).padStart(2, '0'); //Januar je 0!
@@ -324,5 +325,6 @@ const days =[
     title:'Nedjelja'
   }
 ];
+
 
 export default Raspored;

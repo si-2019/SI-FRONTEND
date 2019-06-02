@@ -103,32 +103,32 @@ state={
 }
 
 componentDidMount = () => {  
-  fetch("http://localhost:31920/getStudentTermini/1")
-    .then(resTermini => resTermini.json())
-    .then(jsonTermini => {
-      fetch("http://localhost:31920/getStudentIspiti/1")
-        .then(resIspiti => resIspiti.json())
-        .then(jsonIspiti => {
-          var raspored=[];
+    fetch("http://localhost:31920/getStudentTermini/1")
+      .then(resTermini => resTermini.json())
+      .then(jsonTermini => {
+        fetch("http://localhost:31920/getStudentIspiti/1")
+          .then(resIspiti => resIspiti.json())
+          .then(jsonIspiti => {
+            var raspored=[];
 
-          jsonIspiti.forEach((val, index) => {
-  
-            raspored.push(val);
-           });
-           jsonTermini.forEach((val, index) => {
-            
-            raspored.push(val);  
+            jsonIspiti.forEach((val, index) => {
+    
+              raspored.push(val);
+             });
+             jsonTermini.forEach((val, index) => {
+              
+              raspored.push(val);  
+            });
+          
+            raspored.sort(sortCriteria);
+            this.setState({
+              isLoaded:true,
+              raspored:raspored
+            })
           });
-        
-          raspored.sort(sortCriteria);
-          this.setState({
-            isLoaded:true,
-            raspored:raspored
-          })
         });
-      });
-}
-
+  }
+  
 render = () =>{
   if(!this.state.isLoaded)
   return <div>Loading...</div>;
@@ -176,8 +176,12 @@ render = () =>{
     }  
    }
    
-  });  
-      
+  });
+  /*for(var u=0;u<vremenaRasporeda.length;u++)
+  {
+    console.log("------------------- "+ vremenaRasporeda[u]);
+  }
+     **/    
   
   vremenaRasporeda.sort();
   let danas= new Date();

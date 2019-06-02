@@ -22,7 +22,8 @@ class Login extends Component {
   }
 
   Odjavi = (e) => {
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
     this.props.history.push("/romeo/login");
   }
 	

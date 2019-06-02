@@ -39,7 +39,15 @@ class Login extends Component {
   }
   
   validirajFormu() {
-    var passwordRegex = /^[0-9a-z]+$/
+    var passwordRegex = /^[0-9a-z]+$/;
+    if(this.state.korisnickoIme.length == 0) {
+      error='Polje korisnicko ime ne moze ostati prazno'; 
+      return false;
+    }
+    if(this.state.sifra.length == 0) {
+      error='Polje sifra ne moze ostati prazno'; 
+      return false;
+    }
     if(this.state.sifra.length < 8) {
       error='Sifra mora imati preko 7 karaktera'; 
       return false;
@@ -56,14 +64,21 @@ class Login extends Component {
   }
    
   Submitaj = (e) => {
+    document.getElementById('dioGreske').style.display = "none";
     e.preventDefault();
 	  if(!this.validirajFormu()) {
       document.getElementById('greske').innerText = error;
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
+<<<<<<< HEAD
+      //validacija uspjesna
+      var baseUrl = 'http://localhost:31917';
+
+=======
 
       var baseUrl = 'http://localhost:31917';
 
+>>>>>>> 8dd7b785d9f7197e4eaa95ebdc2e96863373baaa
       var body = {
         username: this.state.korisnickoIme,
         password: this.state.sifra
@@ -83,6 +98,22 @@ class Login extends Component {
         })
         localStorage.setItem("token", "hardcoded for now")
         return <Redirect to="/romeo/home" />*/
+<<<<<<< HEAD
+      }).catch((error) => {
+        var res = error.response;
+        if(res) {
+          if(res.status == 403) {
+            document.getElementById('greske').innerText = "Korisnik ne postoji!";
+          } else {
+            document.getElementById('greske').innerText = "Nešto nije u redu!";
+          }
+        } else {
+          document.getElementById('greske').innerText = "Aplikacija nije dobila odgovor od servera";
+        }
+        document.getElementById('dioGreske').style.display = "block";
+      });
+
+=======
       });
 
       //validacija uspjesna
@@ -94,6 +125,7 @@ class Login extends Component {
         //autentikacija uspjesna
       }
 
+>>>>>>> 8dd7b785d9f7197e4eaa95ebdc2e96863373baaa
       
 
       //nnekic1

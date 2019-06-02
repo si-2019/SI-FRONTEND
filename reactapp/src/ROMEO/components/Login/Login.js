@@ -70,15 +70,8 @@ class Login extends Component {
       document.getElementById('greske').innerText = error;
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
-<<<<<<< HEAD
       //validacija uspjesna
       var baseUrl = 'http://localhost:31917';
-
-=======
-
-      var baseUrl = 'http://localhost:31917';
-
->>>>>>> 8dd7b785d9f7197e4eaa95ebdc2e96863373baaa
       var body = {
         username: this.state.korisnickoIme,
         password: this.state.sifra
@@ -98,7 +91,6 @@ class Login extends Component {
         })
         localStorage.setItem("token", "hardcoded for now")
         return <Redirect to="/romeo/home" />*/
-<<<<<<< HEAD
       }).catch((error) => {
         var res = error.response;
         if(res) {
@@ -112,20 +104,6 @@ class Login extends Component {
         }
         document.getElementById('dioGreske').style.display = "block";
       });
-
-=======
-      });
-
-      //validacija uspjesna
-      if(this.state.korisnickoIme == "nepostojeci") {
-        //autentikacija neuspjesna
-        document.getElementById('greske').innerText = "Korisnik ne postoji";
-        document.getElementById('dioGreske').style.display = "block";
-      } else {
-        //autentikacija uspjesna
-      }
-
->>>>>>> 8dd7b785d9f7197e4eaa95ebdc2e96863373baaa
       
 
       //nnekic1

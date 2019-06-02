@@ -126,7 +126,7 @@ class Login extends Component {
     return (
       <div className="body">
         <div className="header">
-          <img
+          <img 
             src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
             alt="new"
           />

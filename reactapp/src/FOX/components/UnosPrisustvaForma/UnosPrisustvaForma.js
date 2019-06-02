@@ -130,9 +130,9 @@ function UnosPrisustvaForma(props) {
                                             <td>
                                                 <Form.Control
                                                     as="select"
-                                                    style={student.vjezba === "da" ? daStyle : student.vjezba === "ne" ? neStyle : null}
-                                                    name="vjezba"
-                                                    value={student.vjezba}
+                                                    style={student.vjezbe === "da" ? daStyle : student.vjezbe === "ne" ? neStyle : null}
+                                                    name="vjezbe"
+                                                    value={student.vjezbe}
                                                     onChange={(event) => {props.handleChange(event, student.indeks)}}>
                                                 <option value="da">Da</option>
                                                 <option value="ne">Ne</option>

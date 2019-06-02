@@ -1,13 +1,7 @@
 import React, {Component } from 'react';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Button';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import axios from 'axios';
 // this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
 
@@ -100,6 +94,7 @@ class TabelaUnosa extends Component {
 
                 <Form.Row>
                     <Col style={{textAlign: "center"}}>
+                        <br/>
                         <label style={{ visibility: this.state.greskaVis}}>
                             Pero Perić, 12345
                         </label> 
@@ -123,6 +118,7 @@ class TabelaUnosa extends Component {
 
                 <Form.Row>
                     <Col style={{textAlign: "center"}}>
+                        <br/>
                         <label style={{ visibility: this.state.greska}}>
                             Uspješan unos
                         </label>

@@ -1,11 +1,7 @@
 import React, { Component} from 'react';
-import Col from 'react-bootstrap/Col';
 import TabelaUnosa from '../TabelaUnosa/TabelaUnosa';
-import Form from 'react-bootstrap/Form';
-import ReturnButton from '../ReturnButton/ReturnButton';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Nav from 'react-bootstrap/Nav';
 
 
 class UnosBodova extends  Component {

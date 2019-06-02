@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import ObjavaStudent from './objavaStudent'
 import ObjavaProfesor from './objavaProfesor'
-
+import DodavanjeObjave from './dodavanjeObjave'
 
 class sedmica extends Component {
   constructor(props){
     super(props);
     this.state={
       objave: [],
-      objave1: []
+      objave1: [],
+      showMe: false
     }
   }
 
@@ -35,7 +36,11 @@ class sedmica extends Component {
 
       
   }
-
+  prikaz(){
+    this.setState({
+      showMe:!this.state.showMe
+    })
+  }
   render() {
     //console.log({objava:this.state.objave})
     return (
@@ -45,6 +50,12 @@ class sedmica extends Component {
             <h4 class='naslov'>{this.props.naslov}</h4>
             {this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
             {this.state.objave1.map(file => <ObjavaProfesor idpredmeta={this.props.idpredmeta}naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaProfesor>)}
+            {
+              this.state.showMe?
+              <DodavanjeObjave/>
+              :null
+            }
+            <button type="button" onClick={()=>this.prikaz()} class="btn btn-success" id="dodajObjavu">Dodaj objavu</button>
         </div>
     );
   }

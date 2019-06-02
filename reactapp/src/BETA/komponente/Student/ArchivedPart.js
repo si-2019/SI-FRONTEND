@@ -2,10 +2,11 @@ import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Spinner from 'react-bootstrap/Spinner';
-import Issue from '../helpers/Draftt.js';
+import Button from 'react-bootstrap/Button'
+import Issue from '../helpers/Archived.js';
 import axios from 'axios';
 
-class Drafts extends React.Component {
+class ArchivedPart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +23,9 @@ class Drafts extends React.Component {
                 title: null,
                 messages: null,
             },
-            isLoading: true
+            isLoading: true,
+            trashStudent: 2,
+            trashSS: 0
         }
     };
 
@@ -32,9 +35,23 @@ class Drafts extends React.Component {
         });
     }
 
+    emptyFolder = (data) => {
+        
+        const {trashStudent, trashSS} = this.state;
+
+        for(let i = 0; i < data.length; i++){
+            const id = data[i].id;
+            
+            axios.put('http://localhost:31902/issues/archived/delete', { trashStudent, trashSS, id })
+            .then((result) => {
+                alert(result);
+            });
+        }
+    }
+
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('http://localhost:31902/issues/draft/get');
+        const res = await axios.get('http://localhost:31902/issues/archived/get');
 
         let dN = [];
         let dIP = [];
@@ -44,38 +61,21 @@ class Drafts extends React.Component {
         res.data.new.forEach( async (issue) => {
             let cn = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dn = issue.messages;
-            console.log("maida")
-            console.log(dn[0].draftStatus)
-            let novi = [];
-            for(let i = 0; i < dn.length; i++){
-                if(dn[i].draftStatus == true)
-                novi.push(dn[i]);
-            }
-            dN.push({id: issue.id, title: cn.data.naziv, messages: novi});
+            dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
         });
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
             let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dip = issue.messages;
-            let novi = [];
-            for(let i = 0; i < dip.length; i++){
-                if(dip[i].draftStatus == true)
-                novi.push(dip[i]);
-            }
-            dIP.push({id: issue.id, title: cip.data.naziv, messages: novi});
+            dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
             let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
             let dr = issue.messages;
-            let novi = [];
-            for(let i = 0; i < dr.length; i++){
-                if(dr[i].draftStatus == true)
-                novi.push(dr[i]);
-            }
-            dR.push({id: issue.id, title: cr.data.naziv, messages: novi});
+            dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
         });
 
         this.setStateAsync({dataNew: dN});
@@ -96,6 +96,7 @@ class Drafts extends React.Component {
         console.log(this.state.dataNew.length)
         return (
             <div >
+                
                 <Tabs
                     className=".p-3"
                     id="tabs"
@@ -107,6 +108,7 @@ class Drafts extends React.Component {
                         eventKey="new"
                         title={`New (${this.state.dataNew.length})`}
                     >
+                        <Button onClick = {() => this.emptyFolder(this.state.dataNew)}>Empty folder</Button>
                         {!this.state.isLoading &&
                             <div>
                                 <Issue
@@ -122,6 +124,7 @@ class Drafts extends React.Component {
                         eventKey="inProgress"
                         title={`In progress (${this.state.dataInProgress.length})`}
                     >
+                        <Button onClick = {() => this.emptyFolder(this.state.dataInProgress)}>Empty folder</Button>
                         {!this.state.isLoading  &&
                             <Issue
                                 className="tab-issue card"
@@ -134,6 +137,7 @@ class Drafts extends React.Component {
                         eventKey="resolved"
                         title={`Resolved (${this.state.dataResolved.length})`}
                     >
+                        <Button onClick = {() => this.emptyFolder(this.state.dataResolved)}>Empty folder</Button>
                         {!this.state.isLoading &&
                             <Issue
                                 className="tab-issue card"
@@ -147,4 +151,4 @@ class Drafts extends React.Component {
     }
 }
 
-export default Drafts;
+export default ArchivedPart;

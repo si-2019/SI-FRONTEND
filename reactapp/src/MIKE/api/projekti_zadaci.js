@@ -70,4 +70,97 @@ const predmetiZaNovuProjektnuGrupu = () => {
   });
 }
 
-export { sviProjektiTrenutnogUsera, predmetiZaNovuProjektnuGrupu };
+const sviPredmetiAsistenta = () => {
+  //potreban api na backendu
+
+  //placeholder
+  return new Promise(function(resolve, reject)
+  {
+    let predmeti = {
+      predmeti: [
+        {
+          id: "1",
+          naziv_predmeta: "Predmet 1",
+          projekti: [
+            { idProjekat: "1", nazivProjekta: "naziv projekta 1", progress: "0.000", opisProjekta: "opis projekta 1", moguciBodovi: "10", rokProjekta: "2019-01-01 20:20:20" },
+            { idProjekat: "2", nazivProjekta: "naziv projekta 2", progress: "0.800", opisProjekta: "opis projekta 2", moguciBodovi: "30", rokProjekta: "2019-01-01 20:20:20" }
+          ]
+        },
+        {
+          id: "2",
+          naziv_predmeta: "Predmet 2",
+          projekti: [
+            { idProjekat: "3", nazivProjekta: "naziv projekta 3", progress: "0.000", opisProjekta: "opis projekta 3", moguciBodovi: "10", rokProjekta: "2019-01-01 20:20:20" }
+          ]
+        },
+        {
+          id: "3",
+          naziv_predmeta: "Predmet 3",
+          projekti: [
+            { idProjekat: "4", nazivProjekta: "naziv projekta 4", progress: "0.000", opisProjekta: "opis projekta 4", moguciBodovi: "10", rokProjekta: "2019-01-01 20:20:20" }
+          ]
+        },
+        {
+          id: "4",
+          naziv_predmeta: "Predmet 4",
+          projekti: [
+
+          ]
+        }
+      ]
+    };
+  
+    resolve({data: predmeti});
+  });
+}
+
+const sveGrupeProjekta = (idProjekta) => {
+  //potreban api na backendu
+  
+  //placeholder
+  return new Promise(function(resolve, reject)
+  {
+    let grupe = {
+      grupe: [
+        {
+          id: "1",
+          nazivGrupe: `Grupa 1`,
+          studenti: [
+            { id: "1", idClanGrupe: "1", ime: "ime studenta 1", prezime: "prezime studenta 1", indeks: "10001", brojBodova: "1" },
+            { id: "2", idClanGrupe: "2", ime: "ime studenta 2", prezime: "prezime studenta 2", indeks: "10002", brojBodova: "2" }
+          ]
+        },
+        {
+          id: "2",
+          nazivGrupe: "Grupa 2",
+          studenti: [
+            { id: "3", idClanGrupe: "3", ime: "ime studenta 3", prezime: "prezime studenta 3", indeks: "10003", brojBodova: "3" }
+          ]
+        },
+        {
+          id: "3",
+          nazivGrupe: "Grupa 3",
+          studenti: [
+            { id: "4", idClanGrupe: "4", ime: "ime studenta 4", prezime: "prezime studenta 4", indeks: "10004", brojBodova: "4" }
+          ]
+        },
+        {
+          id: "4",
+          nazivGrupe: "Grupa 4",
+          studenti: [
+
+          ]
+        }
+      ]
+    };
+  
+    resolve({data: grupe});
+  });
+}
+
+export { 
+  sviProjektiTrenutnogUsera, 
+  predmetiZaNovuProjektnuGrupu,
+  sviPredmetiAsistenta,
+  sveGrupeProjekta
+};

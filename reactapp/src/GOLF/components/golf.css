@@ -62,7 +62,13 @@
     margin-top: 5pt;
 }
 
+
 .dd{
     margin-top: 10pt;
     margin-bottom: 10pt;
 }
+
+#dodajObjavu{
+    margin:5px 0 5px 5px
+}
+

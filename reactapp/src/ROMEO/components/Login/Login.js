@@ -125,6 +125,12 @@ class Login extends Component {
 
     return (
       <div className="body">
+        <div className="header">		
+          <img 		
+            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"		
+            alt="new"		
+          />		
+        </div>
         <div className="card text-white bg-primary " >
           <form className="loginForma">
           <label htmlFor="exampleInputEmail1">Korisnicko ime:</label>

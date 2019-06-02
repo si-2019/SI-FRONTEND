@@ -112,7 +112,7 @@ class TabelaUnosa extends Component {
                         </Form.Control>
                     </Col>
                     <Col>
-                    <Button onClick={this.handleCli}> Unesi </Button>
+                    <Button> Unesi </Button>
                     </Col>
                 </Form.Row>
 
@@ -122,12 +122,15 @@ class TabelaUnosa extends Component {
                         <label style={{ visibility: this.state.greska}}>
                             Uspješan unos
                         </label>
+                        <br/>
                         <label style={{ visibility: this.state.greska}}>
                             Pero Perić, 12345
                         </label>
+                        <br/>
                         <label style={{ visibility: this.state.greska}}>
                             20
                         </label>
+                        <br/>
                     </Col>
                 </Form.Row>
            </Form>

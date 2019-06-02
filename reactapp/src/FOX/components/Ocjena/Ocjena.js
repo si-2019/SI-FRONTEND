@@ -1,29 +1,75 @@
 import React, { Component} from 'react';
-import Form from 'react-bootstrap/Form'
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 
 class Ocjena extends Component {
     render() {
         return (
             <Form>
                 <Form.Row>
-                    <Form.Label style = {{ fontWeight: "bold", paddingLeft: '180px', fontSize: 18, marginTop:"20px"}}> Unos ocjene</Form.Label>
+                    <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
+                        <br/>
+                        <h4>Unos ocjene</h4>
+                        <br/>
+                    </Col>
                 </Form.Row>
-                <Form style= {{border:'2px solid', height:"300px",marginTop:"20px", paddingLeft: '80px'}}>
-                    <Form.Row style={{padding: '30px'}}>
+
+                <Form.Row>
+                    <Col style={{textAlign: "right"}}>
                         <Form.Label> Index: </Form.Label>
-                        <input type="text" name="name"/>
-                        <Button style= {{paddingLeft: '10px'}}> Pretrazi</Button>
-                    </Form.Row>
-                    <Form.Row style= {{ padding: '25px'}}  >
-                    <Form.Label> Ocjena: </Form.Label> 
-                    <input type="text" name="name"/> 
+                    </Col>
+                    <Col lg="2">
+                        <Form.Control type="text" name="name">
+                        </Form.Control>
+                    </Col>
+                    <Col>
+                        <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                    </Col>
+                </Form.Row>
+
+                <Form.Row>
+                    <Col style={{textAlign: "center"}}>
+                        <br/>
+                        <label>
+                            
+                        </label> 
+                    </Col>
+                </Form.Row>
+
+                <hr/>
+
+                <Form.Row>
+                    <Col style={{textAlign: "right"}}>
+                        <Form.Label> Ocjena: </Form.Label>
+                    </Col>
+                    <Col lg="2">
+                        <Form.Control type="text" name="name">
+                        </Form.Control>
+                    </Col>
+                    <Col>
                     <Button> Unesi </Button>
-                    </Form.Row>
-                </Form>
-            </Form>
+                    </Col>
+                </Form.Row>
+
+                <Form.Row>
+                    <Col style={{textAlign: "center"}}>
+                        <br/>
+                        <label>
+                            
+                        </label>
+                        <br/>
+                        <label>
+                            
+                        </label>
+                        <br/>
+                        <label>
+                            
+                        </label>
+                        <br/>
+                    </Col>
+                </Form.Row>
+           </Form>
         );
     }
 }

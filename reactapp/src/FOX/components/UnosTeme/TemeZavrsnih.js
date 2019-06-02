@@ -17,7 +17,7 @@ class StranicaPredmeta extends Component {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col style={{textAlign: "center"}}>
             <br></br>
             <h4>Pregled tema za završne radove na predmetu Predmet</h4>
             <br></br>

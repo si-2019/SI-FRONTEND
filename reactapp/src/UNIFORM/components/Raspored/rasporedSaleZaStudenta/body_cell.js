@@ -21,6 +21,7 @@ export class Body_cell extends Component {
       } 
     }
     else
+
     {
       // Ukoliko je neparan red
       if(this.props.termin==undefined)
@@ -31,6 +32,7 @@ export class Body_cell extends Component {
         );
       }     
       else
+
       {
         return (
           <td style={tdStyleNeparan}><b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
@@ -41,16 +43,8 @@ export class Body_cell extends Component {
   }
 }
 
-const tdStyleNeparan=
-{
-    rowspan:'5',
-    border:'2px solid #504c4c',
-    textAlign:'center',
-    padding:'8px',
-    textAlign: 'left',
-    width:'10vw', 
-    backgroundColor: 'white' 
-}
+
+
 
 const tdStyleParan=
 {

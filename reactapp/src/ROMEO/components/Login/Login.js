@@ -27,6 +27,9 @@ class Login extends Component {
   }
 
   componentDidMount() {
+    if(this.state.logiran == true) {
+      return <Redirect to="/romeo/home" />
+    }
     document.getElementById('dioGreske').style.display = "none";
   }
 
@@ -48,8 +51,8 @@ class Login extends Component {
       error='Polje sifra ne moze ostati prazno'; 
       return false;
     }
-    if(this.state.sifra.length < 8) {
-      error='Sifra mora imati preko 7 karaktera'; 
+    if(this.state.sifra.length < 4) {
+      error='Sifra mora imati barem 4 karaktera'; 
       return false;
     }
     if(!this.state.korisnickoIme.match(passwordRegex)) {
@@ -78,19 +81,15 @@ class Login extends Component {
       }
       
       var headers = {
-        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json"
       }
 
       axios.post(baseUrl + '/login', body, headers).then((res) => {
-        var dat = res.data;
-        console.log(dat);
-
-        /*this.setState({
-          logiran: true
-        })
-        localStorage.setItem("token", "hardcoded for now")
-        return <Redirect to="/romeo/home" />*/
+        var data = res.data;
+        this.setState.logiran = true;
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.user);
+        this.props.history.push("/romeo/home");
       }).catch((error) => {
         var res = error.response;
         if(res) {

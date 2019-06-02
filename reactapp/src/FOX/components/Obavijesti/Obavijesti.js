@@ -45,8 +45,10 @@ class Obavijesti extends Component {
                 
             </Form.Row>
 
+            <br/>
+
             <Form.Row>
-                <Col>
+                <Col style={{textAlign: "center"}}>
                   <Button> Sačuvaj </Button>
                 </Col>
             </Form.Row>

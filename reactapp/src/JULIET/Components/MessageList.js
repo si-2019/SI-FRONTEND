@@ -9,7 +9,6 @@ import Axios from 'axios';
 import { thisTypeAnnotation } from 'babel-types';
 
 function RoomName(props) {
-    console.log(typeof props.currentRoom.name)
     if(!props.currentRoom.name) return '';
     if (!props.currentRoom.isPrivate)
         return "#" + props.currentRoom.name;
@@ -155,12 +154,10 @@ class MessageList extends Component {
       }
 
     render() {
-        console.log(this.props.users.length);
-        console.log(this.props.messages.length);
         const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input));
         return (
             <div className="juliet-container">
-                <div className="juliet-message-header">
+                <div className="juliet-message-header" style={{'background': this.props.colorScheme}}>
                     <div className="juliet-name-of-room">
                         <h4>
                             <RoomName currentRoom={this.props.currentRoom}/>

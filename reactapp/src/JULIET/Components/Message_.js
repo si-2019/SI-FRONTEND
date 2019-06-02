@@ -15,10 +15,6 @@ class Message_ extends React.Component {
                         {this.props.text}
                     </p>
                 </div>
-                
-                {/* <div className="juliet-message-username"> {this.props.user} </div>
-                <div className="juliet-time-div"> {format(new Date(message.createdAt), 'DD.MM.YYYY. - HH:mm')} </div>
-                <div className="juliet-message-message"> {this.props.text} </div> */}
             </div>
         )
     }

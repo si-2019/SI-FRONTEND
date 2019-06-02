@@ -14,6 +14,7 @@
 .juliet-right-wrapper {
     border-right: none;
     border-left: 1px solid rgb(0,0,0,0.2);
+    overflow-y: scroll;
 }
 
 .Juliet-App ul::-webkit-scrollbar {

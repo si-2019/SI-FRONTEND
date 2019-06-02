@@ -33,7 +33,8 @@ class Mike extends Component {
       </div>
     );
     else if (this.state.forma=="kreiranjeGrupe") return (
-      <Lista submit={this.unosInformacija}/>
+     <Lista submit={this.unosInformacija}/>
+     
     );
     else if (this.state.forma=="listaProjekata") return (
         <PregledListeProjekata />

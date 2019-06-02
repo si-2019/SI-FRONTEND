@@ -13,6 +13,7 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
+      korisnik:"null",
       forma:"null",
       predmeti:[]
     }
@@ -27,14 +28,14 @@ class Mike extends Component {
 
   render() {   
     if(this.state.forma=="null") return (
-      <div className="Mike">
+      <div className="col-6">
        
-        <button onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-        <button onClick={this.listaProjekata}>Pregled projekata studenta</button>
-        <button onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-        <button onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>
-        <button onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
-        <button onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+        <button className="btn btn-primary btn-lg btn-block" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+        <button className="btn btn-primary btn-lg btn-block" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+        <button className="btn btn-primary btn-lg btn-block" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+        {/*<button className="btn btn-primary btn-lg btn-block" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+        <button className="btn btn-primary btn-lg btn-block" onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+        <button className="btn btn-primary btn-lg btn-block" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
       </div>
     );
     else if (this.state.forma=="kreiranjeGrupe") return (

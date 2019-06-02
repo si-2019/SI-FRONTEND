@@ -8,7 +8,8 @@ class ListaPredmetaAsistenta extends Component {
     this.state = {
       idAsistent:this.props.idAsistent,
       predmeti:this.props.predmeti,
-      detalji:false
+      detalji:false,
+      detaljiJSON:{naziv:"Zamger 2.0",opis:"Kreiranje informacionog sistema za fakultet",bodovi:30}
     };
     this.azuriraj=this.azuriraj.bind(this);
   }
@@ -31,7 +32,7 @@ class ListaPredmetaAsistenta extends Component {
               <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
               <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
             </select>
-            <PregledDetaljaPredmeta naziv={"Zamger 2.0"} opis={"Kreiranje informacionog sistema za fakultet"} bodovi={30} brojGrupa={20}/>
+            <PregledDetaljaPredmeta naziv={this.state.detaljiJSON.naziv} opis={this.state.detaljiJSON.opis} bodovi={this.state.detaljiJSON.bodovi} brojGrupa={20}/>
             <ListaGrupa/>
           </div>
         </div>
@@ -61,11 +62,32 @@ class ListaPredmetaAsistenta extends Component {
     )
   }
   azuriraj(indeks){
-    this.setState(state=>({
-      idAsistent:state.idAsistent,
-      predmeti:state.predmeti,
-      detalji:true
-    }))
+    var ajax=new XMLHttpRequest();
+    var komponenta=this;
+    ajax.onreadystatechange=function(){
+        if(ajax.readyState==4 && ajax.status=="200"){
+					var tekst=ajax.responseText;
+					if(tekst.length==0) return;
+					var json=JSON.parse(tekst);
+					komponenta.setState(state=>({
+            idAsistent:state.idAsistent,
+            predmeti:state.predmeti,
+            detalji:true,
+            detaljiJSON:json
+          }))
+				}
+				else if(ajax.status!="200"){
+					komponenta.setState(state=>({
+            idAsistent:state.idAsistent,
+            predmeti:state.predmeti,
+            detalji:true,
+            detaljiJSON:state.detaljiJSON
+          }))
+				}
+		}
+		ajax.open("POST","http://localhost:31913/services/viewA/getProject",true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send("idPredmet=4");
   }
 }
 

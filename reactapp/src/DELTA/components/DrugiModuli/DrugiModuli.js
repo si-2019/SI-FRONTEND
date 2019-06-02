@@ -24,6 +24,7 @@ class DrugiModuli extends Component {
         </div>
         <div className='col-2'>
           <Raspored />
+          <p class="text-danger" style={{width: "150px"}}>Pogledajte raspored</p>
         </div>
           
       </div>

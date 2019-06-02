@@ -30,24 +30,23 @@ render() {
     return(
         <div>
             <Header isPocetna={false}/>
-          <Form>
-              <Form.Row>
-                  <Col md={{ span: 5, offset: 4}}>
-                   </Col>
-               </Form.Row>
-               <Form.Row>
-                    <Col md= {{ span: 5, offset : 4}}>
-                    <TabelaUnosa/>
+            <Form>
+                <Form.Row>
+                    <Col md={{ span: 5, offset: 4}}>
                     </Col>
-               </Form.Row>
-               <Form.Row>
-                    <Col md={{ span: 8, offset: 5}}>
-                    <Nav.Link href= "/fox/Ispiti">     Nazad na listu ispita </Nav.Link>
-                    <Footer/>
-                    </Col>
-                    
                 </Form.Row>
-          </Form>
+                <Form.Row>
+                        <Col md= {{ span: 5, offset : 4}}>
+                        <TabelaUnosa/>
+                        </Col>
+                </Form.Row>
+                <Form.Row>
+                        <Col md={{ span: 8, offset: 5}}>
+                            <Nav.Link href= "/fox/Ispiti"> Nazad na listu ispita </Nav.Link>
+                        </Col>
+                    </Form.Row>
+            </Form>
+            <Footer/>
           </div>
         );
     }

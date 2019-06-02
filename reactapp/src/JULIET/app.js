@@ -5,7 +5,7 @@ import Signup from './Components/Signup';
 import ChatApp from './Components/ChatApp';
 import {instanceLocator, secretKey} from './config.js';
 import { default as Chatkit } from '@pusher/chatkit-server';
-import './App.css'
+import './styles/App.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
 const chatkit = new Chatkit({

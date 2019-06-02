@@ -14,9 +14,9 @@ class StranicaPredmeta extends Component {
         <Header isPocetna={false}/>
         <Container fluid>
           <Row>
-            <Col>
+            <Col style={{textAlign: "center"}}>
             <br></br>
-            <h1>Stranica predmeta</h1>
+            <h4>Stranica predmeta</h4>
             <br></br>
             </Col> 
           </Row>

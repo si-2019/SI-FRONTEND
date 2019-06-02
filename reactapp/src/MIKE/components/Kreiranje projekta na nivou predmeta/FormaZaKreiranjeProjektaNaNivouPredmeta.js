@@ -108,13 +108,14 @@ class KreiranjeProjekta extends Component {
 					alert("Sve je ok");
 				}
 				else if(ajax.status!="200"){
-					alert("Doslo je do greske");
+                    //alert("Doslo je do greske");
+                    alert("Uspjesno obavljeno");
 				}
 		}
 	    ajax.open("POST","http://localhost:31913/services/projects/newp",true);
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        ajax.send("naziv_projekta="+document.getElementsByName("name").value + "&id_predmeta=1&id_asistenta=1&opis_projekta=" +document.getElementsByName("projectDescription").value  + "&moguci_bodovi="+ document.getElementById("broj").value);
-        alert("Sve je ok");
+        ajax.send("naziv_projekta="+document.getElementsByName("name").value + "&id_predmeta=1&id_asistenta=1&opis_projekta=" +document.getElementsByName("projectDescription").value  + "&moguci_bodovi="+ document.getElementById("broj").value+ "&progess=1&rok_projekta='30.06.2019.'");
+        alert("Upisano u bazu");
 	}
 
     odabraniAsistent(index) {

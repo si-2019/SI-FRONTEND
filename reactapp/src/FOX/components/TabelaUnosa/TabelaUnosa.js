@@ -14,16 +14,27 @@ class TabelaUnosa extends Component {
     constructor(props) {
         super();
         this.state = {
-            greskaVis: "hidden"
+            greskaVis: "hidden",
+            greska: "hidden"
         }
         this.handleClick = this.handleClick.bind(this);
-      ispit: []
+        this.handleCli = this.handleCli.bind(this);
     }
 
     handleClick() {
         if (this.state.temaId == null) {
            this.setState({
-               greskaVis: "visible"
+               greskaVis: "visible",
+           })
+        }
+        else if (this.state.temaId != null) {
+        }
+    }
+    
+    handleCli() {
+        if (this.state.temaId == null) {
+           this.setState({
+               greska: "visible",
            })
         }
         else if (this.state.temaId != null) {
@@ -47,7 +58,7 @@ class TabelaUnosa extends Component {
         this.setState({[name]: value});
     }
 
-  
+
     render() {
         return(
             <Form>
@@ -77,16 +88,30 @@ class TabelaUnosa extends Component {
                <Form.Row style={{paddingLeft: '100px'}}>
                 <label style={{ visibility: this.state.greskaVis}}>
                     Pero Perić, 12345
-                </label>
-
-                    <Button style= {{paddingLeft: '10px', color: 'success'}}> Pretrazi </Button>   
+                </label> 
 
                 </Form.Row>
-                <Form.Row style={{padding: '30px' }}>
+                <Form.Row style={{padding: '25px' }}>
                 <Form.Label> Bodovi: </Form.Label>
                 <input type= "text" name="name" />
-                <Button> Unesi </Button>
+                <Button onClick={this.handleCli}> Unesi </Button>
                 </Form.Row>
+                <Form.Row style={{paddingLeft: '100px'}}>
+                    <label style={{ visibility: this.state.greska}}>
+                        Uspješan unos
+                    </label>
+                </Form.Row>
+                <Form.Row style={{paddingLeft: '100px'}}>
+                    <label style={{ visibility: this.state.greska}}>
+                        Pero Perić, 12345
+                    </label>
+                </Form.Row>
+                <Form.Row style={{paddingLeft: '130px'}}>
+                    <label style={{ visibility: this.state.greska}}>
+                        20
+                    </label>
+                </Form.Row>
+            
             </Form>
            </Form>
         );

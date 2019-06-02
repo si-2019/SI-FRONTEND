@@ -30,7 +30,7 @@ class Lista extends Component{
   
   componentWillMount(){
     this.setState({ucitavanje:true});
-    fetch(themesApi+"4")
+    fetch(themesApi+"idPredmeta=4&idUser=1") 
       .then(response=>response.json())
       .then(teme=>{
         var ts= this.state.trenutnaStranica - 1;

@@ -4,7 +4,7 @@ class DodavanjeDatuma extends Component {
   render() {
     return (
       <Moment format="DD/MM/YYYY  HH:mm">
-        {this.props.datumobjave.datum}
+        {this.props.datumobjave}
       </Moment>
     )
   }

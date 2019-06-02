@@ -9,9 +9,11 @@ const Home = () => {
     return (
         <div className="Home">
             <Header isPocetna={true}/>
-            <PozdravnaPoruka/>
-            <DanDatum/>
-            <Predmet/>
+            <div style={{padding: "25px", textAlign: "center"}}>
+                <PozdravnaPoruka/>
+                <DanDatum/>
+                <Predmet/>
+            </div>
             <Footer/>
         </div>
     );

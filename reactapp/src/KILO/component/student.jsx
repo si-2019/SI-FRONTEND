@@ -58,24 +58,23 @@ class Student extends Component {
       ukupnoBodova: [],
       moguceBodova: [],
     
-    
-      brojZadace: 0,
-      brojZadatka: 0,
-      listaTipova: [
-        ".pdf", 
-        ".rar", 
-        ".doc",
-        ".jpeg",
-        ".png",
-        ".txt"
-      ],
+    blokirajSelect:false,
+    blokirajSelect2:false,
+      brojZadace: 1,
+      brojZadatka: 1,
+      //lista tipova je lista (zadace) listi (zadaci) listi (tipovi po zadatku) [[[]]]
+     //listaTipova se odnosi za trenutno selektovani zadatak tugyy, zivot sam bila zakomplikovala sa [[[]]] trostrukim pristupanjem :((
+      listaTipova:[".pdf", ".txt", ".rar", ".jpeg"
+        
+    ],
       datumSlanja: "25.05.19",
       vrijemeSlanja: "23:23",
       nazivFajla: "Zadatak1",
       velicinaFajla: "1MB",
       komentar:
         "zadaca je ok zadaca je ok zadaca je ok",
-      indeksStudenta: 9999
+      indeksStudenta: 9999,
+      idZadatak:3
       };
      
   }
@@ -136,7 +135,7 @@ class Student extends Component {
 
   
   
-  klikNaPoslati = (r, k) => {
+  klikNaPoslati = async(r, k) => {
     //nasa = rok
     var povratna_vrijednost;
     var trengodina = new Date().getFullYear();
@@ -149,14 +148,14 @@ class Student extends Component {
     var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
    // console.log('***g: '+nasagodina+ ' m: '+nasmjesec+ ' d: '+nasdan);
     if (trengodina > nasagodina) povratna_vrijednost =false;
-    else if (trengodina == nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
-    else if (trengodina == nasagodina && trenmjesec == nasmjesec && trendan > nasdan)
+    else if (trengodina === nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
+    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
     povratna_vrijednost =false;
     else if (
-      trengodina == nasagodina &&
-      trenmjesec == nasmjesec &&
-      trendan == nasdan &&
-      this.state.vrijeme != "23:59"
+      trengodina === nasagodina &&
+      trenmjesec === nasmjesec &&
+      trendan === nasdan &&
+      this.state.vrijeme !== "23:59"
     )
       povratna_vrijednost= false;
     else povratna_vrijednost= true;
@@ -166,14 +165,21 @@ class Student extends Component {
 
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
-      axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
+      const bodyZaTipove = new FormData();
+
+       
+            
+            bodyZaTipove.append('medi', this.state.idZadatak);
+         
+      await axios.post("http://localhost:31911/dozvoljeniTipoviZadatka",bodyZaTipove).then(res => { 
       this.setState({listaTipova:res.data});
       
     });
     document.getElementById("uploadButton").disabled=false;
+    this.setState({blokirajSelect:false}); 
   }
    else {
-     this.setState({listaTipova:[]});
+     this.setState({blokirajSelect:true}); 
      document.getElementById("uploadButton").disabled=true;
    }
     
@@ -189,7 +195,7 @@ class Student extends Component {
 
   
 
-  klikNaVecPoslano = (r, k) => {
+  klikNaVecPoslano = async(r, k) => {
     
 
     var povratna_vrijednost;
@@ -215,19 +221,26 @@ class Student extends Component {
       this.state.vrijeme != "23:59"
     )
       povratna_vrijednost= false;
-    else povratna_vrijednost= true;
+    else povratna_vrijednost= true;//  kdkdkk
     
 //console.log('povratna je '+povratna_vrijednost);
 
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
-      axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
+      const bodyZaTipove1 = new FormData();
+
+       
+            
+            bodyZaTipove1.append('medi', this.state.idZadatak);
+     await axios.post("http://localhost:31911/dozvoljeniTipoviZadatka",bodyZaTipove1).then(res => { 
+        
       this.setState({listaTipova:res.data});
       
-    });
+ 
     document.getElementById("uploadButton2").disabled=false;
+    this.setState({blokirajSelect2:false});    });
   }
-   else{ this.setState({listaTipova:[]});
+   else{ this.setState({blokirajSelect2:true});
    document.getElementById("uploadButton2").disabled=true;
 }
 
@@ -329,7 +342,8 @@ class Student extends Component {
   render() {
    
     //console.log('medi: '+this.state.zadacaState);
-   // console.log('potrebno: '+this.state);
+    console.log('potrebno: '+this.state);
+    console.log(this.state);
     return (
       <div>
         <div id="tabelaPregledaZadaca">

@@ -7,7 +7,7 @@ class Korisnik extends Component{
     
       var data = fotografija;
       var url = "/Siera/profil/"+id;
-      const Example = ({ data }) => <img style={{width:"60px", height:"60px"}} src={`${data}`} />
+      const Example = ({ data }) => <img style={{width:"60px", height:"60px"}} src={`${data}`} alt="nema slike"/>
 
       return(
         <div className='slika_ime'>

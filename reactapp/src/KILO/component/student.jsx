@@ -42,7 +42,7 @@ class Student extends Component {
       2 "pregledano", 
       3 "prepisano", 
       4 "komentar"*/ 
-       postavka: [],
+      postavka: [],
       rokZaPredaju: [
         "2020-12-01 23:59",
         "2020-12-01 23:59",
@@ -73,8 +73,9 @@ class Student extends Component {
       velicinaFajla: "1MB",
       komentar:
         "zadaca je ok zadaca je ok zadaca je ok",
-      indeksStudenta: 9999,
-      idZadatak:3
+      idStudenta: 1,
+      idZadatak:3,
+      idPredmeta: 3
       };
      
   }
@@ -120,13 +121,16 @@ class Student extends Component {
   componentDidMount = async() => {
      //na osnovu indeksa studenta, prikupiti podatke o zadacama
     //2. parametar axiosa, je sta ce tamo biti u backendu req.body
-     await axios.get("http://localhost:31911/dajZadaceZaStudenta/"+this.state.indeksStudenta).then(res => { 
-   
-   this.setState({zadacaState:res.data});
-   this.obracunBodova(res.data.bodoviPoZadacimaZadaca, res.data.maxBodoviPoZadacimaPoZadacama);
-  });
-    
-  
+    var pomoc = 3;
+    try{
+    const res = await axios.get( `http://localhost:31911/dajZadaceZaStudenta/${this.state.idStudenta}/${this.state.idPredmeta}`); 
+     
+    this.setState({zadacaState:res.data});
+    this.obracunBodova(res.data.bodoviPoZadacimaZadaca, res.data.maxBodoviPoZadacimaPoZadacama);
+    }
+    catch (e) {
+      console.error("Error fetching zadaca by id", e);
+    }
 
     document.getElementById("tabelaPregledaZadaca").style.display = "block";
     document.getElementById("prviPutSlanjeZadatka").style.display = "none";

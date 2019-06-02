@@ -16,7 +16,8 @@ export default class Archived extends React.Component {
                 expanded: false,
             },
             trashStudent: 2,
-            trashSS: 0
+            trashSS: 0,
+            newArray: this.props.data,
         }
     }
 
@@ -34,7 +35,17 @@ export default class Archived extends React.Component {
             
         axios.put('http://localhost:31902/issues/archived/delete', { trashStudent, trashSS, id })
         .then((result) => {
-            alert(result);
+
+            for(let i = 0; i < this.props.data.length; i++){
+                if(this.props.data[i].id == id_Issue){
+                    this.props.data.splice(i, 1);
+                    this.setState({
+                        newArray: this.props.data
+                    })
+                }
+            }
+
+            this.props.triggerRefreshList(this.state.newArray);
         });
     }
     

@@ -29,13 +29,32 @@ class ArchivedPart extends React.Component {
         }
     };
 
+    onRefreshListNew = (newArray) => {
+        this.setState({
+            dataNew: newArray
+        })
+    };
+
+    onRefreshListInProgress = (newArray) => {
+        this.setState({
+            dataInProgress: newArray
+        })
+    };
+
+    onRefreshListResolved = (newArray) => {
+        this.setState({
+            dataResolved: newArray
+        })
+    };
+
+
     setStateAsync(state) {
         return new Promise((resolve) => {
             this.setState(state, resolve)
         });
     }
 
-    emptyFolder = (data) => {
+    emptyFolder = (data, code) => {
         
         const {trashStudent, trashSS} = this.state;
 
@@ -44,9 +63,25 @@ class ArchivedPart extends React.Component {
             
             axios.put('http://localhost:31902/issues/archived/delete', { trashStudent, trashSS, id })
             .then((result) => {
-                alert(result);
             });
         }
+
+        if(code == 1){
+            this.setState({
+                dataNew: []
+            })
+        }
+        else if(code == 2){
+            this.setState({
+                dataInProgress: []
+            })
+        }
+        else if(code == 3){
+            this.setState({
+                dataResolved: []
+            })
+        }
+
     }
 
     async componentDidMount() {
@@ -108,10 +143,10 @@ class ArchivedPart extends React.Component {
                         eventKey="new"
                         title={`New (${this.state.dataNew.length})`}
                     >
-                        <Button onClick = {() => this.emptyFolder(this.state.dataNew)}>Empty folder</Button>
+                        <Button onClick = {() => this.emptyFolder(this.state.dataNew, 1)}>Empty folder</Button>
                         {!this.state.isLoading &&
                             <div>
-                                <Issue
+                                <Issue triggerRefreshList = {this.onRefreshListNew}
                                 className="tab-issue card"
                                 data={this.state.dataNew}
                                 />
@@ -124,9 +159,9 @@ class ArchivedPart extends React.Component {
                         eventKey="inProgress"
                         title={`In progress (${this.state.dataInProgress.length})`}
                     >
-                        <Button onClick = {() => this.emptyFolder(this.state.dataInProgress)}>Empty folder</Button>
+                        <Button onClick = {() => this.emptyFolder(this.state.dataInProgress, 2)}>Empty folder</Button>
                         {!this.state.isLoading  &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListInProgress}
                                 className="tab-issue card"
                                 data={this.state.dataInProgress}
                             />
@@ -137,9 +172,9 @@ class ArchivedPart extends React.Component {
                         eventKey="resolved"
                         title={`Resolved (${this.state.dataResolved.length})`}
                     >
-                        <Button onClick = {() => this.emptyFolder(this.state.dataResolved)}>Empty folder</Button>
+                        <Button onClick = {() => this.emptyFolder(this.state.dataResolved, 3)}>Empty folder</Button>
                         {!this.state.isLoading &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListResolved}
                                 className="tab-issue card"
                                 data={this.state.dataResolved}
                             />

@@ -26,6 +26,24 @@ class Drafts extends React.Component {
         }
     };
 
+    onRefreshListNew = (newArray) => {
+        this.setState({
+            dataNew: newArray
+        })
+    };
+
+    onRefreshListInProgress = (newArray) => {
+        this.setState({
+            dataInProgress: newArray
+        })
+    };
+
+    onRefreshListResolved = (newArray) => {
+        this.setState({
+            dataResolved: newArray
+        })
+    };
+
     setStateAsync(state) {
         return new Promise((resolve) => {
             this.setState(state, resolve)
@@ -109,7 +127,7 @@ class Drafts extends React.Component {
                     >
                         {!this.state.isLoading &&
                             <div>
-                                <Issue
+                                <Issue triggerRefreshList = {this.onRefreshListNew}
                                 className="tab-issue card"
                                 data={this.state.dataNew}
                                 />
@@ -123,7 +141,7 @@ class Drafts extends React.Component {
                         title={`In progress (${this.state.dataInProgress.length})`}
                     >
                         {!this.state.isLoading  &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListInProgress}
                                 className="tab-issue card"
                                 data={this.state.dataInProgress}
                             />
@@ -135,7 +153,7 @@ class Drafts extends React.Component {
                         title={`Resolved (${this.state.dataResolved.length})`}
                     >
                         {!this.state.isLoading &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListResolved}
                                 className="tab-issue card"
                                 data={this.state.dataResolved}
                             />

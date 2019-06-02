@@ -18,24 +18,40 @@ export default class Issue extends React.Component {
                 data: null,
                 expanded: false,
             },
+            newArray: this.props.data,
         }
     }
 
     setIssue = (item) => {
         this.setState({
             clickedItem: {
-                data: item, expanded: true
-            }
+                data: item, 
+                expanded: true
+            },
+            
+
         });
     };
 
-    deleteIssue = (idIssue) => {
+    archiveIssue = (idIssue) => {
 
         const { trashStudent, trashSS} = this.state;
         axios.put('http://localhost:31902/issues/archived/add', { trashStudent, trashSS, idIssue})
         .then((result) => {
-            alert(result);
+
+            for(let i = 0; i < this.props.data.length; i++){
+                if(this.props.data[i].id == idIssue){
+                    this.props.data.splice(i, 1);
+                    this.setState({
+                        newArray: this.props.data
+                    })
+                }
+            }
+
+            this.props.triggerRefreshList(this.state.newArray);
         });
+
+        
     }
 
     componentWillReceiveProp(){
@@ -52,7 +68,7 @@ export default class Issue extends React.Component {
                             <Card.Title>
                                 <div className = "issueView">
                                     <div className = "issueButtonDelete">
-                                        <Button onClick={() => this.deleteIssue(issue.id)}>Archive</Button>
+                                        <Button onClick={() => this.archiveIssue(issue.id)}>Archive</Button>
                                     </div>
                                     <div className = "issueID">id:{issue.id}</div>
                                     <div onClick={() => this.setIssue(issue.id)}>{issue.title}</div>

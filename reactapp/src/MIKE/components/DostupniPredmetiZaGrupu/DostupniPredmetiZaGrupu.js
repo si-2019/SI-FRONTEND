@@ -57,7 +57,7 @@ class DostupniPredmetiZaGrupu extends Component {
           this.state.selektani_predmet != null ?
             this.state.selektani_predmet.projekti.map((projekat) => {
                   return (
-                    <tr key={i}>
+                    <tr key={projekat.idProjekat}>
                       <th scope="row">{i++}</th>
                       <td>{projekat.nazivProjekta}</td>
                       <td>{projekat.opisProjekta}</td>

@@ -6,6 +6,7 @@ import proba from './components/proba.js'
 import semestarPredmeti from './components/semestarPredmeti.js'
 import StranicaPredmetaStudent from './components/stranicaPredmetaStudent'
 import StranicaPredmetaProfesor from './components/stranicaPredmetaProfesor.js'
+import PrethodnaAkademskaGodina from './components/prethodnaAkademskaGodina.js'
 
 class App extends Component {
 
@@ -31,7 +32,7 @@ class App extends Component {
                         <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>  
                         <Route path="/Golf/stranicaPredmetaStudent/:idPredmeta/:idKorisnika" component={StranicaPredmetaStudent}/>
                         <Route path="/Golf/stranicaPredmetaProfesor/:idPredmeta/:idKorisnika" component={StranicaPredmetaProfesor}/>
-                 
+                        <Route path="/Golf/materijali/:idPredmeta/:idKorisnika/:naziv" component={PrethodnaAkademskaGodina}/>
 				              </div>
                 </div>
             </Router>

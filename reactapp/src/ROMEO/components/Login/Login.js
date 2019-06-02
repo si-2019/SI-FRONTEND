@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './login.css';
+import axios from 'axios';
 
 var error = 'Greska';
 
@@ -60,12 +61,43 @@ class Login extends Component {
       document.getElementById('greske').innerText = error;
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
-      //autentikacija uspjesna
-      this.setState({
-        logiran: true
-      })
-      localStorage.setItem("token", "hardcoded for now")
-      return <Redirect to="/romeo/home" />
+
+      var baseUrl = 'http://localhost:31917';
+
+      var body = {
+        username: this.state.korisnickoIme,
+        password: this.state.sifra
+      }
+      
+      var headers = {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      }
+
+      axios.post(baseUrl + '/login', body, headers).then((res) => {
+        var dat = res.data;
+        console.log(dat);
+
+        /*this.setState({
+          logiran: true
+        })
+        localStorage.setItem("token", "hardcoded for now")
+        return <Redirect to="/romeo/home" />*/
+      });
+
+      //validacija uspjesna
+      if(this.state.korisnickoIme == "nepostojeci") {
+        //autentikacija neuspjesna
+        document.getElementById('greske').innerText = "Korisnik ne postoji";
+        document.getElementById('dioGreske').style.display = "block";
+      } else {
+        //autentikacija uspjesna
+      }
+
+      
+
+      //nnekic1
+      //password
     }
   }
 
@@ -89,10 +121,10 @@ class Login extends Component {
         </div>
         <div className="card text-white bg-primary " >
           <form className="loginForma">
-          <label for="exampleInputEmail1">Korisnicko ime:</label>
+          <label htmlFor="exampleInputEmail1">Korisnicko ime:</label>
           <input type="email" className="korisnickoIme" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
 <br></br>
-          <label for="exampleInputPassword1">Password:</label>
+          <label htmlFor="exampleInputPassword1">Password:</label>
       <input type="password" className="sifra" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
             
 

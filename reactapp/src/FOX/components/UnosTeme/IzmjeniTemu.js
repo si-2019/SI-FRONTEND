@@ -100,45 +100,71 @@ class IzmjeniTemu extends Component {
             <div>
             <Header isPocetna={false}/>
             <Container fluid>
-                <Col></Col>
-                <Col>
-                <h4>Izmjena teme za završni rad</h4>
-                <Poruka greska={greskaBaza} />
-                <Form 
-                    noValidate 
-                    validated={validated}
-                    onSubmit = {e => this.handleSubmit(e)}
-                >
-                    <Form.Group as={Row} controlId = "formNoviNaziv">
-                        <Form.Label>Naziv: </Form.Label>
-                        <Form.Control 
-                            ref={this.nazivTeme}
-                            required 
-                            type="text" 
-                            defaultValue={naziv}
-                        />
-                        <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
-                        <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
-                    </Form.Group> 
-                    <Form.Group as={Row} controlId = "formNoviOpis">
-                        <Form.Label>Opis: </Form.Label>
-                        {/*  /* 2. Attach Ref to FormControl component */}
-                        <Form.Control 
-                            ref={this.opisTeme} 
-                            required 
-                            type="text" 
-                            defaultValue={opis}
-                        />
-                        <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
-                        <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
-                    </Form.Group> 
-                    <Button variant="primary" type="submit">
-                        Izmjeni
-                    </Button> 
-                    <Button variant="secondary" href='unosTeme'>Nazad</Button>                                              
-                </Form>
-                </Col>
-                <Col></Col>
+
+                <Row>
+                    <Col style={{textAlign: "center"}}>
+                        <br/>
+                        <h4>Izmjena teme za završni rad</h4>
+                        <br/>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col style={{textAlign: "center"}}>
+                        <Poruka greska={greskaBaza} />
+                        <Form 
+                            noValidate 
+                            validated={validated}
+                            onSubmit = {e => this.handleSubmit(e)}
+                        >
+                            <Form.Group as={Row} controlId = "formNoviNaziv">
+                                <Col style={{textAlign: "right"}}>
+                                    <Form.Label>Naziv:</Form.Label>
+                                </Col>
+                            <Col lg="4">
+                                <Form.Control 
+                                    ref={this.nazivTeme}
+                                    required 
+                                    type="text" 
+                                    defaultValue={naziv}
+                                />
+                                <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
+                            </Col>
+                            <Col></Col>
+                            </Form.Group> 
+
+                            <Form.Group as={Row} controlId = "formNoviOpis">
+                                <Col style={{textAlign: "right"}}>
+                                    <Form.Label>Opis:</Form.Label>
+                                </Col>
+                                {/*  /* 2. Attach Ref to FormControl component */}
+                                <Col lg="4">
+                                    <Form.Control 
+                                        ref={this.opisTeme} 
+                                        required 
+                                        type="text" 
+                                        defaultValue={opis}
+                                    />
+                                    <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
+                                </Col>
+                                <Col></Col>
+                            </Form.Group> 
+
+                            <Form.Row>
+                                <Col  style={{textAlign: "right"}}>
+                                    <Button variant="primary" type="submit">Izmjeni</Button> 
+                                </Col>
+                                <Col  style={{textAlign: "left"}}>
+                                    <Button variant="secondary" href='unosTeme'>Nazad</Button>  
+                                </Col>  
+                            </Form.Row>
+
+                        </Form>
+                        </Col>
+                    </Row>
+
                 </Container>
             <Footer/>
             </div>

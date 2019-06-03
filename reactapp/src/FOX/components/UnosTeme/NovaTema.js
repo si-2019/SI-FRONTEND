@@ -104,8 +104,8 @@ class NovaTema extends Component {
                                     validated={validated}
                                     onSubmit = {e => this.handleSubmit(e)}
                                 >
-                                    <Form.Group as={Row} controlId = "formNoviNaziv" style={{textAlign: "right"}}>
-                                        <Col lg="4" style={{textAlign: "right"}}>
+                                    <Form.Group as={Row} controlId = "formNoviNaziv">
+                                        <Col style={{textAlign: "right"}}>
                                             <Form.Label>Naziv:</Form.Label>
                                         </Col>
                                         <Col lg="4">
@@ -115,15 +115,15 @@ class NovaTema extends Component {
                                                 type="text" 
                                                 placeholder="Naziv nove teme"
                                             />
-                                        </Col>
-                                        <Col lg="4">
                                             <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
                                             <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
                                         </Col>
+
+                                        <Col></Col>
                                     </Form.Group>
 
                                     <Form.Group as={Row} controlId = "formNoviOpis">
-                                        <Col lg="4" style={{textAlign: "right"}}>
+                                        <Col style={{textAlign: "right"}}>
                                             <Form.Label>Opis:</Form.Label>
                                         </Col>
                                 
@@ -136,11 +136,11 @@ class NovaTema extends Component {
                                                 type="text" 
                                                 placeholder="Opis nove teme"
                                             />
-                                        </Col>
-                                        <Col lg="4">
                                             <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
                                             <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
                                         </Col>
+
+                                        <Col></Col>
                                     </Form.Group>
 
                                     <Form.Row>

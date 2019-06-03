@@ -12,14 +12,10 @@ class TemeZavrsnih extends Component {
   render() {
     return (
       <div className="TemeZavrsnih">
+        <Header isPocetna={false}/>
         <Container fluid>
           <Row>
-            <Col>
-              <Header isPocetna={false}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
+            <Col style={{textAlign: "center"}}>
             <br></br>
             <h4>Pregled tema za završne radove</h4>
             <br></br>
@@ -31,17 +27,12 @@ class TemeZavrsnih extends Component {
             </Col>
           </Row>
           <Row className="justify-content-md-center">
-            <Col></Col>
-            <Col>
+            <Col style={{textAlign: "center"}}>
               <Button variant="primary" href='novaTema'>Nova tema</Button>
             </Col>
-            <Col></Col>
-          </Row>
-          <Row>
-          <Footer/>
           </Row>
         </Container>
-        
+        <Footer/>
       </div>
 
     );

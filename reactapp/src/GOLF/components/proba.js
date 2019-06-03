@@ -51,7 +51,6 @@ class proba extends Component {
       
         <div>
             <h1>Moji predmeti</h1>
-            <Dropdown/>
             
         </div>
         

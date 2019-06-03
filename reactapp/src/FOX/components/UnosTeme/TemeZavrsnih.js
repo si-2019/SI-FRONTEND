@@ -22,7 +22,7 @@ class TemeZavrsnih extends Component {
             </Col> 
           </Row>
           <Row>
-            <Col>
+            <Col style={{textAlign: "center"}}>
               <TabelaTeme />
             </Col>
           </Row>

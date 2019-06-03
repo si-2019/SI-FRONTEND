@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import SingleChoice from './SingleChoice'
 import MultipleChoice from './MultipleChoice'
 import StarRating from './StarRating'
+import TextBox from './TextBox'
 
 class App extends Component {
   constructor(props) {
@@ -138,6 +139,8 @@ class App extends Component {
                   return <MultipleChoice azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
                 case 'star-rating':
                   return <StarRating azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
+                case 'textbox':
+                  return <TextBox azurirajPitanje={(state) => this.azurirajPitanje(state, i)}/>
               }
             })}
             <div class="row">

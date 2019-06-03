@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Predmet from "./components/Predmet";
+import PredmetZavrsniRad from './components/Predmet/PredmetZavrsniRad';
+import Pocetna from './components/Predmet/Pocetna';
 
 class App extends React.Component {
   render() {
@@ -9,7 +11,9 @@ class App extends React.Component {
       <div className="container">
         <h1>Predmeti:</h1>
         <BrowserRouter>
-          <Route path="/delta" exact component={Predmet} />
+          <Route path="/Delta" exact component={Pocetna} />
+          <Route path="/Delta/SI" exact component={Predmet} />
+          <Route path="/Delta/ZavrsniRad" exact component={PredmetZavrsniRad} />
         </BrowserRouter>
       </div>
     );

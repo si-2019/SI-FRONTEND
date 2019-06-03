@@ -1,5 +1,6 @@
 import React from 'react';
-import url from '../url'
+import url from '../url';
+import {Link} from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class App extends React.Component {
         return (
             <div>          
             <nav class="NavPadding" >
-                <h2 id="top">JAVNE ANKETE</h2>
+                <h2 id="top">REZULTATI ANKETA</h2>
                 <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
             </nav>
 
@@ -23,10 +24,9 @@ class App extends React.Component {
                     <td>NAZIV ANKETE</td>
                     <td>OPIS</td>
                     <td>DATUM ISTEKA</td>
-                    <td>PRIKAZ ANKETE</td>
+                    <td>PRIKAZ REZULTATA</td>
                     </tr>
             
-
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
                     <th>{anketa.naziv}</th>
@@ -41,11 +41,12 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajListuJavnihAnketa', {
+        fetch(url + '/dajSveAnketeZaKojePostojeRezultati?idKorisnik=1', {
             method: 'GET'
         })
         .then(res => res.json())
         .then(result => {
+            console.log(result)
             this.setState({
                 items: result
             })

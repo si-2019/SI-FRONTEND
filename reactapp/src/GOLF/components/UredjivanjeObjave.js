@@ -44,14 +44,3 @@ class EditovanjeObjave extends Component{
 }
 
 export default EditovanjeObjave
-
-
-
-
-
-
-#checkBox {
-    margin: 20px;
-}
-
-

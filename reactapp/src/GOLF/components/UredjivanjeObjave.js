@@ -32,7 +32,7 @@ class EditovanjeObjave extends Component{
                     <form>
                         <label>
                             Objava sakrivena:
-                            <input name="objavaSakrivena" type="checkbox" 
+                            <input id="checkBox" name="objavaSakrivena" type="checkbox" 
                             checked={this.state.objavaSakrivena} onChange={this.handleInputChange} />
                             </label>
                             <br />

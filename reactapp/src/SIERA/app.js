@@ -23,11 +23,48 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      activeContentId: 1,
-      menuButtonTitles: ["Profil", "Ugovor o učenju", "Završni rad", "Predmeti", "Ocjene", "Zadaće"],
-      
+      activeContentId: 0,
+      menuButtonTitles: [ , "Ispiti"],
+      komponente: [<ListaTrenutnihPredmeta />],
+      menuButtons: [{
+        btnText: "Profil",
+        component: <LicniPod />
+      },{
+        btnText: "Ugovor o učenju",
+        component:  <UgovorOUcenju />
+      },{
+        btnText: "Završni rad",
+        component: <DropDownZavrsni />
+      },{
+        btnText:"Predmeti",
+        component: <ListaTrenutnihPredmeta />
+      },{
+        btnText:"Ispiti",
+        component: <IspitiTabela />
+      }],
+      menuComponents:[{
+        naziv: "Profil",
+        changeId: 0,
+        component: <LicniPod />
+      }]
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
+  }
+  componentDidMount(){
+    var help = [];
+    var i = 0;
+    this.state.menuButtons.forEach(x => {
+      help.push({
+        naziv: x.btnText,
+        changeId: i,
+        component: x.component
+      });
+      i++;
+    });
+    this.setState({
+      menuComponents: help
+    });
+
   }
   onChangeActiveId = (id) => {
     this.setState({
@@ -35,33 +72,22 @@ class App extends Component {
     })
   };
   render() {
-    var menuButtons = [];
-    var i = 1;
-    this.state.menuButtonTitles.forEach(x => {
-      menuButtons.push({
-        naziv: x,
-        changeId: i
-      });
-      i++;
-    })
+   
     return (
       <div className="App">
-       
-          <div id="leftSiera">
-            <LeftMenuStudentSiera
-              triggerChangeActiveId={this.onChangeActiveId}
-              btnList={menuButtons}
-            />
+
+        <div id="leftSiera">
+          <LeftMenuStudentSiera
+            triggerChangeActiveId={this.onChangeActiveId}
+            btnList={this.state.menuComponents}
+          />
+        </div>
+        <div id="rightSiera">
+          <div>
+            {this.state.menuComponents[this.state.activeContentId].component}
           </div>
-          <div id="rightSiera">
-            {this.state.menuButtonTitles.map(x=>
-              <div
-                id={x}
-                
-              >jndkcndjnkjdnkjdc</div>
-              )}
-          </div>
-        
+        </div>
+
       </div>
     );
   }

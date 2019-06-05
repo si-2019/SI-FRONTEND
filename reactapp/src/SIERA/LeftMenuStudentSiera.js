@@ -4,7 +4,7 @@ class LeftMenuStudentSiera extends React.Component {
     constructor() {
         super();
         this.state = {
-            activeDivId: 1,  //open pokazuje da li formu treba prikazati ili ne
+            activeDivId: 0,  //open pokazuje da li formu treba prikazati ili ne
             
         }
         this.changeActiveId = this.changeActiveId.bind(this);

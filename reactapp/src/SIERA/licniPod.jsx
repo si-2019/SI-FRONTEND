@@ -3,6 +3,7 @@ import axios from 'axios';
 import "./bootstrap.min.css"
 import Fotografija from "./fotografija.jsx"
 import ModalComponent from "./Modal"
+import { async } from 'q';
 
 
 
@@ -21,15 +22,26 @@ class LicniPod extends Component {
             StudentID: 1,
             fotka: null,
             modalShow: false,
-            noviInput: {
-                ime: null,
-                prezime: null,
-                drz: null,
-                promjenaIme: null,
-                promjenaDrz: null,
-                promjenaFoto: null,
-                foto: null
-            }
+        }
+    }
+
+    saveState = (type, state) => {
+        switch(type) {
+            case "modalShow":
+                this.setState({
+                    modalShow: state
+                });
+                break;
+            case "podaciKorisnika":
+                console.log(state);
+                this.setState(state, () => {
+                    this.setState({
+                        modalShow: false
+                    });
+                });
+                break;
+            default:
+                break;
         }
     }
 
@@ -40,7 +52,6 @@ class LicniPod extends Component {
                 this.state.StudentID
             )
             .then(res => {
-                console.log("ev me u getu");
                 const ime = res.data.map(obj => obj.ime);
                 this.setState({ ime: ime });
                 const prezime = res.data.map(obj => obj.prezime);
@@ -61,23 +72,26 @@ class LicniPod extends Component {
                 this.setState({ fotka: help });
             });
     }
-    render() {
-        let modalClose = () => {
-            this.setState({ modalShow: false });
 
-            window.location.reload();
-        }
+    
+
+    render() {
 
         return (
             <>
                 <div className="container-fluid">
-                    <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px" }}>
-                        <h3 className="card-header">Student</h3>
-                        <div className="card-body">
-                            <h5 className="card-title">{this.state.ime} {this.state.prezime}</h5>
-                            <h6 className="card-subtitle text-muted"></h6>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{this.state.ime} {this.state.prezime}</h4>
+                            <Fotografija fotografija={this.state.fotka} />
+                            <h6 class="card-subtitle mb-2 text-muted">Student</h6>
+
+                            <input type="text" class="form-control" placeholder="Default input" id="inputDefault"></input>
+                            
                         </div>
-                        <Fotografija fotografija={this.state.fotka} />
+                    </div>
+                    <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px" }}>
+                        
                         <ul class="list-group list-group-flush" style={{ width: "100%", display: "inline-block" }}>
                             <li class="card-header">
                                 Lični Podaci
@@ -99,91 +113,10 @@ class LicniPod extends Component {
                     </div>
                 </div>
                 <ModalComponent
+                    saveState={this.saveState}
                     show={this.state.modalShow}
-                    onHide={modalClose}
                     naslovModala="Lični Podaci"
-                    tijeloModala={
-                        <>
-                            <label class="col-form-label" for="inputDefault" >Nova fotografija</label>
-                            <br></br>
-                            <input type="file" class="form-control-file" name="foto" aria-describedby="fileHelp"
-                                onChange={
-                                    (event) => {
-                                        this.setState(
-                                            {
-                                                noviInput:
-                                                {
-                                                    ime: this.state.noviInput.ime,
-                                                    prezime: this.state.noviInput.prezime,
-                                                    promjenaIme: this.state.noviInput.promjenaIme,
-                                                    promjenaDrz: this.state.noviInput.promjenaDrz,
-                                                    drz: this.state.noviInput.drz,
-                                                    foto: event.target.files[0],
-                                                    promjenaFoto: true
-                                                }
-                                            }
-
-                                        );
-                                    }}
-                            />
-                            <br></br>
-                            <label class="col-form-label" for="inputDefault" >Ime</label>
-                            <input type="text" class="form-control" name="ime"
-                                onChange={
-                                    (event) => {
-                                        this.setState({
-                                            noviInput: {
-                                                ime: event.target.value,
-                                                prezime: this.state.noviInput.prezime,
-                                                drz: this.state.noviInput.drz,
-                                                promjenaDrz: this.state.noviInput.promjenaDrz,
-                                                promjenaIme: true,
-                                                promjenaFoto: this.state.noviInput.promjenaFoto,
-                                                foto: this.state.noviInput.foto
-                                            }
-
-                                        });
-                                    }
-                                } />
-                            <label class="col-form-label" for="inputDefault" >Prezime</label>
-                            <input type="text" class="form-control" name="prezime"
-                                onChange={
-                                    (event) => {
-                                        this.setState({
-                                            noviInput: {
-                                                ime: this.state.noviInput.ime,
-                                                prezime: event.target.value,
-                                                drz: this.state.noviInput.drz,
-                                                promjenaDrz: this.state.noviInput.promjenaDrz,
-                                                promjenaIme: true,
-                                                promjenaFoto: this.state.noviInput.promjenaFoto,
-                                                foto: this.state.noviInput.foto
-                                            }
-
-                                        });
-                                    }
-                                } />
-
-                            <label class="col-form-label" for="inputDefault">Državljanstvo</label>
-                            <input type="text" class="form-control" name="drzavljanstvo"
-                                onChange={
-                                    (event) => {
-                                        this.setState({
-                                            noviInput: {
-                                                ime: this.state.noviInput.ime,
-                                                prezime: this.state.noviInput.prezime,
-                                                drz: event.target.value,
-                                                promjenaDrz: true,
-                                                promjenaIme: this.state.noviInput.promjenaIme,
-                                                promjenaFoto: this.state.noviInput.promjenaFoto,
-                                                foto: this.state.noviInput.foto
-                                            }
-                                        });
-                                    }
-                                } />
-                        </>
-                    }
-                    noviInput={this.state.noviInput}
+                    podaciKorisnika={this.state}
                     btnPotvrdi="Spasi promjene"
 
                 />

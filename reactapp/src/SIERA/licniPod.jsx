@@ -3,7 +3,8 @@ import axios from 'axios';
 import "./bootstrap.min.css"
 import Fotografija from "./fotografija.jsx"
 import ModalComponent from "./Modal"
-
+import Kontakt from "./kontaktPod"
+import Stranice from "./stranice";
 
 class LicniPod extends Component {
     constructor(...args) {
@@ -77,46 +78,49 @@ class LicniPod extends Component {
 
         return (
             <>
-                <div className="container-fluid">
-                    <div class="card">
+                <div class="card">
+
+                    <div className="card-body">
                         <h1 class="card-title">{this.state.ime} {this.state.prezime}</h1>
-                        <div class="card-body">
+                        <div class="row">
+                            <div className="d-flex justify-content-start" style={{ width: "40%", textAlign: "left", flexDirection: "column" }}>
+                                <div className="d-flex align-items-start" style={{ flexDirection: "column" }}>
+                                    <div className="form-group">
+                                        <label class="col-form-label" for="inputDefault">Mjesto rodjenja</label>
+                                        <br></br>
+                                        <h4>{this.state.mjestoRodjenja}</h4>
+                                    </div>
+                                    <div className="form-group">
+                                        <label class="col-form-label" for="inputDefault">Drzavljanstvo</label>
+                                        <br></br>
+                                        <h4>{this.state.Drzavljanstvo}</h4>
+                                    </div>
+                                    <div className="form-group">
+                                        <label class="col-form-label" for="inputDefault">Index</label>
+                                        <h4>{this.state.Index}</h4>
 
-
-                            <div style={{ maxWidth: "50%", minWidth: "350px", textAlign: "left", float: "left" }}>
-                                <div className="form-group">
-                                    <label class="col-form-label" for="inputDefault">Mjesto rodjenja</label>
-                                    <br></br>
-                                    <h4>{this.state.mjestoRodjenja}</h4>
-                                </div>
-                                <div className="form-group">
-                                    <label class="col-form-label" for="inputDefault">Drzavljanstvo</label>
-                                    <br></br>
-                                    <h4>{this.state.Drzavljanstvo}</h4>
-                                </div>
-                                <div className="form-group">
-                                    <label class="col-form-label" for="inputDefault">Index</label>
-                                    <h4>{this.state.Index}</h4>
-
-                                </div>
-                                <div className="form-group">
-                                    <label class="col-form-label" for="inputDefault">Ime i prezime oca</label>
-                                    <h4>{this.state.imePrezimeOca}</h4>
-                                </div>
-                                <div className="form-group">
-                                    <label class="col-form-label" for="inputDefault">Ime i prezime majke</label>
-                                    <h4>{this.state.imePrezimeMajke}</h4>
+                                    </div>
+                                    <div className="form-group">
+                                        <label class="col-form-label" for="inputDefault">Ime i prezime oca</label>
+                                        <h4>{this.state.imePrezimeOca}</h4>
+                                    </div>
+                                    <div className="form-group">
+                                        <label class="col-form-label" for="inputDefault">Ime i prezime majke</label>
+                                        <h4>{this.state.imePrezimeMajke}</h4>
+                                    </div>
                                     <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Edit</button>
+                                    <Kontakt />
                                 </div>
-                                
                             </div>
-                            <div style={{ float: "right" }}>
+                            <div class="d-flex justify-content-end" >
+                                <div class="d-flex align-items-center" style={{flexDirection:"column"}}>
                                 <Fotografija fotografija={this.state.fotka} />
-                                <h6 class="card-subtitle mb-2 text-muted">Student</h6>
+
+                                <Stranice />
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <ModalComponent
                     saveState={this.saveState}

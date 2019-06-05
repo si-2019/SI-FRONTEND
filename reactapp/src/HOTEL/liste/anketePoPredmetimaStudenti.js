@@ -14,7 +14,7 @@ class App extends React.Component {
         return (
             <div>          
             <nav class="NavPadding" >
-                <h2 id="top">REZULTATI ANKETA</h2>
+                <h2 id="top">SPISAK ANKETA PO PREDMETIMA</h2>
                 <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
             </nav>
 
@@ -24,9 +24,7 @@ class App extends React.Component {
                     <td>NAZIV ANKETE</td>
                     <td>OPIS</td>
                     <td>DATUM ISTEKA</td>
-                    <td>PRIKAZ ANKETE</td>
-                    <td>UREDI</td>
-                    <td>OBRIŠI</td>
+                    <td>PRIKAZ REZULTATA</td>
                     </tr>
             
                 {items.ankete ? items.ankete.map(anketa => (
@@ -34,9 +32,7 @@ class App extends React.Component {
                     <th>{anketa.naziv}</th>
                     <th>{anketa.opisAnkete}</th>
                     <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                    <th><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></a></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
+                    <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
                     </tr>
                 )) : "Loading..."}
                 </table>
@@ -45,14 +41,16 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajSveAnketeZaKojePostojeRezultati?idKorisnik=1', {
+        fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent=1', {
             method: 'GET'
         })
         .then(res => res.json())
         .then(result => {
-            console.log(result)
+            console.log("hoce")
             this.setState({
-                items: result
+                items: {
+                ankete: result
+              }
             })
         }, error => {
             this.setState({

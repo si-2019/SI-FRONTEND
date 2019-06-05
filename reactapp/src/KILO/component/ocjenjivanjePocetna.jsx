@@ -59,6 +59,12 @@ class OcjenjivanjePocetna extends Component {
         <br />
         <br />
         <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
         <Form>
         <div class="container">
           <br />
@@ -82,7 +88,7 @@ class OcjenjivanjePocetna extends Component {
                         <DropdownItem
                           onClick={() => this.props.podaci.postaviZadacu(clan.naziv, clan.id)}
                           scope="col"
-                          key={clan}
+                          key={clan+2000}
                         >
                           {clan.naziv}
                         </DropdownItem>
@@ -133,7 +139,7 @@ class OcjenjivanjePocetna extends Component {
                         <DropdownItem
                           onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)}
                           scope="col"
-                          key={clan}
+                          key={clan+200}
                         >
                           {clan.naziv}
                         </DropdownItem>
@@ -158,7 +164,7 @@ class OcjenjivanjePocetna extends Component {
                         <DropdownItem
                           onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)}
                           scope="col"
-                          key={clan}
+                          key={clan+1000}
                         >
                           {clan.naziv}
                         </DropdownItem>

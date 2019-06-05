@@ -169,13 +169,9 @@ class Student extends Component {
 
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
-      const bodyZaTipove = new FormData();
-
-       
-            
-            bodyZaTipove.append('medi', this.state.idZadatak);
-         
-      await axios.post("http://localhost:31911/dozvoljeniTipoviZadatka",bodyZaTipove).then(res => { 
+   
+     
+      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${this.state.idZadatak}`).then(res => { 
       this.setState({listaTipova:res.data});
       
     });
@@ -231,12 +227,7 @@ class Student extends Component {
 
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
-      const bodyZaTipove1 = new FormData();
-
-       
-            
-            bodyZaTipove1.append('medi', this.state.idZadatak);
-     await axios.post("http://localhost:31911/dozvoljeniTipoviZadatka",bodyZaTipove1).then(res => { 
+      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${this.state.idZadatak}`).then(res => { 
         
       this.setState({listaTipova:res.data});
       
@@ -247,8 +238,7 @@ class Student extends Component {
    else{ this.setState({blokirajSelect2:true});
    document.getElementById("uploadButton2").disabled=true;
 }
-
-  axios.get("http://localhost:31911/popuniZadatakVecPoslan").then(res => { 
+ await axios.get(`http://localhost:31911/popuniZadatakVecPoslan/${this.state.idZadatak}`).then(res => { 
     //console.log(res.data);
     //console.log(res.data);
         this.setState({datumSlanja:res.data.datumSlanja,

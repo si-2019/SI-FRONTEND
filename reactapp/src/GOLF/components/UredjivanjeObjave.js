@@ -34,6 +34,10 @@ class EditovanjeObjave extends Component{
                             Objava sakrivena:
                             <input id="checkBox" name="objavaSakrivena" type="checkbox" 
                             checked={this.state.objavaSakrivena} onChange={this.handleInputChange} />
+                            <br></br>
+                            Opis: <br></br>
+                            <textarea rows="4" id="opisPredmeta"  name="opisPredmeta" class="form-control mr-sm-2"cols="2000"></textarea>
+                            <br></br>
                             </label>
                             <br />
                             </form>

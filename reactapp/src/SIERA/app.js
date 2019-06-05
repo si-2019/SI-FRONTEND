@@ -12,7 +12,7 @@ import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import PrikaziStatus from "./PrikaziStatus.jsx";
 import Prosjek from "./Prosjek.jsx";
 import "./App.css";
-
+import LeftMenuStudent from "./LeftMenuStudent"
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
@@ -20,116 +20,43 @@ import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      activeContentId: 1,
+      menuButtonTitles: ["Profil", "Ugovor o učenju", "Završni rad", "Predmeti", "Ocjene", "Zadaće"],
+      startId: 0
+    }
+    this.onChangeActiveId = this.onChangeActiveId.bind(this);
+  }
+  onChangeActiveId = (id) => {
+    this.setState({
+      activeContentId: id,
+    })
+  };
   render() {
+    var menuButtons = [];
+    var i = 1;
+    this.state.menuButtonTitles.forEach(x => {
+      menuButtons.push({
+        naziv: x,
+        changeId: i
+      });
+      i++;
+    })
     return (
       <div className="App">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand" href="/Siera">
-            Početna
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarColor01"
-            aria-controls="navbarColor01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon" />
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/Siera/podaci-o-studentu">
-                  Podaci <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/Siera/lista-predmeta">
-                  Lista predmeta
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/Siera/ugovor-o-ucenju">
-                  Ugovor o učenju
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/Siera/zavrsni-rad">
-                  Završni rad
-                </a>
-              </li>
-            </ul>
+       
+          <div id="left">
+            <LeftMenuStudent
+              triggerChangeActiveId={this.onChangeActiveId}
+              btnList={menuButtons}
+            />
           </div>
-        </nav>
-
-        <BrowserRouter>
-          <Route
-            exact
-            path="/Siera/lista-predmeta"
-            render={() => (
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-sm">
-                    <ListaTrenutnihPredmeta />
-                    <ListaOdslusanihPredmeta />
-                  </div>
-                </div>
-              </div>
-            )}
-          />
-          <Route
-            exact
-            path="/Siera/podaci-o-studentu"
-            render={() => (
-              <div class="container-fluid">
-                <div class="row">
-                  <div className="col-sm">
-                    <KontaktPod />
-                  </div>
-                  <div class="col-sm">
-                    <LicniPod />
-                  </div>
-                </div>
-              </div>
-            )}
-          />
-          <Route
-            exact
-            path="/Siera/ugovor-o-ucenju"
-            render={() => (
-              <div class="container-fluid">
-                <div class="row">
-                  <div className="col-sm">
-                    <UgovorOUcenju />
-                  </div>
-                </div>
-              </div>
-
-            )}
-          />
-          <Route
-            exact
-            path="/Siera/ispiti"
-            render={() => (
-              <div class="container-fluid">
-                <IspitiTabela />
-              </div>
-            )}
-          />
-
-          <Route exact path="/Siera/zavrsni-rad" render={() =>
-            <div class="container-fluid">
-              <DropDownZavrsni />
-              <PrikaziStatus />
-            </div>
-
-          } />
-
-        </BrowserRouter>
-
+          <div id="right">
+            <h1>Ovdje ide content :D</h1>
+          </div>
+        
       </div>
     );
   }

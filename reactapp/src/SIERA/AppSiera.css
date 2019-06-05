@@ -18,8 +18,8 @@
 }
 #rightSiera {
   float: right;
-  align-items:stretch;
   background-color: white;
   min-height: calc(100vh - 80px);
+  width: calc(100% - 350px);
 }
 

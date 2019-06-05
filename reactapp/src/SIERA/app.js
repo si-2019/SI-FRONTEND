@@ -83,9 +83,8 @@ class App extends Component {
           />
         </div>
         <div id="rightSiera">
-          <div>
             {this.state.menuComponents[this.state.activeContentId].component}
-          </div>
+          
         </div>
 
       </div>

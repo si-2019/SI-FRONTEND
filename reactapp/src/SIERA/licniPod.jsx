@@ -32,7 +32,7 @@ class LicniPod extends Component {
             }
         }
     }
-   
+
     componentDidMount() {
         axios
             .get(
@@ -64,37 +64,39 @@ class LicniPod extends Component {
     render() {
         let modalClose = () => {
             this.setState({ modalShow: false });
-            
+
             window.location.reload();
         }
 
         return (
             <>
-                <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px" }}>
-                    <h3 className="card-header">Student</h3>
-                    <div className="card-body">
-                        <h5 className="card-title">{this.state.ime} {this.state.prezime}</h5>
-                        <h6 className="card-subtitle text-muted"></h6>
-                    </div>
-                    <Fotografija fotografija={this.state.fotka} />
-                    <ul class="list-group list-group-flush" style={{ width: "100%", display: "inline-block" }}>
-                        <li class="card-header">
-                            Lični Podaci
+                <div className="container-fluid">
+                    <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px" }}>
+                        <h3 className="card-header">Student</h3>
+                        <div className="card-body">
+                            <h5 className="card-title">{this.state.ime} {this.state.prezime}</h5>
+                            <h6 className="card-subtitle text-muted"></h6>
+                        </div>
+                        <Fotografija fotografija={this.state.fotka} />
+                        <ul class="list-group list-group-flush" style={{ width: "100%", display: "inline-block" }}>
+                            <li class="card-header">
+                                Lični Podaci
                             <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })} >Edit</button>
-                        </li>
-                        <li class="list-group-item" >
-                            <div><span class="badge badge-info">Datum i mjesto rođenja</span></div>
-                            {this.state.mjestoRodjenja}
-                        </li>
-                        <li class="list-group-item">
-                            <div><span class="badge badge-info" >Index</span></div>
-                            {this.state.Index}
-                        </li>
-                        <li class="list-group-item">
-                            <div><span class="badge badge-info" >Ime i prezime oca</span></div> {this.state.imePrezimeOca}</li>
-                        <li class="list-group-item"><div><span class="badge badge-info" >Ime i prezime majke</span></div> {this.state.imePrezimeMajke}</li>
-                        <li class="list-group-item"><div><span class="badge badge-info">Državljanstvo</span></div> {this.state.Drzavljanstvo}</li>
-                    </ul>
+                            </li>
+                            <li class="list-group-item" >
+                                <div><span class="badge badge-info">Datum i mjesto rođenja</span></div>
+                                {this.state.mjestoRodjenja}
+                            </li>
+                            <li class="list-group-item">
+                                <div><span class="badge badge-info" >Index</span></div>
+                                {this.state.Index}
+                            </li>
+                            <li class="list-group-item">
+                                <div><span class="badge badge-info" >Ime i prezime oca</span></div> {this.state.imePrezimeOca}</li>
+                            <li class="list-group-item"><div><span class="badge badge-info" >Ime i prezime majke</span></div> {this.state.imePrezimeMajke}</li>
+                            <li class="list-group-item"><div><span class="badge badge-info">Državljanstvo</span></div> {this.state.Drzavljanstvo}</li>
+                        </ul>
+                    </div>
                 </div>
                 <ModalComponent
                     show={this.state.modalShow}
@@ -102,7 +104,7 @@ class LicniPod extends Component {
                     naslovModala="Lični Podaci"
                     tijeloModala={
                         <>
-                             <label class="col-form-label" for="inputDefault" >Nova fotografija</label>
+                            <label class="col-form-label" for="inputDefault" >Nova fotografija</label>
                             <br></br>
                             <input type="file" class="form-control-file" name="foto" aria-describedby="fileHelp"
                                 onChange={
@@ -179,10 +181,10 @@ class LicniPod extends Component {
                                         });
                                     }
                                 } />
-                                </>
+                        </>
                     }
                     noviInput={this.state.noviInput}
-                    btnPotvrdi = "Spasi promjene"
+                    btnPotvrdi="Spasi promjene"
 
                 />
             </>

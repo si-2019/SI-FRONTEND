@@ -11,8 +11,8 @@ import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import PrikaziStatus from "./PrikaziStatus.jsx";
 import Prosjek from "./Prosjek.jsx";
-import "./App.css";
-import LeftMenuStudent from "./LeftMenuStudent"
+import "./AppSiera.css";
+import LeftMenuStudentSiera from "./LeftMenuStudentSiera"
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
@@ -25,7 +25,7 @@ class App extends Component {
     this.state = {
       activeContentId: 1,
       menuButtonTitles: ["Profil", "Ugovor o učenju", "Završni rad", "Predmeti", "Ocjene", "Zadaće"],
-      startId: 0
+      
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
   }
@@ -47,14 +47,19 @@ class App extends Component {
     return (
       <div className="App">
        
-          <div id="left">
-            <LeftMenuStudent
+          <div id="leftSiera">
+            <LeftMenuStudentSiera
               triggerChangeActiveId={this.onChangeActiveId}
               btnList={menuButtons}
             />
           </div>
-          <div id="right">
-            <h1>Ovdje ide content :D</h1>
+          <div id="rightSiera">
+            {this.state.menuButtonTitles.map(x=>
+              <div
+                id={x}
+                
+              >jndkcndjnkjdnkjdc</div>
+              )}
           </div>
         
       </div>

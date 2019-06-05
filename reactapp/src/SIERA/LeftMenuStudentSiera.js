@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LeftMenuStudent extends React.Component {
+class LeftMenuStudentSiera extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -32,4 +32,4 @@ class LeftMenuStudent extends React.Component {
    }
 };
 
-export default LeftMenuStudent;
+export default LeftMenuStudentSiera;

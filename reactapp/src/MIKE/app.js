@@ -52,7 +52,11 @@ class Mike extends Component {
       <PregledZadatakaProjekta/>
     );
     else if(this.state.forma=="KreiranjeAsistent") return(
-      <KreiranjeProjekta />
+      <KreiranjeProjekta idPredmeta={1} 
+        asistenti={[
+        {idAsistenta: 1, ime:"Nerma Hanic"},
+        {idAsistenta: 2, ime:"Haso Hasic"}
+        ]}/>
     );
     else if(this.state.forma=="unosInformacija") return(
       <UnosInformacija/>

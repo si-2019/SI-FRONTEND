@@ -120,6 +120,10 @@ class Student extends Component {
   };
 
   klikNaPoslati = async(r, k) => {
+    var vrijednostIdZadatka=this.state.zadacaState.idPoZadacimaZadaca[r][k];
+    this.setState({idZadatak:vrijednostIdZadatka});
+
+
     var povratna_vrijednost;
     var trengodina = new Date().getFullYear();
     var trenmjesec = new Date().getMonth() + 1;
@@ -142,7 +146,7 @@ class Student extends Component {
 
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
-      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${this.state.idZadatak}`).then(res => { 
+      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`).then(res => { 
       this.setState({listaTipova:res.data});
     });
     document.getElementById("uploadButton").disabled=false;
@@ -164,6 +168,9 @@ class Student extends Component {
   
 
   klikNaVecPoslano = async(r, k) => {
+    var vrijednostIdZadatka=this.state.zadacaState.idPoZadacimaZadaca[r][k];
+    this.setState({idZadatak:vrijednostIdZadatka});
+
     var povratna_vrijednost;
     var trengodina = new Date().getFullYear();
     var trenmjesec = new Date().getMonth() + 1;
@@ -185,7 +192,7 @@ class Student extends Component {
     
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
-      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${this.state.idZadatak}`).then(res => { 
+      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`).then(res => { 
         
       this.setState({listaTipova:res.data});
       
@@ -196,7 +203,7 @@ class Student extends Component {
    else{ this.setState({blokirajSelect2:true});
    document.getElementById("uploadButton2").disabled=true;
 }
- await axios.get(`http://localhost:31911/popuniZadatakVecPoslan/${this.state.idZadatak}`).then(res => { 
+ await axios.get(`http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`).then(res => { 
     
         this.setState({datumSlanja:res.data.datumSlanja,
         vrijemeSlanja:res.data.vrijemeSlanja,
@@ -225,9 +232,8 @@ class Student extends Component {
         var nazivUploada = document.getElementById("uploadButton").value;
         if(nazivUploada==="") 
           nazivUploada = document.getElementById("uploadButton2").value;
-      if(nazivUploada===""){/*console.log("ne radi nista");*/}
+      if(nazivUploada===""){}
         else{
-       // console.log("Posalji zadatak dugme aktivirano "+nazivUploada);
         var ekstenzija='.'+nazivUploada.split('.').pop();
         //validacija tipa ucitanog fajla
         
@@ -237,7 +243,7 @@ class Student extends Component {
           //poslati backendu fajl
           //kod post, drugi parametar je body!!! postttt
            await axios.post("http://localhost:31911/slanjeZadatka",nazivUploada).then(res => { 
-             console.log(res.data);
+             
            });
 }
         }
@@ -273,8 +279,7 @@ class Student extends Component {
     document.getElementById("zadatakVecPoslan").style.display = "none";
   }
   render() {
-    console.log('potrebno: '+this.state);
-    console.log(this.state);
+    //console.log(this.state);
     return (
       <div>
         <div id="tabelaPregledaZadaca">

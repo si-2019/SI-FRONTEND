@@ -15,7 +15,7 @@ class TemeZavrsnih extends Component {
         <Header isPocetna={false}/>
         <Container fluid>
           <Row>
-            <Col style={{textAlign: "center"}}>
+            <Col style={{textAlign: "left"}}>
             <br></br>
             <h4>Pregled tema za završne radove</h4>
             <br></br>

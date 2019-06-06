@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
-import './table.css'
 import axios from 'axios';
-
-
 
 class TabelaStudenti extends Component {
     state = {
@@ -45,24 +41,24 @@ class TabelaStudenti extends Component {
             })
         }
         return (
-            <Table striped bordered hover size="sm" responsive>
+            <Table striped bordered hover responsive bsPrefix="table">
                 <thead>
-                    <tr>
-                    <th>#</th>
-                    <th>Index</th>
-                    <th>Ime i Prezime</th>
-                    <th>Prisustvo</th>
-                    <th>Zadaće</th>
-                    {listaIspita}
-                    <th>Ukupno</th>
-                    <th>Ocjena</th>
+                    <tr className="table-primary" hover="false">
+                        <th scope="row">#</th>
+                        <th>Index</th>
+                        <th>Ime i Prezime</th>
+                        <th>Prisustvo</th>
+                        <th>Zadaće</th>
+                        {listaIspita}
+                        <th>Ukupno</th>
+                        <th>Ocjena</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         this.state.studenti.map((student, i) => {
                             return <tr key={student.index}>
-                                <td>{i+1}</td>
+                                <td scope="row">{i+1}</td>
                                 <td>{student.index}</td>
                                 <td>{student.imePrezime}</td>
                                 <td>{student.prisustvo}</td>
@@ -79,16 +75,16 @@ class TabelaStudenti extends Component {
                         })
                     }
                     <tr>
-                    <td>1</td>
-                    <td>12345</td>
-                    <td>Ime Prezime</td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>15</td>
-                    <td>15</td>
-                    <td>20</td>
-                    <td>70</td>
-                    <td>7</td>
+                        <td scope="row">1</td>
+                        <td>12345</td>
+                        <td>Ime Prezime</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>20</td>
+                        <td>70</td>
+                        <td>7</td>
                     </tr>
                 </tbody>
             </Table>   

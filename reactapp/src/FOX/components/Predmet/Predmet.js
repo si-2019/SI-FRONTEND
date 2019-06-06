@@ -37,12 +37,12 @@ class Predmet extends Component {
                     <CardDeck>
                          {this.state.predmeti.map(p => {
                               return (
-                                   <Card key={p.naziv} style={{ width: '15rem', border: '0.5px solid gray' }} className="text-center">
+                                   <Card key={p.naziv} style={{ width: '15rem', border: '0.5px solid gray' }} className="text-left">
                                         <Card.Body>
                                              <Card.Title>
                                                   <Link to="fox/stranicaPredmeta"> <h5>{p.naziv}</h5> </Link>
                                              </Card.Title>
-                                             <Card.Text className="text-center">
+                                             <Card.Text className="text-left">
                                                        {
                                                             this.state.grupe.map(g => <Link key={g.naziv} to="fox/stranicaPredmeta"> {g.naziv}<br/><br/> </Link>)
                                                        }

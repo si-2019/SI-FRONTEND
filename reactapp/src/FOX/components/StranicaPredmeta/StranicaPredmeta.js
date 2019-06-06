@@ -16,7 +16,7 @@ class StranicaPredmeta extends Component {
           <Row>
             <Col style={{textAlign: "center"}}>
             <br></br>
-            <h4>Stranica predmeta</h4>
+            <h4 style={{textAlign: "left"}}>Lista studenata koji slušaju predmet</h4>
             <br></br>
             </Col> 
           </Row>

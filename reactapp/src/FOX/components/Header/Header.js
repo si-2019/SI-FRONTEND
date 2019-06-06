@@ -16,7 +16,7 @@ class Header extends Component {
 
       if (isPocetna) {
         meni =
-          <Navbar bg="dark" variant="dark" className="justify-content-end">
+          <Navbar variant="dark" bg="primary" className="justify-content-end">
             <Nav className="mr-auto" className="justify-content-end">
               <Nav.Link href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</Nav.Link>
               <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import Modal from "./Modal1";
+import Modal from "./ModalKontakt";
 
 
 describe('<Modal/>', ()=>{

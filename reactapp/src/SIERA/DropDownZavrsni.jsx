@@ -121,25 +121,25 @@ class DropDownZavrsni extends React.Component {
                     console.log(res.error);
                 }
             );
-           
+
     }
     handleClick() {
         if (this.state.temaId == null) {
-           this.setState({
-               greskaVis: "visible"
-           })
+            this.setState({
+                greskaVis: "visible"
+            })
         }
         else if (this.state.temaId != null) {
             this.otvori();
         }
     }
-    validateTema(id){
-        if(id==null){
+    validateTema(id) {
+        if (id == null) {
             this.setState({
                 greskaVis: "visible"
             })
         }
-        else{
+        else {
             this.setState({
                 greskaVis: "hidden"
             })
@@ -149,42 +149,46 @@ class DropDownZavrsni extends React.Component {
         let zatvoriModal = () => this.setState({ otvori: false });
         return (
             <>
+                <div className="container-fluid" style={{backgroundColor:"red"}}>
+                <div className="d-flex align-items-center" style={{flexDirection:"column"}}>
+                        <h2 class="card-title">Zavrsni</h2>
+                    <div class="row">
+                        <div class="col-lg-6 col-md align-self-stretch" style={{ boxSizing: "border-box", padding: "10px" }}>
+                        <div className="d-flex justify-content-center">
+                            <div class="card" style={{ display: "inline-block" }}>
+                                <div class="card-body">
+                                    <h3 class="card-title">Završni rad</h3>
+                                    <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
+                                    <div style={{ textAlign: "left" }}>
+                                        <label class="col-form-label col-form-label-lg" for="inputLarge">Mentori</label>
+                                    </div>
 
-                <div class="row" style={{ margin: "0px" }}>
-                    <div class="col"></div>
-                    <div class="col" style={{ textAlign: "center", minWidth: "400px" }}>
-                        <div class="card" style={{ display: "inline-block" }}>
-                            <div class="card-body">
-                                <h3 class="card-title">Završni rad</h3>
-                                <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
-                                <div style={{ textAlign: "left" }}>
-                                    <label class="col-form-label col-form-label-lg" for="inputLarge">Mentori</label>
+                                    <select class="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
+                                        {this.state.profesori.map(
+                                            (prof) =>
+                                                <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
+
+                                        )}
+                                    </select>
+                                    <div style={{ textAlign: "left" }}>
+                                        <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
+                                    </div>
+                                    <select class="custom-select" onChange={event => { this.validateTema(event.target.value) }} >
+                                        {this.state.teme.map(
+                                            (teme) =>
+                                                <option key={teme.id} value={teme.id}>{teme.naziv}</option>
+                                        )}
+                                    </select>
+                                    <div style={{ visibility: this.state.greskaVis }}><p class="text-danger">Morate odabrati temu!</p></div>
+
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" onClick={this.handleClick}>Prijavi završni</button>
+
                                 </div>
-
-                                <select class="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
-                                    {this.state.profesori.map(
-                                        (prof) =>
-                                            <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
-
-                                    )}
-                                </select>
-                                <div style={{ textAlign: "left" }}>
-                                    <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
-                                </div>
-                                <select class="custom-select" onChange={event =>{ this.validateTema(event.target.value)}} >
-                                    {this.state.teme.map(
-                                        (teme) =>
-                                            <option key={teme.id} value={teme.id}>{teme.naziv}</option>
-                                    )}
-                                </select>
-                                <div style={{ visibility: this.state.greskaVis}}><p class="text-danger">Morate odabrati temu!</p></div>
-
-                                <button type="button" class="btn btn-primary btn-lg btn-block" onClick={this.handleClick}>Prijavi završni</button>
-
                             </div>
                         </div>
+                        </div>
                     </div>
-                    <div class="col"></div>
+                </div>
                 </div>
                 <Modal
                     {...this.props}
@@ -194,7 +198,7 @@ class DropDownZavrsni extends React.Component {
                     show={this.state.otvori}
                     onHide={zatvoriModal}
                 >
-                    
+
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Prijava završnog rada

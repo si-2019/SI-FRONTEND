@@ -129,7 +129,7 @@ class ModalComponent extends React.Component {
         let podaci = JSON.parse(JSON.stringify(this.props.podaciKorisnika));
         podaci.ime = ime ? ime : podaci.ime;
         podaci.prezime = prezime ? prezime : podaci.prezime;
-        podaci.Drzavljanstvo = drzavljanstvo ? drzavljanstvo : podaci.drzavljanstvo;
+        podaci.Drzavljanstvo = drzavljanstvo ? drzavljanstvo : podaci.Drzavljanstvo;
         podaci.fotka = foto ? foto : podaci.fotka;
         this.setState({
             greska: null,

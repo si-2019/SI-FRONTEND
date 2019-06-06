@@ -52,6 +52,7 @@ class App extends Component {
             <Route path="/siera" component={Siera} />
             <Route path="/tango" component={Tango} />
             <Route path="/uniform" component={Uniform} />
+            
           </div>
           <Footer/>
       </Router>

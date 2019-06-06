@@ -1,9 +1,6 @@
-
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import ModalComponent from "./Modal1";
-import Stranice from "./stranice.jsx";
+import ModalComponent from "./ModalKontakt";
 
 class KontaktPod extends Component {
     state = {
@@ -12,13 +9,25 @@ class KontaktPod extends Component {
         email: "isajdi",
         brTel: "98426",
         modalShow: false,
-        noviInput: {
-            adresa: null,
-            email: null,
-            brtel: null,
-            promjenaAdresa: null,
-            promjenaBrtel: null,
-            promjenaEmail: null,
+        
+    }
+    saveState = (type, state) =>{
+        switch(type){
+            case "modalShow":
+                this.setState({
+                    modalShow: state
+                });
+                break;
+            case "podaciKontakt":
+                this.setState(state, ()=>{
+                    this.setState({
+                        modalShow: false
+                    });
+                });
+                break;
+            default:
+                break;
+
         }
     }
     componentDidMount() {
@@ -41,11 +50,6 @@ class KontaktPod extends Component {
             });
     }
     render() {
-        let modalClose = () => {
-            this.setState({ modalShow: false });
-
-            window.location.reload();
-        }
         return (
             <>
             <h4 className="card-title" style={{ textAlign: "left" }}>Kontakt podaci</h4>
@@ -67,67 +71,11 @@ class KontaktPod extends Component {
                         <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })} >Edit</button>
     
                 <ModalComponent
+                    saveState={this.saveState}
                     show={this.state.modalShow}
-                    onHide={modalClose}
-                    naslovModala="Kontakt podaci"
-                    tijeloModala={
-                        <>
-                            <br></br>
-                            <label class="col-form-label" for="inputDefault" >Telefon</label>
-                            <input type="text" class="form-control" name="brtel"
-                                onChange={
-                                    (event) => {
-                                        this.setState({
-                                            noviInput: {
-                                                adresa: this.state.noviInput.adresa,
-                                                email: this.state.noviInput.email,
-                                                promjenaAdresa: this.state.noviInput.promjenaAdresa,
-                                                promjenaEmail: this.state.noviInput.promjenaEmail,
-                                                promjenaBrtel: true,
-                                                brtel: event.target.value,
-                                            }
-
-                                        });
-                                    }
-                                } />
-
-                            <label class="col-form-label" for="inputDefault" >Adresa</label>
-                            <input type="text" class="form-control" name="adresa"
-                                onChange={
-                                    (event) => {
-                                        this.setState({
-                                            noviInput: {
-                                                adresa: event.target.value,
-                                                email: this.state.noviInput.email,
-                                                promjenaAdresa: true,
-                                                promjenaEmail: this.state.noviInput.promjenaEmail,
-                                                promjenaBrtel: this.state.noviInput.promjenaBrtel,
-                                                brtel: this.state.noviInput.brtel,
-                                            }
-
-                                        });
-                                    }
-                                } />
-
-                            <label class="col-form-label" for="inputDefault">Email</label>
-                            <input type="text" class="form-control" name="email"
-                                onChange={
-                                    (event) => {
-                                        this.setState({
-                                            noviInput: {
-                                                adresa: this.state.noviInput.adresa,
-                                                email: event.target.value,
-                                                promjenaAdresa: this.state.noviInput.promjenaAdresa,
-                                                promjenaEmail: true,
-                                                promjenaBrtel: this.state.noviInput.promjenaBrtel,
-                                                brtel: this.state.noviInput.brtel,
-                                            }
-                                        });
-                                    }
-                                } />
-                        </>
-                    }
-                    noviInput={this.state.noviInput}
+                    naslovModala="Kontakt podaci"s
+                    podaciKontakt={this.state}
+                   
                 />
             </>
 

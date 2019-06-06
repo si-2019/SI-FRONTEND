@@ -185,7 +185,7 @@ class ModalComponent extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                     <button type="submit" id="spasiBtn" class="btn btn-primary">{this.props.btnPotvrdi}</button>
-                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
+                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Zatvori</button>
 
                         
 

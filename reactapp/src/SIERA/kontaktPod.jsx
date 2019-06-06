@@ -31,14 +31,13 @@ class KontaktPod extends Component {
 
                 const br = res.data.map(obj => obj.telefon);
                 this.setState({ brTel: br });
-
-
                 const eml = res.data.map(obj => obj.email);
                 this.setState({ email: eml });
-
-
                 const adr = res.data.map(obj => obj.adresa);
                 this.setState({ adresa: adr });
+            })
+            .catch(err=>{
+                console.log(err);
             });
     }
     render() {
@@ -49,16 +48,11 @@ class KontaktPod extends Component {
         }
         return (
             <>
-            
+            <h4 className="card-title" style={{ textAlign: "left" }}>Kontakt podaci</h4>
                         <div className="form-group">
                             <label class="col-form-label" for="inputDefault">Telefon</label>
                             <br></br>
                             <h4>{this.state.brTel}</h4>
-                        </div>
-                        <div className="form-group">
-                            <label class="col-form-label" for="inputDefault">Adresa</label>
-                            <br></br>
-                            <h4>{this.state.adresa}</h4>
                         </div>
                         <div className="form-group">
                             <label class="col-form-label" for="inputDefault">Adresa</label>
@@ -78,7 +72,6 @@ class KontaktPod extends Component {
                     naslovModala="Kontakt podaci"
                     tijeloModala={
                         <>
-
                             <br></br>
                             <label class="col-form-label" for="inputDefault" >Telefon</label>
                             <input type="text" class="form-control" name="brtel"

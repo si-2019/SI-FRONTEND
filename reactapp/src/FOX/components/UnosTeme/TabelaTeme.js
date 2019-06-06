@@ -55,7 +55,7 @@ class TabelaStudenti extends Component {
                 <tbody>
                     {
                         this.state.teme.map((teme, i) => {
-                            return <tr key={teme.id} className="table-primary" hover="false">
+                            return <tr key={teme.id}>
                                 <td scope="row">{i+1}</td>
                                 <td>{teme.naziv}</td>
                                 <td>{teme.opis}</td>
@@ -71,7 +71,7 @@ class TabelaStudenti extends Component {
                         })
                     }
 
-                    <tr className="table-primary" hover="false">
+                    <tr >
                         <td scope="row">0</td>
                         <td>Naziv</td>
                         <td>Opis</td>

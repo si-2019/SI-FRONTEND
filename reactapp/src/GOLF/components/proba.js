@@ -11,12 +11,13 @@ import OPredmetuProfesor from './oPredmetuProfesor';
 import OPredmetuStudent from './oPredmetuStudent';
 import Sedmica from './sedmica';
 import Dropdown from './dropdown';
+import UredjivanjeLiterature from './UredjivanjeLiterature'
 
 class proba extends Component {
   render() {
     this.state={
       svipredmeti: [
-        {
+        {UredjivanjeLiterature
           id: 1,
           naziv: 'SI',
           opis:' opis premeta hvhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj z hjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj z'

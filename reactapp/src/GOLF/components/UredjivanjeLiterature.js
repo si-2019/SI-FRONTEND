@@ -44,4 +44,4 @@ class UredjivanjeLiterature extends Component{
     }
 }
 
-export default EditovanjeObjave
+export default UredjivanjeLiterature

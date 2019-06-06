@@ -40,11 +40,11 @@ class Predmet extends Component {
                                    <Card key={p.naziv} style={{ width: '15rem', border: '0.5px solid gray' }} className="text-center">
                                         <Card.Body>
                                              <Card.Title>
-                                                  <Link to="fox/stranicaPredmeta"> <h5>{p.naziv}</h5> </Link>
+                                                  <Link to={`fox/stranicaPredmeta?predmetId=${p.naziv}`}> <h5>{p.naziv}</h5> </Link>
                                              </Card.Title>
                                              <Card.Text className="text-center">
                                                        {
-                                                            this.state.grupe.map(g => <Link key={g.naziv} to="fox/stranicaPredmeta"> {g.naziv}<br/><br/> </Link>)
+                                                            this.state.grupe.map(g => <Link key={g.naziv} to={`fox/stranicaPredmeta?predmetId=${p.naziv}?${g.naziv}`}> {g.naziv}<br/><br/> </Link>)
                                                        }
                                              </Card.Text>
                                         </Card.Body>

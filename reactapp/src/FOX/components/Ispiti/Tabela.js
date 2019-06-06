@@ -79,11 +79,16 @@ class TabelaPredmeti extends  React.Component {
        
         return (
             <div>
-                {this.state.studenti===false && <ReactTable
-                data={data2}
-                columns={columns}
-                />}
-                {this.state.studenti===true && <StudentiTabela tipIspita={this.state.data.tip}/>}
+                <div>
+                    {this.state.studenti===false && <ReactTable
+                    data={data2}
+                    columns={columns}
+                    />}
+                    {this.state.studenti===true && <StudentiTabela tipIspita={this.state.data.tip}/>}
+                </div>
+                <div>
+                    Tu
+                </div>
             </div>
         );
       }

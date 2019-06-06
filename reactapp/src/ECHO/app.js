@@ -10,13 +10,11 @@ class App extends Component {
       activeContentId: 1
     };
   }
-
   onChangeActiveId = id => {
     this.setState({
       activeContentId: id
     });
   };
-
   render() {
     const { open } = this.state;
     return (
@@ -26,18 +24,49 @@ class App extends Component {
           <div className="row">
             <div id="mainECHO">
               <div id="leftECHO">
-                <LeftMenu triggerChangeActiveId={this.onChangeActiveId} />
+              <LeftMenu triggerChangeActiveId={this.onChangeActiveId} />
               </div>
               <div id="rightECHO">
-                <div
-                  id="terminDiv"
+              <div id="terminDiv"
                   style={{
-                    display:
-                      this.state.activeContentId == 1 ? "inherit" : "none"
+                  display:
+                  this.state.activeContentId == 1 ? "inherit" : "none"
                   }}
-                >
-                  <NaslovnaTermin />
-                </div>
+              ><NaslovnaTermin />
+              </div>
+              <div id = "Sale" 
+         style={{display : this.state.activeContentId == 2 ? 'inherit' : 'none'}}
+        ><ul class="nav nav-tabs">
+        <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#">
+        Unos sale
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link disable" data-toggle="tab" href="#">
+        Prikaz sala
+        </a>
+        </li>
+        </ul>
+        <div id="prva">
+        </div>
+        <div id="druga" />
+        </div>
+        <div 
+         id = "Kalendar" 
+         style={{display : this.state.activeContentId == 3 ? 'inherit' : 'none'}}
+        >
+        <div id="prva">
+        
+        </div>
+        </div>
+        <div 
+         id = "PretragaProfesora" 
+         style={{display : this.state.activeContentId == 4 ? 'inherit' : 'none'}}
+        >
+        <div id="prva">
+        </div>
+        </div>
               </div>
             </div>
           </div>

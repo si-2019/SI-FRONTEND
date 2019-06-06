@@ -31,11 +31,14 @@
     transform: rotate(360deg);
   }
 }
-
+#najglavnijiodsviju{
+  height : 88vh;
+}
 #mainECHO {
   width: 100%;
   min-height: 470px;
   display: inline-block;
+  height : 80vh;
 }
 
 #leftECHO {
@@ -43,14 +46,14 @@
   width: 20%;
   background-color: #2c3e50;
   float: left;
-  max-height: 470px;
-  min-height: 100%;
+  height: 80vh;
 }
 
 #rightECHO {
   width: 80%;
   float: right;
   min-height: 470px;
+  height : 77vh;
 }
 
 .row {
@@ -59,4 +62,6 @@
 
 #terminDiv {
   width: 50%;
+  margin-top: 0vh;
+  height: 100%;
 }

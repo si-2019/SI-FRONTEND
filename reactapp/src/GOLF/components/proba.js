@@ -17,7 +17,7 @@ class proba extends Component {
   render() {
     this.state={
       svipredmeti: [
-        {UredjivanjeLiterature
+        {UredjivanjeLiterature,
           id: 1,
           naziv: 'SI',
           opis:' opis premeta hvhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj z hjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj z'

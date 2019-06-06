@@ -47,44 +47,44 @@ class ModalComponent extends React.Component {
     }
     handlePutEvent(event) {
         event.preventDefault();
-        if (this.props.noviInput.promjenaAdresa == null && this.props.noviInput.promjenaEmail == null && this.props.noviInput.promjenaBrtel == null) {
+        if (this.state.noviInput.adresa == null && this.state.noviInput.email == null && this.state.noviInput.brtel == null) {
             this.setState({ greska: true });
         }
         else {
-            if (this.props.noviInput.promjenaAdresa) {
+            if (this.state.noviInput.adresa) {
                 axios
                     .put(
                         `http://localhost:31918/studenti/update/adresa/` +
                         this.state.studentID,
                         {
-                            adresa: this.props.noviInput.adresa
+                            adresa: this.state.noviInput.adresa
                         }
                     )
                     .then(res => {
                         this.setState({ greska: false });
                     });
             }
-            if (this.props.noviInput.promjenaEmail) {
+            if (this.state.noviInput.email) {
                 axios
                     .put(
                         `http://localhost:31918/studenti/update/mail/` +
                         this.state.studentID,
                         {
-                            mail: this.props.noviInput.email
+                            mail: this.state.noviInput.email
                         }
                     )
                     .then(res => {
                         this.setState({ greska: false });
                     });
             }
-            if (this.props.noviInput.promjenaBrtel) {
+            if (this.state.noviInput.brtel) {
 
                 axios
                     .put(
                         `http://localhost:31918/studenti/update/tel/` +
                         this.state.studentID,
                         {
-                            tel: this.props.noviInput.brtel
+                            tel: this.state.noviInput.brtel
                         }
                     )
                     .then(res => {

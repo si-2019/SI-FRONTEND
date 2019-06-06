@@ -15,7 +15,8 @@ class DropDownZavrsni extends React.Component {
             otvori: false,
             selProf: null,
             selTema: null,
-            greskaVis: "hidden"
+            greskaVisible: "hidden",
+            selectClass: "custom-select"
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeProf = this.handleChangeProf.bind(this);
@@ -24,15 +25,23 @@ class DropDownZavrsni extends React.Component {
         this.validateTema = this.validateTema.bind(this);
     }
     otvori() {
-        let trenutniProf = this.state.profesori.find(x => x.id == this.state.profId);
+        try {
+            let trenutniProf = this.state.profesori.find(x => x.id == this.state.profId);
 
-        let trenutnaTema = this.state.teme.find(x => x.id == this.state.temaId);
+            let trenutnaTema = this.state.teme.find(x => x.id == this.state.temaId);
 
-        this.setState({
-            otvori: true,
-            selProf: trenutniProf.ime + " " + trenutniProf.prezime,
-            selTema: trenutnaTema.naziv
-        });
+            this.setState({
+                otvori: true,
+                selProf: trenutniProf.ime + " " + trenutniProf.prezime,
+                selTema: trenutnaTema.naziv
+            });
+        }
+        catch (err) {
+            this.setState({
+                otvori: false
+            });
+
+        }
 
     }
     handlePost(e) {
@@ -113,7 +122,7 @@ class DropDownZavrsni extends React.Component {
                         temaId: res.data.data[0].id
                     })
                 }
-                this.validateTema(this.state.temaId);
+
             })
             .catch(
                 res => {
@@ -124,24 +133,21 @@ class DropDownZavrsni extends React.Component {
 
     }
     handleClick() {
-        if (this.state.temaId == null) {
-            this.setState({
-                greskaVis: "visible"
-            })
-        }
-        else if (this.state.temaId != null) {
-            this.otvori();
-        }
+        this.validateTema(this.state.temaId);
+        this.otvori();
+
     }
-    validateTema(id) {
+     validateTema(id) {
         if (id == null) {
-            this.setState({
-                greskaVis: "visible"
+             this.setState({
+                selectClass: "custom-select form-control is-invalid",
+                greskaVisible: "visible"
             })
         }
         else {
-            this.setState({
-                greskaVis: "hidden"
+             this.setState({
+                selectClass: "custom-select",
+                greskaVisible: "hidden"
             })
         }
     }
@@ -150,12 +156,12 @@ class DropDownZavrsni extends React.Component {
         return (
             <>
                 <div className="container-fluid" style={{ height: "100%" }}>
-                    <div className="d-flex justify-content-center" style={{ height:"100%"}}>
+                    <div className="d-flex justify-content-center" style={{ height: "100%" }}>
                         <div className="d-flex align-items-center">
-                            <div class="row">
+                            <div class="row" style={{ margin: "0px" }}>
                                 <div class="col-lg col-md" >
 
-                                    <div class="card" style={{ width:"30rem"}}>
+                                    <div class="card" style={{ width: "30rem" }}>
                                         <div class="card-body">
                                             <h4 class="card-title">Završni rad</h4>
                                             <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
@@ -170,18 +176,24 @@ class DropDownZavrsni extends React.Component {
 
                                                 )}
                                             </select>
+
                                             <div style={{ textAlign: "left" }}>
                                                 <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
                                             </div>
-                                            <select class="custom-select" onChange={event => { this.validateTema(event.target.value) }} >
+                                            <select class={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
+
                                                 {this.state.teme.map(
                                                     (teme) =>
                                                         <option key={teme.id} value={teme.id}>{teme.naziv}</option>
                                                 )}
                                             </select>
-                                            <div style={{ visibility: this.state.greskaVis }}><p class="text-danger">Morate odabrati temu!</p></div>
+                                                
+                                                <div class="invalid-feedback" style={{visibility: this.state.greskaVisible}}>Morate odabrati temu!</div>
+                                           
+                                            <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
+                                                <button type="button" class="btn btn-primary" style={{marginTop:"20px"}} onClick={this.handleClick}>Prijavi završni</button>
+                                            </div>
 
-                                            <button type="button" class="btn btn-primary" onClick={this.handleClick}>Prijavi završni</button>
 
                                         </div>
                                     </div>

@@ -141,9 +141,8 @@ class NoviIssueForma extends React.Component {
                         </div>
 
                         <button 
-                            id = "buttonDraft"
-                            className="btn btn-primary class1"
-                            onClick={this.saveAsDraft}
+                                type="button"
+                            className="btn btn-primary"
                             disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                         >Save as draft
                         </button>

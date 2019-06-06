@@ -20,7 +20,10 @@ class oPredmetuProfesor extends Component {
 
   klikObrisiFile = () => {
     if(this.state.uploadovan == 1){
-      axios.get('http://localhost:31907/r8/obrisiDatoteku/${this.props.match.params.idDatoteka}/${this.props.match.params.idPredmeta}').then(res => {
+      axios.get('http://localhost:31907/r8/obrisiDatoteku/${this.props.match.params.nazivDatoteke}/${this.props.match.params.idpredmeta}').then(res => {
+        if(res.data.message == 'OK'){
+          // dugme postane neaktivno
+        }
       })
     }
   }

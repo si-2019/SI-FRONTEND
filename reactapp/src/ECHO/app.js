@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PocetnaStranica from "./pocetnaStranica";
+import PocetnaStranica from "./old/pocetnaStranica";
 import "./app.css";
 class App extends Component {
   render() {

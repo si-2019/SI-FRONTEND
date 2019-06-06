@@ -1,8 +1,9 @@
 import React, {Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-// this.state.ispiti.map(ispit => {ispit.name} ) }>
+import Button from 'react-bootstrap/Button';
+import Modal from "react-bootstrap/Modal";
+
 class TabelaUnosa extends Component {
 
     constructor(props) {
@@ -55,43 +56,46 @@ class TabelaUnosa extends Component {
 
     render() {
         return(
-            <Form>
-                <Form.Row>
-                    <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <br/>
-                        <h4>Unos bodova za ispit</h4>
-                        <br/>
-                    </Col>
-                </Form.Row>
+        <Form>
+                <div class="row" style={{ margin: "0px" }}>
+                    <div class="col"></div>
+                    <div class="col" style={{ textAlign: "center", minWidth: "400px" }}>
+                        <div class="card" style={{ display: "inline-block" }}>
+                            <div class="card-body">
+                                <h3 class="card-title">Unos bodova za ispit</h3>
+                                <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
+                                <div style={{ textAlign: "left" }}>
+                                    <label class="col-form-label col-form-label-lg" for="inputLarge">Index</label>
+                                </div>
+                                <button 
+                                    type="button" 
+                                    className="btn btn-primary left-buttons"
+                                    onClick={this.handleClick}>Pretrazi
+                                </button>
+                                <Form.Row>
+                                    Col style={{textAlign: "center"}}>
+                                        <br/>
+                                        <label style={{ visibility: this.state.greskaVis}}>
+                                            Pero Perić, 12345
+                                        </label> 
+                                    </Col>
+                                </Form.Row>
+                                <div style={{ textAlign: "left" }}>
+                                    <label class="col-form-label col-form-label-lg" for="inputLarge">Bodovi</label>
+                                </div>
+                               
+                                <div style={{ visibility: this.state.greskaVis}}><p class="text-danger">Morate odabrati temu!</p></div>
 
-                <Form.Row>
-                    <Form.Group as={Col} sm={{span: 4, offset: 4}}>
-                        <Form.Control
-                            as="select">
-                            <option>I parcijalni, 20.4.2019.</option>
-                            <option> II parcijalni, 20.6.2019.</option>
-                            <option>Popravni I parcijalni, 1.7.2019.</option>
-                            <option>Popravni II parcijalni, 1.7.2019.</option>
-                            <option>Integralni ispit 1.9.2019.</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Form.Row>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" onClick={this.handleClick}>Prijavi završni</button>
 
-                <hr/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
 
-                <Form.Row>
-                    <Col style={{textAlign: "right"}}>
-                        <Form.Label> Index: </Form.Label>
-                    </Col>
-                    <Col lg="2">
-                        <Form.Control type="text" name="name">
-                        </Form.Control>
-                    </Col>
-                    <Col>
-                        <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
-                    </Col>
-                </Form.Row>
-
+              
+             
                 <Form.Row>
                     <Col style={{textAlign: "center"}}>
                         <br/>

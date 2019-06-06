@@ -44,14 +44,14 @@ class TabelaStudenti extends Component {
     
     render() {
         return (
-            <Table striped bordered hover size="sm" responsive>
+            <Table striped bordered hover responsive>
                 <thead>
-                    <tr>
-                    <th>#</th>
-                    <th>Naziv</th>
-                    <th>Opis</th>
-                    <th>Odabrana</th>
-                    <th>Student</th>
+                    <tr className="table-primary" hover="false">
+                        <th scope="row">#</th>
+                        <th>Naziv</th>
+                        <th>Opis</th>
+                        <th>Odabrana</th>
+                        <th>Student</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,6 +68,15 @@ class TabelaStudenti extends Component {
                             
                         })
                     }
+
+                    <tr key="0">
+                        <td scope="row">0</td>
+                        <td>Naziv</td>
+                        <td>Opis</td>
+                        <td>Da</td>
+                        <td>Neko Nekic</td>
+                        
+                    </tr>
                     
                 </tbody>
             </Table>   

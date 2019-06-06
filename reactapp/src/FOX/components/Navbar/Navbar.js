@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 class NavbarFox extends Component {
     render() {
       return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="dark" bg="primary" variant="dark" expand="lg">
           <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

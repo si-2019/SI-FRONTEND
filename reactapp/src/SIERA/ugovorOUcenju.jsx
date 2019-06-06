@@ -78,7 +78,8 @@ class UgovorOUcenju extends Component {
                 <div className="col-lg col-md">
                   <div className="card" style={{ width: "30rem" }}>
                     <div className="card-body">
-                      <h3 className="card-title">Ugovor o učenju</h3>
+                      <h4 className="card-title">Ugovor o učenju</h4>
+                      <h6 class="card-subtitle mb-2 text-muted">Ovdje možete kreirati ugovor o učenju za upis u naredni semestar.</h6>
                       <div style={{ textAlign: "left" }}>
                         <label className="col-form-label col-form-label-lg">
                           Godina studija

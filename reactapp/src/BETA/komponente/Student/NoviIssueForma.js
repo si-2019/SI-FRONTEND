@@ -141,8 +141,9 @@ class NoviIssueForma extends React.Component {
                         </div>
 
                         <button 
-                                type="button"
-                            className="btn btn-primary"
+                            id = "buttonDraft"
+                            className="btn btn-primary class1"
+                            onClick={this.saveAsDraft}
                             disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                         >Save as draft
                         </button>
@@ -165,6 +166,5 @@ class NoviIssueForma extends React.Component {
 }
 
 export default NoviIssueForma;
-
 
 

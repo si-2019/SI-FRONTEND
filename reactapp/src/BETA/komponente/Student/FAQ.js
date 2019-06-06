@@ -100,13 +100,13 @@ class FAQ extends React.Component {
                 )}
                 
                  </div>
-                 <br></br>
                  
                  <button
-                            id="buttonObjavi"
+                            id="buttonObjaviFaq"
                             type="submit"
                             className="btn btn-primary float-right btn-lg "
                             onClick={() => this.setState({ modalShow: true })}
+                            style={{marginTop:'30px'}}
                         >Istakni novi issue
                         </button>
               

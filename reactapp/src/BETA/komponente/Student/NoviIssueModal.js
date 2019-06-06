@@ -42,10 +42,10 @@ class ModalComponent extends React.Component {
         //ukoliko neki rezultira greskom, postavite greska na true
         const { issueTitle, issueText } = this.state;
 
-        axios.post('http://localhost:31902/issue/send', { issueTitle, issueText})
+        axios.post('http://localhost:31902/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
         .then(result => {
             if(result.data==="Uspjesan upis!")
-            {this.setState({ greska: false, issueTitle:"",issueText:" " });}
+           {alert("opa"); {this.setState({ greska: false, issueTitle:"",issueText:" " });}}
         })
         .catch(err => {
             console.log(err);
@@ -146,6 +146,7 @@ class ModalComponent extends React.Component {
                             id="spasiBtn"
                             className="btn btn-primary"
                             disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
+                           
                         >{this.props.btnPotvrdi}
                         </button>
                        

@@ -44,7 +44,7 @@ class App extends Component {
           <div className="row">
 
             <div id="head">
-              <div id="left">
+              <div id="leftBeta">
                 <button type="button"
                   className="btn btn-primary left-buttons"
                   id="createNewIssue"
@@ -59,10 +59,10 @@ class App extends Component {
             </div>
 
             <div id="main">
-              <div id="left">
+              <div id="leftBeta">
                 <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
               </div>
-              <div id="right">
+              <div id="rightBeta">
                 <div
                   id="TrackIssuesContent"
                   style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
@@ -96,8 +96,8 @@ class App extends Component {
           <ModalComponent
                     
                     show={this.state.modalShow}
-                    naslovModala="New issue"
-                    btnPotvrdi="Send issue"
+                    naslovModala="Posalji novi issue"
+                    btnPotvrdi="Posalji issue"
                     
                     
 

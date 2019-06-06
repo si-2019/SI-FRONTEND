@@ -12,14 +12,14 @@ class ModalComponent extends React.Component {
             naziv: "",
             tekst: "",
             noviInput: {
-                naziv:null,
-                tekst:null
+                naziv: null,
+                tekst: null
             }
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(event) {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         let state = JSON.parse(JSON.stringify(this.state.noviInput));
         state[name] = value;
         this.setState({
@@ -30,11 +30,11 @@ class ModalComponent extends React.Component {
         this.props.saveState("modalShow", false);
     }
     handleExit = () => {
-        const {Naziv, Tekst} = this.state.noviInput;
+        const { Naziv, Tekst } = this.state.noviInput;
         let podaci = JSON.parse(JSON.stringify(this.props.novFAQ));
 
-            this.props.saveState("noviFAQ", podaci);
-        
+        this.props.saveState("noviFAQ", podaci);
+
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -42,8 +42,7 @@ class ModalComponent extends React.Component {
         const { naziv, tekst } = this.state;
         axios.post('http://localhost:31902/frequentIssue/add', null, { params: { naziv, tekst } })
             .then(result => {
-                if(result.data==="Uspjesan upis!")
-                {this.setState({ greska: false, naziv:"",tekst:" " });}
+                if (result.data === "Uspjesan upis!") { this.setState({ greska: false, naziv: "", tekst: " " }); }
             })
             .catch(err => {
                 console.log(err);
@@ -51,9 +50,9 @@ class ModalComponent extends React.Component {
             });
 
     }
-   
-      
-    
+
+
+
     renderujPotvrdu() {
         if (this.state.greska == false) {
             return (
@@ -63,19 +62,19 @@ class ModalComponent extends React.Component {
                     msg="Uspjesno ste objavili rjesenje issue-a"
                 />
             );
-        } 
-     else if(this.state.greska){
-        return(
-            <Potvrda
-                key={this.brojac}
-                successful="false"
-                //VEDAD ->PRVI SPRINT
-                msg="Vaš objava nije uspjela! Pokusajte ponovo!"
-            />
-        );
+        }
+        else if (this.state.greska) {
+            return (
+                <Potvrda
+                    key={this.brojac}
+                    successful="false"
+                    //VEDAD ->PRVI SPRINT
+                    msg="Vaš objava nije uspjela! Pokusajte ponovo!"
+                />
+            );
+        }
+        return null;
     }
-    return null;
-}
 
     render() {
         if (!this.props.show) {
@@ -119,13 +118,13 @@ class ModalComponent extends React.Component {
                                     onChange={this.handleChange}
                                     rows="10"
                                     placeholder="Odgovor na issue"></textarea>
-                               
-                                </>
+
+                            </>
                         </div>
 
                     </Modal.Body>
                     <Modal.Footer>
-                       <button type="submit"
+                        <button type="submit"
                             id="spasiBtn"
                             class="btn btn-primary"
                             disabled={!this.state.tekst || !this.state.naziv}

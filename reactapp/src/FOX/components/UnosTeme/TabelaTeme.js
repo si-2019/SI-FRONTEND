@@ -70,6 +70,19 @@ class TabelaStudenti extends Component {
                             
                         })
                     }
+
+                    <tr>
+                        <td>0</td>
+                        <td>Naziv</td>
+                        <td>Opis</td>
+                        <td>Da</td>
+                        <td>Neko Nekic</td>
+                        <td><Button variant="primary" href="#">Izmjeni</Button></td>
+                        <td><Form onSubmit={(e) => this.izbrisiTemu(e, teme.id)}>
+                            <Button variant="danger" type="submit">Izbriši</Button>
+                            </Form>
+                        </td>
+                    </tr>
                     
                 </tbody>
             </Table>   

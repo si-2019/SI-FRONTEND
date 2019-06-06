@@ -102,7 +102,7 @@ class NovaTema extends Component {
                                             onSubmit = {e => this.handleSubmit(e)}
                                         >
                                             <Form.Group as={Row} controlId = "formNoviNaziv">
-                                                <Col style={{textAlign: "right"}}>
+                                                <Col style={{textAlign: "left"}}>
                                                     <Form.Label>Naziv:</Form.Label>
                                                 </Col>
                                                 <Col lg="4">
@@ -120,7 +120,7 @@ class NovaTema extends Component {
                                             </Form.Group>
 
                                             <Form.Group as={Row} controlId = "formNoviOpis">
-                                                <Col style={{textAlign: "right"}}>
+                                                <Col style={{textAlign: "left"}}>
                                                     <Form.Label>Opis:</Form.Label>
                                                 </Col>
                                         

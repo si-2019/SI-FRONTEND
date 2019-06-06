@@ -18,6 +18,13 @@ class oPredmetuProfesor extends Component {
     });
   }
 
+  klikObrisiFile = () => {
+    if(this.state.uploadovan == 1){
+      axios.get('http://localhost:31907/r8/obrisiDatoteku/${this.props.match.params.idDatoteka}/${this.props.match.params.idPredmeta}').then(res => {
+      })
+    }
+  }
+
   render() {
   	
     return (
@@ -26,6 +33,7 @@ class oPredmetuProfesor extends Component {
             <p class='opis'> {this.props.opis} </p>
             <div class='linkovi'>
               {this.props.predmet.map(file => [<a href='#' onClick={this.skiniFile.bind(this,file.naziv,this.props.idpredmeta)} class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])}
+              <button id = "dd" type = "button" class = "btn btn-success" onClick = { this.klikObrisiFile }> Obrisi </button>
             </div>
         </div>
     );

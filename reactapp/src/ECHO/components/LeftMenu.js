@@ -29,7 +29,23 @@ class LeftMenu extends React.Component {
           id="moj"
           onClick={() => this.changeActiveId(2)}
         >
-          Komponenta2
+          Sale
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary left-buttons"
+          id="moj"
+          onClick={() => this.changeActiveId(3)}
+        >
+         Kalendar
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary left-buttons"
+          id="moj"
+          onClick={() => this.changeActiveId(4)}
+        >
+          Pretraga profesora
         </button>
       </div>
     );

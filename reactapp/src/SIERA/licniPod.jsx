@@ -87,7 +87,7 @@ class LicniPod extends Component {
                         <h2 class="card-title">{this.state.ime} {this.state.prezime}</h2>
                         <div className="row">
 
-                            <div className="col-lg-6 col-md-8 align-self-stretch" style={{ boxSizing: "border-box", padding: "10px" }}>
+                            <div className="col-lg-6 col-md align-self-stretch" style={{ boxSizing: "border-box", padding: "10px" }}>
                                 <div className="d-flex justify-content-center">
                                     <div className="card" style={{ width: "30rem" }}>
                                         <div className="card-body">
@@ -125,7 +125,7 @@ class LicniPod extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-6 col-md-8 align-self-stretch" style={{ boxSizing: "border-box", padding: "10px" }}>
+                            <div className="col-lg-6 col-md align-self-stretch" style={{ boxSizing: "border-box", padding: "10px" }}>
                                 <div className="d-flex justify-content-center">
                                     <div className="card" style={{ width: "28rem"}}>
                                         <div className="card-body">

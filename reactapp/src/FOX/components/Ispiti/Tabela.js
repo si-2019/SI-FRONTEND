@@ -53,6 +53,10 @@ class TabelaPredmeti extends  React.Component {
         }
         
     }
+    redirectt = (e) => {
+        window.location.replace("/charlie/kreiraj-ispit-detalji");
+        //this.props.history.push('/charlie/kreiraj-ispit-detalji');
+    }
     render() {
         const data2 = this.state.data;
         var brojac = 0;
@@ -71,16 +75,28 @@ class TabelaPredmeti extends  React.Component {
                     </thead>
                     <tbody>
                         {
-                            data2.map((dataf, i) => {
-                                return <tr>
-                                    <td onClick={this.funkcija} value={data2[brojac++].tip}>{dataf.tip}</td>
-                                    <td>{dataf.datum}</td>
-                                    <td>{dataf.sala}</td>
-                                    <td>{dataf.brstudenata}</td>
-                                </tr>                            
-                            })
-                            }
-                        </tbody>
+                        data2.map((dataf, i) => {
+                            return <tr>
+                                <td onClick={this.funkcija} value={data2[brojac++].tip}>{dataf.tip}</td>
+                                <td>{dataf.datum}</td>
+                                <td>{dataf.sala}</td>
+                                <td>{dataf.brstudenata}</td>
+                            </tr>                            
+                        })
+                        }
+                        <tr>
+                            <td>
+                            <button 
+                                type="button" 
+                                className="btn btn-primary left-buttons"
+                                onClick={this.redirectt}> Registruj novi ispit
+                            </button>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
                     </Table>
                     
                 }

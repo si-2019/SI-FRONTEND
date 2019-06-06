@@ -31,14 +31,20 @@ class Forma extends Component {
         })
     }
 
-    onChange = (e) => {
+   /* onChange = (e) => {
         var split=e.target.value.split(" - ");     
         this.setState({
-          selectedValue: split[1], id: split[0], ime: split[1], 
+          selectedValue: e.target.value, id: split[0], ime: split[1], 
           prezime: split[2], email: split[3], telefon: split[4] , adresa: split[5],   indeks: split[6]
          })  
-    }
-
+    }*/
+    onChange = (e) => {
+      var split=e.target.value.split(",");   
+      this.setState({
+        selectedValue: e.target.value, id: split[0], ime: split[1], 
+        prezime: split[2], email: split[3], telefon: split[4], adresa: split[5], indeks: split[6]
+       })
+      }
 
       handleChange = (event) => {
         event.preventDefault()
@@ -103,8 +109,8 @@ class Forma extends Component {
                 <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
                 {
                   lista.length ? lista.map(list => 
-                  <option key={list.id}>{list.id} - {list.ime} - {list.prezime} - {list.email} - {list.telefon} - {list.adresa} - {list.indeks}</option>
-                  ): null
+                 <option key={list.id} value={[list.id, list.ime, list.prezime, list.email, list.telefon, list.adresa, list.indeks]}>{list.ime} {list.prezime}</option>
+                 ): null
                 }
                 </select><br /><br />
                 
@@ -144,3 +150,4 @@ class Forma extends Component {
 
 export default Forma
 
+//{/* <option key={list.id}>{list.id} - {list.ime} - {list.prezime} - {list.email} - {list.telefon} - {list.adresa} - {list.indeks}</option>*/}

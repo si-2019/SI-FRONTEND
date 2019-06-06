@@ -22,6 +22,9 @@ class Stranice extends Component {
         this.setState({ LinkedIn: In });
         const web = res.data.map(obj => obj.website);
         this.setState({ Website: web });
+      })
+      .catch(err=>{
+        console.log(err);
       });
   }
 

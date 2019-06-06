@@ -22,6 +22,7 @@ class LeftMenuStudentSiera extends React.Component {
                 type="button"
                 className="btn btn-primary left-buttons"
                 onClick={()=>this.changeActiveId(x.changeId)}
+                style={{width:"100%"}}
                 >
                     {x.naziv}
                 </button>

@@ -10,16 +10,3 @@
 }
 
 
-#leftSiera {
-  width: 350px;
-  background-color: #2C3E50;
-  float: left;
-  min-height: calc(100vh - 80px);
-}
-#rightSiera {
-  float: right;
-  background-color: white;
-  min-height: calc(100vh - 80px);
-  width: calc(100% - 350px);
-}
-

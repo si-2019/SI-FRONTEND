@@ -39,37 +39,41 @@ class FormaProfPred extends Component {
 
     onChangeOdsjek = (e) => {
         var split=e.target.value.split(",");   
-        console.log(split[1]);  
+        console.log(split[0]);  
         this.setState({
-          odsjek: split[1],
+          odsjek: split[0],
           selectedValueO: e.target.value
          })  
     }
 
     onChangePredmet = (e) => {
         var split=e.target.value.split(","); 
-        console.log(split[1]);    
+        console.log(split[0]);    
         this.setState({
-          predmet: split[1], 
+          predmet: split[0], 
           selectedValueP: e.target.value
          })  
     }
 
-    spoji(odsjek, predmet){
-        console.log(odsjek,predmet);
-        const json={"idOdsjek":odsjek, "idPredmet":predmet, "godina":null, "ciklus":null, "obavezan":null}
+    spoji(){
+        //console.log(odsjek,predmet);
+        const body={"idOdsjek": this.state.odsjek, "idPredmet": this.state.predmet, "godina": null, "ciklus": null, "semestar": null, "obavezan": null}
+        const json=JSON.stringify(body);
         console.log(json);
         axios.post("http://localhost:31901/api/povezivanje/SpojiOdsjekPredmet", json)
         .then(response => {
             console.log(response);
         })
         .catch(error=>{
-            console.log(error);
+            console.log(error.response);
+            alert(error.response.data.message);
+            
         })
     }
 
     render() {
         const {odsjek, predmet, listaOdsjeka, listaPredmeta, selectedValueO, selectedValueP}= this.state;
+        console.log("LISTE", listaOdsjeka, listaPredmeta);
 
         return (
           <div className="col-md-2">
@@ -91,7 +95,7 @@ class FormaProfPred extends Component {
                 }
                 </select><br /><br />
 
-                <button className="btn btn-success btn-block" onClick={()=>this.spoji(odsjek,predmet)}>Dodaj</button>
+                <button className="btn btn-success btn-block" onClick={()=>this.spoji()}>Dodaj</button>
 
           </div>
         );

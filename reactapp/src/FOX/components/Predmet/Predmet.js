@@ -1,107 +1,60 @@
 import React, { Component } from 'react';
+import Link from 'react-router-dom/Link';
 import './Predmet.css';
-import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns'
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
+import axios from 'axios';
 
 class Predmet extends Component {
-    state = {  }
-    render() { 
-        return (
-            <div>
-               <CardColumns>
-               <Card style={{ width: '15rem', border: '0.5px solid gray' }}>
-                    <Card.Body>
-                         <Card.Title>
-                              <a href="fox/StranicaPredmeta"> <h3>PREDMET 1</h3> </a>
-                         </Card.Title>
-                         <Card.Text>
-                              <ul>                   
-                                   <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
-                              </ul>
-                         </Card.Text>
-                    </Card.Body>
-               </Card>
+     state = {
+          predmeti: [
+               {naziv: "Tehnike programiranja"},
+               {naziv: "Numerički algoritmi"},
+               {naziv: "Diskretna matematika"}
+          ],
+          grupe: [
+               {naziv: "Grupa 1"},
+               {naziv: "Grupa 2"},
+               {naziv: "Grupa 3"}
+          ]
+     }
 
-               <Card style={{ width: '15rem', border: '.5px solid gray' }}>
-                    <Card.Body>
-                         <Card.Title>
-                              <a href="fox/StranicaPredmeta"> <h3>PREDMET 2</h3> </a>
-                         </Card.Title>
-                         <Card.Text>
-                              <ul>                   
-                                   <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
-                              </ul>
-                         </Card.Text>
-                    </Card.Body>
-               </Card>
+     componentDidMount() {
+          // Privremeno rješnje
 
-               <Card style={{ width: '15rem', border: '.5px solid gray' }}>
-                    <Card.Body>
-                         <Card.Title>
-                              <a href="fox/StranicaPredmeta"> <h3>PREDMET 3</h3> </a>
-                         </Card.Title>
-                         <Card.Text>
-                              <ul>                   
-                                   <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                                   <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
-                              </ul>
-                         </Card.Text>
-                    </Card.Body>
-               </Card>
-               </CardColumns>
-               {/*
-                <div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"> <h3>PREDMET</h3></a>
-                    </div>
-                </div>
-                <div>
-                    <ul>                   
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa1</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa2</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa3</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa4</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa5</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa6</li></a>
-                    </div>
-                    <div class="nav-item mr-auto">
-                         <a href="fox/StranicaPredmeta"><li>Grupa7</li></a>
-                    </div>
+          axios.get('http://localhost:31906/api/fox/predmeti/1').then(response => {
+               this.setState({predmeti: response.data});
+          });
 
-                    </ul>
-                </div>
-               */}
-            </div>
-        );
-    }
+          axios.get('http://localhost:31906/api/fox/grupe/1').then(response => {
+               this.setState({grupe: response.data})
+          });
+     }
+
+     render() {
+          return (
+               <div>
+                    <CardDeck>
+                         {this.state.predmeti.map(p => {
+                              return (
+                                   <Card key={p.naziv} style={{ width: '15rem', border: '0.5px solid gray' }} className="text-center">
+                                        <Card.Body>
+                                             <Card.Title>
+                                                  <Link to="fox/stranicaPredmeta"> <h5>{p.naziv}</h5> </Link>
+                                             </Card.Title>
+                                             <Card.Text className="text-center">
+                                                       {
+                                                            this.state.grupe.map(g => <Link key={g.naziv} to="fox/stranicaPredmeta"> {g.naziv}<br/><br/> </Link>)
+                                                       }
+                                             </Card.Text>
+                                        </Card.Body>
+                                   </Card>
+                              );
+                         })}
+                    </CardDeck>
+               </div>
+          );
+     }
 }
  
 export default Predmet;

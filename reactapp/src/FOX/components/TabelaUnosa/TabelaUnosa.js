@@ -1,34 +1,138 @@
 import React, {Component } from 'react';
-
-import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Button';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
+// this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
+
+    constructor(props) {
+        super();
+        this.state = {
+            greskaVis: "hidden",
+            greska: "hidden"
+        }
+        this.handleClick = this.handleClick.bind(this);
+        this.handleCli = this.handleCli.bind(this);
+    }
+
+    handleClick() {
+        if (this.state.temaId == null) {
+           this.setState({
+               greskaVis: "visible",
+           })
+        }
+        else if (this.state.temaId != null) {
+        }
+    }
+    
+    handleCli() {
+        if (this.state.temaId == null) {
+           this.setState({
+               greska: "visible",
+           })
+        }
+        else if (this.state.temaId != null) {
+        }
+    }
+
+  
+    async componentDidMount(){
+       //const {data} = await axios.get('http://localhost:31900/api/fox/bodovi')
+       const {data} = " ispit, datum";
+        this.setState({response:data})
+      }
+      renderOptions = () => {
+        if(!this.state.response) return
+        return this.state.response.map(element => 
+          <option>{element.naziv}</option>
+        );
+      }
+      handleChange= (event) => {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    }
+
+
     render() {
         return(
-            
             <Form>
                 <Form.Row>
-                <Form.Label style={{fontWeight: "bold", paddingLeft: '180px', fontSize: 18, marginTop:"20px"}}> Unos bodova za ispit  </Form.Label>  
+                    <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
+                        <br/>
+                        <h4>Unos bodova za ispit</h4>
+                        <br/>
+                    </Col>
                 </Form.Row>
-            
-            <Form style={{ border:'2px solid', height:"300px",marginTop:"70px", paddingLeft: '80px'}}>
-                <Form.Row style={{padding: '30px'}}>
-                    <Form.Label> Index: </Form.Label>
-                     <input type="text" name="name" />
-                    <Button style= {{paddingLeft: '10px'}}> Pretrazi </Button>   
+
+                <Form.Row>
+                    <Form.Group as={Col} sm={{span: 4, offset: 4}}>
+                        <Form.Control
+                            as="select">
+                            <option>I parcijalni, 20.4.2019.</option>
+                            <option> II parcijalni, 20.6.2019.</option>
+                            <option>Popravni I parcijalni, 1.7.2019.</option>
+                            <option>Popravni II parcijalni, 1.7.2019.</option>
+                            <option>Integralni ispit 1.9.2019.</option>
+                        </Form.Control>
+                    </Form.Group>
                 </Form.Row>
-               
-                <Form.Row style={{padding: '30px' }}>
-                <Form.Label> Bodovi: </Form.Label>
-                <input type= "text" name="name" />
-                <Button> Unesi </Button>
+
+                <hr/>
+
+                <Form.Row>
+                    <Col style={{textAlign: "right"}}>
+                        <Form.Label> Index: </Form.Label>
+                    </Col>
+                    <Col lg="2">
+                        <Form.Control type="text" name="name">
+                        </Form.Control>
+                    </Col>
+                    <Col>
+                        <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                    </Col>
                 </Form.Row>
-           </Form>
+
+                <Form.Row>
+                    <Col style={{textAlign: "center"}}>
+                        <br/>
+                        <label style={{ visibility: this.state.greskaVis}}>
+                            Pero Perić, 12345
+                        </label> 
+                    </Col>
+                </Form.Row>
+
+                <hr/>
+
+                <Form.Row>
+                    <Col style={{textAlign: "right"}}>
+                        <Form.Label> Bodovi: </Form.Label>
+                    </Col>
+                    <Col lg="2">
+                        <Form.Control type="text" name="name">
+                        </Form.Control>
+                    </Col>
+                    <Col>
+                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
+                    </Col>
+                </Form.Row>
+
+                <Form.Row>
+                    <Col style={{textAlign: "center"}}>
+                        <br/>
+                        <label style={{ visibility: this.state.greska}}>
+                            Uspješan unos
+                        </label>
+                        <br/>
+                        <label style={{ visibility: this.state.greska}}>
+                            Pero Perić, 12345
+                        </label>
+                        <br/>
+                        <label style={{ visibility: this.state.greska}}>
+                            20
+                        </label>
+                        <br/>
+                    </Col>
+                </Form.Row>
            </Form>
         );
     }

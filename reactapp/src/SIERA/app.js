@@ -8,12 +8,18 @@ import Navigation from "./Navigation";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import PrikaziStatus from "./PrikaziStatus.jsx";
 import Ocjene from "./Ocjene";
+import Profil from "./ProfilStudenta";
+import axios from "axios";
+import Potvrda from "./Potvrda";
+import PopUp from "./PopUp";
+import Prosjek from "./Prosjek.jsx";
 import "./App.css";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
+import IspitiTabela from "./ispitiTabela";
 
 class App extends Component {
   render() {
@@ -64,9 +70,20 @@ class App extends Component {
                 <Ocjene />
               </div>
             } />
+              
+          <Route
+            exact
+            path="/Siera/ispiti"
+            render={() => (
+              <div class="container-fluid">
+                <IspitiTabela />
+              </div>
+            )}
+          />
           </Switch>
         </div>
       </BrowserRouter>
+
     );
   }
 }

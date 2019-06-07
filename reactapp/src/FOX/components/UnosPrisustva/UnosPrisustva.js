@@ -1,50 +1,55 @@
 import React from 'react';
 import UnosPrisustvaForma from '../UnosPrisustvaForma/UnosPrisustvaForma';
 import Header from '../Header/Header';
+import UnosPrisustvaSedmice from '../UnosPrisustvaSedmice/UnosPrisustvaSedmice';
+import Footer from '../Footer/Footer';
+import '../../ZajednickiCSS.css';
+import axios from 'axios';
 
 
 class UnosPrisustva extends React.Component {
     state = {
         studenti: [
             {
-                index: 1,
+                indeks: 1,
                 ime: "Neko Nekić",
                 predavanje: "da",
-                vjezba: "ne",
+                vjezbe: "ne",
                 tutorijal: "-"
             },
             {
-                index: 2,
+                indeks: 2,
                 ime: "Himzo Polovina",
                 predavanje: "da",
-                vjezba: "-",
+                vjezbe: "-",
                 tutorijal: "da"
             },
             {
-                index: 3,
+                indeks: 3,
                 ime: "Ivo Ivić",
                 predavanje: "-",
-                vjezba: "ne",
+                vjezbe: "ne",
                 tutorijal: "ne"
             },
             {
-                index: 4,
+                indeks: 4,
                 ime: "Medo Medić",
                 predavanje: "ne",
-                vjezba: "ne",
+                vjezbe: "ne",
                 tutorijal: "ne"
             },
             {
-                index: 5,
+                indeks: 5,
                 ime: "Marko Marković",
                 predavanje: "-",
-                vjezba: "ne",
+                vjezbe: "ne",
                 tutorijal: "da"
             }
         ],
         predavanjeSvi: "izaberiOpciju",
         vjezbaSvi: "izaberiOpciju",
-        tutorijalSvi: "izaberiOpciju"
+        tutorijalSvi: "izaberiOpciju",
+        sedmica: 0
     }
 
     constructor(props) {
@@ -62,7 +67,7 @@ class UnosPrisustva extends React.Component {
             return {
                 ...student,
                 predavanje: this.state.predavanjeSvi !== "izaberiOpciju" ? this.state.predavanjeSvi : student.predavanje,
-                vjezba: this.state.vjezbaSvi !== "izaberiOpciju" ? this.state.vjezbaSvi : student.vjezba,
+                vjezbe: this.state.vjezbaSvi !== "izaberiOpciju" ? this.state.vjezbaSvi : student.vjezbe,
                 tutorijal: this.state.tutorijalSvi !== "izaberiOpciju" ? this.state.tutorijalSvi : student.tutorijal
             }
         });
@@ -74,13 +79,13 @@ class UnosPrisustva extends React.Component {
         });
     }
 
-    handleChange = (event, index) => {
+    handleChange = (event, indeks) => {
         const {name, value} = event.target;
         this.setState(prevState => {
             return {
                 ...prevState,
                 studenti: prevState.studenti.map(student => {
-                    if(student.index === index)
+                    if(student.indeks === indeks)
                         return {
                             ...student,
                             [name]: value
@@ -92,19 +97,63 @@ class UnosPrisustva extends React.Component {
     }
 
     handleSubmit = () => {
-        // Pripremiti sve podatke i poslati backendu u odgovarajućem formatu
+        const studenti = this.state.studenti.map(s => {
+            return {
+                id: s.id,
+                ime: s.ime,
+                indeks: s.indeks,
+                predavanje: s.predavanje === "-" ? null : s.predavanje,
+                tutorijal: s.tutorijal === "-" ? null : s.tutorijal,
+                vjezbe: s.vjezbe === "-" ? null : s.vjezbe 
+            };
+        });
+        axios.post('http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=4&brojSedmice=1', studenti);
+    }
+
+    handleClickSedmica = (brojSedmice) => {
+        this.setState({sedmica: brojSedmice});
     }
     
+    componentDidMount() {
+        // Privremeno rješnje
+        axios.get('http://localhost:31906/api/fox/prisustvo?idPredmeta=4&brojSedmice=1').then(response => {
+            let studenti = response.data.map(s => {
+                return {
+                    id: s.id,
+                    ime: s.ime,
+                    indeks: s.indeks,
+                    predavanje: s.predavanje === null ? "-" : s.predavanje,
+                    tutorijal: s.tutorijal === null ? "-" : s.tutorijal,
+                    vjezbe: s.vjezbe === null ? "-" : s.vjezbe 
+                };
+            })
+             this.setState({studenti: studenti});
+        });
+   }
+
     render() {
         return (
-            <div id="unosPrisustvaID">
+            <div id="unosPrisustvaID" className="footerDno">
                 <Header isPocetna={false}/>
-                <UnosPrisustvaForma
-                    data={this.state}
-                    handleSubmit={this.handleSubmit}
-                    handleSubmitSvi={this.handleSubmitSvi}
-                    handleChange={this.handleChange}
-                    handleChangeSvi={this.handleChangeSvi}/>
+                <div style={{padding: "25px", textAlign: "center"}}>
+                    {
+                        this.state.sedmica !== 0 &&
+                            <UnosPrisustvaForma
+                                data={this.state}
+                                handleSubmit={this.handleSubmit}
+                                handleSubmitSvi={this.handleSubmitSvi}
+                                handleChange={this.handleChange}
+                                handleChangeSvi={this.handleChangeSvi}/>
+                    }
+                    {   
+                        this.state.sedmica === 0 &&
+                            <UnosPrisustvaSedmice
+                                handleClickSedmica={this.handleClickSedmica}/>
+                    }
+                    <br/>
+                    <br/>
+                </div>
+                <Footer/>
             </div>
         );
     }

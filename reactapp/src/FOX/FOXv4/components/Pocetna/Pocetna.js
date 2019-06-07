@@ -12,7 +12,7 @@ class Pocetna extends Component {
       <div className="Pocetna">
         <Header1/>
         <Dobrodosli name="GETprofNaziv(this.props.name)"/>
-        <DanDatum/>
+        
         <Predmet/>
         <Footer/>
       </div>

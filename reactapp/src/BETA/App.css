@@ -67,6 +67,17 @@
   
 }
 
+#search-issue-tab{
+  color: #2C3E50;
+}
+
+#formica {
+  margin-top: 12px;
+  margin-left: 16px;
+  margin-right: 16 px;
+  margin-bottom: 1rem;
+}
+
 #right {
   width: 80%;
   float: right;
@@ -138,6 +149,12 @@
   margin-left: 10px;
 }
 
+#buttonObjavi{
+  margin-left: 10px;
+  float: 'left';
+   margin: 0 ;
+}
+
 #buttonDraft{
   margin-left: 10px;
 }
@@ -180,6 +197,22 @@
   margin:auto;
 }
 
+.issueView{
+  display: block;
+  border: 2px black solid;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.issueID{
+  float: left;
+}
+
+.issueButtonDelete{
+  float: right;
+}
 
 @media only screen and (max-width: 600px) {
 
@@ -207,6 +240,7 @@
 
   #naslovDiv{
     display: inline-block !important;
+    
   }
 
   #noviIssue{
@@ -217,7 +251,9 @@
   #formNoviIssue{
     height: 100%;
   }
-
-  
-
+  #buttonZatvori{
+    margin-left: 85px ;
+    width: 50 px;
+    
+  }
 }

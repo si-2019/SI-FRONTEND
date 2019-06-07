@@ -1,33 +1,23 @@
 import React, { Component } from 'react';
 import './Navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const astyle= {
-  padding: '10px',
-  color: 'white'
-};
-
-class Navbar001 extends Component {
-  state = {}
+class NavbarFox extends Component {
     render() {
       return (
         <Navbar bg="dark" variant="dark" expand="lg">
-          <Navbar.Brand href="#home">FOX</Navbar.Brand>
+          <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className="mr-auto"> 
               <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
-                <NavDropdown.Item href="UnosPrisustva">Prisustvo</NavDropdown.Item>
-                <NavDropdown.Item href="UnosBodova">Ispiti</NavDropdown.Item>
-                <NavDropdown.Item href="UnosOcjene">Ocjene</NavDropdown.Item>
-                <NavDropdown.Item href="TemeZavrsnih">Teme</NavDropdown.Item>
+                <NavDropdown.Item href="unosPrisustva">Prisustvo</NavDropdown.Item>
+                <NavDropdown.Item href="unosBodova">Ispiti</NavDropdown.Item>
+                <NavDropdown.Item href="unosOcjene">Ocjene</NavDropdown.Item>
+                <NavDropdown.Item href="unosTeme">Teme</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="ispiti">Ispiti</Nav.Link>
               <Nav.Link href="obavijesti">Obavijesti</Nav.Link>
@@ -37,12 +27,16 @@ class Navbar001 extends Component {
               <Nav.Link href="raspored">Raspored</Nav.Link>
               <Nav.Link href="chat">Chat</Nav.Link>
               <Nav.Link href="forum">Forum</Nav.Link>
-              <Nav.Link href="materijail">Materijali</Nav.Link>
+              <Nav.Link href="materijali">Materijali</Nav.Link>
             </Nav>
+            <Nav className="mr-auto" className="justify-content-end">
+              <Nav.Link href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</Nav.Link>
+              <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>
+            </Nav> 
           </Navbar.Collapse>
         </Navbar>
       );
     }
   }
   
-  export default Navbar001;
+  export default NavbarFox;

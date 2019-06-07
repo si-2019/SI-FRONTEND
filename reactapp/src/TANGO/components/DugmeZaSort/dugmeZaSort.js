@@ -19,22 +19,104 @@ class DugmeZaSort extends Component{
     
     sortirajAZ = (niz) => {
         niz.sort(function(a,b){
+            if(a.sticky === b.sticky) {
+                var textA = a.title.toUpperCase();
+                var textB = b.title.toUpperCase();
+                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            } else if (a.sticky){
+                return -1;
+            }
+            else if (b.sticky){
+                return 1;
+            }
           var textA = a.title.toUpperCase();
           var textB = b.title.toUpperCase();
           return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
     }
-    
+    sortirajAZObrnut = (niz) => {
+        niz.sort(function(a,b){
+            if(a.sticky === b.sticky) {
+                var textA = a.title.toUpperCase();
+                var textB = b.title.toUpperCase();
+                return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+            } else if (a.sticky){
+                return -1;
+            }
+            else if (b.sticky){
+                return 1;
+            }
+          var textA = a.title.toUpperCase();
+          var textB = b.title.toUpperCase();
+          return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+        });
+    }
     sortirajPoBrojuKomentara = (niz) => {
         niz.sort(function(a,b){
-                      var textA = a.brojKomentara
-                      var textB = b.brojKomentara
-                      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            if(a.sticky === b.sticky) {
+                var textA = a.brojKomentara
+                var textB = b.brojKomentara
+                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            } else if (a.sticky){
+                return -1;
+            }
+            else if (b.sticky){
+                return 1;
+            }
+            var textA = a.brojKomentara
+            var textB = b.brojKomentara
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+    }
+    sortirajPoBrojuKomentaraObrnut = (niz) => {
+        niz.sort(function(a,b){
+            if(a.sticky === b.sticky) {
+                var textA = a.brojKomentara
+                var textB = b.brojKomentara
+                return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+            } else if (a.sticky){
+                return -1;
+            }
+            else if (b.sticky){
+                return 1;
+            }
+            var textA = a.brojKomentara
+            var textB = b.brojKomentara
+            return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+        });
+    }
+    sortirajPoDatumuKreiranjaObrnut = (niz) =>{
+        niz.sort(function(a,b){
+            if(a.sticky === b.sticky) {
+                var textA = a.timeCreated;
+                var textB = b.timeCreated;
+                return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+            } else if (a.sticky){
+                return -1;
+            }
+            else if (b.sticky){
+                return 1;
+            }
+                     
+                      var textA = a.timeCreated;
+                      var textB = b.timeCreated;
+                      return (textA > textB) ? -1 : (textA <textB) ? 1 : 0;
                     });
     }
     
     sortirajPoDatumuKreiranja = (niz) =>{
         niz.sort(function(a,b){
+            if(a.sticky === b.sticky) {
+                var textA = a.timeCreated;
+                var textB = b.timeCreated;
+                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            } else if (a.sticky){
+                return -1;
+            }
+            else if (b.sticky){
+                return 1;
+            }
+                     
                       var textA = a.timeCreated;
                       var textB = b.timeCreated;
                       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -49,27 +131,31 @@ class DugmeZaSort extends Component{
         let obrnut= this.props.obrnut;
         if(odDo==='1' && sort==='1'){
             this.sortirajAZ(niz);
-             if(obrnut) {niz.reverse(); obrnut=false;}
+             if(obrnut) {            this.sortirajAZObrnut(niz);
+                obrnut=false;}
         }
         if(odDo==='1' && sort==='2') {
             this.sortirajPoDatumuKreiranja(niz);
-            if(obrnut) {niz.reverse(); obrnut=false;}
+            if(obrnut) {            this.sortirajPoDatumuKreiranjaObrnut(niz);
+                obrnut=false;}
         }
         if(odDo==='1' && sort==='3') {
             this.sortirajPoBrojuKomentara(niz);
-            if(obrnut) {niz.reverse(); obrnut=false;}
+            if(obrnut) {            this.sortirajPoBrojuKomentaraObrnut(niz);
+                obrnut=false;}
         }
         if(odDo==='2' && sort==='1') {
             this.sortirajAZ(niz);
-            if(!obrnut) {niz.reverse(); obrnut=true;}
+            if(!obrnut) { this.sortirajAZObrnut(niz); obrnut=true;}
         }
         if(odDo==='2' && sort==='2'){
             this.sortirajPoDatumuKreiranja(niz);
-            if(!obrnut) {niz.reverse(); obrnut=true;}
+            if(!obrnut) {            this.sortirajPoDatumuKreiranjaObrnut(niz);
+                obrnut=true;}
         }
         if(odDo==='2' && sort==='3') {
             this.sortirajPoBrojuKomentara(niz);
-            if(!obrnut) {niz.reverse(); obrnut=true;}
+            if(!obrnut) { this.sortirajPoBrojuKomentaraObrnut(niz); obrnut=true;}
         }
         this.props.sortirajNiz(niz, obrnut);
         

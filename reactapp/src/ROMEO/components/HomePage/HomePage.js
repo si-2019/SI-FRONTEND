@@ -22,7 +22,8 @@ class Login extends Component {
   }
 
   Odjavi = (e) => {
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
     this.props.history.push("/romeo/login");
   }
 	
@@ -33,13 +34,18 @@ class Login extends Component {
     return (
       <div className="App">
         <div className="header">
-      
+          <img 
+            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
+            alt="new"
+          />
+          <h1>Dobro dosli na home page</h1>
+          <input type="button" name="odjava" id="odjava" value="Odjavi se" onClick={this.Odjavi} />
         </div>
         <div className="main">
-          <h1>Dobro dosli na home page</h1>
+          
         </div>
         <div className="menu">
-          <input type="button" name="odjava" id="odjava" value="Odjavi se" onClick={this.Odjavi} />
+          
         </div>
         <div className="footer">
           Elektrotehnički fakultet u Sarajevu

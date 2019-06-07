@@ -12,6 +12,7 @@ const Navigation = () => {
       <NavLink to="/profesor" className="col-sm-2" style={{color: "#ecf0f1"}}>Profesor</NavLink>
       <NavLink to="/asistent" className="col-sm-2" style={{color: "#ecf0f1"}}>Asistent</NavLink> 
       <NavLink to="/predmet" className="col-sm-2" style={{color: "#ecf0f1"}}>Predmet</NavLink> 
+      <NavLink to="/lozinka" className="col-sm-2" style={{color: "#ecf0f1"}}>Izmjena lozinke korisnika</NavLink> 
     </div>
     </nav>
   );

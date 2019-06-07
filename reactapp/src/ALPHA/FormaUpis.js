@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
 const naziviOdsjeka=["RI", "AiE", "EE", "TK"];
 const opcije = naziviOdsjeka.map((naziv)=>{ 
@@ -14,7 +15,8 @@ class FormaUpis extends Component {
           ciklus: '',
           sem: '',
           tip: '',
-          odsjek: ''
+          odsjek: '', 
+          lista: []
         }
     
         this.state = this.initialState
@@ -26,6 +28,19 @@ class FormaUpis extends Component {
           [event.target.name]: event.target.value
         })
       }
+
+      componentDidMount(){
+        //Promijeniti URL
+        //
+        axios.get ('https://jsonplaceholder.typicode.com/posts')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({lista: response.data});     
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+    }
 
 //Funkcija za backend
       OnSubmit = (event) =>{

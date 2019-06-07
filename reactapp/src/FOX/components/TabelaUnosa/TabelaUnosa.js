@@ -2,7 +2,14 @@ import React, {Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Modal from "react-bootstrap/Modal";
+import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
+import axios from 'axios';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import '../../ZajednickiCSS.css';
+import Container from 'react-bootstrap/Container';
 
 class TabelaUnosa extends Component {
 
@@ -56,88 +63,47 @@ class TabelaUnosa extends Component {
 
     render() {
         return(
-        <Form>
-                <div class="row" style={{ margin: "0px" }}>
-                    <div class="col"></div>
-                    <div class="col" style={{ textAlign: "center", minWidth: "400px" }}>
-                        <div class="card" style={{ display: "inline-block" }}>
-                            <div class="card-body">
-                                <h3 class="card-title">Unos bodova za ispit</h3>
-                                <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
-                                <div style={{ textAlign: "left" }}>
-                                    <label class="col-form-label col-form-label-lg" for="inputLarge">Index</label>
-                                </div>
-                                <button 
-                                    type="button" 
-                                    className="btn btn-primary left-buttons"
-                                    onClick={this.handleClick}>Pretrazi
-                                </button>
-                                <Form.Row>
-                                    Col style={{textAlign: "center"}}>
-                                        <br/>
-                                        <label style={{ visibility: this.state.greskaVis}}>
-                                            Pero Perić, 12345
-                                        </label> 
-                                    </Col>
-                                </Form.Row>
-                                <div style={{ textAlign: "left" }}>
-                                    <label class="col-form-label col-form-label-lg" for="inputLarge">Bodovi</label>
-                                </div>
-                               
-                                <div style={{ visibility: this.state.greskaVis}}><p class="text-danger">Morate odabrati temu!</p></div>
+            
+                <Container fluid>
+                    <Row>
+                        <Col style={{textAlign: "left"}}>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Title>Unos bodova ispita </Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete unijeti bodove pojedinačnom studentu</Card.Subtitle>
+                                    <Form.Group as={Row} controlId = "formNovi">
+                                                <Col lg="2"style={{textAlign: "left"}}>
+                                                    <Form.Label>Index:</Form.Label>
+                                                    <Form.Control 
+                                                         required 
+                                                        type="text" 
+                                                        placeholder="Unesi bodove"
+                                                    />
+                                                    <Button variant="primary" type="submit">Pretrazi </Button> 
+                                                </Col>
+                                                <Col></Col>
+                                    </Form.Group>
 
-                                <button type="button" class="btn btn-primary btn-lg btn-block" onClick={this.handleClick}>Prijavi završni</button>
+                                    <Form.Group as={Row} controlId = "formNoviOpis">
+                                                <Col lg="2"style={{textAlign: "left"}}>
+                                                    <Form.Label>Bodovi:</Form.Label>
+                                                    <Form.Control 
+                                                         required 
+                                                        type="text" 
+                                                        placeholder="Unesi bodove"
+                                                    />
+                                                    <Button variant="primary" type="submit">Unesi </Button> 
+                                                </Col>
+                                                <Col></Col>
+                                    </Form.Group>
+                                </Card.Body>  
+                            </Card>
+                        </Col>
+                    </Row>
+                
+            </Container>
+        
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                </div>
-
-              
-             
-                <Form.Row>
-                    <Col style={{textAlign: "center"}}>
-                        <br/>
-                        <label style={{ visibility: this.state.greskaVis}}>
-                            Pero Perić, 12345
-                        </label> 
-                    </Col>
-                </Form.Row>
-
-                <hr/>
-
-                <Form.Row>
-                    <Col style={{textAlign: "right"}}>
-                        <Form.Label> Bodovi: </Form.Label>
-                    </Col>
-                    <Col lg="2">
-                        <Form.Control type="text" name="name">
-                        </Form.Control>
-                    </Col>
-                    <Col>
-                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
-                    </Col>
-                </Form.Row>
-
-                <Form.Row>
-                    <Col style={{textAlign: "center"}}>
-                        <br/>
-                        <label style={{ visibility: this.state.greska}}>
-                            Uspješan unos
-                        </label>
-                        <br/>
-                        <label style={{ visibility: this.state.greska}}>
-                            Pero Perić, 12345
-                        </label>
-                        <br/>
-                        <label style={{ visibility: this.state.greska}}>
-                            20
-                        </label>
-                        <br/>
-                    </Col>
-                </Form.Row>
-           </Form>
         );
     }
 }

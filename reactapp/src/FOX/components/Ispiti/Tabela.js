@@ -62,7 +62,7 @@ class TabelaPredmeti extends  React.Component {
         var brojac = 0;
         console.log(data2);       
         return (
-            <div>
+            <div className="text-center">
                 {this.state.studenti === false && 
                     <Table striped bordered responsive bsPrefix="table">
                     <thead>
@@ -84,22 +84,16 @@ class TabelaPredmeti extends  React.Component {
                             </tr>                            
                         })
                         }
-                        <tr>
-                            <td>
-                            <button 
-                                type="button" 
-                                className="btn btn-primary left-buttons"
-                                onClick={this.redirectt}> Registruj novi ispit
-                            </button>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
                     </tbody>
                     </Table>
-                    
                 }
+
+                <button 
+                    type="button" 
+                    className="btn btn-primary"
+                    onClick={this.redirectt}> Registruj novi ispit
+                </button>
+
                 {this.state.studenti===true && <StudentiTabela tipIspita={this.state.data.tip}/>}
             </div>
         );

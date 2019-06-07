@@ -37,10 +37,10 @@ class ListaPredmeta extends Component {
         {this.props.children}
         <ul>
           {this.state.predmeti.map(predmet => (
-            <li className="list-group-item d-flex justify-content-between align-items-center list-group-item-action mt-2"
+            <li
               key={predmet}
             >
-              {predmet}
+              <label className="col-form-label">{predmet}</label>
             </li>
           ))}
         </ul>

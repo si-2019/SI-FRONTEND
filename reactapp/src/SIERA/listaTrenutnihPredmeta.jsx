@@ -29,10 +29,9 @@ class ListaPredmeta extends Component {
         <ul>
           {this.state.predmeti.map(predmet => (
             <li
-              className="list-group-item list-group-item-action mt-2"
               key={predmet}
             >
-              {predmet}
+              <label className="col-form-label">{predmet}</label>
             </li>
           ))}
         </ul>

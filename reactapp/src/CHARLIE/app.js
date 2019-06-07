@@ -10,11 +10,109 @@ import PrijavaIspita from "./components/PrijavaIspita";
 import PrijavljeniIspiti from "./components/PrijavljeniIspiti";
 import UrediIspit from "./components/UrediIspit";
 
+import LeftMenu from "./LeftMenu";
+
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      activeContentId: 0,
+      menuButtonTitles: [, "Ispiti"],
+      menuButtonsProfesor: [{
+        btnText: "Kreiraj ispit",
+        component: <KreirajIspit />
+      }, {
+        btnText: "Kreirani ispiti",
+        component: <KreiraniIspiti />
+      }],
+      menuComponentsProfesor: [{
+        naziv: "Profil",
+        changeId: 0,
+        component: <KreirajIspit />
+      }],
+      menuButtonsStudent: [{
+        btnText: "Prijava ispita",
+        component: <PrijavaIspita />
+      }, {
+        btnText: "Kreirani ispiti",
+        component: <PrijavljeniIspiti />
+      }],
+      menuComponentsStudent: [{
+        naziv: "Profil",
+        changeId: 0,
+        component: <PrijavaIspita />
+      }],
+    }
+    this.onChangeActiveId = this.onChangeActiveId.bind(this);
+  }
+  componentDidMount() {
+    var help = [];
+    var i = 0;
+    var helps = [];
+    var j = 0;
+    this.state.menuButtonsProfesor.forEach(x => {
+      help.push({
+        naziv: x.btnText,
+        changeId: i,
+        component: x.component
+      });
+      i++;
+    });
+    this.setState({
+      menuComponentsProfesor: help
+    });
+
+    this.state.menuButtonsStudent.forEach(x => {
+      helps.push({
+        naziv: x.btnText,
+        changeId: j,
+        component: x.component
+      });
+      j++;
+    });
+    this.setState({
+      menuComponentsStudent: helps
+    });
+
+  }
+  onChangeActiveId = (id) => {
+    this.setState({
+      activeContentId: id,
+    })
+  };
   render() {
     return (
       <div className="container">
-        CHARLIE
+        <div className="App">
+
+          <div className="containter-fluid">
+            <div className="row" style={{ margin: "0px", padding: "0px" }}>
+              <div className="col-lg-2 col-md-3 col-sm-12" style={{
+                backgroundColor: "#2C3E50",
+                minHeight: "100%",
+                padding: "0px",
+                margin: "0px"
+              }}>
+                <LeftMenu
+                  triggerChangeActiveId={this.onChangeActiveId}
+                  btnList={this.state.menuComponentsStudent}
+                />
+              </div>
+              <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
+                backgroundColor: "white",
+                minHeight: "calc(100vh - 80px)",
+                margin: "0px",
+                padding: "0px"
+              }}>
+
+                {this.state.menuComponentsStudent[this.state.activeContentId].component}
+
+
+              </div>
+            </div>
+          </div>
+        </div>
         <BrowserRouter>
           <Route
             path="/charlie/info-o-ispitu"
@@ -47,7 +145,7 @@ class App extends Component {
             component={PrijavljeniIspiti}
           />
           <Route path="/charlie/uredi-ispit" exact component={UrediIspit} />
-          <Route path="/charlie" exact component={KreirajIspit} />
+          <Route path="/charlie/kreiraj-ispit" exact component={KreirajIspit} />
         </BrowserRouter>
       </div>
     );

@@ -71,7 +71,7 @@ class FormaNewFAQ extends React.Component {
                                 name="tekst"
                                 value={this.state.tekst}
                                 onChange={this.handleChange}
-                                rows="10"
+                                rows="5"
                                 placeholder="Odgovor na issue"></textarea>
 
                         </div>

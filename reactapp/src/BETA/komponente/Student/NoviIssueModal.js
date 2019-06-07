@@ -10,14 +10,15 @@ class ModalComponent extends React.Component {
         this.state = {
             greska: null,
             brojac: 0,
-            issueText: '',
-            issueTitle: '', //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            issueText: "",
+            issueTitle: "asdadas", //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
             allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
             fileWrong: false,
             fileTooBig: false,
             procitaoStudent: 1,
             procitalaSS: 0,
+            draft:false,
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,26 +44,55 @@ class ModalComponent extends React.Component {
         const { issueTitle, issueText } = this.state;
 
         axios.post('http://localhost:31902/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
-        .then(result => {
-            if(result.data==="Uspjesan upis!")
-           {alert("opa"); {this.setState({ greska: false, issueTitle:"",issueText:" " });}}
+            .then(result => {
+                if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
+                else{
+                    { this.setState({ greska: true})}
+                    alert(JSON.stringify(result.data));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ greska: true });
+            });
+
+    }
+
+    saveAsDraft = () => {
+            
+        const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
+
+            axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+            .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
+            else{
+                { this.setState({ greska: true})}
+                alert(JSON.stringify(result.data));
+            }
         })
         .catch(err => {
             console.log(err);
             this.setState({ greska: true });
         });
+     }
 
-    }
-
-
+     
 
     renderujPotvrdu() {
-        if (this.state.greska == false) {
+        if (this.state.greska == false && this.state.draft == false) {
             return (
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste objavili rjesenje issue-a"
+                    msg="Uspjesno ste poslali issue"
+                />
+            );
+        }
+        else if(this.state.greska == false && this.state.draft == true){
+            return (
+                <Potvrda
+                    key={this.brojac}
+                    successful="true"
+                    msg="Uspjesno ste sacuvali issue kao draft!"
                 />
             );
         }
@@ -72,7 +102,7 @@ class ModalComponent extends React.Component {
                     key={this.brojac}
                     successful="false"
                     //VEDAD ->PRVI SPRINT
-                    msg="Vaš objava nije uspjela! Pokusajte ponovo!"
+                    msg="Vaš issue nije poslan! Pokusajte ponovo!"
                 />
             );
         }
@@ -104,13 +134,13 @@ class ModalComponent extends React.Component {
                     <Modal.Body>
 
                         <div className="form-group">
-                        <>
+                            <>
                                 <label className="col-form-label" for="inputDefault" >Title:</label>
                                 <div className="col-form-label">
-                                <CategoryComponent triggerGetTitleFromCategoryComponent = {this.onChangeTitleInCategoryComponent}
-                        />
+                                    <CategoryComponent triggerGetTitleFromCategoryComponent={this.onChangeTitleInCategoryComponent}
+                                    />
                                 </div>
-                               
+
                                 <textarea
                                     className="form-control"
                                     name="issueText"
@@ -118,26 +148,28 @@ class ModalComponent extends React.Component {
                                     onChange={this.handleChange}
                                     rows="10">
 
-                                    </textarea>
+                                </textarea>
 
-                                    
-                            <input 
-                                type="file" 
-                                className="form-control-file" 
-                                id="exampleInputFile"
-                                aria-describedby="fileHelp"
-                                
-                            />
-                       
-                               
-                                </>
+
+                                <input
+                                    type="file"
+                                    className="form-control-file"
+                                    id="exampleInputFile"
+                                    aria-describedby="fileHelp"
+
+                                />
+
+
+                            </>
                         </div>
 
                     </Modal.Body>
                     <Modal.Footer>
-                    <button 
-                                type="button"
+                        
+                        <button
+                            type="button"
                             className="btn btn-primary"
+                            onClick={this.saveAsDraft}
                             disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                         >Save as draft
                         </button>
@@ -146,10 +178,10 @@ class ModalComponent extends React.Component {
                             id="spasiBtn"
                             className="btn btn-primary"
                             disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
-                           
+
                         >{this.props.btnPotvrdi}
                         </button>
-                       
+
 
                     </Modal.Footer>
                 </form>

@@ -9,45 +9,58 @@ class ModalComponent extends React.Component {
         this.state = {
             greska: null,
             brojac: 0,
-            naziv: "",
-            tekst: "",
             noviInput: {
                 naziv: null,
-                tekst: null
+                tekst: null,
+                issues: []
             }
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleChange(event) {
+    handleChange = (event) => {
         const { name, value } = event.target;
         let state = JSON.parse(JSON.stringify(this.state.noviInput));
         state[name] = value;
         this.setState({
             noviInput: state
         });
+        //timeout?
     }
     handleClose = () => {
         this.props.saveState("modalShow", false);
     }
     handleExit = () => {
-        const { Naziv, Tekst } = this.state.noviInput;
-        let podaci = JSON.parse(JSON.stringify(this.props.novFAQ));
+        const { nazivNovi, tekstNovi } = this.state.noviInput;
+        let podaci = JSON.parse(JSON.stringify(this.props.noviFAQ));
+        console.log("novi naziv: " + nazivNovi);
+        console.log("novi tekst: " + tekstNovi);
+        //setState od handlechange jos uvijek nije updateovao noviInput. 
+        //treba neki workaround :(
 
+        podaci.naziv = nazivNovi;
+        podaci.tekst = tekstNovi;
+        podaci.issues.push({
+            naziv: podaci.naziv,
+            tekst: podaci.tekst
+        })
         this.props.saveState("noviFAQ", podaci);
-
     }
     handleSubmit(event) {
         event.preventDefault();
         //ukoliko neki rezultira greskom, postavite greska na true
-        const { naziv, tekst } = this.state;
-        axios.post('http://localhost:31902/frequentIssue/add', null, { params: { naziv, tekst } })
-            .then(result => {
-                if (result.data === "Uspjesan upis!") { this.setState({ greska: false, naziv: "", tekst: " " }); }
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({ greska: true });
-            });
+        if (this.state.noviInput.naziv != null && this.state.noviInput.tekst != null) {
+            const { naziv, tekst } = this.state.noviInput;
+            axios.post('http://localhost:31902/frequentIssue/add', null, { params: { naziv, tekst } })
+                .then(result => {
+                    if (result.data === "Uspjesan upis!") { this.setState({ greska: false }); }
+                    console.log("result.data: " + result.data);
+
+                })
+                .catch(err => {
+                    console.log(err);
+                    this.setState({ greska: true });
+                });
+        }
 
     }
 
@@ -68,7 +81,6 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="false"
-                    //VEDAD ->PRVI SPRINT
                     msg="Vaš objava nije uspjela! Pokusajte ponovo!"
                 />
             );
@@ -106,7 +118,6 @@ class ModalComponent extends React.Component {
                                 <input type="text"
                                     className="form-control"
                                     name="naziv"
-                                    value={this.state.naziv}
                                     onChange={this.handleChange}
                                     placeholder="Naslov issue-a"
                                 />
@@ -114,7 +125,6 @@ class ModalComponent extends React.Component {
                                 <textarea
                                     className="form-control"
                                     name="tekst"
-                                    value={this.state.tekst}
                                     onChange={this.handleChange}
                                     rows="10"
                                     placeholder="Odgovor na issue"></textarea>
@@ -127,7 +137,7 @@ class ModalComponent extends React.Component {
                         <button type="submit"
                             id="spasiBtn"
                             class="btn btn-primary"
-                            disabled={!this.state.tekst || !this.state.naziv}
+                            disabled={this.state.noviInput.tekst == null || this.state.noviInput.naziv == null}
                         >{this.props.btnPotvrdi}
                         </button>
 

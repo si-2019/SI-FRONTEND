@@ -70,26 +70,16 @@ class TabelaUnosa extends Component {
                                 <Card.Body>
                                     <Card.Title style={{ display: "inline-block", fontSize: '30px', textAlign: "center"}} >Unos bodova ispita </Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete unijeti bodove pojedinačnom studentu</Card.Subtitle>
-                                    <Form.Group as={Col} sm={{span: 4, offset: 4}}>
+                                    <Form.Group as={Col} sm={{span: 6, offset: 2}}>
                                     <select class="custom-select">
-                                        <option selected="">Open this select menu</option>
-                                        <option value="1">I parcijalni, 20.4.2019</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option selected="">Otvori za odabir ispita</option>
+                                        <option value="1">I parcijalni, 20.4.2019.</option>
+                                        <option value="2">II parcijalni, 20.6.2019.</option>
+                                        <option value="3">Popravni I parcijalni, 1.7.2019.</option>
+                                        <option value="3">Popravni II parcijalni, 1.7.2019.</option>
+                                        <option value="3">Integralni ispit 1.9.2019.</option>
                                     </select>
-
-                                        <Form.Control
-                                            as="select">
-                                            <option>.</option>
-                                            <option> II parcijalni, 20.6.2019.</option>
-                                            <option>Popravni I parcijalni, 1.7.2019.</option>
-                                            <option>Popravni II parcijalni, 1.7.2019.</option>
-                                            <option>Integralni ispit 1.9.2019.</option>
-                                        </Form.Control>
                                     </Form.Group>
-                                    
-                                    
-                                    
                                     <Form.Group as={Row} controlId = "index">
                                         <Col lg="6" style={{textAlign: "left"}} > 
                                         <Form.Label>Index:</Form.Label>

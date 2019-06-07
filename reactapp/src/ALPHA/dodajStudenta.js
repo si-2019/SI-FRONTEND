@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Forma from './Forma'
 import FormaUpis from './FormaUpis'
+import FormaPrikazStud from './FormaPrikazStud'
+
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -17,6 +19,10 @@ class DodajStudenta extends Component {
 
                 <Tab eventKey="profile" title="Upiši studenta">
                     <FormaUpis />
+                </Tab>
+
+                <Tab eventKey="prikaz" title="Prikaz studenata">
+                    <FormaPrikazStud />
                 </Tab>
             </Tabs>
             

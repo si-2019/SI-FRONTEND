@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormaAsistent from './FormaAsistent'
-import FormaAsistentPred from './FormaAsistentPred'
+import Povezivanje from './FormaAsistentPred'
+import FormaUrediAsistenta from './FormaUrediAsistenta'
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -16,8 +17,14 @@ class DodajAsistenta extends Component {
                     </Tab>
 
                     <Tab eventKey="profile" title="Dodaj asistenta na predmet">
-                        <FormaAsistentPred />
+                        <Povezivanje />
                     </Tab>
+
+                    <Tab eventKey="profile2" title="Uredi asistenta">
+                        <FormaUrediAsistenta />
+                    </Tab>
+
+
                 </Tabs>
 </div>
         )

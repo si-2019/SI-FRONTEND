@@ -38,6 +38,7 @@ class Ocjenjivanje extends Component {
         rokZaPredaju: "",
         stanjeZadatakaZadace: [],
         pregledanZadatak: [],
+        idZadatakaZadace:  []
       }
     };
   }
@@ -114,6 +115,8 @@ class Ocjenjivanje extends Component {
         zadacaState: res.data
       });
 
+      
+      console.log(this.state.zadacaState);
       this.sumirajBodove();
       this.ostvareniBodovi();
       

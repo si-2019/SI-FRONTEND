@@ -18,9 +18,10 @@ function UnosPrisustvaForma(props) {
     return (
         <div id="unosPrisustvaFormaID">
             <Form onSubmit={props.handleSubmitSvi}>
+            <h4>Unos prisustva za sedmicu {props.data.sedmica}<br/><br/></h4>
                 <Form.Row>
                     <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <h4>Unos prisustva za sve studente</h4>
+                        <h5>Unos prisustva za sve studente</h5>
                     </Col>
                 </Form.Row>
                 
@@ -90,7 +91,7 @@ function UnosPrisustvaForma(props) {
             <Form onSubmit={props.onSubmit}>
                 <Form.Row>
                     <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <h4>Unos prisustva pojedinačno</h4>
+                        <h5>Unos prisustva pojedinačno</h5>
                     </Col>
                 </Form.Row>
 
@@ -110,9 +111,9 @@ function UnosPrisustvaForma(props) {
                             <tbody>
                                 {
                                     props.data.studenti.map((student, counter) =>
-                                        <tr key={student.index}>
+                                        <tr key={student.id}>
                                             <td>{counter + 1}</td>
-                                            <td>{student.index}</td>
+                                            <td>{student.indeks}</td>
                                             <td>{student.ime}</td>
                                             <td>
                                                 <Form.Control 
@@ -120,7 +121,7 @@ function UnosPrisustvaForma(props) {
                                                     style={student.predavanje === "da" ? daStyle : student.predavanje === "ne" ? neStyle : null}
                                                     name="predavanje"
                                                     value={student.predavanje}
-                                                    onChange={(event) => {props.handleChange(event, student.index)}}>
+                                                    onChange={(event) => {props.handleChange(event, student.indeks)}}>
                                                 <option value="da">Da</option>
                                                 <option value="ne">Ne</option>
                                                 <option value="-">-</option>
@@ -129,10 +130,10 @@ function UnosPrisustvaForma(props) {
                                             <td>
                                                 <Form.Control
                                                     as="select"
-                                                    style={student.vjezba === "da" ? daStyle : student.vjezba === "ne" ? neStyle : null}
-                                                    name="vjezba"
-                                                    value={student.vjezba}
-                                                    onChange={(event) => {props.handleChange(event, student.index)}}>
+                                                    style={student.vjezbe === "da" ? daStyle : student.vjezbe === "ne" ? neStyle : null}
+                                                    name="vjezbe"
+                                                    value={student.vjezbe}
+                                                    onChange={(event) => {props.handleChange(event, student.indeks)}}>
                                                 <option value="da">Da</option>
                                                 <option value="ne">Ne</option>
                                                 <option value="-">-</option>
@@ -144,7 +145,7 @@ function UnosPrisustvaForma(props) {
                                                     style={student.tutorijal === "da" ? daStyle : student.tutorijal === "ne" ? neStyle : null}
                                                     name="tutorijal"
                                                     value={student.tutorijal}
-                                                    onChange={(event) => {props.handleChange(event, student.index)}}>
+                                                    onChange={(event) => {props.handleChange(event, student.indeks)}}>
                                                 <option value="da">Da</option>
                                                 <option value="ne">Ne</option>
                                                 <option value="-">-</option>

@@ -3,7 +3,8 @@ import { unstable_createResource } from "react-cache";
 import {
   withRouter
 } from 'react-router-dom'
-import Lista from '../ListaTema/listaTema'
+import Lista from '../ListaTema/listaTema';
+import {Link} from 'react-router-dom';
 
 class NovaTema extends Component {
   constructor() {
@@ -108,8 +109,13 @@ headers:{
             </button>
           </form>
           <hr></hr>
-          <button color="primary" className="btn btn-primary my-1 btn-sm"
-          onClick={this.handleSubmit}> Povratak </button>
+          <Link to ={{
+                    pathname: '/Tango/Teme',
+                  
+                  }}>
+          <button color="primary" className="btn btn-primary my-1 btn-sm" >Povratak</button>
+          </Link>
+        
         </div>
       </div>
     );

@@ -112,7 +112,7 @@ class TabelaUnosa extends Component {
                         </Form.Control>
                     </Col>
                     <Col>
-                    <Button> Unesi </Button>
+                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
                     </Col>
                 </Form.Row>
 

@@ -25,7 +25,7 @@ class DugmeZaObjavu extends Component {
       }).then(res => res.json())
       .then(response => console.log('Success:', JSON.stringify(response)))
       .catch(error => console.error('Error:', error));   
-      window.location = 'http://localhost:3000/Tango/Komentari/?idTeme='+idTeme;  
+      window.location = 'http://localhost:3000/Tango/Komentari/?idTheme='+idTeme;  
      return false;
       };
     

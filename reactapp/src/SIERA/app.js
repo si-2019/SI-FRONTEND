@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom"
 import LicniPod from "./licniPod.jsx";
+import Ocjene from "./Ocjene";
 import ProfilStudenta from "./ProfilStudenta";
-import axios from "axios";
-import Potvrda from "./Potvrda";
-import PopUp from "./PopUp";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
-import PrikaziStatus from "./PrikaziStatus.jsx";
-import Prosjek from "./Prosjek.jsx";
 import "./AppSiera.css";
 import LeftMenuStudentSiera from "./LeftMenuStudentSiera"
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
@@ -39,6 +35,9 @@ class App extends Component {
       }, {
         btnText: "Ispiti",
         component: <IspitiTabela />
+      },{
+        btnText: "Ocjene po godinama",
+        component: <Ocjene />
       }],
       menuComponents: [{
         naziv: "Profil",
@@ -73,7 +72,6 @@ class App extends Component {
 
     return (
       <>
-        <BrowserRouter>
           <div className="App">
 
             <div className="containter-fluid">
@@ -96,7 +94,6 @@ class App extends Component {
                   padding: "0px"
                 }}>
 
-                  <Route exact path="/Siera/profil/:idStudenta" component={ProfilStudenta} />
                   {this.state.menuComponents[this.state.activeContentId].component}
                   
 
@@ -106,7 +103,6 @@ class App extends Component {
 
 
           </div>
-        </BrowserRouter>
       </>
 
     );

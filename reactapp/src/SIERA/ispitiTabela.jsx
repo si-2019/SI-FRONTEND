@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./bootstrap.min.css";
 import axios from "axios";
 import { FormGroup, Table } from "reactstrap";
+import "./tabela.css"
 
 class IspitiTabela extends Component {
   state = {
@@ -85,24 +86,23 @@ class IspitiTabela extends Component {
   render() {
     return (      
       <div>
-        <FormGroup className="px-4">
         {this.state.listaIspita.map((item, i) => (
-          <Table className="table table-bordered text-center bg-active border-solid" key={i}>
+          <table className="table table-bordered text-center bg-active border-solid" key={i}>
             <tbody>
-              <tr key={item[0].idGodine}>
-                <th clasName="tabtip1" scope="row" colSpan="7" style={{ textAlign: "center" }}>
+              <tr class="bg-primary text-light" key={item[0].idGodine}>
+                <th clasName="tabtip" scope="row" colSpan="7" style={{ textAlign: "center" }}>
                   Akademska godina: {item[0].nazivGodine}
                 </th>
               </tr>
               {item[0].predmeti.map(itemPredmet => [
-                <tr
+                <tr className="bg-primary text-light"
                   key={
                     itemPredmet.idPredmet + item[0].nazivGodine + "naziviIspita"
                   }
                 >
                   {itemPredmet.ispiti.length == 0 ? null : <th />}
                   {itemPredmet.ispiti.map(itemIspiti => (
-                    <th className="tabtip1"
+                    <th className="tabtip"
                       colSpan="2"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita}
@@ -119,16 +119,16 @@ class IspitiTabela extends Component {
                   }
                 >
                   {itemPredmet.ispiti.length == 0 ? null : (
-                    <th clasName="tabtip1" scope="row">Predmet</th>
+                    <th clasName="tabtip" scope="row">Predmet</th>
                   )}
                   {itemPredmet.ispiti.map(itemIspiti => [
-                    <th className="tabtip1"
+                    <th className="tabtip"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita + "datum"}
                     >
                       Datum
                     </th>,
-                    <th className="tabtip1"
+                    <th className="tabtip"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita + "bodovi"}
                     >
@@ -169,9 +169,8 @@ class IspitiTabela extends Component {
                 </tr>
               ])}
             </tbody>
-          </Table>
+          </table>
         ))}
-        </FormGroup>
       </div>      
     );
   }

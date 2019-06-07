@@ -130,22 +130,7 @@ export class Body_Cell extends Component {
           url:'http://localhost:31920/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
           responseType:'json'
         })
-          .then(function (response) {
-            var isTrueSet = (response.data.success == 'true'); 
-            if(!isTrueSet)
-            {
-              //signalna poruka kad je dodan
-              this.setState({ signalString: 'Uspjesno dodano' });
-            }
-            else
-            {
-              //signalna poruka kad nije dodan
-              this.setState({ signalString: 'Nije uspjesno dodano' });
-            }
-            console.log(response.data.success);
-           }.bind(this));               
-      }      
-    }
+         
     else{
       if(!(this.state.title == undefined || this.state.title==""))
       {

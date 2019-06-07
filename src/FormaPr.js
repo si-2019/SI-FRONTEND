@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import InputMask from 'react-input-mask';
 import axios from 'axios'
 
 class FormaPr extends Component {

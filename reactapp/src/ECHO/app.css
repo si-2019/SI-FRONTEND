@@ -57,6 +57,14 @@
   width: 50%;
   height: 100%;
 }
+#kartica {
+  width: 50%;
+  height: 100%;
+}
 #naslov {
   text-align: center;
 }
+ #dugme1{
+  float: right;
+ }
+ 

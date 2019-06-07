@@ -4,6 +4,10 @@ import OpisMaterijala from './OpisMaterijala'
 import axios from 'axios';
 
 class objavaProfesor extends Component {
+
+  state = {
+    tipMaterijala: 3
+  }
   
   skiniFile(file,idpredmeta){
     console.log(idpredmeta)
@@ -19,6 +23,12 @@ class objavaProfesor extends Component {
       document.body.appendChild(link);
       link.click();
     });
+  }
+
+  klikObrisiFile = () => {
+    if(this.state.uploadovan == 1){
+      axios.get('http://localhost:31907/r8/obrisiDatoteku/${this.props.match.params.nazivDatoteke}/${this.props.match.params.idpredmeta}//${this.state.tipMaterijala}')
+    }
   }
 
   render() {
@@ -37,6 +47,7 @@ class objavaProfesor extends Component {
             <OpisMaterijala opisMaterijala={this.props.opisMaterijala}></OpisMaterijala>
               {this.props.fileovi.map(predmet => [<a href='#' onClick={this.skiniFile.bind(this,predmet,this.props.idpredmeta)} class='card-link' key='1'>{predmet}</a>,<br key='2'></br>])}
             <DodavanjeDatuma datumobjave={this.state.datumobjave}></DodavanjeDatuma>
+            <button id = "obrisiFile" type = "button" class = "btn btn-success" onClick = { this.klikObrisiFile }> Obrisi </button>
             </div>
         </div>
     );

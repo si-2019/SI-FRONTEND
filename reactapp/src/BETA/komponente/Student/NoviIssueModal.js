@@ -23,7 +23,7 @@ class ModalComponent extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
+        this.fileChangedHandler = this.fileChangedHandler.bind(this);
     }
 
     onChangeTitleInCategoryComponent = (title) => {
@@ -110,6 +110,15 @@ class ModalComponent extends React.Component {
                 />
             );
         }
+        else if(this.state.fileWrong){
+            return(
+            <Potvrda
+                    key={this.brojac}
+                    successful="false"
+                    msg="Ne možete poslati fajl ovog tipa"
+                />
+            );
+        }
         else if (this.state.greska == false && this.state.draft == false) {
             return (
                 <Potvrda
@@ -188,7 +197,7 @@ class ModalComponent extends React.Component {
                                     className="form-control-file"
                                     id="exampleInputFile"
                                     aria-describedby="fileHelp"
-
+                                    onChange={this.fileChangedHandler}
                                 />
                                
 

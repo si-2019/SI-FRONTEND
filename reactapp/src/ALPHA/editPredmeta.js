@@ -19,7 +19,7 @@ class Forma extends Component {
        
       }
 
-      componentDidMount(){
+      componentDidMount  () {
         axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
         .then(response => {
             console.log("Lista: ", response.data);
@@ -28,7 +28,9 @@ class Forma extends Component {
         . catch (error =>{
             console.log(error)
         })
+      
     }
+
 
     onChange = (e) => {
         var split=e.target.value.split(",");     
@@ -45,8 +47,8 @@ class Forma extends Component {
         })
       }
 
-      handleSubmit = (event) =>{
-        event.preventDefault()
+      izmjeni() {
+      
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
         const body =
@@ -63,31 +65,43 @@ class Forma extends Component {
         
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
-
+        if(data.id!="--Predmeti--" && data.id!="" ) {
         xhr.open('POST','http://localhost:31901/api/predmet/PromijeniPredmet', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
             const resp = xhr.responseText;
-            alert(resp);
+           
           }
         }
         xhr.onerror = () => {
           console.log(xhr.statusText);
         }
         xhr.send(body1);   
+        alert("Uspješno izvršene promjene!")
+        window.location.reload()
+      }
+      else {
+        alert("Izaberite predmet!")
+      }
       
       }
-      obrisi(naziv){
+      obrisi(naziv, selectedValue){
+        if(selectedValue!="--Predmeti--" && selectedValue!="" && selectedValue!=undefined ) {
         const json={naziv};
         console.log(naziv);
-        axios.delete("http://localhost:31901/api/predmet/deleteSubject?naziv="+ naziv)
+        axios.delete("http://localhost:31901/api/predmet/deleteSubject?naziv="+ selectedValue)
         .then(response=>{
           console.log(response);
         })
         .catch(error=>{
           console.log(error)
         })
+        alert("Uspješno obrisan predmet!")
+      }
+      else {
+        alert("Izaberite predmet!")
+      }
       }
      
      
@@ -99,8 +113,9 @@ class Forma extends Component {
           
           <div className="col-md-4 col-md-offset-4" >
             <br />
-                <p>Prikaz svih predmeta: </p><br />
-                <select className="custom-select"  onChange={this.onChange}> 
+                <p>Izaberite predmet: </p><br />
+                <select className="custom-select"  onChange={this.onChange} > 
+                <option >--Predmeti-- </option>
                 {
                   lista.length ? lista.map(list => 
                 
@@ -117,22 +132,22 @@ class Forma extends Component {
               <input className="form-control font-weight-bold" readOnly value={id} /> <br />
 
               <label>Naziv </label>
-              <input  className="form-control" type="text" name="naziv" value={naziv} onChange={this.handleChange} /><br />
+              <input  className="form-control" type="text" name="naziv" value={naziv} required onChange={this.handleChange} /><br />
               
               <label >Broj ECTS kredita </label>
-              <input className="form-control" type="number" name="ects" value={ects} onChange={this.handleChange}  /><br />
+              <input className="form-control" type="number" name="ects" required value={ects} onChange={this.handleChange}  /><br />
 
               <label >Broj predavanja </label>
-              <input className="form-control" type="number" name="brojPredavanja" value={brojPredavanja} onChange={this.handleChange}  /><br />
+              <input className="form-control" type="number" name="brojPredavanja" required value={brojPredavanja} onChange={this.handleChange}  /><br />
 
               <label >Broj vježbi </label>
-              <input className="form-control" type="number" name="brojVjezbi" value={brojVjezbi} onChange={this.handleChange}  /><br />
+              <input className="form-control" type="number" name="brojVjezbi" required value={brojVjezbi} onChange={this.handleChange}  /><br />
               <label>Opis </label>
-              <input className="form-control" type="text" name="opis" value={opis} onChange={this.handleChange} /><br />
+              <input className="form-control" type="text" name="opis" required value={opis} onChange={this.handleChange} /><br />
 
               
-              <input type="submit" value="Edit" className="btn btn-success btn-block" />
-              <button className="btn btn-success btn-block" onClick={()=>this.obrisi(naziv)}>Obrisi predmet</button>
+              <button className="btn btn-success btn-block" onClick={()=>this.izmjeni()}>Spremi promjene</button>
+              <button className="btn btn-success btn-block" onClick={()=>this.obrisi(naziv, selectedValue)}>Obrisi predmet</button>
              </form><br />
 
              

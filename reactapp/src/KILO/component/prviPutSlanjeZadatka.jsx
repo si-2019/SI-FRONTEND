@@ -51,6 +51,7 @@ class PrviPutSlanjeZadatka extends Component {
         </button>
         <button
           name="posaljiZadatak"
+          id="posalji1"
           type="button"
           className="btn btn-primary ml-5"
           onClick={this.props.podaci.handleClick}

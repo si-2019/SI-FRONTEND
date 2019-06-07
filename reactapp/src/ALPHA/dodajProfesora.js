@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormaPr from './FormaPr'
 import FormaProfPred from './FormaProfPred'
+import Povezivanje from './povezivanjeProfesorPredmet'
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -8,18 +9,17 @@ import Tab from 'react-bootstrap/Tab'
 class DodajProfesora extends Component {
     render () {
         return (
-            <div className="dodajProfesora">
-                <h1>Profesor</h1>
-            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
+            <div className="dodajProfesora" style={{color: "#2C3E50"}}>
+                <h1 style={{color: "#18BC9C"}}>Profesor</h1>
+                <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
+                    <Tab eventKey="home" title="Dodaj profesora">
+                        <FormaPr />
+                    </Tab>
 
-                <Tab eventKey="home" title="Dodaj profesora">
-                    <FormaPr />
-                </Tab>
-
-                <Tab eventKey="profile" title="Dodaj profesora na predmet">
-                    <FormaProfPred />
-                </Tab>
-            </Tabs>
+                    <Tab eventKey="profile" title="Dodaj profesora na predmet">
+                        <Povezivanje />
+                    </Tab>
+                </Tabs>
 </div>
         )
     }

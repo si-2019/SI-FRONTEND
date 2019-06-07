@@ -70,7 +70,7 @@ class LicniPod extends Component {
 
         return (
             <>
-                <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px" }}>
+                <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px", textAlign:"center" }}>
                     <h3 className="card-header">Student</h3>
                     <div className="card-body">
                         <h5 className="card-title">{this.state.ime} {this.state.prezime}</h5>

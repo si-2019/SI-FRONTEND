@@ -15,6 +15,7 @@ import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
+import Predmeti from "./predmeti";
 //vrati rutu za grupu tango!
 class App extends Component {
   constructor() {
@@ -34,7 +35,7 @@ class App extends Component {
         component: <DropDownZavrsni />
       }, {
         btnText: "Predmeti",
-        component: <ListaTrenutnihPredmeta />
+        component: <Predmeti />
       }, {
         btnText: "Ispiti",
         component: <IspitiTabela />

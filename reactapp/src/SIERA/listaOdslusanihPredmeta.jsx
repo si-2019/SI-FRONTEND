@@ -37,8 +37,7 @@ class ListaPredmeta extends Component {
         {this.props.children}
         <ul>
           {this.state.predmeti.map(predmet => (
-            <li
-              className="list-group-item list-group-item-action mt-2"
+            <li className="list-group-item d-flex justify-content-between align-items-center list-group-item-action mt-2"
               key={predmet}
             >
               {predmet}
@@ -51,24 +50,7 @@ class ListaPredmeta extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="align-self-start">
-            <input
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={() => this.toggle()}
-              value={this.state.znak}
-            />
-          </div>
-          <h5 className="text-muted">Lista odslusanih predmeta</h5>
-        </div>
-        <div className="row">
-          <div className="align-self-start">
-            {this.state.vidljiv ? this.prikazPredmeta() : ""}
-          </div>
-        </div>
-      </div>
+      <div className="align-self-start">{this.prikazPredmeta()}</div>     
     );
   }
 }

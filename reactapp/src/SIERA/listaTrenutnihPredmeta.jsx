@@ -42,17 +42,7 @@ class ListaPredmeta extends Component {
 
   render() {
     return (
-        <div className="container-fluid">
-          <div className="row">
-            <div className="align-self-start">
-              <h5 className="text-muted">Lista trenutnih predmeta</h5>
-            </div>
-          </div>
-          <div className="row">
-            <div className="align-self-start">{this.prikazPredmeta()}</div>
-          </div>
-        </div>
-    
+          <div className="align-self-start">{this.prikazPredmeta()}</div>    
     );
   }
 }

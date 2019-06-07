@@ -29,6 +29,10 @@ class NavbarFox extends Component {
               <Nav.Link href="forum">Forum</Nav.Link>
               <Nav.Link href="materijali">Materijali</Nav.Link>
             </Nav>
+            <Nav className="mr-auto" className="justify-content-end">
+              <Nav.Link href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</Nav.Link>
+              <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>
+            </Nav> 
           </Navbar.Collapse>
         </Navbar>
       );

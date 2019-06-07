@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
 import './Predmet.css';
 import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
-import CardGroup from 'react-bootstrap/CardGroup';
 import CardDeck from 'react-bootstrap/CardDeck';
 import axios from 'axios';
 

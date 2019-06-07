@@ -24,8 +24,6 @@ class App extends React.Component {
                     <td>OPIS</td>
                     <td>DATUM ISTEKA</td>
                     <td>PRIKAZ ANKETE</td>
-                    <td>UREDI</td>
-                    <td>OBRIŠI</td>
                     </tr>
             
 
@@ -35,8 +33,6 @@ class App extends React.Component {
                     <th>{anketa.opisAnkete}</th>
                     <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
                     <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
                     </tr>
                 )) : "Loading..."}
                 </table>

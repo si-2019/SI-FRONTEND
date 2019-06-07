@@ -34,11 +34,11 @@ class FormaProfPred extends Component {
           <div className="col-md-2">
           
             <form  onSubmit={this.OnSubmit} className="container-fluid">
-              <label className="col-md-2">Odaberite profesora </label>
+              <label>Odaberite profesora </label>
               <select className="form-control"  name="profesor" value={profesor} onChange={this.handleInputChange}> </select>
               <br />
               
-              <label className="col-md-2">Odaberite predmet </label>
+              <label>Odaberite predmet </label>
               <select className="form-control"  name="predmet" value={predmet} onChange={this.handleInputChange} > </select>
               <br />
 

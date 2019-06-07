@@ -68,6 +68,24 @@ class IssueList extends React.Component {
         this.setState({isLoading: false});
     }
 
+    onRefreshListNew = (newArray) => {
+        this.setState({
+            dataNew: newArray
+        })
+    };
+
+    onRefreshListInProgress = (newArray) => {
+        this.setState({
+            dataInProgress: newArray
+        })
+    };
+
+    onRefreshListResolved = (newArray) => {
+        this.setState({
+            dataResolved: newArray
+        })
+    };
+
     render() {
         if (this.state.isLoading) {
             return (
@@ -91,7 +109,7 @@ class IssueList extends React.Component {
                     >
                         {!this.state.isLoading &&
                             <div>
-                                <Issue
+                                <Issue triggerRefreshList = {this.onRefreshListNew}
                                 className="tab-issue card"
                                 data={this.state.dataNew}
                                 />
@@ -105,7 +123,7 @@ class IssueList extends React.Component {
                         title={`In progress (${this.state.dataInProgress.length})`}
                     >
                         {!this.state.isLoading  &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListInProgress}
                                 className="tab-issue card"
                                 data={this.state.dataInProgress}
                             />
@@ -117,7 +135,7 @@ class IssueList extends React.Component {
                         title={`Resolved (${this.state.dataResolved.length})`}
                     >
                         {!this.state.isLoading &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListResolved}
                                 className="tab-issue card"
                                 data={this.state.dataResolved}
                             />

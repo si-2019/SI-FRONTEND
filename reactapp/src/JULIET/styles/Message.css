@@ -1,69 +1,52 @@
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-}
-
-.left {
-  float:left;
-  width:100px;
-}
-
-.right {
-  float:right;
-   width:100px;
-}
-
-.message-list {
+.juliet-message-list {
+  list-style-type: none;
   box-sizing: border-box;
   padding: 0 0 0 6px;
-  margin: 0;
-  width: 100%;
-  height: 100%;
+  margin: 0 0 0 10px;
+  width: calc(100% - 10px);
   overflow: scroll;
-  background: lightblue;
+  list-style-type: none;
+  max-height: 100%;
 }
 
-.send-message-form {
-  background: var(--send-message-form);
-  display: flex;
-  box-sizing: border-box;
-  height: 60px;
+.juliet-avatar {
+  max-width: 60px;
+  max-height: 60px;
 }
 
-.send-message-form input {
-  width: 100%;
-  padding: 15px 10px;
-  border: none;
+.juliet-avatar-container {
+  width: 80px;
+  float: left;
+}
+
+.juliet-message-container {
+  height: 100%;
+  width: calc(100% - 80px);
+  margin-left: 80px;
+  /* float: right; */
+}
+
+.juliet-message-sender {
+  font-weight: bold;
+  font-size: 1em;
   margin: 0;
-  background: var(--send-message-form);
-  font-weight: 200;
 }
 
-.send-message-form input:focus {
-  outline-width: 0;
-}
-
-.send-message-form input::placeholder {
+.juliet-message-text  {
+  margin-bottom: 10px;
+  margin-top: 5px;
   color: black;
+  word-wrap: break-word;
+  line-height: initial;
 }
 
-.message {
-  margin: 15px 0;
+.juliet-message {
+  border: none;
+  display: block;
 }
 
-.message div:nth-child(1) {
-  font-size: 11px;
-  color: var(--main-text-color);
-  opacity: 0.9;
-  margin-bottom: 6px;
+.juliet-message-time {
+  font-weight: 300;
+  font-size: 12px;
+  padding-left: 5px;
 }
-.message div:nth-child(2) {
-  background: var(--main-color);
-  color: var(--secondary-color);
-  display: inline;
-  padding: 4px 8px;
-  border-radius: 8px;
-}
-

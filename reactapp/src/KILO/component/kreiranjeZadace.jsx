@@ -16,7 +16,7 @@ class KreiranjeZadace extends Component {
     super(props);
     const urlParams = new URLSearchParams(window.location.search);
     this.state = {
-      idZadace : null,
+      idZadace: null,
       idPredmet: urlParams.get("idPredmeta")
         ? Number(urlParams.get("idPredmeta"))
         : 1,
@@ -48,13 +48,14 @@ class KreiranjeZadace extends Component {
     }
   };
 
-  onChangePostavka = e => { // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
-    if(e) {
+  onChangePostavka = e => {
+    // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
+    if (e) {
       this.setState({
-        postavka : e.target.files
-      })
+        postavka: e.target.files
+      });
     }
-  }
+  };
 
   componentDidMount = () => {
     document.getElementById("kreiranje").style.display = "block";
@@ -95,19 +96,34 @@ class KreiranjeZadace extends Component {
     var data = this.state;
 
     if (data.naziv.length < 2 || data.naziv.length > 30) {
+      // [0] validacija naziva
       porukeGreske.push("Naziv mora sadrzavati izmedju 2 i 30 karaktera!");
+    } else {
+      porukeGreske.push("");
     }
+
     if (data.brojZadataka.toString().includes(".")) {
+      // [1] validacija broja zadataka
       porukeGreske.push("Broj zadataka mora biti cijeli broj!");
-    }
+     } else {
+       porukeGreske.push("");
+     }
+
     if (!this.datumValidan()) {
-      porukeGreske.push(
-        "Datum i vrijeme moraju biti postavljeni minimum na danas u 23:59!"
-      );
+      // [2] validacija datuma
+      porukeGreske.push("Datum i vrijeme moraju biti postavljeni minimum na danas u 23:59!");
+    } else {
+      porukeGreske.push("");
     }
+
     if (data.listaBodova.length === 0) {
+      // [3] validacija maksimalnog broja bodova po zadacima
       porukeGreske.push("Potrebno je unijeti maksimalne bodove za zadatke!");
+    } else {
+      porukeGreske.push("");
     }
+
+    // [4] validacija tipova zadataka
     for (var i = 0; i < data.listaTipova.length; i++) {
       var sviTipoviJednogZadatkaIsti = false;
       for (var j = 0; j < 5; j++) {
@@ -120,10 +136,14 @@ class KreiranjeZadace extends Component {
         porukeGreske.push("Potrebno je unijeti tipove za svaki zadatak!");
         break;
       }
+      if(i === data.listaTipova.length-1){
+        porukeGreske.push("");
+      }
     }
 
-    data.listaBodova.forEach(element => {
-      if (parseFloat(element) <= 0) {
+    for(var i = 0;i<data.listaBodova.length;i++){
+      var element = data.listaBodova[i];
+      if (parseFloat(element) <= 0) {// [5] validacija broja bodova po zadacima
         porukeGreske.push(
           "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!"
         );
@@ -132,6 +152,7 @@ class KreiranjeZadace extends Component {
       if (isNaN(parseInt(element))) {
         porukeGreske.push("Broj bodova mora biti broj!");
         return porukeGreske;
+
       }
       if (parseFloat(element) > 100) {
         porukeGreske.push("Broj bodova mora biti manji od 100!");
@@ -141,7 +162,8 @@ class KreiranjeZadace extends Component {
         porukeGreske.push("Broj bodova moze imati najvise dvije decimale!");
         return porukeGreske;
       }
-    });
+      porukeGreske.push("");
+    };
 
     return porukeGreske;
   };
@@ -184,39 +206,44 @@ class KreiranjeZadace extends Component {
       case "addZadaca": {
         const fData = new FormData();
 
-        if(this.state.postavka[0] !== null) {
+        if (this.state.postavka[0] !== null) {
           var file = this.state.postavka[0];
-          if(file) {
-            fData.append('file', new Blob([file], {type: file.type}));
-            fData.append('imeFajlaPostavke', file.name);
+          if (file) {
+            fData.append("file", new Blob([file], { type: file.type }));
+            fData.append("imeFajlaPostavke", file.name);
           }
         }
-        fData.append('state', JSON.stringify(this.state));
+        fData.append("state", JSON.stringify(this.state));
 
-        if(this.state.radnja === "Kreiranje") { 
-          
-          axios.post("http://localhost:31911/addZadaca", fData).then(res => {
-            if (res.status === 200) {
-              this.setState({ uspjehKreiranja: true });
-            } else if (res.status === 201) {
-              this.setState({ vecPostojiImeZadace: true });
-            } else {
-              this.setState({ neuspjehKreiranja: true });
-            }
-          }).catch(() => this.setState({ neuspjehKreiranja: true }));
+        if (this.state.radnja === "Kreiranje") {
+          axios
+            .post("http://localhost:31911/addZadaca", fData)
+            .then(res => {
+              if (res.status === 200) {
+                this.setState({ uspjehKreiranja: true });
+              } else if (res.status === 201) {
+                this.setState({ vecPostojiImeZadace: true });
+              } else {
+                this.setState({ neuspjehKreiranja: true });
+              }
+            })
+            .catch(() => this.setState({ neuspjehKreiranja: true }));
+        } else if (this.state.radnja === "Azuriranje") {
+          axios
+            .put(
+              `http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`,
+              fData
+            )
+            .then(res => {
+              if (res.status === 200) {
+                this.setState({ uspjehKreiranja: true });
+              } else if (res.status === 201) {
+                this.setState({ vecPostojiImeZadace: true });
+              } else {
+                this.setState({ neuspjehKreiranja: true });
+              }
+            });
         }
-        
-        else if(this.state.radnja==="Azuriranje") {
-          axios.put(`http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`, fData).then(res => {
-            if (res.status === 200) {
-              this.setState({ uspjehKreiranja: true });
-            } else if (res.status === 201) {
-              this.setState({ vecPostojiImeZadace: true });
-            } else {
-              this.setState({ neuspjehKreiranja: true });
-            }
-          });
-        }  
       }
       default: {
       }
@@ -304,9 +331,8 @@ class KreiranjeZadace extends Component {
 
   render() {
     var radnjaGlagol;
-    if(this.state.radnja==="Azuriranje")
-    radnjaGlagol="ažurirali";
-    else radnjaGlagol="kreirali";
+    if (this.state.radnja === "Azuriranje") radnjaGlagol = "ažurirali";
+    else radnjaGlagol = "kreirali";
     return (
       <div>
         <div>
@@ -362,7 +388,7 @@ class KreiranjeZadace extends Component {
               </p>
             </ModalHeader>
             <ModalBody>
-              Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " 
+              Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom "
               {this.state.naziv} ".
             </ModalBody>
             <ModalFooter>
@@ -392,12 +418,11 @@ class KreiranjeZadace extends Component {
         </div>
         <div id="preview">
           <PreviewZadace podaci={this.state} />
-          <Button 
-             className=" btn bg-primary ml-4"
+          <Button
+            className=" btn bg-primary ml-4"
             id="idiNaKreiranjeZadace"
             name="idiNaKreiranjeZadace"
             onClick={this.handleClick}
-           
           >
             Natrag
           </Button>

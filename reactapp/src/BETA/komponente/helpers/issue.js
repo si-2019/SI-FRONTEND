@@ -78,7 +78,7 @@ export default class Issue extends React.Component {
                 datum.push(d[1]);
                 datum.push(d[2]);
                 datum.push(d[3]);
-                datum.push('.');
+                datum.push('.'); 
 
                 return (
                     <div className="row">

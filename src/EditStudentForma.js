@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import { postRequest } from './actions/post'
 
 class Forma extends Component {
     constructor(props) {
@@ -31,13 +30,6 @@ class Forma extends Component {
         })
     }
 
-   /* onChange = (e) => {
-        var split=e.target.value.split(" - ");     
-        this.setState({
-          selectedValue: e.target.value, id: split[0], ime: split[1], 
-          prezime: split[2], email: split[3], telefon: split[4] , adresa: split[5],   indeks: split[6]
-         })  
-    }*/
     onChange = (e) => {
       var split=e.target.value.split(",");   
       this.setState({
@@ -82,6 +74,7 @@ class Forma extends Component {
         }
         xhr.onerror = () => {
           console.log(xhr.statusText);
+          alert(xhr.responseText);
         }
         xhr.send(body1);   
       
@@ -149,5 +142,3 @@ class Forma extends Component {
 }
 
 export default Forma
-
-//{/* <option key={list.id}>{list.id} - {list.ime} - {list.prezime} - {list.email} - {list.telefon} - {list.adresa} - {list.indeks}</option>*/}

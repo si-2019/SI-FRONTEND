@@ -4,14 +4,14 @@ import './bootstrapflatly.css'
 
   class Lista extends Component {
     constructor(props){
-      super();
+      super(props);
     }
     render(){
       return (
         <form>
           <fieldset>
             <div>
-              <Select submit={this.props.submit}/>        
+              <Select submit={this.props.submit} predmeti={this.props.predmeti}/>        
             </div>
           </fieldset>
          </form>
@@ -21,33 +21,34 @@ import './bootstrapflatly.css'
   
   class Select extends Component {
     constructor(props){
-      super();
+      super(props);
       this.state = {
-        tech: 'Lista predmeta: '
+        tech: 'Lista predmeta: ',
+        predmeti:props.predmeti,
+        trenutniPredmet:0
       };
     }
     handleChange(e){
+      var selekt=document.getElementById("selectListe").selectedIndex;
       this.setState({
-        tech: e.target.value
+        tech: e.target.value,
+        trenutniPredmet:selekt-1
       })
     }
     render(){
       return (
-        
-
-        
         <div className="bs-component">
          <h3>{this.state.tech}</h3>
           <select style={{width: '400px'}} className="form-control" id="selectListe" onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option className="list-group-item" value="Lista predmeta">Odaberite predmet</option>
-            <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
-            <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
-            <option className="list-group-item" value="Projektovanje informacionih sistema">Projektovanje informacionih sistema</option>
-            <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
+            {
+              this.state.predmeti.map(predmet=>{
+                return <option className="list-group-item" value={predmet.naziv}>{predmet.naziv}</option>
+              })
+            }
           </select>
          
-      <PrikazPredmeta opisProjekta={"Ovo je opis projekta koji je potrebno uraditi na odabranom predmetu"} brojMogucihBodova={20}/>
-        
+      <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].opis} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].bodovi}/>
         
         <button className="btn btn-primary" onClick={this.props.submit}>Dalje</button>
         </div>

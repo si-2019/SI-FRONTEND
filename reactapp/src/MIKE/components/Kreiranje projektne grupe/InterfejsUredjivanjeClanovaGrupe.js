@@ -89,7 +89,6 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
             var tekst=ajax.responseText;
-            console.log(tekst);
             if(tekst.length==0) return;
             var json=JSON.parse(tekst);
             var jsonNovi=[];
@@ -108,7 +107,6 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     ajax2.onreadystatechange=function(){
         if(ajax2.readyState==4 && ajax2.status=="200"){
             var tekst=ajax2.responseText;
-            console.log(tekst);
             if(tekst.length==0) return;
             var json=JSON.parse(tekst);
             var jsonNovi=[];
@@ -136,7 +134,6 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     var y=this.refs.vani;
     if(x.selectedIndex>=0){
       this.nizVani.push(this.state.studentiUnutra[x.selectedIndex]);
-      console.log(this.nizVani);
       var o=x.options[x.selectedIndex];
       y.add(o);
     }

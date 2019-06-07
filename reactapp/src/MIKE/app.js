@@ -38,10 +38,9 @@ class Mike extends Component {
         <button className="btn btn-primary btn-lg btn-block" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
       </div>
     );
-    else if (this.state.forma=="kreiranjeGrupe") return (
-     <Lista submit={this.unosInformacija}/>
-     
-    );
+    else if (this.state.forma=="kreiranjeGrupe"){
+      return ( <Lista submit={this.unosInformacija} predmeti={this.state.predmeti}/>);
+    }
     else if (this.state.forma=="listaProjekata") return (
         <PregledListeProjekata />
     )
@@ -68,19 +67,46 @@ class Mike extends Component {
     )
   }
   kreiranjeGrupe(){
+    let ajax=new XMLHttpRequest();
+      var komponenta=this;
+      var jsonNovi=[{id:1,naziv:"Softverski inzenjering",opis:"Projekat informacionog sistema za fakultet",bodovi:20},
+      {id:2,naziv:"Projektovanje informacionih sistema",opis:"Informacioni sistem Crvenog Križa FBiH",bodovi:30}];
+      ajax.onreadystatechange=function(){
+          if(ajax.readyState==4 && ajax.status=="200"){
+            var tekst=ajax.responseText;
+            if(tekst.length==0) return;
+            var json=JSON.parse(tekst);
+            jsonNovi=[];
+            for(var i=0;i<json.length;i++){
+                jsonNovi.push({id:json[i].id,naziv:json[i].naziv,opis:json[i].opis,bodovi:json[i].bodovi});
+            }
+            komponenta.setState(state=>({
+              forma:"kreiranjeGrupe",
+              predmeti:jsonNovi
+            }));
+          }
+          else if(ajax.status!="200"){
+            komponenta.setState(state=>({
+              forma:"kreiranjeGrupe",
+              predmeti:jsonNovi
+            }));
+          }
+      }
+      ajax.open("POST","http://localhost:31913/API/NA",true);
+      ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.send("idKorisnik=41");
     this.setState({forma:"kreiranjeGrupe"});
   }
   listaProjekata(){
     this.setState({forma:"listaProjekata"});
   }
   pregledDetaljaPredmeta(){
-		var ajax=new XMLHttpRequest();
+		let ajax=new XMLHttpRequest();
     var komponenta=this;
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
 					var tekst=ajax.responseText;
           if(tekst.length==0) return;
-          console.log(tekst);
 					var json=JSON.parse(tekst);
 					var jsonNovi=[];
 					for(var i=0;i<json.length;i++){

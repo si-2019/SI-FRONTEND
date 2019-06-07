@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Forma from './FormaOdsjek'
 import FormaOdsjekPred from './FormaOdsjekPred'
+import Prikaz from './prikazOdsjeka'
+import Edit from './editOdsjeka'
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -18,6 +20,13 @@ class DodajOdsjek extends Component {
                     <Tab eventKey="profile" title="Dodaj predmet na odsjek">
                         <FormaOdsjekPred />
                     </Tab>
+					
+					<Tab eventKey="profile1" title="Prikaz odsjeka">
+                    <Prikaz />
+                </Tab>
+                <Tab eventKey="profile2" title="Izmjeni odsjek">
+                    <Edit />
+                </Tab>
                   
                 </Tabs>               
 

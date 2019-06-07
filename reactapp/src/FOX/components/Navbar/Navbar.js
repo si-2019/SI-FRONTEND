@@ -12,7 +12,7 @@ class NavbarFox extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"> 
-              <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
+              <Nav.Link href="StranicaPredmeta?predmetId=Tehnike Programiranja">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
                 <NavDropdown.Item href="unosPrisustva">Prisustvo</NavDropdown.Item>
                 <NavDropdown.Item href="unosBodova">Ispiti</NavDropdown.Item>

@@ -8,7 +8,27 @@ import Col from 'react-bootstrap/Col';
 import '../../ZajednickiCSS.css'
 
 class StranicaPredmeta extends Component {
+  state = {
+    predmet: null,
+    grupaId: null
+  }
+  async componentDidMount(){
+    const predmetId = this.props.match.params.predmetId;
+    const params = new URLSearchParams(this.props.location.search);
+    const grupaId = (params.get('grupaId'))
+    console.log(predmetId, grupaId)
+    this.setState({
+      predmet:predmetId,
+      grupaId:grupaId
+    })
+  }
   render() {
+    const params = new URLSearchParams(this.props.location.search);
+    let predmetIgrupa = (params.get('predmetId'));
+    var res = predmetIgrupa.split("?");
+    console.log(predmetIgrupa, res);
+    const predmet = res[0];
+    const grupa = res[1];
     return (
       <div className="StranicaPredmeta" className="footerDno">
         <Header isPocetna={false}/>
@@ -16,7 +36,8 @@ class StranicaPredmeta extends Component {
           <Row>
             <Col style={{textAlign: "center"}}>
             <br></br>
-            <h4>Stranica predmeta</h4>
+            <h4>{predmet && predmet}</h4>
+            <h4>{grupa && grupa}</h4>
             <br></br>
             </Col> 
           </Row>

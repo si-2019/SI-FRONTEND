@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import FormaPredmet from './FormaPredmet'
-import FormaProfPred from './FormaProfPred'
 import Forma from './editPredmeta'
 
 import Tabs from 'react-bootstrap/Tabs'
@@ -16,9 +15,6 @@ class DodajPredmet extends Component {
                         <FormaPredmet />
                     </Tab>
                     
-                    <Tab eventKey="profile" title="Dodaj profesora na predmet">
-                        <FormaProfPred />
-                    </Tab>
                     <Tab eventKey="profile2" title="Izmjeni predmet">
                         <Forma />
                     </Tab>

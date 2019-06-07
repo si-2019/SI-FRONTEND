@@ -25,9 +25,17 @@ class FormaPredmet extends Component {
 
 //Funkcija za backend
       handleSubmit = (event) =>{
+      
+
+
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data);
+        if(data.brojPredavanja<0 || data.brojVjezbi<0 || data.ects<0 ) {
+          alert("Broj predavanja, vježbi i ects kredita ne može biti negativan")
+          window.location.reload()
+          return
+        }
 
         const xhr = new XMLHttpRequest();
 
@@ -38,12 +46,15 @@ class FormaPredmet extends Component {
           if(xhr.status === 200) {
             const resp = xhr.responseText;
             alert(resp);
+            
           }
         }
         xhr.onerror = () => {
           console.log(xhr.statusText);
         }
         xhr.send(body); 
+        alert("Uspješno dodan predmet!")
+        window.location.reload()
        
       }
      
@@ -61,20 +72,20 @@ class FormaPredmet extends Component {
           <div className="col-md-4 col-md-offset-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
               <label >Naziv predmeta</label>
-              <input  className="form-control" type="text" name="naziv" value={naziv} onChange={this.handleChange} /><br />
+              <input  className="form-control" type="text" name="naziv" required value={naziv} onChange={this.handleChange} /><br />
               
               <label >Broj ECTS kredita </label>
-              <input className="form-control" type="number" name="ects"  onChange={this.handleChange}  /><br />
+              <input className="form-control" type="number" name="ects" required onChange={this.handleChange}  /><br />
 
               <label >Broj predavanja</label>
-              <input className="form-control" type="number" name="brojPredavanja"  onChange={this.handleChange}  /><br />
+              <input className="form-control" type="number" name="brojPredavanja" required  onChange={this.handleChange}  /><br />
 
              
 
               <label >Broj vježbi</label>
-              <input className="form-control " type="number" name="brojVjezbi"  onChange={this.handleChange}/><br />
+              <input className="form-control " type="number" name="brojVjezbi" required  onChange={this.handleChange}/><br />
               <label >Opis</label>
-              <input className="form-control " type="text" name="opis"  onChange={this.handleChange}/><br />
+              <input className="form-control " type="text" name="opis" required  onChange={this.handleChange}/><br />
 
             
              

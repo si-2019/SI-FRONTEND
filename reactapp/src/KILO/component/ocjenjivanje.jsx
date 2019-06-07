@@ -28,6 +28,7 @@ class Ocjenjivanje extends Component {
       ostvareniMoguci: [],
       defaultno: "",
       renderajOpet:false,
+      idPredmeta: 3,
       idZadace: "",
       idStudenta: "",
       uspjehOcjenjivanja: true,
@@ -88,7 +89,7 @@ class Ocjenjivanje extends Component {
   };
 
   pokupiZadace = () => {
-    axios.get("http://localhost:31911/getZadace").then(res => {
+    axios.get(`http://localhost:31911/getZadaceZaOcjenjivanje/${this.state.idPredmeta}`).then(res => {
       this.setState({
         listaZadaca: res.data
       });

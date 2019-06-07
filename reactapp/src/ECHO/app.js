@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     const { open } = this.state;
     return (
-      <div className="App">
+      <div className="appECHO">
         <h2 id="naslov">ECHO</h2>
         <div id="mainECHO">
           <div id="leftECHO">

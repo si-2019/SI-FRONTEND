@@ -7,12 +7,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 class NavbarFox extends Component {
     render() {
       return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="primary" variant="dark" expand="lg">
           <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"> 
-              <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
+              <Nav.Link href="StranicaPredmeta?predmetId=Tehnike Programiranja">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
                 <NavDropdown.Item href="unosPrisustva">Prisustvo</NavDropdown.Item>
                 <NavDropdown.Item href="unosBodova">Ispiti</NavDropdown.Item>

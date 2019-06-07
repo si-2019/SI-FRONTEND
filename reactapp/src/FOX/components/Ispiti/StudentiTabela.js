@@ -1,6 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom';
-import ReactTable from 'react-table'
+import ReactTable from 'react-table';
+import Table from 'react-bootstrap/Table';
 
 class TabelaPredmeti extends  React.Component {
     constructor(props){
@@ -98,57 +99,34 @@ class TabelaPredmeti extends  React.Component {
             data: dataY
         }
     }
-    funkcija = (e) =>{
-        console.log("X",e.target.getAttribute('value'));
-        let dataNova;
-        for(let i = 0; i<3; i++){
-            if(this.state.data[i].tip === e.target.getAttribute('value')){
-                dataNova = {
-                    tip: this.state.data[i].tip,
-                    datum: this.state.data[i].datum,
-                    sala: this.state.data[i].sala,
-                    brstudenata: this.state.data[i].brstudenata
-                }
-            }
-        }
-        if(dataNova !== null){
-            this.setState({
-                studenti: true,
-                data: dataNova
-            })
-        }
-        
-    }
     render() {
         const data2 = this.state.data;
         var brojac = 0;
         console.log(data2);
-        const columns = [{
-          Header: 'Ime',
-          accessor: 'Ime',
-          Cell: props => <span>{props.value}</span>
-        },
-        {
-          Header: 'Prezime',
-          accessor: 'Prezime',
-          Cell: props => <span>{props.value}</span>
-        },
-        {
-          Header: 'Bodovi',
-          accessor: 'Bodovi',
-          Cell: props => <span>{props.value}</span>
-        },
-        {
-          Header: 'Index',
-          accessor: 'Index',
-          Cell: props => <span>{props.value}</span>
-        }]
         return (
             <div>
-                <ReactTable
-                data={data2}
-                columns={columns}
-                />
+                <Table striped bordered responsive bsPrefix="table">
+                    <thead>
+                        <tr className="table-primary">
+                            <th>Ime</th>
+                            <th>Prezime</th>
+                            <th>Bodovi</th>
+                            <th>Index</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            data2.map((dataf, i) => {
+                                return <tr>
+                                    <td>{dataf.Ime}</td>
+                                    <td>{dataf.Prezime}</td>
+                                    <td>{dataf.Bodovi}</td>
+                                    <td>{dataf.Index}</td>
+                                </tr>                            
+                            })
+                            }
+                        </tbody>
+                    </Table>
             </div>
         );
       }

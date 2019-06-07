@@ -38,13 +38,37 @@ class OcjenjivanjeJednaZadaca extends Component {
                           <tr>
                            <th>{this.props.podaci.state.zadaca}</th>
                            
+
+
+
+
+
+{this.props.podaci.state.ostvareniMoguci.map((ostvareniBodovi, indeks2) => ( 
+                           <th>{ostvareniBodovi}  
+                        {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 0 && <Icon type="indicator" name="attachment"  className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}  
+                        {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2]=== 1 && <Icon type="indicator" name="search" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}  
+                        {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2]=== 2 && <Icon type="indicator" name="ok" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}  
+                        {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2]=== 3 && <Icon type="indicator" name="error" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
+                        {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2]=== 4 && <Icon type="indicator" name="commented" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
+                        </th>
+
+))
+}
+
+
+
+
+
+
+{/* 
+
                            {this.props.podaci.state.ostvareniMoguci.map((ostvareniBodovi, indeks2) => ( 
                             <th key={ostvareniBodovi + indeks2}>{ostvareniBodovi}
                             {this.props.podaci.state.zadacaState.pregledanZadatak[indeks2] == false && <Icon type="indicator" name="attachment" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
                             {this.props.podaci.state.zadacaState.pregledanZadatak[indeks2] == true && <Icon type="indicator" name="ok" className=" ml-3" onClick = {() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)}/>}
                             </th>
                            ))}
-                          
+                          */}
                            <th>{this.props.podaci.state.sumaOsvojeni}</th>
                            <th>{this.props.podaci.state.sumaMoguci}</th>
                            <th>{this.props.podaci.state.zadacaState.postavkaZadace}{<Icon type="indicator" name="save" className=" ml-3"/>}</th>

@@ -11,7 +11,7 @@ class LeftMenuStudentSiera extends React.Component {
     };
 
     changeActiveId(id){
-        this.props.triggerChangeActiveId(id)
+        this.props.triggerChangeActiveId(id);
     }
 
     render() {

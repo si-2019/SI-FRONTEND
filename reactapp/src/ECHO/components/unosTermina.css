@@ -1,0 +1,24 @@
+.card-title {
+  text-align: left;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+.card {
+  position: relative;
+  top: 0;
+}
+
+#listaDana,
+#satnica,
+#brCasova,
+#dugme {
+  align-self: left;
+  width: 80%;
+}
+
+#dugme {
+  width: fit-content;
+}

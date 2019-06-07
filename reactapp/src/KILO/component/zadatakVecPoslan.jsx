@@ -148,6 +148,7 @@ class ZadatakVecPoslan extends Component {
         </button>
         <button
           name="posaljiZadatak"
+          id="posalji2"
           type="button"
           className="btn btn-primary ml-2"
           onClick={this.props.podaci.handleClick}

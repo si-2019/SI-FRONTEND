@@ -37,9 +37,13 @@ import './bootstrapflatly.css'
     }
     render(){
       return (
-        <div className="bs-component">
-         <h3>{this.state.tech}</h3>
-          <select style={{width: '400px'}} className="form-control" id="selectListe" onChange={this.handleChange.bind(this)} value={this.state.tech}>
+        
+        <div className="card" style={{float: "left", width:"50%"}}>
+          <div class="card-body"> 
+         <h4 class="card-title">{this.state.tech}</h4>
+         <h6 class="card-subtitle mb-2 text-muted">Odaberite predmet za koji zelite kreirati projektnu grupu</h6>
+          <br/>
+          <select  className="form-control" id="selectListe" onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option className="list-group-item" value="Lista predmeta">Odaberite predmet</option>
             {
               this.state.predmeti.map(predmet=>{
@@ -50,7 +54,8 @@ import './bootstrapflatly.css'
          
       <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].opis} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].bodovi}/>
         
-        <button className="btn btn-primary" onClick={this.props.submit}>Dalje</button>
+        <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.props.submit}>Dalje</button>
+        </div>
         </div>
        
       )

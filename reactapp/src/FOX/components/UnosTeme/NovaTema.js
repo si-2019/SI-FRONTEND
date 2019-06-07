@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -88,71 +89,70 @@ class NovaTema extends Component {
             <div id="unosNoveTeme" className="footerDno">
                 <Header isPocetna={false}/>
                     <Container fluid>
-                        <Row>
-                            <Col style={{textAlign: "center"}}>
-                                <br/>
-                                <h4>Nova tema za završni rad</h4>
-                                <br/>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col style={{textAlign: "center"}}>
+                        <Row style={{margin: "0"}}>
+                            <Col style={{textAlign: "left"}}>
                                 <Poruka greska={greskaBaza} />
-                                <Form 
-                                    noValidate 
-                                    validated={validated}
-                                    onSubmit = {e => this.handleSubmit(e)}
-                                >
-                                    <Form.Group as={Row} controlId = "formNoviNaziv">
-                                        <Col style={{textAlign: "right"}}>
-                                            <Form.Label>Naziv:</Form.Label>
-                                        </Col>
-                                        <Col lg="4">
-                                            <Form.Control 
-                                                ref={this.nazivNoveTeme}
-                                                required 
-                                                type="text" 
-                                                placeholder="Naziv nove teme"
-                                            />
-                                            <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
-                                        </Col>
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Title>Nova tema za završni rad</Card.Title>
+                                        <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete kreirati novu temu za završni rad na predmetu </Card.Subtitle>
+                                        <Form 
+                                            noValidate 
+                                            validated={validated}
+                                            onSubmit = {e => this.handleSubmit(e)}
+                                        >
+                                            <Form.Group as={Row} controlId = "formNoviNaziv">
+                                                <Col style={{textAlign: "left"}}>
+                                                    <Form.Label>Naziv:</Form.Label>
+                                                </Col>
+                                                <Col lg="4">
+                                                    <Form.Control 
+                                                        ref={this.nazivNoveTeme}
+                                                        required 
+                                                        type="text" 
+                                                        placeholder="Naziv nove teme"
+                                                    />
+                                                    <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
+                                                </Col>
 
-                                        <Col></Col>
-                                    </Form.Group>
+                                                <Col></Col>
+                                            </Form.Group>
 
-                                    <Form.Group as={Row} controlId = "formNoviOpis">
-                                        <Col style={{textAlign: "right"}}>
-                                            <Form.Label>Opis:</Form.Label>
-                                        </Col>
+                                            <Form.Group as={Row} controlId = "formNoviOpis">
+                                                <Col style={{textAlign: "left"}}>
+                                                    <Form.Label>Opis:</Form.Label>
+                                                </Col>
+                                        
+                                                {/*  /* 2. Attach Ref to FormControl component */}
+
+                                                <Col lg="4">
+                                                    <Form.Control 
+                                                        ref={this.opisNoveTeme} 
+                                                        required 
+                                                        type="text" 
+                                                        placeholder="Opis nove teme"
+                                                    />
+                                                    <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
+                                                </Col>
+
+                                                <Col></Col>
+                                            </Form.Group>
+
+                                            <Form.Row>
+                                                <Col  style={{textAlign: "right"}}>
+                                                    <Button variant="primary" type="submit">Dodaj</Button> 
+                                                </Col>
+                                                <Col  style={{textAlign: "left"}}>
+                                                    <Button variant="secondary" href='unosTeme'>Nazad</Button> 
+                                                </Col>
+                                            </Form.Row>
+                                                                    
+                                        </Form>
+                                    </Card.Body>  
+                                </Card>
                                 
-                                        {/*  /* 2. Attach Ref to FormControl component */}
-
-                                        <Col lg="4">
-                                            <Form.Control 
-                                                ref={this.opisNoveTeme} 
-                                                required 
-                                                type="text" 
-                                                placeholder="Opis nove teme"
-                                            />
-                                            <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
-                                        </Col>
-
-                                        <Col></Col>
-                                    </Form.Group>
-
-                                    <Form.Row>
-                                        <Col  style={{textAlign: "right"}}>
-                                            <Button variant="primary" type="submit">Dodaj</Button> 
-                                        </Col>
-                                        <Col  style={{textAlign: "left"}}>
-                                            <Button variant="secondary" href='unosTeme'>Nazad</Button> 
-                                        </Col>
-                                    </Form.Row>
-                                                              
-                                </Form>
                             </Col>
                         </Row>
                     

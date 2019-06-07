@@ -3,9 +3,12 @@ import './style.css';
 import Countdown from './Countdown'
 import axios from 'axios';
 import url from '../url'
+import StarRatingComponent from 'react-star-rating-component';
+
 class Popunjavanje extends Component {
   constructor(props) {
     super(props);
+    this.handleChange1 = this.handleChange1.bind(this);
   }
   state = {
     imeKreator: '',
@@ -16,7 +19,34 @@ class Popunjavanje extends Component {
     isteklo: false,
     pitanja: [],
     odgovori: [],
+    showSucess: false,
+    showError: '',
   }
+
+  onStarClick(nextValue, prevValue, name) {
+    console.log(name, nextValue);
+    const pomocna = this.state.odgovori.slice();
+    for (let i = 0; i < pomocna.length; i++) {
+      if (pomocna[i].idPitanja.toString() === name) {
+        pomocna[i].tekstOdgovora = nextValue;
+      }
+    }
+    this.setState({ odgovori: pomocna });
+  }
+  handleChange1(e) {
+    const item = e.target.value;
+    const isChecked = e.target.checked;
+    const index = e.target.id;
+    const pomocna = this.state.odgovori.slice();
+    for (let i = 0; i < pomocna[index].sviOdg.length; i++) {
+      if (pomocna[index].sviOdg[i].idPonudjeniOdgovor.toString() === item) {
+        pomocna[index].sviOdg[i].isChecked = isChecked;
+      }
+    };
+    this.setState({ odgovori: pomocna });
+  }
+
+
   formatDate(string) {
     var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
     return new Date(string).toLocaleDateString([], options);
@@ -29,18 +59,13 @@ class Popunjavanje extends Component {
     axios.get(`http://localhost:9123/getKreator/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ imeKreator: res.data.kreator });
-        console.log('res', res);
       });
     axios.get(`http://localhost:9123/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ datumKreiranjaAnkete: this.formatDate(res.data.datumKreiranja) });
-        console.log('res', res);
       });
     axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
       .then((res) => {
-        console.log("datum1", new Date())
-        console.log("datum2", new Date(res.data.datumIstekaAnkete))
-        console.log("datum3", res.data.datumIstekaAnkete)
         this.setState({ datumIstekaAnkete: res.data.datumIstekaAnkete });
       });
     axios.get(`http://localhost:9123/getTipAnkete/?idAnketa=${params.id}`)
@@ -54,150 +79,199 @@ class Popunjavanje extends Component {
     axios.get(`http://localhost:9123/getAnketa/?id=${params.id}`)
       .then((res) => {
         const pit = [];
+        const odg = [];
         for (let key in res.data) {
           pit.push(res.data[key])
+          if (res.data[key].vrstaPitanja === 'multiple-choice') {
+            const odg1 = [];
+            for (let k in res.data[key].odgovori) {
+              odg1.push({ tekstOdgovora: res.data[key].odgovori[k].textOdgovora, idPonudjeniOdgovor: res.data[key].odgovori[k].id, isChecked: false })
+            }
+            odg.push({ idPitanja: res.data[key].idPitanja, sviOdg: odg1 })
+          }
+          else {
+            odg.push({ idPitanja: res.data[key].idPitanja, tekstOdgovora: null, idPonudjeniOdgovor: null })
+          }
         };
-        this.setState({ pitanja: pit });
+        this.setState({ pitanja: pit, odgovori: odg });
       });
   }
 
   popunianketu() {
     const { match: { params } } = this.props;
-    console.log("asdasd", params)
-    fetch(url + '/popuniAnketu', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        idAnketa: params.id,
-        odgovori: this.state.odgovori,
-        idPopunio: 273,
-        vrijemePopunjavanja: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      })
-    }).then((res, err) => {
-      if (res.status === 200) {
-
+    console.log(this.state.odgovori);
+    var ima = false;
+    var nema = false;
+    this.setState({ showError: '' })
+    for (let i = 0; i < this.state.odgovori.length; i++) {
+      if (this.state.odgovori[i].sviOdg) {
+        for (let k in this.state.odgovori[i].sviOdg) {
+          if (this.state.odgovori[i].sviOdg[k].isChecked === true) ima = true;
+        }
+        if (!ima) this.setState({ showError: "Potrebno je odgovoriti na sva pitanja" });
       }
-      this.setState({
-        error: err
+      else {
+        if (this.state.odgovori[i].textOdgovora === null) {
+          nema = true;
+          this.setState({ showError: "Potrebno je odgovoriti na sva pitanja" });
+        }
+      }
+    }
+    if (ima && !nema) {
+      fetch(url + '/popuniAnketu', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          idAnketa: params.id,
+          odgovori: this.state.odgovori,
+          idPopunio: 1,
+          vrijemePopunjavanja: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        })
       })
-    })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res, err) => {
+          console.log("radiiiiii", res);
+          if (res.message === 'OKic') {
+            this.setState({ showSucess: true });
+            setTimeout(
+              function () {
+                window.location.reload();
+              }
+                .bind(this),
+              2000
+            );
+          }
+          else {
+            this.setState({ showError: res.message });
+          }
+        }).catch(err => {
+          this.setState({ showError: err.message });
+        })
+    }
   }
   handleChange(idPitanja, textOdgovora, idPonudjeniOdgovor = null) {
+    console.log(idPitanja, textOdgovora)
     if (textOdgovora.target !== undefined) { textOdgovora = textOdgovora.target.value; }
     const odgovor = { idPitanja: idPitanja, tekstOdgovora: textOdgovora, idPonudjeniOdgovor: idPonudjeniOdgovor }
-    var nema = false;
-    for (let i = 0; i < this.state.odgovori.length; i++) {
-      if (this.state.odgovori[i].idPitanja === idPitanja) {
-        nema = true;
-        this.setState(state => {
-          const odgovori = state.odgovori.map((item) => {
-            if (item.idPitanja === idPitanja) {
-              return odgovor;
-            } else {
-              return item;
-            }
-          });
-          return {
-            odgovori,
-            imeKreator: state.imeKreator,
-            datumKreiranjaAnkete: state.datumKreiranjaAnkete,
-            datumIstekaAnkete: state.datumIstekaAnkete,
-            tipAnkete: state.tipAnkete,
-            nazivPredmeta: state.nazivPredmeta,
-            isteklo: state.isteklo,
-            pitanja: state.pitanja,
-          };
-        });
+    const pomocna = this.state.odgovori.slice();
+    for (let i = 0; i < pomocna.length; i++) {
+      if (pomocna[i].idPitanja === idPitanja) {
+        pomocna[i] = odgovor;
       }
     }
-    if (!nema) {
-      this.setState(state => {
-        const odgovori = state.odgovori.concat(odgovor);
-        return {
-          odgovori,
-          imeKreator: state.imeKreator,
-          datumKreiranjaAnkete: state.datumKreiranjaAnkete,
-          datumIstekaAnkete: state.datumIstekaAnkete,
-          tipAnkete: state.tipAnkete,
-          nazivPredmeta: state.nazivPredmeta,
-          isteklo: state.isteklo,
-          pitanja: state.pitanja,
-        };
-      });
-    }
+    this.setState({ odgovori: pomocna });
   }
+
   render() {
     const pitanjaa = [];
     for (const [index, value] of this.state.pitanja.entries()) {
-
       pitanjaa.push(
-        <div key={index} class="card-body" style={index % 2 === 0 ? { backgroundColor: 'white' } : { backgroundColor: '#f2f2f2' }}>
+        <div key={index} class="card-body" style={index % 2 === 0 ? { backgroundColor: 'white' } : { backgroundColor: '#E4EBF6' }}>
           <h6 class="card-title">{value.tekstPitanja}</h6>
           {value.vrstaPitanja === 'single-choice' ?
             <div>
               {value.odgovori.map((v, i) => {
                 return <div key={v.id}>
-                  <div class="custom-control custom-radio">
+                  <div class="custom-control custom-radio ">
                     <input type="radio" id={v.id} name={value.idPitanja} class="custom-control-input" onChange={() => this.handleChange(value.idPitanja, v.textOdgovora, v.id)} />
                     <label class="custom-control-label" htmlFor={v.id}>{v.textOdgovora}</label>
                   </div>
                 </div>
               })}
-            </div> : value.vrstaPitanja === 'inputText' ?
+            </div> : value.vrstaPitanja === 'textbox' ?
               <div class="form-group">
-                <textarea class="form-control" id="exampleTextarea" rows="3" value={this.state.input} onChange={(e) => this.handleChange(value.idPitanja, e)}></textarea>
+                <textarea class="form-control" id={value.idPitanja} rows="3" value={this.state.input} onChange={(e) => this.handleChange(value.idPitanja, e)}></textarea>
               </div>
-              : <p class="card-text">Some.</p>
+              : value.vrstaPitanja === 'star-rating' ?
+                <div class="form-group">
+                  <StarRatingComponent
+                    name={value.idPitanja + ''}
+                    starCount={5}
+                    onStarClick={this.onStarClick.bind(this)}
+                  />
+                </div> :
+                <div>
+                  {
+                    this.state.odgovori[index].sviOdg.map((o, i) => (
+                      <div class="form-check ">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" id={index} value={o.idPonudjeniOdgovor} checked={o.isChecked} onChange={this.handleChange1} />
+                          {o.tekstOdgovora}
+                        </label>
+                      </div>
+                    ))
+                  }
+                </div>
 
           }
         </div>
       )
     }
     return (
-      <div className="App" id="container">
-        <div id="header">
-          <h1>Popunjavanje</h1>
-        </div>
-        <div id="content">
-          <div id="info" >
-            <div id="info1" >
-              <div class="card text-white bg-secondary mb-3" >
-                <div class="card-header"><h4 class="card-title">Info</h4></div>
-                <div class="card-body">
-                  <h6 class="card-title">Predmet</h6>
-                  <p class="card-text">{this.state.nazivPredmeta}</p>
+
+      <div className="App" id="containerPopuni">
+        {
+          this.state.showSucess &&
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSucess: false }); window.location.reload(); }}>&times;</button>
+            <strong>Uspješno ste popunili anketu!</strong>
+          </div>
+        }
+        {
+          this.state.showError &&
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
+            <strong>{this.state.showError}</strong>
+          </div>
+        }
+        <div id="proradi">
+          <div id="headerPopuni">
+            <h1 style={{ color: 'white' }}>Popunjavanje</h1>
+          </div >
+          <div id="contentPopuni">
+            <div id="infoPopuni" >
+              <div id="info1Popuni" >
+                <div class="card border-primary mb-3">
+                  <div class="card-header" style={{ backgroundColor: '#00203F' }}><h4 style={{ color: 'white' }} class="card-title">Info</h4></div>
+                  <div class="card-body">
+                    <h6 class="card-title">Predmet</h6>
+                    <p class="card-text">{this.state.nazivPredmeta}</p>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Datum kreiranja</h6>
+                    <p class="card-text">{this.state.datumKreiranjaAnkete}</p>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Preostalo još </h6>
+                    <Countdown action={this.handler.bind(this)} date={this.state.datumIstekaAnkete} />
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Tip ankete</h6>
+                    <p class="card-text">{this.state.tipAnkete}</p>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Anketu kreirao</h6>
+                    <p class="card-text">{this.state.imeKreator}</p>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h6 class="card-title">Datum kreiranja</h6>
-                  <p class="card-text">{this.state.datumKreiranjaAnkete}</p>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">Preostalo još </h6>
-                  <Countdown action={this.handler.bind(this)} date={this.state.datumIstekaAnkete} />
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">Tip ankete</h6>
-                  <p class="card-text">{this.state.tipAnkete}</p>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">Anketu kreirao</h6>
-                  <p class="card-text">{this.state.imeKreator}</p>
+              </div>
+            </div>
+            <div id="showPopuni" >
+              <div id="show1Popuni" >
+                <div class="card border-light mb-3" style={{ padding: 15, alignItems: 'right' }}>
+                  <div class="card-header" style={{ backgroundColor: '#00203F' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
+                  {pitanjaa}
+                  <div >
+                    <button disabled={this.state.isteklo} onClick={() => this.popunianketu()} type="button" class="btn btn-primary float-right" id="buttonPopuni">Pošalji</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div id="show" >
-            <div id="show1" >
-              <div class="card border-light mb-3" style={{ padding: 15, alignItems: 'right' }}>
-                <div class="card-header"><h4 class="card-title">Anketa</h4></div>
-                {pitanjaa}
-                <div >
-                  <button onClick={() => this.popunianketu()} type="button" class="btn btn-secondary float-right" id="button">Pošalji</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+
       </div >
     );
   }

@@ -2,6 +2,7 @@ import React from "react";
 import InterfejsUredjivanjeClanovaGrupe from "./InterfejsUredjivanjeClanovaGrupe";
 import Lista  from './prikazListe';
 import './bootstrapflatly.css';
+import './App.css'
 
 class UnosInformacija extends React.Component {
     constructor(props) {
@@ -31,21 +32,23 @@ class UnosInformacija extends React.Component {
     render() {
       if(this.state.forma=="null") {
       return (
-        <div className="bs-component">
-        <form >
-          <h3>Unos informacija:</h3>
-          
-          <label className="custom-control-label">Naziv projektne grupe:</label>
-          <input type="text" className="form-control inputText" style={{width: '400px'}} value={this.state.value} onChange={this.handleChange} />
+        <div className="card" style={{float: "left", width:"50%", top:"40px"}}>
+          <div class="card-body">
+      
+          <h4 class="card-title">Unos informacija</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Unijeti potrebne informacije za opis projekta</h6> 
           <br/>
-          <label className="custom-control-label"> Opis projekta:</label>
-          <input type="text" className="form-control inputText" style={{width: '400px'}} value={this.state.value} onChange={this.handleChange} />
-          <br/> <br/>
+          <label class="col-form-label">Naziv projektne grupe:</label>
+          <input type="text" className="form-control inputText"   />
+          <br/>
+          <label class="col-form-label"> Opis projekta:</label>
+          <input type="text" className="form-control inputText"  />
+          <br/>
           {/*<input type="submit" value="Submit" />*/}
-         
-           <button className="btn btn-primary" onClick={this.sacuvajPromjene}>Unesi</button>
-          <button className="btn btn-primary" onClick={this.uredjivanjeClanova}>Dalje</button>
-        </form>
+          <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.uredjivanjeClanova}>Dalje</button>
+           <button className="btn btn-primary" style={{float:"right",  margin:"10px"}} onClick={this.sacuvajPromjene}>Unesi</button>
+          
+        </div> 
         
          {/* <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
          

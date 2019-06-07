@@ -2,6 +2,7 @@ import React from 'react'
 import {withRouter} from 'react-router-dom';
 import ReactTable from 'react-table'
 import StudentiTabela from './StudentiTabela';
+import Table from 'react-bootstrap/Table';
 
 const dataX = [{
     tip: 'I parcijalni',
@@ -52,43 +53,54 @@ class TabelaPredmeti extends  React.Component {
         }
         
     }
+    redirectt = (e) => {
+        window.location.replace("/charlie/kreiraj-ispit-detalji");
+        //this.props.history.push('/charlie/kreiraj-ispit-detalji');
+    }
     render() {
         const data2 = this.state.data;
         var brojac = 0;
-        console.log(data2);
-        const columns = [{
-          Header: 'Tip',
-          accessor: 'tip',
-          Cell: props => <span onClick={this.funkcija} value={data2[brojac++].tip}>{props.value}</span>
-        },
-        {
-          Header: 'Datum',
-          accessor: 'datum',
-          Cell: props => <span className='datum'>{props.value}</span>
-        },
-        {
-          Header: 'Sala',
-          accessor: 'sala',
-          Cell: props => <span className='sala'>{props.value}</span>
-        },
-        {
-          Header: 'BrStudenata',
-          accessor: 'brstudenata',
-          Cell: props => <span className='brstudenata'>{props.value}</span>
-        }]
-       
+        console.log(data2);       
         return (
-            <div>
-                {this.state.studenti===false && <ReactTable
-                data={data2}
-                columns={columns}
-                />}
+            <div className="text-center">
+                {this.state.studenti === false && 
+                    <Table striped bordered responsive bsPrefix="table">
+                    <thead>
+                        <tr className="table-primary">
+                            <th>Tip</th>
+                            <th>Datum</th>
+                            <th>Sala</th>
+                            <th>BrStudenata</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                        data2.map((dataf, i) => {
+                            return <tr>
+                                <td onClick={this.funkcija} value={data2[brojac++].tip}>{dataf.tip}</td>
+                                <td>{dataf.datum}</td>
+                                <td>{dataf.sala}</td>
+                                <td>{dataf.brstudenata}</td>
+                            </tr>                            
+                        })
+                        }
+                    </tbody>
+                    </Table>
+                }
+
+                <button 
+                    type="button" 
+                    className="btn btn-primary"
+                    onClick={this.redirectt}> Registruj novi ispit
+                </button>
+
                 {this.state.studenti===true && <StudentiTabela tipIspita={this.state.data.tip}/>}
             </div>
         );
       }
       
 }
+
 
 
 export default withRouter(TabelaPredmeti);

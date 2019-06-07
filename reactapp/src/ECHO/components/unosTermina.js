@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "./unosTermina.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class UnosTermina extends Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class UnosTermina extends Component {
       prikazDana: "Ponedjeljak",
       vrijeme: "08:00",
       brCasova: 1,
+
       alertVisible: false,
       alertMessage: "",
       alertColor: "success"
@@ -82,11 +85,11 @@ class UnosTermina extends Component {
   }
   render() {
     return (
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Unos termina</h4>
+      <div className="card">
+        <div className="card-body">
+          <h4 className="card-title m-2">Unos termina</h4>
           <select
-            class="custom-select"
+            className="custom-select m-2"
             id="listaDana"
             onChange={this.handleSelect}
           >
@@ -120,7 +123,7 @@ class UnosTermina extends Component {
           <button
             id="dugme"
             type="button"
-            className="btn btn-primary"
+            className="btn btn-primary m-2"
             onClick={this.handleSubmit}
           >
             Unesi

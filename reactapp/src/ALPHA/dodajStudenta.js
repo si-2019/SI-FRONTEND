@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Forma from './Forma'
 import FormaUpis from './FormaUpis'
-import EditForm from './EditStudentForma'
+import FormaPrikazStud from './FormaPrikazStud'
+
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -20,8 +21,8 @@ class DodajStudenta extends Component {
                     <FormaUpis />
                 </Tab>
 
-                <Tab eventKey="edit" title="Izmjene podataka">
-                    <EditForm />
+                <Tab eventKey="prikaz" title="Prikaz studenata">
+                    <FormaPrikazStud />
                 </Tab>
             </Tabs>
             

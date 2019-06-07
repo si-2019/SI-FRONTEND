@@ -7,7 +7,7 @@ import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import "./AppSiera.css";
 import LeftMenuStudentSiera from "./LeftMenuStudentSiera"
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
-
+import Kontakt from "./kontaktPod";
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
@@ -22,7 +22,8 @@ class App extends Component {
       komponente: [<ListaTrenutnihPredmeta />],
       menuButtons: [{
         btnText: "Profil",
-        component: <LicniPod />
+        component:
+          <LicniPod />
       }, {
         btnText: "Ugovor o učenju",
         component: <UgovorOUcenju />
@@ -35,14 +36,15 @@ class App extends Component {
       }, {
         btnText: "Ispiti",
         component: <IspitiTabela />
-      },{
+      }, {
         btnText: "Ocjene po godinama",
         component: <Ocjene />
       }],
       menuComponents: [{
         naziv: "Profil",
         changeId: 0,
-        component: <LicniPod />
+        component:
+          <LicniPod />
       }]
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
@@ -72,37 +74,37 @@ class App extends Component {
 
     return (
       <>
-          <div className="App">
+        <div className="App">
 
-            <div className="containter-fluid">
-              <div className="row" style={{ margin: "0px", padding: "0px" }}>
-                <div className="col-lg-2 col-md-3 col-sm-12" style={{
-                  backgroundColor: "#2C3E50",
-                  minHeight: "100%",
-                  padding: "0px",
-                  margin: "0px"
-                }}>
-                  <LeftMenuStudentSiera
-                    triggerChangeActiveId={this.onChangeActiveId}
-                    btnList={this.state.menuComponents}
-                  />
-                </div>
-                <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
-                  backgroundColor: "white",
-                  minHeight: "calc(100vh - 80px)",
-                  margin: "0px",
-                  padding: "0px"
-                }}>
+          <div className="containter-fluid">
+            <div className="row" style={{ margin: "0px", padding: "0px" }}>
+              <div className="col-lg-2 col-md-3 col-sm-12" style={{
+                backgroundColor: "#2C3E50",
+                minHeight: "100%",
+                padding: "0px",
+                margin: "0px"
+              }}>
+                <LeftMenuStudentSiera
+                  triggerChangeActiveId={this.onChangeActiveId}
+                  btnList={this.state.menuComponents}
+                />
+              </div>
+              <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
+                backgroundColor: "white",
+                minHeight: "calc(100vh - 80px)",
+                margin: "0px",
+                padding: "0px"
+              }}>
 
-                  {this.state.menuComponents[this.state.activeContentId].component}
-                  
+                {this.state.menuComponents[this.state.activeContentId].component}
 
-                </div>
+
               </div>
             </div>
-
-
           </div>
+
+
+        </div>
       </>
 
     );

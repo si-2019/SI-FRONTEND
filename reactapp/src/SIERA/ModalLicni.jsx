@@ -32,6 +32,21 @@ class ModalComponent extends React.Component {
             noviInput: state
         });
     }
+    handleExit = () => {
+        const {ime, prezime, drzavljanstvo, foto} = this.state.noviInput;
+        let podaci = JSON.parse(JSON.stringify(this.props.podaciKorisnika));
+        podaci.ime = ime ? ime : podaci.ime;
+        podaci.prezime = prezime ? prezime : podaci.prezime;
+        podaci.Drzavljanstvo = drzavljanstvo ? drzavljanstvo : podaci.Drzavljanstvo;
+        podaci.fotka = foto ? foto : podaci.fotka;
+        this.setState({
+            greska: null,
+            greskaFoto: null
+        }, () => {
+            this.props.saveState("podaciKorisnika", podaci);
+        })
+    }
+
 
     handlePutEvent(event) {
         event.preventDefault();
@@ -73,6 +88,7 @@ class ModalComponent extends React.Component {
                     });;
             }
             if (this.state.noviInput.foto) {
+                console.log(this.state.noviInput.foto);
                 const formData = new FormData();
                 formData.append('foto', this.state.noviInput.foto);
                 const config = {
@@ -101,18 +117,20 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Zahtjev je uspjesno poslan"
+                    msg="Zahtjev je uspješno poslan."
                 />
             );
-        } else if (this.state.greska) {
+        } 
+        if (this.state.greska) {
             return (
                 <Potvrda
                     key={this.brojac}
                     successful="false"
-                    msg="Polje ne smije biti prazno"
+                    msg="Polje ne smije biti prazno."
                 />
             );
-        } else if(this.state.greskaFoto){
+        } 
+        if(this.state.greskaFoto){
             return(
                 <Potvrda
                     key={this.brojac}
@@ -124,21 +142,7 @@ class ModalComponent extends React.Component {
         return null;
     }
 
-    handleExit = () => {
-        const {ime, prezime, drzavljanstvo, foto} = this.state.noviInput;
-        let podaci = JSON.parse(JSON.stringify(this.props.podaciKorisnika));
-        podaci.ime = ime ? ime : podaci.ime;
-        podaci.prezime = prezime ? prezime : podaci.prezime;
-        podaci.Drzavljanstvo = drzavljanstvo ? drzavljanstvo : podaci.Drzavljanstvo;
-        podaci.fotka = foto ? foto : podaci.fotka;
-        this.setState({
-            greska: null,
-            greskaFoto: null
-        }, () => {
-            this.props.saveState("podaciKorisnika", podaci);
-        })
-    }
-
+ 
     render() {
         ++this.brojac;
         return (
@@ -186,9 +190,6 @@ class ModalComponent extends React.Component {
                     <Modal.Footer>
                     <button type="submit" id="spasiBtn" class="btn btn-primary">{this.props.btnPotvrdi}</button>
                         <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Zatvori</button>
-
-                        
-
                     </Modal.Footer>
                 </form>
             </Modal>

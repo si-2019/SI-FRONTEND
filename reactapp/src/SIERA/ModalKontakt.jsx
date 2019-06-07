@@ -32,15 +32,13 @@ class ModalComponent extends React.Component {
 
     handleExit = () => {
 
-        //mijenjaj ovo
-        const { adr, telefon, mail } = this.state.noviInput;
+        const { adr, mail, telefon } = this.state.noviInput;
         let podaci = JSON.parse(JSON.stringify(this.props.podaciKontakt));
         podaci.adresa = adr ? adr : podaci.adresa;
-        podaci.brTel = telefon ? telefon : podaci.brTel;
+        podaci.brtel = telefon ? telefon : podaci.brtel;
         podaci.email = mail ? mail : podaci.email;
         this.setState({
-            greska: null,
-            greskaFoto: null
+            greska: null
         }, () => {
             this.props.saveState("podaciKontakt", podaci);
         })
@@ -113,7 +111,7 @@ class ModalComponent extends React.Component {
                 />
             );
         }
-        return "";
+        return null;
     }
     render() {
         ++this.brojac;

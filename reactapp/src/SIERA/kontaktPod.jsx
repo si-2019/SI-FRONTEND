@@ -7,7 +7,7 @@ class KontaktPod extends Component {
         StudentID: 1,
         adresa: "lala",
         email: "isajdi",
-        brTel: "98426",
+        brtel: "98426",
         modalShow: false,
         
     }
@@ -39,7 +39,7 @@ class KontaktPod extends Component {
             .then(res => {
 
                 const br = res.data.map(obj => obj.telefon);
-                this.setState({ brTel: br });
+                this.setState({ brtel: br });
                 const eml = res.data.map(obj => obj.email);
                 this.setState({ email: eml });
                 const adr = res.data.map(obj => obj.adresa);
@@ -56,7 +56,7 @@ class KontaktPod extends Component {
                         <div className="form-group">
                             <label class="col-form-label" for="inputDefault">Telefon</label>
                             <br></br>
-                            <h4>{this.state.brTel}</h4>
+                            <h4>{this.state.brtel}</h4>
                         </div>
                         <div className="form-group">
                             <label class="col-form-label" for="inputDefault">Adresa</label>
@@ -73,7 +73,7 @@ class KontaktPod extends Component {
                 <ModalComponent
                     saveState={this.saveState}
                     show={this.state.modalShow}
-                    naslovModala="Kontakt podaci"s
+                    naslovModala="Kontakt podaci"
                     podaciKontakt={this.state}
                    
                 />

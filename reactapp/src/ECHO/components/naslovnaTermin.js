@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import UnosTermina from "./unosTermina";
-import PrikazTermina from "../old/NaslovnaTermin/prikazTermina";
+import PrikazTermina from "./prikazTermina";
 
 class NaslovnaTermin extends Component {
   constructor(props) {

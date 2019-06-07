@@ -85,12 +85,12 @@ class IspitiTabela extends Component {
 
   render() {
     return (      
-      <div>
+      <div className="row justify-content-center" style={{marginLeft:"0px"}}>
         {this.state.listaIspita.map((item, i) => (
-          <table className="table table-bordered text-center bg-active border-solid" key={i}>
+          <table className="col-lg-10 table table-bordered text-center bg-active border-solid" key={i}>
             <tbody>
               <tr class="bg-primary text-light" key={item[0].idGodine}>
-                <th clasName="tabtip" scope="row" colSpan="7" style={{ textAlign: "center" }}>
+                <th className="tabtip" scope="row" colSpan="7" style={{ textAlign: "center" }}>
                   Akademska godina: {item[0].nazivGodine}
                 </th>
               </tr>
@@ -100,9 +100,9 @@ class IspitiTabela extends Component {
                     itemPredmet.idPredmet + item[0].nazivGodine + "naziviIspita"
                   }
                 >
-                  {itemPredmet.ispiti.length == 0 ? null : <th />}
+                  {itemPredmet.ispiti.length == 0 ? null : <th className="tabtip1" />}
                   {itemPredmet.ispiti.map(itemIspiti => (
-                    <th className="tabtip"
+                    <th className="tabtip1"
                       colSpan="2"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita}
@@ -119,7 +119,7 @@ class IspitiTabela extends Component {
                   }
                 >
                   {itemPredmet.ispiti.length == 0 ? null : (
-                    <th clasName="tabtip" scope="row">Predmet</th>
+                    <th className="tabtip" scope="row">Predmet</th>
                   )}
                   {itemPredmet.ispiti.map(itemIspiti => [
                     <th className="tabtip"

@@ -125,6 +125,18 @@ class Forma extends Component {
         xhr.send(body1);   
       
       }     
+
+      obrisi(id){
+        const json={id};
+        console.log(id);
+        axios.delete('http://localhost:31901/api/korisnik/deleteProfessor?id='+id)
+        .then(response=>{
+          console.log(response);
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+      }
       
 
     render() {
@@ -202,6 +214,9 @@ class Forma extends Component {
               
               <input type="submit" value="Edit" className="btn btn-success btn-block" />
              </form><br />
+              <button className="btn btn-success btn-block" onClick={()=>this.obrisi(id)}>DELETE</button>
+
+             
 
     </div>
         );

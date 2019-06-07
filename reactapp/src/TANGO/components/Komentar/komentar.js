@@ -67,7 +67,7 @@ class Komentar extends Component {
         </div>          
       </div>
       <div>
-         <ListaOdgovora key={idComment} idComment={idComment}></ListaOdgovora>
+         <ListaOdgovora key={idComment} idComment={idComment} idTheme = {idTheme}></ListaOdgovora>
       </div>
     </>
     );
@@ -79,7 +79,6 @@ class Komentari extends Component {
     render(){
       return(
         this.props.komentari.map(komentar => {
-          console.log(komentar);
           return(
             <>
           <div className='tema'>

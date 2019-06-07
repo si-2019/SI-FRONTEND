@@ -6,6 +6,7 @@ import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';
 import Drafts from './komponente/Student/Drafts.js';
+import Archived from './komponente/Student/ArchivedPart.js'
 
 
 class App extends Component {
@@ -74,7 +75,7 @@ class App extends Component {
                 <div 
                     id = "Archived" 
                     style={{display : this.state.activeContentId == 3 ? 'inherit' : 'none'}}
-                > Archived komponenta ide ovdje 
+                > <Archived/>
                 </div>
 
                 <div 
@@ -83,6 +84,8 @@ class App extends Component {
                 >
                  <FAQ/>
                  </div>
+
+                 
                 
               </div>
             </div>

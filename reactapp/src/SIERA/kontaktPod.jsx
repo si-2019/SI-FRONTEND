@@ -49,7 +49,7 @@ class KontaktPod extends Component {
         }
         return (
         <>
-            <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px" }}>
+            <div className="card mb-3" style={{ minWidth: "300px", maxWidth: "500px", textAlign:"center" }}>
                 <ul class="list-group list-group-flush" >
                     <li class="card-header">
                         Kontakt Podaci

@@ -38,7 +38,7 @@ class TabelaPregledaZadaca extends Component {
                     ))}
                     <th>{this.props.podaci.state.ukupnoBodova[indeks]}</th>
                     <th>{this.props.podaci.state.moguceBodova[indeks]}</th>
-                    <th>{<Icon type="indicator" name="save" className=" ml-3"/>}</th>
+                    <th>{this.props.podaci.state.zadacaState.postavka[indeks]}{<Icon type="indicator" name="save" className=" ml-3"/>}</th>
                     <th>{this.props.podaci.state.zadacaState.rokZaPredaju[indeks]}</th>
                   </tr>
                 ))}

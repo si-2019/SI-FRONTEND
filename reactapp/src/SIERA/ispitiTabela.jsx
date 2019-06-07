@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./bootstrap.min.css";
 import axios from "axios";
+import { FormGroup, Table } from "reactstrap";
 
 class IspitiTabela extends Component {
   state = {
@@ -62,7 +63,7 @@ class IspitiTabela extends Component {
     trenutnoLogovaniStudentID: 1
   };
 
-  componentDidMount() {
+  componenthidMount() {
     axios
       .get(
         `http://localhost:31918/ispiti/` + this.state.trenutnoLogovaniStudentID
@@ -82,79 +83,79 @@ class IspitiTabela extends Component {
   }
 
   render() {
-    return (
+    return (      
       <div>
+        <FormGroup className="px-4">
         {this.state.listaIspita.map((item, i) => (
-          <table className="table table-hover" key={i}>
+          <Table className="table table-bordered text-center bg-active border-solid" key={i}>
             <tbody>
-              <tr className="table-success" key={item[0].idGodine}>
-                <th scope="row" colSpan="7" style={{ textAlign: "center" }}>
+              <tr key={item[0].idGodine}>
+                <th clasName="tabtip1" scope="row" colSpan="7" style={{ textAlign: "center" }}>
                   Akademska godina: {item[0].nazivGodine}
                 </th>
               </tr>
               {item[0].predmeti.map(itemPredmet => [
                 <tr
-                  className="table-success"
                   key={
                     itemPredmet.idPredmet + item[0].nazivGodine + "naziviIspita"
                   }
                 >
-                  {itemPredmet.ispiti.length == 0 ? null : <td />}
+                  {itemPredmet.ispiti.length == 0 ? null : <th />}
                   {itemPredmet.ispiti.map(itemIspiti => (
-                    <td
+                    <th className="tabtip1"
                       colSpan="2"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita}
                     >
                       {itemIspiti.nazivIspita}
-                    </td>
+                    </th>
                   ))}
                 </tr>,
-                <tr
-                  className="table-success"
+                <tr className="bg-primary text-light"
                   key={
                     itemPredmet.idPredmet +
                     item[0].nazivGodine +
-                    "predmetDatumBodovi"
+                    "predmethatumBodovi"
                   }
                 >
                   {itemPredmet.ispiti.length == 0 ? null : (
-                    <th scope="row">Predmet</th>
+                    <th clasName="tabtip1" scope="row">Predmet</th>
                   )}
                   {itemPredmet.ispiti.map(itemIspiti => [
-                    <td
+                    <th className="tabtip1"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita + "datum"}
                     >
                       Datum
-                    </td>,
-                    <td
+                    </th>,
+                    <th className="tabtip1"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita + "bodovi"}
                     >
                       Ostvareni bodovi
-                    </td>
+                    </th>
                   ])}
                 </tr>,
                 <tr
-                  className="table-light"
+                  
                   key={
                     itemPredmet.idPredmet + item[0].nazivGodine + "datumBodovi"
                   }
                 >
                   {itemPredmet.ispiti.length == 0 ? null : (
-                    <td style={{ textAlign: "center" }}>
+                    <th className="tabtip1"
+                      style={{ textAlign: "center" }}>
                       {itemPredmet.nazivPredmeta}
-                    </td>
+                    </th>
                   )}
                   {itemPredmet.ispiti.map(itemIspiti => [
-                    <td
+                    <th className="tabtip1"
                       style={{ textAlign: "center" }}
                       key={itemIspiti.idIspita + itemIspiti.datum}
                     >
                       {this.srediDatum(itemIspiti.datum)}
-                    </td>,
-                    <td
+                    </th>,
+                    <th className="tabtip1"
                       style={{ textAlign: "center" }}
                       key={
                         itemIspiti.idIspita +
@@ -163,14 +164,15 @@ class IspitiTabela extends Component {
                       }
                     >
                       {itemIspiti.bodovi}
-                    </td>
+                    </th>
                   ])}
                 </tr>
               ])}
             </tbody>
-          </table>
+          </Table>
         ))}
-      </div>
+        </FormGroup>
+      </div>      
     );
   }
 }

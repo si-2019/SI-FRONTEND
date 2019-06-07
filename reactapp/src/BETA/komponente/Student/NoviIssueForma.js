@@ -166,6 +166,3 @@ class NoviIssueForma extends React.Component {
 }
 
 export default NoviIssueForma;
-
-
-

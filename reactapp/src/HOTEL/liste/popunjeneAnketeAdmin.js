@@ -7,6 +7,7 @@ class App extends React.Component {
         this.state = {
             items: {}
         }
+        this.obrisiAnketu = this.obrisiAnketu.bind(this)
     }
     render() {
         const items = this.state.items
@@ -22,16 +23,20 @@ class App extends React.Component {
             <table class="anketeTabela" align="center">
                 <tr>
                 <td>NAZIV ANKETE</td>
+                <td>OPIS</td>
+                <td>DATUM ISTEKA</td>
                 <td>PRIKAZ ANKETE</td>
-                <td>UREDI</td>
                 <td>OBRIŠI</td>
                 </tr>
 
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
-                    <th>{anketa.naziv}</th><th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
+                    <th>{anketa.naziv}</th>
+                    <th>{anketa.opis}</th>
+                    <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
+                    <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
+                    <th><button type="button" class="btn btn-primary disabled" id="obrisiButton" 
+                                onClick= {() => this.obrisiAnketu(anketa) } >OBRIŠI</button></th>
                     </tr>
                 )) : "Loading..."}
                 </table>
@@ -40,7 +45,7 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajPopunjeneAnketeZaPredmet', {
+        fetch(url + '/dajPopunjeneAnketeZaPredmet?idPredmet=1', {
             method: 'GET'
         })
         .then(res => res.json())
@@ -53,6 +58,12 @@ class App extends React.Component {
                 items: [error, "error"]
             })
         })
+    }
+    obrisiAnketu(anketaZaBrisanje){
+        console.log("Morel")
+        fetch(url + '/obrisiAnketu?idKorisnik=1&idAnketa=' + anketaZaBrisanje.idAnketa, { 
+            method: 'POST'
+        }).then(() => this.componentDidMount())
     }
 }
 

@@ -17,10 +17,12 @@ class IzborVodje extends Component {
     kreirajFormu() {
         
         return (
-            <div className="col-lg-4"> 
-                <form class="forma" id="formaIzbor">
-
-                <label >Projektna grupa</label>
+            <div className="card" style={{float: "left", width:"50%", top:"40px"}}> 
+                <div class="card-body" id="formaIzbor">
+                <h4 class="card-title" >Izbor vodje </h4>
+                <h6 class="card-subtitle mb-2 text-muted">Unesite vodju za odabranu grupu</h6>
+        <br/>
+                <label class="col-form-label" >Projektna grupa</label>
                             <div class="select-option">
                                     <select  className="form-control" id="selectGrupe"  >
                                         <option  className="list-group-item" value="" selected="selected">Odaberite grupu</option>
@@ -33,21 +35,21 @@ class IzborVodje extends Component {
                             </div>
                            
                         <br/>
-                            <label  for="name">Unesite vodju za odabranu grupu:</label>
+                            <label class="col-form-label" for="name">Unesite vodju za odabranu grupu:</label>
                             
                        
                            
                             <input type="text" className="form-control inputText"  />
 
                             <br/>
-                            <button className="btn btn-primary" onClick={this.brisanjeClanova}>Nazad</button>
-                            <input type="submit" className="btn btn-primary" value="Potvrdi" onClick={this.sacuvajVodju}/>
+                            <button className="btn btn-primary" style={{float:"left", margin:"10px"}} onClick={this.brisanjeClanova}>Nazad</button>
+                            <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.sacuvajVodju}>Potvrdi </button>
                            
                        
                             
                        
                        
-                </form>
+                </div>
             </div>
                 
         );
@@ -58,7 +60,7 @@ class IzborVodje extends Component {
           return(
             <Fragment>
                 <Form>
-                    <h3 >Izbor vodje: </h3>
+                    
                     {this.kreirajFormu()}
                 </Form>
             </Fragment>

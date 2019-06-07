@@ -1,12 +1,64 @@
 import React, { Component } from "react";
-import PocetnaStranica from "./pocetnaStranica";
 import "./app.css";
+import LeftMenu from "./components/LeftMenu.js";
+import NaslovnaTermin from "./components/naslovnaTermin";
+import Sale from "./components/sale";
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeContentId: 1
+    };
+  }
+  onChangeActiveId = id => {
+    this.setState({
+      activeContentId: id
+    });
+  };
   render() {
+    const { open } = this.state;
     return (
-      <div id="glavniDivEcho">
-        <h1>ECHO</h1>
-        <PocetnaStranica />
+      <div className="appECHO">
+        <h2 id="naslov">ECHO</h2>
+        <div id="mainECHO">
+          <div id="leftECHO">
+            <LeftMenu triggerChangeActiveId={this.onChangeActiveId} />
+          </div>
+          <div id="rightECHO">
+            <div
+              id="terminDiv"
+              style={{
+                display: this.state.activeContentId == 1 ? "inherit" : "none"
+              }}
+            >
+              <NaslovnaTermin />
+            </div>
+            <div
+              id="Sale"
+              style={{
+                display: this.state.activeContentId == 2 ? "inherit" : "none"
+              }}
+            >
+            <Sale />
+            </div>
+            <div
+              id="Kalendar"
+              style={{
+                display: this.state.activeContentId == 3 ? "inherit" : "none"
+              }}
+            >
+              {/*DODATI KOMPONENTU KALENDAR UNUTAR KOJE SE DEFINISE IZGLED TABOVA */}
+            </div>
+            <div
+              id="PretragaProfesora"
+              style={{
+                display: this.state.activeContentId == 4 ? "inherit" : "none"
+              }}
+            >
+              {/*DODATI KOMPONENTU PRETRAGA UNUTAR KOJE SE DEFINISE IZGLED TABOVA */}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -15,7 +15,7 @@ class CategoryComponent extends React.Component {
     axios.get('http://localhost:31902/category/get').then( res => {
 
       let displayNames = [];
-      console.log(res.data)
+      
       for(let i = 1; i < res.data.length; i++)
       {
         displayNames.push(res.data[i].naziv)

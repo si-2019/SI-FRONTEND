@@ -16,6 +16,7 @@ class Ocjenjivanje extends Component {
       studentiPregledano: [],
       brojZadace: "",
       brojZadatka: "",
+      idZadatak:"",
       osvojeniBodovi: 0,
       prepisano: false,
       komentar: "Alles gute Brudeeer",
@@ -38,6 +39,7 @@ class Ocjenjivanje extends Component {
         rokZaPredaju: "",
         stanjeZadatakaZadace: [],
         pregledanZadatak: [],
+        idZadatakaZadace:  []
       }
     };
   }
@@ -105,6 +107,7 @@ class Ocjenjivanje extends Component {
 
   pokupiZadacuStudenta = async (idZadace,idStudenta) => {
 
+    idStudenta = 1;
     try {
       const res = await axios.get(
         `http://localhost:31911/getZadacuStudenta/${idZadace}/${idStudenta}`
@@ -113,6 +116,8 @@ class Ocjenjivanje extends Component {
         zadacaState: res.data
       });
 
+      
+     // console.log(this.state.zadacaState);
       this.sumirajBodove();
       this.ostvareniBodovi();
       
@@ -142,10 +147,36 @@ class Ocjenjivanje extends Component {
         break;
       }
       case "ok": {
+        var infoOcjenjivanje=new FormData();
+        var kom=document.getElementById("komentar").value;
+        this.setState({komentar:kom});
+        infoOcjenjivanje.append('komentar', kom );
+        var osvojeniBod=document.getElementById("osvojeniBodovi").value;
+        infoOcjenjivanje.append('osvojeniBodovi', osvojeniBod );
 
-        axios.post("http://localhost:31911/ocijeniZadatak", this.state).then(res => {
+        var prepisan=document.getElementById("prepisanZadatak").checked===true;
+       
+        infoOcjenjivanje.append('idZadatak', this.state.idZadatak);
+        var stanjeZadatka;
+
+        if(prepisan===true) stanjeZadatka=3;
+        else if(kom!=="") stanjeZadatka=4;
+        else stanjeZadatka=2;
+        infoOcjenjivanje.append('prepisanZadatak', prepisan );
+        infoOcjenjivanje.append('stanjeZadatka', stanjeZadatka );
+        axios.post("http://localhost:31911/ocijeniZadatak", infoOcjenjivanje).then(res => {
           if (res.status === 200) {
             this.setState({ uspjehOcjenjivanja: true });
+            if(this.state.renderajOpet==false){
+              this.setState({
+                renderajOpet:true
+              })
+            }
+            else{
+              this.setState({
+                renderajOpet:false
+              })
+            }
           } else if (res.status === 201) {
 
           } else {
@@ -177,7 +208,22 @@ class Ocjenjivanje extends Component {
   };
 
   handleBackNaJednaZadaca = (student,idStudenta) => {
-
+    /*const res =  axios.get(
+      `http://localhost:31911/getZadacuStudenta/${this.state.idZadace}/${this.state.idStudenta}`
+    );
+    this.setState({
+      zadacaState: res.data
+    });*/
+    if(this.state.renderajOpet==false){
+      this.setState({
+        renderajOpet:true
+      })
+    }
+    else{
+      this.setState({
+        renderajOpet:false
+      })
+    }
       if(student!=""){
 
         this.pokupiZadacuStudenta(this.state.idZadace, idStudenta);
@@ -220,6 +266,7 @@ class Ocjenjivanje extends Component {
   
 
   handleNaOcjenjivanjeJedanZadatak = (indeks) => {
+this.setState({idZadatak:this.state.zadacaState.idZadatakaZadace[indeks]});
 
     this.setState({
       brojZadatka: indeks+1
@@ -271,8 +318,9 @@ class Ocjenjivanje extends Component {
     });
   }
 
-  render() {
-    
+  render( 
+  ) {
+    console.log(this.state);
     return (
       <div>
         <div id="ocjenjivanjePocetna">
@@ -281,11 +329,11 @@ class Ocjenjivanje extends Component {
         <div>
           <div id="ocjenjivanjeJednaZadaca">
             {/*ovdje ubaci svoju komponentu */}
-            <OcjenjivanjeJednaZadaca podaci={this}/>
+            <OcjenjivanjeJednaZadaca key={this.state.renderajOpet} podaci={this}/>
           </div>
         </div>
         <div id="ocjenjivanjeJedanZadatak">
-          <OcjenjivanjeJedanZadatak podaci={this} />
+          <OcjenjivanjeJedanZadatak key={this.state.renderajOpet} podaci={this} />
         </div>
       </div>
     );

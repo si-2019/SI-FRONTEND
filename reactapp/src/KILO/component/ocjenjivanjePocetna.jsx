@@ -37,28 +37,7 @@ class OcjenjivanjePocetna extends Component {
   render() {
     return (
       <div>
-        {/*iz nekog razloga mi odleti footer gore O.o msm da je zbog grid systema nesta*/}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br/>
+        
         <Form>
         <div class="container">
           <br />
@@ -82,7 +61,7 @@ class OcjenjivanjePocetna extends Component {
                         <DropdownItem
                           onClick={() => this.props.podaci.postaviZadacu(clan.naziv, clan.id)}
                           scope="col"
-                          key={clan}
+                          key={clan+2000}
                         >
                           {clan.naziv}
                         </DropdownItem>
@@ -133,7 +112,7 @@ class OcjenjivanjePocetna extends Component {
                         <DropdownItem
                           onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)}
                           scope="col"
-                          key={clan}
+                          key={clan+200}
                         >
                           {clan.naziv}
                         </DropdownItem>
@@ -158,7 +137,7 @@ class OcjenjivanjePocetna extends Component {
                         <DropdownItem
                           onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)}
                           scope="col"
-                          key={clan}
+                          key={clan+1000}
                         >
                           {clan.naziv}
                         </DropdownItem>

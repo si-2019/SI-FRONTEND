@@ -5,6 +5,7 @@ import DodajOdsjek from './dodajOdsjek'
 import DodajProfesora from './dodajProfesora'
 import DodajAsistenta from './dodajAsistenta'
 import DodajPredmet from './dodajPredmet'
+import promijeniLozinku from './promijeniLozinku'
 import Navigation from './Navigation'
 
 //rutiranje, prebacivanje sa student na odsjek page i obrnuto
@@ -21,6 +22,7 @@ class App extends Component{
                     <Route path="/profesor" component={DodajProfesora} />
                     <Route path="/asistent" component={DodajAsistenta} />
                     <Route path="/predmet" component={DodajPredmet} />
+                    <Route path="/lozinka" component={promijeniLozinku} />
                 </Switch>
             </div>
             </BrowserRouter>

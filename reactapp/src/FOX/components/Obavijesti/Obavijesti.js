@@ -18,7 +18,7 @@ class Obavijesti extends Component {
                     <Card>
                         <Card.Body>
                             <Card.Title style={{ display: "inline-block", fontSize: '30px', textAlign: "center"}} >Obavijesti </Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete poslati obavijest </Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete unijeti obavijest </Card.Subtitle>
                             <Form.Group as={Row} controlId = "naziv">
                                 <Col lg="6" style={{textAlign: "left"}} > 
                                 <Form.Label>Naziv:</Form.Label>
@@ -44,7 +44,7 @@ class Obavijesti extends Component {
                     </Card>
                 </Col>
             </Row>
-    </Container> 
+        </Container> 
         );
     }
 }

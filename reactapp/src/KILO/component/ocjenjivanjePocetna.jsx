@@ -37,33 +37,6 @@ class OcjenjivanjePocetna extends Component {
   render() {
     return (
       <div>
-        {/*iz nekog razloga mi odleti footer gore O.o msm da je zbog grid systema nesta*/}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         
         <Form>
         <div class="container">

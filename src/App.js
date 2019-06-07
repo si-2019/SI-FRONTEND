@@ -8,7 +8,6 @@ import DodajPredmet from './dodajPredmet'
 import Navigation from './Navigation'
 
 //rutiranje, prebacivanje sa student na odsjek page i obrnuto
-//izmjenje-> treba napraviti home page
 class App extends Component{
     render(){
         return(

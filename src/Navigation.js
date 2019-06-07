@@ -1,10 +1,51 @@
 import React from "react";
+import './App.css'
 import { NavLink } from 'react-router-dom'; 
 
 
 const Navigation = () => {
   return (
-    <nav className="navbar navbar-dark bg-primary">
+    <div className="wrapper">
+
+    
+    <nav id="sidebar" className="shift">
+        <div className="sidebar-header">
+            <h3>Administrativni modul</h3>
+        </div>
+        <ul class="list-unstyled components">
+          <li>
+            <NavLink to="/student" className="col-sm-2" style={{color: "#ecf0f1"}}>Student</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/odsjek" className="col-sm-2" style={{color: "#ecf0f1"}}>Odsjek</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/profesor" className="col-sm-2" style={{color: "#ecf0f1"}}>Profesor</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/asistent" className="col-sm-2" style={{color: "#ecf0f1"}}>Asistent</NavLink>
+          </li>
+           
+           <li>
+            <NavLink to="/predmet" className="col-sm-2" style={{color: "#ecf0f1"}}>Predmet</NavLink>
+           </li>
+        </ul>
+    </nav>
+
+
+</div> 
+  );
+};
+
+export default Navigation;
+
+
+/*<a class="navbar-brand" href="#">Administrativni modul</a>*/
+/*<div className="navbar-fixed-left">
+    <nav className="navbar navbar-dark bg-primary navbar-fixed-left">
     <div className="col-sm-2">
       <a className="navbar-brand" href="#" style={{color:"#ecf0f1"}}>Administrativni modul</a>
       <NavLink to="/student" className="col-sm-2" style={{color: "#ecf0f1"}}>Student</NavLink>
@@ -14,10 +55,4 @@ const Navigation = () => {
       <NavLink to="/predmet" className="col-sm-2" style={{color: "#ecf0f1"}}>Predmet</NavLink> 
     </div>
     </nav>
-  );
-};
-
-export default Navigation;
-
-
-/*<a class="navbar-brand" href="#">Administrativni modul</a>*/
+    </div>*/

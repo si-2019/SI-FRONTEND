@@ -47,7 +47,7 @@ class objavaProfesor extends Component {
             <OpisMaterijala opisMaterijala={this.props.opisMaterijala}></OpisMaterijala>
               {this.props.fileovi.map(predmet => [<a href='#' onClick={this.skiniFile.bind(this,predmet,this.props.idpredmeta)} class='card-link' key='1'>{predmet}</a>,<br key='2'></br>])}
             <DodavanjeDatuma datumobjave={this.state.datumobjave}></DodavanjeDatuma>
-            <button id = "obrisiFile" type = "button" class = "btn btn-success" onClick = { this.klikObrisiFile }> Obrisi </button>
+            <button id = "obrisiFileObjave" type = "button" class = "btn btn-success" onClick = { this.klikObrisiFile }> Obrisi </button>
             </div>
         </div>
     );

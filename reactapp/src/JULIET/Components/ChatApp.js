@@ -490,7 +490,7 @@ class ChatApp extends Component {
     }
     }
     render() {
-        let colorScheme = this.state.colorForUser != null ? this.state.colorForUser : "#fcfcfc";
+        let colorScheme = this.state.colorForUser != null ? this.state.colorForUser : "#2C3E50";
         const {
             showColorPicker,
         } = this.state;

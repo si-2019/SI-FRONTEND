@@ -179,7 +179,7 @@ class MessageList extends Component {
                                     message.text.substr(0, 16) === 'Downloaduj file:' ?
                                     <div>
                                         <Tooltip title="Download file">
-                                            <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDownloadClick(message)}
+                                            <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDownloadClick(message)}
                                                 style={{ float: 'right' }}>
                                                 <CloudDownload />
                                             </IconButton>
@@ -187,7 +187,7 @@ class MessageList extends Component {
                                         {
                                             message.senderId === this.props.currentId || this.state.adminUser ?
                                             <Tooltip title="Delete file">
-                                                <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDeleteClick(message, index)}
+                                                <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDeleteClick(message, index)}
                                                     style={{ float: 'right' }}>
                                                     <Delete />
                                                 </IconButton>
@@ -199,19 +199,19 @@ class MessageList extends Component {
                                 }
 
                                 <Tooltip title="Pin message">
-                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handlePinMessage(message)}
+                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.handlePinMessage(message)}
                                         style={{ float: 'right' }}>
                                         <Place />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Reply">
-                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.replyToMessage(message)}
+                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.replyToMessage(message)}
                                         style={{ float: 'right' }}>
                                         <Reply />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Start thread">
-                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDialogOpen(message)}
+                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDialogOpen(message)}
                                         style={{ float: 'right' }}>
                                         <Message />
                                     </IconButton>

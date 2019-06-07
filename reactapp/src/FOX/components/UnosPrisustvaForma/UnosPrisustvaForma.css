@@ -1,4 +1,4 @@
-option[value="da"] {
+/* option[value="da"] {
     color: white;
     background: #28a745 ;
 }
@@ -17,3 +17,10 @@ option[value="izaberiOpciju"] {
     color: black;
     background: white;
 }
+ */
+
+ option {
+     background: white;
+     color: black;
+ }
+

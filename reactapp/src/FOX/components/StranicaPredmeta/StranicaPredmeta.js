@@ -29,15 +29,17 @@ class StranicaPredmeta extends Component {
     console.log(predmetIgrupa, res);
     const predmet = res[0];
     const grupa = res[1];
+   
     return (
       <div className="StranicaPredmeta" className="footerDno">
         <Header isPocetna={false}/>
         <Container fluid>
           <Row>
-            <Col style={{textAlign: "center"}}>
+            <Col style={{textAlign: "left"}}>
             <br></br>
-            <h4>{predmet && predmet}</h4>
-            <h4>{grupa && grupa}</h4>
+            <h4>Pregled studenata</h4>
+            <h5> {predmet && predmet}</h5>
+            <h5> {grupa && grupa}</h5>
             <br></br>
             </Col> 
           </Row>

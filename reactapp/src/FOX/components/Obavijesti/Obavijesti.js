@@ -5,57 +5,50 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import  Row  from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
+import axios from 'axios';
+import '../../ZajednickiCSS.css';
+import Container from 'react-bootstrap/Container';
+
 class Obavijesti extends Component {
     render() {
         return (
-          <div>
-            <Header isPocetna={false}/>
-
-            <Form>
-            <Form.Row>
-                <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                    <br/>
-                    <h4>Obavijesti</h4>
-                    <br/>
-                </Col>
-            </Form.Row>
-
-            <Form.Row>
-                <Col style={{textAlign: "right"}}>
-                    <Form.Label> Naslov: </Form.Label>
-                </Col>
-                <Col lg="4">
-                    <Form.Control type="text" name="name">
-                    </Form.Control>
-                </Col>
-                <Col></Col>
-            </Form.Row>
-
-            <br/>
-
-            <Form.Row>
-                <Col style={{textAlign: "right"}}>
-                    <Form.Label> Sadržaj: </Form.Label>
-                </Col>
-                <Col lg="4">
-                    <Form.Control as="textarea" rows="5">
-                    </Form.Control>
-                </Col>
-                <Col></Col>
-                
-            </Form.Row>
-
-            <br/>
-
-            <Form.Row>
-                <Col style={{textAlign: "center"}}>
-                  <Button> Sačuvaj </Button>
-                </Col>
-            </Form.Row>
-            </Form>
-
-            <Footer/>
-          </div>
+            <Container fluid>
+            <Row>
+                <Col sm={{span: 4}} style={{textAlign: "left"}}>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title style={{ display: "inline-block", fontSize: '30px', textAlign: "center"}} >Unos ocjene </Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete unijeti ocjenu pojedinačnom studentu</Card.Subtitle>
+                            <Form.Group as={Row} controlId = "index">
+                                <Col lg="6" style={{textAlign: "left"}} > 
+                                <Form.Label>Naslov:</Form.Label>
+                                    <Form.Control 
+                                        required 
+                                        type="text" 
+                                        placeholder="Unesi index"
+                                    />
+                                <br/>
+                                </Col>   
+                            </Form.Group>
+                            <Form.Group as={Row} controlId = "formNoviOpis">
+                                <Col style={{textAlign: "left"}}>
+                                            <Form.Label>Ocjena:</Form.Label>
+                                            <Col lg="4">
+                                                <Form.Control as="textarea" rows="5">
+                                                </Form.Control>
+                                            </Col>
+                                            <br/>
+                                            <Button variant="primary" type="submit" >Pošalji </Button> 
+                                    </Col>
+                                    <Col></Col>
+                                </Form.Group>
+                            </Card.Body>  
+                        </Card>
+                    </Col>
+                </Row>
+        </Container> 
         );
     }
 }

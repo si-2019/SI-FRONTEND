@@ -16,7 +16,6 @@ const customStyles = {
 };
 
 
-
 const MojModal = (ovaj) => {
   ovaj=ovaj.ovaj; //samo ignorisite ovo i ponasajte se u daljem dijelu da je ovaj == this znaci npr ovaj.props.termin.sala ce vam vratiti salu iz bekendaaa
   if(!ovaj.state.showModal)
@@ -39,9 +38,7 @@ const MojModal = (ovaj) => {
               <br/>
               <div id='successResult' style={successResult}>{ovaj.state.signalString}</div>
               <div style={divStyle}>
-              <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
-              <button style={stylishCenter} type="button" class="btn btn-danger" onClick= {ovaj.handleDestroy}>Obriši</button>
-              <button style={stylishRight} className = 'btn btn-secondary' onClick={ovaj.handleCloseModal}>Zatvori</button>
+  
               </div>
             </Modal>
     </div>
@@ -319,16 +316,7 @@ export class Body_Cell extends Component {
   }
 }
 
-const tdStyleNeparan=
-{
-    rowspan:'5',
-    border:'2px solid #504c4c',
-    textAlign:'center',
-    padding:'8px',
-    textAlign: 'left',
-    width:'10vw', 
-    backgroundColor: 'rgba(240,240,240)' 
-}
+
 
 const tdStyleParan=
 {

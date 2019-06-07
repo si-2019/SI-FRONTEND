@@ -50,6 +50,10 @@ class FormaProfPred extends Component {
     }
 
     spoji(predmet, profesor){
+      console.log(predmet, profesor)
+      if(profesor=='' || predmet=="" || profesor==undefined || predmet==undefined || profesor=="--Profesori--" || predmet=="--Predmeti--")
+      alert("Izaberite profesora i predmet!")
+      else {
         console.log(profesor,predmet);
         const json={"idPredmet":predmet, "idProfesor":profesor}
         axios.post("http://localhost:31901/api/povezivanje/linkProfessorSubject", json)
@@ -59,6 +63,8 @@ class FormaProfPred extends Component {
         .catch(error=>{
             console.log(error);
         })
+        alert("Uspješno dodan profesor na predmet!")
+      }
     }
 
     render() {
@@ -66,8 +72,9 @@ class FormaProfPred extends Component {
 
         return (
           <div className="col-md-2">
-              <p>Prikaz svih profesora: </p><br />
+              <p>Odaberite profesora: </p><br />
                 <select className="custom-select"  onChange={this.onChangeProfesor}> 
+                <option>--Profesori--</option>
                 {
                   listaProfesora.length ? listaProfesora.map(list => 
                   <option key={list.id} value= {[list.id, list.ime,  list.prezime]}>{list.ime}  {list.prezime}</option>
@@ -75,8 +82,9 @@ class FormaProfPred extends Component {
                 }
                 </select><br /><br />
 
-                <p>Prikaz svih predmeta: </p><br />
+                <p>Odaberite predmet: </p><br />
                 <select className="custom-select"  onChange={this.onChangePredmet}> 
+                <option >--Predmeti--</option>
                 {
                   listaPredmeta.length ? listaPredmeta.map(list => 
                   <option key={list.id} value= {[list.id, list.naziv]}> {list.naziv}</option>

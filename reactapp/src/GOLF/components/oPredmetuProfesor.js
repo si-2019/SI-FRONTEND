@@ -3,6 +3,10 @@ import axios from 'axios'
 
 class oPredmetuProfesor extends Component {
 
+  state = {
+    isUploaded: false
+  }
+
   skiniFile(file,idpredmeta){
     axios({
       url: `http://localhost:31907/r4/prikaziFileOPredmetu/${idpredmeta}/${file}`,
@@ -36,7 +40,7 @@ class oPredmetuProfesor extends Component {
             <p class='opis'> {this.props.opis} </p>
             <div class='linkovi'>
               {this.props.predmet.map(file => [<a href='#' onClick={this.skiniFile.bind(this,file.naziv,this.props.idpredmeta)} class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])}
-              <button id = "dd" type = "button" class = "btn btn-success" onClick = { this.klikObrisiFile }> Obrisi </button>
+              <button id = "obrisiFile" type = "button" class = "btn btn-success" onClick = { this.klikObrisiFile }> Obrisi </button>
             </div>
         </div>
     );

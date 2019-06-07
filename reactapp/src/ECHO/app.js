@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./app.css";
 import LeftMenu from "./components/LeftMenu.js";
 import NaslovnaTermin from "./components/naslovnaTermin";
+import NaslovnaKalendar from "./components/naslovnaKalendar.js";
 
 class App extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class App extends Component {
                 display: this.state.activeContentId == 3 ? "inherit" : "none"
               }}
             >
+              <NaslovnaKalendar />
               {/*DODATI KOMPONENTU KALENDAR UNUTAR KOJE SE DEFINISE IZGLED TABOVA */}
             </div>
             <div

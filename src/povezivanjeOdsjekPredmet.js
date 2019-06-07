@@ -10,6 +10,10 @@ class FormaProfPred extends Component {
           predmet: '',
           selectedValueO: '',
           selectedValueP: '',
+          godina: '', 
+          semestar: '',
+          ciklus: '',
+          obavezan: '',
           listaOdsjeka: [],
           listaPredmeta: []
         }
@@ -55,9 +59,9 @@ class FormaProfPred extends Component {
          })  
     }
 
-    spoji(){
-        //console.log(odsjek,predmet);
-        const body={"idOdsjek": this.state.odsjek, "idPredmet": this.state.predmet, "godina": null, "ciklus": null, "semestar": null, "obavezan": null}
+    spoji(odsjek, predmet){
+        console.log(odsjek, predmet);
+        const body={"idOdsjek": this.state.odsjek, "idPredmet": this.state.predmet, "godina": this.state.godina, "ciklus": this.state.ciklus, "semestar": this.state.semestar, "obavezan": this.state.obavezan}
         const json=JSON.stringify(body);
         console.log(json);
         axios.post("http://localhost:31901/api/povezivanje/SpojiOdsjekPredmet", json)
@@ -71,10 +75,16 @@ class FormaProfPred extends Component {
         })
     }
 
-    render() {
-        const {odsjek, predmet, listaOdsjeka, listaPredmeta, selectedValueO, selectedValueP}= this.state;
-        console.log("LISTE", listaOdsjeka, listaPredmeta);
+    handleChange = (event) => {
+      event.preventDefault()
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
 
+    render() {
+        const {odsjek, predmet, listaOdsjeka, listaPredmeta, selectedValueO, selectedValueP, godina, semestar, ciklus, obavezan}= this.state;
+        console.log(godina, semestar, ciklus, obavezan);
         return (
           <div className="col-md-2">
               <p>Prikaz svih odsjeka: </p><br />
@@ -95,7 +105,19 @@ class FormaProfPred extends Component {
                 }
                 </select><br /><br />
 
-                <button className="btn btn-success btn-block" onClick={()=>this.spoji()}>Dodaj</button>
+                <label>Godina:</label>
+                <input className="form-control" type="number" name="godina" value={godina} onChange={this.handleChange}  /><br />
+
+                <label>Ciklus:</label>
+                <input className="form-control" type="number" name="ciklus" value={ciklus} onChange={this.handleChange}  /><br />
+
+                <label>Semestar:</label>
+                <input className="form-control" type="number" name="semestar" value={semestar} onChange={this.handleChange}  /><br />
+
+                <label>Obavezan:</label>
+                <input className="form-control" type="number" name="obavezan" value={obavezan} onChange={this.handleChange}  /><br />
+                
+                <button className="btn btn-success btn-block" onClick={()=>this.spoji(odsjek, predmet)}>Dodaj</button>
 
           </div>
         );

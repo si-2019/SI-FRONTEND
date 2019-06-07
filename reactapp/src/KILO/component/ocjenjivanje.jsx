@@ -16,6 +16,7 @@ class Ocjenjivanje extends Component {
       studentiPregledano: [],
       brojZadace: "",
       brojZadatka: "",
+      idZadatak:"",
       osvojeniBodovi: 0,
       prepisano: false,
       komentar: "Alles gute Brudeeer",
@@ -224,6 +225,7 @@ class Ocjenjivanje extends Component {
   
 
   handleNaOcjenjivanjeJedanZadatak = (indeks) => {
+this.setState({idZadatak:indeks});
 
     this.setState({
       brojZadatka: indeks+1
@@ -275,8 +277,9 @@ class Ocjenjivanje extends Component {
     });
   }
 
-  render() {
-    
+  render( 
+  ) {
+    console.log(this.state);
     return (
       <div>
         <div id="ocjenjivanjePocetna">

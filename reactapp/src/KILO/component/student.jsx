@@ -72,6 +72,28 @@ class Student extends Component {
       idPredmeta: 3
       };
   }
+testirajVrijeme=(r)=>{
+  var povratna_vrijednost;
+    var trengodina = new Date().getFullYear();
+    var trenmjesec = new Date().getMonth() + 1;
+    var trendan = new Date().getDate();
+    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
+    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
+    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
+    if (trengodina > nasagodina) povratna_vrijednost =false;
+    else if (trengodina === nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
+    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
+    povratna_vrijednost =false;
+    else if (
+      trengodina === nasagodina &&
+      trenmjesec === nasmjesec &&
+      trendan === nasdan &&
+      this.state.vrijeme !== "23:59"
+    )
+      povratna_vrijednost= false;
+    else povratna_vrijednost= true;
+return povratna_vrijednost;
+}
 
   obracunBodova = async (bodoviPoZadacimaZadaca, maxBodoviPoZadacimaPoZadacama) => {
     
@@ -123,26 +145,8 @@ class Student extends Component {
     var vrijednostIdZadatka=this.state.zadacaState.idPoZadacimaZadaca[r][k];
     this.setState({idZadatak:vrijednostIdZadatka});
 
-
-    var povratna_vrijednost;
-    var trengodina = new Date().getFullYear();
-    var trenmjesec = new Date().getMonth() + 1;
-    var trendan = new Date().getDate();
-    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
-    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
-    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
-    if (trengodina > nasagodina) povratna_vrijednost =false;
-    else if (trengodina === nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
-    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
-    povratna_vrijednost =false;
-    else if (
-      trengodina === nasagodina &&
-      trenmjesec === nasmjesec &&
-      trendan === nasdan &&
-      this.state.vrijeme !== "23:59"
-    )
-      povratna_vrijednost= false;
-    else povratna_vrijednost= true;
+var povratna_vrijednost=this.testirajVrijeme(r);
+    
 
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
@@ -151,10 +155,12 @@ class Student extends Component {
     });
     document.getElementById("uploadButton").disabled=false;
     this.setState({blokirajSelect:false}); 
+    document.getElementById("posalji1").disabled=false;
     }
     else {
      this.setState({blokirajSelect:true}); 
      document.getElementById("uploadButton").disabled=true;
+     document.getElementById("posalji1").disabled=true;
     }
     this.setState({
       brojZadace: r+1,
@@ -171,24 +177,8 @@ class Student extends Component {
     var vrijednostIdZadatka=this.state.zadacaState.idPoZadacimaZadaca[r][k];
     this.setState({idZadatak:vrijednostIdZadatka});
 
-    var povratna_vrijednost;
-    var trengodina = new Date().getFullYear();
-    var trenmjesec = new Date().getMonth() + 1;
-    var trendan = new Date().getDate();
-    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
-    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
-    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
-    if (trengodina > nasagodina) povratna_vrijednost =false;
-    else if (trengodina == nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
-    else if (trengodina == nasagodina && trenmjesec == nasmjesec && trendan > nasdan)
-    povratna_vrijednost =false;
-    else if (
-      trengodina == nasagodina &&
-      trenmjesec == nasmjesec &&
-      trendan == nasdan &&
-      this.state.vrijeme != "23:59"
-    ) povratna_vrijednost= false;
-    else povratna_vrijednost= true;
+    var povratna_vrijednost=this.testirajVrijeme(r);
+    
     
  //validacija ako je rok prosao, nema liste tipova
     if(povratna_vrijednost) {
@@ -198,10 +188,13 @@ class Student extends Component {
       
  
     document.getElementById("uploadButton2").disabled=false;
-    this.setState({blokirajSelect2:false});    });
+    this.setState({blokirajSelect2:false});  
+    document.getElementById("posalji2").disabled=false;
+  });
   }
    else{ this.setState({blokirajSelect2:true});
    document.getElementById("uploadButton2").disabled=true;
+   document.getElementById("posalji2").disabled=true;
 }
  await axios.get(`http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`).then(res => { 
     
@@ -229,6 +222,7 @@ class Student extends Component {
 
       case "posaljiZadatak": {
        //if( document.getElementById("prviPutSlanjeZadatka").style.display.value == "block")     
+      if(this.testirajVrijeme(this.state.brojZadace-1)){
         var nazivUploada = document.getElementById("uploadButton").value;
         if(nazivUploada==="") 
           nazivUploada = document.getElementById("uploadButton2").value;
@@ -247,6 +241,7 @@ class Student extends Component {
            });
 }
         }
+      }
         break;
       }
       case "ponisti": {
@@ -297,3 +292,5 @@ class Student extends Component {
 }
 
 export default Student;
+
+

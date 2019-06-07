@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 
-class FormaProfPred extends Component {
+class FormaOdsjekPred extends Component {
     constructor(props) {
         super(props)
   
         this.initialState = {
-          profesor: '',
+          odsjek: '',
           predmet: ''
         }
     
@@ -19,26 +19,18 @@ class FormaProfPred extends Component {
         })
       }
 
-//Funkcija za backend
-      OnSubmit = (event) =>{
-        event.preventDefault()
-        const data=this.state
-        console.log("Svi potrebni podaci: ", data)
-      }
-     
-
     render() {
-        const { profesor, predmet } = this.state;
+        const { odsjek, predmet } = this.state;
 
         return (
           <div className="col-md-2">
           
             <form  onSubmit={this.OnSubmit} className="container-fluid">
-              <label>Odaberite profesora </label>
-              <select className="form-control"  name="profesor" value={profesor} onChange={this.handleInputChange}> </select>
+              <label className="col-md-2">Odaberite odsjek </label>
+              <select className="form-control"  name="asistent" value={odsjek} onChange={this.handleInputChange}> </select>
               <br />
               
-              <label>Odaberite predmet </label>
+              <label className="col-md-2">Odaberite predmet </label>
               <select className="form-control"  name="predmet" value={predmet} onChange={this.handleInputChange} > </select>
               <br />
 
@@ -49,6 +41,6 @@ class FormaProfPred extends Component {
           </div>
         );
     }
-}
 
-export default FormaProfPred
+}
+export default FormaOdsjekPred

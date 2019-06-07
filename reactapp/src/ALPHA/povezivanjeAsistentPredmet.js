@@ -16,7 +16,7 @@ class FormaProfPred extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllAssistants')
+        axios.get ('http://localhost:31901/api/korisnik/GetAllAssistants')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaAsistenata: response.data});
@@ -36,14 +36,14 @@ class FormaProfPred extends Component {
       }
 
     onChangeAsistent = (e) => {
-        var split=e.target.value.split(",");     
+        var split=e.target.value.split(" - ");     
         this.setState({
           asistent: split[0]
          })  
     }
 
     onChangePredmet = (e) => {
-        var split=e.target.value.split(",");     
+        var split=e.target.value.split(" - ");     
         this.setState({
           predmet: split[0]
          })  
@@ -51,7 +51,7 @@ class FormaProfPred extends Component {
 
     spoji(asistent, predmet){
         console.log(asistent,predmet);
-        const json={"idAsistent":asistent, "idPredmet":predmet}
+        const json={"idUloga":asistent, "idPredmet":predmet, "godina":null, "ciklus":null, "obavezan":null}
         axios.post("http://localhost:31901/api/povezivanje/linkAssistantSubject", json)
         .then(response => {
             console.log(response);
@@ -67,19 +67,19 @@ class FormaProfPred extends Component {
         return (
           <div className="col-md-2">
               <p>Prikaz svih asistenata: </p><br />
-                <select className="custom-select"  onChange={this.onChangeAsistent}> 
+                <select className="custom-select" value={asistent} onChange={this.onChangeAsistent}> 
                 {
                   listaAsistenata.length ? listaAsistenata.map(list => 
-                  <option key={list.id} value={[list.id]}>{list.ime} {list.prezime}</option>
+                  <option key={list.idUloga}>{list.ime} {list.prezime} </option>
                   ): null
                 }
                 </select><br /><br />
 
                 <p>Prikaz svih predmeta: </p><br />
-                <select className="custom-select"  onChange={this.onChangePredmet}> 
+                <select className="custom-select" value={predmet} onChange={this.onChangePredmet}> 
                 {
                   listaPredmeta.length ? listaPredmeta.map(list => 
-                  <option key={list.id} value={list.id}>{list.naziv}</option>
+                  <option key={list.id}>{list.naziv}</option>
                   ): null
                 }
                 </select><br /><br />

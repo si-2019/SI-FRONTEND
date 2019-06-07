@@ -24,9 +24,7 @@ class App extends Component {
     window.confirm('Prekinuti pisanje issuea?') && this.setState({ open: false });
   };
 
-  onCloseModalAndSaveAsDraft = () => {
-    window.confirm('Save issue as draft and close?') && this.setState({ open: false });
-  };
+ 
 
   onChangeActiveId = (id) => {
     this.setState({

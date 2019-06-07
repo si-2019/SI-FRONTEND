@@ -75,10 +75,42 @@ class ModalComponent extends React.Component {
         });
      }
 
-     
+     fileChangedHandler = (event) => {
+        if(event.target.files[0] == null){
+            this.setState({fileTooBig : false});
+            this.setState({fileWrong : false});
+        }
+        else{
+            if(event.target.files[0].size/1024/1024 > 25){
+                this.setState({fileTooBig : true});
+                //OVDJE TREBA JOS PRIKAZATI ALERT
+                 
+            }
+            else{
+                this.setState({fileTooBig : false});
+            }
+            
+            this.setState({fileWrong : true});
+            for(var i=0;i<this.state.allowedFiles.length;i++)
+                if(event.target.files[0].type == this.state.allowedFiles[i]){
+                    this.setState({fileWrong : false});
+                    break;
+                }
+        }
+        //let file_name = event.target.files[0].name;
+        };
 
     renderujPotvrdu() {
-        if (this.state.greska == false && this.state.draft == false) {
+        if(this.state.fileTooBig){
+            return(
+            <Potvrda
+                    key={this.brojac}
+                    successful="false"
+                    msg="Ne možete poslati fajl veći od 25 MB"
+                />
+            );
+        }
+        else if (this.state.greska == false && this.state.draft == false) {
             return (
                 <Potvrda
                     key={this.brojac}
@@ -101,7 +133,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="false"
-                    //VEDAD ->PRVI SPRINT
+                    //VEDAD ->PRVI SPRINT (izmijeniti ovu porukicu msg)
                     msg="Vaš issue nije poslan! Pokusajte ponovo!"
                 />
             );
@@ -158,7 +190,7 @@ class ModalComponent extends React.Component {
                                     aria-describedby="fileHelp"
 
                                 />
-
+                               
 
                             </>
                         </div>

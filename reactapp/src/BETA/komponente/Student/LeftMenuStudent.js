@@ -4,7 +4,7 @@ class LeftMenuStudent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeDivId: 1,  //open pokazuje da li formu treba prikazati ili ne
+            activeDivId: 1, 
         };
     };
 

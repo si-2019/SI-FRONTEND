@@ -63,45 +63,44 @@ class TabelaUnosa extends Component {
 
     render() {
         return(
-            
                 <Container fluid>
                     <Row>
                         <Col sm={{span: 4}} style={{textAlign: "left"}}>
                             <Card>
                                 <Card.Body>
-                                    <Card.Title style={{ display: "inline-block" }} >Unos bodova ispita </Card.Title>
+                                    <Card.Title style={{ display: "inline-block", fontSize: '30px', textAlign: "center"}} >Unos bodova ispita </Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete unijeti bodove pojedinačnom studentu</Card.Subtitle>
                                     <Form.Group as={Row} controlId = "index">
-                                        <Col style={{textAlign: "left"}} > 
+                                        <Col lg="6" style={{textAlign: "left"}} > 
                                         <Form.Label>Index:</Form.Label>
                                             <Form.Control 
                                                 required 
                                                 type="text" 
                                                 placeholder="Unesi index"
                                             />
-                                        <Button variant="primary" type="submit" onClick={this.handleClick} >Pretrazi</Button> 
+                                        <br/>
+                                        <Button variant="primary" type="submit" style ={{padding:'10px'}} onClick={this.handleClick} >Pretrazi</Button> 
                                         </Col>   
                                     </Form.Group>
                                     <Form.Row>
                                         <Col style={{textAlign: "center"}}>
-                                            <br/>
                                             <label style={{ visibility: this.state.greskaVis}}>
                                                 Pero Perić, 12345
                                             </label> 
                                         </Col>
                                     </Form.Row>
                                     <Form.Group as={Row} controlId = "formNoviOpis">
-                                                <Col lg="7" style={{textAlign: "left"}}>
+                                        <Col style={{textAlign: "left"}}>
                                                     <Form.Label>Bodovi:</Form.Label>
                                                     <Form.Control 
                                                         required 
                                                         type="text" 
                                                         placeholder="Unesi bodove"
-                                                        style= {{padding: ''}}
                                                     />
-                                                    <Button variant="primary" type="submit" onClick={this.handleCli>Unesi </Button> 
-                                                </Col>
-                                                <Col></Col>
+                                                    <br/>
+                                                    <Button variant="primary" type="submit" onClick={this.handleCli}>Unesi </Button> 
+                                        </Col>
+                                        <Col></Col>
                                     </Form.Group>
                                     <Form.Row>
                                         <Col style={{textAlign: "center"}}>
@@ -124,10 +123,7 @@ class TabelaUnosa extends Component {
                             </Card>
                         </Col>
                     </Row>
-                
             </Container>
-        
-
         );
     }
 }

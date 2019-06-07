@@ -14,19 +14,19 @@ class TemeZavrsnih extends Component {
       <div className="TemeZavrsnih">
         <Header isPocetna={false}/>
         <Container fluid>
-          <Row>
+          <Row style={{margin: "0"}}>
             <Col style={{textAlign: "left"}}>
             <br></br>
             <h4>Pregled tema za završne radove</h4>
             <br></br>
             </Col> 
-          </Row>
-          <Row>
+          </Row >
+          <Row style={{margin: "0"}}>
             <Col style={{textAlign: "center"}}>
               <TabelaTeme />
             </Col>
           </Row>
-          <Row className="justify-content-md-center">
+          <Row className="justify-content-md-center" style={{margin: "0"}}>
             <Col style={{textAlign: "center"}}>
               <Button variant="primary" href='novaTema'>Nova tema</Button>
             </Col>

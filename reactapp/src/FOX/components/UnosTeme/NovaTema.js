@@ -89,7 +89,7 @@ class NovaTema extends Component {
             <div id="unosNoveTeme" className="footerDno">
                 <Header isPocetna={false}/>
                     <Container fluid>
-                        <Row>
+                        <Row style={{margin: "0"}}>
                             <Col style={{textAlign: "left"}}>
                                 <Poruka greska={greskaBaza} />
                                 <Card>

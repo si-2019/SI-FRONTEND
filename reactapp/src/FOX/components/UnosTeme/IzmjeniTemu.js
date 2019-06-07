@@ -103,7 +103,7 @@ class IzmjeniTemu extends Component {
             <Container fluid>
 
             
-                <Row>
+                <Row style={{margin: "0"}}>
                     <Col style={{textAlign: "left"}}>
                         <Poruka greska={greskaBaza} />
                         <Card>

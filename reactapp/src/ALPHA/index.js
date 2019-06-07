@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import DodajStudenta from './dodajStudenta'
 //import DodajStudenta from './dodajOdsjek'
-import App from './app'
+import App from './App'
 import './index.css';
 import './css/bootstrap.min.css'
 

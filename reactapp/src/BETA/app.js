@@ -96,6 +96,7 @@ class App extends Component {
                     show={this.state.modalShow}
                     naslovModala="Posalji novi issue"
                     btnPotvrdi="Posalji issue"
+                    onHide={() => this.setState({modalShow: false})}
                     
                     
 

@@ -20,9 +20,9 @@ function UnosPrisustvaForma(props) {
     return (
         <div id="unosPrisustvaFormaID">
 
-            <Container fluid>
+            <Container fluid style={{padding:"0", margin: "0"}}>
                 <Row style={{margin: "0"}}>
-                    <Col style={{textAlign: "center"}}>
+                    <Col style={{textAlign: "left"}}>
                     <h4>Unos prisustva za sedmicu {props.data.sedmica}</h4>
                     </Col> 
                 </Row >

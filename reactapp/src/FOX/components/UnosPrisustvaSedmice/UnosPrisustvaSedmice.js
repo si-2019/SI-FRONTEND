@@ -25,7 +25,7 @@ const UnosPrisustvaSedmice = (props) => {
         <div>
             <Container>
                 <Row style={{margin: "0"}}>
-                <Col style={{textAlign: "center"}}>
+                <Col style={{textAlign: "left"}}>
                     <h4>Odabir sedmice</h4>
                     <br></br>
                 </Col> 

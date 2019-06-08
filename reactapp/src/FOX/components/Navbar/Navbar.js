@@ -45,7 +45,6 @@ class NavbarFox extends Component {
           </Navbar.Collapse>
         </Navbar> */}
 
-            
             <a href="StranicaPredmeta?predmetId=Tehnike Programiranja">
               <button type="button" className="btn btn-primary left-buttons">Student</button>
             </a>

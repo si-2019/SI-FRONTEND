@@ -2,6 +2,10 @@ import React, { Component} from 'react';
 import TabelaUnosa from '../TabelaUnosa/TabelaUnosa';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import '../../ZajednickiCSS.css';
 
 
 class UnosBodova extends  Component {
@@ -24,9 +28,20 @@ state = {
 
 render() {
     return(
-        <div>
-            <Header isPocetna={false}/>
-            <TabelaUnosa/>
+        <div className="footerDno">
+            <Container fluid style={{padding:"0", margin: "0"}}>
+                    <Row>
+                        <Col md="3">
+                            <Header isPocetna={false}/>
+                        </Col>
+                        <Col>
+                            <br/>       
+                            <h4>Unos bodova ispita</h4>
+                            <br/>
+                            <TabelaUnosa/>
+                        </Col>
+                    </Row>
+                </Container>
             <Footer/>
           </div>
         );

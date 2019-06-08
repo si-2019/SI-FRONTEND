@@ -32,7 +32,7 @@ class UnosInformacija extends React.Component {
     render() {
       if(this.state.forma=="null") {
       return (
-        <div className="card" style={{float: "left", width:"50%", top:"40px"}}>
+        <div className="card" style={{float: "left", width:"100%", top:"40px"}}>
           <div class="card-body">
       
           <h4 class="card-title" style={{textAlign:"left"}}>Unos informacija</h4>

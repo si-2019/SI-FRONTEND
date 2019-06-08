@@ -32,11 +32,10 @@ class Mike extends Component {
     {/*if(this.state.forma=="null")*/} return (
      // <div className="col-6">
         <div>
-          <h2>Mike kolaboracija</h2>
           <div className="App">
             <div className="row">
               <div id="head_meni">
-                <button id="naslov" className="btn btn-primary">Opcije kolaboracije</button>
+                <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
                 <div id="odabrana_opcija"></div>
               </div>
               <div id="glavni_meni">

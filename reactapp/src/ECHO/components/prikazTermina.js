@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./izgled.css";
+import "./prikazTermina.css";
 
 class PrikazTermina extends Component {
   constructor(props) {
@@ -21,10 +21,9 @@ class PrikazTermina extends Component {
 
   render() {
     return (
-      <div class="card">
+      <div class="card" id="glavnaKartica">
         <div class="card-body">
           <div class="row">
-         
             <div class="card" className="mojaKartica">
               <div class="card-body">
                 <div className="dan">
@@ -45,8 +44,7 @@ class PrikazTermina extends Component {
                   )
                 )}
               </div>
-              </div>
-        
+            </div>
 
             <div class="card" className="mojaKartica">
               <div class="card-body">

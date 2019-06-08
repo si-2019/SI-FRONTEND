@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Alert } from "reactstrap";
 import "./unosTermina.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 class UnosTermina extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class UnosTermina extends Component {
 
       alertVisible: false,
       alertMessage: "",
+      alertMessageStatus: "",
       alertColor: "success"
     };
 
@@ -39,7 +40,6 @@ class UnosTermina extends Component {
   handleSubmit(event) {
     if (this.validiraj()) {
       this.postTermin();
-      this.props.terminUpdate();
       event.preventDefault();
     }
   }
@@ -50,7 +50,8 @@ class UnosTermina extends Component {
     const br = this.state.brCasova;
     if (Number(br) + Number(t) > 20) {
       this.setState({
-        alertMessage: "Pogrešan unos. Nastava se održava do 20:00",
+        alertMessage: "Nastava se održava do 20:00",
+        alertMessageStatus: "Greška!",
         alertVisible: true,
         alertColor: "danger"
       });
@@ -75,6 +76,7 @@ class UnosTermina extends Component {
     }).then(
       this.setState({
         alertMessage: "Uspješno ste unijeli termin",
+        alertMessageStatus: "Ok!",
         alertVisible: true,
         alertColor: "success"
       })
@@ -85,9 +87,20 @@ class UnosTermina extends Component {
   }
   render() {
     return (
-      <div className="card">
-        <div className="card-body">
-          <h4 className="card-title m-2">Unos termina</h4>
+      <div className="card" id="terminCard">
+        <Alert
+          id="alertID"
+          color={this.state.alertColor}
+          toggle={this.toggle.bind(this)}
+          isOpen={this.state.alertVisible}
+        >
+          <strong> {this.state.alertMessageStatus}</strong> <br />
+          {this.state.alertMessage}
+        </Alert>
+        <div className="card-body" id="terminCardBody">
+          <h4 className="card-title m-2" id="terminCardTitle">
+            Unos termina
+          </h4>
           <select
             className="custom-select m-2"
             id="listaDana"

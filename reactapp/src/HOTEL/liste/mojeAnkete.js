@@ -15,7 +15,7 @@ class App extends React.Component {
         const items = this.state.items
         return (
             <div>
-                <nav class="NavPadding">
+                <nav class="NavPadding" style={{backgroundColor: "#2C3E50"}}>
                     <h2 id="top">MOJE ANKETE</h2>
                     <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
                 </nav>
@@ -38,9 +38,9 @@ class App extends React.Component {
                                 <th>{anketa.naziv}</th>
                                 <th>{anketa.opisAnkete}</th>
                                 <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                                <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
-                                <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
-                                <th><button type="button" class="btn btn-primary disabled" id="obrisiButton" 
+                                <th><button type="button" class="btn btn-primary" id="prikaziButton">PRIKAŽI</button></th>
+                                <th><button type="button" class="btn btn-primary" id="urediButton">UREDI</button></th>
+                                <th><button type="button" class="btn btn-primary" id="obrisiButton" 
                                 onClick= {() => this.obrisiAnketu(anketa) } >OBRIŠI</button></th>
                                 </tr>
 
@@ -50,7 +50,7 @@ class App extends React.Component {
                     
                 )) : "Loading..."}
                 </table>
-                <a href="#top"><button type="button" class="btn btn-primary disabled" id="nazadNaVrhButton">NAZAD NA VRH</button></a>
+                <a href="#top"><button type="button" class="btn btn-primary" id="nazadNaVrhButton">NAZAD NA VRH</button></a>
             </div>
         )
     }

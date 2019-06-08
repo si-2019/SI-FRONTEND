@@ -57,7 +57,7 @@ class KreiranjeZadace extends Component {
   }
 
   componentDidMount = () => {
-    document.getElementById("kreiranje").style.display = "block";
+    document.getElementById("kreirajKilo").style.display = "block";
     document.getElementById("preview").style.display = "none";
     this.handleChangeProps(this.props);
   };
@@ -163,7 +163,7 @@ class KreiranjeZadace extends Component {
         var valid = porukeGreske.length == 0 ? true : false;
 
         if (valid) {
-          document.getElementById("kreiranje").style.display = "none";
+          document.getElementById("kreirajKilo").style.display = "none";
           document.getElementById("preview").style.display = "block";
           this.setState({
             validno: true
@@ -177,7 +177,7 @@ class KreiranjeZadace extends Component {
       }
       case "idiNaKreiranjeZadace": {
         // prelazak sa previewa na kreiranje zadace
-        document.getElementById("kreiranje").style.display = "block";
+        document.getElementById("kreirajKilo").style.display = "block";
         document.getElementById("preview").style.display = "none";
         break;
       }
@@ -372,20 +372,32 @@ class KreiranjeZadace extends Component {
             </ModalFooter>
           </Modal>
         </div>
-        <div id="kreiranje">
+        <div id="kreirajKilo">
+          <div class="container-fluid">
+          <div class="row">
+          <div class="col-3">
           <OsnovniPodaci
             title={this.props.title}
             onChange={this.handleChange}
             onChangePostavka={this.onChangePostavka}
             podaci={this}
           />
+          </div>
+          <div clas="col-3">
           <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
+          </div>
+       
+          <div class="col-3">
           <BodoviZadaca onChange={this.handleChange} podaci={this} />
+          </div>
+          </div>
+          </div>
           <Button
             id="idiNaPreview"
             name="idiNaPreview"
             onClick={this.handleClick}
             color="info"
+            class="btn btn-primary"
           >
             Preview zadace
           </Button>

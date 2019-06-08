@@ -18,9 +18,9 @@ import DetaljiProjektneGrupe from './PrikazDetaljaProjektneGrupe';
     }
     render(){
       if(this.state.detalji) return(
-        <div>
-         <h3>{this.state.tech}</h3>
-          <select className="form-control" id="dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
+        <div style={{textAlign:"left"}}>
+         <h6 class="card-subtitle mb-2 text-muted">{this.state.tech}</h6>
+          <select className="custom-select" id="dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option className="list-group-item" value="Lista grupa">Odaberite grupu</option>
             <option className="list-group-item" value="Grupa 1">Grupa 1</option>
             <option className="list-group-item" value="Grupa 2">Grupa 2</option>
@@ -34,9 +34,9 @@ import DetaljiProjektneGrupe from './PrikazDetaljaProjektneGrupe';
         </div>
       )
       else return (
-        <div>
-         <h3>{this.state.tech}</h3>
-          <select className="form-control" id="dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
+        <div style={{textAlign:"left"}}>
+         <h6 class="card-subtitle mb-2 text-muted">{this.state.tech}</h6>
+          <select className="custom-select" id="dropdown" onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option className="list-group-item" value="Lista grupa">Odaberite grupu</option>
             <option className="list-group-item" value="Grupa 1">Grupa 1</option>
             <option className="list-group-item" value="Grupa 2">Grupa 2</option>

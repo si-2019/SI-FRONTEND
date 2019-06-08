@@ -24,9 +24,13 @@ class oPredmetuProfesor extends Component {
       <div class='divsaokvirom'>
             <h4 class='naslov'> O predmetu </h4>
             <p class='opis'> {this.props.opis} </p>
+            Opis: <br></br>
+              <textarea rows="3" id="opisPredmeta"  name="opisPredmeta" class="form-control mr-sm-2"cols="1500"></textarea>
             <div class='linkovi'>
               {this.props.predmet.map(file => [<a href='#' onClick={this.skiniFile.bind(this,file.naziv,this.props.idpredmeta)} class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])}
             </div>
+            Dodaj file:
+            <input className="dugmic" type="file" multiple></input>
         </div>
     );
   }

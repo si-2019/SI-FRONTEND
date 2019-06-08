@@ -2,7 +2,6 @@ import React from "react";
 import TabelaOcjene from "./TabelaOcjene";
 import axios from "axios";
 
-
 class Ocjene extends React.Component {
 
     constructor() {
@@ -42,10 +41,6 @@ class Ocjene extends React.Component {
                     Predmet: "lol",
                     Ocjena: "6"
                 }]
-            }],
-            dummyOcj: [{
-                Predmet: "lol",
-                Ocjena: "6"
             }],
             idStudenta: 1
         }

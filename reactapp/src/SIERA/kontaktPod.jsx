@@ -68,6 +68,7 @@ class KontaktPod extends Component {
                             <br></br>
                             <h4>{this.state.email}</h4>
                         </div>
+
                         <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })} >Edit</button>
     
                 <ModalComponent
@@ -78,8 +79,6 @@ class KontaktPod extends Component {
                    
                 />
             </>
-
-
 
         );
     }

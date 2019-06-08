@@ -3,16 +3,25 @@ import './Navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Link from 'react-router-dom/Link';
 
 class NavbarFox extends Component {
     render() {
       return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <div style={{
+            backgroundColor: "#2C3E50",
+            float: "left",
+            minHeight: "100vh"
+        }}>
+        {/* <Navbar bg="primary" variant="dark" expand="lg">
           <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"> 
-              <Nav.Link href="StranicaPredmeta">Student</Nav.Link>
+              <Nav.Link href="StranicaPredmeta?predmetId=Tehnike Programiranja">Student</Nav.Link>
               <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
                 <NavDropdown.Item href="unosPrisustva">Prisustvo</NavDropdown.Item>
                 <NavDropdown.Item href="unosBodova">Ispiti</NavDropdown.Item>
@@ -34,7 +43,65 @@ class NavbarFox extends Component {
               <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>
             </Nav> 
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */}
+
+            <a href="StranicaPredmeta?predmetId=Tehnike Programiranja">
+              <button type="button" className="btn btn-primary left-buttons">Student</button>
+            </a>
+
+            <a href="unosPrisustva">
+              <button type="button" className="btn btn-primary left-buttons">Unos prisustva</button>
+            </a>
+
+            <a href="unosBodova">
+              <button type="button" className="btn btn-primary left-buttons">Unos bodova ispita</button>
+            </a>
+
+            <a href="unosOcjene">
+              <button type="button" className="btn btn-primary left-buttons">Unos ocjene</button>
+            </a>
+
+            <a href="unosTeme">
+              <button type="button" className="btn btn-primary left-buttons">Unos teme</button>
+            </a>
+
+            <a href="ispiti">
+              <button type="button" className="btn btn-primary left-buttons">Ispiti</button>
+            </a>
+
+            <a href="obavijesti">
+              <button type="button" className="btn btn-primary left-buttons">Obavijesti</button>
+            </a>
+
+            <a href="zadace">
+              <button type="button" className="btn btn-primary left-buttons">Zadaće</button>
+            </a>
+
+            <a href="ankete">
+              <button type="button" className="btn btn-primary left-buttons">Ankete</button>
+            </a>
+
+            <a href="statistika">
+              <button type="button" className="btn btn-primary left-buttons">Statistika</button>
+            </a>
+
+            <a href="raspored">
+              <button type="button" className="btn btn-primary left-buttons">Raspored</button>
+            </a>
+
+            <a href="chat">
+              <button type="button" className="btn btn-primary left-buttons">Chat</button>
+            </a>
+
+            <a href="forum">
+              <button type="button" className="btn btn-primary left-buttons">Forum</button>
+            </a>
+
+            <a href="materijali">
+              <button type="button" className="btn btn-primary left-buttons">Materijali</button>
+            </a>
+            
+        </div>
       );
     }
   }

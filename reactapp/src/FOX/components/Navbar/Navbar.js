@@ -3,11 +3,19 @@ import './Navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class NavbarFox extends Component {
     render() {
       return (
-        <Navbar bg="primary" variant="dark" expand="lg">
+        <div style={{
+            backgroundColor: "#2C3E50",
+            float: "left",
+            minHeight: "100vh"
+        }}>
+        {/* <Navbar bg="primary" variant="dark" expand="lg">
           <Navbar.Brand href="/fox">FOX</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -34,7 +42,24 @@ class NavbarFox extends Component {
               <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>
             </Nav> 
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */}
+
+            
+            <a href="StranicaPredmeta?predmetId=Tehnike Programiranja">
+              <button type="button" className="btn btn-primary left-buttons">Student</button>
+            </a>
+
+            <Nav.Link href="ispiti"><button type="button" className="btn btn-primary left-buttons">Ispiti</button></Nav.Link>
+
+            <a href="fox/ispiti">
+              <button type="button" className="btn btn-primary left-buttons">Ispiti</button>
+            </a>
+
+            <a href="obavijesti">
+              <button type="button" className="btn btn-primary left-buttons">Obavijesti</button>
+            </a>
+            
+        </div>
       );
     }
   }

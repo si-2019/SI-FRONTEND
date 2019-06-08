@@ -5,10 +5,35 @@ import Predmet from '../Predmet/Predmet';
 import Footer from '../Footer/Footer';
 import PozdravnaPoruka from '../PocetnaStranica/PozdravnaPoruka';
 import '../../ZajednickiCSS.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import NavbarFox from '../Navbar/Navbar';
 
 const Home = () => {
     return (
-        <div className="Home">
+        <div className="footerDno">
+        <Container fluid style={{padding:"0", margin: "0"}}>
+            <Row>
+                <Col md="auto">
+                    <NavbarFox/>
+                </Col>
+                <Col>
+                    <div className="Home">
+                        
+                        <div style={{textAlign: "center"}}>
+                            <br/>
+                            <PozdravnaPoruka/>
+                            <DanDatum/>
+                            <Predmet/>
+                        </div>
+                        
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+        <Footer/>
+        {/* <div className="Home">
             <Header isPocetna={true}/>
             <div style={{padding: "25px", textAlign: "center"}}>
                 <PozdravnaPoruka/>
@@ -16,6 +41,8 @@ const Home = () => {
                 <Predmet/>
             </div>
             <Footer className="footerDno"/>
+        </div> */}
+
         </div>
     );
 }

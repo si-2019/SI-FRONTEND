@@ -46,7 +46,7 @@
 }
 
 #glavni{
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .side{
@@ -104,6 +104,7 @@
 
 .btn-primary{
     width: 100%;
+    text-align: left;
 }
 
 #nazivPredmeta{

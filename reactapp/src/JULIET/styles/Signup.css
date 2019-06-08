@@ -6,7 +6,7 @@
   
 .juliet-form-container h1 {
     padding: 10px;
-    background-color: rgb(0,0,0,0.8);
+    background-color: #2C3E50;
     font-size: 20px;
     color: white;
     margin: 0;
@@ -17,7 +17,7 @@
 }
 
 .juliet-submit  {
-    background: rgb(0,0,0,0.8);
+    background: #2C3E50;
     height: 40px;
     padding: 0 20px;
     color: white;
@@ -36,7 +36,7 @@
     margin: auto;
     height: 50px;
     font-size: 16px;
-    border: 2px solid rgba(0,0,0,0.8);
+    border: 2px solid #2C3E50;
     padding-left: 12px;
     border-radius: 0.375em;
 }

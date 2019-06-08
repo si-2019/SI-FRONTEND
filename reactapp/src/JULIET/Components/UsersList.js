@@ -66,6 +66,7 @@ class UsersList extends Component {
      }
 
     render(){
+        console.log(this.props.users);
         const listSrc = this.props.users.filter(d => d.id.includes(this.state.input));
         const favoriteUsers = this.props.users.filter(d => this.props.currentUser.customData && this.props.currentUser.customData.favoriteUsers && this.props.currentUser.customData.favoriteUsers.includes(d.name) && d.id.includes(this.state.input));
         if(this.props.users && this.props.currentUser){

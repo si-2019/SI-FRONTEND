@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  min-height: max-content;
 }
 
 .App-logo {
@@ -32,51 +31,6 @@
   padding : 2%;
 }
 
-.row {
-  min-height: 100%;
-}
-
-#head_meni{
-  width: 100%;
-  display: inline-block;
-  height: 50px;
-}
-
-#naslov {
-  min-width: 20%;
-  background-color: #2C3E50;
-  height: 50px;
-  float: left;
-  text-align: left;
-  color: white;
-  padding-left: 2.7em;
-}
-
-#odabrana_opcija{
-  min-width: 80%;
-  float: right;
-  height: 50px;
-  background-color: #2C3E50;
-  color: white;
-}
-
-#glavni_meni {
-  width: 100%;
-}
-
-#left {
-  min-width: 100px;
-  background-color: #2C3E50;
-  float: left;
-  min-height: calc(100vh - 80px);
-}
-
-#right {
-  float: right;
-  align-items:stretch;
-  background-color: white;
-  min-height: calc(100vh - 80px);
-}
 
 @keyframes App-logo-spin {
   from {

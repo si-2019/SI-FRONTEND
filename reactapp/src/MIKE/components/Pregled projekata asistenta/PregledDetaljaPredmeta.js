@@ -10,7 +10,7 @@ class PregledDetaljaPredmeta extends Component {
 
     render() {
         return (
-            <div style={{textAlign:"left"}}>
+            <div>
                 <label className="col-form-label col-form-label-lg">Naziv projekta:</label>
                 <br/>
                 <label className="control-label">{this.props.naziv}</label>

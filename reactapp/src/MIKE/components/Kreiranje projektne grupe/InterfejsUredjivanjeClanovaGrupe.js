@@ -29,8 +29,8 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
                 return (
                   <div className="card" style={{float: "left", width:"50%", top:"40px"}}>
                     <div class="card-body">
-                    <h4 class="card-title" style={{textAlign:"left"}}>Uredjivanje clanova grupe</h4>
-                   <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Grupa 4</h6>
+                    <h4 class="card-title">Uredjivanje clanova grupe</h4>
+                   <h6 class="card-subtitle mb-2 text-muted">Grupa 4</h6>
                   <br/>
                     
                   <div className="bs-component">

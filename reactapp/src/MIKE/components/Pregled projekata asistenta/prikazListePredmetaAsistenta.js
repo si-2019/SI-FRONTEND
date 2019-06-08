@@ -15,52 +15,50 @@ class ListaPredmetaAsistenta extends Component {
   }
    render(){
     if(this.state.detalji) return (
-      <div className="card" style={{float: "left", width:"50%"}}>
-        <div className="card-body">
-          <h4 className="card-title" style={{textAlign:"left"}}>Pregled projekata</h4>
-				  {/*<div className="col-md-auto" align="left">
-            <div className="col-6" align="left">*/}
-              <select id="selectListe" className="custom-select" onChange={()=>(
-                this.azuriraj(document.getElementById("selectListe").selectedIndex)
-              )}>
-                <option className="list-group-item">Odaberite predmet</option>
-                {
-                  this.state.predmeti.map(predmet=>{
-                    return <option className="list-group-item">{predmet.naziv}</option>
-                  })
-                }
-                <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
-                <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
-                <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
-              </select>
-              <PregledDetaljaPredmeta naziv={this.state.detaljiJSON.naziv} opis={this.state.detaljiJSON.opis} bodovi={this.state.detaljiJSON.bodovi} brojGrupa={20}/>
-              <ListaGrupa/>
-            
+      <body>
+        <h3>Pregled projekata</h3>
+				<div className="col-md-auto" align="center">
+          <div className="col-6" align="left">
+            <select id="selectListe" className="form-control" onChange={()=>(
+              this.azuriraj(document.getElementById("selectListe").selectedIndex)
+            )}>
+              <option className="list-group-item">Odaberite predmet</option>
+              {
+                this.state.predmeti.map(predmet=>{
+                  return <option className="list-group-item">{predmet.naziv}</option>
+                })
+              }
+              <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
+              <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
+              <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
+            </select>
+            <PregledDetaljaPredmeta naziv={this.state.detaljiJSON.naziv} opis={this.state.detaljiJSON.opis} bodovi={this.state.detaljiJSON.bodovi} brojGrupa={20}/>
+            <ListaGrupa/>
+          </div>
         </div>
-      </div>
+      </body>
     )
     else return(
-      <div className="card" style={{float: "left", width:"50%"}}>
-        <div className="card-body">
-          <h4 className="card-title" style={{float:"left"}}>Pregled projekata</h4>
-				  {/*<div className="col-md-auto" align="left">
-            <div className="col-6" align="left">*/}
-              <select id="selectListe" className="custom-select" onChange={()=>(
-                this.azuriraj(document.getElementById("selectListe").selectedIndex)
-              )}>
-                <option className="list-group-item">Odaberite predmet</option>
-                {
-                  this.state.predmeti.map(predmet=>{
-                    return <option className="list-group-item">{predmet.naziv}</option>
-                  })
-                }
-                <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
-                <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
-                <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
-              </select>
-           
+      <body>
+        <h3>Pregled projekata</h3>
+				<div className="col-md-auto" align="center">
+          <div className="col-6" align="left">
+            <select id="selectListe" className="form-control" onChange={()=>(
+              this.azuriraj(document.getElementById("selectListe").selectedIndex)
+            )}>
+              <option className="list-group-item">Odaberite predmet</option>
+              {
+                this.state.predmeti.map(predmet=>{
+                  return <option className="list-group-item">{predmet.naziv}</option>
+                })
+              }
+              <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
+              <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
+              <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
+            </select>
+          </div>
         </div>
-      </div>
+      </body>
     )
   }
   azuriraj(indeks){

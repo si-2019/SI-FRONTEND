@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
 import './Predmet.css';
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import CardDeck from 'react-bootstrap/CardDeck';
 
 class Predmet extends Component {
      state = {
@@ -33,7 +35,47 @@ class Predmet extends Component {
 
      render() {
           return (
-               <div>
+
+               <CardDeck>
+                    {this.state.predmeti.map(p => {
+                         return (
+                              <div class="card" key={p.naziv}>
+                                   <div class="card-body">
+                                        <h4 class="card-title text-center"><a href={`fox/stranicaPredmeta?predmetId=${p.naziv}`}> {p.naziv} </a></h4>
+                                        <h6 class="card-subtitle mb-2 text-muted">Broj studenata: 150</h6>
+                                   </div>
+                                   <div class="list-group list-group-flush">
+                                        {
+                                             this.state.grupe.map(g => <a class="list-group-item list-group-item-action" key={g.naziv} href={`fox/stranicaPredmeta?predmetId=${p.naziv}?${g.naziv}`}> {g.naziv} </a>)
+                                        }
+                                   </div>
+                              </div>
+                         );
+                    })}
+               </CardDeck>
+/* 
+               <Container>
+                    <Row style={{margin: "0", textAlign: "center"}}>
+                         {this.state.predmeti.map(p => {
+                              return (
+                                   <div class="card" key={p.naziv}>
+                                        <div class="card-body">
+                                             <h4 class="card-title text-center"><a href={`fox/stranicaPredmeta?predmetId=${p.naziv}`}> {p.naziv} </a></h4>
+                                             <h6 class="card-subtitle mb-2 text-muted">Broj studenata: 150</h6>
+                                             <br/>
+                                        </div>
+                                        <div class="list-group list-group-flush">
+                                             {
+                                                  this.state.grupe.map(g => <a class="list-group-item list-group-item-action" key={g.naziv} href={`fox/stranicaPredmeta?predmetId=${p.naziv}?${g.naziv}`}> {g.naziv} </a>)
+                                             }
+                                        </div>
+                                   </div>
+                              );
+                         })}
+                    </Row>
+               </Container>
+
+              <div>
                     <CardDeck>
                          {this.state.predmeti.map(p => {
                               return (
@@ -52,7 +94,7 @@ class Predmet extends Component {
                               );
                          })}
                     </CardDeck>
-               </div>
+               </div> */
           );
      }
 }

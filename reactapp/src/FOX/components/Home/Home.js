@@ -4,6 +4,7 @@ import DanDatum from '../DanDatum/DanDatum';
 import Predmet from '../Predmet/Predmet';
 import Footer from '../Footer/Footer';
 import PozdravnaPoruka from '../PocetnaStranica/PozdravnaPoruka';
+import '../../ZajednickiCSS.css';
 
 const Home = () => {
     return (
@@ -14,7 +15,7 @@ const Home = () => {
                 <DanDatum/>
                 <Predmet/>
             </div>
-            <Footer/>
+            <Footer className="footerDno"/>
         </div>
     );
 }

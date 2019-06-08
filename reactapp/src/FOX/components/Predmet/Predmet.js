@@ -39,7 +39,7 @@ class Predmet extends Component {
                <CardDeck>
                     {this.state.predmeti.map(p => {
                          return (
-                              <div class="card" key={p.naziv}>
+                              <div class="card" style={{color: "black"}} key={p.naziv}>
                                    <div class="card-body">
                                         <h4 class="card-title text-center"><a href={`fox/stranicaPredmeta?predmetId=${p.naziv}`}> {p.naziv} </a></h4>
                                         <h6 class="card-subtitle mb-2 text-muted">Broj studenata: 150</h6>

@@ -13,7 +13,7 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
-      korisnik:"null",
+      korisnik:4,
       forma:"null",
       predmeti:[]
     }
@@ -21,7 +21,7 @@ class Mike extends Component {
     this.listaProjekata=this.listaProjekata.bind(this);
     this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
     this.pregledZadatakaProjektaCall=this.pregledZadatakaProjektaCall.bind(this);
-    this.mockKreiranjeProjektaAsistent=this.mockKreiranjeProjektaAsistent.bind(this);
+    this.KreiranjeProjektaAsistent=this.KreiranjeProjektaAsistent.bind(this);
     this.unosInformacija=this.unosInformacija.bind(this);
     this.generisanjeGrupe=this.generisanjeGrupe.bind(this);
   }
@@ -34,7 +34,7 @@ class Mike extends Component {
         <button className="btn btn-primary btn-lg btn-block" onClick={this.listaProjekata}>Pregled projekata studenta</button>
         <button className="btn btn-primary btn-lg btn-block" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
         {/*<button className="btn btn-primary btn-lg btn-block" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+        <button className="btn btn-primary btn-lg btn-block" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
         <button className="btn btn-primary btn-lg btn-block" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
       </div>
     );
@@ -51,19 +51,13 @@ class Mike extends Component {
       <PregledZadatakaProjekta/>
     );
     else if(this.state.forma=="KreiranjeAsistent") return(
-      <KreiranjeProjekta idPredmeta={1} 
-        asistenti={[
-        {idAsistenta: 1, ime:"Nerma Hanic"},
-        {idAsistenta: 2, ime:"Haso Hasic"}
-        ]}/>
+      <KreiranjeProjekta idAsistent={this.state.korisnik} predmeti={this.state.predmeti}/>
     );
     else if(this.state.forma=="unosInformacija") return(
       <UnosInformacija/>
     )
     else if(this.state.forma=="generisanjeGrupe") return(
-      <GenerisanjeGrupa idAsistent={2} predmeti={[
-        {nazivPredmeta:"Softver Inženjering",idProjekat:1, brojStudenata:50},
-        {nazivPredmeta:"Vještačka inteligencija",idProjekat:2, brojStudenata:30}]}/>
+      <GenerisanjeGrupa idAsistent={4} predmeti={this.state.predmeti}/>
     )
   }
   kreiranjeGrupe(){
@@ -103,12 +97,15 @@ class Mike extends Component {
   pregledDetaljaPredmeta(){
 		let ajax=new XMLHttpRequest();
     var komponenta=this;
+    var jsonNovi=[
+      {nazivPredmeta:"Softver Inženjering*",idProjekat:1, brojStudenata:50},
+      {nazivPredmeta:"Vještačka inteligencija*",idProjekat:2, brojStudenata:30}];
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
 					var tekst=ajax.responseText;
           if(tekst.length==0) return;
 					var json=JSON.parse(tekst);
-					var jsonNovi=[];
+					jsonNovi=[];
 					for(var i=0;i<json.length;i++){
 							jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
 					}
@@ -120,7 +117,7 @@ class Mike extends Component {
         else if(ajax.status!="200"){
           komponenta.setState(state=>({
             forma:"PregledAsistent",
-            predmeti:[]
+            predmeti:jsonNovi
           }));
         }
 		}
@@ -131,14 +128,70 @@ class Mike extends Component {
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});
   }
-  mockKreiranjeProjektaAsistent(){
-    this.setState({forma:"KreiranjeAsistent"});
+  KreiranjeProjektaAsistent(){
+    let ajax=new XMLHttpRequest();
+    var komponenta=this;
+    var jsonNovi=[
+      {idPredmet:4,naziv:"Softver Inženjering*", brojStudenata:50},
+      {idPredmet:5,naziv:"Vještačka inteligencija*", brojStudenata:30}];
+    ajax.onreadystatechange=function(){
+      if(ajax.readyState==4 && ajax.status=="200"){
+        var tekst=ajax.responseText;
+        if(tekst.length==0) return;
+        var json=JSON.parse(tekst);
+        jsonNovi=[];
+        for(var i=0;i<json.length;i++){
+            jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
+        }
+        komponenta.setState(state=>({
+          forma:"KreiranjeAsistent",
+          predmeti:jsonNovi
+        }));
+      }
+      else if(ajax.status!="200"){
+        komponenta.setState(state=>({
+          forma:"KreiranjeAsistent",
+          predmeti:jsonNovi
+        }));
+      }
+    }
+		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send("idKorisnik="+this.state.korisnik);
   }
   unosInformacija(){
     this.setState({forma:"unosInformacija"});
   }
   generisanjeGrupe(){
-    this.setState({forma:"generisanjeGrupe"});
+    let ajax=new XMLHttpRequest();
+    var komponenta=this;
+    var jsonNovi=[
+      {nazivPredmeta:"Softver Inženjering*",idProjekat:1, brojStudenata:50},
+      {nazivPredmeta:"Vještačka inteligencija*",idProjekat:2, brojStudenata:30}];
+    ajax.onreadystatechange=function(){
+      if(ajax.readyState==4 && ajax.status=="200"){
+        var tekst=ajax.responseText;
+        if(tekst.length==0) return;
+        var json=JSON.parse(tekst);
+        jsonNovi=[];
+        for(var i=0;i<json.length;i++){
+            jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
+        }
+        komponenta.setState(state=>({
+          forma:"generisanjeGrupe",
+          predmeti:jsonNovi
+        }));
+      }
+      else if(ajax.status!="200"){
+        komponenta.setState(state=>({
+          forma:"generisanjeGrupe",
+          predmeti:jsonNovi
+        }));
+      }
+    }
+		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send("idKorisnik="+this.state.korisnik);
   }
 }
 

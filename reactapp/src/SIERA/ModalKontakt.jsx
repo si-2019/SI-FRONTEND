@@ -8,58 +8,89 @@ class ModalComponent extends React.Component {
         this.state = {
             studentID: 1,
             greska: null,
-            brojac: 0
+            brojac: 0,
+            noviInput: {
+                adresa: null,
+                email: null,
+                brtel: null
+            }
         }
         this.handlePutEvent = this.handlePutEvent.bind(this);
     }
+    handleClose = () => {
+        this.props.saveState("modalShow", false);
+    }
+    //promjena podataka bez refreshanja
+    handleChange = (e) => {
+        const { name, value } = e.target;
+        let state = JSON.parse(JSON.stringify(this.state.noviInput));
+        state[name] = value;
+        this.setState({
+            noviInput: state
+        });
+    }
+
+    handleExit = () => {
+
+        const { adr, mail, telefon } = this.state.noviInput;
+        let podaci = JSON.parse(JSON.stringify(this.props.podaciKontakt));
+        podaci.adresa = adr ? adr : podaci.adresa;
+        podaci.brtel = telefon ? telefon : podaci.brtel;
+        podaci.email = mail ? mail : podaci.email;
+        this.setState({
+            greska: null
+        }, () => {
+            this.props.saveState("podaciKontakt", podaci);
+        })
+    }
     handlePutEvent(event) {
         event.preventDefault();
-        if (this.props.noviInput.promjenaAdresa == null && this.props.noviInput.promjenaEmail == null && this.props.noviInput.promjenaBrtel == null) {
+        if (this.state.noviInput.adresa == null && this.state.noviInput.email == null && this.state.noviInput.brtel == null) {
             this.setState({ greska: true });
         }
         else {
-            if (this.props.noviInput.promjenaAdresa) {
+            if (this.state.noviInput.adresa) {
                 axios
                     .put(
                         `http://localhost:31918/studenti/update/adresa/` +
                         this.state.studentID,
                         {
-                            adresa: this.props.noviInput.adresa
+                            adresa: this.state.noviInput.adresa
                         }
                     )
                     .then(res => {
                         this.setState({ greska: false });
                     });
             }
-            if (this.props.noviInput.promjenaEmail) {
+            if (this.state.noviInput.email) {
                 axios
                     .put(
                         `http://localhost:31918/studenti/update/mail/` +
                         this.state.studentID,
                         {
-                            mail: this.props.noviInput.email
+                            mail: this.state.noviInput.email
                         }
                     )
                     .then(res => {
                         this.setState({ greska: false });
                     });
             }
-            if (this.props.noviInput.promjenaBrtel) {
-    
-                axios
-                .put(
-                    `http://localhost:31918/studenti/update/tel/` +
-                    this.state.studentID,
-                    {
-                        tel: this.props.noviInput.brtel
-                    }
-                )
-                .then(res => {
-                    this.setState({ greska: false });
-                });
+            if (this.state.noviInput.brtel) {
 
+                axios
+                    .put(
+                        `http://localhost:31918/studenti/update/tel/` +
+                        this.state.studentID,
+                        {
+                            tel: this.state.noviInput.brtel
+                        }
+                    )
+                    .then(res => {
+                        this.setState({ greska: false });
+                    });
+
+            }
         }
-    }
 
     }
     renderujPotvrdu() {
@@ -80,7 +111,7 @@ class ModalComponent extends React.Component {
                 />
             );
         }
-        return "";
+        return null;
     }
     render() {
         ++this.brojac;
@@ -90,6 +121,7 @@ class ModalComponent extends React.Component {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                onHide={this.handleExit}
             >
                 {this.renderujPotvrdu()}
                 <Modal.Header closeButton>
@@ -101,13 +133,25 @@ class ModalComponent extends React.Component {
                     <Modal.Body>
                         <h4>{this.props.nazivPromjene}</h4>
                         <div class="form-group">
-                            {this.props.tijeloModala}
+
+                            <br></br>
+                            <label class="col-form-label" for="inputDefault" >Telefon</label>
+                            <input type="text" class="form-control" name="brtel" onChange={this.handleChange} />
+
+                            <label class="col-form-label" for="inputDefault" >Adresa</label>
+                            <input type="text" class="form-control" name="adresa" onChange={this.handleChange} />
+
+                            <label class="col-form-label" for="inputDefault">Email</label>
+                            <input type="text" class="form-control" name="email" onChange={this.handleChange} />
+
+
                         </div>
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <button type="button" class="btn btn-outline-danger" onClick={this.props.onHide}>Odustani</button>
+
                         <button type="submit" id="spasiBtn" class="btn btn-primary">Spasi Promjene</button>
+                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
                     </Modal.Footer>
                 </form>
             </Modal>

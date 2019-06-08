@@ -29,6 +29,7 @@ class oPredmetuProfesor extends Component {
             <div class='linkovi'>
               {this.props.predmet.map(file => [<a href='#' onClick={this.skiniFile.bind(this,file.naziv,this.props.idpredmeta)} class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])}
             </div>
+            Dodaj file:
             <input className="dugmic" type="file" multiple></input>
         </div>
     );

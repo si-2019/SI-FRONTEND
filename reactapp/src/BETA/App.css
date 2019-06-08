@@ -201,6 +201,11 @@
   margin:auto;
 }
 
+.tab-button-container {
+    width: 100%;
+    text-align: right;
+}
+
 .issue-title {
     cursor: pointer;
     /* min-height: 50px; */

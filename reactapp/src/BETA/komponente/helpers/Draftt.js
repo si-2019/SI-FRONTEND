@@ -73,20 +73,18 @@ export default class Draft extends React.Component {
 
                 return (
                     <div className="row">
-                        <Card.Body
-                            key={index}
-                        >
-                            <Card.Title>
-                                <div className = "issueView">
+                        <div key={index} className="card issue-card" >
+                            <div className="card-title">
+                                <div className="issue-body card-body">
+                                    <div className = "issueID">id:{issue.id}</div>
+                                    <div className = "issueDate">          {datum}</div>
+                                    <div onClick={() => this.setIssue(issue.id)} className="issue-title">{issue.title}</div>
+                                    
                                     <div className = "issueButtonDelete">
                                         <Button onClick={() => this.deleteIssue(issue.id)}>Obriši</Button>
                                     </div>
-                                    <div className = "issueID">id:{issue.id}</div>
-                                    <div className = "issueDate">          {datum}</div>
-                                    <div onClick={() => this.setIssue(issue.id)}>{issue.title}</div>
-                                    
                                 </div>
-                            </Card.Title>
+                            </div>
                             
 
                             {this.state.clickedItem.data === issue.id && this.state.clickedItem.expanded ?
@@ -96,8 +94,7 @@ export default class Draft extends React.Component {
                                 /> 
                             </ListGroup> : null
                             }
-                            
-                        </Card.Body>
+                        </div>
                     </div>
                 );
             })

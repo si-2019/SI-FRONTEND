@@ -14,10 +14,7 @@ class DodajOdsjek extends Component {
                     <Tab eventKey="home" title="Dodaj Odsjek">
                         <Forma />
                     </Tab>
-                    
-                    <Tab eventKey="profile" title="Dodaj predmet na odsjek">
-                        <FormaOdsjekPred />
-                    </Tab>
+                   
                   
                 </Tabs>               
 

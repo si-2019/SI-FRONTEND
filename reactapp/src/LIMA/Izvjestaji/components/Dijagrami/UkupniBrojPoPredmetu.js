@@ -5,7 +5,7 @@ import GrafikStavka from './GrafikStavka.js';
 import { dataPredmetPoGodini } from '../../api.js';
 import { Spinner } from 'reactstrap';
 
-class PrisustvoPoPredmetu extends Component {
+class UkupniBrojPoPredmetu extends Component {
     constructor(){
         super();
         this.state = {
@@ -14,7 +14,7 @@ class PrisustvoPoPredmetu extends Component {
     }
     componentDidMount(){
         let { predmetId, godinaId } = this.props;
-        dataPredmetPoGodini.get(predmetId, godinaId, "Prisustvo").then( data => {
+        dataPredmetPoGodini.get(predmetId, godinaId, "Bodovi").then( data => {
             this.setState({
                 data: data
             });
@@ -24,11 +24,11 @@ class PrisustvoPoPredmetu extends Component {
         return (this.state.data ? 
             <GrafikStavka
                 data={this.state.data}
-                nazivStavke='Prisustvo'
-                tipGrafika='Bar'
+                nazivStavke="Bodovi"
+                tipGrafika='Line'
             /> :
             <Spinner />)
     }
 }
 
-export default PrisustvoPoPredmetu;
+export default UkupniBrojPoPredmetu;

@@ -35,14 +35,14 @@ class UnosInformacija extends React.Component {
         <div className="card" style={{float: "left", width:"50%", top:"40px"}}>
           <div class="card-body">
       
-          <h4 class="card-title">Unos informacija</h4>
-          <h6 class="card-subtitle mb-2 text-muted">Unijeti potrebne informacije za opis projekta</h6> 
+          <h4 class="card-title" style={{textAlign:"left"}}>Unos informacija</h4>
+          <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unijeti potrebne informacije za opis projekta</h6> 
           <br/>
-          <label class="col-form-label">Naziv projektne grupe:</label>
-          <input type="text" className="form-control inputText"   />
+          <label class="col-form-label" style={{textAlign:"left"}}>Naziv projektne grupe:</label>
+          <input type="text" className="form-control inputText"  style={{textAlign:"left"}} />
           <br/>
-          <label class="col-form-label"> Opis projekta:</label>
-          <input type="text" className="form-control inputText"  />
+          <label class="col-form-label" style={{textAlign:"left"}}> Opis projekta:</label>
+          <input type="text" className="form-control inputText" style={{textAlign:"left"}} />
           <br/>
           {/*<input type="submit" value="Submit" />*/}
           <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.uredjivanjeClanova}>Dalje</button>

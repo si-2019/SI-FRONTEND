@@ -17,19 +17,19 @@ class GenerisanjeGrupa extends Component {
   }
   render() {
    	return ( 
-			 <div className="card" style={{float: "left", width:"50%", top:"40px"}}>
+			 <div className="card" style={{float: "left", width:"50%"}}>
 
 				 <div class="card-body"> 
 				 
-				 <h4 class="card-title">Generisanje grupa</h4>
-                   <h6 class="card-subtitle mb-2 text-muted">Unesite potrebne informacije za generisanje projektne grupe</h6>
+				 <h4 class="card-title" style={{textAlign:"left"}}>Generisanje grupa</h4>
+                   <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unesite potrebne informacije za generisanje projektne grupe</h6>
                   <br/>
-			<div className="container-fluid">
+			<div className="container-fluid" style={{textAlign:"left"}}>
 				
 				
 				
-					<div className="form-group">
-					 <label class="col-form-label" >Odaberite predmet:</label>
+					<div className="form-group" style={{textAlign:"left"}}>
+					 <label class="col-form-label" style={{textAlign:"left"}}>Odaberite predmet:</label>
 					<select className="form-control" id="predmet" ref="unutra" onChange={()=>(
 						this.odabraniPredmet(document.getElementById("predmet").selectedIndex)
 					)}>
@@ -39,19 +39,19 @@ class GenerisanjeGrupa extends Component {
 								})
 							}
 					</select>
-					< label class="col-form-label" >Broj studenata:</label>
-					<label>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
+					< label class="col-form-label" style={{textAlign:"left"}}>Broj studenata:</label>
+					<label style={{textAlign:"left"}}>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
 					<br/>
-					<label class="col-form-label" >Broj projektnih grupa:</label>
-					<input className="form-control" id="broj" type="number" min="1" max="100" placeholder="10"></input>
+					<label class="col-form-label" style={{textAlign:"left"}}>Broj projektnih grupa:</label>
+					<input className="form-control" id="broj" type="number" min="1" max="100" placeholder="10" style={{textAlign:"left"}}></input>
 					</div>
-					<label class="col-form-label" >Način generisanja:</label>
+					<label class="col-form-label" style={{textAlign:"left"}}>Način generisanja:</label>
 					<div className="form-group">
-							<div className="custom-control custom-radio">
+							<div className="custom-control custom-radio" style={{textAlign:"left"}}>
 								<input type="radio" id="radio1" name="radio" class="custom-control-input" checked/>						
 								<label class="custom-control-label" for="radio1">Nasumično</label>
 							</div>
-							<div className="custom-control custom-radio">
+							<div className="custom-control custom-radio" style={{textAlign:"left"}}>
 								<input type="radio" id="radio2" name="radio" class="custom-control-input"/>						
 								<label class="custom-control-label" for="radio2">Abecedno</label>
 							</div>

@@ -1,24 +1,25 @@
-.card-title {
+#terminCardTitle {
   text-align: left;
 }
 
-.card-body {
+#terminCardBody {
   display: flex;
   flex-direction: column;
 }
-.card {
+
+#terminCard {
   position: relative;
-  top: 0;
+  margin-top: unset;
 }
 
 #listaDana,
 #satnica,
-#brCasova,
-#dugme {
-  align-self: left;
-  width: 80%;
+#brCasova {
+  align-self: flex-start;
+  width: 97%;
 }
 
 #dugme {
   width: fit-content;
+  align-self: flex-end;
 }

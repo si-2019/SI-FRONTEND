@@ -11,26 +11,26 @@ class TemeZavrsnih extends Component {
   
   render() {
     return (
-      <div className="TemeZavrsnih">
-        <Header isPocetna={false}/>
-        <Container fluid>
-          <Row style={{margin: "0"}}>
-            <Col style={{textAlign: "left"}}>
-            <br></br>
-            <h4>Pregled tema za završne radove</h4>
-            <br></br>
-            </Col> 
-          </Row >
-          <Row style={{margin: "0"}}>
-            <Col style={{textAlign: "center"}}>
-              <TabelaTeme />
-            </Col>
+      <div className="TemeZavrsnih footerDno">
+
+        <Container fluid style={{padding:"0", margin: "0"}}>
+          <Row>
+              <Col md="3">
+                  <Header isPocetna={false}/>
+              </Col>
+              <Col>
+                  <br/>       
+                  <h4>Pregled tema za završne radove</h4>
+                  <br/>
+                  <TabelaTeme />
+                  <Row className="justify-content-md-center" style={{margin: "0"}}>
+                    <Col style={{textAlign: "center"}}>
+                      <Button variant="primary" href='novaTema'>Nova tema</Button>
+                    </Col>
+                  </Row>
+              </Col>
           </Row>
-          <Row className="justify-content-md-center" style={{margin: "0"}}>
-            <Col style={{textAlign: "center"}}>
-              <Button variant="primary" href='novaTema'>Nova tema</Button>
-            </Col>
-          </Row>
+          
         </Container>
         <Footer/>
       </div>

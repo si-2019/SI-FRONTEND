@@ -1,18 +1,17 @@
-#Potvrda{
+#Potvrda {
   float: right;
   margin-right: 14px;
   width: fit-content;
 }
-#dugmeKalendar{
+#dugmeKalendar {
   float: right;
 }
-.card{
+#cardCalendar {
   max-width: 50%;
   top: 0;
 }
 .rdt {
   position: relative;
-  
 }
 .rdtPicker {
   display: none;
@@ -24,7 +23,7 @@
   margin-right: auto;
   z-index: 99999 !important;
   background: #fff;
- /* box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  /* box-shadow: 0 1px 3px rgba(0,0,0,.1);
   border: 1px solid #f9f9f9;*/
 }
 .rdtOpen .rdtPicker {
@@ -49,8 +48,8 @@
 .rdtPicker th {
   text-align: center;
   height: 28px;
-  background: none; 
-  border:none;
+  background: none;
+  border: none;
 }
 .rdtPicker td {
   cursor: pointer;
@@ -71,7 +70,7 @@
   position: relative;
 }
 .rdtPicker td.rdtToday:before {
-  content: '';
+  content: "";
   display: inline-block;
   border-left: 7px solid transparent;
   border-bottom: 7px solid #428bca;
@@ -126,10 +125,10 @@
 .rdtNext span {
   display: block;
   -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 }
 
@@ -202,10 +201,10 @@ td.rdtYear:hover {
   display: block;
 
   -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 }
 .rdtCounter .rdtBtn:hover {

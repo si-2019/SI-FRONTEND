@@ -32,23 +32,19 @@ class StranicaPredmeta extends Component {
    
     return (
       <div className="StranicaPredmeta" className="footerDno">
-        <Header isPocetna={false}/>
-        <Container fluid>
+        <Container fluid style={{padding:"0", margin: "0"}}>
           <Row>
+            <Col md="3">
+            <Header isPocetna={false}/>
+            </Col>
             <Col style={{textAlign: "left"}}>
             <br></br>
             <h4>Pregled studenata</h4>
             <h5> {predmet && predmet}</h5>
             <h5> {grupa && grupa}</h5>
             <br></br>
+            <TabelaStudenti/>
             </Col> 
-          </Row>
-          <Row>
-            <Col></Col>
-            <Col>
-              <TabelaStudenti/>
-            </Col>
-            <Col></Col>
           </Row>
         </Container>
         <Footer/>

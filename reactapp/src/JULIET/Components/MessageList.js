@@ -9,7 +9,6 @@ import Axios from 'axios';
 import { thisTypeAnnotation } from 'babel-types';
 
 function RoomName(props) {
-    console.log(typeof props.currentRoom.name)
     if(!props.currentRoom.name) return '';
     if (!props.currentRoom.isPrivate)
         return "#" + props.currentRoom.name;
@@ -155,12 +154,10 @@ class MessageList extends Component {
       }
 
     render() {
-        console.log(this.props.users.length);
-        console.log(this.props.messages.length);
         const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input));
         return (
             <div className="juliet-container">
-                <div className="juliet-message-header">
+                <div className="juliet-message-header" style={{'background': this.props.colorScheme}}>
                     <div className="juliet-name-of-room">
                         <h4>
                             <RoomName currentRoom={this.props.currentRoom}/>
@@ -182,7 +179,7 @@ class MessageList extends Component {
                                     message.text.substr(0, 16) === 'Downloaduj file:' ?
                                     <div>
                                         <Tooltip title="Download file">
-                                            <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDownloadClick(message)}
+                                            <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDownloadClick(message)}
                                                 style={{ float: 'right' }}>
                                                 <CloudDownload />
                                             </IconButton>
@@ -190,7 +187,7 @@ class MessageList extends Component {
                                         {
                                             message.senderId === this.props.currentId || this.state.adminUser ?
                                             <Tooltip title="Delete file">
-                                                <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDeleteClick(message, index)}
+                                                <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDeleteClick(message, index)}
                                                     style={{ float: 'right' }}>
                                                     <Delete />
                                                 </IconButton>
@@ -202,20 +199,20 @@ class MessageList extends Component {
                                 }
 
                                 <Tooltip title="Pin message">
-                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handlePinMessage(message)}
-                                        style={{ float: 'right' }}>
+                                    <IconButton onClick={() => this.handlePinMessage(message)}
+                                        style={{ float: 'right', color: '#2C3E50' }}>
                                         <Place />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Reply">
-                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.replyToMessage(message)}
-                                        style={{ float: 'right' }}>
+                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.replyToMessage(message)}
+                                        style={{ float: 'right', color: '#2C3E50' }}>
                                         <Reply />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Start thread">
-                                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => this.handleDialogOpen(message)}
-                                        style={{ float: 'right' }}>
+                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDialogOpen(message)}
+                                        style={{ float: 'right', color: '#2C3E50' }}>
                                         <Message />
                                     </IconButton>
                                 </Tooltip>

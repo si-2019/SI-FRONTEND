@@ -5,6 +5,7 @@ class Sale extends Component {
   render() {
     return (
       <main>      
+        
        <ul class="nav nav-tabs">
         <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#">
@@ -21,8 +22,9 @@ class Sale extends Component {
         <DodajNovuSalu />
         </div>
         <div id="druga">
-        
-          </div>
+        <PrikaziSaleForma/>
+        </div>
+
       </main>
     );
   }

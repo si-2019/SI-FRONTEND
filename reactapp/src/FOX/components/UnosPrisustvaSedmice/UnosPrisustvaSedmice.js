@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 import Link from 'react-router-dom/Link';
 
 const UnosPrisustvaSedmice = (props) => {
@@ -24,34 +24,42 @@ const UnosPrisustvaSedmice = (props) => {
 
     return (
         <div>
-            <CardDeck>
-                <Card style={{ border: '0.5px solid gray' }} className="text-center">
-                    {
-                        sedmice.slice(0, 7).map((s, index) => {
-                            return (
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item>
-                                        <Link to="UnosPrisustva" onClick={() => props.handleClickSedmica(index + 1)}> {s} </Link>
-                                    </ListGroup.Item>
-                                </ListGroup>
-                            );
-                        })
-                    }
-                </Card>
-                <Card style={{ border: '0.5px solid gray' }} className="text-center">
-                    {
-                        sedmice.slice(7, 14).map((s, index) => {
-                            return (
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item >
-                                        <Link to="UnosPrisustva" onClick={() => props.handleClickSedmica(index + 8)}> {s} </Link>
-                                    </ListGroup.Item>
-                                </ListGroup>
-                            );
-                        })
-                    }
-                </Card>
-            </CardDeck>
+            <Container>
+                <Row style={{margin: "0"}}>
+                <Col style={{textAlign: "center"}}>
+                    <h4>Odabir sedmice</h4>
+                    <br></br>
+                </Col> 
+                </Row>
+                <Row style={{margin: "0"}}>
+                    <Col>
+                        <div class="list-group">
+                            {
+                                sedmice.slice(0, 7).map((s, index) => {
+                                    return (
+                                        <a href="#" class="list-group-item list-group-item-action" onClick={() => props.handleClickSedmica(index + 1)}>
+                                            {s}
+                                        </a>
+                                    );
+                                })
+                            }
+                        </div>
+                    </Col>
+                    <Col>
+                        <div class="list-group">
+                            {
+                                sedmice.slice(7, 14).map((s, index) => {
+                                    return (
+                                        <a href="#" class="list-group-item list-group-item-action" onClick={() => props.handleClickSedmica(index + 8)}>
+                                            {s}
+                                        </a>
+                                    );
+                                })
+                            }
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }

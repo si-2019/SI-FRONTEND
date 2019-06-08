@@ -44,7 +44,7 @@ class PregledListeProjekata extends Component {
 
     kreirajTabelu() {
         return(
-            <form class="container-fluid">
+            <form  >
             <table id="tabelaProjekata">
                 <thead>
                     <tr>
@@ -78,11 +78,11 @@ class PregledListeProjekata extends Component {
             <form>
                 <fieldset>
                 <div>
-                    <select class="form-control" id="lista" onChange={()=>(
+                    <select class="custom-select" style={{align:"left"}} id="lista" onChange={()=>(
                         this.setState({odabrani_zadatak:document.getElementById("lista").selectedIndex+1,zadatak:true}))}>
 							{
 								this.state.projekti[this.state.odabrani_projekat].zadaci.map(zadatak=>{
-									return <option class="list-group-item">Zadatak {zadatak.idProjektnogZadatka}</option>
+									return <option>Zadatak {zadatak.idProjektnogZadatka}</option>
 								})
 							}
 					</select>      
@@ -94,14 +94,18 @@ class PregledListeProjekata extends Component {
 
     kreirajDetaljeZadatka() {
         return (
-            <form id="detaljiZadatka" class="container-fluid" >
-                <label class="form-text"> idProjekta: {this.state.id_odabranog_projekta}</label> 
-                <label class="form-text">Opis zadatka: {this.state.opis_zadatka}</label>
-                <label class="form-text">Datum pocetka: {this.state.datum_pocetka}</label>
-                <label class="form-text">Datum zavrsetka: {this.state.datum_zavrsetka}</label>
-                <label class="form-text">Zavrsen: {this.state.zavrsen}</label>
-                <label class="form-text">Komentar asistenta: {this.state.komentar_asistenta}</label>
-                
+            <form id="detaljiZadatka" style={{textAlign:"left"}}>
+                <label> idProjekta: {this.state.id_odabranog_projekta}</label> 
+                <br/>
+                <label> Opis zadatka: {this.state.opis_zadatka}</label>
+                <br/>
+                <label> Datum pocetka: {this.state.datum_pocetka}</label>
+                <br/>
+                <label> Datum zavrsetka: {this.state.datum_zavrsetka}</label>
+                <br/>
+                <label> Zavrsen: {this.state.zavrsen}</label>
+                <br/>
+                <label> Komentar asistenta: {this.state.komentar_asistenta}</label>
             </form>
         );
     }
@@ -109,31 +113,28 @@ class PregledListeProjekata extends Component {
     render() {
         if(!this.state.lista)
         return(  
-            <div>
-                <form class="container-fluid">
-                <h2>Pregled projekata</h2>
-                <div class="col-md-auto" align="center">
-                    <h4>Svi projekti:</h4>
+            <div className="card" style={{float: "left", width:"50%"}}>
+                <div className="card-body">
+                    <h4 class="card-title" style={{textAlign:"left"}}>Pregled projekata</h4>
+                    <br/>
+                    <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Svi projekti:</h6>
                     {this.kreirajTabelu()}
                 </div>
-                </form>
             </div>
         );
         else return(
-            <div>
-                <form class="container-fluid">
-                <h2>Pregled projekata</h2>
-                <div class="col-md-auto" align="center">
-                    <h4>Svi projekti:</h4>
+            <div className="card" style={{float: "left", width:"50%"}}>
+                <div className="card-body">
+                    <h4 class="card-title" style={{textAlign:"left"}}>Pregled projekata</h4>
+                    <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Svi projekti:</h6>
                     {this.kreirajTabelu()}
                     <br/>
-                    <h4>Odaberite zadatak</h4>
+                    <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Odaberite zadatak</h6>
                     {this.kreirajListuZadataka()}
                     <br/>
-                    <h4>Zadatak {this.state.odabrani_zadatak}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Zadatak {this.state.odabrani_zadatak}</h6>
                     {this.kreirajDetaljeZadatka()}
                 </div>
-                </form>
             </div>
         );
     }

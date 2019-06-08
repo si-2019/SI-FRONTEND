@@ -47,7 +47,6 @@ class Members extends Component {
                         node.style.display = display === "block" ? 'none' : "block";
                         node = document.getElementById('arrow-members');
                         let innerHTML = node.innerHTML; 
-                        console.log(innerHTML);
                         node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
                     }}>
                     <div className="juliet-section-header"><h5>Members</h5></div>

@@ -549,14 +549,19 @@ class ChatApp extends Component {
                         : null}
                     </ul>
                     <div style={{width: '100%', padding: '10px 0'}}>   
-                        <h5 style={{display: 'inline-block', width: 'calc(100% - 50px)'}}>Choose theme:</h5>
+                        <div className="juliet-section-h">
+                        <div className="juliet-section-header" style={{width: 'calc(100% - 24px)'}}>
+                            <h5 style={{display: 'inline-block'}}>Choose theme:</h5>
+                        </div>
                         <button
                             style={{display: 'inline-block'}}
                             type="button"
                             className="juliet-toggle-colors"
                             onClick={this.toggleColorPicker}>
                             <Droplet />
-                    </button>
+                        </button>   
+                        </div>
+                        
                     </div>
                 </div>
             </div>

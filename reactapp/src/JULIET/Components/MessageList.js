@@ -199,20 +199,20 @@ class MessageList extends Component {
                                 }
 
                                 <Tooltip title="Pin message">
-                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.handlePinMessage(message)}
-                                        style={{ float: 'right' }}>
+                                    <IconButton onClick={() => this.handlePinMessage(message)}
+                                        style={{ float: 'right', color: '#2C3E50' }}>
                                         <Place />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Reply">
                                     <IconButton style={{color: '#2C3E50'}} onClick={() => this.replyToMessage(message)}
-                                        style={{ float: 'right' }}>
+                                        style={{ float: 'right', color: '#2C3E50' }}>
                                         <Reply />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Start thread">
                                     <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDialogOpen(message)}
-                                        style={{ float: 'right' }}>
+                                        style={{ float: 'right', color: '#2C3E50' }}>
                                         <Message />
                                     </IconButton>
                                 </Tooltip>

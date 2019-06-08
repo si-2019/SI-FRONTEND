@@ -6,14 +6,14 @@
 
 .juliet-list-wrapper {
     width: 20%;
-    border-right: 1px solid rgb(0,0,0,0.2);
-    padding: 0 12px 0 15px;
+    border-right: 0.5px solid #fff;
+    padding: 0 8px 0 10px;
     /*background: #fcfcfc;*/
 }
 
 .juliet-right-wrapper {
     border-right: none;
-    border-left: 1px solid rgb(0,0,0,0.2);
+    border-left: 0.5px solid #fff;
     overflow-y: scroll;
 }
 
@@ -31,14 +31,14 @@
    
   /* Handle */
 .Juliet-App  ::-webkit-scrollbar-thumb {
-    background: #4f5a63    ; 
+    background: #fff    ; 
     border-radius: 5px;
   }
   
   /* Handle on hover */
-.Juliet-App  ::-webkit-scrollbar-thumb:hover {
+/* .Juliet-App  ::-webkit-scrollbar-thumb:hover {
     background: #212529; 
-  }
+  } */
 
 .juliet-msg-wrapper {
     width: 60%;

@@ -201,9 +201,31 @@
   margin:auto;
 }
 
-.issueView{
+.issue-title {
+    cursor: pointer;
+    /* min-height: 50px; */
+    line-height: 50px;
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.issue-message {
+    width: 100%;
+    text-align: right;
+}
+
+.message-button {
+    margin: 2px;
+}
+
+.issue-card {
+    margin-left: 30px;
+}
+
+.issue-body{
   display: block;
-  border: 2px black solid;
+  /* border: 2px black solid; */
   padding-top: 10px;
   padding-bottom: 20px;
   padding-right: 5px;

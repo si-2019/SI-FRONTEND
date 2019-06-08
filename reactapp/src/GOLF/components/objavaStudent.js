@@ -14,7 +14,6 @@ class objavaStudent extends Component {
   }
 
   skiniFile(file,idpredmeta){
-    //console.log(file)
     axios({
       url: `http://localhost:31907/r6/prikaziFileOPredmetu/${idpredmeta}/${file}`,
       method: 'GET',
@@ -34,7 +33,7 @@ class objavaStudent extends Component {
     
 
     return (
-        <div class="card">
+        <div class="card" id="objava">
             <div class="card-body">
             <h5 class="card-title">{this.props.naslov}</h5>
             <OpisMaterijala opisMaterijala={this.props.opisMaterijala}></OpisMaterijala>

@@ -3,6 +3,7 @@ import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import axios from 'axios';
 import "./../bootstrap.css";
 
+
 class OsnovniPodaci extends Component {
   render() {
     const { title } = this.props;
@@ -26,9 +27,10 @@ class OsnovniPodaci extends Component {
                 </h4>
               </div>
               <FormGroup>
-                <Label for="naziv">Naziv:</Label>
+                <Label for="naziv" >Naziv:</Label>
                 {/*Tu ispod se nalazi onChange za spremanje naziva */}
-                <Input
+                <input
+                  class="form-control"
                   value={this.props.podaci.state.naziv}
                   type="text"
                   name="naziv"
@@ -36,16 +38,19 @@ class OsnovniPodaci extends Component {
                   placeholder="Upišite naziv"
                   onChange={this.props.onChange}
                 />
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[0]=="" || this.props.podaci.state.porukeGreske[0]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[0]}</p></div>
               </FormGroup>
               <FormGroup>
                 <Label for="datum">Datum roka predaje:</Label>
-                <Input
+                <input
+                  class="form-control"
                   value={this.props.podaci.state.datum}
                   type="date"
                   name="datum"
                   id="datum"
                   onChange={this.props.onChange}
                 />
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[2]=="" || this.props.podaci.state.porukeGreske[2]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[2]}</p></div>
               </FormGroup>
               <FormGroup>
                 <Label for="vrijeme">Vrijeme roka predaje:</Label>
@@ -69,6 +74,7 @@ class OsnovniPodaci extends Component {
               <FormGroup>
                 <Label for="brojZadataka">Broj zadataka:</Label>
                 <Input
+                  class="form-control"
                   value={this.props.podaci.state.brojZadataka}
                   type="number"
                   pattern="(10|[1-9])"
@@ -81,6 +87,7 @@ class OsnovniPodaci extends Component {
                   onChange={this.props.onChange}
                   disabled = {this.props.podaci.state.radnja=="Azuriranje"}
                 />
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[1]=="" || this.props.podaci.state.porukeGreske[1]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[1]}</p></div>
               </FormGroup>
             </Form>
           </div>

@@ -32,7 +32,7 @@ class KreiranjeZadace extends Component {
       listaBodova: [],
       ukupnoBodova: 0,
       validno: true,
-      porukeGreske: [],
+      porukeGreske: ["", "", "", "", "", ""],
       uspjehKreiranja: false,
       neuspjehKreiranja: false,
       vecPostojiImeZadace: false
@@ -97,30 +97,31 @@ class KreiranjeZadace extends Component {
 
     if (data.naziv.length < 2 || data.naziv.length > 30) {
       // [0] validacija naziva
-      porukeGreske.push("Naziv mora sadrzavati izmedju 2 i 30 karaktera!");
+      porukeGreske[0] = "Naziv mora sadrzavati izmedju 2 i 30 karaktera!";
     } else {
-      porukeGreske.push("");
+      porukeGreske[0] = "";
     }
 
     if (data.brojZadataka.toString().includes(".")) {
       // [1] validacija broja zadataka
-      porukeGreske.push("Broj zadataka mora biti cijeli broj!");
-     } else {
-       porukeGreske.push("");
-     }
+      porukeGreske[1] = "Broj zadataka mora biti cijeli broj!";
+    } else {
+      porukeGreske[1] = "";
+    }
 
     if (!this.datumValidan()) {
       // [2] validacija datuma
-      porukeGreske.push("Datum i vrijeme moraju biti postavljeni minimum na danas u 23:59!");
+      porukeGreske[2] =
+        "Datum i vrijeme moraju biti postavljeni minimum na danas u 23:59!";
     } else {
-      porukeGreske.push("");
+      porukeGreske[2] = "";
     }
 
     if (data.listaBodova.length === 0) {
       // [3] validacija maksimalnog broja bodova po zadacima
-      porukeGreske.push("Potrebno je unijeti maksimalne bodove za zadatke!");
+      porukeGreske[3] = "Potrebno je unijeti maksimalne bodove za zadatke!";
     } else {
-      porukeGreske.push("");
+      porukeGreske[3] = "";
     }
 
     // [4] validacija tipova zadataka
@@ -133,38 +134,47 @@ class KreiranjeZadace extends Component {
         }
       }
       if (!sviTipoviJednogZadatkaIsti) {
-        porukeGreske.push("Potrebno je unijeti tipove za svaki zadatak!");
+        porukeGreske[4] = "Potrebno je unijeti tipove za svaki zadatak!";
         break;
       }
-      if(i === data.listaTipova.length-1){
-        porukeGreske.push("");
+      if (i === data.listaTipova.length - 1) {
+        porukeGreske[4] = "";
       }
     }
+    if(this.state.listaBodova.length!=this.state.brojZadataka){
+      porukeGreske[5] =
+          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+        return porukeGreske;
+    }
 
-    for(var i = 0;i<data.listaBodova.length;i++){
+    if(data.listaBodova.length==0)
+    {
+      porukeGreske[5] =
+          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+        return porukeGreske;
+    }
+    for (var i = 0; i < data.listaBodova.length; i++) {
       var element = data.listaBodova[i];
-      if (parseFloat(element) <= 0) {// [5] validacija broja bodova po zadacima
-        porukeGreske.push(
-          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!"
-        );
+      if (parseFloat(element) <= 0) {
+        // [5] validacija broja bodova po zadacima
+        porukeGreske[5] =
+          "Bodovi moraju biti uneseni i broj bodova mora biti veci od 0!";
         return porukeGreske;
       }
       if (isNaN(parseInt(element))) {
-        porukeGreske.push("Broj bodova mora biti broj!");
+        porukeGreske[5] = "Broj bodova mora biti broj!";
         return porukeGreske;
-
       }
       if (parseFloat(element) > 100) {
-        porukeGreske.push("Broj bodova mora biti manji od 100!");
+        porukeGreske[5] = "Broj bodova mora biti manji od 100!";
         return porukeGreske;
       }
       if (parseInt(element * 100) !== element * 100) {
-        porukeGreske.push("Broj bodova moze imati najvise dvije decimale!");
+        porukeGreske[5] = "Broj bodova moze imati najvise dvije decimale!";
         return porukeGreske;
       }
-      porukeGreske.push("");
-    };
-
+      porukeGreske[5] = "";
+    }
     return porukeGreske;
   };
   // kraj validacije
@@ -181,9 +191,25 @@ class KreiranjeZadace extends Component {
         this.setState({
           porukeGreske: porukeGreske
         });
-
-        var valid = porukeGreske.length == 0 ? true : false;
-
+        var valid = true;
+        console.log("1111111111111111111111");
+        for (var i = 0; i < porukeGreske.length; i++) {
+          if (porukeGreske[i] != "") {
+            valid = false;
+            break;
+          }
+        }
+        if (porukeGreske[0] == "")
+          document.getElementById("naziv").className = "form-control";
+        if (porukeGreske[1] == "")
+          document.getElementById("brojZadataka").className = "form-control";
+        if (porukeGreske[2] == "")
+          document.getElementById("datum").className = "form-control";
+        {/*if (porukeGreske[3] == "")
+      document.getElementById("naziv").className = "form-control";*/}
+        if (porukeGreske[3] == ""){ 
+      document.getElementById("brbod").className = "form-control";
+      document.getElementById("brbod").style.margin="0 auto";}
         if (valid) {
           document.getElementById("kreiranje").style.display = "none";
           document.getElementById("preview").style.display = "block";
@@ -191,6 +217,31 @@ class KreiranjeZadace extends Component {
             validno: true
           });
         } else {
+          if (porukeGreske[0] !== "") {
+            document.getElementById("naziv").className =
+              "form-control is-invalid";
+          }
+          if (porukeGreske[1] !== "") {
+            document.getElementById("brojZadataka").className =
+              "form-control is-invalid";
+          }
+          if (porukeGreske[2] !== "") {
+            document.getElementById("datum").className =
+              "form-control is-invalid";
+          }
+          {/*if (porukeGreske[3] !== "") {
+            document.getElementById("naziv").className =
+              "form-control is-invalid";
+          }
+          if (porukeGreske[4] !== "") {
+            document.getElementById("naziv").className =
+              "form-control is-invalid";
+          }*/}
+          if (porukeGreske[3] !== "") {
+            document.getElementById("brbod").className =
+              "form-control is-invalid";
+              document.getElementById("brbod").style.margin="0 auto";
+          }
           this.setState({
             validno: false
           });
@@ -336,7 +387,7 @@ class KreiranjeZadace extends Component {
     return (
       <div>
         <div>
-          <Modal isOpen={!this.state.validno}>
+          {/*<Modal isOpen={!this.state.validno}>
             <ModalHeader>Greška!</ModalHeader>
             <ModalBody>
               {this.state.porukeGreske.map((poruka, indeks) => (
@@ -348,7 +399,7 @@ class KreiranjeZadace extends Component {
                 Cancel
               </Button>
             </ModalFooter>
-          </Modal>
+          </Modal>*/}
 
           <Modal isOpen={this.state.uspjehKreiranja}>
             <ModalHeader background-color={"success"}>

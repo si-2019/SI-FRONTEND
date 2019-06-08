@@ -47,11 +47,13 @@ class BodoviZadaca extends Component {
               <br />
             </div>
             <h5 className="card-title">Broj bodova:</h5>
-            <input 
+            <input
                 id="brbod" 
                 type="text" 
-                className="form-control-static" 
+                class="form-control"
+                style={{margin:"0 auto"}}
                 disabled = {this.props.podaci.state.radnja=="Azuriranje"}/>
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[3]=="" || this.props.podaci.state.porukeGreske[3]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[3]}</p></div>
             <Button
               id="sviBodoviIstiButton"
               color="primary"
@@ -94,6 +96,7 @@ class BodoviZadaca extends Component {
               </tr>
             </tbody>
           </table>
+          <div style={{ visibility: !(this.props.podaci.state.porukeGreske[5]=="" || this.props.podaci.state.porukeGreske[5]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[5]}</p></div>
           <br />
           <label className="ml-3">Ukupno:</label>
           <span className="badge badge-primary ml-3">

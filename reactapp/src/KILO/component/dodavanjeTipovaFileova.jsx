@@ -106,6 +106,7 @@ class DodavanjeTipovaFileova extends Component {
                 </tr>
               </tbody>
             </Table>
+            <div style={{ visibility: !(this.props.podaci.state.porukeGreske[4]=="" || this.props.podaci.state.porukeGreske[4]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[4]}</p></div>
           </FormGroup>
         </Form>
       </div>

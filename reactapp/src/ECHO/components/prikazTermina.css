@@ -29,3 +29,6 @@ p {
 #glavnaKartica {
   margin-top: unset;
 }
+#prikazTerminaRow {
+  min-height: unset;
+}

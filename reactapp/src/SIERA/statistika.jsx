@@ -17,7 +17,7 @@ class Statistika extends Component {
           <div>
             <input
               type="button"
-              className="btn btn-warning"
+              className="btn btn-primary"
               value="Sortiraj predmete po ocjeni"
               onClick={() => this.promijeniPrikazPoOcjeni()}
             />

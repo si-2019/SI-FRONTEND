@@ -26,3 +26,6 @@ p {
   overflow-y: scroll;
   float: left;
 }
+#glavnaKartica {
+  margin-top: unset;
+}

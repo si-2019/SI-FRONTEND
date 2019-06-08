@@ -21,7 +21,6 @@ class App extends Component {
     const { open } = this.state;
     return (
       <div className="appECHO">
-        <h2 id="naslov">ECHO</h2>
         <div id="mainECHO">
           <div id="leftECHO">
             <LeftMenu triggerChangeActiveId={this.onChangeActiveId} />
@@ -41,7 +40,7 @@ class App extends Component {
                 display: this.state.activeContentId == 2 ? "inherit" : "none"
               }}
             >
-            <Sale />
+              <Sale />
             </div>
             <div
               id="Kalendar"
@@ -49,7 +48,7 @@ class App extends Component {
                 display: this.state.activeContentId == 3 ? "inherit" : "none"
               }}
             >
-            <NaslovnaKalendar />
+              <NaslovnaKalendar />
             </div>
             <div
               id="PretragaProfesora"

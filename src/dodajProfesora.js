@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import FormaPr from './FormaPr'
 import FormaProfPred from './FormaProfPred'
+import FormaPrikazProf from './FormaPrikazProf'
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
+import FormaPrikazStud from './FormaPrikazStud';
 
 class DodajProfesora extends Component {
     render () {
@@ -17,6 +19,10 @@ class DodajProfesora extends Component {
 
                     <Tab eventKey="profile" title="Dodaj profesora na predmet">
                         <FormaProfPred />
+                    </Tab>
+
+                    <Tab eventKey="prikaz" title="Prikaz profesora">
+                        <FormaPrikazProf />
                     </Tab>
                 </Tabs>
 </div>

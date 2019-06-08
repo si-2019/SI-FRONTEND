@@ -47,7 +47,7 @@ class App extends Component {
                   className="btn btn-primary left-buttons"
                   id="createNewIssue"
                   onClick={() => this.setState({ modalShow: true })} >
-                  Create New Issue
+                  Kreiraj novi upit
               </button>
 
               </div>
@@ -94,8 +94,8 @@ class App extends Component {
           <ModalComponent
                     
                     show={this.state.modalShow}
-                    naslovModala="Posalji novi issue"
-                    btnPotvrdi="Posalji issue"
+                    naslovModala="Pošalji novi upit"
+                    btnPotvrdi="Pošalji upit"
                     
                     
 

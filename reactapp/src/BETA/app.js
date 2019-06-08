@@ -7,7 +7,6 @@ import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';
 import Drafts from './komponente/Student/Drafts.js';
 import Archived from './komponente/Student/ArchivedPart.js'
-import ModalComponent from './komponente/Student/NoviIssueModal.js';
 
 
 class App extends Component {
@@ -20,10 +19,7 @@ class App extends Component {
   }
 
 
-  onCloseModal = () => {
-    window.confirm('Prekinuti pisanje issuea?') && this.setState({ open: false });
-  };
-
+  
  
 
   onChangeActiveId = (id) => {
@@ -35,32 +31,17 @@ class App extends Component {
   render() {
     const { open } = this.state;
     return (
-      <div id>
+      <div >
 
         <div className="App">
 
           <div className="row">
-
-            <div id="head">
-              <div id="leftBeta">
-                <button type="button"
-                  className="btn btn-primary left-buttons"
-                  id="createNewIssue"
-                  onClick={() => this.setState({ modalShow: true })} >
-                  Kreiraj novi upit
-              </button>
-
-              </div>
-              <div id="search-issue-tab">Ovdje ce biti search filter
-              </div>
-
-            </div>
-
             <div id="main">
               <div id="leftBeta">
                 <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
               </div>
               <div id="rightBeta">
+            
                 <div
                   id="TrackIssuesContent"
                   style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
@@ -91,16 +72,7 @@ class App extends Component {
 
           </div>
 
-          <ModalComponent
-                    
-                    show={this.state.modalShow}
-                    naslovModala="Pošalji novi upit"
-                    btnPotvrdi="Pošalji upit"
-                    onHide={() => this.setState({modalShow: false})}
-                    
-                    
-
-                />
+         
 
         </div>
       </div>

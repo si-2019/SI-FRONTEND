@@ -96,7 +96,7 @@ class BrisanjeZadace extends Component{
                     isOpen={this.state.dropdownOpen}
                     toggle={this.toggle}
                   >
-                    <DropdownToggle caret className="bg-primary">
+                    <DropdownToggle caret className="custom-select text-dark">
                       Lista zadaća za brisanje
                     </DropdownToggle>
                     <DropdownMenu className="bg-primary">

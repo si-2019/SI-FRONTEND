@@ -87,9 +87,13 @@ class NovaTema extends Component {
         //console.log(greskaBaza);
         return (
             <div id="unosNoveTeme" className="footerDno">
-                <Header isPocetna={false}/>
-                    <Container fluid>
-                        <Row style={{margin: "0"}}>
+                    <Container fluid style={{padding:"0", margin: "0"}}>
+                    
+                        <Row>
+                            <Col md="3">
+                                <Header isPocetna={false}/>
+                            </Col>
+
                             <Col style={{textAlign: "left"}}>
                                 <Poruka greska={greskaBaza} />
                                 <Card>

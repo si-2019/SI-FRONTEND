@@ -55,85 +55,88 @@ class TabelaUnosa extends Component {
 
     render() {
         return(
-            <Form>
-                <Form.Row>
-                    <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <br/>
-                        <h4>Unos bodova za ispit</h4>
-                        <br/>
-                    </Col>
-                </Form.Row>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center" >Unos bodova ispita</h4>
+                    <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos bodova.</h6>
+                    <br/>
+                    <div>
+                        <Form>
 
-                <Form.Row>
-                    <Form.Group as={Col} sm={{span: 4, offset: 4}}>
-                        <Form.Control
-                            as="select">
-                            <option>I parcijalni, 20.4.2019.</option>
-                            <option> II parcijalni, 20.6.2019.</option>
-                            <option>Popravni I parcijalni, 1.7.2019.</option>
-                            <option>Popravni II parcijalni, 1.7.2019.</option>
-                            <option>Integralni ispit 1.9.2019.</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Form.Row>
+                            <Form.Row>
+                                <Form.Group as={Col} sm={{span: 4, offset: 4}}>
+                                    <Form.Control
+                                        as="select">
+                                        <option>I parcijalni, 20.4.2019.</option>
+                                        <option> II parcijalni, 20.6.2019.</option>
+                                        <option>Popravni I parcijalni, 1.7.2019.</option>
+                                        <option>Popravni II parcijalni, 1.7.2019.</option>
+                                        <option>Integralni ispit 1.9.2019.</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Form.Row>
 
-                <hr/>
+                            <hr/>
 
-                <Form.Row>
-                    <Col style={{textAlign: "right"}}>
-                        <Form.Label> Index: </Form.Label>
-                    </Col>
-                    <Col lg="2">
-                        <Form.Control type="text" name="name">
-                        </Form.Control>
-                    </Col>
-                    <Col>
-                        <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
-                    </Col>
-                </Form.Row>
+                            <Form.Row>
+                                <Col style={{textAlign: "right"}}>
+                                    <Form.Label> Index: </Form.Label>
+                                </Col>
+                                <Col lg="2">
+                                    <Form.Control type="text" name="name">
+                                    </Form.Control>
+                                </Col>
+                                <Col>
+                                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                                </Col>
+                            </Form.Row>
 
-                <Form.Row>
-                    <Col style={{textAlign: "center"}}>
-                        <br/>
-                        <label style={{ visibility: this.state.greskaVis}}>
-                            Pero Perić, 12345
-                        </label> 
-                    </Col>
-                </Form.Row>
+                            <Form.Row>
+                                <Col style={{textAlign: "center"}}>
+                                    <br/>
+                                    <label style={{ visibility: this.state.greskaVis}}>
+                                        Pero Perić, 12345
+                                    </label> 
+                                </Col>
+                            </Form.Row>
 
-                <hr/>
+                            <hr/>
 
-                <Form.Row>
-                    <Col style={{textAlign: "right"}}>
-                        <Form.Label> Bodovi: </Form.Label>
-                    </Col>
-                    <Col lg="2">
-                        <Form.Control type="text" name="name">
-                        </Form.Control>
-                    </Col>
-                    <Col>
-                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
-                    </Col>
-                </Form.Row>
+                            <Form.Row>
+                                <Col style={{textAlign: "right"}}>
+                                    <Form.Label> Bodovi: </Form.Label>
+                                </Col>
+                                <Col lg="2">
+                                    <Form.Control type="text" name="name">
+                                    </Form.Control>
+                                </Col>
+                                <Col>
+                                <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
+                                </Col>
+                            </Form.Row>
 
-                <Form.Row>
-                    <Col style={{textAlign: "center"}}>
-                        <br/>
-                        <label style={{ visibility: this.state.greska}}>
-                            Uspješan unos
-                        </label>
-                        <br/>
-                        <label style={{ visibility: this.state.greska}}>
-                            Pero Perić, 12345
-                        </label>
-                        <br/>
-                        <label style={{ visibility: this.state.greska}}>
-                            20
-                        </label>
-                        <br/>
-                    </Col>
-                </Form.Row>
-           </Form>
+                            <Form.Row>
+                                <Col style={{textAlign: "center"}}>
+                                    <br/>
+                                    <label style={{ visibility: this.state.greska}}>
+                                        Uspješan unos
+                                    </label>
+                                    <br/>
+                                    <label style={{ visibility: this.state.greska}}>
+                                        Pero Perić, 12345
+                                    </label>
+                                    <br/>
+                                    <label style={{ visibility: this.state.greska}}>
+                                        20
+                                    </label>
+                                    <br/>
+                                </Col>
+                            </Form.Row>
+                    </Form>
+                    </div>    
+                </div>
+            </div>
+            
         );
     }
 }

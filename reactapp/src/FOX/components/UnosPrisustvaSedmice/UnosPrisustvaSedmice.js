@@ -2,7 +2,6 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import Link from 'react-router-dom/Link';
 
 const UnosPrisustvaSedmice = (props) => {
     const sedmice = [
@@ -26,7 +25,7 @@ const UnosPrisustvaSedmice = (props) => {
         <div>
             <Container>
                 <Row style={{margin: "0"}}>
-                <Col style={{textAlign: "center"}}>
+                <Col style={{textAlign: "left"}}>
                     <h4>Odabir sedmice</h4>
                     <br></br>
                 </Col> 

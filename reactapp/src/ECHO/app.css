@@ -51,16 +51,15 @@
   float: right;
   min-height: 470px;
 }
-
 #kartica {
   width: 50%;
   height: 100%;
 }
 
- #dugme1{
+#dugme1 {
   float: right;
- }
- 
+}
+
 #naslov {
   text-align: center;
 }
@@ -68,4 +67,3 @@
 #terminDiv {
   width: 50%;
 }
-

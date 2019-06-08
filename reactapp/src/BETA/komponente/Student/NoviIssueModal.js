@@ -142,12 +142,15 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="false"
-                    //VEDAD ->PRVI SPRINT (izmijeniti ovu porukicu msg)
-                    msg="Vaš upit nije poslan! Pokusajte ponovo!"
+                    msg="Vaš upit nije poslan! Pokušajte ponovo!"
                 />
             );
         }
         return null;
+    }
+
+    deattachFile = () => {
+        this.refs.inputFile.value = "";
     }
 
     render() {
@@ -198,8 +201,16 @@ class ModalComponent extends React.Component {
                                     id="exampleInputFile"
                                     aria-describedby="fileHelp"
                                     onChange={this.fileChangedHandler}
+                                    ref="inputFile"
                                 />
-                               
+
+                                <button
+                                    className=""
+                                    type="button"
+                                    onClick={this.deattachFile} 
+                                    style = {{marginTop:10}}
+                                > Ukloni priloženi fajl
+                                </button>
 
                             </>
                         </div>

@@ -21,12 +21,12 @@ class KreiranjeProjekta extends Component {
 
     kreirajFromu() {
         return (
-            <div className="card" style={{float: "left", width:"50%", top:"40px"}}>
+            <div className="card" style={{float: "left", width:"50%"}}>
                 <div class="card-body">
-                <h4 class="card-title">Kreiranje novog projekta </h4>
-                   <h6 class="card-subtitle mb-2 text-muted">Unesite potrebne informacije za projekat na nivou predmeta</h6>
+                <h4 class="card-title" style={{textAlign:"left"}}>Kreiranje novog projekta </h4>
+                   <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unesite potrebne informacije za projekat na nivou predmeta</h6>
                   <br/>
-                <form class="form-style-7">
+                <form class="form-style-7" style={{textAlign:"left"}}>
                     <ul>
                         <li>
                             <label class="col-form-label" for="name">Naziv projekta:</label>

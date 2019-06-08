@@ -17,12 +17,15 @@ class App extends Component {
         <div>
         <Router>
                 <div class='row' id='glavni'>
-                    <div class='col-3'>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <Link id='mpl' to='/Golf/mojiPredmeti/1'>Moji predmeti</Link>
-                            </li>
-                        </ul>
+                    <div class='col-3' id="meni" style={{
+                      backgroundColor: "#2C3E50",
+                      minHeight: "100%",
+                      padding: "0px",
+                       margin: "0px"
+                    }}>
+                      <Link to='/Golf/mojiPredmeti/1' class="dugmeLink">
+                          <button type="button" class="btn btn-primary" id="mpl">Moji predmeti</button>
+                      </Link>
                      <Ciklusi />
                      
                     </div>

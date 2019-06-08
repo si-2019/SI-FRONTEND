@@ -30,6 +30,7 @@
   font-weight: bold;
   font-size: 1em;
   margin: 0;
+  color: black;
 }
 
 .juliet-message-text  {
@@ -46,6 +47,7 @@
 }
 
 .juliet-message-time {
+
   font-weight: 300;
   font-size: 12px;
   padding-left: 5px;

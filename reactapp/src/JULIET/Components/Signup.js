@@ -22,7 +22,7 @@ class  Signup extends Component {
             <div style={signupStyle} className="juliet-form-container">
                 <h1>Let's Talk</h1>
                 <form onSubmit={this.handleSubmit} className="form juliet-form">
-                    <label htmlFor="email">What is your email?</label>
+                    <label htmlFor="email" style={{color: '#2C3E50'}}>What is your email?</label>
                     <input type="email" name="username" onChange={this.handleChange} className="juliet-input" />
                     <button className="juliet-submit juliet-signup-button">Submit</button>
                 </form>

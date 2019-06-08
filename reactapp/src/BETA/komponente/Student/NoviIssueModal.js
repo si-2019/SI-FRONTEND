@@ -124,7 +124,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste poslali issue"
+                    msg="Uspjesno ste poslali upit"
                 />
             );
         }
@@ -133,7 +133,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste sacuvali issue kao draft!"
+                    msg="Uspjesno ste sacuvali upit kao draft!"
                 />
             );
         }
@@ -142,8 +142,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="false"
-                    //VEDAD ->PRVI SPRINT (izmijeniti ovu porukicu msg)
-                    msg="Vaš issue nije poslan! Pokusajte ponovo!"
+                    msg="Vaš upit nije poslan! Pokušajte ponovo!"
                 />
             );
         }
@@ -176,7 +175,7 @@ class ModalComponent extends React.Component {
 
                         <div className="form-group">
                             <>
-                                <label className="col-form-label" for="inputDefault" >Title:</label>
+                                <label className="col-form-label" for="inputDefault" >Naslov:</label>
                                 <div className="col-form-label">
                                     <CategoryComponent triggerGetTitleFromCategoryComponent={this.onChangeTitleInCategoryComponent}
                                     />
@@ -212,7 +211,7 @@ class ModalComponent extends React.Component {
                             className="btn btn-primary"
                             onClick={this.saveAsDraft}
                             disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
-                        >Save as draft
+                        >Sačuvaj kao draft
                         </button>
 
                         <button type="submit"

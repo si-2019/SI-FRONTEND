@@ -4,7 +4,7 @@ class LeftMenuStudent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeDivId: 1, 
+            activeDivId: 1,  //open pokazuje da li formu treba prikazati ili ne
         };
     };
 
@@ -14,27 +14,32 @@ class LeftMenuStudent extends React.Component {
 
     render() {
         return (
-            <div >
+            <div >                
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons" 
                     id = "moj"
-                    onClick = {()=>this.changeActiveId(1)}>Prati upite
+                    onClick = {()=>this.changeActiveId(2)}>Raspored profesora
                 </button>
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons"
-                    onClick = {()=>this.changeActiveId(2)}>Draftovi
+                    onClick = {()=>this.changeActiveId(3)}>Raspored sale za studenta
                 </button>
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons"
-                    onClick = {()=>this.changeActiveId(3)}>Arhiva
+                    onClick = {()=>this.changeActiveId(4)}>Raspored sale za profesora
                 </button>
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons"
-                    onClick = {()=>this.changeActiveId(4)}>Često postavljani upiti
+                    onClick = {()=>this.changeActiveId(5)}>Grupe za studenta
+                </button>
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons"
+                    onClick = {()=>this.changeActiveId(6)}>Grupe za profesora
                 </button>
     
             </div>

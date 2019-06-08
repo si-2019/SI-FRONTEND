@@ -1,0 +1,31 @@
+p {
+  line-height: 10px;
+}
+
+.dan {
+  margin-top: -10%;
+  padding-top: -13%;
+}
+.mojaKartica {
+  width: 40%;
+  height: 150px;
+  border-style: solid;
+  border-width: 0.5px;
+  margin-left: 8%;
+  margin-top: 5%;
+  overflow-y: scroll;
+  float: left;
+}
+.mojaKarticaP {
+  width: 40%;
+  height: 150px;
+  border-style: solid;
+  border-width: 0.5px;
+  margin-left: 5%;
+  margin-top: 5%;
+  overflow-y: scroll;
+  float: left;
+}
+#glavnaKartica {
+  margin-top: unset;
+}

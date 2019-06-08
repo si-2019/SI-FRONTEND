@@ -93,6 +93,7 @@ class Popunjavanje extends Component {
             odg.push({ idPitanja: res.data[key].idPitanja, tekstOdgovora: null, idPonudjeniOdgovor: null })
           }
         };
+        console.log(pit)
         this.setState({ pitanja: pit, odgovori: odg });
       });
   }
@@ -101,7 +102,7 @@ class Popunjavanje extends Component {
     const { match: { params } } = this.props;
     console.log(this.state.odgovori);
     var ima = false;
-    var nema = false;
+    var br = 0;
     this.setState({ showError: '' })
     for (let i = 0; i < this.state.odgovori.length; i++) {
       if (this.state.odgovori[i].sviOdg) {
@@ -111,13 +112,14 @@ class Popunjavanje extends Component {
         if (!ima) this.setState({ showError: "Potrebno je odgovoriti na sva pitanja" });
       }
       else {
-        if (this.state.odgovori[i].textOdgovora === null) {
-          nema = true;
+        if (this.state.odgovori[i].tekstOdgovora === null) {
+          br++;
           this.setState({ showError: "Potrebno je odgovoriti na sva pitanja" });
         }
       }
     }
-    if (ima && !nema) {
+    console.log("ima/brojac", ima, br)
+    if (ima && br===0) {
       fetch(url + '/popuniAnketu', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },

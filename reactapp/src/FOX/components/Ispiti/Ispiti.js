@@ -5,6 +5,7 @@ import Tabela from './Tabela';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../../ZajednickiCSS.css';
 
 class Ispiti extends  Component {
   constructor(props){
@@ -15,7 +16,7 @@ class Ispiti extends  Component {
   }
 render() {
     return(
-      <div>
+      <div className="footerDno">
         <Container fluid style={{padding:"0", margin: "0"}}>
           <Row>
             <Col md="3">

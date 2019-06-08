@@ -3,6 +3,8 @@ import "./app.css";
 import LeftMenu from "./components/LeftMenu.js";
 import NaslovnaTermin from "./components/naslovnaTermin";
 import Sale from "./components/sale";
+import NaslovnaKalendar from "./components/naslovnaKalendar";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,7 @@ class App extends Component {
                 display: this.state.activeContentId == 3 ? "inherit" : "none"
               }}
             >
-              {/*DODATI KOMPONENTU KALENDAR UNUTAR KOJE SE DEFINISE IZGLED TABOVA */}
+            <NaslovnaKalendar />
             </div>
             <div
               id="PretragaProfesora"

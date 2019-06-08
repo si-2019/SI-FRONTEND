@@ -38,7 +38,9 @@ class GenerisanjeGrupa extends Component {
 							}
 					</select>
 					< label class="col-form-label" style={{textAlign:"left"}}>Broj studenata:</label>
-					<label style={{textAlign:"left"}}>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
+					{/*<label style={{textAlign:"left"}}>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
+					*/}
+					<label style={{textAlign:"left"}}>{30}</label>
 					<br/>
 					<label class="col-form-label" style={{textAlign:"left"}}>Broj projektnih grupa:</label>
 					<input className="form-control" id="broj" type="number" min="1" max="100" placeholder="10" style={{textAlign:"left"}}></input>

@@ -51,9 +51,10 @@ import './bootstrapflatly.css'
               })
             }
           </select>
-         
+        {/* 
       <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].opis} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].bodovi}/>
-        
+        */}
+        <PrikazPredmeta opisProjekta={"opis"} brojMogucihBodova={25}/>
         <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.props.submit}>Dalje</button>
         </div>
         </div>

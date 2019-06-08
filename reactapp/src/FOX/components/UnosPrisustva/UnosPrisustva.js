@@ -5,6 +5,9 @@ import UnosPrisustvaSedmice from '../UnosPrisustvaSedmice/UnosPrisustvaSedmice';
 import Footer from '../Footer/Footer';
 import '../../ZajednickiCSS.css';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 class UnosPrisustva extends React.Component {
@@ -134,25 +137,35 @@ class UnosPrisustva extends React.Component {
     render() {
         return (
             <div id="unosPrisustvaID" className="footerDno">
-                <Header isPocetna={false}/>
-                <div style={{padding: "25px", textAlign: "center"}}>
-                    {
-                        this.state.sedmica !== 0 &&
-                            <UnosPrisustvaForma
-                                data={this.state}
-                                handleSubmit={this.handleSubmit}
-                                handleSubmitSvi={this.handleSubmitSvi}
-                                handleChange={this.handleChange}
-                                handleChangeSvi={this.handleChangeSvi}/>
-                    }
-                    {   
-                        this.state.sedmica === 0 &&
-                            <UnosPrisustvaSedmice
-                                handleClickSedmica={this.handleClickSedmica}/>
-                    }
-                    <br/>
-                    <br/>
-                </div>
+
+                <Container fluid style={{padding:"0", margin: "0"}}>
+                    <Row>
+                        <Col md="3">
+                            <Header isPocetna={false}/>
+                        </Col>
+                        <Col>
+                            <div style={{padding: "25px", textAlign: "center"}}>
+                                {
+                                    this.state.sedmica !== 0 &&
+                                        <UnosPrisustvaForma
+                                            data={this.state}
+                                            handleSubmit={this.handleSubmit}
+                                            handleSubmitSvi={this.handleSubmitSvi}
+                                            handleChange={this.handleChange}
+                                            handleChangeSvi={this.handleChangeSvi}/>
+                                }
+                                {   
+                                    this.state.sedmica === 0 &&
+                                        <UnosPrisustvaSedmice
+                                            handleClickSedmica={this.handleClickSedmica}/>
+                                }
+                                <br/>
+                                <br/>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+                
                 <Footer/>
             </div>
         );

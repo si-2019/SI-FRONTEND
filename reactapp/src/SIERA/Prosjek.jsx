@@ -67,12 +67,15 @@ vratiLjetni = (provjeri,i) => {
 
     render() { 
         return (
-            <div class="row" style={{ margin: "0px" }}>
-            <div class="col"></div>
-            <div class="col" style={{ textAlign: "center" }}>
-                <div class="card" style={{ display: "inline-block" }}>
-                    <div class="card-body">
-                        <h3 class="card-title">Prosjek</h3>
+            <div className="container-fluid" style={{ height: "100%" }}>
+                    <div className="d-flex justify-content-center" style={{ height: "100%" }}>
+                        <div className="d-flex align-items-center">
+                            <div class="row" style={{ margin: "0px" }}>
+                                <div class="col-lg col-md" >
+
+                                    <div class="card" style={{ width: "30rem" }}>
+                                        <div class="card-body">
+                                        <h3 class="card-title">Prosjek</h3>
                         <div style={{ visibility: "hidden" }}>dssffds</div>
                         <h6 class="card-subtitle mb-2 text-muted">Ukupan prosjek ciklusa: </h6>
                         <label>{this.state.ukupanProsjek}</label>
@@ -94,14 +97,17 @@ vratiLjetni = (provjeri,i) => {
                              
                         
                          </div>
-                        ))}
-                       
+                        ))}                 
+                        </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col"></div>
-        </div>
+
+          
             );
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+import { Button , FormGroup} from "reactstrap";
 import "../bootstrap.css";
 
 class BodoviZadaca extends Component {
@@ -21,18 +21,22 @@ class BodoviZadaca extends Component {
     
 
     return (
-      <div id="bodovi" >
-        <div id="naslovB"className="card-header text-black">
+      <div class="card ml-2 h-100"  style={{width: "30rem"}}>
+        <div className="card-title p-2">
           <h4>
             <b>Bodovi zadaće</b>
           </h4>
         </div>
         <div className="card-body">
-          <h4 className="card-title">
-            Želim da svi zadaci imaju jednak maksimalan broj bodova.
-          </h4>
-          <div className="form-group">
-            <div className="custom-control-static custom-switch">
+          <div>
+          <div class="row" id="prviR">
+          <div id="bodoviLab" sm={10}>
+          <label>
+            Želim da svi zadaci imaju jednak maksimalan broj bodova:
+          </label>
+          </div>
+          <div className="form-group" class="col" sm={2}>
+            <div id="divsw" className="custom-control-static custom-switch">
               <input
                 type="checkbox"
                 className="custom-control-input"
@@ -43,10 +47,13 @@ class BodoviZadaca extends Component {
               <label className="custom-control-label" htmlFor="customSwitch1">
                 DA
               </label>
-              <br />
-              <br />
+              </div>
             </div>
-            <h5 className="card-title">Broj bodova:</h5>
+            </div>
+            <div id="brbodLab">
+            <label>Broj bodova:</label>
+            </div>
+            <div id="Ok">
             <input 
                 id="brbod" 
                 type="text" 
@@ -62,14 +69,15 @@ class BodoviZadaca extends Component {
               OK
             </Button>
             <hr />
+            </div>
           </div>
         </div>
-        <div id="tabela">
+        <div id="tabela" class="px-2">
           <table className="table table-bordered text-center border-solid">
             <thead>
               <tr  className="text-dark">
                 {kolone.map(jedno => (
-                  <th scope="col" key={jedno + 200}>
+                  <th class="tabtip" scope="col" key={jedno + 200}>
                     {jedno}
                   </th>
                 ))}
@@ -78,7 +86,7 @@ class BodoviZadaca extends Component {
             <tbody>
               <tr className="text-dark">
                 {kolone.map((jedno, index) => (
-                  <th scope="col" key={jedno}>
+                  <th class="tabtip1" scope="col" key={jedno}>
                     <input
                       type="text"
                       className="form-control bg-primary text-light text-bold"
@@ -95,13 +103,18 @@ class BodoviZadaca extends Component {
             </tbody>
           </table>
           <br />
-          <label className="ml-3">Ukupno:</label>
-          <span className="badge badge-primary ml-3">
+          <FormGroup row>
+          <div id="ukupno">
+          <label sm={10}>Ukupno:</label>
+          </div>
+          <span class="col ml-1" sm={2} id="ukk" className="badge badge-primary ml-3">
             <h5 id="ukupnoStanje">{this.props.podaci.state.ukupnoBodova}</h5>
           </span>
+          </FormGroup>
           <hr />
         </div>
       </div>
+      
     );
   }
 }

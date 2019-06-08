@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./bootstrap.min.css";
 import axios from "axios";
+import { FormGroup, Table } from "reactstrap";
+import "./tabela.css"
 
 class IspitiTabela extends Component {
   state = {
@@ -62,7 +64,7 @@ class IspitiTabela extends Component {
     trenutnoLogovaniStudentID: 1
   };
 
-  componentDidMount() {
+  componenthidMount() {
     axios
       .get(
         `http://localhost:31918/ispiti/` + this.state.trenutnoLogovaniStudentID
@@ -83,92 +85,93 @@ class IspitiTabela extends Component {
 
   render() {
     return (
-      <div>
+      <div className="row justify-content-center" style={{ padding: "20px" }}>
         {this.state.listaIspita.map((item, i) => (
-          <table className="table table-hover" key={i}>
-            <tbody>
-              <tr className="table-success" key={item[0].idGodine}>
-                <th scope="row" colSpan="7" style={{ textAlign: "center" }}>
-                  Akademska godina: {item[0].nazivGodine}
-                </th>
-              </tr>
-              {item[0].predmeti.map(itemPredmet => [
-                <tr
-                  className="table-success"
-                  key={
-                    itemPredmet.idPredmet + item[0].nazivGodine + "naziviIspita"
-                  }
-                >
-                  {itemPredmet.ispiti.length == 0 ? null : <td />}
-                  {itemPredmet.ispiti.map(itemIspiti => (
-                    <td
-                      colSpan="2"
-                      style={{ textAlign: "center" }}
-                      key={itemIspiti.idIspita}
-                    >
-                      {itemIspiti.nazivIspita}
-                    </td>
-                  ))}
-                </tr>,
-                <tr
-                  className="table-success"
-                  key={
-                    itemPredmet.idPredmet +
-                    item[0].nazivGodine +
-                    "predmetDatumBodovi"
-                  }
-                >
-                  {itemPredmet.ispiti.length == 0 ? null : (
-                    <th scope="row">Predmet</th>
-                  )}
-                  {itemPredmet.ispiti.map(itemIspiti => [
-                    <td
-                      style={{ textAlign: "center" }}
-                      key={itemIspiti.idIspita + "datum"}
-                    >
-                      Datum
-                    </td>,
-                    <td
-                      style={{ textAlign: "center" }}
-                      key={itemIspiti.idIspita + "bodovi"}
-                    >
-                      Ostvareni bodovi
-                    </td>
-                  ])}
-                </tr>,
-                <tr
-                  className="table-light"
-                  key={
-                    itemPredmet.idPredmet + item[0].nazivGodine + "datumBodovi"
-                  }
-                >
-                  {itemPredmet.ispiti.length == 0 ? null : (
-                    <td style={{ textAlign: "center" }}>
-                      {itemPredmet.nazivPredmeta}
-                    </td>
-                  )}
-                  {itemPredmet.ispiti.map(itemIspiti => [
-                    <td
-                      style={{ textAlign: "center" }}
-                      key={itemIspiti.idIspita + itemIspiti.datum}
-                    >
-                      {this.srediDatum(itemIspiti.datum)}
-                    </td>,
-                    <td
-                      style={{ textAlign: "center" }}
-                      key={
-                        itemIspiti.idIspita +
-                        itemIspiti.datum +
-                        itemIspiti.bodovi
-                      }
-                    >
-                      {itemIspiti.bodovi}
-                    </td>
-                  ])}
+          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-10 ">
+            <table className="table table-bordered text-center bg-active border-solid" key={i}>
+              <tbody>
+                <tr class="bg-primary text-light" key={item[0].idGodine}>
+                  <th className="tabtip" scope="row" colSpan="7" style={{ textAlign: "center" }}>
+                    Akademska godina: {item[0].nazivGodine}
+                  </th>
                 </tr>
-              ])}
-            </tbody>
-          </table>
+                {item[0].predmeti.map(itemPredmet => [
+                  <tr className="bg-primary text-light"
+                    key={
+                      itemPredmet.idPredmet + item[0].nazivGodine + "naziviIspita"
+                    }
+                  >
+                    {itemPredmet.ispiti.length == 0 ? null : <th className="tabtip1" />}
+                    {itemPredmet.ispiti.map(itemIspiti => (
+                      <th className="tabtip1"
+                        colSpan="2"
+                        style={{ textAlign: "center" }}
+                        key={itemIspiti.idIspita}
+                      >
+                        {itemIspiti.nazivIspita}
+                      </th>
+                    ))}
+                  </tr>,
+                  <tr className="bg-primary text-light"
+                    key={
+                      itemPredmet.idPredmet +
+                      item[0].nazivGodine +
+                      "predmethatumBodovi"
+                    }
+                  >
+                    {itemPredmet.ispiti.length == 0 ? null : (
+                      <th className="tabtip" scope="row">Predmet</th>
+                    )}
+                    {itemPredmet.ispiti.map(itemIspiti => [
+                      <th className="tabtip"
+                        style={{ textAlign: "center" }}
+                        key={itemIspiti.idIspita + "datum"}
+                      >
+                        Datum
+                    </th>,
+                      <th className="tabtip"
+                        style={{ textAlign: "center" }}
+                        key={itemIspiti.idIspita + "bodovi"}
+                      >
+                        Ostvareni bodovi
+                    </th>
+                    ])}
+                  </tr>,
+                  <tr
+
+                    key={
+                      itemPredmet.idPredmet + item[0].nazivGodine + "datumBodovi"
+                    }
+                  >
+                    {itemPredmet.ispiti.length == 0 ? null : (
+                      <th className="tabtip1"
+                        style={{ textAlign: "center" }}>
+                        {itemPredmet.nazivPredmeta}
+                      </th>
+                    )}
+                    {itemPredmet.ispiti.map(itemIspiti => [
+                      <th className="tabtip1"
+                        style={{ textAlign: "center" }}
+                        key={itemIspiti.idIspita + itemIspiti.datum}
+                      >
+                        {this.srediDatum(itemIspiti.datum)}
+                      </th>,
+                      <th className="tabtip1"
+                        style={{ textAlign: "center" }}
+                        key={
+                          itemIspiti.idIspita +
+                          itemIspiti.datum +
+                          itemIspiti.bodovi
+                        }
+                      >
+                        {itemIspiti.bodovi}
+                      </th>
+                    ])}
+                  </tr>
+                ])}
+              </tbody>
+            </table>
+          </div>
         ))}
       </div>
     );

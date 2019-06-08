@@ -61,7 +61,7 @@ class FAQ extends React.Component {
         if (this.state.isLoading) {
             return (
                 <Spinner animation='border' role='status'>
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only">Učitavanje...</span>
                 </Spinner>
             );
         }
@@ -78,7 +78,7 @@ class FAQ extends React.Component {
 
                 <br></br>
 
-                <h4 >Frequently asked questions</h4>
+                <h4 >Često postavljani upiti</h4>
 
 
                 <div className="faq-issue">
@@ -108,15 +108,15 @@ class FAQ extends React.Component {
                     className="btn btn-primary float-right btn-lg "
                     onClick={() => this.setState({ modalShow: true })}
                     style={{ marginTop: '30px' }}
-                >Istakni novi issue
+                >Istakni novi upit
                         </button>
 
 
                 <ModalComponent
 
                     show={this.state.modalShow}
-                    naslovModala="Objavi rjesenje novog issue-a"
-                    btnPotvrdi="Objavi issue"
+                    naslovModala="Objavi rjesenje novog upita"
+                    btnPotvrdi="Objavi upit"
                     saveState={this.saveState}
                     noviFAQ={this.state}
 

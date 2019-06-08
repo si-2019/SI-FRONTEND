@@ -45,7 +45,7 @@ class CategoryComponentSS extends React.Component {
         value = {this.state.categoryTitle}
         placeholder = "Choose title"
       >
-      <option selected>Add new title...</option>
+      <option selected>Dodaj novi naslov...</option>
       {options}
       </select>
 

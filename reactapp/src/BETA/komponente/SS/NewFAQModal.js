@@ -72,7 +72,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste objavili rjesenje issue-a"
+                    msg="Uspjesno ste objavili rjesenje upita"
                 />
             );
         }
@@ -114,12 +114,12 @@ class ModalComponent extends React.Component {
 
                         <div className="form-group">
                             <>
-                                <label className="col-form-label" for="inputDefault" >Issue:</label>
+                                <label className="col-form-label" for="inputDefault" >Upit:</label>
                                 <input type="text"
                                     className="form-control"
                                     name="naziv"
                                     onChange={this.handleChange}
-                                    placeholder="Naslov issue-a"
+                                    placeholder="Naslov upita"
                                 />
                                 <label className="col-form-label" for="inputDefault" >Odgovor:</label>
                                 <textarea
@@ -127,7 +127,7 @@ class ModalComponent extends React.Component {
                                     name="tekst"
                                     onChange={this.handleChange}
                                     rows="10"
-                                    placeholder="Odgovor na issue"></textarea>
+                                    placeholder="Odgovor na upit"></textarea>
 
                             </>
                         </div>

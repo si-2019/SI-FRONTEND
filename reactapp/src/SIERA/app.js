@@ -5,13 +5,15 @@ import Ocjene from "./Ocjene";
 import ProfilStudenta from "./ProfilStudenta";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import "./AppSiera.css";
-import LeftMenuStudentSiera from "./LeftMenuStudentSiera"
+import PrikaziStatus from "./PrikaziStatus";
+import LeftMenuStudentSiera from "./LeftMenuStudentSiera";
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 import Kontakt from "./kontaktPod";
 import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
 import Predmeti from "./predmeti";
+import Prosjek from "./Prosjek.jsx";
 //vrati rutu za grupu tango!
 class App extends Component {
   constructor() {
@@ -29,17 +31,24 @@ class App extends Component {
         component: <UgovorOUcenju />
       }, {
         btnText: "Završni rad",
-        component: <DropDownZavrsni />
+        component: <> <DropDownZavrsni /> <PrikaziStatus /> </>
       }, {
         btnText: "Predmeti",
         component: <Predmeti />
       }, {
         btnText: "Ispiti",
         component: <IspitiTabela />
-      }, {
+      }, 
+      {
         btnText: "Ocjene po godinama",
         component: <Ocjene />
-      }],
+      },
+      {
+        btnText: "Prosjek",
+        component: <Prosjek />
+      }
+    
+    ],
       menuComponents: [{
         naziv: "Profil",
         changeId: 0,

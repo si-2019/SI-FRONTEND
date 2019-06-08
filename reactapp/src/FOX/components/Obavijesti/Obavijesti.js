@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 class Obavijesti extends Component {
     render() {
         return (
-          <div className="footerDno">
+          <div>
             <Container fluid style={{padding:"0", margin: "0"}}>
                 <Row>
                     <Col md="3">
@@ -20,7 +20,7 @@ class Obavijesti extends Component {
                     <br></br>
                     <h4>Obavijesti</h4>
                     <br></br>
-                    
+
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title text-center" >Slanje obavijesti</h4>

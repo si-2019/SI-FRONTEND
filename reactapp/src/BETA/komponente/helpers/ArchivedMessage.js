@@ -16,8 +16,8 @@ const ArchivedMessage = (props) => {
             <div className="row">
                     <div className="col-1"></div>
                     <div className="col-11">
-                <Button variant="primary" type='submit'>Reply</Button>
-                <Button variant="primary" type='submit'>Delete</Button>
+                <Button variant="primary" type='submit'>Odgovori</Button>
+                <Button variant="primary" type='submit'>Obriši</Button>
                 </div></div>
             </ListGroup.Item>
         </ListGroup.Item>

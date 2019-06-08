@@ -19,7 +19,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.juliet-user-online{
+    
+    margin-left: -6px;
+    width: 7%;
+}
 .juliet-remove {
     display: none;
     float: right;
@@ -64,7 +68,7 @@
 }
 
 .juliet-username-name {
-    width: 83%;
+    width: 76%;
     text-overflow: ellipsis;
     overflow: hidden;
 }

@@ -85,7 +85,7 @@ class NoviIssueForma extends React.Component {
         saveAsDraft = () => {
             
             if(this.state.issueTitle.length == 0)
-                alert("Please, select a title!");
+                alert("Odaberite naslov!");
 
             else{
 
@@ -120,7 +120,7 @@ class NoviIssueForma extends React.Component {
                             marginLeft: '12px', 
                             marginTop: '16px'
                             }}
-                        >Title:
+                        >Naslov:
                         </label>
 
                         <CategoryComponent triggerGetTitleFromCategoryComponent = {this.onChangeTitleInCategoryComponent}
@@ -164,7 +164,7 @@ class NoviIssueForma extends React.Component {
                             className="btn btn-primary class1"
                             onClick={this.saveAsDraft}
                             disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
-                        >Save as draft
+                        >Sačuvaj kao draft
                         </button>
 
                         <button
@@ -173,7 +173,7 @@ class NoviIssueForma extends React.Component {
                             className="btn btn-primary class1"
                             disabled={!this.state.issueText || this.state.fileTooBig}
                             onClick={this.onSubmit}
-                        >Send issue
+                        >Pošalji upit
                         </button>
                         
                     </div>

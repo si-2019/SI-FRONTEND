@@ -11,7 +11,7 @@ import PrijavljeniIspiti from "./components/PrijavljeniIspiti";
 import UrediIspit from "./components/UrediIspit";
 
 import LeftMenu from "./LeftMenu";
-
+import "./appCharlie.css";
 class App extends Component {
 
   constructor() {
@@ -35,7 +35,7 @@ class App extends Component {
         btnText: "Prijava ispita",
         component: <PrijavaIspita />
       }, {
-        btnText: "Kreirani ispiti",
+        btnText: "Prijavljeni ispiti",
         component: <PrijavljeniIspiti />
       }],
       menuComponentsStudent: [{
@@ -83,11 +83,12 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <>
+      
         <div className="App">
 
           <div className="containter-fluid">
-            <div className="row" style={{ margin: "0px", padding: "0px" }}>
+            <div className="row" style={{ margin: "0px", padding: "0px"}}>
               <div className="col-lg-2 col-md-3 col-sm-12" style={{
                 backgroundColor: "#2C3E50",
                 minHeight: "100%",
@@ -96,7 +97,7 @@ class App extends Component {
               }}>
                 <LeftMenu
                   triggerChangeActiveId={this.onChangeActiveId}
-                  btnList={this.state.menuComponentsStudent}
+                  btnList={this.state.menuComponentsProfesor}
                 />
               </div>
               <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
@@ -106,13 +107,13 @@ class App extends Component {
                 padding: "0px"
               }}>
 
-                {this.state.menuComponentsStudent[this.state.activeContentId].component}
+                {this.state.menuComponentsProfesor[this.state.activeContentId].component}
 
 
               </div>
             </div>
           </div>
-        </div>
+        
         <BrowserRouter>
           <Route
             path="/charlie/info-o-ispitu"
@@ -147,7 +148,8 @@ class App extends Component {
           <Route path="/charlie/uredi-ispit" exact component={UrediIspit} />
           <Route path="/charlie/kreiraj-ispit" exact component={KreirajIspit} />
         </BrowserRouter>
-      </div>
+        </div>
+        </>
     );
   }
 }

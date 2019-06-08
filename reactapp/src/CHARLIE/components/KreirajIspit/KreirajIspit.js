@@ -49,51 +49,40 @@ class KreirajIspit extends Component{
       <form>
         <div className='row'>
             
-            <div className='col-3'>
-            <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
-
-                <select className="form-control" id="odabirPredmeta" ref="odabirPredmeta">
-
-                    {this.renderOptions()}
-                </select>
-                <button type="button" class="btn btn-primary" id="nazadDugme" onClick={() => window.open( 'http://www.google.ba')}>Nazad</button>
-           </div> 
-            <div className='col-3'>
-              <label htmlFor="odabirTipIspita">Tip Ispita: </label>
-
-                <select className="form-control2" id="odabirTipIspita" ref="odabirTipIspita">
-
+        <div class="card" style={{marginLeft:"16px"}}>
+          <div class="card-body" style={{textAlign:"left"}}>
+            <h4 class="card-title">Kreiranje ispita</h4>
+            <label class="col-form-label" htmlFor="odabirPredmeta">Odaberite predmet: </label>
+            <select class="custom-select"  id="odabirPredmeta" >
+              {this.renderOptions()}
+            </select>
+              <label class="col-form-label" htmlFor="odabirTipIspita">Tip Ispita: </label>
+                <select class="custom-select" id="odabirTipIspita" >
                     <option>Prvi parcijalni</option>
                     <option>Drugi parcijalni</option>
                     <option>Integralni</option>
                     <option>Usmeni</option>
                     <option>Uvid</option>
                 </select>
-            </div> 
-            <div className='col-3'>
-              <label htmlFor="brojStudenata">Broj studenata na predmetu: </label>
-              <label id="brojStudenata">{this.brojStudenata()}</label>
-            </div> 
-            <div className='col-3'>
-            <Link to="/charlie/kreiraj-ispit-detalji">
-
-                  <button type="button" class="btn btn-primary" id="kreirajDugme" onClick={this.validate}>Kreiraj</button>
-              </Link>
-              {this.state.validationError && (
-                <div className="alert alert-danger" role="alert">
-                  <i
-                    className="fas fa-exclamation-triangle"
-                    style={{ marginRight: "5px" }}
-                  />
-                  {this.state.validationErrorMessage}
-                </div>
-              )}
-
+                <br />  
+            
+            <label class="col-form-label" htmlFor="brojStudenata">Broj studenata na predmetu: </label>
               <br />
-              <Link to="/charlie/kreirani-ispiti">
-                <button type="button" class="btn btn-primary">Kreirani ispiti</button>
+              <label class="col-form-label" id="brojStudenata">{this.brojStudenata()}</label>
+            <br />
+            
+            <Link to="/charlie">
+                  <button type="button" class="btn btn-primary" id="kreirajDugme" style={{float:"right"}}>Kreiraj</button>
               </Link>
+             
+            <Link to="/fox/ispiti"> 
+              <button type="button" class="btn btn-primary" id="nazadDugme" style={{float:"right", marginTop: "10px"}}>Nazad</button>
+            </Link>
+            </div> 
             </div>
+              
+
+            
 
             </div>
             

@@ -79,7 +79,7 @@ export default class Draft extends React.Component {
                             <Card.Title>
                                 <div className = "issueView">
                                     <div className = "issueButtonDelete">
-                                        <Button onClick={() => this.deleteIssue(issue.id)}>Delete</Button>
+                                        <Button onClick={() => this.deleteIssue(issue.id)}>Obriši</Button>
                                     </div>
                                     <div className = "issueID">id:{issue.id}</div>
                                     <div className = "issueDate">          {datum}</div>

@@ -10,9 +10,9 @@ const DraftMessage = (props) => {
                     {message.tekst}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                    <Button variant="primary" type='submit'>Edit</Button>
-                    <Button variant="primary" type='submit'>Send</Button>
-                    <Button variant="primary" type='submit'>Delete</Button>
+                    <Button variant="primary" type='submit'>Izmijeni</Button>
+                    <Button variant="primary" type='submit'>Pošalji</Button>
+                    <Button variant="primary" type='submit'>Obriši</Button>
                 </ListGroup.Item>
             </ListGroup.Item>
 

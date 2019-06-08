@@ -88,7 +88,7 @@ export default class Issue extends React.Component {
                             <Card.Title>
                                 <div className = "issueView">
                                     <div className = "issueButtonDelete">
-                                        <Button onClick={() => this.archiveIssue(issue.id)}>Archive</Button>
+                                        <Button onClick={() => this.archiveIssue(issue.id)}>Arhiviraj</Button>
                                     </div>
                                     <div className = "issueID">id:{issue.id}</div>
                                     <div className = "issueDate">          {datum}</div>

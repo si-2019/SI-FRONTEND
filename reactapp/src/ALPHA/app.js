@@ -16,6 +16,7 @@ class App extends Component{
             <BrowserRouter>
             <div>
              <Navigation />
+             <div id="forme">
                 <Switch>
                     <Route path="/student" component={DodajStudenta} exact/>
                     <Route path="/odsjek" component={DodajOdsjek} />
@@ -24,6 +25,7 @@ class App extends Component{
                     <Route path="/predmet" component={DodajPredmet} />
                     <Route path="/lozinka" component={promijeniLozinku} />
                 </Switch>
+            </div>
             </div>
             </BrowserRouter>
         )

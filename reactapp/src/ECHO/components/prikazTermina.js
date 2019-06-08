@@ -23,7 +23,7 @@ class PrikazTermina extends Component {
     return (
       <div class="card" id="glavnaKartica">
         <div class="card-body">
-          <div class="row">
+          <div class="row" id="prikazTerminaRow">
             <div class="card" className="mojaKartica">
               <div class="card-body">
                 <div className="dan">
@@ -69,7 +69,7 @@ class PrikazTermina extends Component {
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" id="prikazTerminaRow">
             <div class="card" className="mojaKartica">
               <div class="card-body">
                 <div className="dan">

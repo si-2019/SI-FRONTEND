@@ -15,8 +15,8 @@ const Home = () => {
         <div className="footerDno">
         <Container fluid style={{padding:"0", margin: "0"}}>
             <Row>
-                <Col md="auto">
-                    <NavbarFox/>
+                <Col md="3">
+                    <Header isPocetna={true}/>
                 </Col>
                 <Col>
                     <div className="Home">

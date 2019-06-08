@@ -6,6 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Link from 'react-router-dom/Link';
 
 class NavbarFox extends Component {
     render() {
@@ -49,14 +50,56 @@ class NavbarFox extends Component {
               <button type="button" className="btn btn-primary left-buttons">Student</button>
             </a>
 
-            <Nav.Link href="ispiti"><button type="button" className="btn btn-primary left-buttons">Ispiti</button></Nav.Link>
+            <a href="unosPrisustva">
+              <button type="button" className="btn btn-primary left-buttons">Unos prisustva</button>
+            </a>
 
-            <a href="fox/ispiti">
+            <a href="unosBodova">
+              <button type="button" className="btn btn-primary left-buttons">Unos bodova ispita</button>
+            </a>
+
+            <a href="unosOcjene">
+              <button type="button" className="btn btn-primary left-buttons">Unos ocjene</button>
+            </a>
+
+            <a href="unosTeme">
+              <button type="button" className="btn btn-primary left-buttons">Unos teme</button>
+            </a>
+
+            <a href="ispiti">
               <button type="button" className="btn btn-primary left-buttons">Ispiti</button>
             </a>
 
             <a href="obavijesti">
               <button type="button" className="btn btn-primary left-buttons">Obavijesti</button>
+            </a>
+
+            <a href="zadace">
+              <button type="button" className="btn btn-primary left-buttons">Zadaće</button>
+            </a>
+
+            <a href="ankete">
+              <button type="button" className="btn btn-primary left-buttons">Ankete</button>
+            </a>
+
+            <a href="statistika">
+              <button type="button" className="btn btn-primary left-buttons">Statistika</button>
+            </a>
+
+            <a href="raspored">
+              <button type="button" className="btn btn-primary left-buttons">Raspored</button>
+            </a>
+
+            <a href="chat">
+              <button type="button" className="btn btn-primary left-buttons">Chat</button>
+            </a>
+
+            <a href="forum">
+              <button type="button" className="btn btn-primary left-buttons">Forum</button>
+            </a>
+
+            <a href="materijali">
+              <button type="button" className="btn btn-primary left-buttons">Materijali</button>
             </a>
             
         </div>

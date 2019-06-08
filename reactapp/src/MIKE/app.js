@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './App.css';
 import PregledListeProjekata from './components/Pregled projekata studenta/PregledListeProjekata';
 import Lista  from './components/Kreiranje projektne grupe/prikazListe';
@@ -28,14 +30,38 @@ class Mike extends Component {
 
   render() {   
     if(this.state.forma=="null") return (
-      <div className="col-6">
-       
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-        {/*<button className="btn btn-primary btn-lg btn-block" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+      <div>
+        <div>
+            <Route path="/Mike/kreiranje-grupe" component={Lista} />
+            <Route path="/Mike/pregled-projekata-studenta" component= {PregledListeProjekata} />
+            <Route path="/Mike/pregled-projekata-asistenta" component= {ListaPredmetaAsistenta} />
+            <Route path="/Mike/kreiranje-projekata-na-nivou-predmeta" component= {KreiranjeProjekta} />
+            <Route path="/Mike/generisanje-projektne-grupe" component= {GenerisanjeGrupa} />
+        </div>
+        
+        <div className="col-6">
+        
+          <Link to ="/Mike/kreiranje-grupe">
+            <button className="btn btn-primary btn-lg btn-block" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+          </Link>
+          
+          <Link to="/Mike/pregled-projekata-studenta">
+          <button className="btn btn-primary btn-lg btn-block" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+          </Link>
+
+          <Link to="/Mike/pregled-projekata-asistenta" >
+          <button className="btn btn-primary btn-lg btn-block" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+          </Link>
+
+          <Link to="/Mike/kreiranje-projekata-na-nivou-predmeta" >
+          <button className="btn btn-primary btn-lg btn-block" onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+          </Link>
+          
+          <Link to="/Mike/generisanje-projektne-grupe" >
+          <button className="btn btn-primary btn-lg btn-block" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+          </Link>
+
+        </div>
       </div>
     );
     else if (this.state.forma=="kreiranjeGrupe") return (
@@ -113,7 +139,8 @@ class Mike extends Component {
   }
   generisanjeGrupe(){
     this.setState({forma:"generisanjeGrupe"});
-  }
+  } 
+
 }
 
 export default Mike;

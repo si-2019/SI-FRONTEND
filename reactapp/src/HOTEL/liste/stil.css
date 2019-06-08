@@ -29,7 +29,7 @@ table.anketeTabela{
 }
 table.anketeTabela td{
   color: white;
-  background: darkcyan;
+  background: #2C3E50;
   text-align: center;
   font-weight: bold;
   font-size: 15px;
@@ -44,13 +44,17 @@ table.anketeTabela th{
   border: none;
 }
 #prikaziButton, #urediButton, #obrisiButton{
-  background-color: darkcyan;
-  border-color: darkcyan;
+  background-color: #2C3E50;
+  border-color: #2C3E50;
 }
 #nazadNaVrhButton{
-  background-color: darkcyan;
-  border-color: darkcyan;
+  background-color: #2C3E50;
+  border-color: #2C3E50;
   position: relative;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.NavPadding {
+  background-color: #2C3E50
 }

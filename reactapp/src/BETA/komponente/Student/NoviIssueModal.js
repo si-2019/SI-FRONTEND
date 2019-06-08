@@ -142,8 +142,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="false"
-                    //VEDAD ->PRVI SPRINT (izmijeniti ovu porukicu msg)
-                    msg="Vaš issue nije poslan! Pokusajte ponovo!"
+                    msg="Vaš issue nije poslan! Pokušajte ponovo!"
                 />
             );
         }

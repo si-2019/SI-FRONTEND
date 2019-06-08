@@ -26,8 +26,8 @@ class NoviIssueForma extends React.Component {
     }
 
     onButtonCloseClicked = () => {
-        this.props.triggerOnCloseModal2('false') 
-    }
+        document.getElementById('formNoviIssue').style.display = 'none';
+    };
  
     onSubmit = (e) => {
 
@@ -126,7 +126,7 @@ class NoviIssueForma extends React.Component {
                         <CategoryComponent triggerGetTitleFromCategoryComponent = {this.onChangeTitleInCategoryComponent}
                         />
 
-                        <button  type = "close" id = "closeIssueForm">X</button>
+                        <button  type = "close" id = "closeIssueForm" onClick={this.onButtonCloseClicked}>X</button>
 
                     </div>
 

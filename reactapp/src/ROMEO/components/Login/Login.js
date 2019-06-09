@@ -137,12 +137,12 @@ class Login extends Component {
       <input type="password" className="sifra" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
             
 
-            <button type="button" className="btn btn-secondary" onClick = {this.Submitaj} >LOGIN</button>
+            <button type="button" className="btn btn-primary" onClick = {this.Submitaj} >LOGIN</button>
           </form>
           
         </div>
         <div className="alert alert-dismissible alert-danger mb-0" id="dioGreske">
-          <button type="button" className="close" data-dismiss="alert" onClick = {this.UkloniGresku} >&times;</button>
+          <button type="button" className="close" data-placement="right" data-dismiss="alert" onClick = {this.UkloniGresku} >&times;</button>
           <div id="greske"></div>
         </div>
         <div className="footer">

@@ -30,19 +30,12 @@ class Ocjena extends Component {
             greskaBaza: 0
         }
         this.ocjena=React.createRef();
-     
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
+     
 
 
     handleSubmit(event) {
-        console.log("Pozvana sam");
         const form = event.currentTarget;
         console.log(event.currentTarget.checkValidity());
         if (form.checkValidity() === false) {
@@ -53,14 +46,15 @@ class Ocjena extends Component {
             //Poziv API-a
             //Promise
             /* 3. Get Ref Value here (or anywhere in the code!) */
-           // console.log(this.nazivNoveTeme.current.value);
+           
             console.log(this.ocjena.current.value);
             let reqBody = {
                 idStudent: 2, //pristup lokalnom storage-u
                 idPredmet: 64,
                 idAkademskaGodina: 11,
-                ocjena: this.ocjena.this.current.value
+                ocjena: this.ocjena.current.value
             };
+            //if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greska: 1 });
             console.log(this.ocjena.current.value);
             axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
             .then((res) => {
@@ -74,10 +68,8 @@ class Ocjena extends Component {
        }
         this.setState({ validated: true });
         event.preventDefault();
-        event.stopPropagation();  
     }
-    onHandleClick(){
-    }
+     
     render() {
         const {validated} = this.state;
         const {greskaBaza}= this.state;
@@ -88,7 +80,6 @@ class Ocjena extends Component {
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos ocjene.</h6>
                     <br/>
                     <div>
-                    <Poruka greska={greskaBaza} />
                         <Form 
                             noValidate 
                             validated={validated}
@@ -136,8 +127,8 @@ class Ocjena extends Component {
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
-                                 
-                                    <br/>
+                                    <Poruka greska={greskaBaza} />
+                                        <br/>
                                 </Col>
                             </Form.Row>
                         </Form>

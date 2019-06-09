@@ -3,7 +3,7 @@ import Forma from './FormaOdsjek'
 import FormaOdsjekPred from './FormaOdsjekPred'
 import Prikaz from './prikazOdsjeka'
 import Edit from './editOdsjeka'
-import './App.css'
+
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'

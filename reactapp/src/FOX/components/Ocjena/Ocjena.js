@@ -120,9 +120,9 @@ class Ocjena extends Component {
                                     <Form.Control.Feedback> Validna ocjena </Form.Control.Feedback> 
                                     <Form.Control.Feedback type= "invalid"> Ocjena nije validna </Form.Control.Feedback> 
                                 </Col>
-                              <Col >
-                                    <Button variant="primary" type="submit">Unesi</Button> 
-                                                </Col>
+                                <Col>
+                                    <Button variant="primary" type="submit" padd>Unesi</Button> 
+                                </Col>
                             </Form.Row>
 
                             <Form.Row>

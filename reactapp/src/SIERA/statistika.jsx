@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import TabelaSortiranaPoOcjeni from "./tabelaSortiranaPoOcjeni";
 
 class Statistika extends Component {
     state = {
@@ -22,6 +23,9 @@ class Statistika extends Component {
                 onClick={() => this.promijeniPrikazPoOcjeni()}
                 style={{marginLeft:"20px"}}
                 />
+            </div>
+            <div className="row" style={{ marginTop: "0.8em" }}>
+                {this.state.prikaziSortiranePoOcjeni ? (<TabelaSortiranaPoOcjeni />) : ("")}
             </div>
           </div>
         </div>

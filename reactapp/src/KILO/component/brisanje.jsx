@@ -90,15 +90,15 @@ class BrisanjeZadace extends Component{
         return (
           <div>
             
-              <div class="card w-50 ml-3">
-              <div class="card-title ml-2">
+              <div class="card w-25 ml-3 mt-4">
+              <div class="card-title" id="brisanjeT">
               Lista zadaća koje je moguće obrisati:
             </div>
                 
                 <select
-            
+            id="brissel"
             multiple=""
-            className="custom-select w-50 ml-2 mb-2"
+            className="custom-select  mb-2"
           >
             {lista.map(item =>
              (<option onClick={this.handleDropdownClick(item.id)}

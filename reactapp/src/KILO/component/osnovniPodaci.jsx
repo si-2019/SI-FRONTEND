@@ -10,7 +10,7 @@ class OsnovniPodaci extends Component {
     if(this.props.podaci.state.radnja === "Azuriranje") {
       axios.get(`http://localhost:31911/getImeFajla/${this.props.podaci.state.idZadaca}`, ).then(res => {
         if(res.data === "") { // nema fajla postavke za odabranu zadacu 
-          tekstOPrethodnojPostavci = "Nema fajla postavke za odabranu zadaću";
+          tekstOPrethodnojPostavci = "Nema fajla postavke za odabranu zadacu";
         } else { // ima fajla postavke za odabranu zadacu
           tekstOPrethodnojPostavci = "Naziv postavke: " + res.data;        } 
       })
@@ -20,9 +20,9 @@ class OsnovniPodaci extends Component {
         <div>
           <div className="card h-100" style={{width: "18rem"}} >
             <Form>
-              <div  className="card-title p-2 ">
+              <div  id="kreirajT" className="card-title p-2 ">
                 <h4>
-                  <b>{title ? title : "Kreiranje zadaće"}</b>
+                  <b>{title ? title : "Kreiranje zadace"}</b>
                 </h4>
               </div>
               <FormGroup>
@@ -65,7 +65,7 @@ class OsnovniPodaci extends Component {
                 <Input type="file" name="file" id="file" 
                   onChange={this.props.onChangePostavka}
                 />
-                <small id="opc" class="form-text" color="info">Ovo je opcionalna mogućnost</small>
+                <small id="opc" class="form-text" color="info">Ovo je opcionalna mogucnost</small>
                {/* <FormText color="info">{tekstOPrethodnojPostavci}</FormText> */}
               </FormGroup>
               <FormGroup>

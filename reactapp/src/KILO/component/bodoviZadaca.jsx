@@ -22,7 +22,7 @@ class BodoviZadaca extends Component {
 
     return (
       <div class="card ml-2 h-100"  style={{width: "30rem"}}>
-        <div className="card-title p-2">
+        <div id="bodoviT" className="card-title p-2">
           <h4>
             <b>Bodovi zadaće</b>
           </h4>
@@ -53,27 +53,31 @@ class BodoviZadaca extends Component {
             <div id="brbodLab">
             <label>Broj bodova:</label>
             </div>
-            <div id="Ok">
+            <div id="Ok" class="row">
+              <div class="col">
             <input 
-                id="brbod" 
+                id="brbodKILO" 
                 type="text" 
                 className="form-control-static" 
                 disabled = {this.props.podaci.state.radnja=="Azuriranje"}/>
+                </div>
+                <div class="col">
             <Button
               id="sviBodoviIstiButton"
               color="primary"
-              className="btn bg-primary ml-3 "
+              className="btn bg-primary "
               disabled={this.props.podaci.state.radnja=="Azuriranje" || !this.props.podaci.state.sviBodoviIsti}
               onClick={this.props.podaci.klik_isti_br_bod}
             >
               OK
             </Button>
+            </div>
             <hr />
             </div>
           </div>
         </div>
        
-        <div id="tabela" class="p-2">
+        <div id="tabela" className=" mx-2">
           <table className="table table-bordered text-center border-solid">
             <thead>
               <tr  className="text-dark">
@@ -106,14 +110,14 @@ class BodoviZadaca extends Component {
          
           <br />
           <FormGroup row>
-          <div id="ukupno">
-          <label sm={10}>Ukupno:</label>
+          <div id="ukupnoKILO">
+          <label>Ukupno:</label>
           </div>
-          <span class="col ml-1" sm={2} id="ukk" className="badge badge-primary ml-3">
+          <span class="col ml-1" id="ukKILO" className="badge badge-primary ml-3">
             <h5 id="ukupnoStanje">{this.props.podaci.state.ukupnoBodova}</h5>
           </span>
           </FormGroup>
-          <hr />
+         
         </div>
       </div>
       

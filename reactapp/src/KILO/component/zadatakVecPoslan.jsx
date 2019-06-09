@@ -11,7 +11,7 @@ class ZadatakVecPoslan extends Component {
     var listOfTypes = this.props.podaci.state.listaTipova;
 
     return (
-      <div class="px-4 py-4">
+      <div class=" card mt-3 ml-4" id="formaZadPos">
         <div className="card-title pl-3">
           <h4>
             <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
@@ -23,12 +23,12 @@ class ZadatakVecPoslan extends Component {
               onClick={this.props.podaci.handleBack}
             /></div>
           </h4>
-          <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
+          <h5 id="brojZad">Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
         </div>
         <br />
         <div class="row">
           <div class="col">
-        <div className="card" id="formaPodaci">
+        <div className="card ml-4 mb-4" id="formaPodaci">
           <div className="card-title px-4 py-2">
             <b>Podaci o poslanom zadatku</b>
           </div>
@@ -97,7 +97,7 @@ class ZadatakVecPoslan extends Component {
           </div>
         </div>
         <br />
-        <div class="row pb-3">
+        <div class="row pb-3 mt-2">
           <div class="col ml-4">
         <button
           name="preuzmi"

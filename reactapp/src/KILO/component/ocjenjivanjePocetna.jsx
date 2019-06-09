@@ -45,6 +45,7 @@ class OcjenjivanjePocetna extends Component {
               <b>Ocjenjivanje zadaća </b>
             </h4>
           </div>
+          <div id="kontOcjenjivanje">
           <div class="row">
             <div class="col">
             <select
@@ -109,7 +110,7 @@ class OcjenjivanjePocetna extends Component {
         </div>
        
       </div>
-      
+      </div>
     );
   }
 }

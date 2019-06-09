@@ -41,8 +41,7 @@
 }
 #idiNaPreview{
     background-color:#2C3E50;
-    
-    margin-left:86.5%;
+    margin-left:85.5%;
     margin-top: 2%;
 }
 #fut{
@@ -130,26 +129,25 @@
     margin-left: -5%;
     margin-right: 81%;
 }
-#Ok{
-    margin-left: -3%;
-    margin-right:51%;
-}
-#brbod{
-   width:70%;
+
+#brbodKILO{
+   width:100%;
+   margin-left: -13%;
+
 }
 #tabela{
     margin-bottom:20%;
     margin-left:0%;
-}
-#ukupno{
-    margin-right: -5%;
-    margin-left: 5%;
-}
-#ukk{
  
-    margin-top:-1%;
-    
+}
+#ukupnoKILO{
+    margin-right: -5%;
+    margin-left: 8%;
+}
+#ukKILO{
     background-color: white;
+    height: 0%;
+    margin-top: -1%;
     color:black;
 }
 #divsw{
@@ -242,11 +240,13 @@ margin-top: -2%;
 margin-left: 91.5%;
 }
 #preuzmiB1{
- margin-right: 27%;
+ width: 70%;
+ margin-right: 20%;
 }
 #pregledajB{
+    width: 70%;
  margin-right: 30%;
- margin-left: -88%;
+ margin-left: -55%;
 }
 #osB{
     margin-right: 77%;
@@ -270,8 +270,50 @@ margin-left: 91.5%;
 }
 #otkazuj{
     margin-left: 100%;
-    margin-right: -165%;
+    margin-right: -160%;
 }
 #oky{
-    margin-right: -95%;
+    margin-right: 0%;
+    width: 20%;
+    margin-left: 85%;
+}
+
+#tabelaTipovi{
+    margin-top:-40%;
+}
+
+#sviBodoviIstiButton{
+    width: 30%;
+    margin-right: 90%;
+    margin-top: -2%;
+    margin-left: -20%;
+
+}
+#azsel{
+    margin-left: 10%;
+    width:80%;
+}
+#idiNaKreiranjeZadace{
+    margin-left: 84%;
+}
+#brissel{
+    margin-left: 10%;
+    width:80%;
+}
+#kontOcjenjivanje{
+    width:100%;
+    margin-left: 28%;
+}
+#zNo{
+    margin-left: -80%;
+}
+#bSt{
+    margin-right: 90%;
+}
+#formaZadPos{
+    width: 95%;
+}
+#brojZad{
+    margin-top: 2%;
+    margin-right: 88%;
 }

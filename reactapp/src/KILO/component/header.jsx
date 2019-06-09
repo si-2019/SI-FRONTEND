@@ -51,7 +51,7 @@ class Header extends Component {
               id="OcjenivanjeKilo"
               style={{width:"100%"}}
           >
-            Ocjenivanje zadaće
+            Ocjenjivanje zadaće
           </button>
           </Link>
           

@@ -6,8 +6,8 @@ class OcjenjivanjeJednaZadaca extends Component {
  
     render() {
     return (
-      <div class="card w-75 ml-2">
-                <div className="card-title ml-4">
+      <div class="card w-75 ml-5 mt-4">
+                <div className="card-title ml-4 mt-2">
                       <h4>
                         <b>{this.props.podaci.state.zadaca}</b> 
                         <Icon
@@ -16,7 +16,7 @@ class OcjenjivanjeJednaZadaca extends Component {
                           className="mr-2 float-right"
                           onClick = {this.props.podaci.handleBackNaJednaIzborZadace}
                         /><br/>
-                        <b>Student: {this.props.podaci.state.student}</b>
+                        <b id="bSt">Student: {this.props.podaci.state.student}</b>
                       </h4>
                 </div>
                 <br/>

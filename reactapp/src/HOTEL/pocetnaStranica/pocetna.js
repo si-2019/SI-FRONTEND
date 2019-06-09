@@ -6,10 +6,7 @@ class AnketePocetna extends Component {
   render() {
     return (
       <div className="App">
-        <nav class="NavPadding" >
-          <h2>ANKETE</h2>
-            <div class="collapse navbar-collapse" id="navbarColor01"> </div>
-        </nav>
+        
 
         <div class="btn-group-vertical" data-toggle="buttons">
           <br></br>

@@ -1,10 +1,10 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import Home from './pocetnaStranica/pocetna'
+import Home from './liste/mojeAnkete'
 import Kreiranje from './kreiranje/app'
-import Popunjavanje from './popunjavanje/app.js'
-import Rezultati from './rezultati/app.js'
-import Liste from './liste/app.js'
+import Popunjavanje from './popunjavanje/app'
+import Rezultati from './rezultati/app'
+import Liste from './liste/app'
 export default class Hotel extends React.Component {
     constructor(props) {
         super(props)
@@ -18,13 +18,13 @@ export default class Hotel extends React.Component {
         let str = e.target.name
         let url = '/hotel'
         if(str == "mojeAnkete")
-            url = '/hotel/liste/mojeankete'
+            url = '/hotel/liste/mojeAnkete'
         else if(str == 'kreirajAnketu')
             url = '/hotel/kreiranje'
         else if(str == 'popuniAnketu')
-            url = '/hotel/liste/javneankete'
+            url = '/hotel/liste/javneAnkete'
         else if(str == 'javneAnkete')
-            url = '/hotel/liste/javneankete'
+            url = '/hotel/liste/javneAnkete'
         else if(str == 'rezultatiAnketa')
             url = '/hotel/liste/rezultatiAnketaKorisnik'
         this.props.history.push(url)
@@ -42,8 +42,8 @@ export default class Hotel extends React.Component {
             height: "50px"
         }
         return (
-            <div class="row" style={{margin: "0", padding: "0", backgroundColor: "#2C3E50"}}>
-                <div class="col-3" style={{padding: "0"}}>
+            <div class="row" style={{margin: "0", padding: "0", backgroundColor: "#2C3E50", width:"250px"}}>
+                <div class="col-3" style={{padding: "0", height: "calc(100vh - 80px)"}}>
                     <ul>
                         <li>
                             <button 
@@ -102,7 +102,7 @@ export default class Hotel extends React.Component {
                         </li>
                     </ul>
                 </div>
-                <div class="col-9" style={{padding: "0"}}>
+                <div class="col-9" style={{padding: "0", backgroundColor:"white"}}>
                     <Route exact path="/hotel" component={Home} />
                     <Route path="/hotel/kreiranje/" component={Kreiranje} />
                     <Route path="/hotel/popunjavanje/:id" component={Popunjavanje} />

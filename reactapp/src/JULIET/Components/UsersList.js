@@ -66,7 +66,8 @@ class UsersList extends Component {
      }
 
     render(){
-        console.log(this.props.users);
+        /*console.log(this.props.users);*/
+        
         const listSrc = this.props.users.filter(d => d.id.includes(this.state.input));
         const favoriteUsers = this.props.users.filter(d => this.props.currentUser.customData && this.props.currentUser.customData.favoriteUsers && this.props.currentUser.customData.favoriteUsers.includes(d.name) && d.id.includes(this.state.input));
         if(this.props.users && this.props.currentUser){
@@ -87,7 +88,7 @@ class UsersList extends Component {
                         <div id="addRoom" style={{display: 'none'}}>
                             <div>                     
                                 <CreateRoom  style={createRoomStyle} createRoom={this.props.createRoom}/>
-                                {this.props.hasErrorAddUser?<p style={{gridColumn: 1/3}}>Error adding user</p>:null}  */}
+                                {this.props.hasErrorAddUser?<p style={{gridColumn: 1/3}}>Error adding user</p>:null}
                                 <NewPublicRoomForm style={createRoomStyle} createPublicRoom={this.props.createPublicRoom}/>
                             </div>
                         </div>
@@ -124,7 +125,7 @@ class UsersList extends Component {
                                 return <li className="juliet-user" key={index} onClick={() => this.props.openPrivateChat(user.id)} >
                                     <div className="juliet-presence-state"> {user.id === currentUser.id ? this.state.online && <i class="material-icons md-12 md-online">fiber_manual_record</i> || !this.state.online && <i class="material-icons-outlined md-12">fiber_manual_record</i> : user.presence.state === 'online' && <i class="material-icons md-12 md-online">fiber_manual_record</i> || user.presence.state === 'offline' && <i class="material-icons-outlined md-12">fiber_manual_record</i>}</div>
                                 <div className="juliet-username-name">{user.name}</div>
-                                    <div className="juliet-user-online"onClick={(e)=> {
+                                    <div className="juliet-user-online" onClick={(e)=> {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     this.setState({

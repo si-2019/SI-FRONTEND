@@ -50,7 +50,9 @@ class ChatApp extends Component {
             colorForUser: null, 
             showColorPicker: false,
             joinableRooms:[],
-            blockedUsers: []
+            blockedUsers: [],
+            presenceUser: [],
+            currentUserRole: null
         }
         this.addMessage = this.addMessage.bind(this);
         this.openPrivateChat = this.openPrivateChat.bind(this);
@@ -68,6 +70,9 @@ class ChatApp extends Component {
         this.handleReply = this.handleReply.bind(this);
         this.createPublicRoom = this.createPublicRoom.bind(this);
         this.blockAUser = this.blockAUser.bind(this);
+        this.usersPresence = this.usersPresence.bind(this);
+        this.getUserRole = this.getUserRole.bind(this);
+        this.setState({rooms :[]});
     }
     toggleColorPicker() {
         this.setState({
@@ -122,6 +127,7 @@ class ChatApp extends Component {
             })
             .then(() => {
                 this.initRooms();
+                
             })
             .then(() => {
                 this.joinRoomById(testRoomId);
@@ -136,8 +142,29 @@ class ChatApp extends Component {
             });
         }).catch(e => {console.log(e)});
         
+        
     }
+    getUserRole(){
+        Axios.get('http://localhost:31910/users/'+this.state.currentUser.id +'/roles').then(res=>{
+            this.setState({
+                currentUserRole : res.data[0].role_name
+            })
+        });
+        
+    }
+    usersPresence(){
+        this.state.users.forEach(userPS =>{
+            const userAndState = {
+                userID : userPS.id,
+                userState : userPS.presence.state }
+            this.setState({
+                presenceUser: [...this.state.presenceUser, userAndState]                      
+            });
+        })
+    }
+    changeState(){
 
+    }
     initRooms() {
         this.state.currentUser.rooms.forEach(userRoom => {
             this.state.currentUser.subscribeToRoom({
@@ -258,7 +285,7 @@ class ChatApp extends Component {
                     usersCopy.map((user, index) => {
                         if(user.id === this.state.currentUser.id) user.avatarURL = url;
                     });
-
+                    
                     this.setState({
                         currentUser: userCopy,
                         users: usersCopy
@@ -269,6 +296,14 @@ class ChatApp extends Component {
                .catch(e => console.log(e));            
             }
         }).catch(error => console.error('error', error));
+    }
+    banUser(userID){
+        Axios.post('http://localhost:31910/blockedUser', {
+            user_id: userID
+        }).then(res =>{
+            console.log("otisao u bazu i vratio se");
+        })
+        .catch(e => console.log(e));
     }
 
     createRoom(roomName){
@@ -512,6 +547,7 @@ class ChatApp extends Component {
                         createPublicRoom={this.createPublicRoom}
                         addUser={this.addUser}
                         hasErrorAddUser={this.state.hasErrorAddUser}
+                        usersPresence={this.usersPresence}
                     />
                 </div>
 
@@ -531,7 +567,7 @@ class ChatApp extends Component {
                     
                 </div>
                 <div style={{'background': colorScheme}} className="juliet-list-wrapper juliet-right-wrapper">
-                    <BlockedUsers blockAUser={this.blockAUser}/>
+                    <BlockedUsers currentUserRole={this.state.currentUserRole} banUser={this.banUser} getUserRole={this.getUserRole} blockAUser={this.blockAUser}/>
                     <Members 
                         openPrivateChat={this.openPrivateChat} 
                         room_users={this.state.room_users}

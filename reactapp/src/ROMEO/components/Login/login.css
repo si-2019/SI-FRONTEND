@@ -27,23 +27,24 @@
 
 .loginForma input[type="email"]{
     text-align: left;
-    border-radius: 25px;
+    border-radius: 5px;
     background: #e0dbd8;
     width: 100%;
-    margin:auto;
 }
 
 .loginForma input[type="password"]{
     text-align: left;
-    border-radius: 25px;
+    border-radius: 5px;
     background: #e0dbd8;
     width: 100%;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 
 }
 .loginForma label{
+    width: 60%;
     text-align: left;
     margin-top: 5%;
+
 }
 
 .loginForma button{

@@ -131,7 +131,7 @@ class Login extends Component {
         </div>
         <div className="card text-white bg-primary " >
           <form className="loginForma">
-          <label htmlFor="exampleInputEmail1" className="col-sm-2 col-form-label">Korisnicko ime:</label>
+          <label htmlFor="exampleInputEmail1">Korisničko ime:</label>
           <input type="email" className="korisnickoIme" readonly="" className="form-control-plaintext" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
 <br></br>
           <label htmlFor="exampleInputPassword1">Password:</label>

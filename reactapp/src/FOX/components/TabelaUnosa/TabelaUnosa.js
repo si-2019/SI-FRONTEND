@@ -76,18 +76,17 @@ class TabelaUnosa extends Component {
                                 </Form.Group>
                             </Form.Row>
 
-                            <hr/>
-
                             <Form.Row>
-                                <Col style={{textAlign: "right"}}>
+                                <Col style={{textAlign: "left"}}>
                                     <Form.Label> Index: </Form.Label>
-                                </Col>
-                                <Col lg="2">
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
-                                <Col>
-                                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                            </Form.Row>
+
+                            <Form.Row style={{paddingTop: "10px"}}>
+                                <Col style={{textAlign: "right"}}>           
+                                    <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -103,15 +102,17 @@ class TabelaUnosa extends Component {
                             <hr/>
 
                             <Form.Row>
-                                <Col style={{textAlign: "right"}}>
+                                <Col style={{textAlign: "left"}}>
                                     <Form.Label> Bodovi: </Form.Label>
-                                </Col>
-                                <Col lg="2">
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
-                                <Col>
-                                <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
+                                
+                            </Form.Row>
+
+                            <Form.Row style={{paddingTop: "10px"}}>
+                                <Col style={{textAlign: "right"}}>
+                                    <Button onClick={this.handleCli}> Unesi </Button>
                                 </Col>
                             </Form.Row>
 

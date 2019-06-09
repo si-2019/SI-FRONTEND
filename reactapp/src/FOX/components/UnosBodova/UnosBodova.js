@@ -35,8 +35,6 @@ render() {
                             <Header isPocetna={false}/>
                         </Col>
                         <Col>
-                            <br/>       
-                            <h4>Unos bodova ispita</h4>
                             <br/>
                             <TabelaUnosa/>
                         </Col>

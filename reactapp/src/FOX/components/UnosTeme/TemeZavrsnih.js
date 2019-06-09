@@ -32,6 +32,10 @@ class TemeZavrsnih extends Component {
           </Row>
           
         </Container>
+
+        <br/>
+        <br/>
+
         <Footer/>
       </div>
 

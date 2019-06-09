@@ -19,13 +19,14 @@ class UnosOcjene extends Component {
                             <Header isPocetna={false}/>
                         </Col>
                         <Col>
-                            <br/>       
-                            <h4>Unos ocjene</h4>
                             <br/>
                             <Ocjena/>
                         </Col>
                     </Row>
                 </Container>
+
+                <br/>
+                <br/>
                 
                 <Footer/>
             </div>        

@@ -15,15 +15,16 @@ class Ocjena extends Component {
                         <Form>
 
                             <Form.Row>
-                                <Col style={{textAlign: "right"}}>
+                                <Col style={{textAlign: "left"}}>
                                     <Form.Label> Index: </Form.Label>
-                                </Col>
-                                <Col lg="2">
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
+                            </Form.Row>
+
+                            <Form.Row style={{paddingTop: "10px"}}>
                                 <Col>
-                                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                                    <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -39,15 +40,16 @@ class Ocjena extends Component {
                             <hr/>
 
                             <Form.Row>
-                                <Col style={{textAlign: "right"}}>
+                                <Col style={{textAlign: "left"}}>
                                     <Form.Label> Ocjena: </Form.Label>
-                                </Col>
-                                <Col lg="2">
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
+                            </Form.Row>
+
+                            <Form.Row style={{paddingTop: "10px"}}>
                                 <Col>
-                                <Button> Unesi </Button>
+                                    <Button> Unesi </Button>
                                 </Col>
                             </Form.Row>
 

@@ -40,6 +40,10 @@ render() {
                         </Col>
                     </Row>
                 </Container>
+
+                <br/>
+                <br/>
+
             <Footer/>
           </div>
         );

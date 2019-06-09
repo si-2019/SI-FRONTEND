@@ -80,11 +80,7 @@ Provjeri = provjeri => {
         
         return ( 
             <>
-             <div className="container-fluid" style={{ height: "100%" , marginTop: "-420px"}}>
-                    <div className="d-flex justify-content-center" style={{ height: "100%" }}>
-                        <div className="d-flex align-items-center">
-                            <div class="row" style={{ margin: "0px" }}>
-                                <div class="col-lg col-md" >
+             
 
                                     <div class="card" style={{ width: "30rem" }}>
                                         <div class="card-body">
@@ -93,11 +89,7 @@ Provjeri = provjeri => {
                                          
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                
 
                     
         <Modal show={this.state.show}  

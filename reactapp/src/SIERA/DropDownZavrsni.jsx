@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
+import PrikaziStatus from "./PrikaziStatus";
 
 class DropDownZavrsni extends React.Component {
 
@@ -197,6 +198,8 @@ class DropDownZavrsni extends React.Component {
 
                                         </div>
                                     </div>
+
+                                    <PrikaziStatus />
                                 </div>
                             </div>
                         </div>

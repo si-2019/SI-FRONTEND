@@ -53,6 +53,26 @@ export default class Issue extends React.Component {
 
 
     }
+    resloveIssue = (idIssue) => {
+
+        const { trashStudent, trashSS } = this.state;
+        axios.put('http://localhost:31902/issues/reslove', { trashStudent, trashSS, idIssue })
+            .then((result) => {
+
+                for (let i = 0; i < this.props.data.length; i++) {
+                    if (this.props.data[i].id == idIssue) {
+                        this.props.data.splice(i, 1);
+                        this.setState({
+                            newArray: this.props.data
+                        })
+                    }
+                }
+
+                this.props.triggerRefreshList(this.state.newArray);
+            });
+
+
+    }
 
     componentWillReceiveProp() {
         alert("Usao sam sada ovo");
@@ -90,6 +110,11 @@ export default class Issue extends React.Component {
                                 <div onClick={() => this.setIssue(issue.id)} className="issue-title">{issue.title}</div>
                                 <div className="issueButtonDelete">
                                     <Button onClick={() => this.archiveIssue(issue.id)}>Arhiviraj</Button>
+                                    
+                                </div>
+                                <div className="issueButtonDelete">
+                                   
+                                    <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
                                 </div>
 
                             </div>

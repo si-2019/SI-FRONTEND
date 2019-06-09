@@ -1,8 +1,8 @@
 import React, {Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-// this.state.ispiti.map(ispit => {ispit.name} ) }>
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 class TabelaUnosa extends Component {
 
     constructor(props){

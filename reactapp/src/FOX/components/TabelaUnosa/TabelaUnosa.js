@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 class TabelaUnosa extends Component {
-
     constructor(props){
         super(props);
         this.state ={
@@ -27,14 +26,14 @@ class TabelaUnosa extends Component {
            
             console.log(this.ocjena.current.value);
             let reqBody = {
-                idStudent: 2, //pristup lokalnom storage-u
+              /*  idStudent: 2, //pristup lokalnom storage-u
                 idPredmet: 64,
                 idAkademskaGodina: 11,
-                ocjena: this.ocjena.current.value
+                ocjena: this.ocjena.current.value*/
             };
             if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
             console.log(this.ocjena.current.value);
-            axios.post('http://localhost:31906/api/fox/bodovi/', reqBody)
+            axios.post('', reqBody)
             .then((res) => {
                 console.log(res);
                 this.setState({greskaBaza: 2});
@@ -59,17 +58,15 @@ class TabelaUnosa extends Component {
                         <Form>
 
                             <Form.Row>
-                                <Form.Group as={Col} sm={{span: 4, offset: 4}}>
-                                    <Form.Control>
-                                        <select class="custom-select">
+                                <Form.Group as={Col} sm={{span: 4, offset: 2}}>
+                                    <select class="custom-select">
                                         <option selected="">Otvori za odabir ispita</option>
-                                        <option>I parcijalni, 20.4.2019.</option>
-                                        <option> II parcijalni, 20.6.2019.</option>
-                                        <option>Popravni I parcijalni, 1.7.2019.</option>
-                                        <option>Popravni II parcijalni, 1.7.2019.</option>
-                                        <option>Integralni ispit 1.9.2019.</option>
-                                        </select>
-                                    </Form.Control>
+                                        <option value="1">I parcijalni, 20.4.2019.</option>
+                                        <option value="2">II parcijalni, 20.6.2019.</option>
+                                        <option value="3">Popravni I parcijalni, 1.7.2019.</option>
+                                        <option value="3">Popravni II parcijalni, 1.7.2019.</option>
+                                        <option value="3">Integralni ispit 1.9.2019.</option>
+                                    </select>
                                 </Form.Group>
                             </Form.Row>
 

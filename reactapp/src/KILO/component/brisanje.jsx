@@ -89,31 +89,29 @@ class BrisanjeZadace extends Component{
         const lista = this.state.listaZadacaZaBrisanje; // this.pokupiIzBaze();
         return (
           <div>
-            <Form>
-              <div>
-                <h4>
-                  <ButtonDropdown
-                    isOpen={this.state.dropdownOpen}
-                    toggle={this.toggle}
-                  >
-                    <DropdownToggle caret className="custom-select text-dark">
-                      Lista zadaća za brisanje
-                    </DropdownToggle>
-                    <DropdownMenu className="bg-primary">
-                      {lista.map(item => (
-                        <DropdownItem
-                          onClick={this.handleDropdownClick(item.id)}
-                          scope="col"
-                          key={item.id}
-                        >
-                          {item.naziv}
-                        </DropdownItem>
-                      ))}
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </h4>
+            
+              <div class="card w-50 ml-3">
+              <div class="card-title ml-2">
+              Lista zadaća koje je moguće obrisati:
+            </div>
+                
+                <select
+            
+            multiple=""
+            className="custom-select w-50 ml-2 mb-2"
+          >
+            {lista.map(item =>
+             (<option onClick={this.handleDropdownClick(item.id)}
+            
+             key={item.id}>{item.naziv}
+             </option>))
+              }
+          
+          </select>
+                 
+                
               </div>
-              </Form>
+              
               <div>
           {this.state.brisanjeState && (
               <div>
@@ -124,7 +122,7 @@ class BrisanjeZadace extends Component{
               podaci={this.state.brisanjeState}
             />
           <Button
-            className=" btn bg-primary ml-4"
+            className=" btn bg-primary"
             id="deleteZadaca"
             name="deleteZadaca"
             onClick={this.handleClick}

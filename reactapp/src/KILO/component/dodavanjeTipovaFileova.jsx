@@ -56,7 +56,7 @@ class DodavanjeTipovaFileova extends Component {
             />
             </div>
           </FormGroup>
-          <FormGroup className="px-2 ml-1">
+          <FormGroup className="p-2 ml-1">
             <div id="tabelaTipovi">
             <Table bordered className="table table-bordered text-center">
               <thead>

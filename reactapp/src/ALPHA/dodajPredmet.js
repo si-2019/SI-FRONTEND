@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import FormaPredmet from './FormaPredmet'
 import Forma from './editPredmeta'
-import './App.css'
+
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'

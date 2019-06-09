@@ -1,14 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
-class LeftMenu extends React.Component {
+class LeftMenuCharlie extends React.Component {
     constructor() {
         super();
         this.state = {
-            activeDivId: 0,  //open pokazuje da li formu treba prikazati ili ne
+            activeDivId: 0  //open pokazuje da li formu treba prikazati ili ne
             
         }
         this.changeActiveId = this.changeActiveId.bind(this);
+       
     };
+    
+    
 
     changeActiveId(id){
         this.props.triggerChangeActiveId(id);
@@ -18,8 +22,9 @@ class LeftMenu extends React.Component {
         return (
             <div>
             {this.props.btnList.map(x=>
-                <button
+               <button
                 type="button"
+                
                 className="btn btn-primary left-buttons"
                 onClick={()=>this.changeActiveId(x.changeId)}
                 style={{width:"100%"}}
@@ -33,4 +38,4 @@ class LeftMenu extends React.Component {
    }
 };
 
-export default LeftMenu;
+export default LeftMenuCharlie;

@@ -113,7 +113,7 @@ class PregledListeProjekata extends Component {
     render() {
         if(!this.state.lista)
         return(  
-            <div className="card" style={{float: "left", width:"50%"}}>
+            <div className="card" style={{float: "left", width:"100%"}}>
                 <div className="card-body">
                     <h4 class="card-title" style={{textAlign:"left"}}>Pregled projekata</h4>
                     <br/>
@@ -123,7 +123,7 @@ class PregledListeProjekata extends Component {
             </div>
         );
         else return(
-            <div className="card" style={{float: "left", width:"50%"}}>
+            <div className="card" style={{float: "left", width:"100%"}}>
                 <div className="card-body">
                     <h4 class="card-title" style={{textAlign:"left"}}>Pregled projekata</h4>
                     <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Svi projekti:</h6>

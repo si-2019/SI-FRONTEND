@@ -21,7 +21,7 @@ class KreiranjeProjekta extends Component {
 
     kreirajFromu() {
         return (
-            <div className="card" style={{float: "left", width:"50%"}}>
+            <div className="card" style={{height:"100%", width:"100%"}}>
                 <div class="card-body">
                 <h4 class="card-title" style={{textAlign:"left"}}>Kreiranje novog projekta </h4>
                    <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unesite potrebne informacije za projekat na nivou predmeta</h6>
@@ -84,7 +84,6 @@ class KreiranjeProjekta extends Component {
                 </form>
                 </div>
             </div>
-
         );
 
     }
@@ -93,7 +92,7 @@ class KreiranjeProjekta extends Component {
         return (
             <Fragment>
                 <Form>
-                    
+  
                     {this.kreirajFromu()}
                 </Form>
             </Fragment>

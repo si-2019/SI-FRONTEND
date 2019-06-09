@@ -52,6 +52,11 @@
   padding-left: 2.7em;
 }
 
+#text {
+  margin-top: 4%;
+  margin: 2%;
+}
+
 #odabrana_opcija{
   min-width: 80%;
   float: right;
@@ -68,15 +73,30 @@
   min-width: 100px;
   background-color: #2C3E50;
   float: left;
-  min-height: calc(100vh - 80px);
+  min-height: 40%!important;
+  max-height: 95%!important;
 }
 
 #right {
   float: right;
   align-items:stretch;
   background-color: white;
-  min-height: calc(100vh - 80px);
+  min-height: 40%!important;
+  max-height: 100%!important;
+  text-align: center;
 }
+
+@media screen and (min-height: 500px) {
+  #left {
+    min-width: 100px;
+    background-color: #2C3E50;
+    float: left;
+    min-height: 100%!important;
+    max-height: 100%!important;
+  }
+}
+
+
 
 @keyframes App-logo-spin {
   from {

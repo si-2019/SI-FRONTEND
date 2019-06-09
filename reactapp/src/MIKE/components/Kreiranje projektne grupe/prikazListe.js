@@ -36,7 +36,7 @@ import './bootstrapflatly.css'
         
 
         
-        <div className="card" style={{float: "left", width:"50%"}}>
+        <div className="card" style={{float: "left", width:"100%"}}>
           <div class="card-body"> 
          <h4 class="card-title" style={{textAlign:"left"}}>{this.state.tech}</h4>
          <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Odaberite predmet za koji zelite kreirati projektnu grupu</h6>

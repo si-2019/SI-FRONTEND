@@ -54,7 +54,7 @@ class Ocjena extends Component {
                 idAkademskaGodina: 11,
                 ocjena: this.ocjena.current.value
             };
-            //if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greska: 1 });
+            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
             console.log(this.ocjena.current.value);
             axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
             .then((res) => {

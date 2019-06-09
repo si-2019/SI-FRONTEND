@@ -106,24 +106,12 @@ class TabelaUnosa extends Component {
                                     </Form.Control>
                                 </Col>
                                 <Col>
-                                <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
+                                <Button style= {{paddingLeft: '10px' }} > Unesi </Button>
                                 </Col>
                             </Form.Row>
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greska}}>
-                                        Uspješan unos
-                                    </label>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greska}}>
-                                        Pero Perić, 12345
-                                    </label>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greska}}>
-                                        20
-                                    </label>
                                     <br/>
                                 </Col>
                             </Form.Row>

@@ -123,7 +123,8 @@ class promijeniLozinku extends Component {
         const { username, lista, selectedValue, id} = this.state;
        
         return (
-          
+        <div className="promijeniLozinku" style={{color: "#2C3E50"}} id="content">
+            <h1 style={{color: "#fff", background: "#2C3E50"}} id="h1">Promjena lozinke</h1>
           <div className="col-md-4 col-md-offset-4" >
             <br />
 
@@ -165,12 +166,13 @@ class promijeniLozinku extends Component {
               
              
 
-              <button className="btn btn-success btn-block" onClick={()=>this.promijeni(username)}>Generisi lozinku</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.promijeni(username)}>Generisi lozinku</button>
 
              </form><br />
 
              
    
+    </div>
     </div>
         );
     }

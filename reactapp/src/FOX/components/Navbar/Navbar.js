@@ -10,6 +10,7 @@ import Link from 'react-router-dom/Link';
 
 class NavbarFox extends Component {
     render() {
+      const x = "StranicaPredmeta?predmetId="+localStorage.getItem("NazivPredmeta");
       return (
         <div style={{
             backgroundColor: "#2C3E50",
@@ -45,7 +46,7 @@ class NavbarFox extends Component {
           </Navbar.Collapse>
         </Navbar> */}
 
-            <a href="StranicaPredmeta?predmetId=Tehnike Programiranja">
+            <a href={x}>
               <button type="button" className="btn btn-primary left-buttons">Student</button>
             </a>
 

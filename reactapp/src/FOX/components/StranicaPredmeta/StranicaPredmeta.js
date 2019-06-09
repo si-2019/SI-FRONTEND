@@ -29,6 +29,7 @@ class StranicaPredmeta extends Component {
     console.log(predmetIgrupa, res);
     const predmet = res[0];
     const grupa = res[1];
+    localStorage.setItem("NazivPredmeta",predmet);
    
     return (
       <div className="StranicaPredmeta" className="footerDno">

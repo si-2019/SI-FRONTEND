@@ -15,16 +15,20 @@ import Col from 'react-bootstrap/Col';
 function Poruka(props) {
     const greska = props.greska;
     if (greska==1) {
-        return <Alert variant='danger'>
-            <Alert.Heading>Nova tema nije kreirana!</Alert.Heading>
-            <p>Došlo je do greške sa bazom</p>
-        </Alert>
+        return (
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nova tema nije kreirana!</strong> <br/> Došlo je do greške sa bazom.
+            </div>
+        );
     }
     if (greska===2) {
-        return <Alert variant='success'>
-            <Alert.Heading>Uspješno kreirana nova tema!</Alert.Heading>
-            <p>Kreirana je nova tema i uspješno dodana u bazu podataka.</p>
-        </Alert>
+        return (
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Uspješno kreirana nova tema!</strong> <br/> Kreirana je nova tema i uspješno dodana u bazu podataka.
+            </div>
+        );
     }
     return ""
 }

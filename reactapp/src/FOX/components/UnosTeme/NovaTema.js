@@ -58,8 +58,8 @@ class NovaTema extends Component {
             let reqBody = {
                 naziv: this.nazivNoveTeme.current.value,
                 opis: this.opisNoveTeme.current.value,
-                idProfesora: 246,
-                idPredmeta: 4
+                idProfesora: 255, //Iz local storega treba!
+                idPredmeta: 64
             };
             axios.post('http://localhost:31906/api/fox/temeZavrsnih/novaTema', reqBody)
             .then((res) => {

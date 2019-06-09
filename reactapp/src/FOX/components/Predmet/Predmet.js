@@ -24,7 +24,7 @@ class Predmet extends Component {
      componentDidMount() {
           // Privremeno rješnje
 
-          axios.get('http://localhost:31906/api/fox/predmeti/1').then(response => {
+          axios.get('http://localhost:31906/api/fox/predmeti/255').then(response => {
                this.setState({predmeti: response.data});
           });
 

@@ -5,54 +5,49 @@ import Button from 'react-bootstrap/Button'
 // this.state.ispiti.map(ispit => {ispit.name} ) }>
 class TabelaUnosa extends Component {
 
-    constructor(props) {
-        super();
-        this.state = {
-            greskaVis: "hidden",
-            greska: "hidden"
+    constructor(props){
+        super(props);
+        this.state ={
+            validated: false,
+            greskaBaza: 0
         }
-        this.handleClick = this.handleClick.bind(this);
-        this.handleCli = this.handleCli.bind(this);
+        this.ocjena=React.createRef();
     }
-
-    handleClick() {
-        if (this.state.temaId == null) {
-           this.setState({
-               greskaVis: "visible",
-           })
+    handleSubmit(event) {
+        const form = event.currentTarget;
+        console.log(event.currentTarget.checkValidity());
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
         }
-        else if (this.state.temaId != null) {
-        }
+        else {
+            //Poziv API-a
+            //Promise
+            /* 3. Get Ref Value here (or anywhere in the code!) */
+           
+            console.log(this.ocjena.current.value);
+            let reqBody = {
+                idStudent: 2, //pristup lokalnom storage-u
+                idPredmet: 64,
+                idAkademskaGodina: 11,
+                ocjena: this.ocjena.current.value
+            };
+            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
+            console.log(this.ocjena.current.value);
+            axios.post('http://localhost:31906/api/fox/bodovi/', reqBody)
+            .then((res) => {
+                console.log(res);
+                this.setState({greskaBaza: 2});
+            })
+            .catch((err)=> {
+                console.log("Greska:" + err);
+                this.setState({greskaBaza: 1});
+            });
+       }
+        this.setState({ validated: true });
+        event.preventDefault();
     }
-    
-    handleCli() {
-        if (this.state.temaId == null) {
-           this.setState({
-               greska: "visible",
-           })
-        }
-        else if (this.state.temaId != null) {
-        }
-    }
-
-  
-    async componentDidMount(){
-       //const {data} = await axios.get('http://localhost:31900/api/fox/bodovi')
-       const {data} = " ispit, datum";
-        this.setState({response:data})
-      }
-      renderOptions = () => {
-        if(!this.state.response) return
-        return this.state.response.map(element => 
-          <option>{element.naziv}</option>
-        );
-      }
-      handleChange= (event) => {
-        const {name, value} = event.target;
-        this.setState({[name]: value});
-    }
-
-
+     
     render() {
         return(
             <div class="card">
@@ -87,7 +82,7 @@ class TabelaUnosa extends Component {
                                     </Form.Control>
                                 </Col>
                                 <Col>
-                                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                                    <Button style= {{paddingLeft: '10px' }} > Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 

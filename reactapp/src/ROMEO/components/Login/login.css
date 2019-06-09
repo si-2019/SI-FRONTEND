@@ -19,7 +19,7 @@
 
 .loginForma {
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
     width: 50%;
     padding-top: 10%;
     padding-bottom: 10%;
@@ -27,6 +27,7 @@
 
 
 .loginForma input[type="email"]{
+    
     border-radius: 25px;
     background: #e0dbd8;
     width: 100%;

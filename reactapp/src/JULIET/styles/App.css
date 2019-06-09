@@ -14,7 +14,7 @@
 
 .Juliet-App *:focus {
   outline: none;
-  border-color: black;
+  border-color: rgb(23, 44, 65);
 }
 
 .Juliet-App > h4 {

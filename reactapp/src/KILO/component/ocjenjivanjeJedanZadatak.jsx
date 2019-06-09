@@ -16,7 +16,7 @@ class OcjenjivanjeJedanZadatak extends Component {
               onClick={() => this.props.podaci.handleBackNaJednaZadaca(this.props.podaci.state.student,this.props.podaci.state.idStudenta)}
             />{" "}
           </h4>
-          <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
+          <h5 id="zNo">Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
         </div>
         <br />
         <div class="row">

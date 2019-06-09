@@ -224,7 +224,7 @@ class KreiranjeZadace extends Component {
   };
 
   klik_isti_br_bod = () => {
-    var isti_br_bod = parseFloat(document.getElementById("brbod").value);
+    var isti_br_bod = parseFloat(document.getElementById("brbodKILO").value);
 
     var daLi = document.getElementById("customSwitch1").checked === true;
     this.setState({ sviBodoviIsti: daLi });
@@ -318,8 +318,8 @@ class KreiranjeZadace extends Component {
               ))}
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={this.ugasiModal}>
-                Cancel
+              <Button color="primary w-25" onClick={this.ugasiModal}>
+                Zatvori
               </Button>
             </ModalFooter>
           </Modal>
@@ -372,7 +372,7 @@ class KreiranjeZadace extends Component {
             </ModalFooter>
           </Modal>
         </div>
-        <div id="kreirajKilo">
+        <div id="kreirajKilo" className="mt-4">
           <div class="container-fluid">
           <div class="row">
           <div class="col-3">
@@ -405,7 +405,7 @@ class KreiranjeZadace extends Component {
         <div id="preview">
           <PreviewZadace podaci={this.state} />
           <Button 
-             className=" btn bg-primary ml-4"
+             className=" btn bg-primary"
             id="idiNaKreiranjeZadace"
             name="idiNaKreiranjeZadace"
             onClick={this.handleClick}

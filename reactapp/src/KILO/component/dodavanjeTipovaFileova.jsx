@@ -36,7 +36,7 @@ class DodavanjeTipovaFileova extends Component {
     return (
       <div class="card ml-3 h-100" style={{width: "25rem", height: "50%"}}>
         <Form>
-          <div  className="card-title p-2">
+          <div id="tipoviT" className="card-title p-2">
             <h4>
               <b>Tipovi fileova za svaki zadatak</b>
             </h4>
@@ -56,12 +56,13 @@ class DodavanjeTipovaFileova extends Component {
             />
             </div>
           </FormGroup>
-          <FormGroup className="p-2 ml-1">
-            <div id="tabelaTipovi">
+          
+          <FormGroup >
+            <div id="tabelaTipovi" className="p-2">
             <Table bordered className="table table-bordered text-center">
               <thead>
                 <tr className="text-dark">
-                  <th class="tabtip">Naziv zadaće</th>
+                  <th class="tabtip">Naziv zadace</th>
 
                   {kolone.map(jedno => (
                     <th class="tabtip" scope="col" key={jedno}>
@@ -112,6 +113,7 @@ class DodavanjeTipovaFileova extends Component {
             </Table>
             </div>
           </FormGroup>
+         
         </Form>
       </div>
     );

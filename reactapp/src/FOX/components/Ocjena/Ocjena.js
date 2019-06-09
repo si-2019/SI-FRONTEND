@@ -126,7 +126,7 @@ class Ocjena extends Component {
                             </Form.Row>
 
                             <Form.Row>
-                                <Col style={{textAlign: "center"}}>
+                                <Col style={{textAlign: "center", padding: "10px"}}>
                                     <Poruka greska={greskaBaza} />
                                         <br/>
                                 </Col>

@@ -1,58 +1,52 @@
 import React, {Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-// this.state.ispiti.map(ispit => {ispit.name} ) }>
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 class TabelaUnosa extends Component {
-
-    constructor(props) {
-        super();
-        this.state = {
-            greskaVis: "hidden",
-            greska: "hidden"
+    constructor(props){
+        super(props);
+        this.state ={
+            validated: false,
+            greskaBaza: 0
         }
-        this.handleClick = this.handleClick.bind(this);
-        this.handleCli = this.handleCli.bind(this);
+        this.ocjena=React.createRef();
     }
-
-    handleClick() {
-        if (this.state.temaId == null) {
-           this.setState({
-               greskaVis: "visible",
-           })
+    handleSubmit(event) {
+        const form = event.currentTarget;
+        console.log(event.currentTarget.checkValidity());
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
         }
-        else if (this.state.temaId != null) {
-        }
+        else {
+            //Poziv API-a
+            //Promise
+            /* 3. Get Ref Value here (or anywhere in the code!) */
+           
+            console.log(this.ocjena.current.value);
+            let reqBody = {
+              /*  idStudent: 2, //pristup lokalnom storage-u
+                idPredmet: 64,
+                idAkademskaGodina: 11,
+                ocjena: this.ocjena.current.value*/
+            };
+            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
+            console.log(this.ocjena.current.value);
+            axios.post('', reqBody)
+            .then((res) => {
+                console.log(res);
+                this.setState({greskaBaza: 2});
+            })
+            .catch((err)=> {
+                console.log("Greska:" + err);
+                this.setState({greskaBaza: 1});
+            });
+       }
+        this.setState({ validated: true });
+        event.preventDefault();
     }
-    
-    handleCli() {
-        if (this.state.temaId == null) {
-           this.setState({
-               greska: "visible",
-           })
-        }
-        else if (this.state.temaId != null) {
-        }
-    }
-
-  
-    async componentDidMount(){
-       //const {data} = await axios.get('http://localhost:31900/api/fox/bodovi')
-       const {data} = " ispit, datum";
-        this.setState({response:data})
-      }
-      renderOptions = () => {
-        if(!this.state.response) return
-        return this.state.response.map(element => 
-          <option>{element.naziv}</option>
-        );
-      }
-      handleChange= (event) => {
-        const {name, value} = event.target;
-        this.setState({[name]: value});
-    }
-
-
+     
     render() {
         return(
             <div class="card">
@@ -64,15 +58,15 @@ class TabelaUnosa extends Component {
                         <Form>
 
                             <Form.Row>
-                                <Form.Group as={Col} sm={{span: 4, offset: 4}}>
-                                    <Form.Control
-                                        as="select">
-                                        <option>I parcijalni, 20.4.2019.</option>
-                                        <option> II parcijalni, 20.6.2019.</option>
-                                        <option>Popravni I parcijalni, 1.7.2019.</option>
-                                        <option>Popravni II parcijalni, 1.7.2019.</option>
-                                        <option>Integralni ispit 1.9.2019.</option>
-                                    </Form.Control>
+                                <Form.Group as={Col} sm={{span: 4, offset: 2}}>
+                                    <select class="custom-select">
+                                        <option selected="">Otvori za odabir ispita</option>
+                                        <option value="1">I parcijalni, 20.4.2019.</option>
+                                        <option value="2">II parcijalni, 20.6.2019.</option>
+                                        <option value="3">Popravni I parcijalni, 1.7.2019.</option>
+                                        <option value="3">Popravni II parcijalni, 1.7.2019.</option>
+                                        <option value="3">Integralni ispit 1.9.2019.</option>
+                                    </select>
                                 </Form.Group>
                             </Form.Row>
 
@@ -87,16 +81,12 @@ class TabelaUnosa extends Component {
                                     </Form.Control>
                                 </Col>
                                 <Col>
-                                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                                    <Button style= {{paddingLeft: '10px' }} > Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greskaVis}}>
-                                        Pero Perić, 12345
-                                    </label> 
                                 </Col>
                             </Form.Row>
 
@@ -111,24 +101,12 @@ class TabelaUnosa extends Component {
                                     </Form.Control>
                                 </Col>
                                 <Col>
-                                <Button style= {{paddingLeft: '10px' }} onClick={this.handleCli}> Unesi </Button>
+                                <Button style= {{paddingLeft: '10px' }} > Unesi </Button>
                                 </Col>
                             </Form.Row>
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greska}}>
-                                        Uspješan unos
-                                    </label>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greska}}>
-                                        Pero Perić, 12345
-                                    </label>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greska}}>
-                                        20
-                                    </label>
                                     <br/>
                                 </Col>
                             </Form.Row>

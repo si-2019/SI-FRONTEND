@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import { Link, BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import PregledListeProjekata from './components/Pregled projekata studenta/PregledListeProjekata';
 import Lista  from './components/Kreiranje projektne grupe/prikazListe';
@@ -12,19 +11,32 @@ import GenerisanjeGrupa from './components/GenerisanjeGrupa/GenerisanjeGrupa';
 import GenerisiProjektnuGrupu from './components/GenerisanjeProjektnihGrupa/FormaZaGenerisanje';
 import PocetniEkran from './components/HomePage/PocetniEkran';
 
-class Mike extends Component {
+export default class Mike extends Component {
 
-  render() {   
+  state = {
+    token: null,
+    username: localStorage.getItem('username')
+  }
+
+  render() {
+    
+    const { token, username } = this.state;
+
     return (
-        <div>
-            <Route exact path="/Mike" component={PocetniEkran} />
-            <Route path="/Mike/kreiranje-grupe" component={Lista} />
-            <Route path="/Mike/pregled-projekata-studenta" component= {PregledListeProjekata} />
-            <Route path="/Mike/pregled-projekata-asistenta" component= {ListaPredmetaAsistenta} />
-            <Route path="/Mike/kreiranje-projekata-na-nivou-predmeta" component= {KreiranjeProjekta} />
-            <Route path="/Mike/generisanje-projektne-grupe" component= {GenerisanjeGrupa} />
-        </div>
+      <Router>
+        <Switch>
+         <Route path='/Mike' exact render={(props) => <PocetniEkran {...props} token={token} username={username} /> } />     
+
+           { token ? <Route path='/Mike/kreiranje-grupe' component={Lista}/> : <Redirect to='/Mike' />  }
+            <Route path="/Mike/pregled-projekata-studenta" component= {PregledListeProjekata} /> {/*student*/}
+
+           { token && username ==='asistent' ? <Route path='/Mike/pregled-projekata-asistenta' component={ListaPredmetaAsistenta}/> : <Redirect to='/Mike' />  }
+            <Route path="/Mike/pregled-projekata-asistenta" component= {ListaPredmetaAsistenta} /> {/*asistent*/}
+            <Route path="/Mike/kreiranje-projekata-na-nivou-predmeta" component= {KreiranjeProjekta} /> {/*asistent*/} 
+            <Route path="/Mike/generisanje-projektne-grupe" component= {GenerisanjeGrupa} /> {/*student*/}
+            <Route component={PocetniEkran}/>   
+        </Switch>
+      </Router>
     );
   }
 }
-export default Mike;

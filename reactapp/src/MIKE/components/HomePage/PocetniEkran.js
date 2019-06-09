@@ -28,12 +28,19 @@ class PocetniEkran extends Component {
         this.generisanjeGrupe = this.generisanjeGrupe.bind(this);
     }
     render() {
+
+        const { token } = this.props;
+
+        const cursorPointer = { cursor: 'pointer' };
+        const cursorDisabled = { cursor: 'not-allowed' };
+
         if (this.state.forma == "null") return (
 
             <div className="col-6">
 
                 <Link to="/Mike/kreiranje-grupe">
-                    <button className="btn btn-primary btn-lg btn-block" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                    <button className="btn btn-primary btn-lg btn-block" disabled={!token} style={token ? cursorPointer : cursorDisabled}
+                     onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
                 </Link>
 
                 <Link to="/Mike/pregled-projekata-studenta">

@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
-class Modal2 extends React.Component {
+class Modal3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,7 +44,7 @@ class Modal2 extends React.Component {
       };
 
     handleClose = () => {
-        this.props.saveState("modalShow", false);
+        this.props.saveState("isEmptyState", false);
 }
 
     render() {
@@ -80,4 +80,4 @@ class Modal2 extends React.Component {
         );
     }
 }
-export default Modal2;
+export default Modal3;

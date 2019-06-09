@@ -49,14 +49,14 @@ class KreirajIspit extends Component{
       <form>
         <div className='row'>
             
-        <div class="card" style={{marginLeft:"16px"}}>
+        <div class="card" style={{marginLeft:"16px", width: "50%"}}>
           <div class="card-body" style={{textAlign:"left"}}>
-            <h4 class="card-title">Kreiranje ispita</h4>
+            <h4 class="card-title" style={{textAlign: "center"}}>Kreiranje ispita</h4>
             <label class="col-form-label" htmlFor="odabirPredmeta">Odaberite predmet: </label>
             <select class="custom-select"  id="odabirPredmeta" >
               {this.renderOptions()}
             </select>
-              <label class="col-form-label" htmlFor="odabirTipIspita">Tip Ispita: </label>
+              <label class="col-form-label" htmlFor="odabirTipIspita">Tip ispita: </label>
                 <select class="custom-select" id="odabirTipIspita" >
                     <option>Prvi parcijalni</option>
                     <option>Drugi parcijalni</option>
@@ -71,12 +71,12 @@ class KreirajIspit extends Component{
               <label class="col-form-label" id="brojStudenata">{this.brojStudenata()}</label>
             <br />
             
-            <Link to="/charlie">
+            <Link to="/charlie/kreiraj-ispit-detalji">
                   <button type="button" class="btn btn-primary" id="kreirajDugme" style={{float:"right"}}>Kreiraj</button>
               </Link>
              
             <Link to="/fox/ispiti"> 
-              <button type="button" class="btn btn-primary" id="nazadDugme" style={{float:"right", marginTop: "10px"}}>Nazad</button>
+              <button type="button" class="btn btn-primary" id="nazadDugme" style={{float:"right"}}>Nazad</button>
             </Link>
             </div> 
             </div>

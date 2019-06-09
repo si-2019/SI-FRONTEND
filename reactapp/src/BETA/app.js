@@ -13,7 +13,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,  //open pokazuje da li formu treba prikazati ili ne
       activeContentId: 1
     };
   }
@@ -36,7 +35,7 @@ class App extends Component {
         <div className="App">
 
           <div className="row">
-            <div id="main">
+            <div id="mainBeta">
               <div id="leftBeta">
                 <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
               </div>

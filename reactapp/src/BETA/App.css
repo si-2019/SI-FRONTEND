@@ -55,13 +55,13 @@
 	background-color: #B0C4DE;
 }
 
-#main {
+#mainBeta {
   width: 100%;
   display: inline-block;
 }
 
 #leftBeta {
-  width: 350px;
+  width: 20%;
   background-color: #2C3E50;
   float: left;
   min-height: calc(100vh - 80px);
@@ -79,7 +79,7 @@
   float: right;
   background-color: white;
   min-height: calc(100vh - 80px);
-  width: calc(100% - 350px);
+  width: 80%;
 }
 
 .row{
@@ -100,7 +100,7 @@
   
 }
 
-#search-issue-tabb{
+#search-issue-tab-Beta{
   width:100%;
   height: 50px;
   background-color: #2C3E50;

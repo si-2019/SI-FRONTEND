@@ -65,7 +65,8 @@ class FormaProfPred extends Component {
         const {odsjek, predmet, listaOdsjeka, listaPredmeta} = this.state;
 
         return (
-          <div className="col-md-2">
+          <div className="card">
+          <div className="card-body  col-md-4 col-md-offset-4">
               <p>Prikaz svih odsjeka: </p><br />
                 <select className="custom-select" value={odsjek} onChange={this.onChangeOdsjek}> 
                 {
@@ -86,6 +87,7 @@ class FormaProfPred extends Component {
 
                 <button className="btn btn-success btn-block" onClick={()=>this.spoji(odsjek,predmet)}>Dodaj</button>
 
+          </div>
           </div>
         );
     }

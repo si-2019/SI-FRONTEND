@@ -72,6 +72,7 @@ class FormaProfPred extends Component {
 
         return (
           <div className="col-md-2">
+            <br />
               <p>Odaberite profesora: </p><br />
                 <select className="custom-select"  onChange={this.onChangeProfesor}> 
                 <option>--Profesori--</option>
@@ -92,7 +93,7 @@ class FormaProfPred extends Component {
                 }
                 </select><br /><br />
 
-                <button className="btn btn-success btn-block" onClick={()=>this.spoji(predmet,profesor)}>Dodaj</button>
+                <button className="btn btn-primary btn-block" onClick={()=>this.spoji(predmet,profesor)}>Dodaj</button>
 
           </div>
         );

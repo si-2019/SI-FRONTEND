@@ -72,7 +72,8 @@ class BodoviZadaca extends Component {
             </div>
           </div>
         </div>
-        <div id="tabela" class="px-2">
+       
+        <div id="tabela" class="p-2">
           <table className="table table-bordered text-center border-solid">
             <thead>
               <tr  className="text-dark">
@@ -102,6 +103,7 @@ class BodoviZadaca extends Component {
               </tr>
             </tbody>
           </table>
+         
           <br />
           <FormGroup row>
           <div id="ukupno">

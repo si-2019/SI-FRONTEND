@@ -53,32 +53,28 @@ class AzuriranjeZadace extends Component {
 
     return (
       <div>
-        <Form>
-          <div>
-            <h4>
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggle}
-              >
-                <DropdownToggle caret className="bg-primary">
-                  Lista zadaća za ažuriranje
-                </DropdownToggle>
-                <DropdownMenu className="bg-primary">
-                  {lista.map(item => (
-                    <DropdownItem
-                      onClick={this.handleDropdownClick(item.id)}
-                      scope="col"
-                      key={item.id}
-                    >
-                      {item.naziv}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </ButtonDropdown>
-            </h4>
+        
+          <div class="card w-50 ml-3">
+            <div class="card-title ml-2">
+              Lista zadaća koje je moguće ažurirati:
+            </div>
+          <select
+            
+            multiple=""
+            className="custom-select w-50 ml-2 mb-2"
+          >
+            {lista.map(item =>
+             (<option onClick={this.handleDropdownClick(item.id)}
+            
+             key={item.id}>{item.naziv}
+             </option>))
+              }
+          
+          </select>
+          
           </div>
           
-        </Form>
+       
         <div>
           {this.state.azuriranjeState && (
             <KreiranjeZadace

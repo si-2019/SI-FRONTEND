@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './app.js'
-import './App.css'
 //import { postRequest } from './actions/post';
 
 

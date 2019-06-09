@@ -23,7 +23,7 @@ class Ocjena extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col>
+                                <Col style={{textAlign: "right"}}>
                                     <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
@@ -48,7 +48,7 @@ class Ocjena extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col>
+                                <Col style={{textAlign: "right"}}>
                                     <Button> Unesi </Button>
                                 </Col>
                             </Form.Row>

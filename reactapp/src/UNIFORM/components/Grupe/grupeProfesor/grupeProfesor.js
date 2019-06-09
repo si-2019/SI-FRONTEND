@@ -81,10 +81,22 @@ render = () =>{
         }
     }
     datum="";
+    var podnaslov="";
+    
     if(spisakGrupe.length>0)
     {
-        var datum=spisakGrupe[0].rokPrijave.toString();        
+        var datum=spisakGrupe[0].rokPrijave.toString();    
+        if(datum && datum<danas)
+       podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je istekao</h3>)
+    else
+       podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je: {datum}</h3>)    
     }
+    else
+    {
+      podnaslov = (<h3 style={podnaslovStyle}>Nema definisanih grupa</h3>);
+    }
+
+   
     
     var danas = new Date();    
     var dd = String(danas.getDate()).padStart(2, '0');
@@ -92,11 +104,7 @@ render = () =>{
     var yyyy = danas.getFullYear();
     danas = yyyy + '-' + mm + '-' + dd;
 
-    var podnaslov="";
-    if(datum && datum<danas)
-       podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je istekao</h3>)
-    else
-       podnaslov = (<h3 style={podnaslovStyle}>Rok za prijavu grupe je: {datum}</h3>)
+   
 
        var lockState=false;
         if(datum && datum<danas)
@@ -121,7 +129,7 @@ render = () =>{
 
     
     return(
-    <div>
+    <div class="p-2">
         <div style={naslovStyle}>
             <h1>{dataPredmet.naziv}</h1>             
         </div>

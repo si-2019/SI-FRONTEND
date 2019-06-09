@@ -23,12 +23,10 @@ export class body_cell extends Component {
     }
 
       return (   
-        <tr>  
+        <tr className="text-dark">  
           <td>
             {imePrezime}
             {dugme}
-            
-        
           </td> 
         </tr>        
       )

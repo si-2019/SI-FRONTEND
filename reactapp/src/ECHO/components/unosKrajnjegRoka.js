@@ -8,7 +8,6 @@ class UnosKrajnjegRoka extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
       alertVisible: false,
       alertMessage: "",
       alertMessageStatus: "",
@@ -18,7 +17,6 @@ class UnosKrajnjegRoka extends Component {
   }
   handleSubmit(event) {
     if (this.validiraj()) {
-      
     }
   }
   toggle(x) {
@@ -36,32 +34,36 @@ class UnosKrajnjegRoka extends Component {
   render() {
     return (
       <div className="divFormaKrajnjegRoka">
-        <form>
         <div class="card" id="cardCalendar">
-        <Alert
-          id="alertID"
-          color={this.state.alertColor}
-          toggle={this.toggle.bind(this)}
-          isOpen={this.state.alertVisible}
-        >
-          <strong> {this.state.alertMessageStatus}</strong> <br />
-          {this.state.alertMessage}
-        </Alert>
-            <div class="card-body">
+          <Alert
+            id="alertID"
+            color={this.state.alertColor}
+            toggle={this.toggle.bind(this)}
+            isOpen={this.state.alertVisible}
+          >
+            <strong> {this.state.alertMessageStatus}</strong> <br />
+            {this.state.alertMessage}
+          </Alert>
+          <div class="card-body">
             <h4 class="card-title">Unos krajnjeg roka</h4>
-              <p class="card-text">
-                Unesite krajnji rok za unos i promjenu slobodnih termina nastavnog osoblja:
-              </p>
-              <br />
-              <Datetime input={false} isValidDate={valid} />
-              <div id="dugmeKalendar">
-                <button type="button" id="Potvrda" class="btn btn-primary" onClick={this.handleSubmit}>
-                  Unesi
-                </button>
-              </div>
-              </div>
+            <p class="card-text">
+              Unesite krajnji rok za unos i promjenu slobodnih termina nastavnog
+              osoblja:
+            </p>
+            <br />
+            <Datetime input={false} isValidDate={valid} />
+            <div id="dugmeKalendar">
+              <button
+                type="button"
+                id="Potvrda"
+                class="btn btn-primary"
+                onClick={this.handleSubmit}
+              >
+                Unesi
+              </button>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

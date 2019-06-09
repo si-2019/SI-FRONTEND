@@ -88,10 +88,6 @@ class TabelaUnosa extends Component {
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
-                                    <br/>
-                                    <label style={{ visibility: this.state.greskaVis}}>
-                                        Pero Perić, 12345
-                                    </label> 
                                 </Col>
                             </Form.Row>
 

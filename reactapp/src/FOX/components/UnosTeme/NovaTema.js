@@ -99,12 +99,12 @@ class NovaTema extends Component {
                             </Col>
 
                             <Col style={{textAlign: "left"}}>
-                                
+                                <br/>
                                 <Card>
                                     <Card.Body>
                                         <Poruka greska={greskaBaza} />
-                                        <Card.Title>Nova tema za završni rad</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete kreirati novu temu za završni rad na predmetu </Card.Subtitle>
+                                        <Card.Title className="text-center">Nova tema za završni rad</Card.Title>
+                                        <Card.Subtitle className="mb-2 text-muted text-center">U ovoj formi možete kreirati novu temu za završni rad na predmetu </Card.Subtitle>
                                         <br/>
                                         <Form 
                                             noValidate 

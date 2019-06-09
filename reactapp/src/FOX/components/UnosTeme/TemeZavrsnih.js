@@ -5,36 +5,34 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TabelaTeme from './TabelaTeme.js';
+import Button from 'react-bootstrap/Button';
 
-class StranicaPredmeta extends Component {
+class TemeZavrsnih extends Component {
+  
   render() {
     return (
-      <div className="TemeZavrsnih">
-        <Container fluid>
+      <div className="TemeZavrsnih footerDno">
+
+        <Container fluid style={{padding:"0", margin: "0"}}>
           <Row>
-            <Col>
-              <Header isPocetna={false}/>
-            </Col>
+              <Col md="3">
+                  <Header isPocetna={false}/>
+              </Col>
+              <Col>
+                  <br/>       
+                  <h4>Pregled tema za završne radove</h4>
+                  <br/>
+                  <TabelaTeme />
+                  <Row className="justify-content-md-center" style={{margin: "0"}}>
+                    <Col style={{textAlign: "center"}}>
+                      <Button variant="primary" href='novaTema'>Nova tema</Button>
+                    </Col>
+                  </Row>
+              </Col>
           </Row>
-          <Row>
-            <Col>
-            <br></br>
-            <h4>Pregled tema za završne radove na predmetu Predmet</h4>
-            <br></br>
-            </Col> 
-          </Row>
-          <Row>
-            <Col></Col>
-            <Col>
-              <TabelaTeme />
-            </Col>
-            <Col></Col>
-          </Row>
-          <Row>
-            <Footer/>
-          </Row>
+          
         </Container>
-        
+        <Footer/>
       </div>
 
     );
@@ -43,4 +41,4 @@ class StranicaPredmeta extends Component {
 }
 
 
-export default StranicaPredmeta;
+export default TemeZavrsnih;

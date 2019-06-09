@@ -17,12 +17,19 @@ class GenerisanjeGrupa extends Component {
   }
   render() {
    	return ( 
-			<div className="container-fluid">
-				<h3>Generisanje grupe</h3>
-				<div className="col-md-auto" align="center">
-					<div className="col-6" align="left">
-					<div className="form-group">
-					<h4>Odaberite predmet</h4>
+			 <div className="card" style={{float: "left", width:"100%"}}>
+
+				 <div class="card-body"> 
+				 
+				 <h4 class="card-title" style={{textAlign:"left"}}>Generisanje grupa</h4>
+                   <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unesite potrebne informacije za generisanje projektne grupe</h6>
+                  <br/>
+			<div className="container-fluid" style={{textAlign:"left"}}>
+				
+				
+				
+					<div className="form-group" style={{textAlign:"left"}}>
+					 <label class="col-form-label" style={{textAlign:"left"}}>Odaberite predmet:</label>
 					<select className="form-control" id="predmet" ref="unutra" onChange={()=>(
 						this.odabraniPredmet(document.getElementById("predmet").selectedIndex)
 					)}>
@@ -32,26 +39,27 @@ class GenerisanjeGrupa extends Component {
 								})
 							}
 					</select>
-					<h4>Broj studenata</h4>
-					<label>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
-					<h4>Broj projektnih grupa</h4>
-					<input className="form-control" id="broj" type="number" min="1" max="100" placeholder="10"></input>
+					< label class="col-form-label" style={{textAlign:"left"}}>Broj studenata:</label>
+					<label style={{textAlign:"left"}}>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
+					<br/>
+					<label class="col-form-label" style={{textAlign:"left"}}>Broj projektnih grupa:</label>
+					<input className="form-control" id="broj" type="number" min="1" max="100" placeholder="10" style={{textAlign:"left"}}></input>
 					</div>
-					<h4>Način generisanja</h4>
+					<label class="col-form-label" style={{textAlign:"left"}}>Način generisanja:</label>
 					<div className="form-group">
-							<div className="custom-control custom-radio">
+							<div className="custom-control custom-radio" style={{textAlign:"left"}}>
 								<input type="radio" id="radio1" name="radio" class="custom-control-input" checked/>						
 								<label class="custom-control-label" for="radio1">Nasumično</label>
 							</div>
-							<div className="custom-control custom-radio">
+							<div className="custom-control custom-radio" style={{textAlign:"left"}}>
 								<input type="radio" id="radio2" name="radio" class="custom-control-input"/>						
 								<label class="custom-control-label" for="radio2">Abecedno</label>
 							</div>
 					</div>
-					<div className="row">
-						<button className="btn btn-primary" onClick={this.generisiGrupe}>Generiši grupe</button>
-						<button className="btn btn-primary" onClick={this.notDone}>Izlaz</button>
-					</div>
+					
+						<button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.generisiGrupe}>Generiši grupe</button>
+						<button className="btn btn-primary" style={{float:"left", margin:"10px"}} onClick={this.notDone}>Izlaz</button>
+					
 					<br/>
 					<div className="list-group">
 						{
@@ -73,6 +81,8 @@ class GenerisanjeGrupa extends Component {
 				</div>
 			</div>
 		</div>
+	
+		
 		);
   };
   notDone(){
@@ -94,7 +104,6 @@ class GenerisanjeGrupa extends Component {
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
 					var tekst=ajax.responseText;
-					console.log(tekst);
 					if(tekst.length==0) return;
 					var json=JSON.parse(tekst);
 					var jsonNovi=[];

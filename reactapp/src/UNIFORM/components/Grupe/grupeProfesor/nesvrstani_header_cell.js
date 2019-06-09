@@ -7,8 +7,8 @@ export class header_cell extends Component {
     
     return (
       
-      <tr>
-        <td style={stylish} >
+      <tr className="text-dark">
+        <td class="tabtip" scope="col" >
           {text}
         </td>
       </tr>  
@@ -18,9 +18,3 @@ export class header_cell extends Component {
 
 export default header_cell
 
-const stylish=
-{
-  backgroundColor:"steelblue",
-  color:'white'
-
-}

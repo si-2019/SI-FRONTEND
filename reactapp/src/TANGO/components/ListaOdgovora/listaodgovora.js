@@ -20,7 +20,7 @@ class Odgovor extends Component {
                         <Korisnik key={odg.korisnik.id} korisnik={odg.korisnik}/>
 
                         <div>
-                        inherit     <p> {odg.text} </p> 
+                             <p> {odg.text} </p> 
                         </div>
                           <div class="d-flex justify-content-end mr-2">
                             <p> {odg.timeCreated} </p> 
@@ -44,12 +44,12 @@ class ListaOdgovora extends Component {
         super();
         this.state = {
           komentari:[],
-          idComment: ""
+          idComment: 1
         };        
       }
       componentWillMount(){
         this.setState({ucitavanje:true});
-        fetch(themesApi+'18') 
+        fetch(themesApi+this.props.idTheme) 
           .then(response=>response.json())
           .then(komentari=>this.setState({komentari:komentari,ucitavanje:false, idComment: this.props.idComment}));
      //   this.setState({komentari:LISTA_PROBNA,ucitavanje:false});

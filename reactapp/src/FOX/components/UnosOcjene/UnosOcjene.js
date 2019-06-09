@@ -1,35 +1,33 @@
 import React, { Component} from 'react';
-import Form from 'react-bootstrap/Form';
 import Ocjena from '../Ocjena/Ocjena';
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import '../../ZajednickiCSS.css';
+
 
 class UnosOcjene extends Component {
      render()
      {
          return (
-            <div>
-                <Header isPocetna={false}/>
-            <Form>
-                <Form.Row>
-                </Form.Row>
-                <Form.Row>
-                    <Col md={{span: 5, offset: 4}}>
-                        <Ocjena/>
-                    </Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col md= {{span: 8, offset: 5}}>
-                        <Nav.Link href="/fox/StranicaPredmeta" > Nazad na stranicu predmeta </Nav.Link>
-                   </Col>     
-                     <Col md={{span: 8, offset: 5}}>
-                         <Nav.Link href=" /fox/StranicaPredmeta"> Nazad na pocetnu </Nav.Link>
-                     </Col>
-                </Form.Row>
-                <Form.Row>
-                </Form.Row>
-            </Form>
+            <div className="footerDno">
+                <Container fluid style={{padding:"0", margin: "0"}}>
+                    <Row>
+                        <Col md="3">
+                            <Header isPocetna={false}/>
+                        </Col>
+                        <Col>
+                            <br/>       
+                            <h4>Unos ocjene</h4>
+                            <br/>
+                            <Ocjena/>
+                        </Col>
+                    </Row>
+                </Container>
+                
+                <Footer/>
             </div>        
          );
      }

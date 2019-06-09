@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CustomInput, Form, FormGroup, Label, Input, Table } from "reactstrap";
 import Body_Cell from './nesvrstani_body_cell.js';
 import Header_Cell from './nesvrstani_header_cell.js';
 import minusSlicica from './slicica_minus.jpg';
@@ -28,15 +29,15 @@ export class tabela extends Component {
     
 
     return (
-      <table style={tableStyle}>
+      <Table bordered className="table table-bordered text-center border-solid">
           <thead>
-              <Header_Cell/>
+          <Header_Cell/>
           </thead>
-          <tbody>
+          <tbody>            
               {renderingCells}
           </tbody> 
          
-      </table>
+      </Table>
     )
   }
 }

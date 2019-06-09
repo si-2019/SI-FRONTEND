@@ -176,7 +176,7 @@ class DugmeZaSort extends Component{
                     <option value='3'>Komentari</option>
                 </select>
   
-                <input className="btn btn-info" type='button' value='sortiraj' 
+                <input className="btn btn-primary" type='button' value='sortiraj' 
                     onClick={this.pozoviFunkcijeSortiranja}></input> 
             </form>
           );

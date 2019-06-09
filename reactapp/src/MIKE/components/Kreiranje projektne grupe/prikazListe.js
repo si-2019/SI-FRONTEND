@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PrikazPredmeta from './PrikazPredmeta'
+import './bootstrapflatly.css'
 
   class Lista extends Component {
     constructor(props){
@@ -22,7 +23,7 @@ import PrikazPredmeta from './PrikazPredmeta'
     constructor(props){
       super();
       this.state = {
-        tech: 'Lista predmeta: '
+        tech: 'Lista predmeta '
       };
     }
     handleChange(e){
@@ -32,19 +33,31 @@ import PrikazPredmeta from './PrikazPredmeta'
     }
     render(){
       return (
-        <div>
-         <h2>{this.state.tech}</h2>
-          <select id="selectListe" onChange={this.handleChange.bind(this)} value={this.state.tech}>
-            <option value="Lista predmeta">Odaberite predmet</option>
-            <option value="Softverski inzenjering">Softverski inzenjering</option>
-            <option value="Vjestacka inteligencija">Vjestacka inteligencija</option>
-            <option value="Projektovanje informacionih sistema">Projektovanje informacionih sistema</option>
-            <option value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
+        
+
+        
+        <div className="card" style={{float: "left", width:"100%"}}>
+          <div class="card-body"> 
+         <h4 class="card-title" style={{textAlign:"left"}}>{this.state.tech}</h4>
+         <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Odaberite predmet za koji zelite kreirati projektnu grupu</h6>
+          <br/>
+          <select  className="form-control" id="selectListe" onChange={this.handleChange.bind(this)} value={this.state.tech}>
+            <option className="list-group-item" value="Lista predmeta">Odaberite predmet</option>
+            <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
+            <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
+            <option className="list-group-item" value="Projektovanje informacionih sistema">Projektovanje informacionih sistema</option>
+            <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
           </select>
-        <PrikazPredmeta opisProjekta={"Ovo je opis projekta koji je potrebno uraditi na odabranom predmetu"} brojMogucihBodova={20}/>
-        <button onClick={this.props.submit}>Dalje</button>
+         
+      <PrikazPredmeta opisProjekta={"Ovo je opis projekta koji je potrebno uraditi na odabranom predmetu"} brojMogucihBodova={20}/>
+        
+        
+        <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.props.submit}>Dalje</button>
         </div>
+        </div>
+       
       )
+
     }
   }
 

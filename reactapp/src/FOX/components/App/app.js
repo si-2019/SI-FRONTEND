@@ -9,6 +9,8 @@ import StranicaPredmeta from '../StranicaPredmeta/StranicaPredmeta';
 import Home from '../Home/Home';
 import Ispiti from '../Ispiti/Ispiti';
 import Obavijesti from '../Obavijesti/Obavijesti';
+import NovaTema from '../UnosTeme/NovaTema';
+import IzmjeniTemu from '../UnosTeme/IzmjeniTemu';
 
 class App extends Component {
   render() {
@@ -22,6 +24,9 @@ class App extends Component {
         <Route path="/fox/unosTeme" component={TemeZavrsnih}/>
         <Route path="/fox/obavijesti" component={Obavijesti}/>
         <Route path="/fox/ispiti" component={Ispiti}/>
+        <Route path="/fox/novaTema" component={NovaTema}/>
+        <Route path="/fox/izmjenaTeme/:id/:naziv/:opis" component={IzmjeniTemu}/>
+   
       </Router>
     );
   }

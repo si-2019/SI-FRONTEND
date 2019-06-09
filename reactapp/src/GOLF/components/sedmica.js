@@ -55,7 +55,7 @@ class sedmica extends Component {
               <DodavanjeObjave/>
               :null
             }
-            <button type="button" onClick={()=>this.prikaz()} class="btn btn-success" id="dodajObjavu">Dodaj objavu</button>
+            <button type="button" onClick={()=>this.prikaz()} class="btn btn-primary" id="dodajObjavu">Dodaj objavu</button>
         </div>
     );
   }

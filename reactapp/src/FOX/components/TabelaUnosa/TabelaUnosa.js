@@ -60,13 +60,15 @@ class TabelaUnosa extends Component {
 
                             <Form.Row>
                                 <Form.Group as={Col} sm={{span: 4, offset: 4}}>
-                                    <Form.Control
-                                        as="select">
+                                    <Form.Control>
+                                        <select class="custom-select">
+                                        <option selected="">Otvori za odabir ispita</option>
                                         <option>I parcijalni, 20.4.2019.</option>
                                         <option> II parcijalni, 20.6.2019.</option>
                                         <option>Popravni I parcijalni, 1.7.2019.</option>
                                         <option>Popravni II parcijalni, 1.7.2019.</option>
                                         <option>Integralni ispit 1.9.2019.</option>
+                                        </select>
                                     </Form.Control>
                                 </Form.Group>
                             </Form.Row>

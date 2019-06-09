@@ -213,7 +213,7 @@ export class Body_Cell extends Component {
       {
         //Ako je celija prazna
         return (
-          <td style={tdStyleParan}></td>
+          <td></td>
         );
       }     
       else
@@ -224,7 +224,7 @@ export class Body_Cell extends Component {
           {
             //mis je iznad celije, celija ima biljesku
            return (
-             <td style={tdStyleParan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+             <td onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
          
               <MojHover ovaj={this}></MojHover>
               
@@ -239,7 +239,7 @@ export class Body_Cell extends Component {
           {
            //Mis nije iznad celije, celija ima biljesku
           return(
-            <td style={tdStyleParan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+            <td onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
           
                <img src="slicicaZabiljeska.png" height="20" width="20" ></img>
                <br></br>
@@ -253,7 +253,7 @@ export class Body_Cell extends Component {
         {
           // Celija nema biljesku
           return (
-            <td style={tdStyleParan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+            <td onClick = {(this.state).showModal ? null : this.handleOpenModal}>
            
                 <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
                 <MojModal ovaj={this}></MojModal>           
@@ -269,7 +269,7 @@ export class Body_Cell extends Component {
       {
         //Ako je celija prazna
         return (
-          <td style={tdStyleNeparan}></td>
+          <td></td>
         );
       }     
       else
@@ -280,7 +280,7 @@ export class Body_Cell extends Component {
           {
             //Mis je iznad celije, celija ima biljesku
             return (
-              <td style={tdStyleNeparan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+              <td onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
               <MojHover ovaj={this}></MojHover>
                <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
                   <MojModal ovaj={this}></MojModal>
@@ -292,7 +292,7 @@ export class Body_Cell extends Component {
           {
             //Mis nije iznad celije, celija ima biljesku
             return (
-              <td style={tdStyleNeparan} onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+              <td onMouseEnter = {(this.state).isHover ? null : this.handleHoverOn} onMouseLeave = {(this.state).isHover ? this.handleHoverOff : null} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
               <img src="slicicaZabiljeska.png" height="20" width="20"></img>
                <br></br>   <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
                   <MojModal ovaj={this}></MojModal>
@@ -305,7 +305,7 @@ export class Body_Cell extends Component {
         {
           //Celija nema biljesku
           return (
-            <td style={tdStyleNeparan} onClick = {(this.state).showModal ? null : this.handleOpenModal}>
+            <td onClick = {(this.state).showModal ? null : this.handleOpenModal}>
             
                 <b>{this.props.termin.title + ' '}</b>{'('+ this.props.termin.sala+')'} {this.props.termin.predmet}
                 <MojModal ovaj={this}></MojModal>

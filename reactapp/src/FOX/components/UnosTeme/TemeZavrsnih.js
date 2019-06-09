@@ -24,9 +24,11 @@ class TemeZavrsnih extends Component {
                   <br/>
                   <TabelaTeme />
                   <Row className="justify-content-md-center" style={{margin: "0"}}>
-                    <Col style={{textAlign: "center"}}>
+                    <Col></Col>
+                    <Col md="auto" style={{textAlign: "center"}}>
                       <Button variant="primary" href='novaTema'>Nova tema</Button>
                     </Col>
+                    <Col></Col>
                   </Row>
               </Col>
           </Row>

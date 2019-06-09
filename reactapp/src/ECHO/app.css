@@ -1,4 +1,4 @@
-.appECHO {
+.App {
   text-align: left;
 }
 .App-logo {
@@ -33,7 +33,7 @@
 
 #mainECHO {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   min-height: 470px;
   display: flex;
 }
@@ -58,10 +58,6 @@
 
 #dugme1 {
   float: right;
-}
-
-#naslov {
-  text-align: center;
 }
 
 #terminDiv {

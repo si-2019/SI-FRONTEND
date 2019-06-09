@@ -33,7 +33,10 @@ class objavaProfesor extends Component {
     return (
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">{this.props.naslov}</h5>
+            <div class="row">
+            <div class='col-9'><h5 class="card-title">{this.props.naslov}</h5></div>
+            <div class='col-3'><button type="button" class="btn btn-primary">Uredi</button></div>
+            </div>
             <OpisMaterijala opisMaterijala={this.props.opisMaterijala}></OpisMaterijala>
               {this.props.fileovi.map(predmet => [<a href='#' onClick={this.skiniFile.bind(this,predmet,this.props.idpredmeta)} class='card-link' key='1'>{predmet}</a>,<br key='2'></br>])}
             <DodavanjeDatuma datumobjave={this.state.datumobjave}></DodavanjeDatuma>

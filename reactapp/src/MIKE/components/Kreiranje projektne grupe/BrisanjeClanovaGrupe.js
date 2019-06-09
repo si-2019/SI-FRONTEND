@@ -18,10 +18,10 @@ class BrisanjeClanova extends Component {
         render() {
             if(this.state.forma=="null") {
             return (
-                <div className="card" style={{float: "left", width:"50%", top:"40px"}}>
+                <div className="card" style={{float: "left", width:"100%", top:"40px"}}>
                     <div class="card-body">  
-                <h4 class="card-title">Brisanje clanova grupe</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Odaberite clana grupe kojeg zelite izbrisati</h6>
+                <h4 class="card-title" style={{textAlign:"left"}}>Brisanje clanova grupe</h4>
+                <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Odaberite clana grupe kojeg zelite izbrisati</h6>
                 <br/>
                 <select  className="form-control"  >
                                         <option  className="list-group-item" value="" selected="selected">Odaberite grupu</option>

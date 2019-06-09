@@ -13,12 +13,12 @@ const IssueMessage = (props) => {
                     </div>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                <div className="row">
-                        <div className="col-1"></div>
-                        <div className="col-11">
-                    <Button variant="primary" type='submit'>Odgovori</Button>
-                    <Button variant="primary" type='submit'>Obriši</Button>
-                    </div></div>
+                    <div className="row">
+                        <div className="issue-message">
+                            <Button variant="primary" type='submit' className="message-button">Odgovori</Button>
+                            <Button variant="primary" type='submit' className="message-button">Obriši</Button>
+                        </div>
+                    </div>
                 </ListGroup.Item>
             </ListGroup.Item>
 

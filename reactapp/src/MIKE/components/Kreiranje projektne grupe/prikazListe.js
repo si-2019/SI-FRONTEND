@@ -36,10 +36,10 @@ import './bootstrapflatly.css'
         
 
         
-        <div className="card" style={{float: "left", width:"50%"}}>
+        <div className="card" style={{float: "left", width:"100%"}}>
           <div class="card-body"> 
-         <h4 class="card-title">{this.state.tech}</h4>
-         <h6 class="card-subtitle mb-2 text-muted">Odaberite predmet za koji zelite kreirati projektnu grupu</h6>
+         <h4 class="card-title" style={{textAlign:"left"}}>{this.state.tech}</h4>
+         <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Odaberite predmet za koji zelite kreirati projektnu grupu</h6>
           <br/>
           <select  className="form-control" id="selectListe" onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option className="list-group-item" value="Lista predmeta">Odaberite predmet</option>

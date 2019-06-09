@@ -22,9 +22,8 @@ export class footer_cell extends Component {
     
     return (
       
-      <tr>   
-      <td style={stylish}>
-         
+      <tr className="text-dark">   
+      <td>         
           {button}
       </td>
       </tr>     

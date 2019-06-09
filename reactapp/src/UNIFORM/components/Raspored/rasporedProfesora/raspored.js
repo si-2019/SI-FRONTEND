@@ -1,4 +1,5 @@
 import React, { Suspense, Fragment, memo , Component} from "react";
+import { CustomInput, Form, FormGroup, Label, Input, Table } from "reactstrap";
 import uuid from 'uuid';
 import axios from 'axios';
 import Body_Cell from './body_cell.js';
@@ -260,8 +261,8 @@ render = () =>{
       }
     }
   rendering.push(
-        <tr>
-          <td style={pocetnaKolonaStyle}>{vremenaRasporeda[i]}</td>
+        <tr className="text-dark">
+          <td>{vremenaRasporeda[i]}</td>
           {cells}            
         </tr>
       );
@@ -285,16 +286,17 @@ render = () =>{
   });
 
   return ( 
-    <div id="glavni">    
-      <table>
+    <div id="glavni" class="p-2">    
+      <Table bordered className="table table-bordered text-center border-solid" >
       <tbody>  
-        <tr>
-          <th style={pocetnaKolonaStyle}>Vrijeme</th>            
+        <tr className="text-dark">
+          <th class="tabtip" scope="col">Vrijeme</th>   
+                   
           {headerRow}
         </tr>
         {rendering}
         </tbody>
-      </table> 
+      </Table> 
     </div>
   ); 
 

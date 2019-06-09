@@ -17,12 +17,12 @@ class IzborVodje extends Component {
     kreirajFormu() {
         
         return (
-            <div className="card" style={{float: "left", width:"50%", top:"40px"}}> 
+            <div className="card" style={{float: "left", width:"100%", top:"40px"}}> 
                 <div class="card-body" id="formaIzbor">
-                <h4 class="card-title" >Izbor vodje </h4>
-                <h6 class="card-subtitle mb-2 text-muted">Unesite vodju za odabranu grupu</h6>
+                <h4 class="card-title" style={{textAlign:"left"}}>Izbor vodje </h4>
+                <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unesite vodju za odabranu grupu</h6>
         <br/>
-                <label class="col-form-label" >Projektna grupa</label>
+                <label class="col-form-label" style={{textAlign:"left"}}>Projektna grupa</label>
                             <div class="select-option">
                                     <select  className="form-control" id="selectGrupe"  >
                                         <option  className="list-group-item" value="" selected="selected">Odaberite grupu</option>
@@ -35,11 +35,11 @@ class IzborVodje extends Component {
                             </div>
                            
                         <br/>
-                            <label class="col-form-label" for="name">Unesite vodju za odabranu grupu:</label>
+                            <label class="col-form-label" for="name" style={{textAlign:"left"}}>Unesite vodju za odabranu grupu:</label>
                             
                        
                            
-                            <input type="text" className="form-control inputText"  />
+                            <input type="text" className="form-control inputText"  style={{textAlign:"left"}}/>
 
                             <br/>
                             <button className="btn btn-primary" style={{float:"left", margin:"10px"}} onClick={this.brisanjeClanova}>Nazad</button>

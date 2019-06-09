@@ -94,7 +94,8 @@ function UnosPrisustvaForma(props) {
                                             <Col></Col>
                                         </Form.Row>
                                         <Form.Row>
-                                            <Col style={{textAlign: "center"}} sm={{span: 4, offset: 4}}>
+                                            <Col></Col>
+                                            <Col md="auto" style={{textAlign: "center"}}>
                                                 <Button     
                                                     variant="primary"
                                                     type="submit"
@@ -105,6 +106,7 @@ function UnosPrisustvaForma(props) {
                                                     Ažuriraj tabelu
                                                 </Button>
                                             </Col>
+                                            <Col></Col>
                                         </Form.Row>
                                     </Form>
                                 </div>
@@ -194,11 +196,13 @@ function UnosPrisustvaForma(props) {
                                         </Form.Row>
 
                                         <Form.Row>
-                                            <Col  style={{textAlign: "center"}} sm={{span: 4, offset: 4}}>
+                                            <Col></Col>
+                                            <Col md="auto" style={{textAlign: "center"}}>
                                             <Button variant="primary" type="submit">
                                                 Sačuvaj
                                             </Button>
                                             </Col>
+                                            <Col></Col>
                                         </Form.Row>
 
                                     </Form>

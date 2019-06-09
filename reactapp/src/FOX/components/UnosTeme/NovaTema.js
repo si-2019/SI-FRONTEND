@@ -141,7 +141,7 @@ class NovaTema extends Component {
 
                                             <Form.Row>
                                                 <Col></Col>
-                                                <Col md="auto"  style={{textAlign: "right"}}>
+                                                <Col md="auto" style={{textAlign: "right"}}>
                                                     <Button variant="primary" type="submit">Dodaj</Button> 
                                                 </Col>
                                                 <Col md="auto" style={{textAlign: "right"}}>

@@ -17,9 +17,6 @@ function Poruka(props) {
     if (greska===2) {
         return <Alert variant='success'>
             <Alert.Heading>Uspješno unesena ocjena!</Alert.Heading>
-            <p> {student.ime +  " " + student.prezime + "," +  student.index } </p>
-            <br/>
-            <p> Ocjena: { student.ocjena } </p>
         </Alert>
     }
     return ""
@@ -35,23 +32,24 @@ class Ocjena extends Component {
         this.ocjena=React.createRef();
     }
     handleSubmit(event) {
+        console.log("Pozvana sam");
         const form = event.currentTarget;
-        /*console.log(event.currentTarget.checkValidity());
+        console.log(event.currentTarget.checkValidity());
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-        }*/
-        //else {
+        }
+        else {
             //Poziv API-a
             //Promise
             /* 3. Get Ref Value here (or anywhere in the code!) */
            // console.log(this.nazivNoveTeme.current.value);
            // console.log(this.opisNoveTeme.current.value);
             let reqBody = {
-                idStudent: 246, //pristup lokalnom storage-u
-                idPredmet: 4,
+                idStudent: 2, //pristup lokalnom storage-u
+                idPredmet: 64,
                 idAkademskaGodina: 11,
-                ocjena: 10
+                ocjena: this.ocjena.this.current.value
             };
             console.log(this.ocjena.current.value);
             axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
@@ -63,16 +61,12 @@ class Ocjena extends Component {
                 console.log("Greska:" + err);
                 this.setState({greskaBaza: 1});
             });
-       //}
+       }
         this.setState({ validated: true });
         event.preventDefault();
         event.stopPropagation();  
     }
-
-
-
     onHandleClick(){
-      
     }
     render() {
         return (
@@ -125,7 +119,7 @@ class Ocjena extends Component {
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
-                                   
+                                   <Poruka greska={this.state.greska}>  </Poruka>
                                     <br/>
                                 </Col>
                             </Form.Row>
@@ -133,7 +127,6 @@ class Ocjena extends Component {
                     </div>
                 </div>
             </div>
-            
         );
     }
 }

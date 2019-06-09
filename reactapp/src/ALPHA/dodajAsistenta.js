@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import FormaAsistent from './FormaAsistent'
 import Povezivanje from './FormaAsistentPred'
 import FormaUrediAsistenta from './FormaUrediAsistenta'
-import './App.css'
+
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'

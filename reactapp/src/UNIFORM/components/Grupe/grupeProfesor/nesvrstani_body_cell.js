@@ -109,7 +109,7 @@ handleClick(event) {
     var startIndex = (this.props.redniBroj+1)+". ";
 
       return (   
-        <tr>  
+        <tr className="text-dark">  
           <td>
             <b>{startIndex}</b>
             {imePrezime}

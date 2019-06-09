@@ -96,6 +96,8 @@ class IssueList extends React.Component {
         }
         return (
             <div >
+                 <div id="search-issue-tab-Beta">Ovdje ce biti search filter
+              </div>
                 <Tabs
                     className=".p-3"
                     id="tabs"

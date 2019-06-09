@@ -3,7 +3,7 @@ import Forma from './Forma'
 import FormaUpis from './FormaUpis'
 import FormaPrikazStud from './FormaPrikazStud'
 import './alphaCss.css'
-import './app.js'
+
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'

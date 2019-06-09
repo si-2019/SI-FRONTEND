@@ -3,7 +3,7 @@ import FormaPr from './FormaPr'
 import Povezivanje from './povezivanjeProfesorPredmet'
 import FormaPrikazProf from './FormaPrikazProf'
 import FormaUrediProf from './FormaUrediProf'
-import './App.css'
+
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'

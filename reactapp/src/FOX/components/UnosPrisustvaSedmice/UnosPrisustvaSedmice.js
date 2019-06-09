@@ -26,6 +26,7 @@ const UnosPrisustvaSedmice = (props) => {
             <Container fluid style={{padding:"0", margin: "0"}}>
                 <Row style={{margin: "0"}}>
                 <Col style={{textAlign: "left"}}>
+                    <br/>
                     <h4>Odabir sedmice</h4>
                     <br></br>
                 </Col> 

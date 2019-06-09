@@ -100,16 +100,15 @@ class NovaTema extends Component {
                                     <Card.Body>
                                         <Card.Title>Nova tema za završni rad</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete kreirati novu temu za završni rad na predmetu </Card.Subtitle>
+                                        <br/>
                                         <Form 
                                             noValidate 
                                             validated={validated}
                                             onSubmit = {e => this.handleSubmit(e)}
                                         >
-                                            <Form.Group as={Row} controlId = "formNoviNaziv">
+                                            <Form.Group as={Form.Row} controlId = "formNoviNaziv">
                                                 <Col style={{textAlign: "left"}}>
                                                     <Form.Label>Naziv:</Form.Label>
-                                                </Col>
-                                                <Col lg="4">
                                                     <Form.Control 
                                                         ref={this.nazivNoveTeme}
                                                         required 
@@ -119,18 +118,11 @@ class NovaTema extends Component {
                                                     <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
                                                     <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
                                                 </Col>
-
-                                                <Col></Col>
                                             </Form.Group>
-
-                                            <Form.Group as={Row} controlId = "formNoviOpis">
+                                            
+                                            <Form.Group as={Form.Row} controlId = "formNoviOpis">
                                                 <Col style={{textAlign: "left"}}>
                                                     <Form.Label>Opis:</Form.Label>
-                                                </Col>
-                                        
-                                                {/*  /* 2. Attach Ref to FormControl component */}
-
-                                                <Col lg="4">
                                                     <Form.Control 
                                                         ref={this.opisNoveTeme} 
                                                         required 
@@ -140,15 +132,14 @@ class NovaTema extends Component {
                                                     <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
                                                     <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
                                                 </Col>
-
-                                                <Col></Col>
                                             </Form.Group>
 
                                             <Form.Row>
-                                                <Col  style={{textAlign: "right"}}>
+                                                <Col></Col>
+                                                <Col md="auto"  style={{textAlign: "right"}}>
                                                     <Button variant="primary" type="submit">Dodaj</Button> 
                                                 </Col>
-                                                <Col  style={{textAlign: "left"}}>
+                                                <Col md="auto" style={{textAlign: "right"}}>
                                                     <Button variant="secondary" href='unosTeme'>Nazad</Button> 
                                                 </Col>
                                             </Form.Row>

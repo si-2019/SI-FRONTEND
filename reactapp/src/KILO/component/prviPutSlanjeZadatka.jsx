@@ -3,10 +3,10 @@ import "../bootstrap.css";
 import { Icon } from "@opuscapita/react-icons";
 
 class PrviPutSlanjeZadatka extends Component {
+  
 
   render() {
     var listOfTypes = this.props.podaci.state.listaTipova;
-    
     return (
       <div>
         <div className="card-header bg-primary text-light">
@@ -37,16 +37,27 @@ class PrviPutSlanjeZadatka extends Component {
         <h5 className="card-title ml-3 text-primary">Učitavanje datoteke</h5>
         <input
           id="uploadButton"
+          name="uploadFajla"
           type="file"
           className="btn-outline-secondary ml-3"
+          onChange={this.props.podaci.handleClick}
         />
         <button
           name="ponisti"
+          id="ponisti"
           type="button"
           className="btn btn-danger ml-5 text-body"
+          disabled = {this.props.podaci.state.uploadZadatka[0] === null}
           onClick={this.props.podaci.handleClick}
         >
-          <Icon type="indicator" name="remove" className="mr-2" />
+        {/*
+          <Icon 
+            type="indicator" 
+            name="remove" 
+            className="mr-2" 
+            onClick={this.props.podaci.handleClick}
+            />
+        */}  
           Poništi
         </button>
         <button
@@ -54,6 +65,7 @@ class PrviPutSlanjeZadatka extends Component {
           id="posalji1"
           type="button"
           className="btn btn-primary ml-5"
+          disabled = {this.props.podaci.state.uploadZadatka[0] === null}
           onClick={this.props.podaci.handleClick}
         >
           Pošalji zadatak

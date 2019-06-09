@@ -134,16 +134,26 @@ class ZadatakVecPoslan extends Component {
         </div>
         <input
           id="uploadButton2"
+          name="uploadFajla"
           type="file"
           className="btn-outline-secondary ml-3"
+          onChange={this.props.podaci.handleClick}
         />
         <button
+          id="ponisti"
           name="ponisti"
           type="button"
           className="btn btn-danger ml-5 text-body"
           onClick={this.props.podaci.handleClick}
+          disabled = {this.props.podaci.state.uploadZadatka[0] === null}
         >
-          <Icon type="indicator" name="remove" className="mr-2" />
+          {/*
+          <Icon 
+            type="indicator" 
+            name="remove" 
+            className="mr-2" 
+          /> 
+          */}
           Poništi
         </button>
         <button
@@ -152,6 +162,7 @@ class ZadatakVecPoslan extends Component {
           type="button"
           className="btn btn-primary ml-2"
           onClick={this.props.podaci.handleClick}
+          disabled = {this.props.podaci.state.uploadZadatka[0] === null}
         >
           Pošalji zadatak
         </button>

@@ -18,8 +18,6 @@ class Obavijesti extends Component {
                     </Col>
                     <Col>
                     <br></br>
-                    <h4>Obavijesti</h4>
-                    <br></br>
 
                     <div class="card">
                         <div class="card-body">
@@ -29,36 +27,32 @@ class Obavijesti extends Component {
                             <div>
                                 <Form>
                                     <Form.Row>
-                                        <Col style={{textAlign: "right"}}>
+                                        <Col style={{textAlign: "left"}}>
                                             <Form.Label> Naslov: </Form.Label>
-                                        </Col>
-                                        <Col lg="4">
                                             <Form.Control type="text" name="name">
                                             </Form.Control>
                                         </Col>
-                                        <Col></Col>
                                     </Form.Row>
 
                                     <br/>
 
                                     <Form.Row>
-                                        <Col style={{textAlign: "right"}}>
+                                        <Col style={{textAlign: "left"}}>
                                             <Form.Label> Sadržaj: </Form.Label>
-                                        </Col>
-                                        <Col lg="4">
                                             <Form.Control as="textarea" rows="5">
                                             </Form.Control>
                                         </Col>
-                                        <Col></Col>
                                         
                                     </Form.Row>
 
                                     <br/>
 
                                     <Form.Row>
-                                        <Col style={{textAlign: "center"}}>
+                                        <Col></Col>
+                                        <Col md="auto" style={{textAlign: "right"}}>
                                         <Button> Sačuvaj </Button>
                                         </Col>
+                                        <Col></Col>
                                     </Form.Row>
                                     </Form>
                             </div>

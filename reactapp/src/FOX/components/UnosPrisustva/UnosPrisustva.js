@@ -144,7 +144,7 @@ class UnosPrisustva extends React.Component {
                             <Header isPocetna={false}/>
                         </Col>
                         <Col>
-                            <div style={{padding: "25px", textAlign: "center"}}>
+                            <div style={{textAlign: "center"}}>
                                 {
                                     this.state.sedmica !== 0 &&
                                         <UnosPrisustvaForma

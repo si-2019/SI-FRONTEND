@@ -27,10 +27,20 @@ class Ocjena extends Component {
         super(props);
         this.state ={
             validated: false,
-            greska: false
+            greskaBaza: 0
         }
         this.ocjena=React.createRef();
+     
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+
+
     handleSubmit(event) {
         console.log("Pozvana sam");
         const form = event.currentTarget;
@@ -44,7 +54,7 @@ class Ocjena extends Component {
             //Promise
             /* 3. Get Ref Value here (or anywhere in the code!) */
            // console.log(this.nazivNoveTeme.current.value);
-           // console.log(this.opisNoveTeme.current.value);
+            console.log(this.ocjena.current.value);
             let reqBody = {
                 idStudent: 2, //pristup lokalnom storage-u
                 idPredmet: 64,
@@ -69,6 +79,8 @@ class Ocjena extends Component {
     onHandleClick(){
     }
     render() {
+        const {validated} = this.state;
+        const {greskaBaza}= this.state;
         return (
             <div class="card">
                 <div class="card-body">
@@ -76,7 +88,12 @@ class Ocjena extends Component {
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos ocjene.</h6>
                     <br/>
                     <div>
-                        <Form>
+                    <Poruka greska={greskaBaza} />
+                        <Form 
+                            noValidate 
+                            validated={validated}
+                            onSubmit = {e => this.handleSubmit(e)}
+                        >
 
                             <Form.Row>
                                 <Col style={{textAlign: "right"}}>
@@ -87,7 +104,7 @@ class Ocjena extends Component {
                                     </Form.Control>
                                 </Col>
                                 <Col>
-                                    <Button style= {{paddingLeft: '10px' }} onClick={this.handleClick}> Pretrazi </Button>
+                                    <Button style= {{paddingLeft: '10px' }} > Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -112,18 +129,18 @@ class Ocjena extends Component {
                                     <Form.Control.Feedback> Validna ocjena </Form.Control.Feedback> 
                                     <Form.Control.Feedback type= "invalid"> Ocjena nije validna </Form.Control.Feedback> 
                                 </Col>
-                                <Col>
-                                <Button variant= "primary" type="submit"> Unesi </Button>
-                                </Col>
+                              <Col >
+                                    <Button variant="primary" type="submit">Unesi</Button> 
+                                                </Col>
                             </Form.Row>
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
-                                   <Poruka greska={this.state.greska}>  </Poruka>
+                                 
                                     <br/>
                                 </Col>
                             </Form.Row>
-                    </Form>
+                        </Form>
                     </div>
                 </div>
             </div>

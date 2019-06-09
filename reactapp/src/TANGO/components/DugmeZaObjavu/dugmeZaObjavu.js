@@ -41,7 +41,7 @@ class DugmeZaObjavu extends Component {
             <div>
                 {/*<button type="button" class="btn btn-success mt-2" onClick={this.handleUnesi}>Objavi</button>*/}
                
-                  <button type="button" class="btn btn-success mt-2" onClick={this.handleUnesi}>Objavi</button>
+                  <button type="button" class="btn btn-primary mt-2" onClick={this.handleUnesi}>Objavi</button>
                 
                 
             </div>

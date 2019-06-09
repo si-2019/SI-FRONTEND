@@ -12,7 +12,7 @@ export class body_cell extends Component {
     if(this.props.vlasnik)
     {
       return (  
-        <tr>   
+        <tr className="text-dark">   
           <td style={loginStudent}>
             {imePrezime}
           </td>   
@@ -22,7 +22,7 @@ export class body_cell extends Component {
     else
     {
       return (   
-        <tr>  
+        <tr className="text-dark">  
           <td style={regularStudent}>
             {imePrezime}
           </td> 

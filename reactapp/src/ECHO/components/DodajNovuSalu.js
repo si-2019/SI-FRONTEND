@@ -1,6 +1,5 @@
 import React, { Component }from 'react';
 
-
 class DodajNovuSalu extends Component {
     constructor(props) {
         super(props);
@@ -79,7 +78,7 @@ class DodajNovuSalu extends Component {
               <div className="form-group">
               <button
                 id="dugme1"
-                type="button"
+                type="submit"
                 className="btn btn-primary"
                 onClick={this.handleSubmit}
               >

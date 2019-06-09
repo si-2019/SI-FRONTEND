@@ -101,6 +101,9 @@ class NoviIssueForma extends React.Component {
             
         }
 
+        deattachFile = () => {
+            this.refs.inputFileSS.value = "";
+        }
 
     render() {
         return (
@@ -156,7 +159,16 @@ class NoviIssueForma extends React.Component {
                                 id="exampleInputFile"
                                 aria-describedby="fileHelp"
                                 onChange={this.fileChangedHandler}
+                                ref="inputFileSS"
                             />
+
+                            <button
+                                className=""
+                                type="button"
+                                onClick={this.deattachFile} 
+                                style = {{marginTop:10}}
+                            > Ukloni priloženi fajl
+                            </button>
                         </div>
 
                         <button 

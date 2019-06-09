@@ -34,16 +34,18 @@ class DodavanjeTipovaFileova extends Component {
     }
 
     return (
-      <div id="tipovi">
+      <div class="card ml-3 h-100" style={{width: "25rem", height: "50%"}}>
         <Form>
-          <div id="naslovT" className="card-header text-black  mb-4">
+          <div id="tipoviT" className="card-title p-2">
             <h4>
               <b>Tipovi fileova za svaki zadatak</b>
             </h4>
           </div>
-          <FormGroup tag="fieldset">
-            <legend>Da li svi zadaci imaju iste tipove fileova:</legend>
-
+          <FormGroup row>
+            <div id="labTip" sm={10}>
+            <label>Da li svi zadaci imaju iste tipove fileova:</label>
+           </div>
+           <div class="col" sm={2} id="ss">
             <CustomInput
               checked={this.props.podaci.state.sviTipoviIsti}
               type="switch"
@@ -52,15 +54,18 @@ class DodavanjeTipovaFileova extends Component {
               label="DA"
               onChange={this.props.onChange}
             />
+            </div>
           </FormGroup>
-          <FormGroup>
+          
+          <FormGroup >
+            <div id="tabelaTipovi" className="p-2">
             <Table bordered className="table table-bordered text-center">
               <thead>
                 <tr className="text-dark">
-                  <th>Naziv zadaće</th>
+                  <th class="tabtip">Naziv zadace</th>
 
                   {kolone.map(jedno => (
-                    <th scope="col" key={jedno}>
+                    <th class="tabtip" scope="col" key={jedno}>
                       {jedno}
                     </th>
                   ))}
@@ -68,9 +73,9 @@ class DodavanjeTipovaFileova extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">{kk}</th>
+                  <th class="tabtip1" scope="row">{kk}</th>
                   {kolone.map((jedno, index) => (
-                    <th scope="col">
+                    <th class="tabtip1"scope="col">
                       <td>
                         {FILE_TYPES.map((item, jIndex) => (
                           <FormGroup key={item.ekstenzija} check>
@@ -106,7 +111,9 @@ class DodavanjeTipovaFileova extends Component {
                 </tr>
               </tbody>
             </Table>
+            </div>
           </FormGroup>
+         
         </Form>
       </div>
     );

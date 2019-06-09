@@ -20,7 +20,7 @@ class dropdown extends React.Component {
       <div class="dd">
       <div className="dropdown" onClick={this.toggleOpen}>
         <button
-          className="btn btn-success dropdown-toggle"
+          className="btn btn-primary dropdown-toggle"
           type="button"
           id="dropdownMenuButton"
           data-toggle="dropdown"

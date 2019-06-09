@@ -7,7 +7,41 @@ class Ocjene extends React.Component {
     constructor() {
         super();
         this.state = {
-            dummyOcjene: [],
+            dummyOcjene: [{
+                AkademskaGodina: "2017",
+                Ocjene: [{
+                    Predmet: "lol",
+                    Ocjena: "6"
+                }]
+            },
+            {
+                AkademskaGodina: "2017",
+                Ocjene: [{
+                    Predmet: "lol",
+                    Ocjena: "6"
+                }]
+            },
+            {
+                AkademskaGodina: "2017",
+                Ocjene: [{
+                    Predmet: "lol",
+                    Ocjena: "6"
+                }]
+            },
+            {
+                AkademskaGodina: "2017",
+                Ocjene: [{
+                    Predmet: "lol",
+                    Ocjena: "6"
+                }]
+            },
+            {
+                AkademskaGodina: "2017",
+                Ocjene: [{
+                    Predmet: "lol",
+                    Ocjena: "6"
+                }]
+            }],
             idStudenta: 1
         }
     }
@@ -27,10 +61,11 @@ class Ocjene extends React.Component {
     render() {
         return (
             <div class="row" style={{ padding: "20px" }}>
-                {this.state.dummyOcjene.map((x,i) =>
+                 {this.state.dummyOcjene.map((x,i) =>
+                
                     <TabelaOcjene key={i}
-                        ocj={x[0].Ocjene}
-                        akGod={x[0].AkademskaGodina}
+                        ocj={x.Ocjene}
+                        akGod={x.AkademskaGodina}
                     />)}
             </div>
 

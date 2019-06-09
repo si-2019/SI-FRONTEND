@@ -52,7 +52,7 @@ class FormaPrikazProf extends Component{
                     </div> 
                     
                     <div className='col-md-1'>
-                        <button className="btn btn-success btn-block" onClick={()=> this.componentDidMount(id)}>Search</button>
+                        <button className="btn btn-primary btn-block" onClick={()=> this.componentDidMount(id)}>Pretrazi</button>
                         <br /><br /> 
                     </div>
                 </div>

@@ -107,7 +107,7 @@ class Lista extends Component{
     }
       return(
         <div>
-          <div>< button><a href="/Tango/NovaTema">Dodaj novu temu</a></button>
+          <div>< button type="button" class="btn btn-primary"><a href="/Tango/NovaTema">Dodaj novu temu</a></button>
  </div>
           <div>
             <DugmeZaSort 

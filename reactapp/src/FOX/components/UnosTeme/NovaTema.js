@@ -15,16 +15,20 @@ import Col from 'react-bootstrap/Col';
 function Poruka(props) {
     const greska = props.greska;
     if (greska==1) {
-        return <Alert variant='danger'>
-            <Alert.Heading>Nova tema nije kreirana!</Alert.Heading>
-            <p>Došlo je do greške sa bazom</p>
-        </Alert>
+        return (
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nova tema nije kreirana!</strong> <br/> Došlo je do greške sa bazom.
+            </div>
+        );
     }
     if (greska===2) {
-        return <Alert variant='success'>
-            <Alert.Heading>Uspješno kreirana nova tema!</Alert.Heading>
-            <p>Kreirana je nova tema i uspješno dodana u bazu podataka.</p>
-        </Alert>
+        return (
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Uspješno kreirana nova tema!</strong> <br/> Kreirana je nova tema i uspješno dodana u bazu podataka.
+            </div>
+        );
     }
     return ""
 }
@@ -58,8 +62,8 @@ class NovaTema extends Component {
             let reqBody = {
                 naziv: this.nazivNoveTeme.current.value,
                 opis: this.opisNoveTeme.current.value,
-                idProfesora: 246,
-                idPredmeta: 4
+                idProfesora: 255, //Iz local storega treba!
+                idPredmeta: 64
             };
             axios.post('http://localhost:31906/api/fox/temeZavrsnih/novaTema', reqBody)
             .then((res) => {
@@ -87,25 +91,29 @@ class NovaTema extends Component {
         //console.log(greskaBaza);
         return (
             <div id="unosNoveTeme" className="footerDno">
-                <Header isPocetna={false}/>
-                    <Container fluid>
-                        <Row style={{margin: "0"}}>
+                    <Container fluid style={{padding:"0", margin: "0"}}>
+                    
+                        <Row>
+                            <Col md="3">
+                                <Header isPocetna={false}/>
+                            </Col>
+
                             <Col style={{textAlign: "left"}}>
-                                <Poruka greska={greskaBaza} />
+                                <br/>
                                 <Card>
                                     <Card.Body>
-                                        <Card.Title>Nova tema za završni rad</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete kreirati novu temu za završni rad na predmetu </Card.Subtitle>
+                                        <Poruka greska={greskaBaza} />
+                                        <Card.Title className="text-center">Nova tema za završni rad</Card.Title>
+                                        <Card.Subtitle className="mb-2 text-muted text-center">U ovoj formi možete kreirati novu temu za završni rad na predmetu </Card.Subtitle>
+                                        <br/>
                                         <Form 
                                             noValidate 
                                             validated={validated}
                                             onSubmit = {e => this.handleSubmit(e)}
                                         >
-                                            <Form.Group as={Row} controlId = "formNoviNaziv">
+                                            <Form.Group as={Form.Row} controlId = "formNoviNaziv">
                                                 <Col style={{textAlign: "left"}}>
                                                     <Form.Label>Naziv:</Form.Label>
-                                                </Col>
-                                                <Col lg="4">
                                                     <Form.Control 
                                                         ref={this.nazivNoveTeme}
                                                         required 
@@ -115,18 +123,11 @@ class NovaTema extends Component {
                                                     <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
                                                     <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
                                                 </Col>
-
-                                                <Col></Col>
                                             </Form.Group>
-
-                                            <Form.Group as={Row} controlId = "formNoviOpis">
+                                            
+                                            <Form.Group as={Form.Row} controlId = "formNoviOpis">
                                                 <Col style={{textAlign: "left"}}>
                                                     <Form.Label>Opis:</Form.Label>
-                                                </Col>
-                                        
-                                                {/*  /* 2. Attach Ref to FormControl component */}
-
-                                                <Col lg="4">
                                                     <Form.Control 
                                                         ref={this.opisNoveTeme} 
                                                         required 
@@ -136,15 +137,14 @@ class NovaTema extends Component {
                                                     <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
                                                     <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
                                                 </Col>
-
-                                                <Col></Col>
                                             </Form.Group>
 
                                             <Form.Row>
-                                                <Col  style={{textAlign: "right"}}>
+                                                <Col></Col>
+                                                <Col md="auto" style={{textAlign: "right"}}>
                                                     <Button variant="primary" type="submit">Dodaj</Button> 
                                                 </Col>
-                                                <Col  style={{textAlign: "left"}}>
+                                                <Col md="auto" style={{textAlign: "right"}}>
                                                     <Button variant="secondary" href='unosTeme'>Nazad</Button> 
                                                 </Col>
                                             </Form.Row>

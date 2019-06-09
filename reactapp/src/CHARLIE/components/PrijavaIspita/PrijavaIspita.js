@@ -17,9 +17,9 @@ class PrijavaIspita extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>Prijava ispita</h1>
-        <div id="vrsteIspita">
-        <IspitCard ispiti={this.state.ispiti} tipIspita="Prvi parcijalni"/>
+        
+        <div id="vrsteIspita" style={{alignItems: "left"}}>
+        <IspitCard ispiti={this.state.ispiti} tipIspita="Prvi parcijalni ispit"/>
           {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
           <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
           <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />
@@ -29,7 +29,8 @@ class PrijavaIspita extends React.Component {
         <Link
           type="button"
           id="prijavljeniIspiti"
-          className="btn btn-info"
+          className="btn btn-primary"
+          style={{float: "right", marginTop: "10px"}}
           to="/charlie/prijavljeni-ispiti"
         >
           Prijavljeni ispiti

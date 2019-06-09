@@ -33,20 +33,15 @@ class Ciklusi extends Component {
     render() {
         return(
             <div id="navv" class='side'>
-                <ul class="list-group">
-                    <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(1)}>
-                        <a href='#'>Prvi ciklus</a>
-                    </li>
-                    {this.state.kliknut && <Odsjeci ciklus = "1"/>}
-                    <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(2)}>
-                        <a href='#'>Drugi ciklus</a>
-                    </li>
-                    {this.state.kliknut1 && <Odsjeci ciklus = "2"/>}
-                    <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => this.Otvori(3)}> 
-                        <a href='#'>Treci ciklus</a>
-                    </li> 
-                    {this.state.kliknut2  && <Odsjeci ciklus = "3"/>}
-                </ul>
+    	        <button type="button" class="btn btn-primary" onClick={() => this.Otvori(1)}>Prvi ciklus</button>
+                <br></br>
+                {this.state.kliknut && <Odsjeci ciklus = "1"/>}
+                <button type="button" class="btn btn-primary" onClick={() => this.Otvori(2)}>Drugi ciklus</button>
+                <br></br>
+                {this.state.kliknut1 && <Odsjeci ciklus = "2"/>}
+                <button type="button" class="btn btn-primary" onClick={() => this.Otvori(3)}>Treći ciklus</button>
+                <br></br>
+                {this.state.kliknut2 && <Odsjeci ciklus = "3"/>}
             </div>
         )
     }

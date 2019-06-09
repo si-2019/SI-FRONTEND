@@ -13,33 +13,30 @@ class App extends React.Component {
         const items = this.state.items
         return (
             <div>
-                <nav class="NavPadding">
-                <h2 id="top">POPUNJENE ANKETE NA MOJIM PREDMETIMA</h2>
-                <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
-            </nav>
+                <h1>Popunjene ankete na mojim predmetima</h1>
 
             <br></br>
 
-            <table className="anketeTabela" align="center">
-                    <tr>
-                    <td>NAZIV ANKETE</td>
-                    <td>OPIS</td>
-                    <td>DATUM ISTEKA</td>
-                    <td>PRIKAZ ANKETE</td>
-                    <td>OBRIŠI</td>
-                    </tr>
+            <table className="table table-bordered text-center bg-active border-solid" align="center">
+                <tr className="bg-primary text-light">
+                <td class="tabtip">Naziv ankete</td>
+                <td class="tabtip">Opis</td>
+                <td class="tabtip">Datum isteka</td>
+                <td class="tabtip">Prikaz ankete</td>
+                <td class="tabtip">Obriši</td>
+                </tr>
+            
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
-                        <th>{anketa.naziv}</th>
-                        <th>{anketa.opis}</th>
-                        <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                        <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
-                        <th><button type="button" class="btn btn-primary disabled" id="obrisiButton" 
-                                onClick= {() => this.obrisiAnketu(anketa) } >OBRIŠI</button></th>
+                        <th class="tabtip1">{anketa.naziv}</th>
+                        <th class="tabtip1">{anketa.opis}</th>
+                        <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
+                        <th class="tabtip1"><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
+                        <th class="tabtip1"><button type="button" class="btn btn-primary" id="obrisiButton" 
+                                onClick= {() => this.obrisiAnketu(anketa) }>Obriši</button></th>
                     </tr>
                 )) : "Loading..."}
                 </table>
-                <a href="#top"><button type="button" class="btn btn-primary disabled" id="nazadNaVrhButton">NAZAD NA VRH</button></a>
             </div>
         )
     }

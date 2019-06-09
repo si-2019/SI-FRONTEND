@@ -7,6 +7,7 @@ import DodajAsistenta from './dodajAsistenta'
 import DodajPredmet from './dodajPredmet'
 import promijeniLozinku from './promijeniLozinku'
 import Navigation from './Navigation'
+import './alphaCss.css'
 
 //rutiranje, prebacivanje sa student na odsjek page i obrnuto
 //izmjenje-> treba napraviti home page
@@ -16,6 +17,7 @@ class App extends Component{
             <BrowserRouter>
             <div>
              <Navigation />
+             <div id="formeAlpha">
                 <Switch>
                     <Route path="/student" component={DodajStudenta} exact/>
                     <Route path="/odsjek" component={DodajOdsjek} />
@@ -24,6 +26,7 @@ class App extends Component{
                     <Route path="/predmet" component={DodajPredmet} />
                     <Route path="/lozinka" component={promijeniLozinku} />
                 </Switch>
+                </div>
             </div>
             </BrowserRouter>
         )

@@ -113,6 +113,7 @@ class Forma extends Component {
           
           <div className="col-md-4 col-md-offset-4" >
             <br />
+            <br />
                 <p>Izaberite predmet: </p><br />
                 <select className="custom-select"  onChange={this.onChange} > 
                 <option >--Predmeti-- </option>
@@ -146,8 +147,8 @@ class Forma extends Component {
               <input className="form-control" type="text" name="opis" required value={opis} onChange={this.handleChange} /><br />
 
               
-              <button className="btn btn-success btn-block" onClick={()=>this.izmjeni()}>Spremi promjene</button>
-              <button className="btn btn-success btn-block" onClick={()=>this.obrisi(naziv, selectedValue)}>Obrisi predmet</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.izmjeni()}>Spremi promjene</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(naziv, selectedValue)}>Obrisi predmet</button>
              </form><br />
 
              

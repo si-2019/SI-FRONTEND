@@ -16,7 +16,7 @@ class KreiranjeZadace extends Component {
     super(props);
     const urlParams = new URLSearchParams(window.location.search);
     this.state = {
-      idZadace : null,
+      idZadace: null,
       idPredmet: urlParams.get("idPredmeta")
         ? Number(urlParams.get("idPredmeta"))
         : 1,
@@ -32,7 +32,7 @@ class KreiranjeZadace extends Component {
       listaBodova: [],
       ukupnoBodova: 0,
       validno: true,
-      porukeGreske: [],
+      porukeGreske: ["", "", "", "", "", ""],
       uspjehKreiranja: false,
       neuspjehKreiranja: false,
       vecPostojiImeZadace: false
@@ -48,13 +48,14 @@ class KreiranjeZadace extends Component {
     }
   };
 
-  onChangePostavka = e => { // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
-    if(e) {
+  onChangePostavka = e => {
+    // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
+    if (e) {
       this.setState({
-        postavka : e.target.files
-      })
+        postavka: e.target.files
+      });
     }
-  }
+  };
 
   componentDidMount = () => {
     document.getElementById("kreirajKilo").style.display = "block";
@@ -95,19 +96,35 @@ class KreiranjeZadace extends Component {
     var data = this.state;
 
     if (data.naziv.length < 2 || data.naziv.length > 30) {
-      porukeGreske.push("Naziv mora sadrzavati izmedju 2 i 30 karaktera!");
+      // [0] validacija naziva
+      porukeGreske[0] = "Naziv mora sadrzavati izmedju 2 i 30 karaktera!";
+    } else {
+      porukeGreske[0] = "";
     }
+
     if (data.brojZadataka.toString().includes(".")) {
-      porukeGreske.push("Broj zadataka mora biti cijeli broj!");
+      // [1] validacija broja zadataka
+      porukeGreske[1] = "Broj zadataka mora biti cijeli broj!";
+    } else {
+      porukeGreske[1] = "";
     }
+
     if (!this.datumValidan()) {
-      porukeGreske.push(
-        "Datum i vrijeme moraju biti postavljeni minimum na danas u 23:59!"
-      );
+      // [2] validacija datuma
+      porukeGreske[2] =
+        "Datum i vrijeme moraju biti postavljeni minimum na danas u 23:59!";
+    } else {
+      porukeGreske[2] = "";
     }
+
     if (data.listaBodova.length === 0) {
-      porukeGreske.push("Potrebno je unijeti maksimalne bodove za zadatke!");
+      // [3] validacija maksimalnog broja bodova po zadacima
+      porukeGreske[3] = "Potrebno je unijeti maksimalne bodove za zadatke!";
+    } else {
+      porukeGreske[3] = "";
     }
+
+    // [4] validacija tipova zadataka
     for (var i = 0; i < data.listaTipova.length; i++) {
       var sviTipoviJednogZadatkaIsti = false;
       for (var j = 0; j < 5; j++) {
@@ -117,32 +134,47 @@ class KreiranjeZadace extends Component {
         }
       }
       if (!sviTipoviJednogZadatkaIsti) {
-        porukeGreske.push("Potrebno je unijeti tipove za svaki zadatak!");
+        porukeGreske[4] = "Potrebno je unijeti tipove za svaki zadatak!";
         break;
       }
+      if (i === data.listaTipova.length - 1) {
+        porukeGreske[4] = "";
+      }
+    }
+    if(this.state.listaBodova.length!=this.state.brojZadataka){
+      porukeGreske[5] =
+          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+        return porukeGreske;
     }
 
-    data.listaBodova.forEach(element => {
+    if(data.listaBodova.length==0)
+    {
+      porukeGreske[5] =
+          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+        return porukeGreske;
+    }
+    for (var i = 0; i < data.listaBodova.length; i++) {
+      var element = data.listaBodova[i];
       if (parseFloat(element) <= 0) {
-        porukeGreske.push(
-          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!"
-        );
+        // [5] validacija broja bodova po zadacima
+        porukeGreske[5] =
+          "Bodovi moraju biti uneseni i broj bodova mora biti veci od 0!";
         return porukeGreske;
       }
       if (isNaN(parseInt(element))) {
-        porukeGreske.push("Broj bodova mora biti broj!");
+        porukeGreske[5] = "Broj bodova mora biti broj!";
         return porukeGreske;
       }
       if (parseFloat(element) > 100) {
-        porukeGreske.push("Broj bodova mora biti manji od 100!");
+        porukeGreske[5] = "Broj bodova mora biti manji od 100!";
         return porukeGreske;
       }
       if (parseInt(element * 100) !== element * 100) {
-        porukeGreske.push("Broj bodova moze imati najvise dvije decimale!");
+        porukeGreske[5] = "Broj bodova moze imati najvise dvije decimale!";
         return porukeGreske;
       }
-    });
-
+      porukeGreske[5] = "";
+    }
     return porukeGreske;
   };
   // kraj validacije
@@ -159,9 +191,25 @@ class KreiranjeZadace extends Component {
         this.setState({
           porukeGreske: porukeGreske
         });
-
-        var valid = porukeGreske.length == 0 ? true : false;
-
+        var valid = true;
+        console.log("1111111111111111111111");
+        for (var i = 0; i < porukeGreske.length; i++) {
+          if (porukeGreske[i] != "") {
+            valid = false;
+            break;
+          }
+        }
+        if (porukeGreske[0] == "")
+          document.getElementById("naziv").className = "form-control";
+        if (porukeGreske[1] == "")
+          document.getElementById("brojZadataka").className = "form-control";
+        if (porukeGreske[2] == "")
+          document.getElementById("datum").className = "form-control";
+        {/*if (porukeGreske[3] == "")
+      document.getElementById("naziv").className = "form-control";*/}
+        if (porukeGreske[3] == ""){ 
+      document.getElementById("brbodKILO").className = "form-control";
+      document.getElementById("brbodKILO").style.margin="0 auto";}
         if (valid) {
           document.getElementById("kreirajKilo").style.display = "none";
           document.getElementById("preview").style.display = "block";
@@ -169,6 +217,31 @@ class KreiranjeZadace extends Component {
             validno: true
           });
         } else {
+          if (porukeGreske[0] !== "") {
+            document.getElementById("naziv").className =
+              "form-control is-invalid";
+          }
+          if (porukeGreske[1] !== "") {
+            document.getElementById("brojZadataka").className =
+              "form-control is-invalid";
+          }
+          if (porukeGreske[2] !== "") {
+            document.getElementById("datum").className =
+              "form-control is-invalid";
+          }
+          {/*if (porukeGreske[3] !== "") {
+            document.getElementById("naziv").className =
+              "form-control is-invalid";
+          }
+          if (porukeGreske[4] !== "") {
+            document.getElementById("naziv").className =
+              "form-control is-invalid";
+          }*/}
+          if (porukeGreske[3] !== "") {
+            document.getElementById("brbodKILO").className =
+              "form-control is-invalid";
+              document.getElementById("brbodKILO").style.margin="0 auto";
+          }
           this.setState({
             validno: false
           });
@@ -184,39 +257,44 @@ class KreiranjeZadace extends Component {
       case "addZadaca": {
         const fData = new FormData();
 
-        if(this.state.postavka[0] !== null) {
+        if (this.state.postavka[0] !== null) {
           var file = this.state.postavka[0];
-          if(file) {
-            fData.append('file', new Blob([file], {type: file.type}));
-            fData.append('imeFajlaPostavke', file.name);
+          if (file) {
+            fData.append("file", new Blob([file], { type: file.type }));
+            fData.append("imeFajlaPostavke", file.name);
           }
         }
-        fData.append('state', JSON.stringify(this.state));
+        fData.append("state", JSON.stringify(this.state));
 
-        if(this.state.radnja === "Kreiranje") { 
-          
-          axios.post("http://localhost:31911/addZadaca", fData).then(res => {
-            if (res.status === 200) {
-              this.setState({ uspjehKreiranja: true });
-            } else if (res.status === 201) {
-              this.setState({ vecPostojiImeZadace: true });
-            } else {
-              this.setState({ neuspjehKreiranja: true });
-            }
-          }).catch(() => this.setState({ neuspjehKreiranja: true }));
+        if (this.state.radnja === "Kreiranje") {
+          axios
+            .post("http://localhost:31911/addZadaca", fData)
+            .then(res => {
+              if (res.status === 200) {
+                this.setState({ uspjehKreiranja: true });
+              } else if (res.status === 201) {
+                this.setState({ vecPostojiImeZadace: true });
+              } else {
+                this.setState({ neuspjehKreiranja: true });
+              }
+            })
+            .catch(() => this.setState({ neuspjehKreiranja: true }));
+        } else if (this.state.radnja === "Azuriranje") {
+          axios
+            .put(
+              `http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`,
+              fData
+            )
+            .then(res => {
+              if (res.status === 200) {
+                this.setState({ uspjehKreiranja: true });
+              } else if (res.status === 201) {
+                this.setState({ vecPostojiImeZadace: true });
+              } else {
+                this.setState({ neuspjehKreiranja: true });
+              }
+            });
         }
-        
-        else if(this.state.radnja==="Azuriranje") {
-          axios.put(`http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`, fData).then(res => {
-            if (res.status === 200) {
-              this.setState({ uspjehKreiranja: true });
-            } else if (res.status === 201) {
-              this.setState({ vecPostojiImeZadace: true });
-            } else {
-              this.setState({ neuspjehKreiranja: true });
-            }
-          });
-        }  
       }
       default: {
       }
@@ -304,13 +382,12 @@ class KreiranjeZadace extends Component {
 
   render() {
     var radnjaGlagol;
-    if(this.state.radnja==="Azuriranje")
-    radnjaGlagol="ažurirali";
-    else radnjaGlagol="kreirali";
+    if (this.state.radnja === "Azuriranje") radnjaGlagol = "ažurirali";
+    else radnjaGlagol = "kreirali";
     return (
       <div>
         <div>
-          <Modal isOpen={!this.state.validno}>
+          {/*<Modal isOpen={!this.state.validno}>
             <ModalHeader>Greška!</ModalHeader>
             <ModalBody>
               {this.state.porukeGreske.map((poruka, indeks) => (
@@ -322,7 +399,7 @@ class KreiranjeZadace extends Component {
                 Zatvori
               </Button>
             </ModalFooter>
-          </Modal>
+          </Modal>*/}
 
           <Modal isOpen={this.state.uspjehKreiranja}>
             <ModalHeader background-color={"success"}>
@@ -362,7 +439,7 @@ class KreiranjeZadace extends Component {
               </p>
             </ModalHeader>
             <ModalBody>
-              Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom " 
+              Kreiranje zadaće nije uspjelo. Već postoji zadaća sa nazivom "
               {this.state.naziv} ".
             </ModalBody>
             <ModalFooter>
@@ -409,7 +486,6 @@ class KreiranjeZadace extends Component {
             id="idiNaKreiranjeZadace"
             name="idiNaKreiranjeZadace"
             onClick={this.handleClick}
-           
           >
             Natrag
           </Button>

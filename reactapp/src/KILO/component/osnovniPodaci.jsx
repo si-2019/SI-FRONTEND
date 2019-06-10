@@ -3,6 +3,7 @@ import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import axios from 'axios';
 import "./../bootstrap.css";
 
+
 class OsnovniPodaci extends Component {
   render() {
     const { title } = this.props;
@@ -37,17 +38,19 @@ class OsnovniPodaci extends Component {
                   placeholder="Upišite naziv"
                   onChange={this.props.onChange}
                 />
-                </FormGroup>
-              
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[0]=="" || this.props.podaci.state.porukeGreske[0]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[0]}</p></div>
+              </FormGroup>
               <FormGroup>
-                <label class="lab1" for="datum">Datum roka predaje:</label>
-                <Input
+                <Label for="datum">Datum roka predaje:</Label>
+                <input
+                  class="form-control"
                   value={this.props.podaci.state.datum}
                   type="date"
                   name="datum"
                   id="datum"
                   onChange={this.props.onChange}
                 />
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[2]=="" || this.props.podaci.state.porukeGreske[2]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[2]}</p></div>
               </FormGroup>
               <FormGroup>
                 <label class="lab1" for="vrijeme">Vrijeme roka predaje:</label>
@@ -71,6 +74,7 @@ class OsnovniPodaci extends Component {
               <FormGroup>
                 <label id="brZ" for="brojZadataka">Broj zadataka:</label>
                 <Input
+                  class="form-control"
                   value={this.props.podaci.state.brojZadataka}
                   type="number"
                   pattern="(10|[1-9])"
@@ -83,6 +87,7 @@ class OsnovniPodaci extends Component {
                   onChange={this.props.onChange}
                   disabled = {this.props.podaci.state.radnja=="Azuriranje"}
                 />
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[1]=="" || this.props.podaci.state.porukeGreske[1]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[1]}</p></div>
               </FormGroup>
             </Form>
           </div>

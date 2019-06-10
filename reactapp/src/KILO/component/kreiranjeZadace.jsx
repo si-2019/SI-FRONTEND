@@ -208,8 +208,8 @@ class KreiranjeZadace extends Component {
         {/*if (porukeGreske[3] == "")
       document.getElementById("naziv").className = "form-control";*/}
         if (porukeGreske[3] == ""){ 
-      document.getElementById("brbod").className = "form-control";
-      document.getElementById("brbod").style.margin="0 auto";}
+      document.getElementById("brbodKILO").className = "form-control";
+      document.getElementById("brbodKILO").style.margin="0 auto";}
         if (valid) {
           document.getElementById("kreirajKilo").style.display = "none";
           document.getElementById("preview").style.display = "block";
@@ -238,9 +238,9 @@ class KreiranjeZadace extends Component {
               "form-control is-invalid";
           }*/}
           if (porukeGreske[3] !== "") {
-            document.getElementById("brbod").className =
+            document.getElementById("brbodKILO").className =
               "form-control is-invalid";
-              document.getElementById("brbod").style.margin="0 auto";
+              document.getElementById("brbodKILO").style.margin="0 auto";
           }
           this.setState({
             validno: false

@@ -78,7 +78,7 @@ class FormaUpis extends Component {
               <select className="custom-select" name="odsjek" value={odsjek} onChange={this.handleInputChange}>{opcije}</select><br />
               
               
-              <input type="submit" value="Upiši" className="btn btn-success btn-block" />
+              <input type="submit" value="Upiši" className="btn btn-primary btn-block" />
             </form>
           </div>
         );

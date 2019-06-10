@@ -1,54 +1,96 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
-class FormaAsistentPred extends Component {
+class FormaProfPred extends Component {
     constructor(props) {
         super(props)
   
         this.initialState = {
           asistent: '',
-          predmet: ''
+          predmet: '',
+          listaAsistenata: [],
+          listaPredmeta: []
         }
     
         this.state = this.initialState
       }
 
-      handleInputChange = (event) => {
-        event.preventDefault()
-        this.setState({
-          [event.target.name]: event.target.value
+      componentDidMount(){
+        axios.get ('http://localhost:31901/api/korisnik/getAllAssistants')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({listaAsistenata: response.data});
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+
+        axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({listaPredmeta: response.data});
+        })
+        . catch (error =>{
+            console.log(error)
         })
       }
 
-//Funkcija za backend
-      OnSubmit = (event) =>{
-        event.preventDefault()
-        const data=this.state
-        console.log("Svi potrebni podaci: ", data)
-      }
-     
+    onChangeAsistent = (e) => {
+        var split=e.target.value.split(",");     
+        this.setState({
+          asistent: split[0]
+         })  
+    }
+
+    onChangePredmet = (e) => {
+        var split=e.target.value.split(",");     
+        this.setState({
+          predmet: split[0]
+         })  
+    }
+
+    spoji(asistent, predmet){
+        console.log(asistent,predmet);
+        const json={"idAsistent":asistent, "idPredmet":predmet}
+        axios.post("http://localhost:31901/api/povezivanje/linkAssistantSubject", json)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
 
     render() {
-        const { asistent, predmet } = this.state;
+        const {asistent, predmet, listaAsistenata, listaPredmeta} = this.state;
 
         return (
-          <div className="col-md-2">
-          
-            <form  onSubmit={this.OnSubmit} className="container-fluid">
-              <label className="col-md-2">Odaberite asistenta </label>
-              <select className="form-control"  name="asistent" value={asistent} onChange={this.handleInputChange}> </select>
-              <br />
-              
-              <label className="col-md-2">Odaberite predmet </label>
-              <select className="form-control"  name="predmet" value={predmet} onChange={this.handleInputChange} > </select>
-              <br />
+        <div className="card">
+        <div className="card-body  col-md-4 col-md-offset-4">
+              <p>Prikaz svih asistenata: </p><br />
+                <select className="custom-select"  onChange={this.onChangeAsistent}> 
+                {
+                  listaAsistenata.length ? listaAsistenata.map(list => 
+                  <option key={list.id} value={[list.id]}>{list.ime} {list.prezime}</option>
+                  ): null
+                }
+                </select><br /><br />
 
-        
-              
-              <input type="submit" value="Dodaj" className="btn btn-success btn-block" />
-            </form>
+                <p>Prikaz svih predmeta: </p><br />
+                <select className="custom-select"  onChange={this.onChangePredmet}> 
+                {
+                  listaPredmeta.length ? listaPredmeta.map(list => 
+                  <option key={list.id} value={list.id}>{list.naziv}</option>
+                  ): null
+                }
+                </select><br /><br />
+
+                <button className="btn btn-primary btn-block" onClick={()=>this.spoji(asistent,predmet)}>Dodaj</button>
+
+          </div>
           </div>
         );
     }
 }
 
-export default FormaAsistentPred
+export default FormaProfPred

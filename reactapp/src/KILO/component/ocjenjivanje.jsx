@@ -28,6 +28,8 @@ class Ocjenjivanje extends Component {
       ostvareniMoguci: [],
       defaultno: "",
       renderajOpet:false,
+      idPredmeta: 3,
+
       idZadace: "",
       idStudenta: "",
       uspjehOcjenjivanja: true,
@@ -45,9 +47,7 @@ class Ocjenjivanje extends Component {
   }
 
   componentDidMount = () => {
-    this.pokupiStudenteKojimaNijePregledanaZadaca();
-    this.pokupiStudenteKojiNisuPoslaliZadacu();
-    this.pokupiStudenteKojimaJePregledanaZadaca();
+
     this.pokupiZadace();
 
     if(this.state.listaZadaca[0]!="") {
@@ -63,24 +63,24 @@ class Ocjenjivanje extends Component {
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
   };
 
-  pokupiStudenteKojimaJePregledanaZadaca = () => {
-    axios.get("http://localhost:31911/getStudenteKojiSuPoslaliZadacu").then(res => {
+pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
+    axios.get(`http://localhost:31911/getStudenteKojiSuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiPregledano: res.data
       });
     });
   };
   
-  pokupiStudenteKojiNisuPoslaliZadacu = () => {
-    axios.get("http://localhost:31911/getStudenteKojiNisuPoslaliZadacu").then(res => {
+  pokupiStudenteKojiNisuPoslaliZadacu = (idZadace) => {
+    axios.get(`http://localhost:31911/getStudenteKojiNisuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiNisuPoslali: res.data
       });
     });
   };
 
-  pokupiStudenteKojimaNijePregledanaZadaca = () => {
-    axios.get("http://localhost:31911/getStudenteKojimaNijePregledanaZadaca").then(res => {
+  pokupiStudenteKojimaNijePregledanaZadaca = (idZadace) => {
+    axios.get(`http://localhost:31911/getStudenteKojimaNijePregledanaZadaca/${idZadace}`).then(res => {
       this.setState({
         studentiNijePregledano: res.data
       });
@@ -88,7 +88,7 @@ class Ocjenjivanje extends Component {
   };
 
   pokupiZadace = () => {
-    axios.get("http://localhost:31911/getZadace").then(res => {
+    axios.get(`http://localhost:31911/getZadaceZaOcjenjivanje/${this.state.idPredmeta}`).then(res => {
       this.setState({
         listaZadaca: res.data
       });

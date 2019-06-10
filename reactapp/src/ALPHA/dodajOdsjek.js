@@ -20,9 +20,6 @@ class DodajOdsjek extends Component {
                     <Prikaz />
                 </Tab>
             
-                <Tab eventKey="profile2" title="Prikaz odsjeka">
-                    <Povez />
-                </Tab>
             </Tabs>
                 
             </div>

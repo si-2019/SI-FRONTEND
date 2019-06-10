@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+import axios from 'axios'
+
 class FormaPrikazProf extends Component{
     constructor(props){
         super(props)
@@ -11,20 +13,26 @@ class FormaPrikazProf extends Component{
         this.state = this.initialState
     }
     componentDidMount(param){
-        var xhttp = new XMLHttpRequest();
-        var self = this;
-
-        xhttp.onreadystatechange = function(){
-            if (xhttp.readyState === 4 && xhttp.status === 200){
-                self.setState({
-                lista: JSON.parse(this.response)
-                });
-            }
-        }
-
-        if(param!=='') xhttp.open("get", "https://jsonplaceholder.typicode.com/posts?userId="+param, true);
-        else xhttp.open("get", "https://jsonplaceholder.typicode.com/posts", true);
-        xhttp.send();
+        if(search==''){
+        axios.get ('http://localhost:31901/api/korisnik/getAllProfessors')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({lista: response.data});
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+      }
+      else{
+        axios.get ('http://localhost:31901/api/korisnik/searchProfessor?ime='+param)
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({lista: [response.data]});
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+      }
     };
 
     handleChange = (event) => {

@@ -54,7 +54,7 @@ class FormaOdsjek extends Component {
               <label >Naziv odsjeka </label>
               <input className="form-control" type="text" name="Naziv" value={Naziv} onChange={this.handleInputChange} /><br />
               
-              <input type="submit" value="Upiši" className="btn btn-success btn-block" />
+              <input type="submit" value="Upiši" className="btn btn-primary btn-block" />
             </form>
             </div>
           </div>

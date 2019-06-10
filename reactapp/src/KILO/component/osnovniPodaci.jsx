@@ -7,21 +7,12 @@ import "./../bootstrap.css";
 class OsnovniPodaci extends Component {
   render() {
     const { title } = this.props;
-   /* var tekstOPrethodnojPostavci = "";
-    if(this.props.podaci.state.radnja === "Azuriranje") {
-      axios.get(`http://localhost:31911/getImeFajla/${this.props.podaci.state.idZadaca}`, ).then(res => {
-        if(res.data === "") { // nema fajla postavke za odabranu zadacu 
-          tekstOPrethodnojPostavci = "Nema fajla postavke za odabranu zadacu";
-        } else { // ima fajla postavke za odabranu zadacu
-          tekstOPrethodnojPostavci = "Naziv postavke: " + res.data;        } 
-      })
-    }*/
     return (
       <div>
         <div>
-          <div className="card h-100" style={{width: "18rem"}} >
+          <div className="card h-100" style={{ width: "18rem" }} >
             <Form>
-              <div  id="kreirajT" className="card-title p-2 ">
+              <div id="kreirajT" className="card-title p-2 ">
                 <h4>
                   <b>{title ? title : "Kreiranje zadace"}</b>
                 </h4>
@@ -30,7 +21,7 @@ class OsnovniPodaci extends Component {
                 <label for="naziv" class="lab">Naziv:</label>
                 {/*Tu ispod se nalazi onChange za spremanje naziva */}
                 <input
-                 class="form-control p-2"
+                  class="form-control p-2"
                   value={this.props.podaci.state.naziv}
                   type="text"
                   name="naziv"
@@ -38,7 +29,7 @@ class OsnovniPodaci extends Component {
                   placeholder="Upišite naziv"
                   onChange={this.props.onChange}
                 />
-                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[0]=="" || this.props.podaci.state.porukeGreske[0]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[0]}</p></div>
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[0] == "" || this.props.podaci.state.porukeGreske[0] == undefined) ? "visible" : "hidden" }}><p class="text-danger">{this.props.podaci.state.porukeGreske[0]}</p></div>
               </FormGroup>
               <FormGroup>
                 <Label for="datum">Datum roka predaje:</Label>
@@ -50,7 +41,7 @@ class OsnovniPodaci extends Component {
                   id="datum"
                   onChange={this.props.onChange}
                 />
-                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[2]=="" || this.props.podaci.state.porukeGreske[2]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[2]}</p></div>
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[2] == "" || this.props.podaci.state.porukeGreske[2] == undefined) ? "visible" : "hidden" }}><p class="text-danger">{this.props.podaci.state.porukeGreske[2]}</p></div>
               </FormGroup>
               <FormGroup>
                 <label class="lab1" for="vrijeme">Vrijeme roka predaje:</label>
@@ -65,11 +56,11 @@ class OsnovniPodaci extends Component {
               </FormGroup>
               <FormGroup encType="multipart/form-data">
                 <label id="pos" for="file">Postavka:</label>
-                <Input type="file" name="file" id="file" 
+                <Input type="file" name="file" id="file"
                   onChange={this.props.onChangePostavka}
                 />
                 <small id="opc" class="form-text" color="info">Ovo je opcionalna mogucnost</small>
-               {/* <FormText color="info">{tekstOPrethodnojPostavci}</FormText> */}
+                {/* <FormText color="info">{tekstOPrethodnojPostavci}</FormText> */}
               </FormGroup>
               <FormGroup>
                 <label id="brZ" for="brojZadataka">Broj zadataka:</label>
@@ -85,9 +76,9 @@ class OsnovniPodaci extends Component {
                   max={10}
                   step={1}
                   onChange={this.props.onChange}
-                  disabled = {this.props.podaci.state.radnja=="Azuriranje"}
+                  disabled={this.props.podaci.state.radnja == "Azuriranje"}
                 />
-                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[1]=="" || this.props.podaci.state.porukeGreske[1]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[1]}</p></div>
+                <div style={{ visibility: !(this.props.podaci.state.porukeGreske[1] == "" || this.props.podaci.state.porukeGreske[1] == undefined) ? "visible" : "hidden" }}><p class="text-danger">{this.props.podaci.state.porukeGreske[1]}</p></div>
               </FormGroup>
             </Form>
           </div>

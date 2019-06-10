@@ -141,17 +141,16 @@ class KreiranjeZadace extends Component {
         porukeGreske[4] = "";
       }
     }
-    if(this.state.listaBodova.length!=this.state.brojZadataka){
+    if (this.state.listaBodova.length != this.state.brojZadataka) {
       porukeGreske[5] =
-          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
-        return porukeGreske;
+        "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+      return porukeGreske;
     }
 
-    if(data.listaBodova.length==0)
-    {
+    if (data.listaBodova.length == 0) {
       porukeGreske[5] =
-          "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
-        return porukeGreske;
+        "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+      return porukeGreske;
     }
     for (var i = 0; i < data.listaBodova.length; i++) {
       var element = data.listaBodova[i];
@@ -207,9 +206,10 @@ class KreiranjeZadace extends Component {
           document.getElementById("datum").className = "form-control";
         {/*if (porukeGreske[3] == "")
       document.getElementById("naziv").className = "form-control";*/}
-        if (porukeGreske[3] == ""){ 
-      document.getElementById("brbodKILO").className = "form-control";
-      document.getElementById("brbodKILO").style.margin="0 auto";}
+        if (porukeGreske[3] == "") {
+          document.getElementById("brbodKILO").className = "form-control";
+          document.getElementById("brbodKILO").style.margin = "0 auto";
+        }
         if (valid) {
           document.getElementById("kreirajKilo").style.display = "none";
           document.getElementById("preview").style.display = "block";
@@ -240,7 +240,7 @@ class KreiranjeZadace extends Component {
           if (porukeGreske[3] !== "") {
             document.getElementById("brbodKILO").className =
               "form-control is-invalid";
-              document.getElementById("brbodKILO").style.margin="0 auto";
+            document.getElementById("brbodKILO").style.margin = "0 auto";
           }
           this.setState({
             validno: false
@@ -451,23 +451,23 @@ class KreiranjeZadace extends Component {
         </div>
         <div id="kreirajKilo" className="mt-4">
           <div class="container-fluid">
-          <div class="row">
-          <div class="col-3">
-          <OsnovniPodaci
-            title={this.props.title}
-            onChange={this.handleChange}
-            onChangePostavka={this.onChangePostavka}
-            podaci={this}
-          />
-          </div>
-          <div clas="col-3">
-          <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
-          </div>
-       
-          <div class="col-3">
-          <BodoviZadaca onChange={this.handleChange} podaci={this} />
-          </div>
-          </div>
+            <div class="row">
+              <div class="col-3">
+                <OsnovniPodaci
+                  title={this.props.title}
+                  onChange={this.handleChange}
+                  onChangePostavka={this.onChangePostavka}
+                  podaci={this}
+                />
+              </div>
+              <div clas="col-3">
+                <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
+              </div>
+
+              <div class="col-3">
+                <BodoviZadaca onChange={this.handleChange} podaci={this} />
+              </div>
+            </div>
           </div>
           <Button
             id="idiNaPreview"
@@ -481,8 +481,8 @@ class KreiranjeZadace extends Component {
         </div>
         <div id="preview">
           <PreviewZadace podaci={this.state} />
-          <Button 
-             className=" btn bg-primary"
+          <Button
+            className=" btn bg-primary"
             id="idiNaKreiranjeZadace"
             name="idiNaKreiranjeZadace"
             onClick={this.handleClick}

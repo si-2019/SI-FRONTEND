@@ -61,7 +61,7 @@ class BodoviZadaca extends Component {
                   disabled={this.props.podaci.state.radnja == "Azuriranje"}
                 />
               </div>
-              
+
               <div class="col">
                 <Button
                   id="sviBodoviIstiButton"
@@ -76,19 +76,19 @@ class BodoviZadaca extends Component {
                   OK
                 </Button>
                 <div
-                style={{
-                  visibility: !(
-                    this.props.podaci.state.porukeGreske[5] == "" ||
-                    this.props.podaci.state.porukeGreske[5] == undefined
-                  )
-                    ? "visible"
-                    : "hidden"
-                }}
-              >
-                <p className="text-danger">
-                  {this.props.podaci.state.porukeGreske[5]}
-                </p>
-              </div>
+                  style={{
+                    visibility: !(
+                      this.props.podaci.state.porukeGreske[5] == "" ||
+                      this.props.podaci.state.porukeGreske[5] == undefined
+                    )
+                      ? "visible"
+                      : "hidden"
+                  }}
+                >
+                  <p className="text-danger">
+                    {this.props.podaci.state.porukeGreske[5]}
+                  </p>
+                </div>
               </div>
               <hr />
             </div>

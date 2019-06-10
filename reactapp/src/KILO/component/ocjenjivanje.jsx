@@ -10,24 +10,24 @@ class Ocjenjivanje extends Component {
     super(props);
 
     this.state = {
-      listaZadaca: [{id: 1, naziv: "prva"}, {id: 2, naziv: "druga"}, {id: 0, naziv: "treca"}],
+      listaZadaca: [{ id: 1, naziv: "prva" }, { id: 2, naziv: "druga" }, { id: 0, naziv: "treca" }],
       studentiNisuPoslali: [],
       studentiNijePregledano: [],
       studentiPregledano: [],
       brojZadace: "",
       brojZadatka: "",
-      idZadatak:"",
+      idZadatak: "",
       osvojeniBodovi: 0,
       prepisano: false,
       komentar: "Alles gute Brudeeer",
       maxBrojBodovaZadatka: 5,
       student: "",
-      zadaca: "", 
+      zadaca: "",
       sumaOsvojeni: 0,
-      sumaMoguci:0,
+      sumaMoguci: 0,
       ostvareniMoguci: [],
       defaultno: "",
-      renderajOpet:false,
+      renderajOpet: false,
       idPredmeta: 3,
 
       idZadace: "",
@@ -41,7 +41,7 @@ class Ocjenjivanje extends Component {
         rokZaPredaju: "",
         stanjeZadatakaZadace: [],
         pregledanZadatak: [],
-        idZadatakaZadace:  []
+        idZadatakaZadace: []
       }
     };
   }
@@ -50,7 +50,7 @@ class Ocjenjivanje extends Component {
 
     this.pokupiZadace();
 
-    if(this.state.listaZadaca[0]!="") {
+    if (this.state.listaZadaca[0] != "") {
       this.setState({
         zadaca: this.state.listaZadaca[0].naziv,
         idZadace: this.state.listaZadaca[0].id,
@@ -63,14 +63,14 @@ class Ocjenjivanje extends Component {
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
   };
 
-pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
+  pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
     axios.get(`http://localhost:31911/getStudenteKojiSuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiPregledano: res.data
       });
     });
   };
-  
+
   pokupiStudenteKojiNisuPoslaliZadacu = (idZadace) => {
     axios.get(`http://localhost:31911/getStudenteKojiNisuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
@@ -105,7 +105,7 @@ pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
     });
   }
 
-  pokupiZadacuStudenta = async (idZadace,idStudenta) => {
+  pokupiZadacuStudenta = async (idZadace, idStudenta) => {
 
     idStudenta = 1;
     try {
@@ -116,11 +116,11 @@ pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
         zadacaState: res.data
       });
 
-      
-     // console.log(this.state.zadacaState);
+
+      // console.log(this.state.zadacaState);
       this.sumirajBodove();
       this.ostvareniBodovi();
-      
+
     } catch (e) {
       console.error("Error fetching zadaca by id", e);
     }
@@ -147,34 +147,34 @@ pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
         break;
       }
       case "ok": {
-        var infoOcjenjivanje=new FormData();
-        var kom=document.getElementById("komentar").value;
-        this.setState({komentar:kom});
-        infoOcjenjivanje.append('komentar', kom );
-        var osvojeniBod=document.getElementById("osvojeniBodovi").value;
-        infoOcjenjivanje.append('osvojeniBodovi', osvojeniBod );
+        var infoOcjenjivanje = new FormData();
+        var kom = document.getElementById("komentar").value;
+        this.setState({ komentar: kom });
+        infoOcjenjivanje.append('komentar', kom);
+        var osvojeniBod = document.getElementById("osvojeniBodovi").value;
+        infoOcjenjivanje.append('osvojeniBodovi', osvojeniBod);
 
-        var prepisan=document.getElementById("prepisanZadatak").checked===true;
-       
+        var prepisan = document.getElementById("prepisanZadatak").checked === true;
+
         infoOcjenjivanje.append('idZadatak', this.state.idZadatak);
         var stanjeZadatka;
 
-        if(prepisan===true) stanjeZadatka=3;
-        else if(kom!=="") stanjeZadatka=4;
-        else stanjeZadatka=2;
-        infoOcjenjivanje.append('prepisanZadatak', prepisan );
-        infoOcjenjivanje.append('stanjeZadatka', stanjeZadatka );
+        if (prepisan === true) stanjeZadatka = 3;
+        else if (kom !== "") stanjeZadatka = 4;
+        else stanjeZadatka = 2;
+        infoOcjenjivanje.append('prepisanZadatak', prepisan);
+        infoOcjenjivanje.append('stanjeZadatka', stanjeZadatka);
         axios.post("http://localhost:31911/ocijeniZadatak", infoOcjenjivanje).then(res => {
           if (res.status === 200) {
             this.setState({ uspjehOcjenjivanja: true });
-            if(this.state.renderajOpet==false){
+            if (this.state.renderajOpet == false) {
               this.setState({
-                renderajOpet:true
+                renderajOpet: true
               })
             }
-            else{
+            else {
               this.setState({
-                renderajOpet:false
+                renderajOpet: false
               })
             }
           } else if (res.status === 201) {
@@ -207,35 +207,35 @@ pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
     }
   };
 
-  handleBackNaJednaZadaca = (student,idStudenta) => {
+  handleBackNaJednaZadaca = (student, idStudenta) => {
     /*const res =  axios.get(
       `http://localhost:31911/getZadacuStudenta/${this.state.idZadace}/${this.state.idStudenta}`
     );
     this.setState({
       zadacaState: res.data
     });*/
-    if(this.state.renderajOpet==false){
+    if (this.state.renderajOpet == false) {
       this.setState({
-        renderajOpet:true
+        renderajOpet: true
       })
     }
-    else{
+    else {
       this.setState({
-        renderajOpet:false
+        renderajOpet: false
       })
     }
-      if(student!=""){
+    if (student != "") {
 
-        this.pokupiZadacuStudenta(this.state.idZadace, idStudenta);
+      this.pokupiZadacuStudenta(this.state.idZadace, idStudenta);
 
-        this.setState({
-          student: student,
-          idStudenta: idStudenta
-        });
+      this.setState({
+        student: student,
+        idStudenta: idStudenta
+      });
 
-        document.getElementById("ocjenjivanjePocetna").style.display = "none";
-        document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
-        document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
+      document.getElementById("ocjenjivanjePocetna").style.display = "none";
+      document.getElementById("ocjenjivanjeJednaZadaca").style.display = "block";
+      document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
 
     }
 
@@ -245,15 +245,15 @@ pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
 
 
   handleBackNaJednaIzborZadace = () => {
-  
-    if(this.state.renderajOpet==false){
+
+    if (this.state.renderajOpet == false) {
       this.setState({
-        renderajOpet:true
+        renderajOpet: true
       })
     }
-    else{
+    else {
       this.setState({
-        renderajOpet:false
+        renderajOpet: false
       })
     }
 
@@ -263,15 +263,15 @@ pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
 
   };
 
-  
+
 
   handleNaOcjenjivanjeJedanZadatak = (indeks) => {
-this.setState({idZadatak:this.state.zadacaState.idZadatakaZadace[indeks]});
+    this.setState({ idZadatak: this.state.zadacaState.idZadatakaZadace[indeks] });
 
     this.setState({
-      brojZadatka: indeks+1
+      brojZadatka: indeks + 1
     });
-  
+
     document.getElementById("ocjenjivanjePocetna").style.display = "none";
     document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "block";
@@ -291,7 +291,7 @@ this.setState({idZadatak:this.state.zadacaState.idZadatakaZadace[indeks]});
 
     var sumaBodova = 0;
 
-    for(var i=0;i<this.state.zadacaState.moguciBodovi.length;i++) sumaBodova = sumaBodova + this.state.zadacaState.moguciBodovi[i];
+    for (var i = 0; i < this.state.zadacaState.moguciBodovi.length; i++) sumaBodova = sumaBodova + this.state.zadacaState.moguciBodovi[i];
 
     this.setState({
       sumaMoguci: sumaBodova
@@ -299,7 +299,7 @@ this.setState({idZadatak:this.state.zadacaState.idZadatakaZadace[indeks]});
 
     sumaBodova = 0;
 
-    for(var i=0;i<this.state.zadacaState.ostvareniBodovi.length;i++) sumaBodova = sumaBodova + this.state.zadacaState.ostvareniBodovi[i];
+    for (var i = 0; i < this.state.zadacaState.ostvareniBodovi.length; i++) sumaBodova = sumaBodova + this.state.zadacaState.ostvareniBodovi[i];
 
     this.setState({
       sumaOsvojeni: sumaBodova
@@ -311,14 +311,14 @@ this.setState({idZadatak:this.state.zadacaState.idZadatakaZadace[indeks]});
   ostvareniBodovi = () => {
     var pomocniNiz = [];
 
-    for(var i=0;i<this.state.zadacaState.moguciBodovi.length;i++) pomocniNiz.push(this.state.zadacaState.ostvareniBodovi[i] + "/" + this.state.zadacaState.moguciBodovi[i]);
+    for (var i = 0; i < this.state.zadacaState.moguciBodovi.length; i++) pomocniNiz.push(this.state.zadacaState.ostvareniBodovi[i] + "/" + this.state.zadacaState.moguciBodovi[i]);
 
     this.setState({
       ostvareniMoguci: pomocniNiz
     });
   }
 
-  render( 
+  render(
   ) {
     console.log(this.state);
     return (
@@ -329,7 +329,7 @@ this.setState({idZadatak:this.state.zadacaState.idZadatakaZadace[indeks]});
         <div>
           <div id="ocjenjivanjeJednaZadaca">
             {/*ovdje ubaci svoju komponentu */}
-            <OcjenjivanjeJednaZadaca key={this.state.renderajOpet} podaci={this}/>
+            <OcjenjivanjeJednaZadaca key={this.state.renderajOpet} podaci={this} />
           </div>
         </div>
         <div id="ocjenjivanjeJedanZadatak">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Forma from './FormaOdsjek'
-import Povezivanje from './povezivanjeOdsjekPredmet'
+import Prikaz from './prikazOdsjeka'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -15,12 +15,11 @@ class DodajOdsjek extends Component {
                     <Forma />
                 </Tab>
 
-                <Tab eventKey="profile" title="Povezi odsjek sa predmetom">
-                    <Povezivanje />
+                <Tab eventKey="profile" title="Prikaz odsjeka">
+                    <Prikaz />
                 </Tab>
-
-                
             </Tabs>
+                
             </div>
         )
     }

@@ -20,17 +20,37 @@ class App extends Component {
   render() {
     const { open } = this.state;
     return (
-      <div className="appECHO">
-        <h2 id="naslov">ECHO</h2>
-        <div id="mainECHO">
-          <div id="leftECHO">
+      <div className="App">
+        <div
+          className="row"
+          id="mainECHO"
+          style={{ margin: "0px", padding: "0px" }}
+        >
+          <div
+            className="col-lg-2 col-md-3 col-sm-12"
+            style={{
+              backgroundColor: "#2C3E50",
+              minHeight: "100%",
+              padding: "0px",
+              margin: "0px"
+            }}
+          >
             <LeftMenu triggerChangeActiveId={this.onChangeActiveId} />
           </div>
-          <div id="rightECHO">
+          <div
+            className="col-lg flex-grow-1 col-sm-12 col-md"
+            style={{
+              backgroundColor: "white",
+              minHeight: "calc(100vh - 80px)",
+              margin: "0px",
+              padding: "0px"
+            }}
+          >
             <div
               id="terminDiv"
               style={{
-                display: this.state.activeContentId == 1 ? "inherit" : "none"
+                display: this.state.activeContentId == 1 ? "inherit" : "none",
+                width: "100%"
               }}
             >
               <NaslovnaTermin />
@@ -41,7 +61,7 @@ class App extends Component {
                 display: this.state.activeContentId == 2 ? "inherit" : "none"
               }}
             >
-            <Sale />
+              <Sale />
             </div>
             <div
               id="Kalendar"
@@ -49,7 +69,7 @@ class App extends Component {
                 display: this.state.activeContentId == 3 ? "inherit" : "none"
               }}
             >
-            <NaslovnaKalendar />
+              <NaslovnaKalendar />
             </div>
             <div
               id="PretragaProfesora"

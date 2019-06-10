@@ -116,6 +116,7 @@ class FormaPr extends Component {
         return (
           <div className="col-md-4 col-md-offset-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
+              <br />
               <label >Odsjek </label>
               <select className="custom-select" name="odsjek"  onChange={this.onChange} onChange={this.handleChange}> 
                
@@ -172,7 +173,7 @@ class FormaPr extends Component {
               <input className="form-control " type="text" name="titula" required onChange={this.handleChange} /><br />
             
               
-              <input type="submit" value="Submit" className="btn btn-success btn-block" />
+              <input type="submit" value="Dodaj" className="btn btn-primary btn-block" />
     </form>
     </div>
         );

@@ -17,7 +17,7 @@ class IzborVodje extends Component {
     kreirajFormu() {
         
         return (
-            <div className="card" style={{float: "left", width:"50%", top:"40px"}}> 
+            <div className="card" style={{float: "left", width:"100%", top:"40px"}}> 
                 <div class="card-body" id="formaIzbor">
                 <h4 class="card-title" style={{textAlign:"left"}}>Izbor vodje </h4>
                 <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unesite vodju za odabranu grupu</h6>

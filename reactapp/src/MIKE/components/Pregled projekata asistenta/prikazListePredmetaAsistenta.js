@@ -15,7 +15,7 @@ class ListaPredmetaAsistenta extends Component {
   }
    render(){
     if(this.state.detalji) return (
-      <div className="card" style={{float: "left", width:"50%"}}>
+      <div className="card" style={{float: "left", width:"100%"}}>
         <div className="card-body">
           <h4 className="card-title" style={{textAlign:"left"}}>Pregled projekata</h4>
 				  {/*<div className="col-md-auto" align="left">
@@ -40,7 +40,7 @@ class ListaPredmetaAsistenta extends Component {
       </div>
     )
     else return(
-      <div className="card" style={{float: "left", width:"50%"}}>
+      <div className="card" style={{float: "left", width:"100%"}}>
         <div className="card-body">
           <h4 className="card-title" style={{float:"left"}}>Pregled projekata</h4>
 				  {/*<div className="col-md-auto" align="left">

@@ -18,7 +18,7 @@ class GenerisanjeGrupa extends Component {
   }
   render() {
    	return ( 
-			 <div className="card" style={{float: "left", width:"50%"}}>
+			 <div className="card" style={{float: "left", width:"100%"}}>
 
 				 <div class="card-body"> 
 				 

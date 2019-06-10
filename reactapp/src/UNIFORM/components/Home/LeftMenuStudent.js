@@ -14,36 +14,46 @@ class LeftMenuStudent extends React.Component {
 
     render() {
         return (
-            <div >                
+            <div >
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons" 
                     id = "moj"
-                    onClick = {()=>this.changeActiveId(2)}>Raspored profesora
+                    onClick = {()=>this.changeActiveId(1)}
+                    style={{width:"100%"}}>Raspored studenta
+                </button>               
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons" 
+                    id = "moj"
+                    onClick = {()=>this.changeActiveId(2)}
+                    style={{width:"100%"}}>Raspored profesora
                 </button>
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons"
-                    onClick = {()=>this.changeActiveId(3)}>Raspored sale za studenta
+                    onClick = {()=>this.changeActiveId(3)}
+                    style={{width:"100%"}}>Raspored sale za studenta
                 </button>
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons"
-                    onClick = {()=>this.changeActiveId(4)}>Raspored sale za profesora
+                    onClick = {()=>this.changeActiveId(4)}
+                    style={{width:"100%"}}>Raspored sale za profesora
                 </button>
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons"
-                    onClick = {()=>this.changeActiveId(5)}>Grupe za studenta
+                    onClick = {()=>this.changeActiveId(5)}
+                    style={{width:"100%"}}>Grupe za studenta
                 </button>
                 <button 
                     type="button" 
                     className="btn btn-primary left-buttons"
-                    onClick = {()=>this.changeActiveId(6)}>Grupe za profesora
-                </button>
-    
+                    onClick = {()=>this.changeActiveId(6)}
+                    style={{width:"100%"}}>Grupe za profesora
+                </button>    
             </div>
-            
         );
    }
 };

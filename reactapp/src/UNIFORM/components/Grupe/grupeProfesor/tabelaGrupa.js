@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CustomInput, Form, FormGroup, Label, Input, Table } from "reactstrap";
 import Body_Cell from './body_cell.js';
 import Header_Cell from './header_cell.js';
 import Footer_Cell from './footer_cell.js';
@@ -76,17 +77,18 @@ export class tabela extends Component {
       <div>
       {picker}
       {redoslijed}
-      <table style={tableStyle}>
+      <Table bordered className="table table-bordered text-center border-solid">   
           <thead>
-              <Header_Cell naziv={this.props.naziv}/>
+          <Header_Cell naziv={this.props.naziv}/>
           </thead>
           <tbody>
+              
               {prijavljeniStudentiGrupe}
           </tbody> 
           <tfoot>                    
               <Footer_Cell redniBroj={this.props.redniBroj} lockState={this.props.lockState} izbrisiGrupu={this.izbrisiGrupu} stylish={stylish} poruka={poruka} redniBrojGrupe={this.props.grupa.idGrupaTermina}/>
           </tfoot>
-      </table>
+      </Table>
       </div>
     )
   }

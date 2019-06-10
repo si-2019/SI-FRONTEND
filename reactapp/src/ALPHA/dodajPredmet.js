@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import FormaPredmet from './FormaPredmet'
 import Forma from './editPredmeta'
 import FormaPrikaz from './prikazPredmeta'
-import FormaDodavanje from .'/povezivanjeOdsjekPredmet'
+import FormaDodavanje from './povezivanjeOdsjekPredmet'
 
 
 import Tabs from 'react-bootstrap/Tabs'

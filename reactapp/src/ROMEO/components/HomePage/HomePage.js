@@ -45,6 +45,9 @@ class Login extends Component {
       verzija:"v1.0.2.",
       body: data_3
     }];
+    if (this.state.logiran === false) {
+      return <Redirect to="/romeo/login" />
+    }
     return (
       <div className="App" >
       <button onClick={() => this.setState({ modalShow: true })} >Prikazi log</button>

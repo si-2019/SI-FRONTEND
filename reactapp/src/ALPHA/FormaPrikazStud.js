@@ -37,7 +37,7 @@ class prikazAsistenta extends Component{
       }) 
     }
 
-     }
+   
 
     render (){
         const {lista, search}=this.state

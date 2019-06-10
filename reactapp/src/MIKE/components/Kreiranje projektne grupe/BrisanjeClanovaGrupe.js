@@ -18,17 +18,19 @@ class BrisanjeClanova extends Component {
         render() {
             if(this.state.forma=="null") {
             return (
-                <div className="bs-component"> 
-                <h3>Brisanje clanova grupe:</h3>
-                <form> 
-                <select  className="form-control" style={{width: '400px'}} >
+                <div className="card" style={{float: "left", width:"100%", top:"40px"}}>
+                    <div class="card-body">  
+                <h4 class="card-title" style={{textAlign:"left"}}>Brisanje clanova grupe</h4>
+                <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Odaberite clana grupe kojeg zelite izbrisati</h6>
+                <br/>
+                <select  className="form-control"  >
                                         <option  className="list-group-item" value="" selected="selected">Odaberite grupu</option>
                                         <option className="list-group-item" value="grupa1" >Grupa 1</option>
                                         <option className="list-group-item" value="grupa2" >Grupa 2</option>
                                         <option className="list-group-item" value="grupa3" >Grupa 3</option>
                                     </select>
                                     <br/>
-                <select  multiple className="form-control" style={{width: '400px'}} >
+                <select  multiple className="form-control"  >
                  <option  className="list-group-item" value="" selected="selected">Odaberite clana grupe</option>
                  <option className="list-group-item" value="grupa1" >Clan 1</option>
                  <option className="list-group-item" value="grupa2" >Clan 2</option>
@@ -36,11 +38,12 @@ class BrisanjeClanova extends Component {
              </select>
              <br/>
                                     
-              <button className="btn btn-primary" onClick={this.uredjivanjeClanova}>Nazad</button>
-                 <button className="btn btn-primary" onClick={this.izbrisiClana}>Izbrisi</button>
-                 <button className="btn btn-primary" onClick={this.izborVodje}>Dalje</button>
+              <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.izborVodje}>Dalje</button>
+                 <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.izbrisiClana}>Izbrisi</button>
+                 <button className="btn btn-primary" style={{float:"left", margin:"10px"}} onClick={this.uredjivanjeClanova}>Nazad</button>
 
-                </form>
+              
+                </div>
                 </div>
              );
             }

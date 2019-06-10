@@ -9,7 +9,7 @@
     height: 10%;
  }
 #content{
-    height: 100%; 
+    height: auto; 
     width: 100%; 
     position: absolute;
 }

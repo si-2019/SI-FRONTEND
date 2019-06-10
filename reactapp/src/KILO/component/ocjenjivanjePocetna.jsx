@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {
-  Modal, 
-  ModalFooter, 
-  ModalBody, 
+  Modal,
+  ModalFooter,
+  ModalBody,
   ModalHeader,
   Button,
   ButtonDropdown,
@@ -17,7 +17,7 @@ class OcjenjivanjePocetna extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dropdownOpen : [false, false, false, false]
+      dropdownOpen: [false, false, false, false]
     }
     this.toggle = this.toggle.bind(this);
   }
@@ -34,124 +34,103 @@ class OcjenjivanjePocetna extends Component {
 
   }
 
+  componentDidMount = () => {
+    document.getElementById("ZadaceZaOcjenjivanje").style.display = "block";
+    document.getElementById("StudentiZaOcjenjivanje").style.display = "none";
+  }
+
+  postaviStudente = () => {
+    document.getElementById("StudentiZaOcjenjivanje").style.display = "block";
+    document.getElementById("ZadaceZaOcjenjivanje").style.display = "none";
+  }
+
   render() {
     return (
       <div>
-        
-        <Form>
-        <div class="container">
-          <br />
-          <div className="card-header bg-primary text-light">
+
+        <div class="card p-3 w-50 ml-5">
+          <div className="card-title">
             <h4>
-              <b>Ocjenjivanje zadaća </b>
+              <b>Ocjenjivanje zadaca </b>
             </h4>
           </div>
-          <div class="row">
-            <div class="col">
-              <br />
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen[0]}
-                toggle={() => this.toggle(0)}>
+          <div id="kontOcjenjivanje">
+            <div class="row">
+              <div class="col">
+                <div id="ZadaceZaOcjenjivanje">
+                  <select
+                    id="selK1"
+                    multiple=""
+                    className="custom-select w-50"
+                  >
+                    {this.props.podaci.state.listaZadaca.map(clan => (<option onClick={() => {
+                      this.props.podaci.postaviZadacu(clan.naziv, clan.id);
+                      this.props.podaci.pokupiStudenteKojimaNijePregledanaZadaca(clan.id);
+                      this.props.podaci.pokupiStudenteKojimaJePregledanaZadaca(clan.id);
+                      this.props.podaci.pokupiStudenteKojiNisuPoslaliZadacu(clan.id);
+                      this.postaviStudente();
+                    }} key={clan + 2000}>{clan.naziv}</option>))
+                    }
+                  </select>
+                </div>
+                <div id="StudentiZaOcjenjivanje">
+                  <br />
+                  <h6 id="nisupos">
+                    Studenti koji <b className="text-danger">nisu poslali </b>
+                    zadacu:
+              </h6>
+                  <select
+                    id="selK2"
+                    multiple=""
+                    className="custom-select w-50"
 
-                    <DropdownToggle caret className="bg-primary">
-                    Lista zadaća za ocjenjivanje
-                    </DropdownToggle>
-                    <DropdownMenu className="bg-primary">
-                    {this.props.podaci.state.listaZadaca.map(clan => (
-                        <DropdownItem
-                          onClick={() => this.props.podaci.postaviZadacu(clan.naziv, clan.id)}
-                          scope="col"
-                          key={clan+2000}
-                        >
-                          {clan.naziv}
-                        </DropdownItem>
-                    ))}
-                    </DropdownMenu>
+                  >
+                    {this.props.podaci.state.studentiNisuPoslali.map(clan =>
+                      (<option onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)} key={clan}>{clan.naziv}</option>))
+                    }
 
-              </ButtonDropdown>
-              <hr />
-              <br />
-              <h4 className="ml-3">
-                Studenti koji <b className="text-danger">nisu poslali</b>{" "}
-                zadaću:{" "}
-              </h4>
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen[1]}
-                toggle={() => this.toggle(1)}>
+                  </select>
+                  <h6 id="nijepreg">
+                    Studenti koji su poslali, ali{" "}
+                    <b className="text-warning">nije pregledano:</b>{" "}
+                  </h6>
+                  <select
+                    id="selK3"
+                    multiple=""
+                    className="custom-select w-50"
+                  >
+                    {this.props.podaci.state.studentiNijePregledano.map(clan =>
+                      (<option onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)} key={clan + 200}>{clan.naziv}
+                      </option>))
+                    }
 
-                    <DropdownToggle caret className = "custom-form-control ml-4 btn btn-danger">
-                    Lista studenata
-                    </DropdownToggle>
-                    <DropdownMenu className = "custom-form-control btn-danger">
-                    {this.props.podaci.state.studentiNisuPoslali.map(clan => (
-                        <DropdownItem
-                          onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)}
-                          scope="col"
-                          key={clan}
-                        >
-                          {clan.naziv}
-                        </DropdownItem>
-                    ))}
-                    </DropdownMenu>
-              </ButtonDropdown>
-              <br />
-              <br />
-              <h4 className="ml-3">
-                Studenti koji su poslali, ali{" "}
-                <b className="text-warning">nije pregledano:</b>{" "}
-              </h4>
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen[2]}
-                toggle={() => this.toggle(2)}>
+                  </select>
 
-                    <DropdownToggle caret className = "custom-form-control ml-4 btn btn-warning">
-                    Lista studenata
-                    </DropdownToggle>
-                    <DropdownMenu className = "custom-form-control btn-warning">
-                    {this.props.podaci.state.studentiNijePregledano.map(clan => (
-                        <DropdownItem
-                          onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)}
-                          scope="col"
-                          key={clan+200}
-                        >
-                          {clan.naziv}
-                        </DropdownItem>
-                    ))}
-                    </DropdownMenu>
-              </ButtonDropdown>
-              <br />
-              <br />
-              <h4 className="ml-3">
-                Studenti čije zadaće su{" "}
-                <b className="text-success">pregledane:</b>{" "}
-              </h4>
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen[3]}
-                toggle={() => this.toggle(3)}>
+                  <h6 id="jestepreg">
+                    Studenti cije zadace su{" "}
+                    <b className="text-success">pregledane:</b>{" "}
+                  </h6>
+                  <select
+                    id="selK4"
+                    multiple=""
+                    className="custom-select w-50"
+                  >
+                    {this.props.podaci.state.studentiPregledano.map(clan =>
+                      (<option onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)} key={clan + 1000}>{clan.naziv}
+                      </option>))
+                    }
 
-                    <DropdownToggle caret className = "custom-form-control ml-4 btn btn-success">
-                    Lista studenata
-                    </DropdownToggle>
-                    <DropdownMenu className = "custom-form-control btn-success">
-                    {this.props.podaci.state.studentiPregledano.map(clan => (
-                        <DropdownItem
-                          onClick={() => this.props.podaci.handleBackNaJednaZadaca(clan.naziv, clan.id)}
-                          scope="col"
-                          key={clan+1000}
-                        >
-                          {clan.naziv}
-                        </DropdownItem>
-                    ))}
-                    </DropdownMenu>
-              </ButtonDropdown>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
-        </Form>
       </div>
-      
     );
   }
 }
 
 export default OcjenjivanjePocetna;
+

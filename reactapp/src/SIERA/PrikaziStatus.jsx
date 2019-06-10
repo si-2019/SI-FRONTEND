@@ -80,22 +80,32 @@ Provjeri = provjeri => {
         
         return ( 
             <>
-            <div class="row" style={{ margin: "0px" }}>
-                <div class="col"></div>
-                <div class="col" style={{ textAlign: "center" }}>
-                    <div class="card" style={{ display: "inline-block" }}>
-                        <div class="card-body">
-                            <div style={{ visibility: "hidden" }}>dssffds</div>
-                            <div style={{ visibility: "hidden" }}>dssffds</div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" onClick={this.handleShow}>Prikazi status</button>
-                            <div style={{ visibility: "hidden" }}>dssffds</div>
-                            <div style={{ visibility: "hidden" }}>dssffds</div>
+             <div className="container-fluid" style={{ height: "100%" , marginTop: "-420px"}}>
+                    <div className="d-flex justify-content-center" style={{ height: "100%" }}>
+                        <div className="d-flex align-items-center">
+                            <div class="row" style={{ margin: "0px" }}>
+                                <div class="col-lg col-md" >
+
+                                    <div class="card" style={{ width: "30rem" }}>
+                                        <div class="card-body">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block" onClick={this.handleShow}>Prikazi status</button>
+                                        
+                                         
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col"></div>
-            </div>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+
+                    
+        <Modal show={this.state.show}  
+         size="lg"
+         aria-labelledby="contained-modal-title-vcenter"
+         centered
+        onHide={this.handleClose}
+        >
             <Modal.Header closeButton>
                 <Modal.Title>Završni rad</Modal.Title>
             </Modal.Header>
@@ -105,9 +115,8 @@ Provjeri = provjeri => {
             </div>
             </Modal.Body>
             <Modal.Footer>
-                <button variant="secondary" onClick={this.handleClose}>
-                    Close
-                </button>
+            <button type="submit" id="spasiBtn" onClick={this.handleClose} class="btn btn-primary">Close</button>
+               
             </Modal.Footer>
         </Modal>
 

@@ -129,7 +129,7 @@ render = () =>{
     }
 
     return (
-        <div>
+        <div class="p-2">
            <div style={naslovStyle}>
             <h1>{dataPredmet.naziv}</h1>             
            </div>

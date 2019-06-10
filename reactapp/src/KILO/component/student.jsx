@@ -66,7 +66,7 @@ class Student extends Component {
     else if (trengodina === nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
     else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
       povratna_vrijednost = false;
-    else if( trengodina === nasagodina && trenmjesec === nasmjesec && trendan === nasdan && this.state.vrijeme !== "23:59")
+    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan === nasdan && this.state.vrijeme !== "23:59")
       povratna_vrijednost = false;
     else povratna_vrijednost = true;
     return povratna_vrijednost;
@@ -132,7 +132,7 @@ class Student extends Component {
       });
       document.getElementById("uploadButton").disabled = false;
       this.setState({ blokirajSelect: false });
-      if(this.state.uploadZadatka[0] !== null) {
+      if (this.state.uploadZadatka[0] !== null) {
         document.getElementById("posalji1").disabled = false;
       }
     }
@@ -165,7 +165,7 @@ class Student extends Component {
 
         document.getElementById("uploadButton2").disabled = false;
         this.setState({ blokirajSelect2: false });
-        if(this.state.uploadZadatka[0] !== null) {
+        if (this.state.uploadZadatka[0] !== null) {
           document.getElementById("posalji2").disabled = false;
         }
       });
@@ -196,14 +196,14 @@ class Student extends Component {
   };
 
   handleClick = async event => {
-    var ime = event.target.name; 
+    var ime = event.target.name;
 
     switch (ime) {
 
       case "uploadFajla": {
-        
+
         var nazivUploada = document.getElementById("uploadButton").value;
-        if(nazivUploada === "") {
+        if (nazivUploada === "") {
           nazivUploada = document.getElementById("uploadButton2").value;
         }
 
@@ -211,8 +211,8 @@ class Student extends Component {
         var file = event.target.files[0];
 
         var velicinaFajla = file.size / 1000000;
-        velicinaFajla = parseInt(velicinaFajla*10) / 10;
-        if(velicinaFajla < 0.1) { // najmanje sto cemo upisivati u bazu je 0.1MB
+        velicinaFajla = parseInt(velicinaFajla * 10) / 10;
+        if (velicinaFajla < 0.1) { // najmanje sto cemo upisivati u bazu je 0.1MB
           velicinaFajla = 0.1
         }
 
@@ -220,72 +220,72 @@ class Student extends Component {
           // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 25 (MB)s
           var nazivFajlaSplit = file.name.split('.');
           var nazivFajla = "";
-          for(var i = 0; i < nazivFajlaSplit.length-1; i++) {
+          for (var i = 0; i < nazivFajlaSplit.length - 1; i++) {
             nazivFajla = nazivFajla + nazivFajlaSplit[i]
           }
 
           this.setState({
-            uploadZadatka : event.target.files,
-            velicinaFajla : velicinaFajla,
-            nazivFajla : nazivFajla,
-            tipFajla : ekstenzija
+            uploadZadatka: event.target.files,
+            velicinaFajla: velicinaFajla,
+            nazivFajla: nazivFajla,
+            tipFajla: ekstenzija
           })
         } else {  // upload neprihvatljiv
           this.setState({
-            uploadZadatka : [null],
-            velicinaFajla : "",
-            nazivFajla : "",
-            tipFajla : ""
+            uploadZadatka: [null],
+            velicinaFajla: "",
+            nazivFajla: "",
+            tipFajla: ""
           })
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
           alert("Nije dobar tip")
         }
-        
+
         break;
       }
 
       case "posaljiZadatak": {
 
         // logika provjere validnog vremena slanja
-        if(!this.testirajVrijeme(this.state.brojZadace)) {
+        if (!this.testirajVrijeme(this.state.brojZadace)) {
           this.setState({
-            uploadZadatka : [null],
-            velicinaFajla : "",
-            nazivFajla : "",
-            tipFajla : ""
+            uploadZadatka: [null],
+            velicinaFajla: "",
+            nazivFajla: "",
+            tipFajla: ""
           })
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
           alert("Vrijeme za slanje zadaće je isteklo!");
-          
+
           break;
         }
-        
+
         // datum i vrijeme slanja
         var datumIVrijemeSlanja = (new Date().getFullYear()).toString() + '-';
-        
-        if(new Date().getMonth() + 1 < 10) {
+
+        if (new Date().getMonth() + 1 < 10) {
           datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
         }
         datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getMonth() + 1).toString() + '-';
 
-        if(new Date().getDate() < 10) {
+        if (new Date().getDate() < 10) {
           datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
         }
         datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getDate()).toString() + ' ';
 
-        if(new Date().getHours() < 10) {
+        if (new Date().getHours() < 10) {
           datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
         }
         datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getHours()).toString() + ':';
-        
-        if(new Date().getMinutes() < 10) {
+
+        if (new Date().getMinutes() < 10) {
           datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
         }
         datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getMinutes()).toString() + ':';
-        
-        if(new Date().getSeconds() < 10) {
+
+        if (new Date().getSeconds() < 10) {
           datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
         }
         datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getSeconds()).toString();
@@ -294,57 +294,57 @@ class Student extends Component {
         const fData = new FormData();
         var file = this.state.uploadZadatka[0];
 
-        fData.append('file', new Blob([file], {type: file.type}));
+        fData.append('file', new Blob([file], { type: file.type }));
         fData.append('nazivFajla', this.state.nazivFajla);
         fData.append('velicinaFajla', this.state.velicinaFajla);
         fData.append('tipFajla', this.state.tipFajla);
         fData.append('idStudent', this.state.idStudenta);
         fData.append('idZadatak', this.state.idZadatak);
         fData.append("datumIVrijemeSlanja", datumIVrijemeSlanja);
-        
-        if(document.getElementById("uploadButton2").value === "") {  
+
+        if (document.getElementById("uploadButton2").value === "") {
           // prvi put slanje
           await axios.post("http://localhost:31911/slanjeZadatka", fData).then(res => {
-            if(res.status === 200) {
+            if (res.status === 200) {
               alert("Uspjesno ste poslati zadatak");
             }
-            else if(res.status === 201) {
+            else if (res.status === 201) {
               alert("Vec postoji ovaj zadatak")
             }
-            else {  
+            else {
               alert("Greska sa bazom")
             }
 
             // rutiranje nazad
           });
 
-        } else { 
+        } else {
           // ponovno slanje zadatka
           axios.put("http://localhost:31911/slanjeZadatka", fData).then(res => {
-            if(res.status === 200) {
+            if (res.status === 200) {
               alert("Uspjesno ste poslati zadatak");
             }
-            else if(res.status === 201) {
+            else if (res.status === 201) {
               alert("Vec postoji ovaj zadatak")
             }
-            else {  
+            else {
               alert("Greska sa bazom")
             }
-              
+
             //rutiranje nazad
           });
         }
 
-          
+
         break;
       }
 
       case "ponisti": {
         this.setState({
-          uploadZadatka : [null],
-          velicinaFajla : "",
-          nazivFajla : "",
-          tipFajla : ""
+          uploadZadatka: [null],
+          velicinaFajla: "",
+          nazivFajla: "",
+          tipFajla: ""
         })
         document.getElementById("uploadButton").value = null;
         document.getElementById("uploadButton2").value = null;
@@ -377,7 +377,7 @@ class Student extends Component {
     document.getElementById("zadatakVecPoslan").style.display = "none";
   }
   render() {
-   // console.log('State:', this.state);
+    // console.log('State:', this.state);
     return (
       <div>
         <div id="tabelaPregledaZadaca">

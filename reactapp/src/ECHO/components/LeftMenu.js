@@ -5,6 +5,7 @@ class LeftMenu extends React.Component {
     super(props);
     this.state = {
       activeDivId: 1 //open pokazuje da li formu treba prikazati ili ne
+      
     };
   }
 

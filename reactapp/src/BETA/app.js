@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Modal from 'react-responsive-modal'; //paket za gotove modale odnosno popup-e
 import './App.css';
-import NoviIssueForma from './komponente/Student/NoviIssueForma.js';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';

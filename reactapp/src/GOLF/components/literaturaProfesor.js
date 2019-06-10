@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UredjivanjeLiteratura from './uredjivanjeLiteratura';
 
 class LiteraturaProfesor extends Component {
   render() {

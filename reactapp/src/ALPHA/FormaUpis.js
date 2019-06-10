@@ -56,9 +56,12 @@ class FormaUpis extends Component {
         const { name, ciklus, sem, tip, odsjek } = this.state;
 
         return (
+          
           <div className="col-md-2">
           
             <form  onSubmit={this.OnSubmit} className="container-fluid">
+              
+              <br />
               <label>Ime i prezime studenta </label>
               <input className="form-control" type="text" name="name" value={name} onChange={this.handleInputChange} /><br />
 

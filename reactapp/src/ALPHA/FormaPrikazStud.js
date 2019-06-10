@@ -11,7 +11,7 @@ class FormaPrikazStud extends Component{
         }
         this.state = this.initialState
     }
-    componentDidMount(param){
+    componentDidMount(search){
         if(search==''){
         axios.get ('http://localhost:31901/api/korisnik/getAllStudents')
         .then(response => {

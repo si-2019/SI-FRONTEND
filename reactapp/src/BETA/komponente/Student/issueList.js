@@ -90,12 +90,14 @@ class IssueList extends React.Component {
         if (this.state.isLoading) {
             return (
                 <Spinner animation='border' role='status'>
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only">Učitavanje...</span>
                 </Spinner>
             );
         }
         return (
             <div >
+                 <div id="search-issue-tab-Beta">Ovdje ce biti search filter
+              </div>
                 <Tabs
                     className=".p-3"
                     id="tabs"
@@ -105,7 +107,7 @@ class IssueList extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="new"
-                        title={`New (${this.state.dataNew.length})`}
+                        title={`Novi (${this.state.dataNew.length})`}
                     >
                         {!this.state.isLoading &&
                             <div>
@@ -120,7 +122,7 @@ class IssueList extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="inProgress"
-                        title={`In progress (${this.state.dataInProgress.length})`}
+                        title={`U progresu (${this.state.dataInProgress.length})`}
                     >
                         {!this.state.isLoading  &&
                             <Issue triggerRefreshList = {this.onRefreshListInProgress}
@@ -132,7 +134,7 @@ class IssueList extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="resolved"
-                        title={`Resolved (${this.state.dataResolved.length})`}
+                        title={`Riješeni (${this.state.dataResolved.length})`}
                     >
                         {!this.state.isLoading &&
                             <Issue triggerRefreshList = {this.onRefreshListResolved}

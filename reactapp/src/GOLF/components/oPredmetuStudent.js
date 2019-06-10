@@ -23,10 +23,6 @@ class oPredmetuStudent extends Component {
         
         <div class='divsaokvirom'>
             <h4 class='naslov'> O predmetu </h4>
-            <p class='opis'> {this.props.opis} </p>
-            <div class='linkovi'>
-              {this.props.predmet.map(file => [<a href='#' onClick={this.skiniFile.bind(this,file.naziv,this.props.idpredmeta)} class='card-link' key='1'>{file.naziv}</a>,<br key='2'></br>])}
-            </div>
         </div>
     );
   }

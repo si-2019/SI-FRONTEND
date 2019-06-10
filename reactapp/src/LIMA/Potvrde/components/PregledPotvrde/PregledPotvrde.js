@@ -20,7 +20,6 @@ class PregledPotvrde extends Component {
     }
     render(){
         if(!this.state.student){
-            console.log('ja');
             return (
                 <div> loading... </div>
             );

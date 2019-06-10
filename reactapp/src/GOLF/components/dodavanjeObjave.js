@@ -3,18 +3,29 @@ import React, { Component } from 'react'
 class DodavanjeObjave extends Component{
     render(){
         return(
-            <div className="card border-success mb-3">
-                <div className="card-header">
-                    <a href="#"><h4>Dodavanje objave</h4></a>
+
+            <div>
+                <div class="card" id="dodavanjeObjave">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">Naslov: </label>
+                            <input type="text" class="form-control" id="inputDefault"></input>
+                         </div>
+                         <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">Opis: </label>
+                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                         </div>
+                         <div class="form-group">
+                            <label for="exampleInputFile">Datoteke: </label>
+                            <br></br>
+                            <input type="file"  multiple></input>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked=""></input>
+                    <label class="custom-control-label" for="customCheck1">Sakrij objavu</label>
                 </div>
-                <div className="card-body">
-                    <form>
-                        Naslov: <br></br><input id="naslovObjave" type="text" name="naslovObjave" class="form-control mr-sm-2"></input>
-                        Opis: <br></br>
-                        <textarea rows="4" id="opisObjave"  name="opisObjave" class="form-control mr-sm-2"cols="2000"></textarea>
-                       <br></br>
-                        <input className="dugmic" type="file" multiple></input>
-                    </form>
+                        <button type="button" class="btn btn-primary" id="dugmeObjavi">Objavi</button>
+                    </div>
                 </div>
             </div>
         )

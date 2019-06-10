@@ -8,24 +8,44 @@ import Col from 'react-bootstrap/Col';
 import '../../ZajednickiCSS.css'
 
 class StranicaPredmeta extends Component {
+  state = {
+    predmet: null,
+    grupaId: null
+  }
+  async componentDidMount(){
+    const predmetId = this.props.match.params.predmetId;
+    const params = new URLSearchParams(this.props.location.search);
+    const grupaId = (params.get('grupaId'))
+    console.log(predmetId, grupaId)
+    this.setState({
+      predmet:predmetId,
+      grupaId:grupaId
+    })
+  }
   render() {
+    const params = new URLSearchParams(this.props.location.search);
+    let predmetIgrupa = (params.get('predmetId'));
+    var res = predmetIgrupa.split("?");
+    console.log(predmetIgrupa, res);
+    const predmet = res[0];
+    const grupa = res[1];
+    localStorage.setItem("NazivPredmeta",predmet);
+   
     return (
       <div className="StranicaPredmeta" className="footerDno">
-        <Header isPocetna={false}/>
-        <Container fluid>
+        <Container fluid style={{padding:"0", margin: "0"}}>
           <Row>
-            <Col style={{textAlign: "center"}}>
-            <br></br>
-            <h4>Stranica predmeta</h4>
-            <br></br>
-            </Col> 
-          </Row>
-          <Row>
-            <Col></Col>
-            <Col>
-              <TabelaStudenti/>
+            <Col md="3">
+            <Header isPocetna={false}/>
             </Col>
-            <Col></Col>
+            <Col style={{textAlign: "left"}}>
+            <br></br>
+            <h4>Pregled studenata</h4>
+            <h5> {predmet && predmet}</h5>
+            <h5> {grupa && grupa}</h5>
+            <br></br>
+            <TabelaStudenti/>
+            </Col> 
           </Row>
         </Container>
         <Footer/>

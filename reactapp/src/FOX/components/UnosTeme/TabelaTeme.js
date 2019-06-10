@@ -32,7 +32,7 @@ class TabelaStudenti extends Component {
 
     componentDidMount() {
         //Promise
-        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/4') //idPredmeta kao parametar
+        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/64') //idPredmeta kao parametar iz local storega
             .then(
                 res => this.setState({teme: res.data})
             );
@@ -42,8 +42,8 @@ class TabelaStudenti extends Component {
         return (
             <Table striped bordered size="sm" responsive>
                 <thead>
-                    <tr>
-                    <th>#</th>
+                    <tr className="table-primary" hover="false">
+                    <th scope="row">#</th>
                     <th>Naziv</th>
                     <th>Opis</th>
                     <th>Odabrana</th>
@@ -55,13 +55,13 @@ class TabelaStudenti extends Component {
                 <tbody>
                     {
                         this.state.teme.map((teme, i) => {
-                            return <tr key={teme.id}>
-                                <td>{i+1}</td>
+                            return <tr className="table-light" hover="false" key={teme.id}>
+                                <td scope="row">{i+1}</td>
                                 <td>{teme.naziv}</td>
                                 <td>{teme.opis}</td>
                                 <td>{teme.odabrana}</td>
                                 <td>{teme.student}</td>
-                                <td><Button variant="primary" href={"izmjenaTeme/"+teme.id+"/"+teme.naziv+"/"+teme.opis}>Izmjeni</Button></td>
+                                <td><Form><Button variant="primary" href={"izmjenaTeme/"+teme.id+"/"+teme.naziv+"/"+teme.opis}>Izmjeni</Button></Form></td>
                                 <td><Form onSubmit={(e) => this.izbrisiTemu(e, teme.id)}>
                                     <Button variant="danger" type="submit">Izbriši</Button>
                                     </Form>
@@ -70,6 +70,19 @@ class TabelaStudenti extends Component {
                             
                         })
                     }
+
+                    <tr className="table-light" hover="false">
+                        <td scope="row">0</td>
+                        <td>Naziv</td>
+                        <td>Opis</td>
+                        <td>Da</td>
+                        <td>Neko Nekic</td>
+                        <td><Form><Button variant="primary" href="#">Izmjeni</Button></Form></td>
+                        <td><Form onSubmit={(e) => this.izbrisiTemu(e, 0)}>
+                            <Button variant="danger" type="submit">Izbriši</Button>
+                            </Form>
+                        </td>
+                    </tr>
                     
                 </tbody>
             </Table>   

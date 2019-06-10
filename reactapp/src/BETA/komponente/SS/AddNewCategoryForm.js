@@ -42,12 +42,12 @@ class AddNewCategoryForm extends React.Component {
 
                 <div className ="modal-content" id = "addNewCategoryModal">
                     <div className ="modal-header">
-                        <h5 className ="modal-title">Add new category</h5>
+                        <h5 className ="modal-title">Dodaj novu kategoriju</h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
                     <div className ="modal-body" id = "addNewCatModalBody">
-                        <label>Category Name:</label>
+                        <label>Ime kategorije:</label>
                         <input 
                             type = "text" 
                             name = "naziv" 
@@ -59,12 +59,12 @@ class AddNewCategoryForm extends React.Component {
                         <button 
                             type="submit" 
                             class="btn btn-primary"
-                            onClick = {this.onSubmit}>Add category</button>
+                            onClick = {this.onSubmit}>Dodaj kategoriju</button>
                         <button 
                             type="button" 
                             class="btn btn-secondary" 
                             data-dismiss="modal"
-                            onClick = {this.close}>Close</button>
+                            onClick = {this.close}>Zatvori</button>
                     </div>
                 </div>
         

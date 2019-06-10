@@ -14,7 +14,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Router>
         <div>
           <Route exact path ="/hotel/liste" component={MojeAnkete} /> 
           <Route path="/hotel/liste/mojeAnkete" component={MojeAnkete}/>
@@ -26,7 +25,6 @@ class App extends Component {
           <Route path="/hotel/liste/popunjeneAnketeProf" component={PopunjeneAnketeProf}/>
           <Route path="/hotel/liste/anketePoPredmetimaStudenti" component={AnketePoPredmetimaStudenti} />
           </div>
-        </Router>
       </div>
     );
   }

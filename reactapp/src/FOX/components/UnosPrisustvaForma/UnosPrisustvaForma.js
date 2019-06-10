@@ -1,9 +1,11 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import './UnosPrisustvaForma.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function UnosPrisustvaForma(props) {
     const daStyle = {
@@ -17,157 +19,201 @@ function UnosPrisustvaForma(props) {
 
     return (
         <div id="unosPrisustvaFormaID">
-            <Form onSubmit={props.handleSubmitSvi}>
-            <h4>Unos prisustva za sedmicu {props.data.sedmica}<br/><br/></h4>
-                <Form.Row>
-                    <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <h5>Unos prisustva za sve studente</h5>
-                    </Col>
-                </Form.Row>
-                
-                <Form.Row >
-                    <Col></Col>
-                    <Form.Group as={Col} sm={{span: 3}}>
-                        <Form.Label>Predavanje</Form.Label>
-                        <Form.Control
-                            as="select"
-                            name="predavanjeSvi"
-                            value={props.data.predavanjeSvi}
-                            style={props.data.predavanjeSvi === "da" ? daStyle : props.data.predavanjeSvi === "ne" ? neStyle : null}
-                            onChange={props.handleChangeSvi}>
-                            <option value="izaberiOpciju">Izaberi opciju</option>
-                            <option value="da">Da</option>
-                            <option value="ne">Ne</option>
-                            <option value="-">-</option>
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} sm={{span: 3}}>
-                        <Form.Label>Vježba</Form.Label>
-                        <Form.Control
-                            as="select"
-                            name="vjezbaSvi"
-                            style={props.data.vjezbaSvi === "da" ? daStyle : props.data.vjezbaSvi === "ne" ? neStyle : null}
-                            value={props.data.vjezbaSvi}
-                            onChange={props.handleChangeSvi}>
-                            <option value="izaberiOpciju">Izaberi opciju</option>
-                            <option value="da">Da</option>
-                            <option value="ne">Ne</option>
-                            <option value="-">-</option>
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} sm={{span: 3}}>
-                        <Form.Label>Tutorijal</Form.Label>
-                        <Form.Control
-                            as="select"
-                            style={props.data.tutorijalSvi === "da" ? daStyle : props.data.tutorijalSvi === "ne" ? neStyle : null}
-                            name="tutorijalSvi"
-                            value={props.data.tutorijalSvi}
-                            onChange={props.handleChangeSvi}>
-                            <option value="izaberiOpciju">Izaberi opciju</option>
-                            <option value="da">Da</option>
-                            <option value="ne">Ne</option>
-                            <option value="-">-</option>
-                        </Form.Control>
-                    </Form.Group>
-                    <Col></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col style={{textAlign: "center"}} sm={{span: 4, offset: 4}}>
-                        <Button     
-                            variant="primary"
-                            type="submit"
-                            disabled={
-                                props.data.predavanjeSvi === "izaberiOpciju" &&
-                                props.data.vjezbaSvi === "izaberiOpciju" &&
-                                props.data.tutorijalSvi === "izaberiOpciju" ? true : false}>
-                            Ažuriraj tabelu
-                        </Button>
-                    </Col>
-                </Form.Row>
-            </Form>
 
-            <br/>
+            <Container fluid style={{padding:"0", margin: "0"}}>
+                <Row style={{margin: "0"}}>
+                    <Col style={{textAlign: "left"}}>
+                        <br/>
+                        <h4>Unos prisustva za sedmicu {props.data.sedmica}</h4>
+                    </Col> 
+                </Row >
 
-            <Form onSubmit={props.onSubmit}>
-                <Form.Row>
-                    <Col sm={{span: 8, offset: 2}} style={{textAlign: "center"}}>
-                        <h5>Unos prisustva pojedinačno</h5>
-                    </Col>
-                </Form.Row>
+                <Row style={{margin: "0"}}>
+                    <Col style={{textAlign: "left"}}>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center" >Unos prisustva za sve studente</h4>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Unos prisustva za sve studente omogućava brz unos prisustva za sve.</h6>
+                                <br/>
+                                <div>
+                                    <Form onSubmit={props.handleSubmitSvi}>
+                                        
+                                        <Form.Row >
+                                            <Col></Col>
+                                            <Form.Group as={Col} sm={{span: 3}} style={{textAlign: "left"}}>
+                                                <div class="form-group">
+                                                    <label for="predavanjeSelect">Predavanje</label>
+                                                    <select
+                                                        id="predavanjeSelect"
+                                                        class="custom-select"
+                                                        style={props.data.predavanjeSvi === "da" ? daStyle : props.data.predavanjeSvi === "ne" ? neStyle : null}
+                                                        name="predavanjeSvi"
+                                                        value={props.data.predavanjeSvi}
+                                                        onChange={props.handleChangeSvi}>
+                                                        <option value="izaberiOpciju">Izaberi opciju</option>
+                                                        <option value="da">Da</option>
+                                                        <option value="ne">Ne</option>
+                                                        <option value="-">-</option>
+                                                    </select>
+                                                </div>
+                                            </Form.Group>
+                                            <Form.Group as={Col} sm={{span: 3}} style={{textAlign: "left"}}>
+                                                <div class="form-group">
+                                                    <label for="vjezbaSelect">Vježba</label>
+                                                    <select
+                                                        id="vjezbaSelect"
+                                                        class="custom-select"
+                                                        style={props.data.vjezbaSvi === "da" ? daStyle : props.data.vjezbaSvi === "ne" ? neStyle : null}
+                                                        name="vjezbaSvi"
+                                                        value={props.data.vjezbaSvi}
+                                                        onChange={props.handleChangeSvi}>
+                                                        <option value="izaberiOpciju">Izaberi opciju</option>
+                                                        <option value="da">Da</option>
+                                                        <option value="ne">Ne</option>
+                                                        <option value="-">-</option>
+                                                    </select>
+                                                </div>
+                                            </Form.Group>
+                                            <Form.Group as={Col} sm={{span: 3}} style={{textAlign: "left"}}> 
+                                                <div class="form-group">
+                                                    <label for="tutorijalSelect">Tutorijal</label>
+                                                    <select
+                                                        id="tutorijalSelect"
+                                                        class="custom-select"
+                                                        style={props.data.tutorijalSvi === "da" ? daStyle : props.data.tutorijalSvi === "ne" ? neStyle : null}
+                                                        name="tutorijalSvi"
+                                                        value={props.data.tutorijalSvi}
+                                                        onChange={props.handleChangeSvi}>
+                                                        <option value="izaberiOpciju">Izaberi opciju</option>
+                                                        <option value="da">Da</option>
+                                                        <option value="ne">Ne</option>
+                                                        <option value="-">-</option>
+                                                    </select>
+                                                </div>
+                                            </Form.Group>
+                                            <Col></Col>
+                                        </Form.Row>
+                                        <Form.Row>
+                                            <Col></Col>
+                                            <Col md="auto" style={{textAlign: "center"}}>
+                                                <Button     
+                                                    variant="primary"
+                                                    type="submit"
+                                                    disabled={
+                                                        props.data.predavanjeSvi === "izaberiOpciju" &&
+                                                        props.data.vjezbaSvi === "izaberiOpciju" &&
+                                                        props.data.tutorijalSvi === "izaberiOpciju" ? true : false}>
+                                                    Ažuriraj tabelu
+                                                </Button>
+                                            </Col>
+                                            <Col></Col>
+                                        </Form.Row>
+                                    </Form>
+                                </div>
+                            </div>
+                        </div>
+                    </Col> 
+                </Row >
 
-                <Form.Row>
-                    <Col sm={{offset: 1, span: 10}}>
-                        <Table striped bordered hover size="sm" responsive>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Index</th>
-                                    <th>Ime i Prezime</th>
-                                    <th>Predavanje</th>
-                                    <th>Vježba</th>
-                                    <th>Tutorijal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    props.data.studenti.map((student, counter) =>
-                                        <tr key={student.id}>
-                                            <td>{counter + 1}</td>
-                                            <td>{student.indeks}</td>
-                                            <td>{student.ime}</td>
-                                            <td>
-                                                <Form.Control 
-                                                    as="select"
-                                                    style={student.predavanje === "da" ? daStyle : student.predavanje === "ne" ? neStyle : null}
-                                                    name="predavanje"
-                                                    value={student.predavanje}
-                                                    onChange={(event) => {props.handleChange(event, student.indeks)}}>
-                                                <option value="da">Da</option>
-                                                <option value="ne">Ne</option>
-                                                <option value="-">-</option>
-                                                </Form.Control>
-                                            </td>
-                                            <td>
-                                                <Form.Control
-                                                    as="select"
-                                                    style={student.vjezbe === "da" ? daStyle : student.vjezbe === "ne" ? neStyle : null}
-                                                    name="vjezbe"
-                                                    value={student.vjezbe}
-                                                    onChange={(event) => {props.handleChange(event, student.indeks)}}>
-                                                <option value="da">Da</option>
-                                                <option value="ne">Ne</option>
-                                                <option value="-">-</option>
-                                                </Form.Control>
-                                            </td>
-                                            <td>
-                                                <Form.Control
-                                                    as="select"
-                                                    style={student.tutorijal === "da" ? daStyle : student.tutorijal === "ne" ? neStyle : null}
-                                                    name="tutorijal"
-                                                    value={student.tutorijal}
-                                                    onChange={(event) => {props.handleChange(event, student.indeks)}}>
-                                                <option value="da">Da</option>
-                                                <option value="ne">Ne</option>
-                                                <option value="-">-</option>
-                                                </Form.Control>
-                                            </td>
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
-                        </Table>
-                    </Col>
-                </Form.Row>
+                <Row style={{margin: "0"}}>
+                    <Col style={{textAlign: "left"}}>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Unos prisustva pojedinačno</h4>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Unos prisustva pojedinačno omogućava unos prisustva za svakog studenta posebno.</h6>
+                                <br/>
+                                <div>
+                                    <Form onSubmit={props.onSubmit}>
 
-                <Form.Row>
-                    <Col  style={{textAlign: "center"}} sm={{span: 4, offset: 4}}>
-                    <Button variant="primary" type="submit">
-                        Sačuvaj
-                    </Button>
-                    </Col>
-                </Form.Row>
+                                        <Form.Row>
+                                            <Col sm={{span: 12}}>
+                                                <Table striped bordered size="sm" responsive>
+                                                    <thead>
+                                                        <tr className="table-primary" hover="false">
+                                                            <th>#</th>
+                                                            <th>Index</th>
+                                                            <th>Ime i Prezime</th>
+                                                            <th>Predavanje</th>
+                                                            <th>Vježba</th>
+                                                            <th>Tutorijal</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {
+                                                            props.data.studenti.map((student, counter) =>
+                                                                <tr key={student.id}>
+                                                                    <td>{counter + 1}</td>
+                                                                    <td>{student.indeks}</td>
+                                                                    <td>{student.ime}</td>
+                                                                    <td>
+                                                                        <div class="form-group" style={{margin: "0"}}>
+                                                                            <select
+                                                                                class="custom-select"
+                                                                                style={student.predavanje === "da" ? daStyle : student.predavanje === "ne" ? neStyle : null}
+                                                                                name="predavanje"
+                                                                                value={student.predavanje}
+                                                                                onChange={(event) => {props.handleChange(event, student.indeks)}}>
+                                                                                <option value="da">Da</option>
+                                                                                <option value="ne">Ne</option>
+                                                                                <option value="-">-</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group" style={{margin: "0"}}>
+                                                                            <select
+                                                                                class="custom-select"
+                                                                                style={student.vjezbe === "da" ? daStyle : student.vjezbe === "ne" ? neStyle : null}
+                                                                                name="vjezbe"
+                                                                                value={student.vjezbe}
+                                                                                onChange={(event) => {props.handleChange(event, student.indeks)}}>
+                                                                                <option value="da">Da</option>
+                                                                                <option value="ne">Ne</option>
+                                                                                <option value="-">-</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group" style={{margin: "0"}}>
+                                                                            <select
+                                                                                class="custom-select"
+                                                                                style={student.tutorijal === "da" ? daStyle : student.tutorijal === "ne" ? neStyle : null}
+                                                                                name="tutorijal"
+                                                                                value={student.tutorijal}
+                                                                                onChange={(event) => {props.handleChange(event, student.indeks)}}>
+                                                                                <option value="da">Da</option>
+                                                                                <option value="ne">Ne</option>
+                                                                                <option value="-">-</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            )
+                                                        }
+                                                    </tbody>
+                                                </Table>
+                                            </Col>
+                                        </Form.Row>
 
-            </Form>
+                                        <Form.Row>
+                                            <Col></Col>
+                                            <Col md="auto" style={{textAlign: "center"}}>
+                                            <Button variant="primary" type="submit">
+                                                Sačuvaj
+                                            </Button>
+                                            </Col>
+                                            <Col></Col>
+                                        </Form.Row>
+
+                                    </Form>
+                                </div>
+                            </div>
+                        </div>
+                    </Col> 
+                </Row >
+
+            </Container>
+
         </div>
     );
 }

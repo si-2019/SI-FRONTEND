@@ -1,0 +1,32 @@
+#terminCardTitle {
+  text-align: left;
+}
+
+#terminCardBody {
+  display: flex;
+  flex-direction: column;
+}
+
+#terminCard {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -10%) perspective(1px);
+}
+
+#listaDana,
+#satnica,
+#brCasova {
+  align-self: flex-start;
+  width: 97%;
+}
+
+#dugme {
+  width: fit-content;
+  align-self: flex-end;
+}
+
+#alertID {
+  text-align: left;
+}

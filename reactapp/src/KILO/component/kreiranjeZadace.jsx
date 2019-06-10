@@ -58,7 +58,7 @@ class KreiranjeZadace extends Component {
   };
 
   componentDidMount = () => {
-    document.getElementById("kreiranje").style.display = "block";
+    document.getElementById("kreirajKilo").style.display = "block";
     document.getElementById("preview").style.display = "none";
     this.handleChangeProps(this.props);
   };
@@ -211,7 +211,7 @@ class KreiranjeZadace extends Component {
       document.getElementById("brbod").className = "form-control";
       document.getElementById("brbod").style.margin="0 auto";}
         if (valid) {
-          document.getElementById("kreiranje").style.display = "none";
+          document.getElementById("kreirajKilo").style.display = "none";
           document.getElementById("preview").style.display = "block";
           this.setState({
             validno: true
@@ -250,7 +250,7 @@ class KreiranjeZadace extends Component {
       }
       case "idiNaKreiranjeZadace": {
         // prelazak sa previewa na kreiranje zadace
-        document.getElementById("kreiranje").style.display = "block";
+        document.getElementById("kreirajKilo").style.display = "block";
         document.getElementById("preview").style.display = "none";
         break;
       }
@@ -302,7 +302,7 @@ class KreiranjeZadace extends Component {
   };
 
   klik_isti_br_bod = () => {
-    var isti_br_bod = parseFloat(document.getElementById("brbod").value);
+    var isti_br_bod = parseFloat(document.getElementById("brbodKILO").value);
 
     var daLi = document.getElementById("customSwitch1").checked === true;
     this.setState({ sviBodoviIsti: daLi });
@@ -395,8 +395,8 @@ class KreiranjeZadace extends Component {
               ))}
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={this.ugasiModal}>
-                Cancel
+              <Button color="primary w-25" onClick={this.ugasiModal}>
+                Zatvori
               </Button>
             </ModalFooter>
           </Modal>*/}
@@ -449,28 +449,40 @@ class KreiranjeZadace extends Component {
             </ModalFooter>
           </Modal>
         </div>
-        <div id="kreiranje">
+        <div id="kreirajKilo" className="mt-4">
+          <div class="container-fluid">
+          <div class="row">
+          <div class="col-3">
           <OsnovniPodaci
             title={this.props.title}
             onChange={this.handleChange}
             onChangePostavka={this.onChangePostavka}
             podaci={this}
           />
+          </div>
+          <div clas="col-3">
           <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
+          </div>
+       
+          <div class="col-3">
           <BodoviZadaca onChange={this.handleChange} podaci={this} />
+          </div>
+          </div>
+          </div>
           <Button
             id="idiNaPreview"
             name="idiNaPreview"
             onClick={this.handleClick}
             color="info"
+            class="btn btn-primary"
           >
             Preview zadace
           </Button>
         </div>
         <div id="preview">
           <PreviewZadace podaci={this.state} />
-          <Button
-            className=" btn bg-primary ml-4"
+          <Button 
+             className=" btn bg-primary"
             id="idiNaKreiranjeZadace"
             name="idiNaKreiranjeZadace"
             onClick={this.handleClick}

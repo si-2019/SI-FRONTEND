@@ -11,7 +11,7 @@ class OsnovniPodaci extends Component {
     if(this.props.podaci.state.radnja === "Azuriranje") {
       axios.get(`http://localhost:31911/getImeFajla/${this.props.podaci.state.idZadaca}`, ).then(res => {
         if(res.data === "") { // nema fajla postavke za odabranu zadacu 
-          tekstOPrethodnojPostavci = "Nema fajla postavke za odabranu zadaću";
+          tekstOPrethodnojPostavci = "Nema fajla postavke za odabranu zadacu";
         } else { // ima fajla postavke za odabranu zadacu
           tekstOPrethodnojPostavci = "Naziv postavke: " + res.data;        } 
       })
@@ -19,18 +19,18 @@ class OsnovniPodaci extends Component {
     return (
       <div>
         <div>
-          <div id="formakreiraj" className="formaKreiranjaZadace">
+          <div className="card h-100" style={{width: "18rem"}} >
             <Form>
-              <div id="naslovK" className="card-header  text-black mb-4 ">
+              <div  id="kreirajT" className="card-title p-2 ">
                 <h4>
-                  <b>{title ? title : "Kreiranje zadaće"}</b>
+                  <b>{title ? title : "Kreiranje zadace"}</b>
                 </h4>
               </div>
               <FormGroup>
-                <Label for="naziv" >Naziv:</Label>
+                <label for="naziv" class="lab">Naziv:</label>
                 {/*Tu ispod se nalazi onChange za spremanje naziva */}
                 <input
-                  class="form-control"
+                 class="form-control p-2"
                   value={this.props.podaci.state.naziv}
                   type="text"
                   name="naziv"
@@ -53,7 +53,7 @@ class OsnovniPodaci extends Component {
                 <div style={{ visibility: !(this.props.podaci.state.porukeGreske[2]=="" || this.props.podaci.state.porukeGreske[2]== undefined) ? "visible" : "hidden"}}><p class="text-danger">{this.props.podaci.state.porukeGreske[2]}</p></div>
               </FormGroup>
               <FormGroup>
-                <Label for="vrijeme">Vrijeme roka predaje:</Label>
+                <label class="lab1" for="vrijeme">Vrijeme roka predaje:</label>
                 <Input
                   value={this.props.podaci.state.vrijeme}
                   type="time"
@@ -64,15 +64,15 @@ class OsnovniPodaci extends Component {
                 />
               </FormGroup>
               <FormGroup encType="multipart/form-data">
-                <Label for="file">Postavka:</Label>
+                <label id="pos" for="file">Postavka:</label>
                 <Input type="file" name="file" id="file" 
                   onChange={this.props.onChangePostavka}
                 />
-                <FormText color="info">Ovo je opcionalna mogućnost</FormText>
+                <small id="opc" class="form-text" color="info">Ovo je opcionalna mogucnost</small>
                {/* <FormText color="info">{tekstOPrethodnojPostavci}</FormText> */}
               </FormGroup>
               <FormGroup>
-                <Label for="brojZadataka">Broj zadataka:</Label>
+                <label id="brZ" for="brojZadataka">Broj zadataka:</label>
                 <Input
                   class="form-control"
                   value={this.props.podaci.state.brojZadataka}

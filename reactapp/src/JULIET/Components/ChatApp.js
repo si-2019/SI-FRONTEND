@@ -490,7 +490,7 @@ class ChatApp extends Component {
     }
     }
     render() {
-        let colorScheme = this.state.colorForUser != null ? this.state.colorForUser : "#fcfcfc";
+        let colorScheme = this.state.colorForUser != null ? this.state.colorForUser : "#2C3E50";
         const {
             showColorPicker,
         } = this.state;
@@ -520,24 +520,13 @@ class ChatApp extends Component {
                     <div className="juliet-messages">
                         <MessageList currentId={this.props.currentId} replyToMessage={this.handleReply} currentRoom={this.state.currentRoom}
                             messages={this.state.messages.slice(0).slice(-30)} pinMessage={this.pinMessage} downloadClick={this.downloadClick} deleteClick={this.deleteClick}
-                            users={this.state.users}/>
+                            users={this.state.users} colorScheme={colorScheme}/>
                         <TypingIndicator typingUsers={this.state.typingUsers} />
                     </div>
                     
                     <div className="juliet-input-all">
                         <Input onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
                         <UploadFile onSubmit={this.uploadFile} />
-                        <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >
-                        {this.state.showColorPicker ? 
-                            <SwatchesPicker onChange={this.handleColorChange}/> 
-                        : null}
-                        </ul>
-                        {/* <button
-                            type="button"
-                            className="juliet-toggle-colors"
-                            onClick={this.toggleColorPicker}>
-                            <Droplet />
-                        </button> */}
                     </div>
                     
                 </div>
@@ -554,6 +543,26 @@ class ChatApp extends Component {
                     <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id}/>
                     <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
                     <EventPlanner currentId={this.props.currentId}/> 
+                    <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >
+                        {this.state.showColorPicker ? 
+                            <SwatchesPicker onChange={this.handleColorChange}/> 
+                        : null}
+                    </ul>
+                    <div style={{width: '100%', padding: '10px 0'}}>   
+                        <div className="juliet-section-h">
+                        <div className="juliet-section-header" style={{width: 'calc(100% - 24px)'}}>
+                            <h5 style={{display: 'inline-block'}}>Choose theme:</h5>
+                        </div>
+                        <button
+                            style={{display: 'inline-block'}}
+                            type="button"
+                            className="juliet-toggle-colors"
+                            onClick={this.toggleColorPicker}>
+                            <Droplet />
+                        </button>   
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         )

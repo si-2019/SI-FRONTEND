@@ -34,33 +34,49 @@ class OcjenjivanjePocetna extends Component {
 
   }
 
+ componentDidMount = () => {
+    document.getElementById("ZadaceZaOcjenjivanje").style.display = "block";
+    document.getElementById("StudentiZaOcjenjivanje").style.display = "none";
+  }
+
+  postaviStudente = () => {
+    document.getElementById("StudentiZaOcjenjivanje").style.display = "block";
+    document.getElementById("ZadaceZaOcjenjivanje").style.display = "none";
+  }
+
   render() {
     return (
       <div>
         
-        
         <div class="card p-3 w-50 ml-5">
           <div className="card-title">
             <h4>
-              <b>Ocjenjivanje zadaća </b>
+              <b>Ocjenjivanje zadaca </b>
             </h4>
           </div>
           <div id="kontOcjenjivanje">
           <div class="row">
             <div class="col">
+	<div id="ZadaceZaOcjenjivanje">
             <select
             id="selK1"
             multiple=""
             className="custom-select w-50"
           >
-            {this.props.podaci.state.listaZadaca.map(clan => (<option onClick={() => this.props.podaci.postaviZadacu(clan.naziv, clan.id)} key={clan+2000}>{clan.naziv}</option>))
+            {this.props.podaci.state.listaZadaca.map(clan => (<option onClick={() => {
+			  this.props.podaci.postaviZadacu(clan.naziv, clan.id);
+                          this.props.podaci.pokupiStudenteKojimaNijePregledanaZadaca(clan.id);
+                          this.props.podaci.pokupiStudenteKojimaJePregledanaZadaca(clan.id);
+                          this.props.podaci.pokupiStudenteKojiNisuPoslaliZadacu(clan.id);
+                          this.postaviStudente();} }key={clan+2000}>{clan.naziv}</option>))
               }
           </select>
-             
+             </div>
+              <div id="StudentiZaOcjenjivanje">
               <br />
               <h6  id="nisupos">
                 Studenti koji <b className="text-danger">nisu poslali </b>
-                zadaću:
+                zadacu:
               </h6>
               <select
               id="selK2"
@@ -90,7 +106,7 @@ class OcjenjivanjePocetna extends Component {
           </select>
             
               <h6 id="jestepreg">
-                Studenti čije zadaće su{" "}
+                Studenti cije zadace su{" "}
                 <b className="text-success">pregledane:</b>{" "}
               </h6>
               <select
@@ -104,7 +120,7 @@ class OcjenjivanjePocetna extends Component {
               }
           
           </select>
-              
+             </div> 
             </div>
           </div>
         </div>
@@ -116,3 +132,4 @@ class OcjenjivanjePocetna extends Component {
 }
 
 export default OcjenjivanjePocetna;
+

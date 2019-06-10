@@ -128,8 +128,8 @@ class Forma extends Component {
               <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />
 
-              <label>  indeks </label>
-              <input className="form-control" type="text" name="index" value={indeks} onChange={this.handleChange} /><br />
+              <label>  Indeks </label>
+              <input className="form-control" type="text" name="indeks" value={indeks} onChange={this.handleChange} /><br />
               
               <input type="submit" value="Izmijeni" className="btn btn-primary btn-block" />
              </form><br />

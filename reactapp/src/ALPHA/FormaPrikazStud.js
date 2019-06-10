@@ -23,7 +23,7 @@ class FormaPrikazStud extends Component{
         })
       }
       else{
-        axios.get ('http://localhost:31901/api/korisnik/searchStudent?ime='+param)
+        axios.get ('http://localhost:31901/api/korisnik/searchStudent?ime='+search)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: [response.data]});

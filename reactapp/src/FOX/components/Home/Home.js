@@ -14,7 +14,7 @@ const Home = () => {
         <div className="footerDno" style={{paddingBottom: "50px"}}>
             <Container fluid style={{padding:"0", margin: "0"}}>
                 <Row noGutters>
-                    <Col>
+                    <Col md="3">
                         <Header isPocetna={true}/>
                     </Col>
                     <Col style={{textAlign: "center"}}>

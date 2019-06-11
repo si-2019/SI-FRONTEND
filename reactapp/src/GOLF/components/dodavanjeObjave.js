@@ -20,6 +20,10 @@ class DodavanjeObjave extends Component{
                             <br></br>
                             <input type="file"  multiple></input>
                         </div>
+                        <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked=""></input>
+                    <label class="custom-control-label" for="customCheck1">Sakrij objavu</label>
+                </div>
                         <button type="button" class="btn btn-primary" id="dugmeObjavi">Objavi</button>
                     </div>
                 </div>

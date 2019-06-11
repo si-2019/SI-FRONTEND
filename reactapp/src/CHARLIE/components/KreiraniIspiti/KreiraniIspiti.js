@@ -5,8 +5,8 @@ import Modal2 from "../SharedComponents/Modal2";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import ReactDOM from 'react-dom';
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+
+
 import "../SharedComponents/tabeleCharlie.css";
 import { FormGroup, Table } from "reactstrap";
 import PregledStudenata from "../PregledStudenata";
@@ -77,7 +77,7 @@ state = {response:[]}
 
   async componentDidMount() {
     const profesorID = 250;
-    const ispiti = await axios.get(`http://localhost:31903/kreiraniIspiti/${profesorID}`);
+    const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/kreiraniIspiti/${profesorID}`);
     //Za svaki entry nadji ime predmeta na osnovu id-a
     this.setState({ ispiti: ispiti.data });
   } 
@@ -90,7 +90,7 @@ state = {response:[]}
         <td class="tabtip1">{new Date(el.termin).toUTCString()}</td>
         <td  class="tabtip1">
 
-        <Link
+        <button
               type="button"
               id="btnStud"
               className="btn btn-primary"
@@ -98,7 +98,7 @@ state = {response:[]}
               onClick={() => this.togglePregled(el.idIspit)}
             >
               Studenti
-            </Link>
+            </button>
             
     
          
@@ -116,7 +116,7 @@ state = {response:[]}
               type="button"
 
               id="btnIzbrisi"
-              className="btn btn-primary"
+              className="btn btn-danger"
               onClick={() => this.toggleModal(el.idIspit)}
 
             >
@@ -160,7 +160,7 @@ state = {response:[]}
                     show={this.state.modalShow}
                     naslovModala="Jeste li sigurni da želite obrisati ispit?"
                     obrisiIspit={this.state}
-                    btnPotvrdi="Potvrdi"
+                    potvrdiBtnCharlie="Potvrdi"
                     onConfirm={
                       this.obrisiIspit
                     }

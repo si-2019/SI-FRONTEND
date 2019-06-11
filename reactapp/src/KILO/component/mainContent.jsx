@@ -23,11 +23,11 @@ class MainContent extends Component {
             path={"/KILO/brisanjeZadace/"}
             component={BrisanjeZadace}
           />
-            <Route
+          <Route
             path={"/KILO/ocjenjivanjeZadace/"}
             component={Ocjenjivanje}
           />
-           <Route path={"/KILO/student/"} component={Student} />
+          <Route path={"/KILO/student/"} component={Student} />
           <Redirect to={"/KILO/kreiranjeZadace/?idPredmeta=" + idPredmeta} />
         </Switch>
       </Router>

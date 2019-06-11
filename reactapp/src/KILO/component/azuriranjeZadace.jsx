@@ -53,41 +53,37 @@ class AzuriranjeZadace extends Component {
 
     return (
       <div>
-        <Form>
-          <div>
-            <h4>
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggle}
-              >
-                <DropdownToggle caret className="bg-primary">
-                  Lista zadaća za ažuriranje
-                </DropdownToggle>
-                <DropdownMenu className="bg-primary">
-                  {lista.map(item => (
-                    <DropdownItem
-                      onClick={this.handleDropdownClick(item.id)}
-                      scope="col"
-                      key={item.id}
-                    >
-                      {item.naziv}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </ButtonDropdown>
-            </h4>
-          </div>
-          
-        </Form>
+
+        <div class="card w-25 ml-3 mt-4">
+          <div class="card-title" id="azuriranjeT">
+            Lista zadaća koje je moguće ažurirati:
+            </div>
+          <select
+            id="azsel"
+            multiple=""
+            className="custom-select  mb-2"
+          >
+            {lista.map(item =>
+              (<option onClick={this.handleDropdownClick(item.id)}
+
+                key={item.id}>{item.naziv}
+              </option>))
+            }
+
+          </select>
+
+        </div>
+
+
         <div>
           {this.state.azuriranjeState && (
             <KreiranjeZadace
-              
+
               title={"Ažuriranje zadaće"}
-              
+
               mainState={this.state.azuriranjeState}
             />
-          )}  
+          )}
           {/* confirmActionHandler={this.handleUpdateZadatak} */}
         </div>
       </div>
@@ -106,16 +102,16 @@ class AzuriranjeZadace extends Component {
       this.setState({
         azuriranjeState: res.data
       })
-      
-      
+
+
     } catch (e) {
       console.error("Error fetching zadaca by id", e);
     }
   };
-/*
-  handleUpdateZadatak = state => {
-    // TODO: update logic
-  };*/
+  /*
+    handleUpdateZadatak = state => {
+      // TODO: update logic
+    };*/
 }
 
 export default AzuriranjeZadace;

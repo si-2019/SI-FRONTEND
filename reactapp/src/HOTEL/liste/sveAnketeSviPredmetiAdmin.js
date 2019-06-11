@@ -13,13 +13,10 @@ class App extends React.Component {
         const items = this.state.items
         return (
             <div>          
-            <nav class="NavPadding" >
-                <h2 id="top">PRIKAZ SVIH ANKETA</h2>
-                <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
-            </nav>
+            <h1>Prikaz svih anketa</h1>
 
             <br></br>
-                <table class="anketeTabela" align="center">
+            <table className="table table-bordered text-center bg-active border-solid" align="center">
 
                 {
                     items.ankete ? Object.keys(items.ankete).map(key => {
@@ -30,13 +27,13 @@ class App extends React.Component {
                             </tr>
                         ),
                         (
-                            <tr>
-                            <td>NAZIV ANKETE</td>
-                            <td>OPIS</td>
-                            <td>DATUM ISTEKA</td>
-                            <td>PRIKAZ ANKETE</td>
-                            <td>UREDI</td>
-                            <td>OBRIŠI</td>
+                            <tr className="bg-primary text-light">
+                                <td class="tabtip">Naziv ankete</td>
+                                <td class="tabtip">Opis</td>
+                                <td class="tabtip">Datum isteka</td>
+                                <td class="tabtip">Prikaz ankete</td>
+                                <td class="tabtip">Uredi</td>
+                                <td class="tabtip">Obriši</td>
                             </tr>
                         )
                         ]
@@ -44,13 +41,13 @@ class App extends React.Component {
                         let ankete = items.ankete[key].ankete
                         return header.concat(ankete.map(anketa => (
                             <tr>
-                            <th>{anketa.naziv}</th>
-                            <th>{anketa.opisAnkete}</th>
-                            <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                            <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
-                            <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
-                            <th><button type="button" class="btn btn-primary disabled" id="obrisiButton" 
-                                onClick= {() => this.obrisiAnketu(anketa) } >OBRIŠI</button></th>
+                            <th class="tabtip1">{anketa.naziv}</th>
+                            <th class="tabtip1">{anketa.opisAnkete}</th>
+                            <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
+                            <th class="tabtip1"><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary disabled" id="prikaziButton">Prikaži</button></a></th>
+                            <th class="tabtip1"><button type="button" class="btn btn-primary disabled" id="urediButton">Uredi</button></th>
+                            <th class="tabtip1"><button type="button" class="btn btn-primary disabled" id="obrisiButton" 
+                                onClick= {() => this.obrisiAnketu(anketa) }>Obriši</button></th>
                             </tr>
                         )))
                     }) : "Loading..."
@@ -58,7 +55,6 @@ class App extends React.Component {
                 
                 
                 </table>
-                <a href="#top"><button type="button" class="btn btn-primary disabled" id="nazadNaVrhButton">NAZAD NA VRH</button></a>
             </div>
         )
     }

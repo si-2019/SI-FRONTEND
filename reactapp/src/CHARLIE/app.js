@@ -10,7 +10,7 @@ import PrijavaIspita from "./components/PrijavaIspita";
 import PrijavljeniIspiti from "./components/PrijavljeniIspiti";
 import UrediIspit from "./components/UrediIspit";
 
-import LeftMenu from "./LeftMenu";
+import LeftMenuCharlie from "./LeftMenuCharlie";
 import "./appCharlie.css";
 class App extends Component {
 
@@ -22,6 +22,7 @@ class App extends Component {
       menuButtonsProfesor: [{
         btnText: "Kreiraj ispit",
         component: <KreirajIspit />
+        
       }, {
         btnText: "Kreirani ispiti",
         component: <KreiraniIspiti />
@@ -30,6 +31,10 @@ class App extends Component {
         naziv: "Profil",
         changeId: 0,
         component: <KreirajIspit />
+      },{
+        naziv: "Profil",
+        changeId: 0,
+        component: <KreiraniIspiti />
       }],
       menuButtonsStudent: [{
         btnText: "Prijava ispita",
@@ -85,17 +90,17 @@ class App extends Component {
     return (
       <>
       
-        <div className="App">
-
+        <div className="App" id="appCharlie">
+      
           <div className="containter-fluid">
-            <div className="row" style={{ margin: "0px", padding: "0px"}}>
+            <div className="row" id="rowCharlie" style={{ margin: "0px", padding: "0px"}}>
               <div className="col-lg-2 col-md-3 col-sm-12" style={{
                 backgroundColor: "#2C3E50",
                 minHeight: "100%",
                 padding: "0px",
                 margin: "0px"
               }}>
-                <LeftMenu
+                <LeftMenuCharlie
                   triggerChangeActiveId={this.onChangeActiveId}
                   btnList={this.state.menuComponentsProfesor}
                 />
@@ -114,7 +119,7 @@ class App extends Component {
             </div>
           </div>
         
-        <BrowserRouter>
+          <BrowserRouter>
           <Route
             path="/charlie/info-o-ispitu"
             exact

@@ -45,7 +45,7 @@ class TabelaStudenti extends Component {
             })
         }
         return (
-            <Table striped bordered hover size="sm" responsive>
+            <Table striped bordered size="sm" responsive>
                 <thead>
                     <tr className="table-primary" hover="false">
                     <th scope="row">#</th>

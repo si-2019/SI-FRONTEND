@@ -8,7 +8,7 @@ export class header_cell extends Component {
     return (
       
       <tr>
-        <td style={stylish}>
+        <td class="tabtip" scope="col">
           <b>{text}</b>
         </td>
       </tr>  

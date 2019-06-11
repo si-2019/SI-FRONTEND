@@ -24,7 +24,7 @@ class NoviIssueForma extends React.Component {
         
         const { issueTitle, issueText } = this.state;
 
-        axios.post('http://localhost:31902/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
+        axios.post('https://si2019beta.herokuapp.com/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
         .then((result) => {
             alert(result.data);
         });
@@ -73,7 +73,7 @@ class NoviIssueForma extends React.Component {
 
                 const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
 
-                axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+                axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
                 .then((result) => {
                     alert(result.data)
                 });

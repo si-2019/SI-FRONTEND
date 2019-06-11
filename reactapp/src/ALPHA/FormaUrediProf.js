@@ -146,6 +146,7 @@ class Forma extends Component {
           
           <div className="col-md-4 col-md-offset-4" >
             <br />
+            <br />
                 <p>Prikaz svih profesora: </p><br />
                 <select className="custom-select" onChange={this.onChange}> 
                 {
@@ -212,9 +213,9 @@ class Forma extends Component {
               <label>Website </label>
               <input className="form-control " type="text" name="website" value={website} onChange={this.handleChange} /><br />
               
-              <input type="submit" value="Edit" className="btn btn-success btn-block" />
+              <input type="submit" value="Uredi" className="btn btn-primary btn-block" />
              </form><br />
-              <button className="btn btn-success btn-block" onClick={()=>this.obrisi(id)}>DELETE</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(id)}>Obrisi</button>
 
              
 

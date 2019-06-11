@@ -21,118 +21,91 @@ class PrikazTermina extends Component {
 
   render() {
     return (
-      <div class="card" id="glavnaKartica">
-        <div class="card-body">
-          <div class="row" id="prikazTerminaRow">
-            <div class="card" className="mojaKartica">
-              <div class="card-body">
-                <div className="dan">
-                  <h4 class="card-title">Ponedjeljak</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    Odabrani termini
-                  </h6>
-                </div>
-                {this.state.termini.map(item =>
-                  item.danUSedmici == "Pon" ? (
-                    <p>
-                      {item.vrijeme} -{" "}
-                      {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
-                      :00
-                    </p>
-                  ) : (
-                    void 0
-                  )
-                )}
-              </div>
-            </div>
-
-            <div class="card" className="mojaKartica">
-              <div class="card-body">
-                <div className="dan">
-                  <h4 class="card-title">Utorak</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    Odabrani termini
-                  </h6>
-                </div>
-                {this.state.termini.map(item =>
-                  item.danUSedmici == "Uto" ? (
-                    <p>
-                      {item.vrijeme} -{" "}
-                      {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
-                      :00
-                    </p>
-                  ) : (
-                    void 0
-                  )
-                )}
-              </div>
-            </div>
+      <div id="prikazTerminaRow">
+        <div className="card mojaKartica" style={{ width: "30%" }}>
+          <div className="card-body">
+            <h4 className="card-title">Ponedjeljak</h4>
+            <h6 className="card-subtitle mb-2 text-muted">Odabrani termini</h6>
+            {this.state.termini.map(item =>
+              item.danUSedmici == "Pon" ? (
+                <p>
+                  {item.vrijeme} -{" "}
+                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  :00
+                </p>
+              ) : (
+                void 0
+              )
+            )}
           </div>
+        </div>
 
-          <div class="row" id="prikazTerminaRow">
-            <div class="card" className="mojaKartica">
-              <div class="card-body">
-                <div className="dan">
-                  <h4 class="card-title">Srijeda</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    Odabrani termini
-                  </h6>
-                </div>
-                {this.state.termini.map(item =>
-                  item.danUSedmici == "Sri" ? (
-                    <p>
-                      {item.vrijeme} -{" "}
-                      {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
-                      :00
-                    </p>
-                  ) : (
-                    void 0
-                  )
-                )}
-              </div>
-            </div>
-
-            <div class="card" className="mojaKartica">
-              <div class="card-body">
-                <div className="dan">
-                  <h4 class="card-title">Četvrtak</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    Odabrani termini
-                  </h6>
-                </div>
-                {this.state.termini.map(item =>
-                  item.danUSedmici == "Cet" ? (
-                    <p>
-                      {item.vrijeme} -{" "}
-                      {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
-                      :00
-                    </p>
-                  ) : (
-                    void 0
-                  )
-                )}
-              </div>
-            </div>
+        <div className="card mojaKartica" style={{ width: "30%" }}>
+          <div className="card-body">
+            <h4 className="card-title">Utorak</h4>
+            <h6 className="card-subtitle mb-2 text-muted">Odabrani termini</h6>
+            {this.state.termini.map(item =>
+              item.danUSedmici == "Uto" ? (
+                <p>
+                  {item.vrijeme} -{" "}
+                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  :00
+                </p>
+              ) : (
+                void 0
+              )
+            )}
           </div>
-
-          <div class="card" className="mojaKarticaP">
-            <div class="card-body">
-              <div className="dan">
-                <h4 class="card-title">Petak</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Odabrani termini</h6>
-              </div>
-              {this.state.termini.map(item =>
-                item.danUSedmici == "Pet" ? (
-                  <p>
-                    {item.vrijeme} -{" "}
-                    {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
-                    :00
-                  </p>
-                ) : (
-                  void 0
-                )
-              )}
-            </div>
+        </div>
+        <div className="card mojaKartica" style={{ width: "30%" }}>
+          <div className="card-body">
+            <h4 className="card-title">Srijeda</h4>
+            <h6 className="card-subtitle mb-2 text-muted">Odabrani termini</h6>
+            {this.state.termini.map(item =>
+              item.danUSedmici == "Sri" ? (
+                <p>
+                  {item.vrijeme} -{" "}
+                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  :00
+                </p>
+              ) : (
+                void 0
+              )
+            )}
+          </div>
+        </div>
+        <div className="card mojaKartica" style={{ width: "30%" }}>
+          <div className="card-body">
+            <h4 className="card-title">Četvrtak</h4>
+            <h6 className="card-subtitle mb-2 text-muted">Odabrani termini</h6>
+            {this.state.termini.map(item =>
+              item.danUSedmici == "Cet" ? (
+                <p>
+                  {item.vrijeme} -{" "}
+                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  :00
+                </p>
+              ) : (
+                void 0
+              )
+            )}
+          </div>
+        </div>
+        <div className="card mojaKartica" style={{ width: "30%" }}>
+          <div className="card-body">
+            <h4 className="card-title">Petak</h4>
+            <h6 className="card-subtitle mb-2 text-muted">Odabrani termini</h6>
+            {this.state.termini.map(item =>
+              item.danUSedmici == "Pet" ? (
+                <p>
+                  {item.vrijeme} -{" "}
+                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  :00
+                </p>
+              ) : (
+                void 0
+              )
+            )}
           </div>
         </div>
       </div>

@@ -56,10 +56,11 @@ class prikazOdsjeka extends Component{
         const {lista, search}=this.state
         console.log("l",lista);
         return (
-            <div className="col-md-7">
+            <div className="card">
+            <div className="card-body col-md-7">
                 <br /> 
                     <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange}></input>  <br />
-                    <button className="btn btn-success btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Search</button>
+                    <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
                 <br />
                 
 
@@ -71,19 +72,20 @@ class prikazOdsjeka extends Component{
                             <th>OBRIŠI</th>
                         </tr>
                     </thead>
-                    <tbody className="table table-sm table-light">
+                    <tbody className="table table-sm ">
                         {
                             lista.length ? lista.map(list => 
                                 <tr key={list.idOdsjek}>
                                     <th>{list.idOdsjek}</th>
                                     <th>{list.naziv}</th>
-                                    <th><button className="btn btn-success btn-block"  onClick={()=>this.obrisi(list.naziv)}>Delete</button></th>
+                                    <th><button className="btn btn-primary btn-block"  onClick={()=>this.obrisi(list.naziv)}>Obriši</button></th>
                                 </tr>
                             ): null
                         }
                     </tbody>
                 </table><br /><br />
                 
+            </div>
             </div>
         );
     }

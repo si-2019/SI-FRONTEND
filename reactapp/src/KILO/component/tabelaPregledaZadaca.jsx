@@ -38,7 +38,7 @@ class TabelaPregledaZadaca extends Component {
                   ))}
                   <th class="tabtip1">{this.props.podaci.state.ukupnoBodova[indeks]}</th>
                   <th class="tabtip1">{this.props.podaci.state.moguceBodova[indeks]}</th>
-                  <th class="tabtip1">{this.props.podaci.state.zadacaState.postavka[indeks]}{<Icon type="indicator" name="save" className=" ml-3" />}</th>
+                  <th class="tabtip1">{this.props.podaci.state.zadacaState.postavka[indeks]}{<Icon type="indicator" name="save" className=" ml-3" onClick={() => this.props.podaci.downloadPostavka(indeks)} />}</th>
                   <th class="tabtip1">{this.props.podaci.state.zadacaState.rokZaPredaju[indeks]}</th>
                 </tr>
               ))}

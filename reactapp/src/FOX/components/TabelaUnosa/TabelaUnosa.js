@@ -42,7 +42,7 @@ class TabelaUnosa extends Component {
             //Promise
             /* 3. Get Ref Value here (or anywhere in the code!) */
            
-            console.log(this.ocjena.current.value);
+            console.log(this.bodovi.current.value);
             let reqBody = {
                 idKorisnika: 3,
                 bodovi: this.bodovi.current.value,
@@ -100,7 +100,7 @@ class TabelaUnosa extends Component {
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
                                 <Col md="auto" style={{textAlign: "right"}}>           
-                                    <Button onClick={this.handleClick}> Pretrazi </Button>
+                                    <Button > Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -122,7 +122,7 @@ class TabelaUnosa extends Component {
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
                                 <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button onClick={this.handleCli}> Unesi </Button>
+                                    <Button type="submit" > Unesi </Button>
                                 </Col>
                             </Form.Row>
 

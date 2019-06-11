@@ -111,8 +111,8 @@ class NovaTema extends Component {
                                             validated={validated}
                                             onSubmit = {e => this.handleSubmit(e)}
                                         >
-                                            <Form.Group as={Form.Row} controlId = "formNoviNaziv">
-                                                <Col style={{textAlign: "left"}}>
+                                            <Form.Group as={Form.Row} controlId = "formNoviNaziv" className="justify-content-center">
+                                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                                     <Form.Label>Naziv:</Form.Label>
                                                     <Form.Control 
                                                         ref={this.nazivNoveTeme}
@@ -125,13 +125,13 @@ class NovaTema extends Component {
                                                 </Col>
                                             </Form.Group>
                                             
-                                            <Form.Group as={Form.Row} controlId = "formNoviOpis">
-                                                <Col style={{textAlign: "left"}}>
+                                            <Form.Group as={Form.Row} controlId = "formNoviOpis" className="justify-content-center">
+                                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                                     <Form.Label>Opis:</Form.Label>
                                                     <Form.Control 
                                                         ref={this.opisNoveTeme} 
                                                         required 
-                                                        type="text" 
+                                                        type="textarea" 
                                                         placeholder="Opis nove teme"
                                                     />
                                                     <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
@@ -139,12 +139,9 @@ class NovaTema extends Component {
                                                 </Col>
                                             </Form.Group>
 
-                                            <Form.Row>
-                                                <Col></Col>
-                                                <Col md="auto" style={{textAlign: "right"}}>
+                                            <Form.Row className="justify-content-center">
+                                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
                                                     <Button variant="primary" type="submit">Dodaj</Button> 
-                                                </Col>
-                                                <Col md="auto" style={{textAlign: "right"}}>
                                                     <Button variant="secondary" href='unosTeme'>Nazad</Button> 
                                                 </Col>
                                             </Form.Row>

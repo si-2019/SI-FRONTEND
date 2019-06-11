@@ -22,6 +22,23 @@ function Poruka(props) {
     return ""
 }
 
+function Poruka2(props) {
+    const greska = props.greska;
+    const student= props.student;
+    if (greska==1) {
+        return <Alert variant='danger'>
+            <Alert.Heading>Nespješan pronalazak!</Alert.Heading>
+            <p>Došlo je do greške sa bazom</p>
+        </Alert>
+    }
+    if (greska===2) {
+        return <Alert variant='success'>
+            <Alert.Heading>Uspješno pronadjen student!</Alert.Heading>
+        </Alert>
+    }
+    return ""
+}
+
 class Ocjena extends Component {
     constructor(props){
         super(props);
@@ -112,8 +129,10 @@ class Ocjena extends Component {
                             <Form.Row>
                                 <Col style={{textAlign: "left"}}>
                                     <Form.Label> Index: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                                    <Form.Control  ref={ this.indeks } required type="text" name="name">
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
+                                   <Form.Control.Feedback type= "invalid"> Indeks nije validan </Form.Control.Feedback> 
                                 </Col>
                             </Form.Row>
 

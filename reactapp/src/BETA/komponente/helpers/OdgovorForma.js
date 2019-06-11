@@ -38,7 +38,7 @@ class ModalComponent extends React.Component {
 
         const {issueText } = this.state;
 
-        axios.post('http://localhost:31902/issue/reply/student', { issueID, issueText})
+        axios.post('https://si2019beta.herokuapp.com/issue/reply/student', { issueID, issueText})
         .then(result => {
             if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
             else{

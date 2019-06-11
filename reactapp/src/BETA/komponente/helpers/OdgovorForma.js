@@ -3,8 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda.js";
 
-
-
 class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -25,8 +23,6 @@ class ModalComponent extends React.Component {
         this.fileChangedHandler = this.fileChangedHandler.bind(this);
     }
 
-    
-
     handleChange(event) {
         const { name, value } = event.target
         this.setState({
@@ -36,23 +32,24 @@ class ModalComponent extends React.Component {
 
     handleSubmit(event) {
       
-            event.preventDefault();
-        //ukoliko neki rezultira greskom, postavite greska na true
-        const { issueTitle, issueText } = this.state;
+        event.preventDefault();
 
-        axios.post('https://si2019beta.herokuapp.com/issue/send/ss?issueTitle='+issueTitle+'&issueText='+issueText)
-         .then(result => {
-                if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
-                else{
-                    { this.setState({ greska: true})}
-                    alert(JSON.stringify(result.data));
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({ greska: true });
-            });
-            return null;
+        const issueID = this.props.ID;
+
+        const {issueText } = this.state;
+
+        axios.post('http://localhost:31902/issue/reply/student', { issueID, issueText})
+        .then(result => {
+            if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
+            else{
+                { this.setState({ greska: true})}
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            this.setState({ greska: true });
+        });
+
 
     }
 
@@ -126,7 +123,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspješno ste poslali upit"
+                    msg="Uspješno ste poslali odgovor"
                 />
             );
         }

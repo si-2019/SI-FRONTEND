@@ -122,7 +122,7 @@ class FormaProfPred extends Component {
                <label>Obavezan:</label>
                <input className="form-control" type="number" name="obavezan" value={obavezan} onChange={this.handleChange}  /><br />
               
-               <button className="btn btn-primary btn-block" onClick={this.spoji()}>Dodaj</button>
+               <button className="btn btn-primary btn-block" onClick={this.spoji}>Dodaj</button>
 
           </div>
          </div>

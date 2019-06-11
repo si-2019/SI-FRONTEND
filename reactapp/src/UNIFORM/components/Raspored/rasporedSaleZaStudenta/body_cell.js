@@ -31,7 +31,7 @@ const MojModal = (ovaj) => {
                style = {customStyles}
             >
               <b>Tip aktivnosti: </b>{ovaj.props.termin.title} <br></br>
-              
+        <b>Predmet: </b><a href="http://www.etf.unsa.ba" >{ovaj.props.termin.predmet}</a> <br></br>      
               <b>Sala: </b><a href="http://www.etf.unsa.ba">{ovaj.props.termin.sala}</a><br></br> 
               <b>Bilješka: </b>{ovaj.props.termin.biljeska} <br></br>            
               <b>Unesi novu/ažuriraj staru bilješku</b>    <br/>

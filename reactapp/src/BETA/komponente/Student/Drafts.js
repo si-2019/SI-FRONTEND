@@ -52,7 +52,7 @@ class Drafts extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('http://localhost:31902/issues/draft/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/draft/get');
 
         let dN = [];
         let dIP = [];
@@ -60,7 +60,7 @@ class Drafts extends React.Component {
 
         //new
         res.data.new.forEach( async (issue) => {
-            let cn = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dn = issue.messages;
             console.log("maida")
             console.log(dn[0].draftStatus)
@@ -74,7 +74,7 @@ class Drafts extends React.Component {
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
-            let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dip = issue.messages;
             let novi = [];
             for(let i = 0; i < dip.length; i++){
@@ -86,7 +86,7 @@ class Drafts extends React.Component {
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
-            let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dr = issue.messages;
             let novi = [];
             for(let i = 0; i < dr.length; i++){

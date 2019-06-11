@@ -135,12 +135,12 @@ export class Body_Cell extends Component {
             if(!isTrueSet)
             {
               //signalna poruka kad je dodan
-              
+              this.setState({ signalString: 'Uspjesno dodano' });
             }
             else
             {
               //signalna poruka kad nije dodan
-             
+              this.setState({ signalString: 'Nije uspjesno dodano' });
             }
             console.log(response.data.success);
            }.bind(this));               
@@ -161,12 +161,12 @@ export class Body_Cell extends Component {
             if(!isTrueSet)
             {
               //signalna poruka kad je update-ano
-              
+              this.setState({ signalString: 'Uspjesno azurirano' });
             }
             else
             {
               //signalna poruka kad nije update-ano
-             
+              this.setState({ signalString: 'Nije uspjesno azurirano' });
             }
             console.log(response);
            }.bind(this));

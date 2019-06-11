@@ -49,7 +49,7 @@ class TabelaUnosa extends Component {
      
     render() {
         return(
-            <div class="card">
+            <div class="card" style={{margin: "0"}}>
                 <div class="card-body">
                     <h4 class="card-title text-center" >Unos bodova ispita</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos bodova.</h6>

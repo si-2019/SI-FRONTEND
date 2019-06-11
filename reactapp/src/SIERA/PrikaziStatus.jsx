@@ -8,7 +8,7 @@ class PrikaziStatus extends Component {
         this.state = {
             StudentID: 1,
             status: [],
-            teme : [],
+            teme: [],
             od: "Odobreno",
             neod: "Neodobreno",
             ncek: "Na čekanju",
@@ -18,113 +18,94 @@ class PrikaziStatus extends Component {
 
     componentDidMount() {
         axios
-        .get(
-            `http://localhost:31918/temezavrsni/` +
-            this.state.StudentID
-        )
-        .then(res => {
+            .get(
+                `http://localhost:31918/temezavrsni/` +
+                this.state.StudentID
+            )
+            .then(res => {
 
-            const Teme = res.data.teme.map(obj => obj.naziv);
-            this.setState({ teme: Teme});
+                const Teme = res.data.teme.map(obj => obj.naziv);
+                this.setState({ teme: Teme });
 
-            const Status = res.data.teme.map(obj => obj.odobreno);
-            this.setState({ status: Status});
+                const Status = res.data.teme.map(obj => obj.odobreno);
+                this.setState({ status: Status });
 
-        });
-}
+            });
+    }
 
-Provjeri = provjeri => {
-    if(provjeri== null ) return <p>Na čekanju</p>
-                  else if(provjeri == 1) return <p>Odobreno</p>
-                return <p>Neodobreno</p>
-}
+    Provjeri = provjeri => {
+        if (provjeri == null) return <p>Na čekanju</p>
+        else if (provjeri == 1) return <p>Odobreno</p>
+        return <p>Neodobreno</p>
+    }
 
-    handleOdobreno (){
+    handleOdobreno() {
 
         return (
-          <div className="row">
-            {this.props.children}
-            <div className="col-sm"> Tema: 
+            <div className="row">
+                {this.props.children}
+                <div className="col-sm"> Tema:
             <ul>
-              {this.state.teme.map(tema => (
-                <li className="list-group-item list-group-item-action mt-2" key={tema}>
-                  {tema}
-                </li>
-              ))}
-            
-            </ul>
-            </div>
-            <div className="col-sm">Status: 
+                        {this.state.teme.map(tema => (
+                            <li className="list-group-item list-group-item-action mt-2" key={tema}>
+                                {tema}
+                            </li>
+                        ))}
+
+                    </ul>
+                </div>
+                <div className="col-sm">Status:
             <ul>
-                {this.state.status.map(odobreno => (
-                <li className="list-group-item list-group-item-action mt-2" key={odobreno}>
-                    {this.Provjeri(odobreno)}
-                </li>
-              ))}
-            
-            </ul>
+                        {this.state.status.map(odobreno => (
+                            <li className="list-group-item list-group-item-action mt-2" key={odobreno}>
+                                {this.Provjeri(odobreno)}
+                            </li>
+                        ))}
+
+                    </ul>
+                </div>
             </div>
-          </div>
         );
     }
 
     handleClose = () => {
         this.setState({ show: false });
-      }
-    
+    }
+
     handleShow = () => {
         this.setState({ show: true });
-      }
-    
-    render() { 
-        
-        return ( 
+    }
+
+    render() {
+
+        return (
             <>
-             <div className="container-fluid" style={{ height: "100%" , marginTop: "-420px"}}>
-                    <div className="d-flex justify-content-center" style={{ height: "100%" }}>
-                        <div className="d-flex align-items-center">
-                            <div class="row" style={{ margin: "0px" }}>
-                                <div class="col-lg col-md" >
-
-                                    <div class="card" style={{ width: "30rem" }}>
-                                        <div class="card-body">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" onClick={this.handleShow}>Prikazi status</button>
-                                        
-                                         
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <button type="submit" class="btn btn-primary" onClick={this.handleShow}>Prikaži status</button>
+                <Modal show={this.state.show}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    onHide={this.handleClose}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Završni rad</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div>
+                            {this.handleOdobreno()}
                         </div>
-                    </div>
-                </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button type="submit" onClick={this.handleClose} class="btn btn-secondary">Zatvori</button>
 
-                    
-        <Modal show={this.state.show}  
-         size="lg"
-         aria-labelledby="contained-modal-title-vcenter"
-         centered
-        onHide={this.handleClose}
-        >
-            <Modal.Header closeButton>
-                <Modal.Title>Završni rad</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div>
-            {this.handleOdobreno()}
-            </div>
-            </Modal.Body>
-            <Modal.Footer>
-            <button type="submit" id="spasiBtn" onClick={this.handleClose} class="btn btn-primary">Close</button>
-               
-            </Modal.Footer>
-        </Modal>
+                    </Modal.Footer>
+                </Modal>
 
 
 
             </>
-         );
+        );
     }
 }
- 
+
 export default PrikaziStatus;

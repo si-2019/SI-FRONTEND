@@ -33,7 +33,7 @@ class App extends Component {
         component: <UgovorOUcenju />
       }, {
         btnText: "Završni rad",
-        component: <> <DropDownZavrsni /> <PrikaziStatus /> </>
+        component: <DropDownZavrsni /> 
       }, {
         btnText: "Predmeti",
         component: <Predmeti />

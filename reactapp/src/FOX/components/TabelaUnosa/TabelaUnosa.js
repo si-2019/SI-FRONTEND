@@ -58,8 +58,7 @@ class TabelaUnosa extends Component {
                         <Form>
 
                             <Form.Row>
-                                <Col></Col>
-                                <Form.Group as={Col} sm={{span: 4}}>
+                                <Form.Group as={Col} sm={{span: 4}} style={{textAlign: "left", minWidth: "300px"}}>
                                     <select class="custom-select">
                                         <option selected="">Otvori za odabir ispita</option>
                                         <option value="1">I parcijalni, 20.4.2019.</option>
@@ -69,11 +68,10 @@ class TabelaUnosa extends Component {
                                         <option value="3">Integralni ispit 1.9.2019.</option>
                                     </select>
                                 </Form.Group>
-                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>
-                                <Col style={{textAlign: "left"}}>
+                                <Col style={{textAlign: "left", minWidth: "300px"}} sm="4">
                                     <Form.Label> Index: </Form.Label>
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
@@ -81,10 +79,10 @@ class TabelaUnosa extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>           
-                                    <Button onClick={this.handleClick}> Pretrazi </Button>
+                                <Col md="4" style={{textAlign: "right", minWidth: "300px"}}>           
+                                    <Button onClick={this.handleClick}> Pretraži </Button>
                                 </Col>
+                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>
@@ -95,7 +93,7 @@ class TabelaUnosa extends Component {
                             <hr/>
 
                             <Form.Row>
-                                <Col style={{textAlign: "left"}}>
+                                <Col style={{textAlign: "left", minWidth: "300px"}} sm={{span: 4}}>
                                     <Form.Label> Bodovi: </Form.Label>
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
@@ -103,10 +101,10 @@ class TabelaUnosa extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>
+                                <Col md="4" style={{textAlign: "right", minWidth: "300px"}}>
                                     <Button onClick={this.handleCli}> Unesi </Button>
                                 </Col>
+                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>

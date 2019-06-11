@@ -14,16 +14,9 @@ const IssueMessage = (props) => {
                     <div className="row">
                         <div className="col-1">id:{message.id}</div>
                         <div className="col-11">{message.tekst}</div>
-                        <div className="col-11">{message.tekst} : {date.getDay()}.{date.getMonth()}.{date.getFullYear()}. </div>
                     </div>
                 </ListGroup.Item>
-                <ListGroup.Item>
-                    <div className="row">
-                        <div className="issue-message">
-                            <Button variant="primary" type='submit' className="message-button">Obriši</Button>
-                        </div>
-                    </div>
-                </ListGroup.Item>
+                
             </ListGroup.Item>
 
         );

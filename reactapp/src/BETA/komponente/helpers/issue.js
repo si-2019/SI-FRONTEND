@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
+import ModalComponent from './OdgovorForma.js'
 
 export default class Issue extends React.Component {
 
@@ -19,6 +20,9 @@ export default class Issue extends React.Component {
                 expanded: false,
             },
             newArray: this.props.data,
+            showModal: false,
+            idForReply: 0
+            
         }
     }
 
@@ -32,6 +36,13 @@ export default class Issue extends React.Component {
 
         });
     };
+
+    setIdForReply = (item) => {
+        this.setState({
+            idForReply: item,
+            modalShow: true
+        })
+    }
 
     archiveIssue = (idIssue) => {
 
@@ -48,8 +59,8 @@ export default class Issue extends React.Component {
                     }
                 }
 
-                this.props.triggerRefreshList(this.state.newArray);
-            });
+            this.props.triggerRefreshList(this.state.newArray);
+        });
 
 
     }
@@ -114,6 +125,7 @@ export default class Issue extends React.Component {
                                 <div onClick={() => this.setIssue(issue.id)} className="issue-title">{issue.title}</div>
                                 <div className="issueButtonDelete">
                                     <Button onClick={() => this.archiveIssue(issue.id)}>Arhiviraj</Button>
+
                                     
                                 </div>
                                 <div className="issueButtonDelete">
@@ -121,6 +133,7 @@ export default class Issue extends React.Component {
                                     <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
                                     <Button onClick={() => this.replyOnIssue(issue.id)}>Odgovori</Button>
 
+                                    <Button onClick={() => this.setIdForReply(issue.id)}>Odgovori</Butto
                                 </div>
 
                             </div>
@@ -136,6 +149,17 @@ export default class Issue extends React.Component {
                         }
 
                     </div>
+
+                    {this.state.idForReply === issue.id ?
+                    <ModalComponent 
+                        ID = {issue.id}
+                        show = {this.state.modalShow}
+                        naslovModala = "Pošalji odgovor"
+                        btnPotvrdi = "Odgovori"
+                        onHide = {() => this.setState({modalShow: false})}>
+                    </ModalComponent> : null
+                    }
+
                 </div>
             );
         })

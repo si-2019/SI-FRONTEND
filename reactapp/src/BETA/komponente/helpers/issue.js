@@ -47,7 +47,7 @@ export default class Issue extends React.Component {
     archiveIssue = (idIssue) => {
 
         const { trashStudent, trashSS } = this.state;
-        axios.put('http://localhost:31902/issues/archived/add', { trashStudent, trashSS, idIssue })
+        axios.put('https://si2019beta.herokuapp.com/issues/archived/add', { trashStudent, trashSS, idIssue })
             .then((result) => {
 
                 for (let i = 0; i < this.props.data.length; i++) {

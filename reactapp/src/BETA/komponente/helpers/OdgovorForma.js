@@ -61,7 +61,7 @@ class ModalComponent extends React.Component {
        { 
            const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
 
-            axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+            axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
             .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
             else{
                 { this.setState({ greska: true})}

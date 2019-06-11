@@ -33,7 +33,7 @@ export default class Archived extends React.Component {
         const {trashStudent, trashSS} = this.state;
         const id = id_Issue;
             
-        axios.put('http://localhost:31902/issues/archived/delete', { trashStudent, trashSS, id })
+        axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id })
         .then((result) => {
 
             for(let i = 0; i < this.props.data.length; i++){

@@ -30,7 +30,7 @@ export default class Draft extends React.Component {
 
     deleteIssue = (idIssue) => {
 
-        axios.delete('http://localhost:31902/issues/draft/delete', { 
+        axios.delete('https://si2019beta.herokuapp.com/issues/draft/delete', { 
             params: {
                 id: idIssue
             }

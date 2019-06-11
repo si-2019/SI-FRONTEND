@@ -40,7 +40,7 @@ function UnosPrisustvaForma(props) {
                                         
                                         <Form.Row >
                                             <Col></Col>
-                                            <Form.Group as={Col} sm={{span: 3}} style={{textAlign: "left"}}>
+                                            <Form.Group as={Col} lg="3" md="3" sm="3" style={{textAlign: "left"}}>
                                                 <div class="form-group">
                                                     <label for="predavanjeSelect">Predavanje</label>
                                                     <select
@@ -57,7 +57,7 @@ function UnosPrisustvaForma(props) {
                                                     </select>
                                                 </div>
                                             </Form.Group>
-                                            <Form.Group as={Col} sm={{span: 3}} style={{textAlign: "left"}}>
+                                            <Form.Group as={Col} lg="3" md="3" sm="3" style={{textAlign: "left"}}>
                                                 <div class="form-group">
                                                     <label for="vjezbaSelect">Vježba</label>
                                                     <select
@@ -74,7 +74,7 @@ function UnosPrisustvaForma(props) {
                                                     </select>
                                                 </div>
                                             </Form.Group>
-                                            <Form.Group as={Col} sm={{span: 3}} style={{textAlign: "left"}}> 
+                                            <Form.Group as={Col} lg="3" md="3" sm="3" style={{textAlign: "left"}}> 
                                                 <div class="form-group">
                                                     <label for="tutorijalSelect">Tutorijal</label>
                                                     <select

@@ -110,7 +110,7 @@ class UnosPrisustva extends React.Component {
                 vjezbe: s.vjezbe === "-" ? null : s.vjezbe 
             };
         });
-        axios.post('http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=4&brojSedmice=1', studenti);
+        axios.put('http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=100&brojSedmice=1', studenti);
     }
 
     handleClickSedmica = (brojSedmice) => {
@@ -119,7 +119,7 @@ class UnosPrisustva extends React.Component {
     
     componentDidMount() {
         // Privremeno rješnje
-        axios.get('http://localhost:31906/api/fox/prisustvo?idPredmeta=4&brojSedmice=1').then(response => {
+        axios.get('http://localhost:31906/api/fox/prisustvo?idPredmeta=100&brojSedmice=1').then(response => {
             let studenti = response.data.map(s => {
                 return {
                     id: s.id,

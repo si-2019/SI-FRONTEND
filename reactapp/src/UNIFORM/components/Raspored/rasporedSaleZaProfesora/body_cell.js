@@ -135,12 +135,12 @@ export class Body_Cell extends Component {
             if(!isTrueSet)
             {
               //signalna poruka kad je dodan
-              this.setState({ signalString: 'Uspjesno dodano' });
+             
             }
             else
             {
               //signalna poruka kad nije dodan
-              this.setState({ signalString: 'Nije uspjesno dodano' });
+              
             }
             console.log(response.data.success);
            }.bind(this));               

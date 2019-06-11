@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Link from 'react-router-dom/Link';
 
 class NavbarFox extends Component {
     render() {

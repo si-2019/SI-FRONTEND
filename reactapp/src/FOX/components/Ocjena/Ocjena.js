@@ -87,7 +87,7 @@ class Ocjena extends Component {
                         >
 
                             <Form.Row>
-                                <Col style={{textAlign: "left"}}>
+                                <Col style={{textAlign: "left", minWidth: "300px"}} sm="4">
                                     <Form.Label> Index: </Form.Label>
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
@@ -95,10 +95,10 @@ class Ocjena extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>
+                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}} >
                                     <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
+                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>
@@ -113,7 +113,7 @@ class Ocjena extends Component {
                             <hr/>
 
                             <Form.Row>
-                                <Col style={{textAlign: "left"}}>
+                                <Col style={{textAlign: "left", minWidth: "300px"}} sm="4">
                                     <Form.Label> Ocjena: </Form.Label>
                                     <Form.Control  ref={ this.ocjena } required type="text" name="name">
                                     </Form.Control>
@@ -123,10 +123,10 @@ class Ocjena extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>
+                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}}>
                                     <Button> Unesi </Button>
                                 </Col>
+                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>

@@ -28,23 +28,21 @@ state = {
 
 render() {
     return(
-        <div className="footerDno">
+        <div className="footerDno" style={{paddingBottom: "50px"}}>
             <Container fluid style={{padding:"0", margin: "0"}}>
-                    <Row>
-                        <Col md="3">
-                            <Header isPocetna={false}/>
-                        </Col>
-                        <Col>
-                            <br/>
-                            <TabelaUnosa/>
-                        </Col>
-                    </Row>
-                </Container>
-
-                <br/>
-                <br/>
+                <Row>
+                    <Col md="3">
+                        <Header isPocetna={false}/>
+                    </Col>
+                    <Col>
+                        <br/>
+                        <TabelaUnosa/>
+                    </Col>
+                </Row>
+            </Container>
 
             <Footer/>
+
           </div>
         );
     }

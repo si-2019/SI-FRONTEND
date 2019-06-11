@@ -79,7 +79,7 @@ class TabelaUnosa extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col md="4" style={{textAlign: "right", minWidth: "300px"}}>           
+                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}}>           
                                     <Button onClick={this.handleClick}> Pretraži </Button>
                                 </Col>
                                 <Col></Col>
@@ -101,7 +101,7 @@ class TabelaUnosa extends Component {
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
-                                <Col md="4" style={{textAlign: "right", minWidth: "300px"}}>
+                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}}>
                                     <Button onClick={this.handleCli}> Unesi </Button>
                                 </Col>
                                 <Col></Col>

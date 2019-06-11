@@ -57,8 +57,8 @@ class TabelaUnosa extends Component {
                     <div>
                         <Form>
 
-                            <Form.Row>
-                                <Form.Group as={Col} sm={{span: 4}} style={{textAlign: "left", minWidth: "300px"}}>
+                            <Form.Row className="justify-content-center">
+                                <Form.Group as={Col} lg="4" md="6" sm="8" xs="12" style={{textAlign: "left"}}>
                                     <select class="custom-select">
                                         <option selected="">Otvori za odabir ispita</option>
                                         <option value="1">I parcijalni, 20.4.2019.</option>
@@ -70,19 +70,18 @@ class TabelaUnosa extends Component {
                                 </Form.Group>
                             </Form.Row>
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left", minWidth: "300px"}} sm="4">
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Index: </Form.Label>
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}}>           
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>           
                                     <Button onClick={this.handleClick}> Pretraži </Button>
                                 </Col>
-                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>
@@ -92,19 +91,18 @@ class TabelaUnosa extends Component {
 
                             <hr/>
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left", minWidth: "300px"}} sm={{span: 4}}>
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Bodovi: </Form.Label>
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}}>
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
                                     <Button onClick={this.handleCli}> Unesi </Button>
                                 </Col>
-                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>

@@ -53,34 +53,35 @@ class AzuriranjeZadace extends Component {
 
     return (
       <div>
-
         <div class="card w-25 ml-3 mt-4">
           <div class="card-title" id="azuriranjeT">
             Lista zadaća koje je moguće ažurirati:
-            </div>
-          <select
+          </div>
+          <ButtonDropdown
+            isOpen={this.state.dropdownOpen}
+            toggle={this.toggle}
             id="azsel"
             multiple=""
-            className="custom-select  mb-2"
           >
-            {lista.map(item =>
-              (<option onClick={this.handleDropdownClick(item.id)}
+            <DropdownToggle caret>Lista zadaća</DropdownToggle>
 
-                key={item.id}>{item.naziv}
-              </option>))
-            }
-
-          </select>
-
+            <DropdownMenu>
+              {lista.map(item => (
+                <DropdownItem
+                  onClick={this.handleDropdownClick(item.id)}
+                  key={item.id}
+                >
+                  {item.naziv}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </ButtonDropdown>
         </div>
-
 
         <div>
           {this.state.azuriranjeState && (
             <KreiranjeZadace
-
               title={"Ažuriranje zadaće"}
-
               mainState={this.state.azuriranjeState}
             />
           )}
@@ -101,9 +102,7 @@ class AzuriranjeZadace extends Component {
       );
       this.setState({
         azuriranjeState: res.data
-      })
-
-
+      });
     } catch (e) {
       console.error("Error fetching zadaca by id", e);
     }

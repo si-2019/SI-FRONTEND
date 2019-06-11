@@ -55,10 +55,22 @@ class Student extends Component {
   }
   testirajVrijeme = (r) => {
     return true;
-    var povratna_vrijednost;
-    var trengodina = new Date().getFullYear();
-    var trenmjesec = new Date().getMonth() + 1;
-    var trendan = new Date().getDate();
+    /*
+    var povratna_vrijednost; 
+    var danas = new Date();
+    var trengodina = danas.getFullYear();
+    var trenmjesec = danas.getMonth() + 1;
+    var trendan = danas.getDate();
+   
+    var vrijeme ={
+                    sati:danas.getHours(),
+                    minute:danas.getMinutes(),
+                    sekunde:danas.getSeconds()
+                  };
+    console.log('vrijeme:'+vrijeme);
+    console.log(this.state.zadacaState.rokZaPredaju[r].substring(10, this.state.zadacaState.rokZaPredaju[r].length));
+    console.log('trentno '+trengodina+' '+trenmjesec+' '+trendan);
+
     var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
     var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
     var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
@@ -66,10 +78,11 @@ class Student extends Component {
     else if (trengodina === nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
     else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
       povratna_vrijednost = false;
-    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan === nasdan && this.state.vrijeme !== "23:59")
+    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan === nasdan && this.state.vrijemeSlanja !== "23:59")
       povratna_vrijednost = false;
     else povratna_vrijednost = true;
     return povratna_vrijednost;
+    */
   }
 
   obracunBodova = async (bodoviPoZadacimaZadaca, maxBodoviPoZadacimaPoZadacama) => {

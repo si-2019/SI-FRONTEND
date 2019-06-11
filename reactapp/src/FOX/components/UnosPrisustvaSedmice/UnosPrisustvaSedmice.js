@@ -33,7 +33,7 @@ const UnosPrisustvaSedmice = (props) => {
                 </Row>
                 <Row noGutters style={{margin: "0"}}>
                     <Col>
-                        <div style={{padding: "15px", paddingBottom: "0px", paddgingRight: "0px"}}>
+                        <div style={{padding: "15px", paddingBottom: "0px", paddingRight: "0px"}}>
                             <div class="list-group" style={{margin: "0"}}>
                                 {
                                     sedmice.slice(0, 7).map((s, index) => {

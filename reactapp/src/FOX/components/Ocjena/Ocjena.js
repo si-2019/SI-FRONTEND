@@ -74,7 +74,7 @@ class Ocjena extends Component {
         const {validated} = this.state;
         const {greskaBaza}= this.state;
         return (
-            <div class="card">
+            <div class="card" style={{margin: "0"}}>
                 <div class="card-body">
                     <h4 class="card-title text-center" >Unos ocjene</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos ocjene.</h6>

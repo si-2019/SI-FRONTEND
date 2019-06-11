@@ -52,7 +52,7 @@ class KontaktPod extends Component {
     render() {
         return (
             <>
-            <h4 className="card-title" style={{ textAlign: "left" }}>Kontakt podaci</h4>
+            <h4 className="card-title">Kontakt podaci</h4>
                         <div className="form-group">
                             <label class="col-form-label" for="inputDefault">Telefon</label>
                             <br></br>

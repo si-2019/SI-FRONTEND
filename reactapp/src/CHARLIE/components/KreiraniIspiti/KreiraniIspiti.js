@@ -77,7 +77,7 @@ state = {response:[]}
 
   async componentDidMount() {
     const profesorID = 250;
-    const ispiti = await axios.get(`http://localhost:31903/kreiraniIspiti/${profesorID}`);
+    const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/kreiraniIspiti/${profesorID}`);
     //Za svaki entry nadji ime predmeta na osnovu id-a
     this.setState({ ispiti: ispiti.data });
   } 

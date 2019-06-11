@@ -30,7 +30,7 @@ render() {
     return(
         <div className="footerDno" style={{paddingBottom: "50px"}}>
             <Container fluid style={{padding:"0", margin: "0"}}>
-                <Row>
+                <Row style={{margin: "0", padding: "0"}}>
                     <Col md="3">
                         <Header isPocetna={false}/>
                     </Col>

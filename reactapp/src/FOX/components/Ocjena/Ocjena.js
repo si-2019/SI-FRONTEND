@@ -86,19 +86,18 @@ class Ocjena extends Component {
                             onSubmit = {e => this.handleSubmit(e)}
                         >
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left", minWidth: "300px"}} sm="4">
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Index: </Form.Label>
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}} >
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}} >
                                     <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
-                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>
@@ -112,8 +111,8 @@ class Ocjena extends Component {
 
                             <hr/>
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left", minWidth: "300px"}} sm="4">
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Ocjena: </Form.Label>
                                     <Form.Control  ref={ this.ocjena } required type="text" name="name">
                                     </Form.Control>
@@ -122,11 +121,10 @@ class Ocjena extends Component {
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col sm="4" style={{textAlign: "right", minWidth: "300px"}}>
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
                                     <Button> Unesi </Button>
                                 </Col>
-                                <Col></Col>
                             </Form.Row>
 
                             <Form.Row>

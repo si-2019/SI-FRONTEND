@@ -60,15 +60,17 @@ class Ocjene extends React.Component {
     }
     render() {
         return (
-            <div class="row" style={{ padding: "20px" }}>
-                 {this.state.dummyOcjene.map((x,i) =>
-                
-                    <TabelaOcjene key={i}
-                        ocj={x.Ocjene}
-                        akGod={x.AkademskaGodina}
-                    />)}
+            <div style={{marginTop:"30px"}}>
+                <h2 style={{ marginBottom: "30px"}}>Ocjene po godinama</h2>
+                <div class="row" style={{ padding: "20px" }}>
+                    {this.state.dummyOcjene.map((x,i) =>
+                    
+                        <TabelaOcjene key={i}
+                            ocj={x.Ocjene}
+                            akGod={x.AkademskaGodina}
+                        />)}
+                </div>
             </div>
-
         );
     }
 }

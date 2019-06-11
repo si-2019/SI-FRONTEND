@@ -67,32 +67,30 @@ vratiLjetni = (provjeri,i) => {
 
     render() { 
         return (
-            <div className="container-fluid" style={{ height: "100%" }}>
-                    <div className="d-flex justify-content-center" style={{ height: "100%" }}>
-                        <div className="d-flex align-items-center">
-                            <div class="row" style={{ margin: "0px" }}>
-                                <div class="col-lg col-md" >
+            <div className="container-fluid" style={{ height: "100%", marginTop:"30px" }}>
+                <h2 style={{ marginBottom: "30px"}}>Prosjek</h2>
 
-                                    <div class="card" style={{ width: "30rem" }}>
-                                        <div class="card-body">
-                                        <h3 class="card-title">Prosjek</h3>
-                        <div style={{ visibility: "hidden" }}>dssffds</div>
-                        <h6 class="card-subtitle mb-2 text-muted">Ukupan prosjek ciklusa: </h6>
-                        <label>{this.state.ukupanProsjek}</label>
-                        <div style={{ visibility: "hidden" }}>dssffds</div>
-                        <div style={{ visibility: "hidden" }}>dssffds</div>
-                        <div>
-                        {this.state.prosjekGodina.map((prosjek,index) =>(
-                            <div class="text-center">
-                             <div className="row" class="text-center" >
-                             {this.vratiGod(prosjek,index)}
-                             </div>
-                             <div className="row" class="text-center">
-                             {this.vratiZimski(prosjek,index)}
-                             </div>
-                             <div className="row" class="text-center">
-                             {this.vratiLjetni(prosjek,index)} 
-                             </div>
+                                    <div className="card align-items-center">
+                                    <div className="card-body" style={{ minWidth: "100%" }}>
+                                    <div class="row justify-content-lg-around justify-content-md-center">
+                                    <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+                                        <div style={{ visibility: "hidden" }}>dssffds</div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Ukupan prosjek ciklusa: </h6>
+                                        <label>{this.state.ukupanProsjek}</label>
+                                        <div style={{ visibility: "hidden" }}>dssffds</div>
+                                        <div style={{ visibility: "hidden" }}>dssffds</div>
+                                        <div>
+                                        {this.state.prosjekGodina.map((prosjek,index) =>(
+                                            <div class="text-center">
+                                            <div className="row" class="text-center" >
+                                            {this.vratiGod(prosjek,index)}
+                                            </div>
+                                            <div className="row" class="text-center">
+                                            {this.vratiZimski(prosjek,index)}
+                                            </div>
+                                            <div className="row" class="text-center">
+                                            {this.vratiLjetni(prosjek,index)} 
+                                            </div>
                             
                              
                         
@@ -102,11 +100,8 @@ vratiLjetni = (provjeri,i) => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+</div>
+</div>
           
             );
     }

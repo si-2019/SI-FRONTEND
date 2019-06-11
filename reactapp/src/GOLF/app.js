@@ -24,7 +24,7 @@ class App extends Component {
                        margin: "0px"
                     }}>
                       <Link to='/Golf/mojiPredmeti/1' class="dugmeLink">
-                          <button type="button" class="btn btn-primary" id="mpl">Moji predmeti</button>
+                          <button type="button" class="btn btn-primary left-buttons" id="mpl">Moji predmeti</button>
                       </Link>
                      <Ciklusi />
                      

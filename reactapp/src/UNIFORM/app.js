@@ -1,7 +1,7 @@
 import {BrowserRouter, Route} from 'react-router-dom';
 import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
-import './App.css';
+import './AppUniform.css';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import RasporedStudent from './components/Raspored/rasporedStudenta/raspored.js';
 import RasporedProfesor from './components/Raspored/rasporedProfesora/raspored.js';
@@ -15,24 +15,10 @@ export class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      open: false,  //open pokazuje da li formu treba prikazati ili ne
+    this.state = {      
       activeContentId: 1
     };
   }
-
-  //Funkcija kojom se otvara forma
-  onOpenModal = () => {
-    this.setState({ open: true });
-  };
-
-  onCloseModal = () => {
-    window.confirm('Prekinuti pisanje issuea?') && this.setState({ open: false });
-  };
-
-  onCloseModalAndSaveAsDraft = () => {
-    window.confirm('Save issue as draft and close?') && this.setState({ open: false });
-  };
 
   onChangeActiveId = (id) => {
     this.setState({
@@ -47,6 +33,212 @@ export class App extends Component {
   };
 
   render() {
+
+    return (
+      <div>
+      
+        <div className="App">
+
+          <div className="container-fluid" style={{ paddingLeft: "0px"}}>
+            <div className="row" style={{ margin: "0px", padding: "0px"}}>
+              <div className="col-lg-2 col-md-3 col-sm-12" style={{
+                backgroundColor: "#2C3E50",
+                minHeight: "100%",
+                padding: "0px",
+                margin: "0px"
+              }}>
+                 <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
+              </div>
+              <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
+                backgroundColor: "white",
+                minHeight: "calc(100vh - 80px)",
+                margin: "0px",
+                padding: "0px"
+              }}>
+                <div
+                  id="RasporedStudenta"
+                  style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
+                >
+                  <RasporedStudent />
+                </div>
+                <div
+                  id="RasporedProfesora"
+                  style={{ display: this.state.activeContentId == 2 ? 'inherit' : 'none' }}
+                >
+                  <RasporedProfesor />
+                </div>
+                <div
+                  id="RasporedSaleZaStudenta"
+                  style={{ display: this.state.activeContentId == 3 ? 'inherit' : 'none' }}
+                >
+                  <RasporedSalaStudent />
+                </div>
+                <div
+                  id="RasporedSaleZaProfesora"
+                  style={{ display: this.state.activeContentId == 4 ? 'inherit' : 'none' }}
+                > 
+                  <RasporedSalaProfesor />
+                </div>
+
+                <div
+                  id="GrupeStudenta"
+                  style={{ display: this.state.activeContentId == 5 ? 'inherit' : 'none' }}
+                >
+                  <GrupeStudent />
+                </div>
+                <div
+                  id="GrupeProfesora"
+                  style={{ display: this.state.activeContentId == 6 ? 'inherit' : 'none' }}
+                >
+                  <GrupeProfesor />
+                </div>
+                             
+
+
+              </div>
+            </div>
+          </div>         
+        </div>
+        </div>
+    );
+/*<>
+      
+      <div className="App">
+
+        <div  className="containter-fluid">
+          <div className="row" style={{ margin: "0px", padding: "0px"}}>
+            <div className="col-lg-2 col-md-23 col-sm-12" style={{
+              backgroundColor: "#2C3E50",
+              minHeight: "100%",
+              padding: "0px",
+              margin: "0px"
+            }}>
+              <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
+            </div>
+            <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
+              backgroundColor: "white",
+              minHeight: "calc(100vh - 80px)",
+              margin: "0px",
+              padding: "0px"
+            }}>
+
+<div id="rightBeta">
+              <div
+                  id="RasporedStudenta"
+                  style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
+                ><RasporedStudent />
+                </div>
+                <div
+                  id="RasporedProfesora"
+                  style={{ display: this.state.activeContentId == 2 ? 'inherit' : 'none' }}
+                ><RasporedProfesor />
+                </div>
+                <div
+                  id="RasporedSaleZaStudenta"
+                  style={{ display: this.state.activeContentId == 3 ? 'inherit' : 'none' }}
+                ><RasporedSalaStudent />
+                </div>
+                <div
+                  id="RasporedSaleZaProfesora"
+                  style={{ display: this.state.activeContentId == 4 ? 'inherit' : 'none' }}
+                > <RasporedSalaProfesor />
+                </div>
+
+                <div
+                  id="GrupeStudenta"
+                  style={{ display: this.state.activeContentId == 5 ? 'inherit' : 'none' }}
+                >
+                  <GrupeStudent />
+                </div>
+                <div
+                  id="GrupeProfesora"
+                  style={{ display: this.state.activeContentId == 6 ? 'inherit' : 'none' }}
+                >
+                  <GrupeProfesor />
+                </div>
+
+
+
+              </div>
+
+             
+
+
+            </div>
+          </div>
+        </div>      
+      </div>
+      </>
+    )*/
+
+/*
+      <div id>
+
+        <div className="App">
+
+          <div className="row" >
+
+            
+
+            <div id="main">
+              <div id="leftBeta">
+                <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
+              </div>
+              <div id="rightBeta">
+              <div
+                  id="RasporedStudenta"
+                  style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
+                ><RasporedStudent />
+                </div>
+                <div
+                  id="RasporedProfesora"
+                  style={{ display: this.state.activeContentId == 2 ? 'inherit' : 'none' }}
+                ><RasporedProfesor />
+                </div>
+                <div
+                  id="RasporedSaleZaStudenta"
+                  style={{ display: this.state.activeContentId == 3 ? 'inherit' : 'none' }}
+                ><RasporedSalaStudent />
+                </div>
+                <div
+                  id="RasporedSaleZaProfesora"
+                  style={{ display: this.state.activeContentId == 4 ? 'inherit' : 'none' }}
+                > <RasporedSalaProfesor />
+                </div>
+
+                <div
+                  id="GrupeStudenta"
+                  style={{ display: this.state.activeContentId == 5 ? 'inherit' : 'none' }}
+                >
+                  <GrupeStudent />
+                </div>
+                <div
+                  id="GrupeProfesora"
+                  style={{ display: this.state.activeContentId == 6 ? 'inherit' : 'none' }}
+                >
+                  <GrupeProfesor />
+                </div>
+
+
+
+              </div>
+            </div>
+            <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
+                backgroundColor: "white",
+                minHeight: "calc(100vh - 80px)",
+                margin: "0px",
+                padding: "0px"
+              }}></div>
+
+          </div>
+
+        </div>
+      </div>
+    );
+*/
+
+/*
+
     const { open } = this.state;
     return (
       <div>
@@ -107,7 +299,7 @@ export class App extends Component {
           
         </div>
       </div>
-    );
+    );*/
   }  
 }
 

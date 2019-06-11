@@ -8,8 +8,11 @@
 }
 
 #terminCard {
-  position: relative;
-  margin-top: unset;
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -10%) perspective(1px);
 }
 
 #listaDana,
@@ -22,4 +25,8 @@
 #dugme {
   width: fit-content;
   align-self: flex-end;
+}
+
+#alertID {
+  text-align: left;
 }

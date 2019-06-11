@@ -13,7 +13,7 @@ const validate = (e, validations) => {
     .filter(res => res.length > 0);
 };
 
-class Form extends Component {
+class FormCharlie extends Component {
   state = { validationError: false, validationErrorMessage: "" };
 
   render() {
@@ -29,40 +29,41 @@ class Form extends Component {
             {this.state.validationErrorMessage}
           </div>
         )}
-        <input
-          autoFocus={this.props.autoFocus}
-          type="text"
-          className="form-control"
-          id={this.props.id}
-          placeholder={this.props.placeholder}
-          onBlur={e => {
-            const validationResult = validate(e, this.props.validations);
-            let validationErrorMessage = "";
-            validationResult.forEach(el => {
-              validationErrorMessage += el + " ";
-            });
-            this.setState({
-              validationError: validationResult.length > 0,
-              validationErrorMessage
-            });
-          }}
+        <textarea
+                    autoFocus={this.props.autoFocus}
+                    className="form-control"
+                    id={this.props.id}
+                    placeholder={this.props.placeholder}
+                    rows="15"
+                    onBlur={e => {
+                      const validationResult = validate(e, this.props.validations);
+                      let validationErrorMessage = "";
+                      validationResult.forEach(el => {
+                        validationErrorMessage += el + " ";
+                      });
+                      this.setState({
+                        validationError: validationResult.length > 0,
+                        validationErrorMessage
+                      });
+                    }}
         />
+        
       </div>
     );
   }
 }
 
 const { array, bool, string } = PropTypes;
-Form.propTypes = {
+FormCharlie.propTypes = {
   autofocus: bool,
   id: string,
   placeholder: string,
   validaitons: array
 };
 
-Form.defautProps = {
+FormCharlie.defautProps = {
   placeholder: "",
   autoFocus: false
 };
 
-export default Form;
+export default FormCharlie;

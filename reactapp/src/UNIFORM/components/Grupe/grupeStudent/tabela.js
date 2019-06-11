@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { CustomInput, Form, FormGroup, Label, Input, Table } from "reactstrap";
 import Body_Cell from './body_cell.js';
 import Header_Cell from './header_cell.js';
 import axios from 'axios'; 
@@ -114,7 +115,7 @@ export class tabela extends Component {
     return (
       <div>
       {redoslijed}
-      <table style={tableStyle}>
+      <Table bordered className="table table-bordered text-center border-solid">
           <thead>
               <Header_Cell naziv={this.props.naziv}/>
           </thead>
@@ -122,16 +123,14 @@ export class tabela extends Component {
                {this.state.prijavljeniStudentiGrupe}
           </tbody> 
           <tfoot>
-               <tr>        
+               <tr className="text-dark">        
                    <td style={stylish}>
-
                        {button}
-                       {poruka}
-                       
+                       {poruka}                       
                    </td>
                 </tr>
             </tfoot>
-      </table>
+      </Table>
       </div>
     )
   }

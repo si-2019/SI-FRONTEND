@@ -43,16 +43,16 @@ class Odsjeci extends Component {
         return(
             <div id="drugi" class='side'>
 
-                <button type="button" class="btn btn-primary" onClick={() => this.Otvori(1)}>Računarstvo i informatika</button>
+                <button type="button" class="btn btn-primary left-buttons" onClick={() => this.Otvori(1)}>Računarstvo i informatika</button>
                 <br></br>
                 {this.state.kliknutRI && this.props.ciklus == "1" &&<Semestri6 ciklus={this.props.ciklus} odsjek='RI'> </Semestri6> || this.state.kliknutRI  && <Semestri4 ciklus={this.props.ciklus} odsjek='RI'></Semestri4>}
-                <button type="button" class="btn btn-primary" onClick={() => this.Otvori(2)}>Automatika i elektronika</button>
+                <button type="button" class="btn btn-primary left-buttons" onClick={() => this.Otvori(2)}>Automatika i elektronika</button>
                 <br></br>
                 {this.state.kliknutAiE && this.props.ciklus == "1" && <Semestri6 ciklus={this.props.ciklus} odsjek='AIE'> </Semestri6> || this.state.kliknutAiE  && <Semestri4 ciklus={this.props.ciklus} odsjek='AIE'></Semestri4>}
-                <button type="button" class="btn btn-primary" onClick={() => this.Otvori(3)}>Elektroenergetika</button>
+                <button type="button" class="btn btn-primary left-buttons" onClick={() => this.Otvori(3)}>Elektroenergetika</button>
                 <br></br>
                 {this.state.kliknutEE && this.props.ciklus == "1" && <Semestri6 ciklus={this.props.ciklus} odsjek='EE'> </Semestri6> || this.state.kliknutEE  && <Semestri4 ciklus={this.props.ciklus} odsjek='EE'></Semestri4>}
-                <button type="button" class="btn btn-primary" onClick={() => this.Otvori(4)}>Telekomunikacije</button>
+                <button type="button" class="btn btn-primary left-buttons" onClick={() => this.Otvori(4)}>Telekomunikacije</button>
                 <br></br>
                 {this.state.kliknutTK && this.props.ciklus == "1" && <Semestri6 ciklus={this.props.ciklus} odsjek='TK'> </Semestri6> || this.state.kliknutTK  && <Semestri4 ciklus={this.props.ciklus} odsjek='TK'></Semestri4>}
             </div>

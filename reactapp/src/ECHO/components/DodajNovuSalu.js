@@ -1,5 +1,7 @@
 import React, { Component }from 'react';
-
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import "./DodajNovuSalu.css";
 class DodajNovuSalu extends Component {
     constructor(props) {
         super(props);
@@ -50,28 +52,27 @@ class DodajNovuSalu extends Component {
     return (
 
             <div class="card" id="kartica">
-              <div class="card-body">
-              <h4 class="card-title">Unos sale</h4>
+              <div class="card-body" id="karticaBody">
+              <h4 class="card-title" >Unos sale</h4>
               <form>
-              <div className="form-group">
-                <label>Naziv sale</label>
-                <input 
-                type="text" 
-                className="form-control" 
-                id="naziv" 
-                onChange={this.handleNazivInput}></input>
-              </div>
-              <div className="form-group">
-                <label>Kapacitet</label>  
-                <input  
-                type="number"
-                className="form-control"
-                id="kapacitet" 
-                onChange={this.handleKapacitetInput}></input>
-              </div>
-              <div className="form-group">
+              <Form.Row>
+                                <Col style={{textAlign: "left"}}>
+                                    <Form.Label> Naziv sale: </Form.Label>
+                                    <Form.Control type="text" name="name" onChange={this.handleNazivInput}>
+                                    </Form.Control>
+                                </Col>
+                            </Form.Row>
+                            <Form.Row>
+                                <Col style={{textAlign: "left"}}>
+                                    <Form.Label> Kapacitet: </Form.Label>
+                                    <Form.Control min="1"
+            max="200" type="number"  name="name" onChange={this.handleKapacitetInput}>
+                                    </Form.Control>
+                                </Col>
+                            </Form.Row>
+              <div className="form-group" id="check">
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1" checked=""></input>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1" ></input>
                   <label class="custom-control-label" for="customCheck1">Sala posjeduje računare</label>
                 </div>
               </div>

@@ -125,7 +125,7 @@ class FormaProfPred extends Component {
                <label>Obavezan:</label>
                <input className="form-control" type="number" name="obavezan" value={obavezan} onChange={this.handleChange}  /><br />
               
-               <button className="btn btn-primary btn-block" onClick={this.spoji(odsjek, predmet, godina, ciklus, semestar, obavezan)}>Dodaj</button>
+               <button className="btn btn-primary btn-block" onClick={this.spoji(selectedValueO, selectedValueP, godina, ciklus, semestar, obavezan)}>Dodaj</button>
 
           </div>
          </div>

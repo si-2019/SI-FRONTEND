@@ -139,7 +139,16 @@ class ModalComponent extends React.Component {
                 />
             );
         }
-        /* VEDAD SPRINT 2 ->ISTI ELSE IF KAO KOD STUDENTA IDE OVDJE */
+
+           else if (this.state.greska) {
+            return (
+                <Potvrda
+                    key={this.brojac}
+                    successful="false"
+                    msg="Vaš odgovor  nije poslan! Pokušajte ponovo!"
+                />
+            );
+        }
        
         return null;
     }

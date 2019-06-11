@@ -1,8 +1,26 @@
-import React, {Component } from 'react';
-import Col from 'react-bootstrap/Col';
+import React, { Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
+
+function Poruka(props) {
+    const greska = props.greska;
+    const student= props.student;
+    if (greska==1) {
+        return <Alert variant='danger'>
+            <Alert.Heading>Nespješan unos!</Alert.Heading>
+            <p>Došlo je do greške sa bazom</p>
+        </Alert>
+    }
+    if (greska===2) {
+        return <Alert variant='success'>
+            <Alert.Heading>Uspješno uneseni bodovi!</Alert.Heading>
+        </Alert>
+    }
+    return ""
+}
 class TabelaUnosa extends Component {
     constructor(props){
         super(props);
@@ -10,7 +28,7 @@ class TabelaUnosa extends Component {
             validated: false,
             greskaBaza: 0
         }
-        this.ocjena=React.createRef();
+        this.bodovi=React.createRef();
     }
     handleSubmit(event) {
         const form = event.currentTarget;
@@ -26,14 +44,13 @@ class TabelaUnosa extends Component {
            
             console.log(this.ocjena.current.value);
             let reqBody = {
-              /*  idStudent: 2, //pristup lokalnom storage-u
-                idPredmet: 64,
-                idAkademskaGodina: 11,
-                ocjena: this.ocjena.current.value*/
+                idKorisnika: 3,
+                bodovi: this.bodovi.current.value,
+                idIspita: 4
             };
-            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
-            console.log(this.ocjena.current.value);
-            axios.post('', reqBody)
+           // if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
+            console.log(this.bodovi.current.value);
+            axios.post('http://localhost:31906/api/fox/ispiti', reqBody)
             .then((res) => {
                 console.log(res);
                 this.setState({greskaBaza: 2});

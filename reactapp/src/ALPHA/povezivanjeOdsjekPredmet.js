@@ -61,8 +61,8 @@ class FormaProfPred extends Component {
         }) 
    }
 
-   spoji(){
-       const body={"idOdsjek": this.state.odsjek, "idPredmet": this.state.predmet, "godina": this.state.godina, "ciklus": this.state.ciklus, "semestar": this.state.semestar, "obavezan": this.state.obavezan}
+   spoji(odsjek, predmet, godina, ciklus, semestar, obavezan){
+       const body={"idOdsjek": odsjek, "idPredmet": predmet, "godina": godina, "ciklus": ciklus, "semestar": semestar, "obavezan": obavezan}
        const json=JSON.stringify(body);
        console.log(json);
 
@@ -125,7 +125,7 @@ class FormaProfPred extends Component {
                <label>Obavezan:</label>
                <input className="form-control" type="number" name="obavezan" value={obavezan} onChange={this.handleChange}  /><br />
               
-               <button className="btn btn-primary btn-block" onClick={this.spoji()}>Dodaj</button>
+               <button className="btn btn-primary btn-block" onClick={this.spoji(odsjek, predmet, godina, ciklus, semestar, obavezan)}>Dodaj</button>
 
           </div>
          </div>

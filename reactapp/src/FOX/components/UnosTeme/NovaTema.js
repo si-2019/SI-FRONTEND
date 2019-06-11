@@ -100,7 +100,7 @@ class NovaTema extends Component {
 
                             <Col style={{textAlign: "left"}}>
                                 <div style={{padding: "15px"}}>
-                                <Card style={{textAlign: "left"}}>
+                                <Card style={{margin: "0"}}>
                                     <Card.Body>
                                             <Poruka greska={greskaBaza} />
                                             <Card.Title className="text-center">Nova tema za završni rad</Card.Title>

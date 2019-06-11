@@ -112,9 +112,7 @@ class Ocjena extends Component {
                                     <br/>
                                     <label>
                                     <label>
-                                        <td>{studenti.ime + ' '+ studenti.prezime}</td>
-                                        <td>{studenti.indeks}</td>
-                                        <td>{studenti.id}</td>
+                                        
                                        
                                     </label> 
 

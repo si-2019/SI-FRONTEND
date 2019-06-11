@@ -24,7 +24,7 @@ function Poruka(props) {
 class TabelaUnosa extends Component {
     constructor(props){
         super(props);
-        this.state ={
+        this.state = {
             validated: false,
             greskaBaza: 0
         }
@@ -44,9 +44,9 @@ class TabelaUnosa extends Component {
            
             console.log(this.bodovi.current.value);
             let reqBody = {
-                idKorisnika: 3,
+                /*idKorisnika: 3,
                 bodovi: this.bodovi.current.value,
-                idIspita: 4
+                idIspita: 4*/
             };
            // if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
             console.log(this.bodovi.current.value);
@@ -114,20 +114,26 @@ class TabelaUnosa extends Component {
                             <Form.Row>
                                 <Col style={{textAlign: "left"}}>
                                     <Form.Label> Bodovi: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                                    <Form.Control  ref={ this.bodovi } required type="text" name="name">
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validni bodovi </Form.Control.Feedback> 
+                                   <Form.Control.Feedback type= "invalid"> Bodovi nisu validni </Form.Control.Feedback> 
                                 </Col>
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
+
+                                
                                 <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button type="submit" > Unesi </Button>
+                                    <Button variant= "primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
+                                <Poruka greska={this.state.greskaBaza} />
+                                    
                                     <br/>
                                 </Col>
                             </Form.Row>

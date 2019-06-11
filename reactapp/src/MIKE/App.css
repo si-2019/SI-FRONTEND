@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: max-content;
 }
 
 .App-logo {
@@ -30,6 +31,71 @@
 .input[type="text"]{
   padding : 2%;
 }
+
+.row {
+  min-height: 100%;
+}
+
+#head_meni{
+  width: 100%;
+  display: inline-block;
+  height: 50px;
+}
+
+#naslov {
+  min-width: 20%;
+  background-color: #2C3E50;
+  height: 50px;
+  float: left;
+  text-align: left;
+  color: white;
+  padding-left: 2.7em;
+}
+
+#text {
+  margin-top: 4%;
+  margin: 2%;
+}
+
+#odabrana_opcija{
+  min-width: 80%;
+  float: right;
+  height: 50px;
+  background-color: #2C3E50;
+  color: white;
+}
+
+#glavni_meni {
+  width: 100%;
+}
+
+#left {
+  min-width: 100px;
+  background-color: #2C3E50;
+  float: left;
+  min-height: 40%!important;
+  max-height: 95%!important;
+}
+
+#right {
+  float: right;
+  align-items:stretch;
+  background-color: white;
+  min-height: 40%!important;
+  max-height: 100%!important;
+  text-align: center;
+}
+
+@media screen and (min-height: 500px) {
+  #left {
+    min-width: 100px;
+    background-color: #2C3E50;
+    float: left;
+    min-height: 100%!important;
+    max-height: 100%!important;
+  }
+}
+
 
 
 @keyframes App-logo-spin {

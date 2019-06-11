@@ -1,29 +1,36 @@
 import React from 'react'
 
-import Modal from "../SharedComponents/Modal";
-
+import Modal3 from "../SharedComponents/Modal3";
+import Modal2 from "../SharedComponents/Modal2";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import ReactDOM from 'react-dom';
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+
+
+import "../SharedComponents/tabeleCharlie.css";
+import { FormGroup, Table } from "reactstrap";
+import PregledStudenata from "../PregledStudenata";
 
 class KreiraniIspiti extends React.Component{
-  constructor () {
-    super();
+  constructor (...args) {
+    super(...args);
 
     this.state = {
-      tableData: [
+      ispiti: [
         {
           idIspit: '',
+          idPredmet: '',
           tipIspita: '',
           termin: ''
         }
       ],
 
-      modalShow: false
+      modalShow: false,
+      isEmptyState: false
     };
 }
+
+
 
 toggleModal = (idIspit) => {
   this.setState({
@@ -32,70 +39,76 @@ toggleModal = (idIspit) => {
   });
 }
 
+togglePregled = (idIspit) => {
+  this.setState({
+    isEmptyState: !this.state.isEmptyState,
+    idIspit: idIspit
+  });
+}
+
 obrisiIspit = () => {
-  this.setState({ tableData: this.state.tableData.filter(ispit => ispit.idIspit !== this.state.idIspit) });
+  this.setState({ ispiti: this.state.ispiti.filter(ispit => ispit.idIspit !== this.state.idIspit) });
   this.setState({
     modalShow: !this.state.modalShow
   });
+}
+
+saveState = (type, state, idIspit) => {
+  switch (type) {
+      case "modalShow":
+          this.setState({
+              modalShow: state,
+              idIspit: idIspit
+          });
+          break;
+          case "isEmptyState":
+            this.setState({
+              isEmptyState: state,
+                idIspit: idIspit
+            });
+            break;
+      default:
+          break;
+  }
 }
 
 
 state = {response:[]}
 
   async componentDidMount() {
-    const profesorID = 234;
-    const ispiti = await axios.get(`http://localhost:31903/kreiraniIspiti/${profesorID}`);
+    const profesorID = 250;
+    const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/kreiraniIspiti/${profesorID}`);
     //Za svaki entry nadji ime predmeta na osnovu id-a
-    this.setState({ tableData: ispiti.data });
+    this.setState({ ispiti: ispiti.data });
   } 
 
-  render(){
-    const { tableData } = this.state;
-    const columns=[
-      {
-        Header: () => <strong>Naziv predmeta</strong>,
-        id: "idIspit",
-        accessor: 'idIspit',
-        minWidth: 80
-      },
-      {
-        Header:  () => <strong>Tip ispita</strong>,
-        id: "tipIspita",
-        accessor: 'tipIspita',
-        maxWidth: 200
-      },
-      {
-        Header:  () => <strong>Datum ispita</strong>,
-        id: "termin",
-        accessor: d => {
-          var t = new Date(d.termin);
-          return t.toUTCString();
-        },     
-        minWidth: 80
-      },
-      {
-        
-        Header: '',
-        Cell: row => (
-          // U <div> ispod dodati dugmice
-          <div>
+  renderIspiti = () => {
+    return this.state.ispiti.map(el => (
+      <tr>
+        <td class="tabtip1">{el.idPredmet}</td>
+        <td class="tabtip1">{el.tipIspita}</td>
+        <td class="tabtip1">{new Date(el.termin).toUTCString()}</td>
+        <td  class="tabtip1">
 
-            <Link
+        <button
               type="button"
               id="btnStud"
-              className="btn btn-info"
-              style={{ marginRight: "10%" }}
-              to={`/charlie/pregled-studenata/${row.row.idIspit}`} 
+              className="btn btn-primary"
+              style={{ marginRight: "5px" }}
+              onClick={() => this.togglePregled(el.idIspit)}
             >
               Studenti
-            </Link>
+            </button>
+            
+    
+         
 
             <Link
               type="button"
               id="btnUredi"
-              className="btn btn-primary"
-              style={{ marginRight: "10%" }}
-              to={`/charlie/uredi-ispit/${row.row.idIspit}`}
+              class="btn btn-link"
+              style={{ marginRight: "5px" }}
+              onClick={() => this.toggleModal2(el.idIspit)}
             >
               Uredi
             </Link>
@@ -104,45 +117,65 @@ state = {response:[]}
 
               id="btnIzbrisi"
               className="btn btn-danger"
-              onClick={() => this.toggleModal(row.row.idIspit)}
+              onClick={() => this.toggleModal(el.idIspit)}
 
             >
-              Izbrisi
+              Izbriši
             </button>
-              
-          </div>
-      )
-    }]
+        </td>
+      </tr>
+    ));
+  };
+
+  render(){
+    const { ispiti } = this.state;
+   
     return(
-      <div style={{paddingTop: "5%"}}>
+      <div>
 
-         {!this.state.modalShow && <div>
 
-          <h3 style={{textAlign: "left", marginLeft: "1%"}}>Kreirani ispiti</h3>
-          <ReactTable 
-            data={tableData}
-            columns={columns} 
-            defaultPageSize={5}
-            style={{
-              width: "98%",
-              marginLeft: "auto",
-              marginRight: "auto",
-              textAlign: "center"
-              
-            }}
-            className="-striped -highlight"
-            id="tabelica"
-        />
+<div>
+<FormGroup className="px-4" style={{marginTop: "16px"}}>
+          <Table className="table table-bordered text-center bg-active border-solid">
+            <thead>
+              <tr className="bg-primary text-light">
+                <th class="tabtip">Predmet</th>
+                <th class="tabtip">Tip ispita</th>
+                <th class="tabtip">Datum ispita</th>
+                <th class="tabtip" />
+              </tr>
+            </thead>
+            <tbody>{this.renderIspiti()}</tbody>
+          </Table>
+          </FormGroup> 
+ 
+ 
+ 
+
         <br />
 
-        </div>}
-        {this.state.modalShow && 
-        <Modal onClose={this.toggleModal} onConfirm={
-          this.obrisiIspit
-        }>
-         </Modal>} 
+        </div>
+        <Modal2
+                    saveState={this.saveState}
+                    show={this.state.modalShow}
+                    naslovModala="Jeste li sigurni da želite obrisati ispit?"
+                    obrisiIspit={this.state}
+                    potvrdiBtnCharlie="Potvrdi"
+                    onConfirm={
+                      this.obrisiIspit
+                    }
+                   onClose={this.toggleModal}
 
-      </div>
+          />
+      <Modal3
+                    saveState={this.saveState}
+                    show={this.state.isEmptyState}
+                    naslovModala="Pregled studenata"
+                    tijeloModala={<PregledStudenata />}
+                    onClose={this.togglePregled}
+
+          />
+        </div>
     )
   }
 }

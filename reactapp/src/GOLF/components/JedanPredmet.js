@@ -39,17 +39,18 @@ class JedanPredmet extends Component {
 
   render() {
     return (
-        <div id="predmet_kartica" class="card border-success mb-3" >
-        <div class="card-header">
-        <Link to={this.state.link}>{this.props.predmet.naziv}</Link>
-        </div>
+    <div>
+      <div class="card">
         <div class="card-body">
+          <h4 class="card-title"><Link id="nazivPredmeta" to={this.state.link}>{this.props.predmet.naziv}</Link></h4>
           {this.props.predmet.opis}
         </div>
-        </div>
+      </div>
+    </div>
 
   
     )
+
   }
 }
 

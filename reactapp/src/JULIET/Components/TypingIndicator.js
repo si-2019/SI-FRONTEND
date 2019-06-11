@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 class TypingIndicator extends Component {
     render(){
-      console.log("OHOHOHOHOH");
         if (this.props.typingUsers.length > 0) {
             return (
               <div style={divStyle}>

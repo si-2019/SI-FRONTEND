@@ -86,7 +86,7 @@ class UploadFile extends Component{
         return(
             <form onSubmit={this.handleSubmit} className="row" name="fileForm" encType="multipart/form-data" style={formStyle}>
                 <Tooltip title="Upload file">
-                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => {this.handleUploadClick()}}>
+                    <IconButton style={{color: '#2C3E50'}} onClick={() => {this.handleUploadClick()}}>
                         <CloudUpload />
                     </IconButton>
                 </Tooltip>
@@ -94,7 +94,7 @@ class UploadFile extends Component{
 
 
                 <Tooltip title="Upload image">
-                    <IconButton style={{color: 'rgb(0, 0, 0, 0.8)'}} onClick={() => {this.handleImageUpload()}}>
+                    <IconButton style={{color: '#2C3E50'}} onClick={() => {this.handleImageUpload()}}>
                         <AddAPhoto />
                     </IconButton>
                 </Tooltip>
@@ -132,7 +132,7 @@ const uploadStyle = {
     width: '3em',
     float: 'right',
     color: 'white',
-    background: 'rgb(0, 0, 0, 0.8)'
+    background: '#2C3E50'
 }
 
 export default UploadFile;

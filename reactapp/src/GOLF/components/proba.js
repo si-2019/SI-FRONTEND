@@ -11,13 +11,13 @@ import OPredmetuProfesor from './oPredmetuProfesor';
 import OPredmetuStudent from './oPredmetuStudent';
 import Sedmica from './sedmica';
 import Dropdown from './dropdown';
-import UredjivanjeLiterature from './UredjivanjeLiterature'
+import UredjivanjeObjave from './UredjivanjeObjave'
 
 class proba extends Component {
   render() {
     this.state={
       svipredmeti: [
-        {UredjivanjeLiterature,
+        {
           id: 1,
           naziv: 'SI',
           opis:' opis premeta hvhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj z hjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj zhjvihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj z'
@@ -52,6 +52,8 @@ class proba extends Component {
       
         <div>
             <h1>Moji predmeti</h1>
+            <DodavanjeObjave></DodavanjeObjave>
+            <UredjivanjeObjave></UredjivanjeObjave>
             
         </div>
         

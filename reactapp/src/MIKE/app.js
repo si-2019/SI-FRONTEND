@@ -17,6 +17,8 @@ class Mike extends Component {
       forma:"null",
       predmeti:[]
     }
+ 
+
     this.kreiranjeGrupe=this.kreiranjeGrupe.bind(this);
     this.listaProjekata=this.listaProjekata.bind(this);
     this.pregledDetaljaPredmeta=this.pregledDetaljaPredmeta.bind(this);
@@ -25,20 +27,65 @@ class Mike extends Component {
     this.unosInformacija=this.unosInformacija.bind(this);
     this.generisanjeGrupe=this.generisanjeGrupe.bind(this);
   }
-
+ 
   render() {   
-    if(this.state.forma=="null") return (
-      <div className="col-6">
-       
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-        {/*<button className="btn btn-primary btn-lg btn-block" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
-        <button className="btn btn-primary btn-lg btn-block" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
-      </div>
+    {/*if(this.state.forma=="null")*/} return (
+     // <div className="col-6">
+        <div>
+          <div className="App">
+            <div className="row">
+              <div id="head_meni">
+                <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+                <div id="odabrana_opcija"></div>
+              </div>
+              <div id="glavni_meni">
+                <div id="left">
+                  <div>
+                    <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                    <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                    <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                    {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                    <button className="btn btn-primary left-buttons" onClick={this.mockKreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                    <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+                  </div>
+                </div>
+                <div id="right">
+                  <div id="kreiranje_grupe" style={{display : this.state.forma == "kreiranjeGrupe" ? 'inherit' : 'none'}}>
+                    <Lista submit={this.unosInformacija}/>
+                  </div>
+                  <div id="lista_projekata" style={{display : this.state.forma == "listaProjekata" ? 'inherit' : 'none'}}>
+                    <PregledListeProjekata />
+                  </div>
+                  <div id="kreiranje_grupe" style={{display : this.state.forma == "PregledAsistent" ? 'inherit' : 'none'}}>
+                    <ListaPredmetaAsistenta idAsistent={41} predmeti={this.state.predmeti} />
+                  </div>
+                  <div id="kreiranje_grupe" style={{display : this.state.forma == "projektniZadaci" ? 'inherit' : 'none'}}>
+                    <PregledZadatakaProjekta/>
+                  </div>
+                  <div id="kreiranje_grupe" style={{display : this.state.forma == "KreiranjeAsistent" ? 'inherit' : 'none'}}>
+                    <KreiranjeProjekta idPredmeta={1} 
+                      asistenti={[
+                      {idAsistenta: 1, ime:"Nerma Hanic"},
+                      {idAsistenta: 2, ime:"Haso Hasic"}
+                      ]}/>
+                  </div>
+                  <div id="kreiranje_grupe" style={{display : this.state.forma == "unosInformacija" ? 'inherit' : 'none'}}>
+                    <UnosInformacija/>
+                  </div>
+                  <div id="kreiranje_grupe" style={{display : this.state.forma == "generisanjeGrupe" ? 'inherit' : 'none'}}>
+                    <GenerisanjeGrupa idAsistent={2} predmeti={[
+                      {nazivPredmeta:"Softver Inženjering",idProjekat:1, brojStudenata:50},
+                      {nazivPredmeta:"Vještačka inteligencija",idProjekat:2, brojStudenata:30}]}/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+     // </div>
     );
-    else if (this.state.forma=="kreiranjeGrupe") return (
+    {/*else if (this.state.forma=="kreiranjeGrupe") return (
      <Lista submit={this.unosInformacija}/>
      
     );
@@ -65,7 +112,7 @@ class Mike extends Component {
       <GenerisanjeGrupa idAsistent={2} predmeti={[
         {nazivPredmeta:"Softver Inženjering",idProjekat:1, brojStudenata:50},
         {nazivPredmeta:"Vještačka inteligencija",idProjekat:2, brojStudenata:30}]}/>
-    )
+      )*/}
   }
   kreiranjeGrupe(){
     this.setState({forma:"kreiranjeGrupe"});

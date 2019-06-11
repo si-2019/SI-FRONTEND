@@ -62,7 +62,7 @@ export default class ThreadDialog extends Component {
                         </form>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} style={{color: 'rgb(0, 0, 0, 0.8)'}}>Close</Button>
+                        <Button onClick={this.handleClose} style={{color: '#2C3E50'}}>Close</Button>
                     </DialogActions>
                 </Dialog>
             </div>

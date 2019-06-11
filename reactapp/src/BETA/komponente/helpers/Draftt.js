@@ -22,8 +22,8 @@ export default class Draft extends React.Component {
     setIssue = (item) => {
         this.setState({
             clickedItem: {
-                data: item, expanded: true
-            },
+                data: item, expanded: !this.state.clickedItem.expanded
+            }
         });
     };
 

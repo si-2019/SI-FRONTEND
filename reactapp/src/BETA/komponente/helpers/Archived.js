@@ -24,7 +24,7 @@ export default class Archived extends React.Component {
     setIssue = (item) => {
         this.setState({
             clickedItem: {
-                data: item, expanded: true
+                data: item, expanded: !this.state.clickedItem.expanded
             }
         });
     };

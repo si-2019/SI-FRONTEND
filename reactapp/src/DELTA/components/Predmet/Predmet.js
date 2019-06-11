@@ -1,55 +1,60 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import ListaPredmeta from "../ListaPredmeta/ListaPredmeta";
 import DrugiModuli from "../DrugiModuli/DrugiModuli";
 import Ispiti from "../Ispiti/Ispiti";
 import Zadace from "../Zadace/Zadace";
 import KonacnaOcjena from "../KonacnaOcjena/KonacnaOcjena";
+import "./AppDelta.css";
 
 class Predmet extends Component {
-  state = { postotakBodovaZadace: 33, postotakBodovaIspiti: 70 };
+
+  state = {predmet:"", profesor:""};
+
+    async componentDidMount(){
+     //hardkodirane vrijednosti
+      const idPredmet=64;
+
+      const {data} = await axios.get('http://localhost:31904/dohvatiPredmet/'+idPredmet); 
+      this.setState({predmet:data});
+      const idProf = this.state.predmet.idProfesora;
+      const {data1} = await axios.get('http://localhost:31904/dohvatiProfesora/'+this.state.predmet.idProfesora); 
+      this.setState({profesor:data1});
+      
+      
+    }
 
   render() {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-4">
-            <ListaPredmeta />
-          </div>
           <div className="col-8">
             <div className="row">
-              <b>Predmet:</b> Softver inzenjering
+              <b>Predmet:</b> { this.state.predmet.naziv}
             </div>
             <div className="row">
-              <b>Odgovorni nastavnik:</b> Novica Nosovic
+              <b>Odgovorni nastavnik:</b> {this.state.predmet.idProfesora}
             </div>
             <div className="row">
-              <b>Opis predmeta:</b>
-              Svrha ovog predmeta je uvođenje studenta u principe različitih
-              vrsta i namjena računarskih arhitektura. On ima za cilj da pomogne
-              studentima u razumjevanju strukture i načina rada savremenih
-              mikroprocesora opšte i specijalne nemjene (DSP, mikrokontroleri,
-              grafički procesori), viseprocesorskih i višeračunarskih struktura,
-              kao i mjerenja njihovih performansi i određivanja uskih grla.
+              <b>Opis predmeta:</b>{this.state.predmet.opis}
             </div>
             <div className="row">
-              <b>Broj ETCS bodova: </b> 5
+              <b>Broj ETCS bodova: </b>{this.state.predmet.ects}
             </div>
-
             <br />
-
             <Zadace />
             <br />
             <Ispiti />
             <br />
             <div className="row">
-              <div className="col-4" />
+              <div className="col-3" />
 
               <div>
                 <KonacnaOcjena />
               </div>
             </div>
             <div className="row">
-              <div col-2>
+              <div>
                 <DrugiModuli />
               </div>
             </div>

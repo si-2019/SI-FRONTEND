@@ -9,8 +9,8 @@ class KreirajIspit extends Component{
 
 
   async componentDidMount(){
-    const {data} = await axios.get('http://localhost:31903/api/predmeti')
-    //const {data1} = await axios.get('http://localhost:31903/api/brojStudenata') - kad se napravi na BE
+    const {data} = await axios.get('http://si2019charlie.herokuapp.com/api/predmeti')
+    //const {data1} = await axios.get('http://si2019charlie.herokuapp.com/api/brojStudenata') - kad se napravi na BE
     const data1=15 // hardkodirana vrijednost
     this.setState({response:data})
     this.setState({brojStudenata:data1})
@@ -33,7 +33,7 @@ class KreirajIspit extends Component{
     const subjectNAme = this.refs.odabirPredmeta.value
     const typeOfExam = this.refs.odabirTipIspita.value
     if(typeOfExam != "Usmeni" && typeOfExam != "Uvid") {
-      const {data} = axios.get('http://localhost:31903/predmet/' + subjectNAme + '/' + typeOfExam)
+      const {data} = axios.get('http://si2019charlie.herokuapp.com/predmet/' + subjectNAme + '/' + typeOfExam)
       if(data > 4 || (data > 3 && typeOfExam == "Integralni")){
         e.preventDefault();
         this.setState({validationError: true})

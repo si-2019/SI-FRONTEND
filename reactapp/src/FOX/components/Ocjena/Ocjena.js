@@ -87,15 +87,17 @@ class Ocjena extends Component {
                         >
 
                             <Form.Row>
-                                <Col style={{textAlign: "right"}}>
+                                <Col style={{textAlign: "left"}}>
                                     <Form.Label> Index: </Form.Label>
-                                </Col>
-                                <Col lg="2">
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
-                                <Col>
-                                    <Button style= {{paddingLeft: '10px' }} > Pretrazi </Button>
+                            </Form.Row>
+
+                            <Form.Row style={{paddingTop: "10px"}}>
+                                <Col></Col>
+                                <Col md="auto" style={{textAlign: "right"}}>
+                                    <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -111,17 +113,19 @@ class Ocjena extends Component {
                             <hr/>
 
                             <Form.Row>
-                                <Col style={{textAlign: "right"}}>
+                                <Col style={{textAlign: "left"}}>
                                     <Form.Label> Ocjena: </Form.Label>
-                                </Col>
-                                <Col lg="2">
                                     <Form.Control  ref={ this.ocjena } required type="text" name="name">
                                     </Form.Control>
                                     <Form.Control.Feedback> Validna ocjena </Form.Control.Feedback> 
                                     <Form.Control.Feedback type= "invalid"> Ocjena nije validna </Form.Control.Feedback> 
                                 </Col>
-                                <Col>
-                                    <Button variant="primary" type="submit" padd>Unesi</Button> 
+                            </Form.Row>
+
+                            <Form.Row style={{paddingTop: "10px"}}>
+                                <Col></Col>
+                                <Col md="auto" style={{textAlign: "right"}}>
+                                    <Button> Unesi </Button>
                                 </Col>
                             </Form.Row>
 

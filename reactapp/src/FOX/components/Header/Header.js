@@ -23,12 +23,15 @@ class Header extends Component {
             float: "left",
             minHeight: "100vh"
           }}>
-            <a href="https://www.iiicareer.com/OTS/Client/logout.php">
-              <button type="button" className="btn btn-primary left-buttons">Odjava</button>
-            </a>
+            
             <a href="http://yiiisu.com/load.php?action=download&id=3">
               <button type="button" className="btn btn-primary left-buttons">Uputstvo</button>
             </a>
+
+            <a href="https://www.iiicareer.com/OTS/Client/logout.php">
+              <button type="button" className="btn btn-primary left-buttons">Odjava</button>
+            </a>
+            
           </div>
 
           {/* <Navbar bg="primary" variant="dark" className="justify-content-end">

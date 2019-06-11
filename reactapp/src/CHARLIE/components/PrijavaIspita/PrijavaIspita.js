@@ -8,7 +8,7 @@ class PrijavaIspita extends React.Component {
 
   async componentDidMount() {
     //kad se uradi backend otkomentarisati..
-    const ispiti = await axios.get("http://localhost:31903/ispiti");
+    const ispiti = await axios.get("http://si2019charlie.herokuapp.com/ispiti");
     //Filter po predmetima koje slusa student
     //Za svaki entry nadji ime predmeta na osnovu id-a
     this.setState({ ispiti: ispiti.data });

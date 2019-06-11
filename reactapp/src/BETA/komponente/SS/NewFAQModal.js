@@ -50,7 +50,7 @@ class ModalComponent extends React.Component {
         //ukoliko neki rezultira greskom, postavite greska na true
         if (this.state.noviInput.naziv != null && this.state.noviInput.tekst != null) {
             const { naziv, tekst } = this.state.noviInput;
-            axios.post('http://localhost:31902/frequentIssue/add', null, { params: { naziv, tekst } })
+            axios.post('https://si2019beta.herokuapp.com/frequentIssue/add', null, { params: { naziv, tekst } })
                 .then(result => {
                     if (result.data === "Uspjesan upis!") { this.setState({ greska: false }); }
                     console.log("result.data: " + result.data);

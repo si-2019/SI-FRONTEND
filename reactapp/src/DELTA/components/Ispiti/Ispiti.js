@@ -30,7 +30,7 @@ class Ispiti extends Component {
         return(
             <div className="row">
             <div className="col-3">
-                <b>Ispiti</b>
+                <b className="text-left">Ispiti</b>
             </div>
             <div className="col-6">
                 <div class="progress" style={{width:250, height:25,  margin:5}} >
@@ -38,12 +38,12 @@ class Ispiti extends Component {
                 </div>
             </div>
               <div className="col-3">
-                  <div className="row">
+                
                         <a class="btn btn-primary btn-block" href="/Charlie" role="button">Ispiti</a>
-                  </div>
-                  <div className="row">
+                        <div className="row">
                         <p class="text-danger" style={{padding:"10px"}}>{this.state.ispitiObavjestenje}</p>
                   </div>
+                  
               
             </div>
            </div>

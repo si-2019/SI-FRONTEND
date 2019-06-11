@@ -36,7 +36,7 @@ export default class Issue extends React.Component {
     archiveIssue = (idIssue) => {
 
         const { trashStudent, trashSS } = this.state;
-        axios.put('http://localhost:31902/issues/archived/add', { trashStudent, trashSS, idIssue })
+        axios.put('https://si2019beta.herokuapp.com/issues/archived/add', { trashStudent, trashSS, idIssue })
             .then((result) => {
 
                 for (let i = 0; i < this.props.data.length; i++) {
@@ -56,6 +56,10 @@ export default class Issue extends React.Component {
 
     componentWillReceiveProp() {
         alert("Usao sam sada ovo");
+    }
+
+    replyOnIssue = (id) => {
+        //otvoriti modal
     }
 
     render() {
@@ -86,10 +90,11 @@ export default class Issue extends React.Component {
                         <div className="card-title">
                             <div className="issue-body card-body">
                                 <div className="issueID">id:{issue.id}</div>
-                                <div className="issueDate">          {datum}</div>
+                                <div className="issueDate">{datum}</div>
                                 <div onClick={() => this.setIssue(issue.id)} className="issue-title">{issue.title}</div>
                                 <div className="issueButtonDelete">
                                     <Button onClick={() => this.archiveIssue(issue.id)}>Arhiviraj</Button>
+                                    <Button onClick={() => this.replyOnIssue(issue.id)}>Odgovori</Button>
                                 </div>
 
                             </div>

@@ -31,5 +31,9 @@ describe('<UrediIspit />', () => {
     expect(wrapper.find('#iNapomena').exists()).toBe(true)
   })
 
+  it('da li ima input za kapacitet', () => {
+    const wrapper = shallow(<UrediIspit/>)
+    expect(wrapper.find('#kapacitet').exists()).toBe(true)
+  })
 
 }) 

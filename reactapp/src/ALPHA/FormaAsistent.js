@@ -96,7 +96,8 @@ class FormaAsistent extends Component {
         const { ime, prezime, otac, majka, spol, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, odsjek, username, linkedin, website} = this.state;
 
         return (
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card">
+          <div className="card-body  col-md-4 col-md-offset-4">
             <form  onSubmit={this.handleSubmit} className="container-fluid">
 
               <label>Ime </label>
@@ -152,8 +153,9 @@ class FormaAsistent extends Component {
               <label>Website </label>
               <input className="form-control " type="text" name="website" value={website} onChange={this.handleChange} /><br />    
               
-              <input type="submit" value="Submit" className="btn btn-success btn-block" />
+              <input type="submit" value="Dodaj" className="btn btn-primary btn-block" />
     </form>
+    </div>
     </div>
         );
     }

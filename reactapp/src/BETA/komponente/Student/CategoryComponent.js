@@ -12,7 +12,7 @@ class CategoryComponent extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:31902/category/get').then( res => {
+    axios.get('https://si2019beta.herokuapp.com/category/get').then( res => {
 
       let displayNames = [];
       

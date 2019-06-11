@@ -147,11 +147,11 @@ class Forma extends Component {
               <label>Adresa stanovanja </label>
               <input className="form-control " type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />
               
-              <input type="submit" value="Edit" className="btn btn-success btn-block" />
+              <input type="submit" value="Uredi" className="btn btn-primary btn-block" />
              </form><br />
 
-             <button className="btn btn-success btn-block" onClick={()=>this.promote(id)}>PROMOTE</button>
-             <button className="btn btn-success btn-block" onClick={()=>this.obrisi(id)}>DELETE</button>
+             <button className="btn btn-primary btn-block" onClick={()=>this.promote(id)}>Promovisi</button>
+             <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(id)}>Obrisi</button>
 
     </div>
         );

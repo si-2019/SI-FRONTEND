@@ -91,7 +91,7 @@ class FormaPredmet extends Component {
              
               
               
-              <input type="submit" value="Submit" className="btn btn-success btn-block" />
+              <input type="submit" value="Dodaj" className="btn btn-primary btn-block" />
     </form>
     </div>
         );

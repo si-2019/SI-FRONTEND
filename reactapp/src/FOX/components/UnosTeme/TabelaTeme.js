@@ -32,7 +32,7 @@ class TabelaStudenti extends Component {
 
     componentDidMount() {
         //Promise
-        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/4') //idPredmeta kao parametar
+        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/64') //idPredmeta kao parametar iz local storega
             .then(
                 res => this.setState({teme: res.data})
             );
@@ -61,7 +61,7 @@ class TabelaStudenti extends Component {
                                 <td>{teme.opis}</td>
                                 <td>{teme.odabrana}</td>
                                 <td>{teme.student}</td>
-                                <td><Button variant="primary" href={"izmjenaTeme/"+teme.id+"/"+teme.naziv+"/"+teme.opis}>Izmjeni</Button></td>
+                                <td><Form><Button variant="primary" href={"izmjenaTeme/"+teme.id+"/"+teme.naziv+"/"+teme.opis}>Izmjeni</Button></Form></td>
                                 <td><Form onSubmit={(e) => this.izbrisiTemu(e, teme.id)}>
                                     <Button variant="danger" type="submit">Izbriši</Button>
                                     </Form>
@@ -77,7 +77,7 @@ class TabelaStudenti extends Component {
                         <td>Opis</td>
                         <td>Da</td>
                         <td>Neko Nekic</td>
-                        <td><Button variant="primary" href="#">Izmjeni</Button></td>
+                        <td><Form><Button variant="primary" href="#">Izmjeni</Button></Form></td>
                         <td><Form onSubmit={(e) => this.izbrisiTemu(e, 0)}>
                             <Button variant="danger" type="submit">Izbriši</Button>
                             </Form>

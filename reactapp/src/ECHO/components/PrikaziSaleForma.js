@@ -1,5 +1,7 @@
 import React, { Component }from 'react';
-
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import './PrikaziSaleForma.css';
 class PrikaziSaleForma extends Component {
 
     constructor(props) {
@@ -59,20 +61,24 @@ class PrikaziSaleForma extends Component {
           <h4 class="card-title">Prikaz sala</h4>
           <form>
 
-            <div className="form-group">
-              <label>Sale</label>
+          <Form.Row>
+                                <Col style={{textAlign: "left"}}>
+                                    <Form.Label> Sale: </Form.Label>
+                                   
+                                </Col>
+                            </Form.Row>
               <select
                 className="custom-select" 
                 id="naslovSelect"
                 onChange={this.handleChange}>
                 {this.state.sale.map(item => (<option value={item.id}>{item.naziv}</option>))}</select>
-            </div>
+            
 
             <div className="form-group">
             <button
               id="dugme1"
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-danger"
               onClick={this.handleSubmit}>
               
               Obriši salu

@@ -19,9 +19,7 @@ class PreviewZadace extends Component {
         }
       }
       tipovi.push(tipoviZadatka);
-      zadaciCelije.push(
-        this.props.podaci.listaBodova[i] + " " + tipovi[i]
-      );
+      zadaciCelije.push(this.props.podaci.listaBodova[i] + " " + tipovi[i]);
     }
 
     return (
@@ -32,7 +30,9 @@ class PreviewZadace extends Component {
               <tr className="bg-primary text-light">
                 <th class="tabtip">INFO</th>
                 {kolone.map((zadatak, indeks) => (
-                  <th class="tabtip" key={zadatak + indeks}>{zadatak}</th>
+                  <th class="tabtip" key={zadatak + indeks}>
+                    {zadatak}
+                  </th>
                 ))}
                 <th class="tabtip">Datum i vrijeme</th>
                 <th class="tabtip">Ukupan broj bodova</th>
@@ -42,12 +42,12 @@ class PreviewZadace extends Component {
               <tr>
                 <th class="tabtip1">{this.props.podaci.naziv}</th>
                 {zadaciCelije.map((text, indeks2) => (
-                  <th class="tabtip1" key={text + indeks2}>{text}</th>
+                  <th class="tabtip1" key={text + indeks2}>
+                    {text}
+                  </th>
                 ))}
                 <th class="tabtip1">
-                  {this.props.podaci.datum +
-                    " " +
-                    this.props.podaci.vrijeme}
+                  {this.props.podaci.datum + " " + this.props.podaci.vrijeme}
                 </th>
                 <th class="tabtip1">{this.props.podaci.ukupnoBodova}</th>
               </tr>

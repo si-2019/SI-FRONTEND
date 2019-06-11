@@ -26,7 +26,7 @@ class FAQ extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: true });
-        axios.get('http://localhost:31902/frequentIssue/get').then(res => {
+        axios.get('https://si2019beta.herokuapp.com/frequentIssue/get').then(res => {
             if (!(typeof res.data === 'string' || res.data instanceof String)) {
                 this.setState({
                     issues: res.data,

@@ -18,7 +18,7 @@ class AddNewCategoryForm extends React.Component {
         //Pokupiti naziv unesene kategorije i upisati je u bazu
         e.preventDefault();
         const naziv  = this.state.categoryName;
-        axios.post('http://localhost:31902/category/add', {naziv})
+        axios.post('https://si2019beta.herokuapp.com/category/add', {naziv})
         .then((result) => {
             alert(result.data);
         });

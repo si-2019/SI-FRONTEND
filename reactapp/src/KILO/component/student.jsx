@@ -195,6 +195,30 @@ class Student extends Component {
     document.getElementById("zadatakVecPoslan").style.display = "block";
   };
 
+  downloadPostavka = async (r) => {
+
+    if (this.state.zadacaState.postavka[r] === null) {
+      // nema postavke za ovu zadacu
+      alert("Ne postoji postavka za ovu zadaću")
+      return;
+    }
+
+    var nazivZadace = this.state.zadacaState.listaZadaca[r];
+
+    axios.get(`http://localhost:31911/downloadPostavka/${nazivZadace}`).then(res => {
+
+      let resultByte = res.data.postavka.data;
+      var bytes = new Uint8Array(resultByte);
+      var blob = new Blob([bytes], { type: res.data.tipFajlaPostavke });
+
+      var link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = res.data.naziv + '-' + res.data.imeFajlaPostavke;
+      link.click();
+    }).catch(e => console.log(e));
+
+  }
+
   handleClick = async event => {
     var ime = event.target.name;
 
@@ -216,8 +240,8 @@ class Student extends Component {
           velicinaFajla = 0.1
         }
 
-        if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 25) { // upload prhvatljiv
-          // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 25 (MB)s
+        if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 2) { // upload prhvatljiv
+          // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 2 (MB)s
           var nazivFajlaSplit = file.name.split('.');
           var nazivFajla = "";
           for (var i = 0; i < nazivFajlaSplit.length - 1; i++) {
@@ -239,7 +263,7 @@ class Student extends Component {
           })
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
-          alert("Nije dobar tip")
+          alert("Nije dobar tip ili je fajl prevelik")
         }
 
         break;
@@ -377,7 +401,6 @@ class Student extends Component {
     document.getElementById("zadatakVecPoslan").style.display = "none";
   }
   render() {
-    // console.log('State:', this.state);
     return (
       <div>
         <div id="tabelaPregledaZadaca">

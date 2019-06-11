@@ -82,8 +82,6 @@ class ModalComponent extends React.Component {
         else{
             if(event.target.files[0].size/1024/1024 > 25){
                 this.setState({fileTooBig : true});
-                //OVDJE TREBA JOS PRIKAZATI ALERT
-                 
             }
             else{
                 this.setState({fileTooBig : false});

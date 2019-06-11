@@ -22,7 +22,9 @@ class IssueList extends React.Component {
                 title: null,
                 messages: null,
             },
-            isLoading: true
+            isLoading: true,
+            categoryTitle: 'Sve',
+            categoryArray: [],
         }
     };
 
@@ -34,6 +36,17 @@ class IssueList extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
+
+        axios.get('http://localhost:31902/category/get').then( res => {
+
+            let displayNames = [];
+            for(let i = 1; i < res.data.length; i++)
+            {
+                displayNames.push(res.data[i].naziv)
+            }
+            this.setState({categoryArray: displayNames, loading: true});
+        });
+
         const res = await axios.get('http://localhost:31902/issues/get');
 
         let dN = [];
@@ -68,6 +81,57 @@ class IssueList extends React.Component {
         this.setState({isLoading: false});
     }
 
+    async changeIssueState(){
+        // this.setState({kategorija : sljedecaKategorija});
+                //alert(sljedecaKategorija.category);
+                this.setState({isLoading: true});
+                const res = await axios.get('http://localhost:31902/issues/get');
+                //const kategorija = await axios.get('http://localhost:31902/category/get/naziv?categoryNaziv='+'Da');
+                //alert(kategorija.data);
+        
+                let dN = [];
+                let dIP = [];
+                let dR = [];
+        
+                //new
+                res.data.new.forEach( async (issue) => {
+                    let cn = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+                    if(this.state.categoryTitle == 'Sve' ||  cn.data.naziv == this.state.categoryTitle){
+                    let dn = issue.messages;
+                    dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
+                    }
+                });
+        
+                //inProgress
+                res.data.inProgress.forEach( async (issue) => {
+                    let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+                    if(this.state.categoryTitle == 'Sve' ||  cip.data.naziv == this.state.categoryTitle){
+                    let dip = issue.messages;
+                    dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
+                    }
+                });
+        
+                //resolved
+                res.data.resolved.forEach( async (issue) => {
+                    let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+                    if(this.state.categoryTitle == 'Sve' ||  cr.data.naziv == this.state.categoryTitle){
+                    let dr = issue.messages;
+                    dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
+                    }
+                });
+        
+                this.setStateAsync({dataNew: dN});
+                this.setStateAsync({dataInProgress: dIP});
+                this.setStateAsync({dataResolved: dR});
+        
+                this.setState({isLoading: false});
+    };
+        
+    onChangeTitle = (e) => {
+        this.setState({categoryTitle: e.target.value});
+        this.changeIssueState();
+        };
+
     onRefreshListNew = (newArray) => {
         this.setState({
             dataNew: newArray
@@ -98,10 +162,24 @@ class IssueList extends React.Component {
                 </Spinner>
             );
         }
+
+        let options = [];
+        options.push(<option>{this.state.categoryTitle}</option>);
+        if(this.state.categoryTitle != 'Sve')
+            options.push(<option>Sve</option>);
+        for(let j = 0; j < this.state.categoryArray.length; j++)
+            options.push(<option key={j}>{this.state.categoryArray[j]}</option>);
+
         return (
             <div >
-                 <div id="search-issue-tab-Beta">Ovdje ce biti search filter
-              </div>
+                <div id="search-issue-tab-Beta">
+                    <p id = "search-issue-text">Kategorija</p>
+                    <select id = "search-issue-filter"
+                        className="form-control" 
+                        onChange = {this.onChangeTitle}
+                    >{options}
+                    </select>
+                </div>
                 <Tabs
                     className=".p-3"
                     id="tabs"

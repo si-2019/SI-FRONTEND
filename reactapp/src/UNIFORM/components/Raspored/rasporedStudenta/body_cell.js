@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import Popup from 'react-popup';
 import Modal from 'react-modal';
@@ -34,8 +34,7 @@ const MojModal = (ovaj) => {
               <b>Predmet: </b><a href="http://www.etf.unsa.ba" >{ovaj.props.termin.predmet}</a> <br></br>
               <b>Sala: </b><a href="http://www.etf.unsa.ba">{ovaj.props.termin.sala}</a><br></br> 
               <b>Bilješka: </b>{ovaj.props.termin.biljeska} <br></br>            
-              <b>Unesi novu/ažuriraj staru bilješku</b>    <br/>
-              <input type="text" className="form-control" aria-describedby="Unesi zabilješku" placeholder="Bilješka" value =  {ovaj.state.title} onChange={ovaj.handleChange}></input>
+              
               <br/>
               <div id='successResult' style={successResult}>{ovaj.state.signalString}</div>
               <div style={divStyle}>

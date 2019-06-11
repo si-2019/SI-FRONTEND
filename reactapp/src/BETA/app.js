@@ -11,13 +11,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showSS: true,
       activeContentId: 1
     };
   }
 
 
-  
- 
+
+
 
   onChangeActiveId = (id) => {
     this.setState({
@@ -38,7 +39,7 @@ class App extends Component {
                 <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
               </div>
               <div id="rightBeta">
-            
+
                 <div
                   id="TrackIssuesContent"
                   style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
@@ -69,9 +70,10 @@ class App extends Component {
 
           </div>
 
-         
+
 
         </div>
+       
       </div>
     );
   }

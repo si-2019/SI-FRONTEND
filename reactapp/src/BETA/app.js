@@ -5,7 +5,6 @@ import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';
 import Drafts from './komponente/Student/Drafts.js';
 import Archived from './komponente/Student/ArchivedPart.js'
-import ModalComponent from './komponente/helpers/OdgovorForma.js'
 
 
 class App extends Component {
@@ -74,14 +73,7 @@ class App extends Component {
 
 
         </div>
-        <ModalComponent
-
-          show={this.state.showSS}
-          naslovModala="Odgovori na upit"
-          btnPotvrdi="Pošalji odgovor"
-          onHide={() => this.setState({showSS: false})}
-
-        />
+       
       </div>
     );
   }

@@ -11,9 +11,8 @@ const DraftMessage = (props) => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <div className="issue-message">
-                        <Button variant="primary" type='submit' className="message-button">Izmijeni</Button>
+                        <Button variant="primary" type='submit' className="message-button">Uredi</Button>
                         <Button variant="primary" type='submit' className="message-button">Pošalji</Button>
-                        <Button variant="primary" type='submit' className="message-button">Obriši</Button>
                     </div>
                 </ListGroup.Item>
             </ListGroup.Item>

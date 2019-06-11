@@ -94,19 +94,19 @@ class TabelaPredmeti extends  React.Component {
                                     </tbody>
                                     </Table>
                                 }
-                                <Row className="justify-content-md-center" style={{margin: "0"}}>
-                                    <Col></Col>
-                                    <Col md="auto" style={{textAlign: "center"}}>
-                                        <button 
-                                            type="button" 
-                                            className="btn btn-primary"
-                                            onClick={this.redirectt}> Registruj novi ispit
-                                        </button>
-                                    </Col>
-                                    <Col></Col>
-                                </Row>
                         </Col>
                     </Row>
+
+                    <Row className="justify-content-md-center" style={{margin: "0"}}>
+                        <Col style={{textAlign: "center"}}>
+                            <button 
+                                type="button" 
+                                className="btn btn-primary"
+                                onClick={this.redirectt}> Registruj novi ispit
+                            </button>
+                        </Col>
+                    </Row>
+                    
                 </Container>
                 }
 

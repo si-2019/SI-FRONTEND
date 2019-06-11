@@ -30,7 +30,7 @@ export default class Issue extends React.Component {
         this.setState({
             clickedItem: {
                 data: item,
-                expanded: true
+                expanded: !this.state.clickedItem.expanded
             },
 
 

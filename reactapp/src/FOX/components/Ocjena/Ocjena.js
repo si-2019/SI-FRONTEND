@@ -28,17 +28,19 @@ class Ocjena extends Component {
         this.state ={
             validated: false,
             greskaBaza: 0,
-            studenti: []
+            student: undefined
         }
         this.ocjena=React.createRef();
+        this.indeks=React.createRef();
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidMount() {
-        //Promise
-        axios.get('http://localhost:31906/api/fox/tabelaStudenti/:index') //index iz local storega
-            .then(
-                res => this.setState({studenti: res.data})
-            );
+    handleClick() {
+        console.log("Clicked");
+        //Poziv apija /fox/getStudentInfo/:id
+        axios.get("http://localhost:31906/fox/getStudentInfo/1").then((res)=> {
+            this.setState({ student: res.data });
+        })
     }
 
     handleSubmit(event) {
@@ -79,6 +81,21 @@ class Ocjena extends Component {
     render() {
         const {validated} = this.state;
         const {greskaBaza}= this.state;
+        const student = this.state.student;
+        let rezPretrage;
+
+        if (student!=undefined) {
+            rezPretrage = <div>
+                <Col style={{textAlign: "center"}}>
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Student sa indeksom {this.indeks.current.value} je pronađen! <br></br>
+                        {student.ime + " " + student.prezime}
+                    </div>
+                </Col>
+                
+            </div>
+        }
         return (
             <div class="card">
                 <div class="card-body">
@@ -103,21 +120,12 @@ class Ocjena extends Component {
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
                                 <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button > Pretrazi </Button>
+                                    <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
                             <Form.Row>
-                                <Col style={{textAlign: "center"}}>
-                                    <br/>
-                                    <label>
-                                    <label>
-                                        
-                                       
-                                    </label> 
-
-                                    </label> 
-                                </Col>
+                                {rezPretrage}
                             </Form.Row>
 
                             <hr/>

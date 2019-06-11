@@ -27,7 +27,8 @@ class Ocjena extends Component {
         super(props);
         this.state ={
             validated: false,
-            greskaBaza: 0
+            greskaBaza: 0,
+            studenti: []
         }
         this.ocjena=React.createRef();
     }
@@ -36,7 +37,7 @@ class Ocjena extends Component {
         //Promise
         axios.get('http://localhost:31906/api/fox/tabelaStudenti/:index') //index iz local storega
             .then(
-                res => this.setState({teme: res.data})
+                res => this.setState({studenti: res.data})
             );
     }
 
@@ -111,9 +112,9 @@ class Ocjena extends Component {
                                     <br/>
                                     <label>
                                     <label>
-                                        <td>{student.ime + ' '+ student.prezime}</td>
-                                        <td>{student.indeks}</td>
-                                        <td>{student.id}</td>
+                                        <td>{studenti.ime + ' '+ studenti.prezime}</td>
+                                        <td>{studenti.indeks}</td>
+                                        <td>{studenti.id}</td>
                                        
                                     </label> 
 

@@ -32,7 +32,19 @@ export class tabela extends Component {
 
 
   render() {
-    
+    var prijavljeniStudentiGrupe = [];
+    for(var i=0;i<this.props.kapacitet;i++)
+    {
+        var vlasnikBool = false;
+        if(this.props.login==1 && i<this.props.grupa.studenti.length)
+        {
+            if(this.props.grupa.studenti[i].idStudent==this.props.idLogovanogStudenta)
+            vlasnikBool=true;   
+        }
+        
+        prijavljeniStudentiGrupe.push(
+            <Body_Cell lockState={this.props.lockState} odjaviStudenta={this.odjaviStudenta.bind(this,i)} student={this.props.grupa.studenti[i]} vlasnik={vlasnikBool}/>
+        );
     }   
 
     

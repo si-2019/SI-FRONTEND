@@ -48,7 +48,6 @@ class ModalComponent extends React.Component {
                 if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
                 else{
                     { this.setState({ greska: true})}
-                    alert(JSON.stringify(result.data));
                 }
             })
             .catch(err => {

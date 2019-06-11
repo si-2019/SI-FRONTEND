@@ -86,6 +86,10 @@ class IssueList extends React.Component {
         })
     };
 
+    sortIssuesFromEarliest = (list) => {
+
+    }
+
     render() {
         if (this.state.isLoading) {
             return (

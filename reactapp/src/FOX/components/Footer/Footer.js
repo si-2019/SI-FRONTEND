@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 class Footer extends Component {
     render() {
       return (
-        <div className="Footer" style={{position: "absolute", bottom: "0", width: "100%", marginTop: "70px"}}>           
+        <div className="Footer" style={{position: "absolute", bottom: "0", width: "100%"}}>           
             <Navbar expand="lg" variant="light" bg="primary" className="justify-content-center" style={{height: "50px"}}>
                 <ReturnButton/>
             </Navbar>

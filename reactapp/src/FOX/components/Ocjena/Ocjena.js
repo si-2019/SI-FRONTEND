@@ -32,8 +32,13 @@ class Ocjena extends Component {
         this.ocjena=React.createRef();
     }
 
-     
-
+    componentDidMount() {
+        //Promise
+        axios.get('http://localhost:31906/api/fox/tabelaStudenti/:index') //index iz local storega
+            .then(
+                res => this.setState({teme: res.data})
+            );
+    }
 
     handleSubmit(event) {
         const form = event.currentTarget;
@@ -54,7 +59,7 @@ class Ocjena extends Component {
                 idAkademskaGodina: 11,
                 ocjena: this.ocjena.current.value
             };
-            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
+          //  if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
             console.log(this.ocjena.current.value);
             axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
             .then((res) => {
@@ -97,7 +102,7 @@ class Ocjena extends Component {
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
                                 <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button onClick={this.handleClick}> Pretrazi </Button>
+                                    <Button > Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -105,7 +110,13 @@ class Ocjena extends Component {
                                 <Col style={{textAlign: "center"}}>
                                     <br/>
                                     <label>
-                                        
+                                    <label>
+                                        <td>{student.ime + ' '+ student.prezime}</td>
+                                        <td>{student.indeks}</td>
+                                        <td>{student.id}</td>
+                                       
+                                    </label> 
+
                                     </label> 
                                 </Col>
                             </Form.Row>
@@ -118,14 +129,14 @@ class Ocjena extends Component {
                                     <Form.Control  ref={ this.ocjena } required type="text" name="name">
                                     </Form.Control>
                                     <Form.Control.Feedback> Validna ocjena </Form.Control.Feedback> 
-                                    <Form.Control.Feedback type= "invalid"> Ocjena nije validna </Form.Control.Feedback> 
+                                   <Form.Control.Feedback type= "invalid"> Ocjena nije validna </Form.Control.Feedback> 
                                 </Col>
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
                                 <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button> Unesi </Button>
+                                    <Button variant="primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
 

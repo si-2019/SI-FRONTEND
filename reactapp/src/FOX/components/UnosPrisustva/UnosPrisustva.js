@@ -139,12 +139,12 @@ class UnosPrisustva extends React.Component {
             <div id="unosPrisustvaID" className="footerDno">
 
                 <Container fluid style={{padding:"0", margin: "0"}}>
-                    <Row>
+                    <Row noGutters>
                         <Col md="3">
                             <Header isPocetna={false}/>
                         </Col>
                         <Col>
-                            <div style={{textAlign: "center"}}>
+                            <div style={{textAlign: "center", paddgin: "15px"}}>
                                 {
                                     this.state.sedmica !== 0 &&
                                         <UnosPrisustvaForma

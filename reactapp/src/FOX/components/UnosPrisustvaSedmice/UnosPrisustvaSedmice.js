@@ -24,38 +24,42 @@ const UnosPrisustvaSedmice = (props) => {
     return (
         <div>
             <Container fluid style={{padding:"0", margin: "0"}}>
-                <Row style={{margin: "0"}}>
-                <Col style={{textAlign: "left"}}>
-                    <br/>
-                    <h4>Odabir sedmice</h4>
-                    <br></br>
-                </Col> 
+                <Row noGutters style={{margin: "0"}}>
+                    <Col style={{textAlign: "left"}}>
+                        <div style={{padding: "15px", paddingBottom: "0px"}}>
+                            <h4>Odabir sedmice</h4>
+                        </div>
+                    </Col> 
                 </Row>
-                <Row style={{margin: "0"}}>
+                <Row noGutters style={{margin: "0"}}>
                     <Col>
-                        <div class="list-group">
-                            {
-                                sedmice.slice(0, 7).map((s, index) => {
-                                    return (
-                                        <a href="#" class="list-group-item list-group-item-action" onClick={() => props.handleClickSedmica(index + 1)}>
-                                            {s}
-                                        </a>
-                                    );
-                                })
-                            }
+                        <div style={{padding: "15px", paddingBottom: "0px", paddgingRight: "0px"}}>
+                            <div class="list-group" style={{margin: "0"}}>
+                                {
+                                    sedmice.slice(0, 7).map((s, index) => {
+                                        return (
+                                            <a href="#" class="list-group-item list-group-item-action" onClick={() => props.handleClickSedmica(index + 1)}>
+                                                {s}
+                                            </a>
+                                        );
+                                    })
+                                }
+                            </div>
                         </div>
                     </Col>
                     <Col>
-                        <div class="list-group">
-                            {
-                                sedmice.slice(7, 14).map((s, index) => {
-                                    return (
-                                        <a href="#" class="list-group-item list-group-item-action" onClick={() => props.handleClickSedmica(index + 8)}>
-                                            {s}
-                                        </a>
-                                    );
-                                })
-                            }
+                        <div style={{padding: "15px"}}>
+                            <div class="list-group" style={{margin: "0"}}>
+                                {
+                                    sedmice.slice(7, 14).map((s, index) => {
+                                        return (
+                                            <a href="#" class="list-group-item list-group-item-action" onClick={() => props.handleClickSedmica(index + 8)}>
+                                                {s}
+                                            </a>
+                                        );
+                                    })
+                                }
+                            </div>
                         </div>
                     </Col>
                 </Row>

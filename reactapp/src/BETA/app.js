@@ -15,10 +15,6 @@ class App extends Component {
     };
   }
 
-
-  
- 
-
   onChangeActiveId = (id) => {
     this.setState({
       activeContentId: id,

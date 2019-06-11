@@ -40,7 +40,7 @@ const MojModal = (ovaj) => {
               <div id='successResult' style={successResult}>{ovaj.state.signalString}</div>
               <div style={divStyle}>
               <button style={stylishLeft} className = 'btn btn-primary' onClick= {ovaj.handleClick}>Unesi</button>
-              
+              <button style={stylishCenter} type="button" class="btn btn-danger" onClick= {ovaj.handleDestroy}>Obriši</button>
               <button style={stylishRight} className = 'btn btn-secondary' onClick={ovaj.handleCloseModal}>Zatvori</button>
               </div>
             </Modal>

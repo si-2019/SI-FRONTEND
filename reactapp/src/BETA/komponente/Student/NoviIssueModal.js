@@ -65,6 +65,7 @@ class ModalComponent extends React.Component {
             .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
             else{
                 { this.setState({ greska: true})}
+                alert(JSON.stringify(result.data));
             }
         })
         .catch(err => {
@@ -81,7 +82,6 @@ class ModalComponent extends React.Component {
         else{
             if(event.target.files[0].size/1024/1024 > 25){
                 this.setState({fileTooBig : true});
-                 
             }
             else{
                 this.setState({fileTooBig : false});

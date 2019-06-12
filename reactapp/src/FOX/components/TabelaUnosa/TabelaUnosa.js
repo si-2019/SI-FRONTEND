@@ -64,9 +64,9 @@ class TabelaUnosa extends Component {
            
             console.log(this.bodovi.current.value);
             let reqBody = {
-                idKorisnika: 3,
+               /* idKorisnika: 3,
                 bodovi: this.bodovi.current.value,
-                idIspita: 4
+                idIspita: 4*/
             };
           //  if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
             console.log(this.bodovi.current.value);
@@ -83,9 +83,7 @@ class TabelaUnosa extends Component {
         this.setState({ validated: true });
         event.preventDefault();
     }
-     
-    
-     
+
     render() {
         const {validated} = this.state;
         const {greskaBaza}= this.state;
@@ -167,7 +165,7 @@ class TabelaUnosa extends Component {
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
                                 <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button type="submit" > Unesi </Button>
+                                    <Button variant="primary" type="submit" > Unesi </Button>
                                 </Col>
                             </Form.Row>
 

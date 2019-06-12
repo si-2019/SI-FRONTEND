@@ -34,7 +34,7 @@ class FormaPr extends Component {
       }
       componentDidMount(){
        
-        axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -84,7 +84,7 @@ class FormaPr extends Component {
         };
         const body = JSON.stringify(body1);
         console.log("Svi potrebni podaci strng: ", body);
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewProfessor', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewProfessor', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {

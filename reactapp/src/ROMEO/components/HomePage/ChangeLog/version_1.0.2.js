@@ -81,6 +81,9 @@ var data = [{
     "Omogućen pregled ostvarenog prosjeka po godinama.",
     "Omogućen pregled ostvarenog prosjeka po semestrima."]
 },{
+    grupa:"Tango",
+    opis:["Usklađen interfejs sa ostalim grupama."]
+},{
     grupa:"Uniform",
     opis:["Kreiran prikaz grupa za studente.",
     "Kreiran prikaz grupa za ansambl.",

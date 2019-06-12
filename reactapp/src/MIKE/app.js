@@ -265,6 +265,7 @@ class Mike extends Component {
             if(jsonProjekti.length>0)
               jsonNovi.push({id:json[i].id,naziv:json[i].naziv_predmeta,opis:jsonProjekti[0].opisProjekta,bodovi:jsonProjekti[0].moguciBodovi});
           }
+          jsonNovi.push({id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20});
           komponenta.setState(state=>({
             forma:"kreiranjeGrupe",
             predmeti:jsonNovi

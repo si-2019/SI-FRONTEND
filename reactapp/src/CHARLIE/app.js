@@ -26,6 +26,18 @@ class App extends Component {
       }, {
         btnText: "Kreirani ispiti",
         component: <KreiraniIspiti />
+      }, {
+        btnText: "Kreiraj ispit detalji",
+        component: <KreirajIspitDetalji />
+      }, {
+        btnText: "Informacije o ispitu",
+        component: <InformacijeOIspitu />
+      }, {
+        btnText: "Prijava ispita",
+        component: <PrijavaIspita />
+      }, {
+        btnText: "Prijavljeni ispiti",
+        component: <PrijavljeniIspiti />
       }],
       menuComponentsProfesor: [{
         naziv: "Profil",
@@ -33,8 +45,24 @@ class App extends Component {
         component: <KreirajIspit />
       },{
         naziv: "Profil",
-        changeId: 0,
+        changeId: 1,
         component: <KreiraniIspiti />
+      },{
+        naziv: "Profil",
+        changeId: 2,
+        component: <KreirajIspitDetalji/>
+      },{
+        naziv: "Profil",
+        changeId: 3,
+        component: <InformacijeOIspitu />
+      }, {
+        naziv: "Profil",
+        changeId: 4,
+        component: <PrijavaIspita />
+      }, {
+        naziv: "Profil",
+        changeId: 5,
+        component: <PrijavljeniIspiti />
       }],
       menuButtonsStudent: [{
         btnText: "Prijava ispita",
@@ -119,40 +147,7 @@ class App extends Component {
             </div>
           </div>
         
-          <BrowserRouter>
-          <Route
-            path="/charlie/info-o-ispitu"
-            exact
-            component={InformacijeOIspitu}
-          />
-          <Route
-            path="/charlie/kreiraj-ispit-detalji"
-            exact
-            component={KreirajIspitDetalji}
-          />
-          <Route
-            path="/charlie/kreirani-ispiti"
-            exact
-            component={KreiraniIspiti}
-          />
-          <Route
-            path="/charlie/pregled-studenata"
-            exact
-            component={PregledStudenata}
-          />
-          <Route
-            path="/charlie/prijava-ispita"
-            exact
-            component={PrijavaIspita}
-          />
-          <Route
-            path="/charlie/prijavljeni-ispiti"
-            exact
-            component={PrijavljeniIspiti}
-          />
-          <Route path="/charlie/uredi-ispit" exact component={UrediIspit} />
-          <Route path="/charlie/kreiraj-ispit" exact component={KreirajIspit} />
-        </BrowserRouter>
+         
         </div>
         </>
     );

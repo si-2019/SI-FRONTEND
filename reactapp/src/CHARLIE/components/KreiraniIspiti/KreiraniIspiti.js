@@ -100,24 +100,26 @@ state = {response:[]}
             >
               Studenti
             </button>
-            
+            <br />
     
          
 
             <Link
-              type="button"
+              
               id="btnUredi"
               class="btn btn-link"
-              style={{ marginRight: "5px" }}
+              style={{ marginRight: "5px", marginTop: "10px" }}
               onClick={() => this.toggleModal2(el.idIspit)}
             >
               Uredi
             </Link>
+
             <button
               type="button"
 
               id="btnIzbrisi"
               className="btn btn-danger"
+              style={{marginTop: "10px"}}
               onClick={() => this.toggleModal(el.idIspit)}
 
             >
@@ -132,11 +134,12 @@ state = {response:[]}
     const { ispiti } = this.state;
    
     return(
-      <div>
-
+      
+<div class="container-fluid" style={{marginTop: "30px"}}>
+        <h2 style={{marginBottom: "30px"}}>Kreirani ispiti</h2>
 
 <div>
-<FormGroup className="px-4" style={{marginTop: "16px"}}>
+<FormGroup className="px-4" style={{marginTop: "20px"}}>
           <Table className="table table-bordered text-center bg-active border-solid">
             <thead>
               <tr className="bg-primary text-light">

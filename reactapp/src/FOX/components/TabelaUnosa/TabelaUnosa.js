@@ -124,8 +124,10 @@ class TabelaUnosa extends Component {
                             <Form.Row>
                                 <Col style={{textAlign: "left"}}>
                                     <Form.Label> Index: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                                    <Form.Control  ref={ this.indeks } required type="text" name="name">
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
+                                   <Form.Control.Feedback type= "invalid"> Indeks nije validan </Form.Control.Feedback> 
                                 </Col>
                             </Form.Row>
 
@@ -140,10 +142,6 @@ class TabelaUnosa extends Component {
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
                                 {rezPretrage}
-                                </Col>
-                            </Form.Row>
-                            <Form.Row>
-                                <Col style={{textAlign: "center"}}>
                                 </Col>
                             </Form.Row>
 

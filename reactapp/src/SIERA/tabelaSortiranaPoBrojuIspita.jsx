@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class TabelaSortiranaPoBrojuIspita extends Component {
-  state = {};
+    state = {
+        sortiraniPredmetiPoBrojuIspita: [],
+        brojIspita: []
+    };
 
   render() {
     return (

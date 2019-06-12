@@ -74,6 +74,13 @@ var data = [{
     grupa:"Siera",
     opis:["Omogućena prijava završnog ispita","Omogućeno kreiranje ugovora o učenju."]
 },{
+    grupa:"Tango",
+    opis:["Kreiran sticky za temu.", 
+    "Dodan prikaz odgovora na komentare.",
+    "Kreirano sortiranje komentara.",
+    "Dodana opcija za brisanje teme.",
+    "Dodana paginacija tema."]
+},{
     grupa:"Uniform",
     opis:["Prikaz rasporeda studenta.","Dodani API-ji."]
 }];

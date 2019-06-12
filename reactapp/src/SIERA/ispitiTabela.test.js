@@ -17,13 +17,13 @@ it("postoji tabela", () => {
   expect(wrapper.find("table").exists()).toBeTruthy();
 });
 
-it('tabela ima klasu "table table-hover"', () => {
+it('tabela ima klasu "table"', () => {
   const wrapper = shallow(<IspitiTabela />);
   expect(
     wrapper
       .find("table")
       .first()
-      .hasClass("table table-hover")
+      .hasClass("table")
   ).toBeTruthy();
 });
 
@@ -35,7 +35,7 @@ it("tabela ima tijelo", () => {
 it("prvi red ima klasu table-success", () => {
   const wrapper = shallow(<IspitiTabela />);
   const rows = wrapper.find("tr");
-  const prviRed = rows.first().hasClass("table-success");
+  const prviRed = rows.first().hasClass("bg-primary");
   expect(prviRed).toBeTruthy();
 });
 
@@ -52,6 +52,6 @@ it('prvo zaglavlje tabele ima tekst koji sadrzi rijec "Akademska godina"', () =>
 
 it("postoji celija", () => {
   const wrapper = shallow(<IspitiTabela />);
-  const celija = wrapper.find("td");
+  const celija = wrapper.find("th");
   expect(celija.exists()).toBeTruthy();
 });

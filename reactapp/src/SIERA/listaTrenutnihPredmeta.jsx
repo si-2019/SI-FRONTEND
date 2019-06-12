@@ -41,7 +41,7 @@ class ListaPredmeta extends Component {
 
   render() {
     return (
-          <div className="align-self-start">{this.prikazPredmeta()}</div>    
+      <div className="align-self-start">{this.prikazPredmeta()}</div>
     );
   }
 }

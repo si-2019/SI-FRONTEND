@@ -89,10 +89,10 @@ class IspitiTabela extends Component {
         <h2 style={{ marginBottom: "30px" }}>Ispiti</h2>
         <div className="row justify-content-center" style={{ padding: "20px" }}>
           {this.state.listaIspita.map((item, i) => (
-            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-10 ">
+            <div className="col-sm-12 col-xs-12 col-md-12 col-lg-10 ">
               <table className="table table-bordered text-center bg-active border-solid" key={i}>
                 <tbody>
-                  <tr class="bg-primary text-light" key={item[0].idGodine}>
+                  <tr className="bg-primary text-light" key={item[0].idGodine}>
                     <th className="tabtip" scope="row" colSpan="7" style={{ textAlign: "center" }}>
                       Akademska godina: {item[0].nazivGodine}
                     </th>

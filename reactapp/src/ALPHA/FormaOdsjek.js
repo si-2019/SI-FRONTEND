@@ -5,7 +5,7 @@ class FormaOdsjek extends Component {
         super(props)
   
         this.initialState = {
-          Naziv: ''
+          naziv: ''
         }
     
         this.state = this.initialState
@@ -45,14 +45,14 @@ class FormaOdsjek extends Component {
      
 
     render() {
-        const { Naziv } = this.state;
+        const { naziv } = this.state;
 
         return (
           <div className="card">
           <div className="card-body  col-md-4 col-md-offset-4">
             <form  onSubmit={this.OnSubmit} className="container-fluid">
               <label >Naziv odsjeka </label>
-              <input className="form-control" type="text" name="Naziv" value={Naziv} onChange={this.handleInputChange} /><br />
+              <input className="form-control" type="text" name="naziv" value={naziv} onChange={this.handleInputChange} /><br />
               
               <input type="submit" value="Upiši" className="btn btn-primary btn-block" />
             </form>

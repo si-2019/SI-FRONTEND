@@ -20,7 +20,7 @@ class MainContent extends Component {
             component={AzuriranjeZadace}
           />
           <Route
-            path={"/KILO/brisanjeZadace/?idPredmeta=3"}
+            path={"/KILO/brisanjeZadace/"}
             component={BrisanjeZadace}
           />
           <Route

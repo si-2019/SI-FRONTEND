@@ -3,6 +3,23 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+
+function Poruka(props) {
+    const greska = props.greska;
+    const student= props.student;
+    if (greska==1) {
+        return <Alert variant='danger'>
+            <Alert.Heading>Nespješan unos!</Alert.Heading>
+            <p>Došlo je do greške sa bazom</p>
+        </Alert>
+    }
+    if (greska===2) {
+        return <Alert variant='success'>
+            <Alert.Heading>Uspješno uneseni bodovi!</Alert.Heading>
+        </Alert>
+    }
+    return ""
+}
 class TabelaUnosa extends Component {
     constructor(props){
         super(props);

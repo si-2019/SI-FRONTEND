@@ -34,8 +34,8 @@ class Header extends Component {
         <Link to="/KILO/brisanjeZadace/?idPredmeta=3">
           <button
             type="button"
-          
-            className="meniBtn btn btn-primary left-buttons"
+            class="meniBtn"
+            className="btn btn-primary left-buttons"
             id="BrisanjeKilo"
             style={{ width: "100%" }
           }

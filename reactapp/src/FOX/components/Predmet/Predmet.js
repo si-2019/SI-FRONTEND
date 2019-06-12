@@ -10,9 +10,9 @@ import CardDeck from 'react-bootstrap/CardDeck';
 class Predmet extends Component {
      state = {
           predmeti: [
-               {naziv: "Tehnike programiranja"},
-               {naziv: "Numerički algoritmi"},
-               {naziv: "Diskretna matematika"}
+               {id: 0, naziv: "Tehnike programiranja", opis: "Opis predemeta"},
+               {id: 1, naziv: "Numerički algoritmi", opis: "Opis predemeta"},
+               {id: 2, naziv: "Diskretna matematika", opis: "Opis predemeta"}
           ],
           grupe: [
                {naziv: "Grupa 1"},
@@ -22,9 +22,9 @@ class Predmet extends Component {
      }
 
      componentDidMount() {
-          // Privremeno rješnje
+          const idKorisnika = window.localStorage.getItem('idKorisnika') !== null ? window.localStorage.getItem("idKorisnika") : 64;
 
-          axios.get('http://localhost:31906/api/fox/predmeti/255').then(response => {
+          axios.get(`http://localhost:31906/api/fox/predmeti/${idKorisnika}`).then(response => {
                this.setState({predmeti: response.data});
           });
 
@@ -44,7 +44,7 @@ class Predmet extends Component {
                                    <div as={Col} class="card" key={p.naziv} style={{maxWidth: "300px", margin: "5px"}}>
                                         <div class="card-body">
                                              <h4 class="card-title text-center"><a href={`fox/stranicaPredmeta?predmetId=${p.naziv}`} style={{color: "primary"}}> {p.naziv} </a></h4>
-                                             <h6 class="card-subtitle mb-2 text-muted">Broj studenata: 150</h6>
+                                             <h6 class="card-subtitle mb-2 text-muted">{p.opis}</h6>
                                         </div>
                                         <div class="list-group list-group-flush">
                                              {

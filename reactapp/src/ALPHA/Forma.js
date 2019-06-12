@@ -43,8 +43,9 @@ class Forma extends Component {
         
         const xhr = new XMLHttpRequest();
 
+        //'http://localhost:31901/api/korisnik/AddNewStudent'
         const body = JSON.stringify(data);
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewStudent', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {

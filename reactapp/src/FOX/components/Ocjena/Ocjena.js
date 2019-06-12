@@ -143,7 +143,7 @@ class Ocjena extends Component {
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row>
+                            <Form.Row style={{textAlign: "center"}}>
                                 {rezPretrage}
                             </Form.Row>
 

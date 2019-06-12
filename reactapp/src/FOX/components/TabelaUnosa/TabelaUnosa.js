@@ -24,12 +24,25 @@ function Poruka(props) {
 class TabelaUnosa extends Component {
     constructor(props){
         super(props);
-        this.state = {
+        this.state ={
             validated: false,
-            greskaBaza: 0
+            greskaBaza: 0,
+            student: undefined
         }
+        this.ocjena=React.createRef();
+        this.indeks=React.createRef();
         this.bodovi=React.createRef();
+        this.handleClick = this.handleClick.bind(this);
     }
+
+    handleClick() {
+        console.log("Clicked");
+        //Poziv apija /fox/getStudentInfo/:id
+        axios.get("http://localhost:31906/fox/getStudentInfo/1").then((res)=> {
+            this.setState({ student: res.data });
+        })
+    }
+
     handleSubmit(event) {
         const form = event.currentTarget;
         console.log(event.currentTarget.checkValidity());
@@ -44,11 +57,11 @@ class TabelaUnosa extends Component {
            
             console.log(this.bodovi.current.value);
             let reqBody = {
-                /*idKorisnika: 3,
+                idKorisnika: 3,
                 bodovi: this.bodovi.current.value,
-                idIspita: 4*/
+                idIspita: 4
             };
-           // if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
+          //  if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
             console.log(this.bodovi.current.value);
             axios.post('http://localhost:31906/api/fox/ispiti', reqBody)
             .then((res) => {
@@ -64,7 +77,26 @@ class TabelaUnosa extends Component {
         event.preventDefault();
     }
      
+    
+     
     render() {
+        const {validated} = this.state;
+        const {greskaBaza}= this.state;
+        const student = this.state.student;
+        let rezPretrage;
+
+        if (student!=undefined) {
+            rezPretrage = <div>
+                <Col style={{textAlign: "center"}}>
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Student sa indeksom {this.indeks.current.value} je pronađen! <br></br>
+                        {student.ime + " " + student.prezime}
+                    </div>
+                </Col>
+                
+            </div>
+        }
         return(
             <div class="card">
                 <div class="card-body">
@@ -97,13 +129,19 @@ class TabelaUnosa extends Component {
                                 </Col>
                             </Form.Row>
 
+                           
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>           
-                                    <Button > Pretrazi </Button>
+                                <Col md="auto" style={{textAlign: "right"}}>
+                                    <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
+                            <Form.Row>
+                                <Col style={{textAlign: "center"}}>
+                                {rezPretrage}
+                                </Col>
+                            </Form.Row>
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
                                 </Col>
@@ -123,10 +161,8 @@ class TabelaUnosa extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}}>
                                 <Col></Col>
-
-                                
                                 <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button variant= "primary" type="submit"> Unesi </Button>
+                                    <Button type="submit" > Unesi </Button>
                                 </Col>
                             </Form.Row>
 

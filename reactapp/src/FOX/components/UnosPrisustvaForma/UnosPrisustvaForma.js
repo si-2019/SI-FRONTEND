@@ -6,35 +6,7 @@ import './UnosPrisustvaForma.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-function Poruka(props) {
-    const greska = props.greska;
-    if (greska==1) {
-        return (
-            <div class="alert alert-dismissible alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Prisustvo nije sačuvano!</strong> <br/> Baza nije dostupna.
-            </div>
-        );
-    }
-    if (greska===2) {
-        return (
-            <div class="alert alert-dismissible alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Prisustvo je uspješno sačuvano!</strong> <br/> Prisustvo je sačuvano u bazi podataka.
-            </div>
-        );
-    }
-    if (greska===3) {
-        return (
-            <div class="alert alert-dismissible alert-warning">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Baza nije dostupna!</strong> <br/> Ispod su prikazani hardkodirani podaci zbog nedostupnosti baze.
-            </div>
-        );
-    }
-    return ""
-}
+import Poruka from '../Poruka/Poruka';
 
 function UnosPrisustvaForma(props) {
     const daStyle = {
@@ -152,7 +124,13 @@ function UnosPrisustvaForma(props) {
                         <div style={{padding: "15px"}}>
                             <div class="card" style={{margin: "0"}}>
                                 <div class="card-body">
-                                    <Poruka greska={props.data.greskaBaza}/>
+                                    <Poruka
+                                    greska={props.data.greskaBaza}
+                                    naslovUspjeh="Prisustvo sačuvano!"
+                                    naslovGreska="Prisustvo nije sačuvano!"
+                                    opisUspjeh="Prisustvo je dodano u bazu podataka."
+                                    opisGreska="Baza podataka nije dostupna."
+                                    />
                                     <h4 class="card-title text-center">Unos prisustva pojedinačno</h4>
                                     <h6 class="card-subtitle mb-2 text-muted text-center">Unos prisustva pojedinačno omogućava unos prisustva za svakog studenta posebno.</h6>
                                     <br/>

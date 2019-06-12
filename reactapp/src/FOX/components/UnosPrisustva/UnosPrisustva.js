@@ -147,7 +147,7 @@ class UnosPrisustva extends React.Component {
              this.setState({studenti: studenti, idPredmeta: idPredmeta});
         })
         .catch((err)=> {
-            this.setState({greskaBaza: 3});
+            
         });
    }
 

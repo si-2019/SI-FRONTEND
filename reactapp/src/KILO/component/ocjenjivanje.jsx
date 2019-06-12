@@ -10,7 +10,7 @@ class Ocjenjivanje extends Component {
     super(props);
 
     this.state = {
-      listaZadaca: [{ id: 1, naziv: "prva" }, { id: 2, naziv: "druga" }, { id: 0, naziv: "treca" }],
+      listaZadaca: [],
       studentiNisuPoslali: [],
       studentiNijePregledano: [],
       studentiPregledano: [],
@@ -19,7 +19,7 @@ class Ocjenjivanje extends Component {
       idZadatak: "",
       osvojeniBodovi: 0,
       prepisano: false,
-      komentar: "Alles gute Brudeeer",
+      komentar: "",
       maxBrojBodovaZadatka: 5,
       student: "",
       zadaca: "",
@@ -50,14 +50,12 @@ class Ocjenjivanje extends Component {
 
     this.pokupiZadace();
 
-    if (this.state.listaZadaca[0] != "") {
+    /*if (this.state.listaZadaca.length!=0) {
       this.setState({
         zadaca: this.state.listaZadaca[0].naziv,
         idZadace: this.state.listaZadaca[0].id,
       });
-    }
-
-
+    }*/
     document.getElementById("ocjenjivanjePocetna").style.display = "block";
     document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
@@ -107,7 +105,7 @@ class Ocjenjivanje extends Component {
 
   pokupiZadacuStudenta = async (idZadace, idStudenta) => {
 
-    idStudenta = 1;
+    //idStudenta = 1;
     try {
       const res = await axios.get(
         `http://localhost:31911/getZadacuStudenta/${idZadace}/${idStudenta}`
@@ -116,8 +114,6 @@ class Ocjenjivanje extends Component {
         zadacaState: res.data
       });
 
-
-      // console.log(this.state.zadacaState);
       this.sumirajBodove();
       this.ostvareniBodovi();
 

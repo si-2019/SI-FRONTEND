@@ -118,7 +118,7 @@ class Forma extends Component {
           <div className="col-md-4 col-md-offset-4" >
             <br />
                 <p>Prikaz svih asistenata: </p><br />
-                <select className="custom-select" onChange={this.onChange}> 
+                <select className="custom-select" onChange={this.onChange} onClick={this.onChange}> 
                 {
                   lista.length ? lista.map(list => 
                   <option key={list.id} value={[list.id, list.ime, list.prezime, list.email, list.telefon, list.adresa]}>{list.ime} {list.prezime}</option>

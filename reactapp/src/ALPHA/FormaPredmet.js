@@ -71,6 +71,7 @@ class FormaPredmet extends Component {
         return (
           <div className="col-md-4 col-md-offset-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
+              <br />
               <label >Naziv predmeta</label>
               <input  className="form-control" type="text" name="naziv" required value={naziv} onChange={this.handleChange} /><br />
               

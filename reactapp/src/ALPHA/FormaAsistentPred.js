@@ -68,7 +68,7 @@ class FormaProfPred extends Component {
         <div className="card">
         <div className="card-body  col-md-4 col-md-offset-4">
               <p>Prikaz svih asistenata: </p><br />
-                <select className="custom-select"  onChange={this.onChangeAsistent}> 
+                <select className="custom-select"  onChange={this.onChangeAsistent} onClick={this.onChangeAsistent}> 
                 {
                   listaAsistenata.length ? listaAsistenata.map(list => 
                   <option key={list.id} value={[list.id]}>{list.ime} {list.prezime}</option>
@@ -77,7 +77,7 @@ class FormaProfPred extends Component {
                 </select><br /><br />
 
                 <p>Prikaz svih predmeta: </p><br />
-                <select className="custom-select"  onChange={this.onChangePredmet}> 
+                <select className="custom-select"  onChange={this.onChangePredmet} onClick={this.onChangePredmet}> 
                 {
                   listaPredmeta.length ? listaPredmeta.map(list => 
                   <option key={list.id} value={list.id}>{list.naziv}</option>

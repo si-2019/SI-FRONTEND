@@ -59,7 +59,7 @@ class prikazOdsjeka extends Component{
             <div className="card">
             <div className="card-body col-md-7">
                 <br /> 
-                    <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange}></input>  <br />
+                    <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange} placeholder="Naziv"></input>  <br />
                     <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
                 <br />
                 

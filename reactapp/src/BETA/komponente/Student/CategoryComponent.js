@@ -16,7 +16,7 @@ class CategoryComponent extends React.Component {
 
       let displayNames = [];
       
-      for(let i = 1; i < res.data.length; i++)
+      for(let i = 0; i < res.data.length; i++)
       {
         displayNames.push(res.data[i].naziv)
       }

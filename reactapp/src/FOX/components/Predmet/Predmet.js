@@ -8,6 +8,10 @@ import Col from 'react-bootstrap/Col';
 import CardDeck from 'react-bootstrap/CardDeck';
 
 class Predmet extends Component {
+     constructor(props) {
+          super(props);
+          this.spremiID = this.spremiID.bind(this);
+     }
      state = {
           predmeti: [
                {id: 0, naziv: "Tehnike programiranja", opis: "Opis predemeta"},
@@ -33,6 +37,10 @@ class Predmet extends Component {
           });
      }
 
+     spremiID(id, e) {
+          localStorage.setItem("idPredmeta", id);
+     }
+
      render() {
           return (
                <div>
@@ -43,7 +51,7 @@ class Predmet extends Component {
                               return (
                                    <div as={Col} class="card" key={p.naziv} style={{maxWidth: "300px", margin: "5px"}}>
                                         <div class="card-body">
-                                             <h4 class="card-title text-center"><a href={`fox/stranicaPredmeta?predmetId=${p.naziv}`} style={{color: "primary"}}> {p.naziv} </a></h4>
+                                        <h4 class="card-title text-center"><a onClick={(e) => this.spremiID(p.id, e)} href={`fox/stranicaPredmeta?predmetId=${p.naziv}`} style={{color: "primary"}}> {p.naziv} </a></h4>
                                              <h6 class="card-subtitle mb-2 text-muted">{p.opis}</h6>
                                         </div>
                                         <div class="list-group list-group-flush">

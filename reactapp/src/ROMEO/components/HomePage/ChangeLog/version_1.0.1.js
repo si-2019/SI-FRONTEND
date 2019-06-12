@@ -39,6 +39,12 @@ var data = [{
     opis:["Kreirane osnovne stranice za kreiranje, popunjavanje i pregled rezultata ankete,...",
     "Kreirane stranice sa listama anketa za popunjavanje, pregled rezultata,..."]
 },{
+    grupa:"Juliet",
+    opis:["Dodane nove funkcionalnosti share fajlova, pinovanje poruka, slanje dokumenata i slika, reply na poruku.",
+    "Dodana mogućnost kreiranja javnih i privatnih soba, dodavanja osoba u chat i event planer.",
+    "Dodani emoji i color picker.",
+    "Preuređen izgled frontenda."]
+},{
     grupa:"Kilo",
     opis:["Fronted ocjenjivanja zadaće.",
     "Frontend studentovog pregleda zadaća.",
@@ -49,6 +55,12 @@ var data = [{
 },{
     grupa:"Oscar",
     opis:["Dodano 25 novih privilegija.","Prepravljeni i dodani autotestovi.","Ispravljene otkrivene greške i bugovi."]
+},{
+    grupa:"Mike",
+    opis:["Učitavanje projektnih zadataka za projekat.",
+    "Omogućeno kreiranje projekta za predmet.",
+    "Promjena redoslijeda opcija kreiranja projektne grupe.",
+    "Uneseni testni podataci za kreirane opcije."]
 },{
     grupa:"Papa",
     opis:["Omogućen pregled predmeta, profesora i asistenata.",

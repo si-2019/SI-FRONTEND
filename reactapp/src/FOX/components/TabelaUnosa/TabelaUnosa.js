@@ -33,6 +33,15 @@ class TabelaUnosa extends Component {
         this.bodovi=React.createRef();
         this.handleClick = this.handleClick.bind(this);
     }
+    handleClick(e) {
+        console.log("Clicked");
+        //Poziv apija /fox/getStudentInfo/:id
+        axios.get("http://localhost:31906/fox/getStudentInfo/1").then((res)=> {
+            this.setState({ student: res.data });
+            e.preventDefault();
+            e.stopPropagation();
+        })
+    }
     handleSubmit(event) {
         const form = event.currentTarget;
         console.log(event.currentTarget.checkValidity());

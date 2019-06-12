@@ -1,26 +1,34 @@
 import React, {Component} from 'react'
 import './App.js'
+import axios from 'axios'
 
 class Forma extends Component {
     constructor(props) {
         super(props)
   
         this.initialState = {
+          idOdsjek: null,
+          idUloga: 1,
           ime: '',
           prezime: '',
-          index: '',
-          datum: '',
-          jmbg: '',
+          datumRodjenja: '',
+          JMBG: '',
           email: '',
-          mjesto: '',
+          mjestoRodjenja: '',
           kanton: '',
           drzavljanstvo: '',
           telefon: '',
+          spol: 'zensko',
           zensko: '',
           musko: '',
-          roditelj: '',
-          adresa: '',
-          spol: 'zensko'
+          imePrezimeOca: '',
+          imePrezimeMajke: '',
+          adresa: '', 
+          username: null, 
+          password: null, 
+          linkedin: null, 
+          website: null,
+          titula: null
         }
     
         this.state = this.initialState
@@ -41,9 +49,34 @@ class Forma extends Component {
         
         const xhr = new XMLHttpRequest();
 
-        const body = JSON.stringify(data);
+        const json= {
+          "idOdsjek":null,
+          "idUloga":1,
+          "ime":this.state.ime,
+          "prezime":this.state.prezime,
+          "datumRodjenja":this.state.datumRodjenja,
+          "JMBG":this.state.JMBG,
+          "email":this.state.email,
+          "mjestoRodjenja":this.state.mjestoRodjenja,
+          "kanton":this.state.kanton,
+          "drzavljanstvo":this.state.drzavljanstvo,
+          "telefon":this.state.telefon, 
+          "spol":this.state.spol,
+          "imePrezimeMajke":this.state.imePrezimeMajke,
+          "imePrezimeOca":this.state.imePrezimeOca,
+          "adresa":this.state.adresa,
+          "username":null,
+          "password":null,
+          "linkedin":null,
+          "website":null,
+          "titula":null
+        }
+        const body = JSON.stringify(json);
 
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewStudent', true);
+        console.log(body);
+
+        //https://si2019alpha.herokuapp.com/api/korisnik/AddNewStudent
+       xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -52,10 +85,9 @@ class Forma extends Component {
           }
         }
         xhr.onerror = () => {
-          console.log(xhr.statusText);
+          console.log("ISPISI",xhr.statusText);
         }
-        xhr.send(body);      
-      
+        xhr.send(body);
       }
      
 
@@ -67,7 +99,7 @@ class Forma extends Component {
 
 
     render() {
-        const { ime, prezime, datum, jmbg, email, mjesto, kanton, drzavljanstvo, telefon, roditelj, adresa} = this.state;
+        const { ime, prezime, datumRodjenja, JMBG, email, mjestoRodjenja, kanton, drzavljanstvo, telefon, adresa, imePrezimeOca, imePrezimeMajke} = this.state;
 
         return (
           <div className="card">
@@ -80,16 +112,16 @@ class Forma extends Component {
               <input className="form-control" type="text" name="prezime" value={prezime} onChange={this.handleChange}  /><br />
 
               <label >Datum rođenja </label>
-              <input className="form-control " type="date" name="datum" value={datum} onChange={this.handleChange} /><br />
+              <input className="form-control " type="date" name="datumRodjenja" value={datumRodjenja} onChange={this.handleChange} /><br />
               
               <label>JMBG </label>
-              <input className="form-control " type="text" name="jmbg" value={jmbg} onChange={this.handleChange} /><br />
+              <input className="form-control " type="text" name="JMBG" value={JMBG} onChange={this.handleChange} /><br />
 
               <label >Email </label>
               <input className="form-control " type="email" name="email" value={email} onChange={this.handleChange} /><br />
               
               <label >Mjesto rođenja </label>
-              <input className="form-control " type="text" name="mjesto" value={mjesto} onChange={this.handleChange} /><br />
+              <input className="form-control " type="text" name="mjestoRodjenja" value={mjestoRodjenja} onChange={this.handleChange} /><br />
               
               <label >Kanton </label>
               <input className="form-control " type="text" name="kanton" value={kanton} onChange={this.handleChange} /><br />
@@ -110,8 +142,11 @@ class Forma extends Component {
                 <label class="custom-control-label" for="2">Muško</label><br/><br/>
               </div>
 
-              <label >Ime i prezime roditelja </label>
-              <input className="form-control " type="text" name="roditelj" value={roditelj} onChange={this.handleChange} /><br />
+              <label >Ime i prezime oca </label>
+              <input className="form-control " type="text" name="imePrezimeOca" value={imePrezimeOca} onChange={this.handleChange} /><br />
+            
+              <label >Ime i prezime majke </label>
+              <input className="form-control " type="text" name="imePrezimeMajke" value={imePrezimeMajke} onChange={this.handleChange} /><br />
               
               <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />

@@ -115,8 +115,10 @@ class Ocjena extends Component {
                             <Form.Row className="justify-content-center">
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Index: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                                    <Form.Control  ref={ this.indeks } required type="text" name="name">
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
+                                    <Form.Control.Feedback type= "invalid"> Indeks nije validan </Form.Control.Feedback>
                                 </Col>
                             </Form.Row>
 

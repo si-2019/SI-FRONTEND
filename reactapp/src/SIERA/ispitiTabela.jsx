@@ -64,14 +64,19 @@ class IspitiTabela extends Component {
     trenutnoLogovaniStudentID: 1
   };
 
-  componenthidMount() {
+  componentDidMount() {
     axios
       .get(
         `http://localhost:31918/ispiti/` + this.state.trenutnoLogovaniStudentID
       )
       .then(res => {
-        const lista = res.data.akademskeGodine;
-        this.setState({ listaIspita: lista });
+        if (res.data.akademskeGodine != undefined) {
+          const lista = res.data.akademskeGodine;
+          this.setState({ listaIspita: lista });
+        }
+        else{
+          this.setState({ listaIspita: [] });
+        }
       });
   }
 

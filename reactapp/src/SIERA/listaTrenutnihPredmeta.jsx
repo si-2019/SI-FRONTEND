@@ -14,9 +14,13 @@ class ListaPredmeta extends Component {
         this.state.trenutnoLogovaniStudentID
       )
       .then(res => {
-        console.log(res);
-        const predmeti = res.data.trenutniPredmeti.map(obj => obj.naziv);
-        this.setState({ predmeti });
+        if (res.data.trenutniPredmeti != undefined) {
+          const predmeti = res.data.trenutniPredmeti.map(obj => obj.naziv);
+          this.setState({ predmeti });
+        }
+        else {
+          this.setState({ predmeti: [] });
+        }
       });
   }
 

@@ -259,9 +259,15 @@ class KreiranjeZadace extends Component {
 
         if (this.state.postavka[0] !== null) {
           var file = this.state.postavka[0];
-          if (file) {
+          if (file && file.size < 25000) { //manji od 25 MB
             fData.append("file", new Blob([file], { type: file.type }));
             fData.append("imeFajlaPostavke", file.name);
+          }
+          else {
+            alert ("prevelik fajl");
+            document.getElementById("file").value = null;
+
+            this.setState({ postavka: [null] });
           }
         }
         fData.append("state", JSON.stringify(this.state));

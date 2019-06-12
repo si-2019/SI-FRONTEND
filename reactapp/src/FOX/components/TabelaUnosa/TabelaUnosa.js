@@ -1,8 +1,9 @@
-import React, {Component } from 'react';
-import Col from 'react-bootstrap/Col';
+import React, { Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
 
 function Poruka(props) {
     const greska = props.greska;
@@ -159,13 +160,15 @@ class TabelaUnosa extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
-                                    <Button onClick={this.handleCli}> Unesi </Button>
+                                    <Button variant="primary" type="submit" > Unesi </Button>
                                 </Col>
                             </Form.Row>
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
+                                    <Poruka greska={this.state.greskaBaza} />
                                     <br/>
+                                    
                                 </Col>
                             </Form.Row>
                     </Form>

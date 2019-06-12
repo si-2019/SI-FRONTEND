@@ -3,8 +3,8 @@ import './App.css';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';
-import Drafts from './komponente/SS/Drafts.js';
-import Archived from './komponente/SS/ArchivedPart.js'
+import Drafts from './komponente/Student/Drafts.js';
+import Archived from './komponente/Student/ArchivedPart.js'
 
 
 class App extends Component {

@@ -51,8 +51,8 @@ class OcjenjivanjePocetna extends Component {
             </h4>
           </div>
           <div id="kontOcjenjivanje">
-            <div class="row">
-              <div class="col">
+            <div>
+              <div>
                 <div id="ZadaceZaOcjenjivanje">
                   {/*className="custom-select w-50"*/}
                   <ButtonDropdown
@@ -89,7 +89,7 @@ class OcjenjivanjePocetna extends Component {
                   </ButtonDropdown>
                 </div>
               </div>
-              <div id="StudentiZaOcjenjivanje">
+              <div className="card-body" id="StudentiZaOcjenjivanje">
                 <br />
                 <h6 id="nisupos">
                   Studenti koji <b className="text-danger">nisu poslali </b>

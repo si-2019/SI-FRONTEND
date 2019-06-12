@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
+import ModalComponent from './OdgovorForma.js'
 
 export default class Issue extends React.Component {
 
@@ -19,6 +20,9 @@ export default class Issue extends React.Component {
                 expanded: false,
             },
             newArray: this.props.data,
+            showModal: false,
+            idForReply: 0
+            
         }
     }
 
@@ -26,17 +30,44 @@ export default class Issue extends React.Component {
         this.setState({
             clickedItem: {
                 data: item,
-                expanded: true
+                expanded: !this.state.clickedItem.expanded
             },
 
 
         });
     };
 
+    setIdForReply = (item) => {
+        this.setState({
+            idForReply: item,
+            modalShow: true
+        })
+    }
+
     archiveIssue = (idIssue) => {
 
         const { trashStudent, trashSS } = this.state;
         axios.put('https://si2019beta.herokuapp.com/issues/archived/add', { trashStudent, trashSS, idIssue })
+            .then((result) => {
+
+                for (let i = 0; i < this.props.data.length; i++) {
+                    if (this.props.data[i].id == idIssue) {
+                        this.props.data.splice(i, 1);
+                        this.setState({
+                            newArray: this.props.data
+                        })
+                    }
+                }
+
+            this.props.triggerRefreshList(this.state.newArray);
+        });
+
+
+    }
+    resloveIssue = (idIssue) => {
+
+        const { trashStudent, trashSS } = this.state;
+        axios.put('http://localhost:31902/issues/reslove', { trashStudent, trashSS, idIssue })
             .then((result) => {
 
                 for (let i = 0; i < this.props.data.length; i++) {
@@ -64,7 +95,8 @@ export default class Issue extends React.Component {
 
     render() {
         return this.props.data.map((issue, index) => {
-            let d = issue.messages[0].datum;
+            let d = new Date(issue.messages[issue.messages.length-1].datum);
+        
             let datum = [];
             datum.push(d[11]);
             datum.push(d[12]);
@@ -90,11 +122,19 @@ export default class Issue extends React.Component {
                         <div className="card-title">
                             <div className="issue-body card-body">
                                 <div className="issueID">id:{issue.id}</div>
-                                <div className="issueDate">{datum}</div>
-                                <div onClick={() => this.setIssue(issue.id)} className="issue-title">{issue.title}</div>
+                                <div className="issueDate">DATUM I VRIJEME: {d.toLocaleString()}</div>
+                                <div onClick={() => this.setIssue(issue.id)} className="issue-title">NASLOV: {issue.title}</div>
                                 <div className="issueButtonDelete">
                                     <Button onClick={() => this.archiveIssue(issue.id)}>Arhiviraj</Button>
-                                    <Button onClick={() => this.replyOnIssue(issue.id)}>Odgovori</Button>
+
+                                    
+                                </div>
+                                <div className="issueButtonDelete">
+                                   
+                                    <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
+
+                                     <Button onClick={() => this.setIdForReply(issue.id)}>Odgovori</Button>
+
                                 </div>
 
                             </div>
@@ -110,6 +150,17 @@ export default class Issue extends React.Component {
                         }
 
                     </div>
+
+                    {this.state.idForReply === issue.id ?
+                    <ModalComponent 
+                        ID = {issue.id}
+                        show = {this.state.modalShow}
+                        naslovModala = "Pošalji odgovor"
+                        btnPotvrdi = "Odgovori"
+                        onHide = {() => this.setState({modalShow: false})}>
+                    </ModalComponent> : null
+                    }
+
                 </div>
             );
         })

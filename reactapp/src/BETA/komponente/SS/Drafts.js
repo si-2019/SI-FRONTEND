@@ -2,11 +2,10 @@ import React from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Spinner from 'react-bootstrap/Spinner';
-import Button from 'react-bootstrap/Button'
-import Issue from '../helpers/Archived.js';
+import Issue from './Draft.js';
 import axios from 'axios';
 
-class ArchivedPart extends React.Component {
+class Drafts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,9 +22,7 @@ class ArchivedPart extends React.Component {
                 title: null,
                 messages: null,
             },
-            isLoading: true,
-            trashStudent: 2,
-            trashSS: 0
+            isLoading: true
         }
     };
 
@@ -47,46 +44,15 @@ class ArchivedPart extends React.Component {
         })
     };
 
-
     setStateAsync(state) {
         return new Promise((resolve) => {
             this.setState(state, resolve)
         });
     }
 
-    emptyFolder = (data, code) => {
-        
-        const {trashStudent, trashSS} = this.state;
-
-        for(let i = 0; i < data.length; i++){
-            const id = data[i].id;
-            
-            axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id })
-            .then((result) => {
-            });
-        }
-
-        if(code == 1){
-            this.setState({
-                dataNew: []
-            })
-        }
-        else if(code == 2){
-            this.setState({
-                dataInProgress: []
-            })
-        }
-        else if(code == 3){
-            this.setState({
-                dataResolved: []
-            })
-        }
-
-    }
-
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('https://si2019beta.herokuapp.com/issues/archived/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/draft/get');
 
         let dN = [];
         let dIP = [];
@@ -96,21 +62,38 @@ class ArchivedPart extends React.Component {
         res.data.new.forEach( async (issue) => {
             let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dn = issue.messages;
-            dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
+            console.log("maida")
+            console.log(dn[0].draftStatus)
+            let novi = [];
+            for(let i = 0; i < dn.length; i++){
+                if(dn[i].draftStatus == true)
+                novi.push(dn[i]);
+            }
+            dN.push({id: issue.id, title: cn.data.naziv, messages: novi});
         });
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
             let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dip = issue.messages;
-            dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
+            let novi = [];
+            for(let i = 0; i < dip.length; i++){
+                if(dip[i].draftStatus == true)
+                novi.push(dip[i]);
+            }
+            dIP.push({id: issue.id, title: cip.data.naziv, messages: novi});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
             let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dr = issue.messages;
-            dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
+            let novi = [];
+            for(let i = 0; i < dr.length; i++){
+                if(dr[i].draftStatus == true)
+                novi.push(dr[i]);
+            }
+            dR.push({id: issue.id, title: cr.data.naziv, messages: novi});
         });
 
         this.setStateAsync({dataNew: dN});
@@ -124,14 +107,13 @@ class ArchivedPart extends React.Component {
         if (this.state.isLoading) {
             return (
                 <Spinner animation='border' role='status'>
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only">Učitavanje...</span>
                 </Spinner>
             );
         }
         console.log(this.state.dataNew.length)
         return (
             <div >
-                
                 <Tabs
                     className=".p-3"
                     id="tabs"
@@ -143,7 +125,6 @@ class ArchivedPart extends React.Component {
                         eventKey="new"
                         title={`Novi (${this.state.dataNew.length})`}
                     >
-                        
                         {!this.state.isLoading &&
                             <div>
                                 <Issue triggerRefreshList = {this.onRefreshListNew}
@@ -153,18 +134,12 @@ class ArchivedPart extends React.Component {
 
                             </div>
                         }
-                        <div className="tab-button-container">
-                            <Button onClick = {() => this.emptyFolder(this.state.dataNew, 1)}>Isprazni folder</Button>
-                        </div>
                     </Tab>
                     <Tab
                         className = "tab-issue"
                         eventKey="inProgress"
                         title={`U progresu (${this.state.dataInProgress.length})`}
                     >
-                        <div className="tab-button-container">
-                            <Button onClick = {() => this.emptyFolder(this.state.dataInProgress, 2)}>Isprazni folder</Button>
-                        </div>
                         {!this.state.isLoading  &&
                             <Issue triggerRefreshList = {this.onRefreshListInProgress}
                                 className="tab-issue card"
@@ -177,9 +152,6 @@ class ArchivedPart extends React.Component {
                         eventKey="resolved"
                         title={`Riješeni (${this.state.dataResolved.length})`}
                     >
-                        <div className="tab-button-container">
-                            <Button onClick = {() => this.emptyFolder(this.state.dataResolved, 3)}>Isprazni folder</Button>
-                        </div>
                         {!this.state.isLoading &&
                             <Issue triggerRefreshList = {this.onRefreshListResolved}
                                 className="tab-issue card"
@@ -193,4 +165,4 @@ class ArchivedPart extends React.Component {
     }
 }
 
-export default ArchivedPart;
+export default Drafts;

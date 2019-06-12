@@ -3,8 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda.js";
 
-
-
 class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -25,8 +23,6 @@ class ModalComponent extends React.Component {
         this.fileChangedHandler = this.fileChangedHandler.bind(this);
     }
 
-    
-
     handleChange(event) {
         const { name, value } = event.target
         this.setState({
@@ -36,46 +32,28 @@ class ModalComponent extends React.Component {
 
     handleSubmit(event) {
       
-            event.preventDefault();
-        //ukoliko neki rezultira greskom, postavite greska na true
-        const { issueTitle, issueText } = this.state;
+        event.preventDefault();
 
-        axios.post('https://si2019beta.herokuapp.com/issue/send/ss?issueTitle='+issueTitle+'&issueText='+issueText)
-         .then(result => {
-                if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
-                else{
-                    { this.setState({ greska: true})}
-                    alert(JSON.stringify(result.data));
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({ greska: true });
-            });
-            return null;
+        const issueID = this.props.ID;
 
-    }
+        const {issueText } = this.state;
 
-    saveAsDraft = () => {
-         if(this.state.issueTitle.length==0){
-             this.setState({naslovGreska:true});
-         }
-         else   
-       { 
-           const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
-
-            axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
-            .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
+        axios.post('https://si2019beta.herokuapp.com/issue/reply/student', { issueID, issueText})
+        .then(result => {
+            if (result.data === "Uspjesan upis!") { { this.setState({ greska: false}); } }
             else{
                 { this.setState({ greska: true})}
-                
             }
         })
         .catch(err => {
-            console.log(err);
+           
             this.setState({ greska: true });
-        });}
-     }
+        });
+
+
+    }
+
+    
 
      
      fileChangedHandler = (event) => {
@@ -121,12 +99,12 @@ class ModalComponent extends React.Component {
                 />
             );
         }
-        else if (this.state.greska == false && this.state.draft == false) {
+        else if (this.state.greska == false ) {
             return (
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspješno ste poslali upit"
+                    msg="Uspješno ste poslali odgovor"
                 />
             );
         }
@@ -139,7 +117,16 @@ class ModalComponent extends React.Component {
                 />
             );
         }
-        /* VEDAD SPRINT 2 ->ISTI ELSE IF KAO KOD STUDENTA IDE OVDJE */
+
+           else if (this.state.greska) {
+            return (
+                <Potvrda
+                    key={this.brojac}
+                    successful="false"
+                    msg="Vaš odgovor nije poslan! Pokušajte ponovo!"
+                />
+            );
+        }
        
         return null;
     }
@@ -210,14 +197,7 @@ class ModalComponent extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            onClick={this.saveAsDraft}
-                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
-                        >Sačuvaj kao draft
-                        </button>
-
+                      
                         <button type="submit"
                             id="buttonSend"
                             className="btn btn-primary"

@@ -54,6 +54,11 @@ var data = [{
     opis:["Omogućen pregled predmeta, profesora i asistenata.",
     "Omogućen pregled obavijesti (od profesora, asistenata, admina i studentske službe), upisanih ocjena, prijave na ispite."]
 },{
+    grupa:"Romeo",
+    opis:["Urađen HTML i CSS za home page.",
+    "Napisane odgovarajuće skripte za home page, komunikacija i redirectanje između logina i home pagea.",
+    "Urađena uspostava konekcije na bazu i završetak tokena."]
+},{
     grupa:"Siera",
     opis:["Omogućena prijava završnog ispita","Omogućeno kreiranje ugovora o učenju."]
 },{

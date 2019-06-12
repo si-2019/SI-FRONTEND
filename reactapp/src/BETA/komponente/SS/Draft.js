@@ -1,11 +1,11 @@
 import React from 'react';
-import ArchivedMessage from "./ArchivedMessage";
+import DraftMessage from "./DraftMessage.js";
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 
-export default class Archived extends React.Component {
+export default class Draft extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,8 +15,6 @@ export default class Archived extends React.Component {
                 data: null,
                 expanded: false,
             },
-            trashStudent: 2,
-            trashSS: 0,
             newArray: this.props.data,
         }
     }
@@ -29,15 +27,17 @@ export default class Archived extends React.Component {
         });
     };
 
-    deleteIssue = (id_Issue) => {
-        const {trashStudent, trashSS} = this.state;
-        const id = id_Issue;
-            
-        axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id })
-        .then((result) => {
 
+    deleteIssue = (idIssue) => {
+
+        axios.delete('https://si2019beta.herokuapp.com/issues/draft/delete', { 
+            params: {
+                id: idIssue
+            }
+        })
+        .then((result) => {
             for(let i = 0; i < this.props.data.length; i++){
-                if(this.props.data[i].id == id_Issue){
+                if(this.props.data[i].id == idIssue){
                     this.props.data.splice(i, 1);
                     this.setState({
                         newArray: this.props.data
@@ -48,27 +48,6 @@ export default class Archived extends React.Component {
             this.props.triggerRefreshList(this.state.newArray);
         });
     }
-    resloveIssue = (idIssue) => {
-
-        const { trashStudent, trashSS } = this.state;
-        axios.put('http://localhost:31902/issues/reslove', { trashStudent, trashSS, idIssue })
-            .then((result) => {
-
-                for (let i = 0; i < this.props.data.length; i++) {
-                    if (this.props.data[i].id == idIssue) {
-                        this.props.data.splice(i, 1);
-                        this.setState({
-                            newArray: this.props.data
-                        })
-                    }
-                }
-
-                this.props.triggerRefreshList(this.state.newArray);
-            });
-
-
-    }
-    
 
     render() {
             return this.props.data.map((issue, index) => {
@@ -93,7 +72,6 @@ export default class Archived extends React.Component {
                 datum.push('.'); 
 
                 return (
-                    
                     <div className="row">
                         <div key={index} className="card issue-card" >
                             <div className="card-title">
@@ -105,26 +83,20 @@ export default class Archived extends React.Component {
                                     <div className = "issueButtonDelete">
                                         <Button onClick={() => this.deleteIssue(issue.id)}>Obriši</Button>
                                     </div>
-                                    <div className="issueButtonDelete">
-                                   
-                                    <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
-                                </div>
                                 </div>
                             </div>
                             
 
                             {this.state.clickedItem.data === issue.id && this.state.clickedItem.expanded ?
                             <ListGroup>
-                                <ArchivedMessage
+                                <DraftMessage
                                 messages={issue.messages}
                                 /> 
                             </ListGroup> : null
                             }
-                            
                         </div>
                     </div>
                 );
-                
             })
         }
 }

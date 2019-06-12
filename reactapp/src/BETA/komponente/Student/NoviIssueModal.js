@@ -11,7 +11,7 @@ class ModalComponent extends React.Component {
             greska: null,
             brojac: 0,
             issueText: "",
-            issueTitle: "asdadas", //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            issueTitle: "", //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
             allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
             fileWrong: false,
@@ -45,13 +45,14 @@ class ModalComponent extends React.Component {
 
         axios.post('https://si2019beta.herokuapp.com/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
             .then(result => {
-                if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
+                if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, draft:false ,issueTitle:"",issueText:""}); } }
                 else{
                     { this.setState({ greska: true})}
                 }
+                
             })
             .catch(err => {
-                console.log(err);
+                
                 this.setState({ greska: true });
             });
 
@@ -60,16 +61,16 @@ class ModalComponent extends React.Component {
     saveAsDraft = () => {
             
         const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
-
+           this.setState({draft:true})
             axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
             .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
             else{
                 { this.setState({ greska: true})}
-                alert(JSON.stringify(result.data));
+               
             }
         })
         .catch(err => {
-            console.log(err);
+           
             this.setState({ greska: true });
         });
      }
@@ -121,7 +122,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste poslali upit"
+                    msg="Uspješno ste poslali upit!"
                 />
             );
         }
@@ -130,7 +131,16 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste sacuvali upit kao draft!"
+                    msg="Uspješno ste sačuvali upit kao draft!"
+                />
+            );
+        }
+        else if(this.state.greska == true && this.state.draft == true){
+            return (
+                <Potvrda
+                    key={this.brojac}
+                    successful="false"
+                    msg="Vaš draft nije sačuvan. Pokušajte ponovo!"
                 />
             );
         }
@@ -219,14 +229,14 @@ class ModalComponent extends React.Component {
                             type="button"
                             className="btn btn-primary"
                             onClick={this.saveAsDraft}
-                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
+                            disabled={!this.state.issueTitle || !this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
                         >Sačuvaj kao draft
                         </button>
 
                         <button type="submit"
                             id="spasiBtn"
                             className="btn btn-primary"
-                            disabled={!this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
+                            disabled={!this.state.issueTitle || !this.state.issueText || this.state.fileTooBig || this.state.fileWrong}
 
                         >{this.props.btnPotvrdi}
                         </button>

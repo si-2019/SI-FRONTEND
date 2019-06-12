@@ -1,6 +1,5 @@
 import React from 'react';
 import ArchivedMessage from "./ArchivedMessage";
-import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
@@ -15,8 +14,8 @@ export default class Archived extends React.Component {
                 data: null,
                 expanded: false,
             },
-            trashStudent: 2,
-            trashSS: 0,
+            trashStudent: 0,
+            trashSS: 2,
             newArray: this.props.data,
         }
     }
@@ -47,26 +46,6 @@ export default class Archived extends React.Component {
 
             this.props.triggerRefreshList(this.state.newArray);
         });
-    }
-    resloveIssue = (idIssue) => {
-
-        const { trashStudent, trashSS } = this.state;
-        axios.put('http://localhost:31902/issues/reslove', { trashStudent, trashSS, idIssue })
-            .then((result) => {
-
-                for (let i = 0; i < this.props.data.length; i++) {
-                    if (this.props.data[i].id == idIssue) {
-                        this.props.data.splice(i, 1);
-                        this.setState({
-                            newArray: this.props.data
-                        })
-                    }
-                }
-
-                this.props.triggerRefreshList(this.state.newArray);
-            });
-
-
     }
     
 
@@ -105,10 +84,6 @@ export default class Archived extends React.Component {
                                     <div className = "issueButtonDelete">
                                         <Button onClick={() => this.deleteIssue(issue.id)}>Obriši</Button>
                                     </div>
-                                    <div className="issueButtonDelete">
-                                   
-                                    <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
-                                </div>
                                 </div>
                             </div>
                             

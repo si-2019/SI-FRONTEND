@@ -5,13 +5,13 @@ import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';
 import Drafts from './komponente/Student/Drafts.js';
 import Archived from './komponente/Student/ArchivedPart.js'
+import LeftMenuSS from './komponente/SS/LeftMenuSS.js';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSS: true,
       activeContentId: 1
     };
   }
@@ -73,7 +73,7 @@ class App extends Component {
 
 
         </div>
-       
+        
       </div>
     );
   }

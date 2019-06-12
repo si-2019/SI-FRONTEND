@@ -2,8 +2,9 @@ import React from 'react'
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
+import ModalComponent from './NewFAQModal.js';
 
-class FAQ extends React.Component {
+class SSFAQ extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -36,7 +37,25 @@ class FAQ extends React.Component {
         });
     }
 
-   
+    saveState = (type, state) => {
+        switch (type) {
+            case "modalShow":
+                this.setState({
+                    modalShow: state
+                });
+                break;
+            case "noviFAQ":
+                console.log(state);
+                this.setState(state, () => {
+                    this.setState({
+                        modalShow: false
+                    });
+                });
+                break;
+            default:
+                break;
+        }
+    }
 
     render() {
         if (this.state.isLoading) {
@@ -83,10 +102,25 @@ class FAQ extends React.Component {
 
                 </div>
 
-               
+                <button
+                    id="buttonObjaviFaq"
+                    type="submit"
+                    className="btn btn-primary float-right btn-lg "
+                    onClick={() => this.setState({ modalShow: true })}
+                    style={{ marginTop: '30px' }}
+                >Istakni novi upit
+                        </button>
 
 
-                
+                <ModalComponent
+
+                    show={this.state.modalShow}
+                    naslovModala="Objavi rjesenje novog upita"
+                    btnPotvrdi="Objavi upit"
+                    saveState={this.saveState}
+                    noviFAQ={this.state}
+
+                />
             </div>
 
 
@@ -97,4 +131,4 @@ class FAQ extends React.Component {
         );
     }
 }
-export default FAQ
+export default SSFAQ

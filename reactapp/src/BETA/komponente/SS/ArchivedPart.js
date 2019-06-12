@@ -3,7 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button'
-import Issue from '../helpers/Archived.js';
+import Issue from './Archived.js';
 import axios from 'axios';
 
 class ArchivedPart extends React.Component {
@@ -24,8 +24,8 @@ class ArchivedPart extends React.Component {
                 messages: null,
             },
             isLoading: true,
-            trashStudent: 2,
-            trashSS: 0
+            trashStudent: 0,
+            trashSS: 2
         }
     };
 
@@ -141,7 +141,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="new"
-                        title={`Novi (${this.state.dataNew.length})`}
+                        title={`New (${this.state.dataNew.length})`}
                     >
                         
                         {!this.state.isLoading &&
@@ -160,7 +160,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="inProgress"
-                        title={`U progresu (${this.state.dataInProgress.length})`}
+                        title={`In progress (${this.state.dataInProgress.length})`}
                     >
                         <div className="tab-button-container">
                             <Button onClick = {() => this.emptyFolder(this.state.dataInProgress, 2)}>Isprazni folder</Button>
@@ -175,7 +175,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="resolved"
-                        title={`Riješeni (${this.state.dataResolved.length})`}
+                        title={`Resolved (${this.state.dataResolved.length})`}
                     >
                         <div className="tab-button-container">
                             <Button onClick = {() => this.emptyFolder(this.state.dataResolved, 3)}>Isprazni folder</Button>

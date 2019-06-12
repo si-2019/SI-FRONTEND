@@ -37,7 +37,9 @@ class Header extends Component {
             class="meniBtn"
             className="btn btn-primary left-buttons"
             id="BrisanjeKilo"
-            style={{ width: "100%" }}
+            style={{ width: "100%" }
+          }
+          
           >
             Brisanje zadaće
          </button>

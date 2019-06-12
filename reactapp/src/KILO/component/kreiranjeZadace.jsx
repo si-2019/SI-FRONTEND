@@ -460,12 +460,15 @@ class KreiranjeZadace extends Component {
                   podaci={this}
                 />
               </div>
-              <div clas="col-3">
-                <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
-              </div>
 
-              <div class="col-3">
+              <div class="col-9">
                 <BodoviZadaca onChange={this.handleChange} podaci={this} />
+              </div>
+            </div>
+            <br></br><br></br>
+            <div class="row">
+            <div class="col">
+                <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
               </div>
             </div>
           </div>

@@ -45,7 +45,7 @@ class Sale extends Component {
               href="#"
               onClick={() => this.changeActiveId(1)}
             >
-              Unos
+              Unos sale
             </a>
           </li>
           <li class="nav-item">
@@ -56,7 +56,7 @@ class Sale extends Component {
               href="#"
               onClick={() => this.changeActiveId(2)}
             >
-              Prikaz
+              Prikaz sale
             </a>
           </li>
         </ul>

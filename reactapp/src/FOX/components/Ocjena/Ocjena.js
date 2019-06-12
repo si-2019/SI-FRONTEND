@@ -40,6 +40,11 @@ class Ocjena extends Component {
     }
 
     handleClick() {
+        console.log("Clicked");
+        //Poziv apija /fox/getStudentInfo/:id
+        axios.get("http://localhost:31906/fox/getStudentInfo/1").then((res)=> {
+            this.setState({ student: res.data });
+        })
     }
 
      

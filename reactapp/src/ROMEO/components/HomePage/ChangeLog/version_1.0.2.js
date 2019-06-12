@@ -55,6 +55,12 @@ var data = [{
     opis:["Kalendar sa prikazom:"," - ispita na nivou fakulteta",
     " - ispita na nivou smjera", " - ispita na nivou godine", " - neradni dani"]
 },{
+    grupa:"Romeo",
+    opis:["Ispravke bugova na dizajnu stranice.",
+    "Usklađivanje UI-a.",
+    "Prikazivanje change loga pri ulasku na home page.",
+    "Ispravke bugova na backendu."]
+},{
     grupa:"Siera",
     opis:["Omogućen pregled liste ispita razvrstanih po akademskoj godini i predmetu.",
     "Omogućen pregled liste upisanih ocjena, razvrstan po akademskoj godini i predmetu.",

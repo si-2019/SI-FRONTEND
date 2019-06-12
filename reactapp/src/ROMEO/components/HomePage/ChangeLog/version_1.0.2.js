@@ -39,6 +39,14 @@ var data = [{
     "Pregled rezultata svih vrsta pitanja.",
     "Brisanje ankete."]
 },{
+    grupa:"Juliet",
+    opis:["Usklađen izgled UI-a sa ostalim grupama.",
+    "Ispravljene otkrivene greške i bugovi.",
+    "Odrađene funkcionalnosti brisanja chatova i banovanja user-a, pretrage poruka, fajlova, korisnika i soba.",
+    "Sve funkcionalnosti povezane sa backend-om.",
+    "Swager file.",
+    "Dodani testovi za backend."]
+},{
     grupa:"Kilo",
     opis:["Urađena većina bekenda.","Prepravljen frontend ocjenjivanja zadaće.",
     "Prepravljen frontend studentovog pregleda zadaća.", "Usklađivanje UI."]
@@ -46,6 +54,11 @@ var data = [{
     grupa:"Lima",
     opis:["Preuređen izgled navigacije.", "Preuređen UI.",
     "Popravljanje frontenda i dodavanje novih ruta.","Generalno poboljšanje izgleda."]
+},{
+    grupa:"Mike",
+    opis:["Usklađivanje interfejsa sa ostalim grupama.",
+    "Promjena opcija u zavisnosti od uloge korisnika.",
+    "Omogućeno generisanje projektnih grupa."]
 },{
     grupa:"Oscar",
     opis:["Dodano 30 novih privilegija.","Urađen refaktoring koda u cilju minimiziranja konflikata.",

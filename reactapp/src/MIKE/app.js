@@ -13,9 +13,10 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
-      korisnik:4,
+      korisnik:2,
       forma:"null",
-      predmeti:[]
+      predmeti:[],
+      token:0
     }
  
 
@@ -26,6 +27,7 @@ class Mike extends Component {
     this.KreiranjeProjektaAsistent=this.KreiranjeProjektaAsistent.bind(this);
     this.unosInformacija=this.unosInformacija.bind(this);
     this.generisanjeGrupe=this.generisanjeGrupe.bind(this);
+    this.token=this.token.bind(this);
   }
  
   render() {   
@@ -248,34 +250,33 @@ class Mike extends Component {
   }
   kreiranjeGrupe(){
     let ajax=new XMLHttpRequest();
-      var komponenta=this;
-      var jsonNovi=[{id:1,naziv:"Softverski inzenjering",opis:"Projekat informacionog sistema za fakultet",bodovi:20},
-      {id:2,naziv:"Projektovanje informacionih sistema",opis:"Informacioni sistem Crvenog Križa FBiH",bodovi:30}];
-      ajax.onreadystatechange=function(){
-          if(ajax.readyState==4 && ajax.status=="200"){
-            var tekst=ajax.responseText;
-            if(tekst.length==0) return;
-            var json=JSON.parse(tekst);
-            jsonNovi=[];
-            for(var i=0;i<json.length;i++){
-                jsonNovi.push({id:json[i].id,naziv:json[i].naziv,opis:json[i].opis,bodovi:json[i].bodovi});
-            }
-            komponenta.setState(state=>({
-              forma:"kreiranjeGrupe",
-              predmeti:jsonNovi
-            }));
+    var komponenta=this;
+    var jsonNovi=[{id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20},
+    {id:2,naziv:"Projektovanje informacionih sistema*",opis:"Informacioni sistem Crvenog Križa FBiH*",bodovi:30}];
+    ajax.onreadystatechange=function(){
+        if(ajax.readyState==4 && ajax.status=="200"){
+          var tekst=ajax.responseText;
+          if(tekst.length==0) return;
+          var json=JSON.parse(tekst);
+          jsonNovi=[];
+          for(var i=0;i<json.length;i++){
+              jsonNovi.push({id:json[i].idPredmet,naziv:json[i].naziv});
           }
-          else if(ajax.status!="200"){
-            komponenta.setState(state=>({
-              forma:"kreiranjeGrupe",
-              predmeti:jsonNovi
-            }));
-          }
+          komponenta.setState(state=>({
+            forma:"kreiranjeGrupe",
+            predmeti:jsonNovi
+          }));
+        }
+        else if(ajax.status>=500){
+          komponenta.setState(state=>({
+            forma:"kreiranjeGrupe",
+            predmeti:jsonNovi
+          }));
+        }
       }
-      ajax.open("POST","http://localhost:31913/API/NA",true);
+      ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      ajax.send("idKorisnik=41");
-    this.setState({forma:"kreiranjeGrupe"});
+      ajax.send("idKorisnik="+komponenta.state.korisnik);
   }
   listaProjekata(){
     this.setState({forma:"listaProjekata"});
@@ -381,6 +382,12 @@ class Mike extends Component {
 		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send("idKorisnik="+this.state.korisnik);
+  }
+
+  token(){
+    this.setState(state=>({
+      token:10
+    }));
   }
 }
 

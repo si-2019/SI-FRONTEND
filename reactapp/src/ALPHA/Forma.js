@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './App.js'
+import './app.js'
 import axios from 'axios'
 
 class Forma extends Component {

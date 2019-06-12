@@ -35,11 +35,12 @@ class Mike extends Component {
         <div>
           <div className="App">
             <div className="row">
-              <div id="head_meni">
-                <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            { /* <div id="head_meni">
+    { /*  <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>}
                 <div id="odabrana_opcija"></div>
-              </div>
-              <div id="glavni_meni">
+              </div>*/
+            }
+              <div id="glavni_meni1">
                 <div id="left">
                   <div>
                     <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
@@ -62,11 +63,11 @@ class Mike extends Component {
     <div>
       <div className="App">
         <div className="row">
-          <div id="head_meni">
+       { /*  <div id="head_meni">
             <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
             <div id="odabrana_opcija"></div>
-          </div>
-          <div id="glavni_meni">
+    </div> */}
+          <div id="glavni_meni1">
             <div id="left">
               <div>
                 <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
@@ -89,10 +90,10 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-          <div id="head_meni">
+        { /* <div id="head_meni">
             <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
             <div id="odabrana_opcija"></div>
-          </div>
+    </div> */}
           <div id="glavni_meni">
             <div id="left">
               <div>
@@ -116,10 +117,10 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-          <div id="head_meni">
+      {  /*  <div id="head_meni">
             <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
             <div id="odabrana_opcija"></div>
-          </div>
+    </div> */}
           <div id="glavni_meni">
             <div id="left">
               <div>
@@ -143,10 +144,10 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-          <div id="head_meni">
+         { /*<div id="head_meni">
             <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
             <div id="odabrana_opcija"></div>
-          </div>
+    </div> */}
           <div id="glavni_meni">
             <div id="left">
               <div>
@@ -170,10 +171,10 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-          <div id="head_meni">
+         {/* <div id="head_meni">
             <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
             <div id="odabrana_opcija"></div>
-          </div>
+    </div> */}
           <div id="glavni_meni">
             <div id="left">
               <div>
@@ -197,11 +198,11 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-          <div id="head_meni">
+         {/* <div id="head_meni">
             <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
             <div id="odabrana_opcija"></div>
-          </div>
-          <div id="glavni_meni">
+    </div> */}
+          <div id="glavni_meni1">
             <div id="left">
               <div>
                 <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
@@ -224,11 +225,11 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-          <div id="head_meni">
+      {/*    <div id="head_meni">
             <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
             <div id="odabrana_opcija"></div>
-          </div>
-          <div id="glavni_meni">
+    </div> */}
+          <div id="glavni_meni1">
             <div id="left">
               <div>
                 <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>

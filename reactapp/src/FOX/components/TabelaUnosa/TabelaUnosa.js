@@ -42,6 +42,13 @@ class TabelaUnosa extends Component {
             e.stopPropagation();
         })
     }
+    handle() {
+        console.log("Clicked");
+        //Poziv apija /fox/getStudentInfo/:id
+        axios.get("http://localhost:31906/api/fox/ispiti/:idPredmet").then((res)=> {
+            this.setState({ student: res.data });
+        })
+    }
     handleSubmit(event) {
         const form = event.currentTarget;
         console.log(event.currentTarget.checkValidity());
@@ -54,14 +61,14 @@ class TabelaUnosa extends Component {
             //Promise
             /* 3. Get Ref Value here (or anywhere in the code!) */
            
-            console.log(this.ocjena.current.value);
+            console.log(this.bodovi.current.value);
             let reqBody = {
               /*  idStudent: 2, //pristup lokalnom storage-u
                 idPredmet: 64,
                 idAkademskaGodina: 11,
-                ocjena: this.ocjena.current.value*/
+                ocjena: this.ocjena.curren.value*/
             };
-            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
+           // if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
             console.log(this.ocjena.current.value);
             axios.post('', reqBody)
             .then((res) => {

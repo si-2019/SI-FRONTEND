@@ -29,8 +29,7 @@ class Mike extends Component {
   }
  
   render() {   
-    {/*if(this.state.forma=="null")*/} return (
-     // <div className="col-6">
+    if(this.state.forma=="null") return (
         <div>
           <div className="App">
             <div className="row">
@@ -50,57 +49,202 @@ class Mike extends Component {
                   </div>
                 </div>
                 <div id="right">
-                  <div id="kreiranje_grupe" style={{display : this.state.forma == "kreiranjeGrupe" ? 'inherit' : 'none'}}>
-                    <Lista submit={this.unosInformacija} predmeti={this.state.predmeti}/>
+                  
                   </div>
-                  <div id="lista_projekata" style={{display : this.state.forma == "listaProjekata" ? 'inherit' : 'none'}}>
-                    <PregledListeProjekata />
-                  </div>
-                  <div id="kreiranje_grupe" style={{display : this.state.forma == "PregledAsistent" ? 'inherit' : 'none'}}>
-                    <ListaPredmetaAsistenta idAsistent={41} predmeti={this.state.predmeti} />
-                  </div>
-                  <div id="kreiranje_grupe" style={{display : this.state.forma == "projektniZadaci" ? 'inherit' : 'none'}}>
-                    <PregledZadatakaProjekta/>
-                  </div>
-                  <div id="kreiranje_grupe" style={{display : this.state.forma == "KreiranjeAsistent" ? 'inherit' : 'none'}}>
-                    <KreiranjeProjekta idAsistent={this.state.korisnik} predmeti={this.state.predmeti}/>
-                  </div>
-                  <div id="kreiranje_grupe" style={{display : this.state.forma == "unosInformacija" ? 'inherit' : 'none'}}>
-                    <UnosInformacija/>
-                  </div>
-                  <div id="kreiranje_grupe" style={{display : this.state.forma == "generisanjeGrupe" ? 'inherit' : 'none'}}>
-                    <GenerisanjeGrupa idAsistent={4} predmeti={this.state.predmeti}/>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        
-     // </div>
     );
-    {/*else if (this.state.forma=="kreiranjeGrupe") return (
-     <Lista submit={this.unosInformacija} predmeti={this.state.predmeti}/>
-     
+    else if (this.state.forma=="kreiranjeGrupe") return (
+    <div>
+      <div className="App">
+        <div className="row">
+          <div id="head_meni">
+            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            <div id="odabrana_opcija"></div>
+          </div>
+          <div id="glavni_meni">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+              </div>
+            </div>
+            <div id="right">
+              <Lista submit={this.unosInformacija} predmeti={this.state.predmeti}/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     );
     else if (this.state.forma=="listaProjekata") return (
-        <PregledListeProjekata />
+      <div>
+      <div className="App">
+        <div className="row">
+          <div id="head_meni">
+            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            <div id="odabrana_opcija"></div>
+          </div>
+          <div id="glavni_meni">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+              </div>
+            </div>
+            <div id="right">
+              <PregledListeProjekata />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     )
     else if (this.state.forma=="PregledAsistent") return (
-      <ListaPredmetaAsistenta idAsistent={41} predmeti={this.state.predmeti} />
+      <div>
+      <div className="App">
+        <div className="row">
+          <div id="head_meni">
+            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            <div id="odabrana_opcija"></div>
+          </div>
+          <div id="glavni_meni">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+              </div>
+            </div>
+            <div id="right">
+              <ListaPredmetaAsistenta idAsistent={41} predmeti={this.state.predmeti} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     );
     else if(this.state.forma == "projektniZadaci") return (
-      <PregledZadatakaProjekta/>
+      <div>
+      <div className="App">
+        <div className="row">
+          <div id="head_meni">
+            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            <div id="odabrana_opcija"></div>
+          </div>
+          <div id="glavni_meni">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+              </div>
+            </div>
+            <div id="right">
+              <PregledZadatakaProjekta/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     );
     else if(this.state.forma=="KreiranjeAsistent") return(
-      <KreiranjeProjekta idAsistent={this.state.korisnik} predmeti={this.state.predmeti}/>
+      <div>
+      <div className="App">
+        <div className="row">
+          <div id="head_meni">
+            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            <div id="odabrana_opcija"></div>
+          </div>
+          <div id="glavni_meni">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+              </div>
+            </div>
+            <div id="right">
+              <KreiranjeProjekta idAsistent={this.state.korisnik} predmeti={this.state.predmeti}/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     );
     else if(this.state.forma=="unosInformacija") return(
-      <UnosInformacija/>
+      <div>
+      <div className="App">
+        <div className="row">
+          <div id="head_meni">
+            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            <div id="odabrana_opcija"></div>
+          </div>
+          <div id="glavni_meni">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+              </div>
+            </div>
+            <div id="right">
+              <UnosInformacija/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     )
     else if(this.state.forma=="generisanjeGrupe") return(
-      <GenerisanjeGrupa idAsistent={4} predmeti={this.state.predmeti}/>
-      )*/}
+      <div>
+      <div className="App">
+        <div className="row">
+          <div id="head_meni">
+            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
+            <div id="odabrana_opcija"></div>
+          </div>
+          <div id="glavni_meni">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
+                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
+                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
+              </div>
+            </div>
+            <div id="right">
+              <GenerisanjeGrupa idAsistent={4} predmeti={this.state.predmeti}/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    );
   }
   kreiranjeGrupe(){
     let ajax=new XMLHttpRequest();

@@ -19,7 +19,7 @@ class promijeniLozinku extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllProfessors')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -56,7 +56,7 @@ class promijeniLozinku extends Component {
     }
      
     dajProfesore() {
-        axios.get ('http://localhost:31901/api/korisnik/getAllProfessors')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -67,7 +67,7 @@ class promijeniLozinku extends Component {
 
     }
     dajStudente() {
-        axios.get ('http://localhost:31901/api/korisnik/getAllStudents')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -78,7 +78,7 @@ class promijeniLozinku extends Component {
 
     }
     dajAsistente() {
-        axios.get ('http://localhost:31901/api/korisnik/getAllAssistants')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -102,7 +102,7 @@ class promijeniLozinku extends Component {
      
       promijeni(username){
           if(username!="") {
-        axios.get ('http://localhost:31901/api/korisnik/GetNewPassword?username='+username)
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/GetNewPassword?username='+username)
         .then(response => {
             console.log("Lista: ", response.data);
             alert("Novi password korisnika je: " + response.data.password);

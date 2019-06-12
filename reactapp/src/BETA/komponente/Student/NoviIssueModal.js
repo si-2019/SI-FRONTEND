@@ -49,9 +49,10 @@ class ModalComponent extends React.Component {
                 else{
                     { this.setState({ greska: true})}
                 }
+                alert(result)
             })
             .catch(err => {
-                console.log(err);
+                alert.log(err);
                 this.setState({ greska: true });
             });
 

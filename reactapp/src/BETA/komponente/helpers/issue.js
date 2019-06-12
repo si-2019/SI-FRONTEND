@@ -95,7 +95,8 @@ export default class Issue extends React.Component {
 
     render() {
         return this.props.data.map((issue, index) => {
-            let d = issue.messages[0].datum;
+            let d = new Date(issue.messages[issue.messages.length-1].datum);
+        
             let datum = [];
             datum.push(d[11]);
             datum.push(d[12]);
@@ -121,8 +122,8 @@ export default class Issue extends React.Component {
                         <div className="card-title">
                             <div className="issue-body card-body">
                                 <div className="issueID">id:{issue.id}</div>
-                                <div className="issueDate">{datum}</div>
-                                <div onClick={() => this.setIssue(issue.id)} className="issue-title">{issue.title}</div>
+                                <div className="issueDate">DATUM I VRIJEME: {d.toLocaleString()}</div>
+                                <div onClick={() => this.setIssue(issue.id)} className="issue-title">NASLOV: {issue.title}</div>
                                 <div className="issueButtonDelete">
                                     <Button onClick={() => this.archiveIssue(issue.id)}>Arhiviraj</Button>
 
@@ -131,7 +132,9 @@ export default class Issue extends React.Component {
                                 <div className="issueButtonDelete">
                                    
                                     <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
-                                    <Button onClick={() => this.setIdForReply(issue.id)}>Odgovori</Button>
+
+                                     <Button onClick={() => this.setIdForReply(issue.id)}>Odgovori</Button>
+
                                 </div>
 
                             </div>

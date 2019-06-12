@@ -37,8 +37,8 @@ class Ocjene extends React.Component {
         }, {
             AkademskaGodina: "2019",
             Ocjene: [{
-                Predmet: "",
-                Ocjena: ""
+                Predmet: "maca",
+                Ocjena: "10"
             }]
         }] : this.state.dummyOcjene;
         return (

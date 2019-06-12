@@ -8,16 +8,21 @@ import Alert from 'react-bootstrap/Alert';
 function Poruka(props) {
     const greska = props.greska;
     const student= props.student;
-    if (greska==1) {
-        return <Alert variant='danger'>
-            <Alert.Heading>Nespješan unos!</Alert.Heading>
-            <p>Došlo je do greške sa bazom</p>
-        </Alert>
+    if (greska === 1) {
+        return (
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nespješan unos!</strong> <br/> Došlo je do greške sa bazom.
+            </div>
+        );
     }
-    if (greska===2) {
-        return <Alert variant='success'>
-            <Alert.Heading>Uspješno unesena ocjena!</Alert.Heading>
-        </Alert>
+    if (greska === 2) {
+        return (
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Uspješno unesena ocjena!</strong> <br/> Ocjena je uspješno dodana u bazu podataka.
+            </div>
+        );
     }
     return ""
 }
@@ -71,10 +76,10 @@ class Ocjena extends Component {
     }
      
     render() {
-        const {validated} = this.state;
-        const {greskaBaza}= this.state;
+        const {validated} = this.state.validated;
+        const {greskaBaza}= this.state.greskaBaza;
         return (
-            <div class="card" style={{margin: "0"}}>
+            <div class="card" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">
                     <h4 class="card-title text-center" >Unos ocjene</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos ocjene.</h6>

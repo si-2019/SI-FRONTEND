@@ -150,8 +150,10 @@ class TabelaUnosa extends Component {
                             <Form.Row className="justify-content-center">
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Bodovi: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                                    <Form.Control  ref={ this.bodovi } required type="text" name="name">
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validni bodovi </Form.Control.Feedback> 
+                                    <Form.Control.Feedback type= "invalid"> Bodovi nisu validni </Form.Control.Feedback> 
                                 </Col>
                             </Form.Row>
 

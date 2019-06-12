@@ -191,10 +191,10 @@ class UgovorOUcenju extends Component {
           <h2 style={{ marginBottom: "30px" }}>Ugovor o učenju</h2>
           <div className="card align-items-center">
             <div className="card-body" style={{ minWidth: "100%" }}>
-              <div class="row justify-content-lg-around justify-content-md-center">
-                <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+              <div className="row justify-content-lg-around justify-content-md-center">
+                <div className="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
                   <h4 className="card-title">Kreiranje ugovora</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">Ovdje možete kreirati ugovor o učenju za upis u naredni semestar.</h6>
+                  <h6 className="card-subtitle mb-2 text-muted">Ovdje možete kreirati ugovor o učenju za upis u naredni semestar.</h6>
                   <div style={{ textAlign: "left" }}>
                     <label className="col-form-label col-form-label-lg">
                       Godina studija
@@ -243,7 +243,7 @@ class UgovorOUcenju extends Component {
                     <option value="2">2.</option>
                   </select>
 
-                  <div class="form-group">
+                  <div className="form-group">
                     <div style={{ textAlign: "left" }}>
                       <label className="col-form-label col-form-label-lg">
                         Izborni predmeti
@@ -256,14 +256,14 @@ class UgovorOUcenju extends Component {
                         ""
                       )}
                     {this.state.listaIzbornih.map((item, i) => (
-                      <div class="custom-control custom-checkbox" key={i}>
+                      <div className="custom-control custom-checkbox" key={i}>
                         <input
                           type="checkbox"
-                          class="custom-control-input"
+                          className="custom-control-input"
                           id={"customCheck" + i}
                         />
                         <label
-                          class="custom-control-label"
+                          className="custom-control-label"
                           htmlFor={"customCheck" + i}
                         >
                           {item}
@@ -271,9 +271,12 @@ class UgovorOUcenju extends Component {
                       </div>
                     ))}
                   </div>
-                  
-                  <button type="submit" class="btn btn-primary" onClick={this.handleCreate}>Kreiraj ugovor</button>
-                  <button type="button" class="btn btn-primary" onClick={this.handlePrikaz}>Prikaži ugovor</button>
+                  <div className="d-flex justify-content-end">
+                    <button type="submit" className="btn btn-primary" onClick={this.handleCreate}>Kreiraj ugovor</button>
+                    
+                    <button type="button" className="btn btn-primary" onClick={this.handlePrikaz} style={{marginLeft:"10px"}}>Prikaži ugovor</button>
+                  </div>
+
                 </div>
               </div>
             </div>

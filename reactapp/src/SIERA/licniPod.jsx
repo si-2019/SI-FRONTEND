@@ -77,72 +77,46 @@ class LicniPod extends Component {
     render() {
         return (
             <>
-                <div class="container-fluid">
-                    <div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
-                        <h2 class="card-title">{this.state.ime} {this.state.prezime}</h2>
-                        <div className="row">
-
-                            <div className="col-lg-6 col-md align-self-stretch" style={{ boxSizing: "border-box", padding: "10px" }}>
-                                <div className="d-flex justify-content-center">
-                                    <div className="card" style={{  }}>
-                                        <div className="card-body">
-                                            <h4 className="card-title" style={{ textAlign: "left" }}>Lični podaci</h4>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div style={{ flexDirection: "column", textAlign: "left" }}>
-                                                        <div className="form-group">
-                                                            <label class="col-form-label" for="inputDefault">Mjesto rodjenja</label>
-                                                            <br></br>
-                                                            <h4>{this.state.mjestoRodjenja}</h4>
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label class="col-form-label" for="inputDefault">Drzavljanstvo</label>
-                                                            <br></br>
-                                                            <h4>{this.state.Drzavljanstvo}</h4>
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label class="col-form-label" for="inputDefault">Index</label>
-                                                            <h4>{this.state.Index}</h4>
-
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label class="col-form-label" for="inputDefault">Ime i prezime oca</label>
-                                                            <h4>{this.state.imePrezimeOca}</h4>
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label class="col-form-label" for="inputDefault">Ime i prezime majke</label>
-                                                            <h4>{this.state.imePrezimeMajke}</h4>
-                                                        </div>
-                                                        <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Edit</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <Fotografija fotografija={this.state.fotka} />
-                                                </div>
-                                            </div>
+                <div class="container-fluid" style={{ marginTop: "30px" }}>
+                    <h2 style={{ marginBottom: "30px" }}>Profil</h2>
+                    <div className="card align-items-center">
+                        <div className="card-body" style={{ minWidth: "100%" }}>
+                            <div class="row justify-content-lg-around justify-content-md-start">
+                                <div class="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center ">
+                                    <h4 className="card-title">Lični podaci</h4>
+                                    <div style={{ textAlign: "left" }}>
+                                        <div className="form-group">
+                                            <label class="col-form-label">Ime i Prezime</label>
+                                            <br></br>
+                                            <h4>{this.state.ime} {this.state.prezime}</h4>
+                                            <label class="col-form-label">Mjesto rodjenja</label>
+                                            <br></br>
+                                            <h4>{this.state.mjestoRodjenja}</h4>
+                                            <label class="col-form-label" for="inputDefault">Drzavljanstvo</label>
+                                            <br></br>
+                                            <h4>{this.state.Drzavljanstvo}</h4>
+                                            <label class="col-form-label" for="inputDefault">Index</label>
+                                            <h4>{this.state.Index}</h4>
+                                            <label class="col-form-label" for="inputDefault">Ime i prezime oca</label>
+                                            <h4>{this.state.imePrezimeOca}</h4>
+                                            <label class="col-form-label" for="inputDefault">Ime i prezime majke</label>
+                                            <h4>{this.state.imePrezimeMajke}</h4>
                                         </div>
+                                        <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Edit</button>
                                     </div>
                                 </div>
-                            </div>
-
-
-                            <div className="col-lg-6 col-md align-self-stretch" style={{ boxSizing: "border-box", padding: "10px" }}>
-                                <div className="d-flex justify-content-center">
-                                    <div className="card" style={{ width: "28rem" }}>
-                                        <div className="card-body">
-                                            <div style={{ flexDirection: "column", textAlign: "left" }}>
-                                                <Kontakt />
-                                                <Stranice />
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-auto justify-content-center">
+                                    <Fotografija fotografija={this.state.fotka} />
                                 </div>
-
+                                <div class="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center">
+                                    <div style={{ textAlign: "left" }}>
+                                        <Kontakt />
+                                    </div>
+                                    <Stranice />
+                                </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
                 <ModalComponent
                     saveState={this.saveState}
@@ -150,7 +124,6 @@ class LicniPod extends Component {
                     naslovModala="Lični Podaci"
                     podaciKorisnika={this.state}
                     btnPotvrdi="Spasi promjene"
-
                 />
             </>
         );

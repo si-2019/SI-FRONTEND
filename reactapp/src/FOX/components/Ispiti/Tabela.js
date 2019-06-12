@@ -26,6 +26,7 @@ const dataX = [{
       brstudenata: '47'
       
   }];
+
 class TabelaPredmeti extends  React.Component {
     constructor(props){
         super(props);
@@ -65,54 +66,63 @@ class TabelaPredmeti extends  React.Component {
         console.log(data2);       
         return (
             <div className="text-center">
+                {!this.state.studenti && 
                 <Container fluid style={{padding:"0", margin: "0"}}>
-                    <Row>
-                        {this.state.studenti === false && 
-                            <Table striped bordered responsive bsPrefix="table">
-                            <thead>
-                                <tr className="table-primary">
-                                    <th>Tip</th>
-                                    <th>Datum</th>
-                                    <th>Sala</th>
-                                    <th>BrStudenata</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                data2.map((dataf, i) => {
-                                    return <tr>
-                                        <td onClick={this.funkcija} value={data2[brojac++].tip}>{dataf.tip}</td>
-                                        <td>{dataf.datum}</td>
-                                        <td>{dataf.sala}</td>
-                                        <td>{dataf.brstudenata}</td>
-                                    </tr>                            
-                                })
+                    <Row noGutters>
+                        <Col>
+                                {this.state.studenti === false && 
+                                    <Table striped bordered responsive bsPrefix="table">
+                                    <thead>
+                                        <tr className="table-primary">
+                                            <th>Tip</th>
+                                            <th>Datum</th>
+                                            <th>Sala</th>
+                                            <th>BrStudenata</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                        data2.map((dataf, i) => {
+                                            return <tr>
+                                                <td onClick={this.funkcija} value={data2[brojac++].tip}>{dataf.tip}</td>
+                                                <td>{dataf.datum}</td>
+                                                <td>{dataf.sala}</td>
+                                                <td>{dataf.brstudenata}</td>
+                                            </tr>                            
+                                        })
+                                        }
+                                    </tbody>
+                                    </Table>
                                 }
-                            </tbody>
-                            </Table>
-                        }
-                    </Row>
-
-                    <Row>
-                        <Col></Col>
-                        <Col md="auto">
-                        <button 
-                            type="button" 
-                            className="btn btn-primary"
-                            onClick={this.redirectt}> Registruj novi ispit
-                        </button>
                         </Col>
-                        <Col></Col>
                     </Row>
 
-                        {this.state.studenti===true && <StudentiTabela tipIspita={this.state.data.tip}/>}
+                    <Row className="justify-content-md-center" style={{margin: "0"}}>
+                        <Col style={{textAlign: "center"}}>
+                            <button 
+                                type="button" 
+                                className="btn btn-primary"
+                                onClick={this.redirectt}> Registruj novi ispit
+                            </button>
+                        </Col>
+                    </Row>
+                    
                 </Container>
+                }
+
+                {this.state.studenti &&
+                <Container fluid style={{padding:"0", margin: "0"}}>
+                    <Row noGutters>
+                        <Col style={{textAlign: "center"}}>
+                            {this.state.studenti===true && <StudentiTabela tipIspita={this.state.data.tip}/>}
+                        </Col>
+                    </Row>
+                </Container>
+                }
             </div>
         );
       }
       
 }
-
-
 
 export default withRouter(TabelaPredmeti);

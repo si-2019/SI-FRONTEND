@@ -74,7 +74,7 @@ class Ocjena extends Component {
         const {validated} = this.state;
         const {greskaBaza}= this.state;
         return (
-            <div class="card">
+            <div class="card" style={{margin: "0"}}>
                 <div class="card-body">
                     <h4 class="card-title text-center" >Unos ocjene</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos ocjene.</h6>
@@ -86,17 +86,16 @@ class Ocjena extends Component {
                             onSubmit = {e => this.handleSubmit(e)}
                         >
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left"}}>
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Index: </Form.Label>
                                     <Form.Control type="text" name="name">
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}} >
                                     <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
@@ -112,8 +111,8 @@ class Ocjena extends Component {
 
                             <hr/>
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left"}}>
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Ocjena: </Form.Label>
                                     <Form.Control  ref={ this.ocjena } required type="text" name="name">
                                     </Form.Control>
@@ -122,9 +121,8 @@ class Ocjena extends Component {
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
                                     <Button> Unesi </Button>
                                 </Col>
                             </Form.Row>

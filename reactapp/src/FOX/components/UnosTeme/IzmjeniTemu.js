@@ -98,72 +98,66 @@ class IzmjeniTemu extends Component {
         const {opis} = this.state;
         //console.log(greskaBaza);
         return (
-            <div>
+            <div className="footerDno" style={{paddingBottom: "50px"}}>
                 <Container fluid style={{padding:"0", margin: "0"}}>
                     
-                <Row>
+                <Row noGutters>
                     <Col md="3">
                         <Header isPocetna={false}/>
                     </Col>
                     
                     <Col style={{textAlign: "left"}}>
-                        <Poruka greska={greskaBaza} />
-                        <Card>
-                            <Card.Body>
-                                <Card.Title>Izmjena teme za završni rad</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete izmjeniti završni rad na predmetu </Card.Subtitle>
-                                <Form 
-                                    noValidate 
-                                    validated={validated}
-                                    onSubmit = {e => this.handleSubmit(e)}
-                                >
-                                    <Form.Group as={Row} controlId = "formNoviNaziv">
-                                        <Col style={{textAlign: "right"}}>
-                                            <Form.Label>Naziv:</Form.Label>
-                                        </Col>
-                                    <Col lg="4">
-                                        <Form.Control 
-                                            ref={this.nazivTeme}
-                                            required 
-                                            type="text" 
-                                            defaultValue={naziv}
-                                        />
-                                        <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
-                                        <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
-                                    </Col>
-                                    <Col></Col>
-                                    </Form.Group> 
+                        <div style={{padding: "15px"}}>
+                            <Poruka greska={greskaBaza} />
+                            <Card style={{margin: "0"}}>
+                                <Card.Body>
+                                    <Card.Title className="text-center">Izmjena teme za završni rad</Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted text-center">U ovoj formi možete izmjeniti završni rad na predmetu </Card.Subtitle>
+                                    <br/>
+                                    <Form 
+                                        noValidate 
+                                        validated={validated}
+                                        onSubmit = {e => this.handleSubmit(e)}
+                                    >
+                                        <Form.Group as={Form.Row} controlId = "formNoviNaziv" className="justify-content-center">
+                                            <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
+                                                <Form.Label>Naziv:</Form.Label>
+                                                <Form.Control 
+                                                    ref={this.nazivTeme}
+                                                    required 
+                                                    type="text" 
+                                                    defaultValue={naziv}
+                                                />
+                                                <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
+                                            </Col>
+                                        </Form.Group> 
 
-                                    <Form.Group as={Row} controlId = "formNoviOpis">
-                                        <Col style={{textAlign: "right"}}>
-                                            <Form.Label>Opis:</Form.Label>
-                                        </Col>
-                                        {/*  /* 2. Attach Ref to FormControl component */}
-                                        <Col lg="4">
-                                            <Form.Control 
-                                                ref={this.opisTeme} 
-                                                required 
-                                                type="text" 
-                                                defaultValue={opis}
-                                            />
-                                            <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
-                                        </Col>
-                                        <Col></Col>
-                                    </Form.Group> 
+                                        <Form.Group as={Form.Row} controlId = "formNoviOpis" className="justify-content-center">
+                                            <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
+                                                <Form.Label>Opis:</Form.Label>
+                                                <Form.Control 
+                                                    ref={this.opisTeme} 
+                                                    required 
+                                                    type="text" 
+                                                    defaultValue={opis}
+                                                />
+                                                <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
+                                            </Col>
+                                        </Form.Group> 
 
-                                    <Form.Row>
-                                        <Col  style={{textAlign: "right"}}>
-                                            <Button variant="primary" type="submit">Izmjeni</Button> 
-                                        </Col>
-                                        <Col  style={{textAlign: "left"}}>
-                                            <Button variant="secondary" href='unosTeme'>Nazad</Button>  
-                                        </Col>  
-                                    </Form.Row>
+                                        <Form.Row className="justify-content-center">
+                                            <Col  style={{textAlign: "right"}} lg="4" md="6" sm="8" xs="12">
+                                                <Button variant="primary" type="submit" style={{marginRight: "10px"}}>Izmjeni</Button>
+                                                <Button variant="secondary" href='unosTeme'>Nazad</Button>  
+                                            </Col>  
+                                        </Form.Row>
 
-                                </Form>
-                            </Card.Body>  
-                        </Card>
+                                    </Form>
+                                </Card.Body>  
+                            </Card>
+                        </div>
                     </Col>
                 </Row>
            </Container>

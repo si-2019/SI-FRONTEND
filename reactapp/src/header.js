@@ -7,9 +7,9 @@ export default class App extends React.Component {
                         "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", 
                          "Papa", "Romeo", "Siera", "Tango", "Uniform"];
         return (
-            <div style={{backgroundColor: "#00203f"}} class="nav-link active"> 
+            <div style={{backgroundColor: "#00203f", height:"40px"}} class="nav-link active"> 
                 {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
             </div>
-        )
+        ) 
     }
 }

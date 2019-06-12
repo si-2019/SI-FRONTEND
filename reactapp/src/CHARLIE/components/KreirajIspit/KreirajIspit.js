@@ -4,11 +4,13 @@ import axios from 'axios'
 
 
 class KreirajIspit extends Component{
-  state = {response:[], brojStudenata:0}
+
+  state = {response:[], brojStudenata:0, validationError: false, validationErrorMessage: ""}
+
 
   async componentDidMount(){
-    const {data} = await axios.get('http://localhost:31903/api/predmeti')
-    //const {data1} = await axios.get('http://localhost:31903/api/brojStudenata') - kad se napravi na BE
+    const {data} = await axios.get('http://si2019charlie.herokuapp.com/api/predmeti')
+    //const {data1} = await axios.get('http://si2019charlie.herokuapp.com/api/brojStudenata') - kad se napravi na BE
     const data1=15 // hardkodirana vrijednost
     this.setState({response:data})
     this.setState({brojStudenata:data1})
@@ -26,42 +28,61 @@ class KreirajIspit extends Component{
     return this.state.brojStudenata
   }
 
+
+  validate = (e) => {
+    const subjectNAme = this.refs.odabirPredmeta.value
+    const typeOfExam = this.refs.odabirTipIspita.value
+    if(typeOfExam != "Usmeni" && typeOfExam != "Uvid") {
+      const {data} = axios.get('http://si2019charlie.herokuapp.com/predmet/' + subjectNAme + '/' + typeOfExam)
+      if(data > 4 || (data > 3 && typeOfExam == "Integralni")){
+        e.preventDefault();
+        this.setState({validationError: true})
+        this.setState({validationErrorMessage : "Odabrani tip ispita je kreiran maksimalno puta"})
+      }
+    }
+  }
+
+
   render(){
     return(
     <div className='container'>
       <form>
         <div className='row'>
             
-            <div className='col-3'>
-            <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
-                <select className="form-control" id="odabirPredmeta" >
-                    {this.renderOptions()}
-                </select>
-                <button type="button" class="btn btn-primary" id="nazadDugme" onClick={() => window.open( 'http://www.google.ba')}>Nazad</button>
-           </div> 
-            <div className='col-3'>
-              <label htmlFor="odabirTipIspita">Tip Ispita: </label>
-                <select className="form-control2" id="odabirTipIspita" >
+        <div class="card" style={{marginLeft:"16px", width: "50%"}}>
+          <div class="card-body" style={{textAlign:"left"}}>
+            <h4 class="card-title" style={{textAlign: "center"}}>Kreiranje ispita</h4>
+            <label class="col-form-label" htmlFor="odabirPredmeta">Odaberite predmet: </label>
+            <select class="custom-select"  id="odabirPredmeta" >
+              {this.renderOptions()}
+            </select>
+              <label class="col-form-label" htmlFor="odabirTipIspita">Tip ispita: </label>
+                <select class="custom-select" id="odabirTipIspita" >
                     <option>Prvi parcijalni</option>
                     <option>Drugi parcijalni</option>
                     <option>Integralni</option>
                     <option>Usmeni</option>
                     <option>Uvid</option>
                 </select>
-            </div> 
-            <div className='col-3'>
-              <label htmlFor="brojStudenata">Broj studenata na predmetu: </label>
-              <label id="brojStudenata">{this.brojStudenata()}</label>
-            </div> 
-            <div className='col-3'>
-            <Link to="/charlie/kreiraj-ispit-detalji">
-                  <button type="button" class="btn btn-primary" id="kreirajDugme">Kreiraj</button>
-              </Link>
+                <br />  
+            
+            <label class="col-form-label" htmlFor="brojStudenata">Broj studenata na predmetu: </label>
               <br />
-              <Link to="/charlie/kreirani-ispiti">
-                <button type="button" class="btn btn-primary">Kreirani ispiti</button>
+              <label class="col-form-label" id="brojStudenata">{this.brojStudenata()}</label>
+            <br />
+            
+            <Link to="/charlie/kreiraj-ispit-detalji">
+                  <button type="button" class="btn btn-primary" id="kreirajDugme" style={{float:"right"}}>Kreiraj</button>
               </Link>
+             
+            <Link to="/fox/ispiti"> 
+              <button type="button" class="btn btn-primary" id="nazadDugme" style={{float:"right"}}>Nazad</button>
+            </Link>
+            </div> 
             </div>
+              
+
+            
 
             </div>
             

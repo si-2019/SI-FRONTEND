@@ -50,44 +50,41 @@ class AzuriranjeZadace extends Component {
 
   render() {
     const lista = this.state.listaZadacaZaAzuriranje; // this.pokupiIzBaze();
-    console.log(lista);
+
     return (
       <div>
-        <Form>
-          <div>
-            <h4>
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggle}
-              >
-                <DropdownToggle caret className="bg-primary">
-                  Lista zadaća za ažuriranje
-                </DropdownToggle>
-                <DropdownMenu className="bg-primary">
-                  {lista.map(item => (
-                    <DropdownItem
-                      onClick={this.handleDropdownClick(item.id)}
-                      scope="col"
-                      key={item.id}
-                    >
-                      {item.naziv}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </ButtonDropdown>
-            </h4>
+        <div class="card w-25 ml-3 mt-4">
+          <div class="card-title" id="azuriranjeT">
+            Lista zadaća koje je moguće ažurirati:
           </div>
-          
-        </Form>
+          <ButtonDropdown
+            isOpen={this.state.dropdownOpen}
+            toggle={this.toggle}
+            id="azsel"
+            multiple=""
+          >
+            <DropdownToggle caret>Lista zadaća</DropdownToggle>
+
+            <DropdownMenu>
+              {lista.map(item => (
+                <DropdownItem
+                  onClick={this.handleDropdownClick(item.id)}
+                  key={item.id}
+                >
+                  {item.naziv}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </ButtonDropdown>
+        </div>
+
         <div>
           {this.state.azuriranjeState && (
             <KreiranjeZadace
-              
               title={"Ažuriranje zadaće"}
-              
               mainState={this.state.azuriranjeState}
             />
-          )}  
+          )}
           {/* confirmActionHandler={this.handleUpdateZadatak} */}
         </div>
       </div>
@@ -103,19 +100,17 @@ class AzuriranjeZadace extends Component {
       const res = await axios.get(
         `http://localhost:31911/getZadacaById/${zadacaId}`
       );
-      console.log(res.data);
       this.setState({
         azuriranjeState: res.data
       });
-      
     } catch (e) {
       console.error("Error fetching zadaca by id", e);
     }
   };
-/*
-  handleUpdateZadatak = state => {
-    // TODO: update logic
-  };*/
+  /*
+    handleUpdateZadatak = state => {
+      // TODO: update logic
+    };*/
 }
 
 export default AzuriranjeZadace;

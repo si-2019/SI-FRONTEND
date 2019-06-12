@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import MojiPredmeti from './mojiPredmeti.js'
-import Ciklusi from './ciklusi.js'
-import semestarPredmeti from './semestarPredmeti.js'
+import MojiPredmeti from './components/mojiPredmeti.js'
+import Ciklusi from './components/ciklusi.js'
+import proba from './components/proba.js'
+import semestarPredmeti from './components/semestarPredmeti.js'
+import StranicaPredmetaStudent from './components/stranicaPredmetaStudent'
+import StranicaPredmetaProfesor from './components/stranicaPredmetaProfesor.js'
+import PrethodnaAkademskaGodina from './components/prethodnaAkademskaGodina.js'
 
 class App extends Component {
 
@@ -12,22 +16,27 @@ class App extends Component {
       <div>
         <div>
         <Router>
-    
-                <div class='row'>
-                    <div class='col-3'>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href='/Golf/mojiPredmeti'>Moji predmeti</a>
-                            </li>
-                        </ul>
+                <div class='row' id='glavni'>
+                    <div class='col-3' id="meni" style={{
+                      backgroundColor: "#2C3E50",
+                      minHeight: "100%",
+                      padding: "0px",
+                       margin: "0px"
+                    }}>
+                      <Link to='/Golf/mojiPredmeti/1' class="dugmeLink">
+                          <button type="button" class="btn btn-primary left-buttons" id="mpl">Moji predmeti</button>
+                      </Link>
                      <Ciklusi />
                      
                     </div>
                     <div class='col-9'>
-                        <Route exact path="/Golf" component={MojiPredmeti} />
-                        <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
-                        <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>                   
-				   </div>
+                        <Route exact path="/Golf" component={proba} />
+                        <Route path="/Golf/mojiPredmeti/:idKorisnika" component={MojiPredmeti}/>
+                        <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>  
+                        <Route path="/Golf/stranicaPredmetaStudent/:idPredmeta/:idKorisnika" component={StranicaPredmetaStudent}/>
+                        <Route path="/Golf/stranicaPredmetaProfesor/:idPredmeta/:idKorisnika" component={StranicaPredmetaProfesor}/>
+                        <Route path="/Golf/materijali/:idPredmeta/:idKorisnika/:naziv" component={PrethodnaAkademskaGodina}/>
+				              </div>
                 </div>
             </Router>
         </div>

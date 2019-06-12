@@ -11,27 +11,25 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>
+            <div>          
+            <h1>Javne ankete</h1>
 
-                <table>
-                    <tr>
-                    <td>NAZIV ANKETE</td>
-                    <td>OPIS</td>
-                    <td>DATUM ISTEKA</td>
-                    <td>PRIKAZ ANKETE</td>
-                    <td>UREDI</td>
-                    <td>OBRIŠI</td>
+            <br></br>
+                <table className="table table-bordered text-center bg-active border-solid" align="center">
+                    <tr className="bg-primary text-light">
+                    <td class="tabtip">Naziv ankete</td>
+                    <td class="tabtip">Opis</td>
+                    <td class="tabtip">Datum isteka</td>
+                    <td class="tabtip">Prikaz ankete</td>
                     </tr>
             
 
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
-                    <th>{anketa.naziv}</th>
-                    <th>{anketa.opis}</th>
-                    <th>{anketa.datumIstekaAnkete}</th>
-                    <th> <button class="ButtoniTabela" type="button" id="prikaziButton" >PRIKAŽI</button> </th>
-                    <th> <button class="ButtoniTabela" type="button" id="urediButton" >UREDI</button> </th>
-                    <th> <button class="ButtoniTabela" type="button" id="obrisiButton" >OBRIŠI</button> </th>
+                    <th class="tabtip1">{anketa.naziv}</th>
+                    <th class="tabtip1">{anketa.opisAnkete}</th>
+                    <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
+                    <th class="tabtip1"><a href={"/Hotel/popunjavanje/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
                     </tr>
                 )) : "Loading..."}
                 </table>

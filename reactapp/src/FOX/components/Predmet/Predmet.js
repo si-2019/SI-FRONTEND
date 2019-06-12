@@ -37,8 +37,8 @@ class Predmet extends Component {
           return (
                <div>
 
-                    <Container fluid>
-                         <Row style={{margin: "0"}} className="justify-content-md-center">
+                    <Container fluid style={{padding:"0", margin: "0"}}>
+                         <Row style={{margin: "0"}} className="justify-content-center" noGutters>
                          {this.state.predmeti.map(p => {
                               return (
                                    <div as={Col} class="card" key={p.naziv} style={{maxWidth: "300px", margin: "5px"}}>

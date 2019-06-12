@@ -55,6 +55,10 @@
 	background-color: #B0C4DE;
 }
 
+#BETA_divIDVrijeme{
+  background-color: #2C3E50 !important;
+  color:white !important;
+}
 #mainBeta {
   width: 100%;
   display: inline-block;

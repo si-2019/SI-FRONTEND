@@ -141,7 +141,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="new"
-                        title={`New (${this.state.dataNew.length})`}
+                        title={`Novi (${this.state.dataNew.length})`}
                     >
                         
                         {!this.state.isLoading &&
@@ -160,7 +160,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="inProgress"
-                        title={`In progress (${this.state.dataInProgress.length})`}
+                        title={`U progresu (${this.state.dataInProgress.length})`}
                     >
                         <div className="tab-button-container">
                             <Button onClick = {() => this.emptyFolder(this.state.dataInProgress, 2)}>Isprazni folder</Button>
@@ -175,7 +175,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="resolved"
-                        title={`Resolved (${this.state.dataResolved.length})`}
+                        title={`Riješeni (${this.state.dataResolved.length})`}
                     >
                         <div className="tab-button-container">
                             <Button onClick = {() => this.emptyFolder(this.state.dataResolved, 3)}>Isprazni folder</Button>

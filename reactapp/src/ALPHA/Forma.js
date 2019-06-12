@@ -20,7 +20,8 @@ class Forma extends Component {
           telefon: '',
           zensko: '',
           musko: '',
-          roditelj: '',
+          imePrezimeOca: '',
+          imePrezimeMajke: '',
           adresa: '',
           spol: 'zensko'
         }
@@ -43,8 +44,9 @@ class Forma extends Component {
         
         const xhr = new XMLHttpRequest();
 
+        //'http://localhost:31901/api/korisnik/AddNewStudent'
         const body = JSON.stringify(data);
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewStudent', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -68,7 +70,7 @@ class Forma extends Component {
 
 
     render() {
-        const { ime, prezime, datum, jmbg, email, mjesto, kanton, drzavljanstvo, telefon, roditelj, adresa} = this.state;
+        const { ime, prezime, datum, jmbg, email, mjesto, kanton, drzavljanstvo, telefon, imePrezimeOca, imePrezimeMajke, adresa} = this.state;
 
         return (
           <div className="card">
@@ -111,8 +113,11 @@ class Forma extends Component {
                 <label class="custom-control-label" for="2">Muško</label><br/><br/>
               </div>
 
-              <label >Ime i prezime roditelja </label>
-              <input className="form-control " type="text" name="roditelj" value={roditelj} onChange={this.handleChange} /><br />
+              <label >Ime i prezime oca </label>
+              <input className="form-control " type="text" name="imePrezimeOca" value={imePrezimeOca} onChange={this.handleChange} /><br />
+            
+              <label >Ime i prezime majke </label>
+              <input className="form-control " type="text" name="imePrezimeMajke" value={imePrezimeMajke} onChange={this.handleChange} /><br />
               
               <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />

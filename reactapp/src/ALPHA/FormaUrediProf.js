@@ -33,7 +33,7 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllProfessors')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -111,7 +111,7 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
 
-        xhr.open('POST','http://localhost:31901/api/korisnik/updateProfessor', true);
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateProfessor', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -129,7 +129,7 @@ class Forma extends Component {
       obrisi(id){
         const json={id};
         console.log(id);
-        axios.delete('http://localhost:31901/api/korisnik/deleteProfessor?id='+id)
+        axios.delete('https://si2019alpha.herokuapp.com/api/korisnik/deleteProfessor?id='+id)
         .then(response=>{
           console.log(response);
         })

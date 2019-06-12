@@ -135,12 +135,13 @@ class TabelaUnosa extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>           
-                                    <Button onClick={this.handleClick}> Pretraži </Button>
+                                    <Button onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
+                                {rezPretrage}
                                 </Col>
                             </Form.Row>
 

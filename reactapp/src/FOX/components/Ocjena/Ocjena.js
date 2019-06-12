@@ -87,6 +87,18 @@ class Ocjena extends Component {
         const {greskaBaza}= this.state.greskaBaza;
         const student = this.state.student;
         let rezPretrage;
+        if (student!=undefined) {
+            rezPretrage = <div>
+                <Col style={{textAlign: "center"}}>
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Student sa indeksom {this.indeks.current.value} je pronađen! <br></br>
+                        {student.ime + " " + student.prezime}
+                    </div>
+                </Col>
+                
+            </div>
+        }
         return (
             <div class="card" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">

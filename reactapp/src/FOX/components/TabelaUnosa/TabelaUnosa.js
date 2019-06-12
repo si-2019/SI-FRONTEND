@@ -42,6 +42,13 @@ class TabelaUnosa extends Component {
             this.setState({ student: res.data });
         })
     }
+    handle() {
+        console.log("Clicked");
+        //Poziv apija /fox/getStudentInfo/:id
+        axios.get("http://localhost:31906/api/fox/ispiti/:idPredmet").then((res)=> {
+            this.setState({ student: res.data });
+        })
+    }
 
     handleSubmit(event) {
         const form = event.currentTarget;
@@ -103,13 +110,13 @@ class TabelaUnosa extends Component {
                     <h4 class="card-title text-center" >Unos bodova ispita</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos bodova.</h6>
                     <br/>
-                    <div>
+                <div>
                         <Form>
-
                             <Form.Row>
                                 <Col></Col>
                                 <Form.Group as={Col} sm={{span: 4}}>
                                     <select class="custom-select">
+                                       
                                         <option selected="">Otvori za odabir ispita</option>
                                         <option value="1">I parcijalni, 20.4.2019.</option>
                                         <option value="2">II parcijalni, 20.6.2019.</option>
@@ -167,11 +174,10 @@ class TabelaUnosa extends Component {
                             <Form.Row>
                                 <Col style={{textAlign: "center"}}>
                                 <Poruka greska={this.state.greskaBaza} />
-                                    
-                                    <br/>
+                                <br/>
                                 </Col>
                             </Form.Row>
-                    </Form>
+                        </Form>
                     </div>    
                 </div>
             </div>

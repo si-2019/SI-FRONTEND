@@ -45,11 +45,11 @@ class KreirajIspit extends Component{
 
   render(){
     return(
-    <div className='container'>
+    <div className='col'>
       <form>
-        <div className='row'>
+        <div style={{padding: "15px"}}>
             
-        <div class="card" style={{marginLeft:"16px", width: "50%"}}>
+        <div class="card" style={{margin:"0px"}}>
           <div class="card-body" style={{textAlign:"left"}}>
             <h4 class="card-title" style={{textAlign: "center"}}>Kreiranje ispita</h4>
             <label class="col-form-label" htmlFor="odabirPredmeta">Odaberite predmet: </label>
@@ -76,7 +76,7 @@ class KreirajIspit extends Component{
               </Link>
              
             <Link to="/fox/ispiti"> 
-              <button type="button" class="btn btn-primary" id="nazadDugme" style={{float:"right"}}>Nazad</button>
+              <button type="button" class="btn btn-primary" id="nazadDugme" style={{float:"right", marginRight: "10px"}}>Nazad</button>
             </Link>
             </div> 
             </div>

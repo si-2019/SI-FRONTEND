@@ -79,6 +79,7 @@ state = {response:[]}
     const profesorID = 250;
     const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/kreiraniIspiti/${profesorID}`);
     //Za svaki entry nadji ime predmeta na osnovu id-a
+    console.log(ispiti);
     this.setState({ ispiti: ispiti.data });
   } 
 

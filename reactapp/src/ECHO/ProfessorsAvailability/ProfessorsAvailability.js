@@ -4,6 +4,8 @@ import Pagination from 'rc-pagination'
 import localeInfo from 'rc-pagination/lib/locale/en_US';
 import './ProfessorsAvailability.css';
 import 'rc-pagination/assets/index.css';
+import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class ProfessorsAvailability extends Component {
@@ -29,8 +31,14 @@ class ProfessorsAvailability extends Component {
            page: current,
         }, this.componentDidMount)
     }
-    static onStaffEdit(e){
-        console.log(e.target.value);
+    onStaffEdit(e){
+        console.log('KAMIJON', e.target.value );
+        this.props.history.push({
+            pathname:"/unos-termina",
+            state:{
+                key:e.target.value
+            }
+        });
     }
     componentDidMount() {
         fetch("http://localhost:8080/si2019/echo/getTeachingStaff", {
@@ -112,4 +120,4 @@ class ProfessorsAvailability extends Component {
     }
 }
 
-export default ProfessorsAvailability;
+export default withRouter(ProfessorsAvailability);

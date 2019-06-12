@@ -5,6 +5,9 @@ import UnosPrisustvaSedmice from '../UnosPrisustvaSedmice/UnosPrisustvaSedmice';
 import Footer from '../Footer/Footer';
 import '../../ZajednickiCSS.css';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 class UnosPrisustva extends React.Component {
@@ -107,7 +110,7 @@ class UnosPrisustva extends React.Component {
                 vjezbe: s.vjezbe === "-" ? null : s.vjezbe 
             };
         });
-        axios.post('http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=4&brojSedmice=1', studenti);
+        axios.put('http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=100&brojSedmice=1', studenti);
     }
 
     handleClickSedmica = (brojSedmice) => {
@@ -116,7 +119,7 @@ class UnosPrisustva extends React.Component {
     
     componentDidMount() {
         // Privremeno rješnje
-        axios.get('http://localhost:31906/api/fox/prisustvo?idPredmeta=4&brojSedmice=1').then(response => {
+        axios.get('http://localhost:31906/api/fox/prisustvo?idPredmeta=100&brojSedmice=1').then(response => {
             let studenti = response.data.map(s => {
                 return {
                     id: s.id,
@@ -134,25 +137,35 @@ class UnosPrisustva extends React.Component {
     render() {
         return (
             <div id="unosPrisustvaID" className="footerDno">
-                <Header isPocetna={false}/>
-                <div style={{padding: "25px", textAlign: "center"}}>
-                    {
-                        this.state.sedmica !== 0 &&
-                            <UnosPrisustvaForma
-                                data={this.state}
-                                handleSubmit={this.handleSubmit}
-                                handleSubmitSvi={this.handleSubmitSvi}
-                                handleChange={this.handleChange}
-                                handleChangeSvi={this.handleChangeSvi}/>
-                    }
-                    {   
-                        this.state.sedmica === 0 &&
-                            <UnosPrisustvaSedmice
-                                handleClickSedmica={this.handleClickSedmica}/>
-                    }
-                    <br/>
-                    <br/>
-                </div>
+
+                <Container fluid style={{padding:"0", margin: "0"}}>
+                    <Row noGutters>
+                        <Col md="3">
+                            <Header isPocetna={false}/>
+                        </Col>
+                        <Col>
+                            <div style={{textAlign: "center", paddgin: "15px"}}>
+                                {
+                                    this.state.sedmica !== 0 &&
+                                        <UnosPrisustvaForma
+                                            data={this.state}
+                                            handleSubmit={this.handleSubmit}
+                                            handleSubmitSvi={this.handleSubmitSvi}
+                                            handleChange={this.handleChange}
+                                            handleChangeSvi={this.handleChangeSvi}/>
+                                }
+                                {   
+                                    this.state.sedmica === 0 &&
+                                        <UnosPrisustvaSedmice
+                                            handleClickSedmica={this.handleClickSedmica}/>
+                                }
+                                <br/>
+                                <br/>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+                
                 <Footer/>
             </div>
         );

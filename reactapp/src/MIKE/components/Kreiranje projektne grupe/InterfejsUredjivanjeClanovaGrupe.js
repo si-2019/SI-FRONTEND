@@ -23,48 +23,57 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     this.brisanjeClanova=this.brisanjeClanova.bind(this);
     this.unosInformacija=this.unosInformacija.bind(this);
   }
-  render() {
-    if(this.state.forma=="null") {
-    return (
-      <div className="bs-component">
-        <h3>Uredjivanje clanova grupe:</h3>
-        <h4>Grupa 4</h4>
-        <div className="row">
-          <div className="col-lg-4">
-            <select multiple className="form-control" ref="unutra">
-                {
-                  this.state.studentiUnutra.map(student=>{
-                    return <option className="list-group-item">{student.ime} {student.prezime}</option>
-                  })
-                }
-                <option className="list-group-item">test1</option>
-                <option className="list-group-item">test2</option>
-            </select>
-          </div>
-          <div className="btn-group-vertical">
-            <button className="btn btn-secondary" onClick={this.premjestiVani}>>></button>
-            <button className="btn btn-secondary" onClick={this.premjestiUnutra}>{`<<`}</button>
-          </div>
-          <div className="col-lg-4">
-            <select multiple className="form-control" ref="vani">
-                {
-                  this.state.studentiVani.map(student=>{
-                    return <option className="list-group-item">{student.ime} {student.prezime}</option>
-                  })
-                }
-                <option className="list-group-item">test3</option>
-                <option className="list-group-item">test4</option>
-            </select>
-          </div>
-        </div>
-        <button className="btn btn-primary" onClick={this.unosInformacija}>Nazad</button>
-        <button className="btn btn-primary" onClick={this.dohvatiStudenteProjekat}>Ucitaj liste - TEST</button>
-        <button className="btn btn-primary" onClick={this.sacuvajPromjene}>Sačuvaj</button>
-        <button className="btn btn-primary" onClick={this.brisanjeClanova}>Dalje</button>
 
-      </div>
-    );
-              }
+              render() {
+                if(this.state.forma=="null") {
+                return (
+                  <div className="card" style={{float: "left", width:"100%", top:"40px"}}>
+                    <div class="card-body">
+                    <h4 class="card-title" style={{textAlign:"left"}}>Uredjivanje clanova grupe</h4>
+                   <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Grupa 4</h6>
+                  <br/>
+                    
+                  <div className="bs-component">
+                    <div className="row">
+                      <div className="col-lg-4">
+                        <select multiple className="form-control" ref="unutra">
+                            {
+                              this.state.studentiUnutra.map(student=>{
+                                return <option className="list-group-item">{student.ime} {student.prezime}</option>
+                              })
+                            }
+                            <option className="list-group-item">test1</option>
+                            <option className="list-group-item">test2</option>
+                        </select>
+                      </div>
+                      <div className="btn-group-vertical">
+                        <button className="btn btn-secondary" onClick={this.premjestiVani}>>></button>
+                        <button className="btn btn-secondary" onClick={this.premjestiUnutra}>{`<<`}</button>
+                      </div>
+                      <div className="col-lg-4">
+                        <select multiple className="form-control" ref="vani">
+                            {
+                              this.state.studentiVani.map(student=>{
+                                return <option className="list-group-item">{student.ime} {student.prezime}</option>
+                              })
+                            }
+                            <option className="list-group-item">test3</option>
+                            <option className="list-group-item">test4</option>
+                        </select>
+                      </div>
+                    </div>
+                    <br/>
+                    <button className="btn btn-primary"  style={{float:"left", margin:"10px"}} onClick={this.unosInformacija}>Nazad</button>
+                    <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.brisanjeClanova}>Dalje</button>
+                    <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.sacuvajPromjene}>Sačuvaj</button>
+                   
+                    <button className="btn btn-primary"  style={{float:"right", margin:"10px"}} onClick={this.dohvatiStudenteProjekat}>Ucitaj liste - TEST</button>         
+                  </div>
+                  </div>
+                  </div>
+                );
+                          }
+            
 
     else if (this.state.forma=="brisanjeClanova") return (
       <BrisanjeClanova/> 
@@ -89,7 +98,6 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
             var tekst=ajax.responseText;
-            console.log(tekst);
             if(tekst.length==0) return;
             var json=JSON.parse(tekst);
             var jsonNovi=[];
@@ -108,7 +116,6 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     ajax2.onreadystatechange=function(){
         if(ajax2.readyState==4 && ajax2.status=="200"){
             var tekst=ajax2.responseText;
-            console.log(tekst);
             if(tekst.length==0) return;
             var json=JSON.parse(tekst);
             var jsonNovi=[];
@@ -136,7 +143,6 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     var y=this.refs.vani;
     if(x.selectedIndex>=0){
       this.nizVani.push(this.state.studentiUnutra[x.selectedIndex]);
-      console.log(this.nizVani);
       var o=x.options[x.selectedIndex];
       y.add(o);
     }

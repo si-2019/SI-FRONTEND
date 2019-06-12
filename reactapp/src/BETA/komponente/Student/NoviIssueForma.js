@@ -21,12 +21,12 @@ class NoviIssueForma extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        // get our form data out of state
+        
         const { issueTitle, issueText } = this.state;
 
-        axios.post('/issue/send', { issueTitle, issueText})
+        axios.post('https://si2019beta.herokuapp.com/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
         .then((result) => {
-            alert("Uspjesno upisan issue"); //Ovdje treba pokupiti odgovor od backend-a, ali ne znam kako !!!!!
+            alert(result.data);
         });
     };
 
@@ -73,7 +73,7 @@ class NoviIssueForma extends React.Component {
 
                 const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
 
-                axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+                axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
                 .then((result) => {
                     alert(result.data)
                 });
@@ -166,6 +166,3 @@ class NoviIssueForma extends React.Component {
 }
 
 export default NoviIssueForma;
-
-
-

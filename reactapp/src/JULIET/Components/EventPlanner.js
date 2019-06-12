@@ -92,14 +92,13 @@ class EventPlanner extends Component {
                             node.style.display = display === "block" ? 'none' : "block";
                             node = document.getElementById('arrow-planners');
                             let innerHTML = node.innerHTML; 
-                            console.log(innerHTML);
                             node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
                         }}>
                         <div className="juliet-section-header"><h5>Event planner</h5></div>
                         <i id="arrow-planners" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                     </div> 
                     <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="all-planners">
-                        <button id='juliet-create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: 'rgb(0,0,0,0.8)', color: 'white', borderRadius: '10px'}}>Create a new event</button>
+                        <button id='juliet-create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: '#2C3E50', color: 'white', borderRadius: '10px'}}>Create a new event</button>
                         {
                             this.state.showForm?
                             <NewEventForm addEvent={this.addEvent}/>

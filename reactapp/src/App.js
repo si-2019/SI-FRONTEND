@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Alpha from './ALPHA/app.js'
 import Beta from './BETA/app.js'
 import Charlie from './CHARLIE/app.js'
@@ -28,33 +28,34 @@ import Footer from './footer'
 class App extends Component {
   render() {
     return (
-        <Router>
-            <Header />
-            <div>
-                <Route exact path="/" component={Alpha} />
-                <Route path="/alpha" component={Alpha} />
-                <Route exact path="/beta" component={Beta} />
-                <Route path="/charlie" component={Charlie} />
-                <Route path="/delta" component={Delta} />
-                <Route path="/echo" component={Echo} />
-                <Route path="/fox" component={Fox} />
-                <Route path="/golf" component={Golf} />
-                <Route path="/hotel" component={Hotel} />
-                <Route path="/india" component={India} />
-                <Route path="/juliet" component={Juliet} />
-                <Route path="/kilo" component={Kilo} />
-                <Route path="/lima" component={Lima} />
-                <Route path="/mike" component={Mike} />
-                <Route path="/november" component={November} />
-                <Route path="/oscar" component={Oscar} />
-                <Route path="/papa" component={Papa} />
-                <Route path="/romeo" component={Romeo} />
-                <Route path="/siera" component={Siera} />
-                <Route path="/tango" component={Tango} />
-                <Route path="/uniform" component={Uniform} />
-            </div>
-            <Footer />
-        </Router>
+      <Router>
+          <Header />
+          <div >
+            <Route exact path="/" component={Alpha} />
+            <Route path="/alpha" component={Alpha} />
+            <Route exact path="/beta" component={Beta} />
+            <Route path="/charlie" component={Charlie} />
+            <Route path="/delta" component={Delta} />
+            <Route path="/echo" component={Echo} />
+            <Route path="/fox" component={Fox} />
+            <Route path="/golf" component={Golf} />
+            <Route path="/hotel" component={Hotel} />
+            <Route path="/india" component={India} />
+            <Route path="/juliet" component={Juliet} />
+            <Route path="/kilo" component={Kilo} />
+            <Route path="/lima" component={Lima} />
+            <Route path="/mike" component={Mike} />
+            <Route path="/november" component={November} />
+            <Route path="/oscar" component={Oscar} />
+            <Route path="/papa" component={Papa} />
+            <Route path="/romeo" component={Romeo} />
+            <Route path="/siera" component={Siera} />
+            <Route path="/tango" component={Tango} />
+            <Route path="/uniform" component={Uniform} />
+            
+          </div>
+          <Footer/>
+      </Router>
     );
   }
 }

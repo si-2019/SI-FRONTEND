@@ -12,11 +12,11 @@ class CategoryComponent extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:31902/category/get').then( res => {
+    axios.get('https://si2019beta.herokuapp.com/category/get').then( res => {
 
       let displayNames = [];
       
-      for(let i = 1; i < res.data.length; i++)
+      for(let i = 0; i < res.data.length; i++)
       {
         displayNames.push(res.data[i].naziv)
       }
@@ -35,10 +35,9 @@ class CategoryComponent extends React.Component {
     for(let j = 0; j < this.state.categoryArray.length; j++)
       options.push(<option key={j}>{this.state.categoryArray[j]}</option>)
     return (
-      <select
-        className="form-control" 
-        id="naslovSelect"
-        onChange = {this.onChangeTitle}
+      <select 
+        className="custom-select" 
+         onChange = {this.onChangeTitle}
       >{options}
       </select>
       

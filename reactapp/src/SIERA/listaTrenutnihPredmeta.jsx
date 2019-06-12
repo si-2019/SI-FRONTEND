@@ -29,10 +29,9 @@ class ListaPredmeta extends Component {
         <ul>
           {this.state.predmeti.map(predmet => (
             <li
-              className="list-group-item list-group-item-action mt-2"
               key={predmet}
             >
-              {predmet}
+              <label className="col-form-label">{predmet}</label>
             </li>
           ))}
         </ul>
@@ -42,17 +41,7 @@ class ListaPredmeta extends Component {
 
   render() {
     return (
-        <div className="container-fluid">
-          <div className="row">
-            <div className="align-self-start">
-              <h5 className="text-muted">Lista trenutnih predmeta</h5>
-            </div>
-          </div>
-          <div className="row">
-            <div className="align-self-start">{this.prikazPredmeta()}</div>
-          </div>
-        </div>
-    
+          <div className="align-self-start">{this.prikazPredmeta()}</div>    
     );
   }
 }

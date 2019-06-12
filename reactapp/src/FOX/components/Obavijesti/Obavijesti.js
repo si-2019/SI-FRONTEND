@@ -1,50 +1,67 @@
 import React, {Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import  Row  from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card';
-import '../../ZajednickiCSS.css';
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class Obavijesti extends Component {
     render() {
         return (
-            <Container fluid>
-            <Row>
-                <Col sm={{span: 4}} style={{textAlign: "left"}}>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title style={{ display: "inline-block", fontSize: '30px', textAlign: "center"}} >Obavijesti </Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">U ovoj formi možete unijeti obavijest </Card.Subtitle>
-                            <Form.Group as={Row} controlId = "naziv">
-                                <Col lg="6" style={{textAlign: "left"}} > 
-                                <Form.Label>Naziv:</Form.Label>
-                                    <Form.Control 
-                                        required 
-                                        type="text" 
-                                        placeholder="Unesi naziv obavijesti"
-                                    />
-                                <br/>
-                                </Col>   
-                            </Form.Group>
-                            <Form.Group as={Row} controlId = "formNovi">
-                                <Col style={{textAlign: "left"}}>
-                                    <Form.Label>Sadržaj:</Form.Label>
-                                    <Form.Control as="textarea" rows="5">
-                                    </Form.Control>
+          <div className="footerDno" style={{paddingBottom: "50px"}}>
+            <Container fluid style={{padding:"0", margin: "0"}}>
+                <Row noGutters>
+                    <Col md="3">
+                        <Header isPocetna={false}/>
+                    </Col>
+                    <Col>
+                        <div style={{padding: "15px"}}>
+                            <div class="card" style={{margin: "0px"}}>
+                                <div class="card-body">
+                                    <h4 class="card-title text-center" >Slanje obavijesti</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted text-center">Slanje obavijesti za sve studente na predmetu.</h6>
                                     <br/>
-                                    <Button variant="primary" type="submit" >Pošalji </Button> 
-                                </Col>
-                                <Col></Col>
-                            </Form.Group>
-                        </Card.Body>  
-                    </Card>
-                </Col>
-            </Row>
-        </Container> 
+                                    <div>
+                                        <Form>
+                                            <Form.Row className="justify-content-center">
+                                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
+                                                    <Form.Label> Naslov: </Form.Label>
+                                                    <Form.Control type="text" name="name">
+                                                    </Form.Control>
+                                                </Col>
+                                            </Form.Row>
+
+                                            <br/>
+
+                                            <Form.Row className="justify-content-center">
+                                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12"> 
+                                                    <Form.Label> Sadržaj: </Form.Label>
+                                                    <Form.Control as="textarea" rows="5">
+                                                    </Form.Control>
+                                                </Col>
+                                                
+                                            </Form.Row>
+
+                                            <br/>
+
+                                            <Form.Row className="justify-content-center">
+                                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
+                                                    <Button> Sačuvaj </Button>
+                                                </Col>
+                                            </Form.Row>
+                                            </Form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+
+            <Footer/>
+          </div>
         );
     }
 }

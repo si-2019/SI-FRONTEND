@@ -52,7 +52,7 @@ class Drafts extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('http://localhost:31902/issues/draft/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/draft/get');
 
         let dN = [];
         let dIP = [];
@@ -60,7 +60,7 @@ class Drafts extends React.Component {
 
         //new
         res.data.new.forEach( async (issue) => {
-            let cn = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dn = issue.messages;
             console.log("maida")
             console.log(dn[0].draftStatus)
@@ -74,7 +74,7 @@ class Drafts extends React.Component {
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
-            let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dip = issue.messages;
             let novi = [];
             for(let i = 0; i < dip.length; i++){
@@ -86,7 +86,7 @@ class Drafts extends React.Component {
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
-            let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dr = issue.messages;
             let novi = [];
             for(let i = 0; i < dr.length; i++){
@@ -107,7 +107,7 @@ class Drafts extends React.Component {
         if (this.state.isLoading) {
             return (
                 <Spinner animation='border' role='status'>
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only">Učitavanje...</span>
                 </Spinner>
             );
         }
@@ -123,7 +123,7 @@ class Drafts extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="new"
-                        title={`New (${this.state.dataNew.length})`}
+                        title={`Novi (${this.state.dataNew.length})`}
                     >
                         {!this.state.isLoading &&
                             <div>
@@ -138,7 +138,7 @@ class Drafts extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="inProgress"
-                        title={`In progress (${this.state.dataInProgress.length})`}
+                        title={`U progresu (${this.state.dataInProgress.length})`}
                     >
                         {!this.state.isLoading  &&
                             <Issue triggerRefreshList = {this.onRefreshListInProgress}
@@ -150,7 +150,7 @@ class Drafts extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="resolved"
-                        title={`Resolved (${this.state.dataResolved.length})`}
+                        title={`Riješeni (${this.state.dataResolved.length})`}
                     >
                         {!this.state.isLoading &&
                             <Issue triggerRefreshList = {this.onRefreshListResolved}

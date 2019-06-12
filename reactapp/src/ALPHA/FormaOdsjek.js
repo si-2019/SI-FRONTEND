@@ -23,7 +23,24 @@ class FormaOdsjek extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
-        alert('Registrovan je korisnik: ', data.ime)
+        
+        const xhr = new XMLHttpRequest();
+
+        const body = JSON.stringify(data);
+
+        //Drugi URL
+        xhr.open('POST', 'http://localhost:31901/api/odsjek/AddNewOdsjek', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = () => {
+          if(xhr.status === 200) {
+            const resp = xhr.responseText;
+            alert(resp);
+          }
+        }
+        xhr.onerror = () => {
+          console.log(xhr.statusText);
+        }
+        xhr.send(body);  
       }
      
 
@@ -31,13 +48,15 @@ class FormaOdsjek extends Component {
         const { Naziv } = this.state;
 
         return (
-          <div className="col-md-2">
+          <div className="card">
+          <div className="card-body  col-md-4 col-md-offset-4">
             <form  onSubmit={this.OnSubmit} className="container-fluid">
               <label >Naziv odsjeka </label>
               <input className="form-control" type="text" name="Naziv" value={Naziv} onChange={this.handleInputChange} /><br />
               
-              <input type="submit" value="Upiši" className="btn btn-success btn-block" />
+              <input type="submit" value="Upiši" className="btn btn-primary btn-block" />
             </form>
+            </div>
           </div>
         );
     }

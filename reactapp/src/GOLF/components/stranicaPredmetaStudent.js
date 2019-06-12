@@ -106,7 +106,7 @@ class stranicaPredmetaStudent extends Component {
                   <h1>  {this.state.naziv}</h1>
                 </div>
                 <div class='col-3'>
-                  <button id='dd'type="button" class="btn btn-success" onClick={this.klikNaDugme}>{this.state.text}</button>
+                  <button id='dd'type="button" class="btn btn-primary" onClick={this.klikNaDugme}>{this.state.text}</button>
                 </div>
               </div>
               <div>

@@ -11,6 +11,7 @@ import OPredmetuProfesor from './oPredmetuProfesor';
 import OPredmetuStudent from './oPredmetuStudent';
 import Sedmica from './sedmica';
 import Dropdown from './dropdown';
+import UredjivanjeObjave from './UredjivanjeObjave'
 
 class proba extends Component {
   render() {
@@ -51,6 +52,8 @@ class proba extends Component {
       
         <div>
             <h1>Moji predmeti</h1>
+            <DodavanjeObjave></DodavanjeObjave>
+            <UredjivanjeObjave></UredjivanjeObjave>
             
         </div>
         

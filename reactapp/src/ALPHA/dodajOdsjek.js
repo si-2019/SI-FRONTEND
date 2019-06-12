@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Forma from './FormaOdsjek'
 import Prikaz from './prikazOdsjeka'
-import Povez from './povezivanjeOdsjekPredmet'
 import Edit from './editOdsjeka'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'

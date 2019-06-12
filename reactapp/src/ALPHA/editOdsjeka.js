@@ -17,7 +17,7 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -59,7 +59,7 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
         
-        xhr.open('POST','http://localhost:31901/api/odsjek/PromijeniOdsjek', true);
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/odsjek/PromijeniOdsjek', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -83,7 +83,7 @@ class Forma extends Component {
       obrisi(naziv){
         const json={naziv};
         console.log(naziv);
-        axios.delete("http://localhost:31901/api/odsjek/DeleteOdsjek?naziv="+ naziv)
+        axios.delete("https://si2019alpha.herokuapp.com/api/odsjek/DeleteOdsjek?naziv="+ naziv)
         .then(response=>{
           alert("Uspješno obrisan odsjek!")
         })

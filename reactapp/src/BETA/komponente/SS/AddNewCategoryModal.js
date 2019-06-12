@@ -32,10 +32,10 @@ class AddNewCategoryModal extends React.Component {
         axios.post('https://si2019beta.herokuapp.com/category/add', { naziv })
             .then((result) => {
                 if (result.data === "Successfully added category!") {
-                    this.setState({ greska: false });
+                    this.setState({ greska: false, greskaVecPostoji:false });
                 }
                 else if (result.data === "Category already exists!") {
-                    this.setState({ greskaVecPostoji: true });
+                    this.setState({ greskaVecPostoji: true, greska:false });
                 }
                 else {
                     this.setState({ greska: true });

@@ -74,12 +74,12 @@ class KreirajIspit extends Component{
                 <div style={{textAlign: "left"}}>
             <label class="col-form-label col-form-label-lg" htmlFor="brojStudenata">Broj studenata na predmetu: </label>
              </div> 
-              
-              <label class="col-form-label col-form-label-lg" id="brojStudenata">{this.brojStudenata()}</label>
+             <div style={{textAlign: "left"}}> 
+              <label class="col-form-label col-form-label-lg" id="brojStudenata">{this.brojStudenata()}</label></div>
             <div style={{float: "right"}}>
               
            
-                  <button type="button" class="btn btn-primary" id="kreirajDugme" style={{marginTop: "20px", marginRight: "10px"}}>Kreiraj</button>
+                  <button type="button" class="btn btn-primary" id="kreirajDugme" style={{marginTop: "20px", marginRight: "10px"}} onClick={() => this.props.onChangeActiveId(2)}>Kreiraj</button>
                   <Link to="/fox/ispiti"> 
                     <button type="button" class="btn btn-primary" id="nazadDugme" style={{marginTop:"20px"}}>Nazad</button>
                   </Link>

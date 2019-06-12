@@ -21,7 +21,7 @@ class App extends Component {
       menuButtonTitles: [, "Ispiti"],
       menuButtonsProfesor: [{
         btnText: "Kreiraj ispit",
-        component: <KreirajIspit />
+        component: <KreirajIspit onChangeActiveId={this.onChangeActiveId}/>
         
       }, {
         btnText: "Kreirani ispiti",

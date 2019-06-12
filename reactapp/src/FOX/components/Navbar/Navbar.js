@@ -2,6 +2,25 @@ import React, { Component } from 'react';
 import './Navbar.css';
 
 class NavbarFox extends Component {
+
+    klikZadace =() =>{
+      window.location.replace("/KILO");
+    }
+    klikAnkete = () => {
+      window.location.replace("/HOTEL");
+    }
+    klikStatistika = () => {
+      window.location.replace("/LIMA");
+    }
+    klikRaspored = () => {
+      window.location.replace("/UNIFORM");
+    }
+    klikChat = () => {
+      window.location.replace("/JULIET");
+    }
+    klikForum = ()  => {
+      window.location.replace("/TANGO");
+    }
     render() {
       const x = "StranicaPredmeta?predmetId="+localStorage.getItem("NazivPredmeta");
       return (
@@ -67,27 +86,27 @@ class NavbarFox extends Component {
               <button type="button" className="btn btn-primary left-buttons">Obavijesti</button>
             </a>
 
-            <a href="zadace">
+            <a onClick={this.klikZadace}>
               <button type="button" className="btn btn-primary left-buttons">Zadaće</button>
             </a>
 
-            <a href="ankete">
+            <a onClick={this.klikAnkete}>
               <button type="button" className="btn btn-primary left-buttons">Ankete</button>
             </a>
 
-            <a href="statistika">
+            <a onClick={this.klikStatistika}>
               <button type="button" className="btn btn-primary left-buttons">Statistika</button>
             </a>
 
-            <a href="raspored">
+            <a onClick={this.klikRaspored}>
               <button type="button" className="btn btn-primary left-buttons">Raspored</button>
             </a>
 
-            <a href="chat">
+            <a onClick={this.klikChat}>
               <button type="button" className="btn btn-primary left-buttons">Chat</button>
             </a>
 
-            <a href="forum">
+            <a onClick={this.klikForum}>
               <button type="button" className="btn btn-primary left-buttons">Forum</button>
             </a>
 

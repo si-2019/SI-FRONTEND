@@ -1,20 +1,22 @@
-import React from "react";
+import React, {Component} from "react";
 import InterfejsUredjivanjeClanovaGrupe from "./InterfejsUredjivanjeClanovaGrupe";
 import Lista  from './prikazListe';
 import './bootstrapflatly.css';
 import './App.css'
 
-class UnosInformacija extends React.Component {
+class UnosInformacija extends Component {
     constructor(props) {
       super(props);
       this.state={
-        forma:"null"
+        forma:"null",
+        idStudent:2,
+        idProjekt:1,
+        naziv:"",
+        opis:""
       }
   
       this.handleChange = this.handleChange.bind(this);
-     // this.handleSubmit = this.handleSubmit.bind(this);
      this.uredjivanjeClanova=this.uredjivanjeClanova.bind(this);
-     this.sacuvajPromjene=this.sacuvajPromjene.bind(this);
      this.lista=this.lista.bind(this);
     }
   
@@ -39,27 +41,20 @@ class UnosInformacija extends React.Component {
           <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unijeti potrebne informacije za opis projekta</h6> 
           <br/>
           <label class="col-form-label" style={{textAlign:"left"}}>Naziv projektne grupe:</label>
-          <input type="text" className="form-control inputText"  style={{textAlign:"left"}} />
+          <input type="text" className="form-control inputText" id="naziv"  style={{textAlign:"left"}} />
           <br/>
           <label class="col-form-label" style={{textAlign:"left"}}> Opis projekta:</label>
-          <input type="text" className="form-control inputText" style={{textAlign:"left"}} />
+          <input type="text" className="form-control inputText" id="opis" style={{textAlign:"left"}} />
           <br/>
           {/*<input type="submit" value="Submit" />*/}
           <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.uredjivanjeClanova}>Dalje</button>
-           <button className="btn btn-primary" style={{float:"right",  margin:"10px"}} onClick={this.sacuvajPromjene}>Unesi</button>
           
-        </div> 
-        
-         {/* <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
-         
-        </form>
-         <IzborVodje/>
-      </div> */}
+        </div>
       </div>
       );
     }
      else if (this.state.forma=="uredjivanjeClanova") return (
-        <InterfejsUredjivanjeClanovaGrupe studentID={1} projektID={29}/>
+        <InterfejsUredjivanjeClanovaGrupe studentID={this.state.idStudent} projektID={this.state.idProjekt}/>
         
        );
 
@@ -69,10 +64,13 @@ class UnosInformacija extends React.Component {
 
     }
     uredjivanjeClanova(){
-      this.setState({forma:"uredjivanjeClanova"});
-    }
-    sacuvajPromjene(){
-      alert("Sacuvano!");
+      var naziv=document.getElementById("naziv").value;
+      var opis=document.getElementById("opis").value;
+      this.setState({
+        forma:"uredjivanjeClanova",
+        naziv:naziv,
+        opis:opis}
+      );
     }
     lista() {
       this.setState({forma:"lista"});

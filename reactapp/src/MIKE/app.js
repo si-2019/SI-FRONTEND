@@ -13,7 +13,7 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
-      korisnik:2,
+      korisnik:10,
       forma:"null",
       predmeti:[],
       token:0
@@ -257,10 +257,12 @@ class Mike extends Component {
         if(ajax.readyState==4 && ajax.status=="200"){
           var tekst=ajax.responseText;
           if(tekst.length==0) return;
-          var json=JSON.parse(tekst);
+          var json=JSON.parse(tekst).predmeti;
           jsonNovi=[];
           for(var i=0;i<json.length;i++){
-              jsonNovi.push({id:json[i].idPredmet,naziv:json[i].naziv});
+            var jsonProjekti=json[i].projekti;
+            if(jsonProjekti.length>0)
+              jsonNovi.push({id:json[i].id,naziv:json[i].naziv_predmeta,opis:jsonProjekti[0].opisProjekta,bodovi:jsonProjekti[0].moguciBodovi});
           }
           komponenta.setState(state=>({
             forma:"kreiranjeGrupe",
@@ -274,9 +276,9 @@ class Mike extends Component {
           }));
         }
       }
-      ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+      ajax.open("GET","http://localhost:31913/services/viewS/predmeti-za-generisanje-grupa/"+this.state.korisnik,true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      ajax.send("idKorisnik="+komponenta.state.korisnik);
+      ajax.send();
   }
   listaProjekata(){
     this.setState({forma:"listaProjekata"});
@@ -301,7 +303,7 @@ class Mike extends Component {
             predmeti:jsonNovi
           }));
         }
-        else if(ajax.status!="200"){
+        else if(ajax.status>=500){
           komponenta.setState(state=>({
             forma:"PregledAsistent",
             predmeti:jsonNovi
@@ -328,26 +330,25 @@ class Mike extends Component {
         var json=JSON.parse(tekst);
         jsonNovi=[];
         for(var i=0;i<json.length;i++){
-            jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
+            jsonNovi.push({idPredmet:json[i].id,naziv:json[i].naziv});
         }
         komponenta.setState(state=>({
           forma:"KreiranjeAsistent",
           predmeti:jsonNovi
         }));
       }
-      else if(ajax.status!="200"){
+      else if(ajax.status>=500){
         komponenta.setState(state=>({
           forma:"KreiranjeAsistent",
           predmeti:jsonNovi
         }));
       }
     }
-		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+		ajax.open("GET","http://localhost:31913/services/projects/getPredmeti/"+this.state.korisnik,true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("idKorisnik="+this.state.korisnik);
+    ajax.send();
   }
   unosInformacija(){
-    alert("test");
     this.setState(state=>({
       forma:"unosInformacija"
     }));

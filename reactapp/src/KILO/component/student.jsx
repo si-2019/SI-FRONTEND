@@ -55,22 +55,10 @@ class Student extends Component {
   }
   testirajVrijeme = (r) => {
     return true;
-    /*
-    var povratna_vrijednost; 
-    var danas = new Date();
-    var trengodina = danas.getFullYear();
-    var trenmjesec = danas.getMonth() + 1;
-    var trendan = danas.getDate();
-   
-    var vrijeme ={
-                    sati:danas.getHours(),
-                    minute:danas.getMinutes(),
-                    sekunde:danas.getSeconds()
-                  };
-    console.log('vrijeme:'+vrijeme);
-    console.log(this.state.zadacaState.rokZaPredaju[r].substring(10, this.state.zadacaState.rokZaPredaju[r].length));
-    console.log('trentno '+trengodina+' '+trenmjesec+' '+trendan);
-
+    var povratna_vrijednost;
+    var trengodina = new Date().getFullYear();
+    var trenmjesec = new Date().getMonth() + 1;
+    var trendan = new Date().getDate();
     var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
     var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
     var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
@@ -78,11 +66,10 @@ class Student extends Component {
     else if (trengodina === nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
     else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
       povratna_vrijednost = false;
-    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan === nasdan && this.state.vrijemeSlanja !== "23:59")
+    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan === nasdan && this.state.vrijeme !== "23:59")
       povratna_vrijednost = false;
     else povratna_vrijednost = true;
     return povratna_vrijednost;
-    */
   }
 
   obracunBodova = async (bodoviPoZadacimaZadaca, maxBodoviPoZadacimaPoZadacama) => {
@@ -212,7 +199,7 @@ class Student extends Component {
 
     if (this.state.zadacaState.postavka[r] === null) {
       // nema postavke za ovu zadacu
-      alert("Ne postoji postavka za ovu zadaću")
+      alert("Ne postoji postavka za ovu zadaæu")
       return;
     }
 
@@ -253,8 +240,8 @@ class Student extends Component {
           velicinaFajla = 0.1
         }
 
-        if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 2) { // upload prhvatljiv
-          // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 2 (MB)s
+        if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 25) { // upload prhvatljiv
+          // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 25 (MB)s
           var nazivFajlaSplit = file.name.split('.');
           var nazivFajla = "";
           for (var i = 0; i < nazivFajlaSplit.length - 1; i++) {
@@ -294,7 +281,7 @@ class Student extends Component {
           })
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
-          alert("Vrijeme za slanje zadaće je isteklo!");
+          alert("Vrijeme za slanje zadaæe je isteklo!");
 
           break;
         }
@@ -390,9 +377,23 @@ class Student extends Component {
       }
 
       case "preuzmi": {
-        //salji na rutu u backendu
-        await axios.get("http://localhost:31911/getDatoteku").then(res => {
-        });
+        
+        var idStudent = this.state.idStudenta;
+        var idZadatak = this.state.idZadatak;
+
+        axios.get(`http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
+          
+          let resultByte = res.data.datoteka.data;
+          var bytes = new Uint8Array(resultByte);
+          var blob = new Blob([bytes], { type: res.data.mimeTipFajla});
+    
+          var link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = res.data.nazivDatoteke
+          link.click();
+        }).catch(e => console.log(e));
+
+        
         break;
       }
 
@@ -414,6 +415,7 @@ class Student extends Component {
     document.getElementById("zadatakVecPoslan").style.display = "none";
   }
   render() {
+    console.log("state:", this.state)
     return (
       <div>
         <div id="tabelaPregledaZadaca">

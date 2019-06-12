@@ -11,7 +11,7 @@ class ModalComponent extends React.Component {
             greska: null,
             brojac: 0,
             issueText: "",
-            issueTitle: "asdadas", //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
+            issueTitle: "Početak akadameske godine", //Postavili smo vrijednost da na pocetku budu selektovani Indeksi
             allowedFiles: ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/x-zip-compressed", "application/vnd.ms-excel", "text/plain", "image/png", "image/jpg", "image/jpeg"],
             fileWrong: false,
@@ -65,7 +65,7 @@ class ModalComponent extends React.Component {
             .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
             else{
                 { this.setState({ greska: true})}
-                alert(JSON.stringify(result.data));
+                
             }
         })
         .catch(err => {
@@ -121,7 +121,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste poslali upit"
+                    msg="Uspješno ste poslali upit"
                 />
             );
         }
@@ -130,7 +130,7 @@ class ModalComponent extends React.Component {
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspjesno ste sacuvali upit kao draft!"
+                    msg="Uspješno ste sačuvali upit kao draft!"
                 />
             );
         }

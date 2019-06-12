@@ -33,7 +33,7 @@ class FAQ extends React.Component {
                     isLoading: false
                 });
             }
-            console.log("niz issues: " + res.data)
+            
         });
     }
 

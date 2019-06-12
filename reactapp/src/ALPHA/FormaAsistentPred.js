@@ -16,7 +16,7 @@ class FormaProfPred extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllAssistants')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaAsistenata: response.data});
@@ -25,7 +25,7 @@ class FormaProfPred extends Component {
             console.log(error)
         })
 
-        axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaPredmeta: response.data});
@@ -52,7 +52,7 @@ class FormaProfPred extends Component {
     spoji(asistent, predmet){
         console.log(asistent,predmet);
         const json={"idAsistent":asistent, "idPredmet":predmet}
-        axios.post("http://localhost:31901/api/povezivanje/linkAssistantSubject", json)
+        axios.post("https://si2019alpha.herokuapp.com/api/povezivanje/linkAssistantSubject", json)
         .then(response => {
             console.log(response);
         })

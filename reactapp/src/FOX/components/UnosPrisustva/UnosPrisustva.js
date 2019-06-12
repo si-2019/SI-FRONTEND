@@ -9,7 +9,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
 class UnosPrisustva extends React.Component {
     state = {
         studenti: [
@@ -52,7 +51,9 @@ class UnosPrisustva extends React.Component {
         predavanjeSvi: "izaberiOpciju",
         vjezbaSvi: "izaberiOpciju",
         tutorijalSvi: "izaberiOpciju",
-        sedmica: 0
+        sedmica: 0,
+        idPredmeta: 0,
+        greskaBaza: 0
     }
 
     constructor(props) {
@@ -99,7 +100,11 @@ class UnosPrisustva extends React.Component {
         })
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        const idPredmeta = this.state.idPredmeta;
+        const sedmica = this.state.sedmica;
         const studenti = this.state.studenti.map(s => {
             return {
                 id: s.id,
@@ -110,7 +115,14 @@ class UnosPrisustva extends React.Component {
                 vjezbe: s.vjezbe === "-" ? null : s.vjezbe 
             };
         });
-        axios.put('http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=100&brojSedmice=1', studenti);
+
+        axios.put(`http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`, studenti)
+        .then((res) => {
+            this.setState({greskaBaza: 2});
+        })
+        .catch((err)=> {
+            this.setState({greskaBaza: 1});
+        });
     }
 
     handleClickSedmica = (brojSedmice) => {
@@ -118,8 +130,10 @@ class UnosPrisustva extends React.Component {
     }
     
     componentDidMount() {
-        // Privremeno rješnje
-        axios.get('http://localhost:31906/api/fox/prisustvo?idPredmeta=100&brojSedmice=1').then(response => {
+        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 100;
+        const sedmica = this.state.sedmica;
+
+        axios.get(`http://localhost:31906/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`).then(response => {
             let studenti = response.data.map(s => {
                 return {
                     id: s.id,
@@ -130,7 +144,10 @@ class UnosPrisustva extends React.Component {
                     vjezbe: s.vjezbe === null ? "-" : s.vjezbe 
                 };
             })
-             this.setState({studenti: studenti});
+             this.setState({studenti: studenti, idPredmeta: idPredmeta});
+        })
+        .catch((err)=> {
+            this.setState({greskaBaza: 3});
         });
    }
 

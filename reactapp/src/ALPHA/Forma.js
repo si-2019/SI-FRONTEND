@@ -21,6 +21,7 @@ class Forma extends Component {
           zensko: '',
           musko: '',
           roditelj: '',
+          roditeljM: '',
           adresa: '',
           spol: 'zensko'
         }
@@ -69,7 +70,7 @@ class Forma extends Component {
 
 
     render() {
-        const { ime, prezime, datum, jmbg, email, mjesto, kanton, drzavljanstvo, telefon, roditelj, adresa} = this.state;
+        const { ime, prezime, datum, jmbg, email, mjesto, kanton, drzavljanstvo, telefon, roditelj, adresa, roditeljM} = this.state;
 
         return (
           <div className="card">
@@ -112,8 +113,11 @@ class Forma extends Component {
                 <label class="custom-control-label" for="2">Muško</label><br/><br/>
               </div>
 
-              <label >Ime i prezime roditelja </label>
+              <label >Ime i prezime oca </label>
               <input className="form-control " type="text" name="roditelj" value={roditelj} onChange={this.handleChange} /><br />
+            
+              <label >Ime i prezime majke </label>
+              <input className="form-control " type="text" name="roditeljM" value={roditeljM} onChange={this.handleChange} /><br />
               
               <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />

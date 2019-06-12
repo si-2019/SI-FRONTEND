@@ -56,7 +56,7 @@ class TabelaPredmeti extends  React.Component {
         
     }
     redirectt = (e) => {
-        window.location.replace("/charlie/kreiraj-ispit-detalji");
+        window.location.replace("/charlie");
         //this.props.history.push('/charlie/kreiraj-ispit-detalji');
     }
     render() {

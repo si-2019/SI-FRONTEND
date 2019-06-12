@@ -3,10 +3,6 @@ import "../bootstrap.css";
 import { Icon } from "@opuscapita/react-icons";
 
 class ZadatakVecPoslan extends Component {
-
-
-
-
   render() {
     var listOfTypes = this.props.podaci.state.listaTipova;
 
@@ -14,16 +10,19 @@ class ZadatakVecPoslan extends Component {
       <div class=" card mt-3 ml-4" id="formaZadPos">
         <div className="card-title pl-3">
           <h4>
-            <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
+            <b>Zadaæa {this.props.podaci.state.brojZadace}. </b>
             <div name="idiNazad" onClick={this.props.podaci.handleClick}>
               <Icon
                 type="indicator"
                 name="arrowLeft"
                 className=" mr-2 float-right"
                 onClick={this.props.podaci.handleBack}
-              /></div>
+              />
+            </div>
           </h4>
-          <h5 id="brojZad">Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
+          <h5 id="brojZad">
+            Zadatak broj {this.props.podaci.state.brojZadatka}
+          </h5>
         </div>
         <br />
         <div class="row">
@@ -33,10 +32,7 @@ class ZadatakVecPoslan extends Component {
                 <b>Podaci o poslanom zadatku</b>
               </div>
 
-
-
               <div>
-
                 <label className="control-label" id="stLabdat">
                   Datum slanja zadatka:
                 </label>
@@ -46,13 +42,12 @@ class ZadatakVecPoslan extends Component {
                   placeholder={this.props.podaci.state.datumSlanja}
                   readOnly=""
                 />
-
               </div>
               <div>
                 <fieldset>
                   <label className="control-label" id="stLabvr">
                     Vrijeme slanja zadatka:
-                </label>
+                  </label>
                   <input
                     className="form-control w-75 ml-4"
                     type="text"
@@ -62,12 +57,11 @@ class ZadatakVecPoslan extends Component {
                 </fieldset>
               </div>
 
-
-
               <div>
-
                 <fieldset>
-                  <label className="control-label " id="stLabnaz">Naziv datoteke:</label>
+                  <label className="control-label " id="stLabnaz">
+                    Naziv datoteke:
+                  </label>
                   <input
                     className="form-control w-75 ml-4"
                     type="text"
@@ -75,11 +69,10 @@ class ZadatakVecPoslan extends Component {
                     readOnly=""
                   />
                 </fieldset>
-
                 <fieldset>
                   <label className="control-label" id="stLabvel">
-                    Veličina datoteke:
-                </label>
+                    Velièina datoteke:
+                  </label>
                   <input
                     className="form-control w-75 ml-4"
                     type="text"
@@ -87,13 +80,16 @@ class ZadatakVecPoslan extends Component {
                     readOnly=""
                   />
                 </fieldset>{" "}
-
               </div>
 
-              <label className="control-label" id="stLabkom">Komentar:</label>
+              <label className="control-label" id="stLabkom">
+                Komentar:
+              </label>
               <div className="card border-secondary w-75 ml-4" id="kom">
                 <div className="card-body w-25 ml-4">
-                  <p className="card-text w-25 ml-4" >{this.props.podaci.state.komentar}</p>
+                  <p className="card-text w-25 ml-4">
+                    {this.props.podaci.state.komentar}
+                  </p>
                 </div>
               </div>
               <br />
@@ -108,40 +104,23 @@ class ZadatakVecPoslan extends Component {
                   >
                     <Icon type="indicator" name="sortDesc" className="mr-2" />
                     Preuzmi datoteku
-        </button>
-                </div>
-                <div class="col">
-                  <button
-                    name="pregled"
-                    type="button"
-                    className="btn btn-primary"
-                    id="pregledB"
-                    onClick={this.props.podaci.handleClick}
-                  >
-                    <Icon type="indicator" name="search" className="mr-2" />
-                    Pregled datoteke
-        </button>
+                  </button>
                 </div>
               </div>
-
             </div>
-
           </div>
           <div class="col">
             <div className="card" id="ponovoForma">
               <div className="card-title px-4 py-2 ml-4">
-                <b>Ponovno učitavanje datoteke</b>
+                <b>Ponovno uèitavanje datoteke</b>
               </div>
 
-
-              <label id="stLabdoz" class="mr-5" >Lista dozvoljenih tipova: </label>
-              <select
-                multiple=""
-                className="custom-select w-50 ml-5"
-              >
-                {(!this.props.podaci.state.blokirajSelect2) && listOfTypes.map(clan => (
-                  <option key={clan}>{clan}</option>
-                ))}
+              <label id="stLabdoz" class="mr-5">
+                Lista dozvoljenih tipova:{" "}
+              </label>
+              <select multiple="" className="custom-select w-50 ml-5">
+                {!this.props.podaci.state.blokirajSelect2 &&
+                  listOfTypes.map(clan => <option key={clan}>{clan}</option>)}
               </select>
               <input
                 id="uploadButton2"
@@ -162,7 +141,7 @@ class ZadatakVecPoslan extends Component {
                     disabled={this.props.podaci.state.uploadZadatka[0] === null}
                   >
                     Poništi
-        </button>
+                  </button>
                 </div>
                 <div class="col">
                   <button
@@ -174,7 +153,7 @@ class ZadatakVecPoslan extends Component {
                     disabled={this.props.podaci.state.uploadZadatka[0] === null}
                   >
                     Pošalji zadatak
-        </button>
+                  </button>
                 </div>
                 <hr />
               </div>

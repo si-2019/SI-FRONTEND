@@ -21,7 +21,7 @@ class FormaProfPred extends Component {
      }
 
      componentDidMount(){
-       axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+       axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({listaOdsjeka: response.data});
@@ -30,7 +30,7 @@ class FormaProfPred extends Component {
            console.log(error)
        })
 
-       axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+       axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({listaPredmeta: response.data});
@@ -58,14 +58,14 @@ class FormaProfPred extends Component {
         }) 
    }
 
-   spoji(){
+   spoji(par1, par2){
        const body={"idOdsjek": this.state.odsjek, "idPredmet": this.state.predmet, "godina": this.state.godina, "ciklus": this.state.ciklus, "semestar": this.state.semestar, "obavezan": this.state.obavezan}
        const json=JSON.stringify(body);
        console.log(json);
 
        const xhr = new XMLHttpRequest();
 
-       xhr.open('POST', 'http://localhost:31901/api/povezivanje/SpojiOdsjekPredmet', true);
+       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/povezivanje/SpojiOdsjekPredmet', true);
        xhr.setRequestHeader('Content-Type', 'application/json');
        xhr.onload = () => {
          if(xhr.status === 200) {
@@ -93,7 +93,7 @@ class FormaProfPred extends Component {
          <div className="card">
          <div className="card-body col-md-2">
              <p>Prikaz svih odsjeka: </p><br />
-               <select className="custom-select" value={selectedValueO} onChange={this.onChangeOdsjek}>
+               <select className="custom-select" value={selectedValueO} onChange={this.onChangeOdsjek} onClick={this.onChangeOdsjek}>
                {
                  listaOdsjeka.length ? listaOdsjeka.map(list =>
                  <option key={list.idOdsjek} value={[list.idOdsjek, list.naziv]}>{list.naziv}</option>
@@ -102,7 +102,7 @@ class FormaProfPred extends Component {
                </select><br /><br />
 
                <p>Prikaz svih predmeta: </p><br />
-               <select className="custom-select" value={selectedValueP} onChange={this.onChangePredmet}>
+               <select className="custom-select" value={selectedValueP} onChange={this.onChangePredmet} onClick={this.onChangePredmet}>
                {
                  listaPredmeta.length ? listaPredmeta.map(list =>
                  <option key={list.id} value={[list.id, list.naziv]}>{list.naziv}</option>
@@ -122,7 +122,7 @@ class FormaProfPred extends Component {
                <label>Obavezan:</label>
                <input className="form-control" type="number" name="obavezan" value={obavezan} onChange={this.handleChange}  /><br />
               
-               <button className="btn btn-primary btn-block" onClick={this.spoji()}>Dodaj</button>
+               <button className="btn btn-primary btn-block" onClick={()=>this.spoji("par", "par2")}>Dodaj</button>
 
           </div>
          </div>

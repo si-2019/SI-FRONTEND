@@ -20,7 +20,8 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllStudents')
+        //http://localhost:31901/api/korisnik/getAllStudents
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -64,7 +65,7 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
 
-        xhr.open('POST','http://localhost:31901/api/korisnik/updateStudent', true);
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -82,7 +83,7 @@ class Forma extends Component {
      
       promote(id){
         const json={id};
-        axios.post("http://localhost:31901/api/korisnik/promoteStudentToAssistant", json)
+        axios.post("https://si2019alpha.herokuapp.com/api/korisnik/promoteStudentToAssistant", json)
         .then(response=>{
           console.log(response);
         })
@@ -99,7 +100,7 @@ class Forma extends Component {
           <div className="card-body col-md-4 col-md-offset-4" >
             <br />
                 <p>Prikaz svih studenata: </p><br />
-                <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
+                <select className="custom-select" value={selectedValue} onChange={this.onChange} onClick={this.onChange}> 
                 {
                   lista.length ? lista.map(list => 
                  <option key={list.id} value={[list.id, list.ime, list.prezime, list.email, list.telefon, list.adresa, list.indeks]}>{list.ime} {list.prezime}</option>

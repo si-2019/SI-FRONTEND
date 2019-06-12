@@ -202,7 +202,10 @@ class Mike extends Component {
     ajax.send("idKorisnik="+this.state.korisnik);
   }
   unosInformacija(){
-    this.setState({forma:"unosInformacija"});
+    alert("test");
+    this.setState(state=>({
+      forma:"unosInformacija"
+    }));
   }
   generisanjeGrupe(){
     let ajax=new XMLHttpRequest();

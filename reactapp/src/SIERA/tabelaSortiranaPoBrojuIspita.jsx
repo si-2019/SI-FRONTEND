@@ -7,13 +7,28 @@ class TabelaSortiranaPoBrojuIspita extends Component {
         brojIspita: []
     };
 
-  render() {
-    return (
-      <div className="col-sm-12 col-xs-12 col-md-12 col-lg-4">
-        Div
-      </div>      
-    );
-  }
+    render() {
+        return (
+            <div className="col-sm-12 col-xs-12 col-md-12 col-lg-4">
+                {this.state.sortiraniPredmetiPoBrojuIspita.length == 0 ? <span style={{ float: "left", marginLeft: "30px" }}>Student trenutno nema ocjena</span> :
+                    <table className="table table-bordered text-center bg-active border-solid" style={{ float: "left", marginLeft: "20px" }}>
+                        <tbody>
+                            <tr class="bg-primary text-light">
+                                <th class="tabtip">Predmet</th>
+                                <th class="tabtip">Broj polaganih ispita</th>
+                            </tr>
+                            {this.state.sortiraniPredmetiPoBrojuIspita.map((item, i) => (
+                                <tr className="tabtip1" key={i}>
+                                    <td>{item}</td>
+                                    <td>{this.state.brojIspita[i]}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                }
+            </div>
+        );
+    }
 }
 
 export default TabelaSortiranaPoBrojuIspita;

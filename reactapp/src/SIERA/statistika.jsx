@@ -13,7 +13,8 @@ class Statistika extends Component {
 
     render() {
       return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={{ marginTop: "30px" }}>
+          <h2 style={{ marginBottom: "30px" }}>Statistika</h2>
           <div className="row" style={{ marginTop: "0.8em" }}>
             <div>
                 <input

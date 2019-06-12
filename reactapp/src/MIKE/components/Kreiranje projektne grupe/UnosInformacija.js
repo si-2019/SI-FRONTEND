@@ -32,16 +32,16 @@ class UnosInformacija extends React.Component {
     render() {
       if(this.state.forma=="null") {
       return (
-        <div className="card" style={{float: "left", width:"100%", top:"40px"}}>
+        <div className="card" style={{float: "left", width:"100%"}}>
           <div class="card-body">
       
           <h4 class="card-title" style={{textAlign:"left"}}>Unos informacija</h4>
           <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unijeti potrebne informacije za opis projekta</h6> 
           <br/>
-          <label class="col-form-label" style={{textAlign:"left"}}>Naziv projektne grupe:</label>
+          <label class="col-form-label" style={{float:"left"}}>Naziv projektne grupe:</label>
           <input type="text" className="form-control inputText"  style={{textAlign:"left"}} />
           <br/>
-          <label class="col-form-label" style={{textAlign:"left"}}> Opis projekta:</label>
+          <label class="col-form-label" style={{float:"left"}}> Opis projekta:</label>
           <input type="text" className="form-control inputText" style={{textAlign:"left"}} />
           <br/>
           {/*<input type="submit" value="Submit" />*/}

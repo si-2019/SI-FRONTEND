@@ -31,7 +31,7 @@ class Zadace extends Component {
                 </div>
             </div>
               <div className="col-3">
-              <a class="btn btn-primary btn-block" href="/Kilo/student" role="button">Zadaće</a>
+              <a class="btn btn-primary btn-block text-danger" style={{width: "150px"}}href="/Kilo/student" role="button">Zadaće</a>
             </div>
            </div>
         );

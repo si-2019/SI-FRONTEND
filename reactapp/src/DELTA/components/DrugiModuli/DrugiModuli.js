@@ -24,8 +24,7 @@ class DrugiModuli extends Component {
         </div>
         <div className='col-2'>
           <Raspored />
-        </div>
-          
+        </div> 
       </div>
     );
   }

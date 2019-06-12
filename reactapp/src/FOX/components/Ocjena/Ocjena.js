@@ -35,6 +35,11 @@ class Ocjena extends Component {
             greskaBaza: 0
         }
         this.ocjena=React.createRef();
+        this.indeks=React.createRef();
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
     }
 
      

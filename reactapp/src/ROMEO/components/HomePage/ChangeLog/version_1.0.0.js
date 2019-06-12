@@ -78,6 +78,11 @@ var data = [{
     "Generalni refaktoring i ispravke koda.",
     "Dodan dio koda koji kupi sve APIje iz projekta i dokumentuje ih na swagger UI-u."]
 },{
+    grupa:"Romeo",
+    opis:["Urađen HTML i CSS za login page.",
+    "Urađena validacija podataka unesenih u input polja pri loginu.",
+    "Urađena uspostava pocetnih spring boot security klasa."]
+},{
     grupa:"Siera",
     opis:["Učitavanje predmeta koje student trenutno sluša.",
     "Učitavanje predmeta koje je student slušao u prethodnim godinama.",

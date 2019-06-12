@@ -126,8 +126,8 @@ class Forma extends Component {
               
 
               
-              <button className="btn btn-success btn-block" onClick={()=>this.promijeni(selectedValue)}>Spremi izmjene</button>
-              <button className="btn btn-success btn-block" onClick={()=>this.obrisi(selectedValue)}>Obrisi odsjek</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.promijeni(selectedValue)}>Spremi izmjene</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(selectedValue)}>Obrisi odsjek</button>
              </form><br />
 
              

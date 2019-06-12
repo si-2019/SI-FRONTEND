@@ -99,7 +99,7 @@ class Forma extends Component {
           <div className="card-body col-md-4 col-md-offset-4" >
             <br />
                 <p>Prikaz svih studenata: </p><br />
-                <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
+                <select className="custom-select" value={selectedValue} onChange={this.onChange} onClick={this.onChange}> 
                 {
                   lista.length ? lista.map(list => 
                  <option key={list.id} value={[list.id, list.ime, list.prezime, list.email, list.telefon, list.adresa, list.indeks]}>{list.ime} {list.prezime}</option>

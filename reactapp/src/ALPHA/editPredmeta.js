@@ -20,7 +20,7 @@ class Forma extends Component {
       }
 
       componentDidMount  () {
-        axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -66,7 +66,7 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
         if(data.id!="--Predmeti--" && data.id!="" ) {
-        xhr.open('POST','http://localhost:31901/api/predmet/PromijeniPredmet', true);
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/predmet/PromijeniPredmet', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -90,7 +90,7 @@ class Forma extends Component {
         if(selectedValue!="--Predmeti--" && selectedValue!="" && selectedValue!=undefined ) {
         const json={naziv};
         console.log(naziv);
-        axios.delete("http://localhost:31901/api/predmet/deleteSubject?naziv="+ selectedValue)
+        axios.delete("https://si2019alpha.herokuapp.com/api/predmet/deleteSubject?naziv="+ selectedValue)
         .then(response=>{
           console.log(response);
         })

@@ -47,9 +47,6 @@ class Ocjena extends Component {
         })
     }
 
-     
-
-
     handleSubmit(event) {
         const form = event.currentTarget;
         console.log(event.currentTarget.checkValidity());
@@ -88,6 +85,8 @@ class Ocjena extends Component {
     render() {
         const {validated} = this.state.validated;
         const {greskaBaza}= this.state.greskaBaza;
+        const student = this.state.student;
+        let rezPretrage;
         return (
             <div class="card" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">

@@ -52,7 +52,7 @@ class UnosPrisustva extends React.Component {
         vjezbaSvi: "izaberiOpciju",
         tutorijalSvi: "izaberiOpciju",
         sedmica: 0,
-        idPredmeta: 0,
+        idPredmeta: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
         greskaBaza: 0
     }
 

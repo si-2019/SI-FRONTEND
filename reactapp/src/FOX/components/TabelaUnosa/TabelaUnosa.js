@@ -63,13 +63,12 @@ class TabelaUnosa extends Component {
            
             console.log(this.bodovi.current.value);
             let reqBody = {
-              /*  idStudent: 2, //pristup lokalnom storage-u
-                idPredmet: 64,
-                idAkademskaGodina: 11,
-                ocjena: this.ocjena.curren.value*/
+                /* idKorisnika: 3,
+                bodovi: this.bodovi.current.value,
+                idIspita: 4*/
             };
            // if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
-            console.log(this.ocjena.current.value);
+            console.log(this.bodovi.current.value);
             axios.post('', reqBody)
             .then((res) => {
                 console.log(res);
@@ -85,6 +84,23 @@ class TabelaUnosa extends Component {
     }
      
     render() {
+        const {validated} = this.state;
+        const {greskaBaza}= this.state;
+        const student = this.state.student;
+        let rezPretrage;
+
+        if (student!=undefined) {
+            rezPretrage = <div>
+                <Col style={{textAlign: "center"}}>
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Student sa indeksom {this.indeks.current.value} je pronađen! <br></br>
+                        {student.ime + " " + student.prezime}
+                    </div>
+                </Col>
+                
+            </div>
+        }
         return(
             <div class="card" style={{margin: "0"}}>
                 <div class="card-body">

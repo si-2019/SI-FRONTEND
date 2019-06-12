@@ -25,9 +25,13 @@ class TabelaUnosa extends Component {
         super(props);
         this.state ={
             validated: false,
-            greskaBaza: 0
+            greskaBaza: 0,
+            student: undefined
         }
         this.ocjena=React.createRef();
+        this.indeks=React.createRef();
+        this.bodovi=React.createRef();
+        this.handleClick = this.handleClick.bind(this);
     }
     handleSubmit(event) {
         const form = event.currentTarget;

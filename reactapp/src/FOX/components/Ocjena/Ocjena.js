@@ -132,7 +132,7 @@ class Ocjena extends Component {
                                 <Col style={{textAlign: "center"}}>
                                     <br/>
                                     <label>
-                                        
+                                    {rezPretrage}
                                     </label> 
                                 </Col>
                             </Form.Row>
@@ -151,7 +151,7 @@ class Ocjena extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
-                                    <Button> Unesi </Button>
+                                <Button variant="primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -161,6 +161,7 @@ class Ocjena extends Component {
                                         <br/>
                                 </Col>
                             </Form.Row>
+                            
                         </Form>
                     </div>
                 </div>

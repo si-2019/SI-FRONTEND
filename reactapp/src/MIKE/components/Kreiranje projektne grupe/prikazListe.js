@@ -39,6 +39,7 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
               })
             }
           </select>
+          {/*opis radi ako postoje predmeti, inace ne*/}
         <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].opis} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].bodovi}/>
         <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.props.submit}>Dalje</button>
         </div>

@@ -48,16 +48,20 @@ class UgovorOUcenju extends Component {
           this.state.izabraniSemestar
         )
         .then(res => {
-          const predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
-          const obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
-          const izborni = [];
-          for (var i = 0; i < obavezan.length; i++) {
-            if (obavezan[i] == "0") {
-              izborni.push(predmeti[i]);
+          if (res.data.dostupniPredmeti != undefined) {
+            const predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
+            const obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
+            const izborni = [];
+            for (var i = 0; i < obavezan.length; i++) {
+              if (obavezan[i] == "0") {
+                izborni.push(predmeti[i]);
+              }
             }
+            this.setState({ listaIzbornih: izborni });
           }
-          this.setState({ listaIzbornih: izborni });
-          console.log(this.state.listaIzbornih);
+          else {
+            this.setState({ listaIzbornih: [] });
+          }
         });
     } catch (e) { }
   }

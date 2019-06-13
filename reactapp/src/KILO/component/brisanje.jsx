@@ -30,7 +30,7 @@ class BrisanjeZadace extends Component {
   }
 
   componentDidMount() {
-    this.pokupiIzBaze();
+    this.pokupiIzBaze(this.state.idPredmet);
   }
 
   toggle() {
@@ -39,8 +39,8 @@ class BrisanjeZadace extends Component {
     });
   }
 
-  pokupiIzBaze = () => {
-    axios.get("http://localhost:31911/getZadace").then(res => {
+  pokupiIzBaze = (idPredmeta) => {
+    axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
       this.setState({
         listaZadacaZaBrisanje: res.data
       });
@@ -84,6 +84,7 @@ class BrisanjeZadace extends Component {
   };
   render() {
     const lista = this.state.listaZadacaZaBrisanje; // this.pokupiIzBaze();
+    console.log('State:',this.state)
     return (
       <div>
         <div class="card w-25 ml-3 mt-4">

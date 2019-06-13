@@ -10,7 +10,7 @@ class Ocjenjivanje extends Component {
     super(props);
 
     this.state = {
-      listaZadaca: [],
+      listaZadaca: [{ id: 1, naziv: "prva" }, { id: 2, naziv: "druga" }, { id: 0, naziv: "treca" }],
       studentiNisuPoslali: [],
       studentiNijePregledano: [],
       studentiPregledano: [],
@@ -19,7 +19,7 @@ class Ocjenjivanje extends Component {
       idZadatak: "",
       osvojeniBodovi: 0,
       prepisano: false,
-      komentar: "",
+      komentar: "Alles gute Brudeeer",
       maxBrojBodovaZadatka: 5,
       student: "",
       zadaca: "",
@@ -50,12 +50,14 @@ class Ocjenjivanje extends Component {
 
     this.pokupiZadace();
 
-    /*if (this.state.listaZadaca.length!=0) {
+    if (this.state.listaZadaca[0] != "") {
       this.setState({
         zadaca: this.state.listaZadaca[0].naziv,
         idZadace: this.state.listaZadaca[0].id,
       });
-    }*/
+    }
+
+
     document.getElementById("ocjenjivanjePocetna").style.display = "block";
     document.getElementById("ocjenjivanjeJednaZadaca").style.display = "none";
     document.getElementById("ocjenjivanjeJedanZadatak").style.display = "none";
@@ -92,20 +94,21 @@ class Ocjenjivanje extends Component {
       });
     });
   };
-
+/*
   preuzmiDatoteku = () => {
     axios.get("http://localhost:31911/getDatoteku").then(res => {
     });
   }
-
+*/  
+/*
   pregledDatoteke = () => {
     axios.get("http://localhost:31911/getPregledDatoteke").then(res => {
     });
   }
-
+*/
   pokupiZadacuStudenta = async (idZadace, idStudenta) => {
 
-    //idStudenta = 1;
+    idStudenta = 1;
     try {
       const res = await axios.get(
         `http://localhost:31911/getZadacuStudenta/${idZadace}/${idStudenta}`
@@ -114,6 +117,8 @@ class Ocjenjivanje extends Component {
         zadacaState: res.data
       });
 
+
+      // console.log(this.state.zadacaState);
       this.sumirajBodove();
       this.ostvareniBodovi();
 
@@ -132,16 +137,31 @@ class Ocjenjivanje extends Component {
         break;
       }
       case "preuzmi": {
-        //salji na rutu u backendu
-        console.log("preuzmi button acitvated");
+        
+        var idStudent = this.state.idStudenta;
+        var idZadatak = this.state.idZadatak;
+
+        axios.get(`http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
+          
+          let resultByte = res.data.datoteka.data;
+          var bytes = new Uint8Array(resultByte);
+          var blob = new Blob([bytes], { type: res.data.mimeTipFajla});
+    
+          var link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = res.data.nazivDatoteke
+          link.click();
+        }).catch(e => console.log(e));
+
         break;
       }
-
+/*
       case "pregled": {
         //salji na rutu u backendu
         console.log("pregled button acitvated");
         break;
       }
+*/      
       case "ok": {
         var infoOcjenjivanje = new FormData();
         var kom = document.getElementById("komentar").value;

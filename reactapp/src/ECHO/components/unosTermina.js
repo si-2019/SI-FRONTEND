@@ -101,6 +101,10 @@ class UnosTermina extends Component {
           <h4 className="card-title m-2" id="terminCardTitle">
             Unos termina
           </h4>
+          <h6 className="card-subtitle mb-2 text-muted">
+            Unesite željene termine za odvijanje nastave
+          </h6>
+
           <select
             className="custom-select m-2"
             id="listaDana"

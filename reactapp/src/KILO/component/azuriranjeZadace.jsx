@@ -27,7 +27,7 @@ class AzuriranjeZadace extends Component {
   }
 
   componentDidMount() {
-    this.pokupiIzBaze();
+    this.pokupiIzBaze(this.state.idPredmet);
   }
 
   toggle() {
@@ -36,8 +36,8 @@ class AzuriranjeZadace extends Component {
     });
   }
 
-  pokupiIzBaze = () => {
-    axios.get("http://localhost:31911/getZadace").then(res => {
+  pokupiIzBaze = (idPredmeta) => {
+    axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
       this.setState({
         listaZadacaZaAzuriranje: res.data
       });

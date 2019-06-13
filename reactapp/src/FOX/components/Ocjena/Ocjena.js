@@ -55,7 +55,7 @@ class Ocjena extends Component {
             console.log(this.ocjena.current.value);
             let reqBody = {
                 idStudent: 2, //pristup lokalnom storage-u
-                idPredmet: 64,
+                idPredmet: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
                 idAkademskaGodina: 11,
                 ocjena: this.ocjena.current.value
             };

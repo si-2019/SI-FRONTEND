@@ -6,6 +6,7 @@ import './UnosPrisustvaForma.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Poruka from '../Poruka/Poruka';
 
 function UnosPrisustvaForma(props) {
     const daStyle = {
@@ -38,7 +39,7 @@ function UnosPrisustvaForma(props) {
                                     <h6 class="card-subtitle mb-2 text-muted text-center">Unos prisustva za sve studente omogućava brz unos prisustva za sve.</h6>
                                     <br/>
                                     <div>
-                                        <Form onSubmit={props.handleSubmitSvi}>
+                                        <Form  onSubmit={props.handleSubmitSvi}>
                                             
                                             <Form.Row >
                                                 <Col></Col>
@@ -123,11 +124,18 @@ function UnosPrisustvaForma(props) {
                         <div style={{padding: "15px"}}>
                             <div class="card" style={{margin: "0"}}>
                                 <div class="card-body">
+                                    <Poruka
+                                    greska={props.data.greskaBaza}
+                                    naslovUspjeh="Prisustvo sačuvano!"
+                                    naslovGreska="Prisustvo nije sačuvano!"
+                                    opisUspjeh="Prisustvo je dodano u bazu podataka."
+                                    opisGreska="Baza podataka nije dostupna."
+                                    />
                                     <h4 class="card-title text-center">Unos prisustva pojedinačno</h4>
                                     <h6 class="card-subtitle mb-2 text-muted text-center">Unos prisustva pojedinačno omogućava unos prisustva za svakog studenta posebno.</h6>
                                     <br/>
                                     <div>
-                                        <Form onSubmit={props.onSubmit}>
+                                        <Form onSubmit={props.handleSubmit}>
 
                                             <Form.Row>
                                                 <Col sm={{span: 12}}>

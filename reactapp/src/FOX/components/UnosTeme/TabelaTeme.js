@@ -31,8 +31,9 @@ class TabelaStudenti extends Component {
     }
 
     componentDidMount() {
+        let idPredmeta = window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64;
         //Promise
-        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/64') //idPredmeta kao parametar iz local storega
+        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/' + idPredmeta) //idPredmeta kao parametar iz local storega
             .then(
                 res => this.setState({teme: res.data})
             );

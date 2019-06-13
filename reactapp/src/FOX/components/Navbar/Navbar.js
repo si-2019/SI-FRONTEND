@@ -118,7 +118,7 @@ class NavbarFox extends Component {
               <button type="button" className="btn btn-primary left-buttons">Uputstvo</button>
             </a>
 
-            <a href="https://www.iiicareer.com/OTS/Client/logout.php">
+            <a href="Romeo">
               <button type="button" className="btn btn-primary left-buttons">Odjava</button>
             </a>
             

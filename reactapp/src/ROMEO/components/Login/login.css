@@ -54,3 +54,13 @@
     width: 30%;
 }
 
+@media only screen and (max-width: 600px) {
+    .cardRomeo {
+      width: 100%;
+      margin: 0%;
+    }
+    .loginForma button{
+        width:70%;
+        /*margin: 0 auto;*/
+    }
+  }

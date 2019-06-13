@@ -6,12 +6,12 @@ import DateTimePicker from 'react-datetime-picker'
 class UrediIspit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '90', datumRokaPrijave: new Date(), kapacitet: 0, modalShow: false };
+    this.state = { value: '90', datumRokaPrijave: new Date(), kapacitet: 0};
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+   /* this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);*/
   }
-
+/*
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
@@ -31,7 +31,7 @@ class UrediIspit extends React.Component {
       modalShow: !this.state.modalShow
     });
   }
-
+*/
   onChangeRokPrijave = datumRokaPrijave => this.setState({ datumRokaPrijave })
 
 
@@ -44,7 +44,7 @@ class UrediIspit extends React.Component {
   render() {
     return (
       <div className="containter-fluid">
-        {!this.state.modalShow && <div>
+       <div>
           <h3>Uredi ispit</h3>
           <form>
             <label>Rok prijave ispita</label>
@@ -90,15 +90,10 @@ class UrediIspit extends React.Component {
             />
 
             <br></br>
-            <input type="button" class="btn btn-primary" id="btnPotvrdi" value="Potvrdi" />
-            <Link to="/charlie/kreirani-ispiti">
-              <button type="button" class="btn btn-danger" id="btnPovratak">Odustani</button>
-            </Link>
+            
           </form>
-        </div>}
-        {this.state.modalShow &&
-          <Modal onClose={this.toggleModal} onConfirm={this.toggleModal}>
-          </Modal>}
+        </div>
+       
       </div>
     )
   }

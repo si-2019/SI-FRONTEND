@@ -19,6 +19,7 @@ class Student extends Component {
     super(props);
 
     this.state = {
+      rendajOpet: true,
       zadacaState: {
         listaZadaca: [],
         listaZadataka: [],
@@ -29,11 +30,7 @@ class Student extends Component {
         rokZaPredaju: [],
         idPoZadacimaZadaca: []
       },
-      potrebno: [
-        [],
-        [],
-        [],
-        []],
+      potrebno: [[], [], [], []],
       ukupnoBodova: [],
       moguceBodova: [],
       blokirajSelect: false,
@@ -50,30 +47,65 @@ class Student extends Component {
       nazivFajla: "",
       tipFajla: "",
       datumSlanja: "",
-      vrijemeSlanja: "",
+      vrijemeSlanja: ""
     };
   }
-  testirajVrijeme = (r) => {
-    return true;
+  testirajVrijeme = r => {
     var povratna_vrijednost;
-    var trengodina = new Date().getFullYear();
-    var trenmjesec = new Date().getMonth() + 1;
-    var trendan = new Date().getDate();
-    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
-    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
-    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
+    var danas = new Date();
+    var trengodina = danas.getFullYear();
+    var trenmjesec = danas.getMonth() + 1;
+    var trendan = danas.getDate();
+
+    var vrijeme = {
+      sati: danas.getHours(),
+      minute: danas.getMinutes()
+    };
+
+    var nasagodina = Number.parseInt(
+      this.state.zadacaState.rokZaPredaju[r].substring(0, 4)
+    );
+    var nasmjesec = Number.parseInt(
+      this.state.zadacaState.rokZaPredaju[r].substring(5, 7)
+    );
+    var nasdan = Number.parseInt(
+      this.state.zadacaState.rokZaPredaju[r].substring(8, 10)
+    );
     if (trengodina > nasagodina) povratna_vrijednost = false;
-    else if (trengodina === nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
-    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan > nasdan)
+    else if (trengodina === nasagodina && trenmjesec > nasmjesec)
       povratna_vrijednost = false;
-    else if (trengodina === nasagodina && trenmjesec === nasmjesec && trendan === nasdan && this.state.vrijeme !== "23:59")
+    else if (
+      trengodina === nasagodina &&
+      trenmjesec === nasmjesec &&
+      trendan > nasdan
+    )
       povratna_vrijednost = false;
+    else if (
+      trengodina === nasagodina &&
+      trenmjesec === nasmjesec &&
+      trendan === nasdan
+    )
+      if (
+        vrijeme.sati < this.state.zadacaState.rokZaPredaju[r].substring(10, 13)
+      )
+        povratna_vrijednost = true;
+      else if (
+        vrijeme.sati ===
+          this.state.zadacaState.rokZaPredaju[r].substring(10, 13) &&
+        vrijeme.minute <
+          this.state.zadacaState.rokZaPredaju[r].substring(13, 16)
+      )
+        povratna_vrijednost = true;
+      else povratna_vrijednost = false;
     else povratna_vrijednost = true;
+    
     return povratna_vrijednost;
-  }
+  };
 
-  obracunBodova = async (bodoviPoZadacimaZadaca, maxBodoviPoZadacimaPoZadacama) => {
-
+  obracunBodova = async (
+    bodoviPoZadacimaZadaca,
+    maxBodoviPoZadacimaPoZadacama
+  ) => {
     var arr = new Array(bodoviPoZadacimaZadaca.length);
 
     for (var i = 0; i < bodoviPoZadacimaZadaca.length; i++) {
@@ -86,7 +118,9 @@ class Student extends Component {
       var zbirUkupno = 0;
       var zbirMoguce = 0;
       for (var j = 0; j < bodoviPoZadacimaZadaca[i].length; j++) {
-        arr[i][j] = bodoviPoZadacimaZadaca[i][j] + "/" +
+        arr[i][j] =
+          bodoviPoZadacimaZadaca[i][j] +
+          "/" +
           maxBodoviPoZadacimaPoZadacama[i][j];
         zbirUkupno = zbirUkupno + bodoviPoZadacimaZadaca[i][j];
         zbirMoguce = zbirMoguce + maxBodoviPoZadacimaPoZadacama[i][j];
@@ -106,11 +140,17 @@ class Student extends Component {
     //2. parametar axiosa, je sta ce tamo biti u backendu req.body
     var pomoc = 3;
     try {
-      const res = await axios.get(`http://localhost:31911/dajZadaceZaStudenta/${this.state.idStudenta}/${this.state.idPredmeta}`);
+      const res = await axios.get(
+        `http://localhost:31911/dajZadaceZaStudenta/${this.state.idStudenta}/${
+          this.state.idPredmeta
+        }`
+      );
       this.setState({ zadacaState: res.data });
-      this.obracunBodova(res.data.bodoviPoZadacimaZadaca, res.data.maxBodoviPoZadacimaPoZadacama);
-    }
-    catch (e) {
+      this.obracunBodova(
+        res.data.bodoviPoZadacimaZadaca,
+        res.data.maxBodoviPoZadacimaPoZadacama
+      );
+    } catch (e) {
       console.error("Error fetching zadaca by id", e);
     }
     document.getElementById("tabelaPregledaZadaca").style.display = "block";
@@ -124,19 +164,21 @@ class Student extends Component {
 
     var povratna_vrijednost = this.testirajVrijeme(r);
 
-
     //validacija ako je rok prosao, nema liste tipova
     if (povratna_vrijednost) {
-      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`).then(res => {
-        this.setState({ listaTipova: res.data });
-      });
+      await axios
+        .get(
+          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+        )
+        .then(res => {
+          this.setState({ listaTipova: res.data });
+        });
       document.getElementById("uploadButton").disabled = false;
       this.setState({ blokirajSelect: false });
       if (this.state.uploadZadatka[0] !== null) {
         document.getElementById("posalji1").disabled = false;
       }
-    }
-    else {
+    } else {
       this.setState({ blokirajSelect: true });
       document.getElementById("uploadButton").disabled = true;
       document.getElementById("posalji1").disabled = true;
@@ -158,33 +200,37 @@ class Student extends Component {
 
     //validacija ako je rok prosao, nema liste tipova
     if (povratna_vrijednost) {
-      await axios.get(`http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`).then(res => {
+      await axios
+        .get(
+          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+        )
+        .then(res => {
+          this.setState({ listaTipova: res.data });
 
-        this.setState({ listaTipova: res.data });
-
-
-        document.getElementById("uploadButton2").disabled = false;
-        this.setState({ blokirajSelect2: false });
-        if (this.state.uploadZadatka[0] !== null) {
-          document.getElementById("posalji2").disabled = false;
-        }
-      });
-    }
-    else {
+          document.getElementById("uploadButton2").disabled = false;
+          this.setState({ blokirajSelect2: false });
+          if (this.state.uploadZadatka[0] !== null) {
+            document.getElementById("posalji2").disabled = false;
+          }
+        });
+    } else {
       this.setState({ blokirajSelect2: true });
       document.getElementById("uploadButton2").disabled = true;
       document.getElementById("posalji2").disabled = true;
     }
-    await axios.get(`http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`).then(res => {
-
-      this.setState({
-        datumSlanja: res.data.datumSlanja,
-        vrijemeSlanja: res.data.vrijemeSlanja,
-        nazivFajla: res.data.nazivFajla,
-        velicinaFajla: res.data.velicinaFajla,
-        komentar: res.data.komentar
+    await axios
+      .get(
+        `http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`
+      )
+      .then(res => {
+        this.setState({
+          datumSlanja: res.data.datumSlanja,
+          vrijemeSlanja: res.data.vrijemeSlanja,
+          nazivFajla: res.data.nazivFajla,
+          velicinaFajla: res.data.velicinaFajla,
+          komentar: res.data.komentar
+        });
       });
-    });
 
     this.setState({
       brojZadace: r + 1,
@@ -195,57 +241,55 @@ class Student extends Component {
     document.getElementById("zadatakVecPoslan").style.display = "block";
   };
 
-  downloadPostavka = async (r) => {
-
+  downloadPostavka = async r => {
     if (this.state.zadacaState.postavka[r] === null) {
       // nema postavke za ovu zadacu
-      alert("Ne postoji postavka za ovu zadaæu")
+      alert("Ne postoji postavka za ovu zadaæu");
       return;
     }
 
     var nazivZadace = this.state.zadacaState.listaZadaca[r];
 
-    axios.get(`http://localhost:31911/downloadPostavka/${nazivZadace}`).then(res => {
+    axios
+      .get(`http://localhost:31911/downloadPostavka/${nazivZadace}`)
+      .then(res => {
+        let resultByte = res.data.postavka.data;
+        var bytes = new Uint8Array(resultByte);
+        var blob = new Blob([bytes], { type: res.data.tipFajlaPostavke });
 
-      let resultByte = res.data.postavka.data;
-      var bytes = new Uint8Array(resultByte);
-      var blob = new Blob([bytes], { type: res.data.tipFajlaPostavke });
-
-      var link = document.createElement("a");
-      link.href = window.URL.createObjectURL(blob);
-      link.download = res.data.naziv + '-' + res.data.imeFajlaPostavke;
-      link.click();
-    }).catch(e => console.log(e));
-
-  }
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = res.data.naziv + "-" + res.data.imeFajlaPostavke;
+        link.click();
+      })
+      .catch(e => console.log(e));
+  };
 
   handleClick = async event => {
     var ime = event.target.name;
 
     switch (ime) {
-
       case "uploadFajla": {
-
         var nazivUploada = document.getElementById("uploadButton").value;
         if (nazivUploada === "") {
           nazivUploada = document.getElementById("uploadButton2").value;
         }
 
-        var ekstenzija = '.' + nazivUploada.split('.').pop();
+        var ekstenzija = "." + nazivUploada.split(".").pop();
         var file = event.target.files[0];
 
         var velicinaFajla = file.size / 1000000;
         velicinaFajla = parseInt(velicinaFajla * 10) / 10;
-        if (velicinaFajla < 0.1) { // najmanje sto cemo upisivati u bazu je 0.1MB
-          velicinaFajla = 0.1
+        if (velicinaFajla < 0.1) {
+          // najmanje sto cemo upisivati u bazu je 0.1MB
+          velicinaFajla = 0.1;
         }
 
         if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 25) { // upload prhvatljiv
-          // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 25 (MB)s
           var nazivFajlaSplit = file.name.split('.');
           var nazivFajla = "";
           for (var i = 0; i < nazivFajlaSplit.length - 1; i++) {
-            nazivFajla = nazivFajla + nazivFajlaSplit[i]
+            nazivFajla = nazivFajla + nazivFajlaSplit[i];
           }
 
           this.setState({
@@ -253,77 +297,96 @@ class Student extends Component {
             velicinaFajla: velicinaFajla,
             nazivFajla: nazivFajla,
             tipFajla: ekstenzija
-          })
-        } else {  // upload neprihvatljiv
+          });
+        } else {
+          // upload neprihvatljiv
           this.setState({
             uploadZadatka: [null],
             velicinaFajla: "",
             nazivFajla: "",
             tipFajla: ""
-          })
+          });
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
-          alert("Nije dobar tip ili je fajl prevelik")
+          if(!this.state.listaTipova.includes(ekstenzija)) {
+            alert("Nije dobar tip")
+          }
+          else {
+            alert("Prevelik fajl")
+          }
         }
 
         break;
       }
 
       case "posaljiZadatak": {
-
+        if (this.state.rendajOpet == false) {
+          this.setState({
+            rendajOpet: true
+          });
+        } else {
+          this.setState({
+            rendajOpet: false
+          });
+        }
         // logika provjere validnog vremena slanja
-        if (!this.testirajVrijeme(this.state.brojZadace)) {
+        if (!this.testirajVrijeme(this.state.brojZadace - 1)) {
           this.setState({
             uploadZadatka: [null],
             velicinaFajla: "",
             nazivFajla: "",
             tipFajla: ""
-          })
+          });
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
-          alert("Vrijeme za slanje zadaæe je isteklo!");
+          alert("Vrijeme za slanje zadace je isteklo!");
 
           break;
         }
 
         // datum i vrijeme slanja
-        var datumIVrijemeSlanja = (new Date().getFullYear()).toString() + '-';
+        var datumIVrijemeSlanja = new Date().getFullYear().toString() + "-";
 
         if (new Date().getMonth() + 1 < 10) {
-          datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
         }
-        datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getMonth() + 1).toString() + '-';
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + (new Date().getMonth() + 1).toString() + "-";
 
         if (new Date().getDate() < 10) {
-          datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
         }
-        datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getDate()).toString() + ' ';
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getDate().toString() + " ";
 
         if (new Date().getHours() < 10) {
-          datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
         }
-        datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getHours()).toString() + ':';
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getHours().toString() + ":";
 
         if (new Date().getMinutes() < 10) {
-          datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
         }
-        datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getMinutes()).toString() + ':';
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getMinutes().toString() + ":";
 
         if (new Date().getSeconds() < 10) {
-          datumIVrijemeSlanja = datumIVrijemeSlanja + '0';
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
         }
-        datumIVrijemeSlanja = datumIVrijemeSlanja + (new Date().getSeconds()).toString();
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getSeconds().toString();
         // kraj datum i vrijeme
 
         const fData = new FormData();
         var file = this.state.uploadZadatka[0];
 
-        fData.append('file', new Blob([file], { type: file.type }));
-        fData.append('nazivFajla', this.state.nazivFajla);
-        fData.append('velicinaFajla', this.state.velicinaFajla);
-        fData.append('tipFajla', this.state.tipFajla);
-        fData.append('idStudent', this.state.idStudenta);
-        fData.append('idZadatak', this.state.idZadatak);
+        fData.append("file", new Blob([file], { type: file.type }));
+        fData.append("nazivFajla", this.state.nazivFajla);
+        fData.append("velicinaFajla", this.state.velicinaFajla);
+        fData.append("tipFajla", this.state.tipFajla);
+        fData.append("idStudent", this.state.idStudenta);
+        fData.append("idZadatak", this.state.idZadatak);
         fData.append("datumIVrijemeSlanja", datumIVrijemeSlanja);
 
         if (document.getElementById("uploadButton2").value === "") {
@@ -338,6 +401,14 @@ class Student extends Component {
             else {
               alert("Greska sa bazom")
             }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
 
             // rutiranje nazad
           });
@@ -347,18 +418,23 @@ class Student extends Component {
           axios.put("http://localhost:31911/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
               alert("Uspjesno ste poslati zadatak");
+            } else if (res.status === 201) {
+              alert("Vec postoji ovaj zadatak");
+            } else {
+              alert("Greska sa bazom");
             }
-            else if (res.status === 201) {
-              alert("Vec postoji ovaj zadatak")
-            }
-            else {
-              alert("Greska sa bazom")
-            }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
 
             //rutiranje nazad
           });
         }
-
 
         break;
       }
@@ -369,7 +445,7 @@ class Student extends Component {
           velicinaFajla: "",
           nazivFajla: "",
           tipFajla: ""
-        })
+        });
         document.getElementById("uploadButton").value = null;
         document.getElementById("uploadButton2").value = null;
 
@@ -377,31 +453,34 @@ class Student extends Component {
       }
 
       case "preuzmi": {
-        
         var idStudent = this.state.idStudenta;
         var idZadatak = this.state.idZadatak;
 
-        axios.get(`http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
-          
-          let resultByte = res.data.datoteka.data;
-          var bytes = new Uint8Array(resultByte);
-          var blob = new Blob([bytes], { type: res.data.mimeTipFajla});
-    
-          var link = document.createElement("a");
-          link.href = window.URL.createObjectURL(blob);
-          link.download = res.data.nazivDatoteke
-          link.click();
-        }).catch(e => console.log(e));
+        axios
+          .get(
+            `http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`
+          )
+          .then(res => {
+            let resultByte = res.data.datoteka.data;
+            var bytes = new Uint8Array(resultByte);
+            var blob = new Blob([bytes], { type: res.data.mimeTipFajla });
 
-        
+            var link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = res.data.nazivDatoteke;
+            link.click();
+          })
+          .catch(e => console.log(e));
+
         break;
       }
 
       case "pregled": {
         //salji na rutu u backendu
 
-        await axios.get("http://localhost:31911/getPregledDatoteke").then(res => {
-        });
+        await axios
+          .get("http://localhost:31911/getPregledDatoteke")
+          .then(res => {});
         break;
       }
       default: {
@@ -410,16 +489,19 @@ class Student extends Component {
   };
 
   handleBack = () => {
+    //ne kontam sto nece normalno da mi promijeni ikone :/ na ocjenjivanju radi sve ok
+    document.location.reload();
+
     document.getElementById("tabelaPregledaZadaca").style.display = "block";
     document.getElementById("prviPutSlanjeZadatka").style.display = "none";
     document.getElementById("zadatakVecPoslan").style.display = "none";
-  }
+  };
   render() {
-    console.log("state:", this.state)
+    console.log("state:", this.state);
     return (
       <div>
         <div id="tabelaPregledaZadaca">
-          <TabelaPregledaZadaca podaci={this} />
+          <TabelaPregledaZadaca key={this.state.rendajOpet} podaci={this} />
         </div>
         <div id="prviPutSlanjeZadatka">
           <PrviPutSlanjeZadatka podaci={this} />
@@ -433,5 +515,3 @@ class Student extends Component {
 }
 
 export default Student;
-
-

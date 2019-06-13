@@ -28,7 +28,9 @@ class FormaUpis extends Component {
 
      componentDidMount(param){
        console.log(param);
-       axios.get ("http://localhost:31901/api/korisnik/searchStudent?ime="+param)
+       
+       //"http://localhost:31901/api/korisnik/searchStudent?ime="+param
+       axios.get ("https://si2019alpha.herokuapp.com/api/korisnik/searchStudent?ime="+param)
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({lista: response.data});    
@@ -39,9 +41,7 @@ class FormaUpis extends Component {
      }
 
      onChange = (e) => {
-       console.log("ON CHANGE:", e.target.value);
        var split=e.target.value.split(",");   
-       console.log("ISPISI", e.target.value);
        this.setState({selectedValue: e.target.value, id: split[0], ime: split[1], prezime: split[2], username: split[3]}) 
    }
 
@@ -70,7 +70,7 @@ class FormaUpis extends Component {
 
        console.log(body);
        //NOVI API CE BITI
-       xhr.open('POST', 'http://localhost:31901/api/korisnik/enrollStudentToSemester', true);
+       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/enrollStudentToSemester', true);
        xhr.setRequestHeader('Content-Type', 'application/json');
        xhr.onload = () => {
          if(xhr.status === 200) {

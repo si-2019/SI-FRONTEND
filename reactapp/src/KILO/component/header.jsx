@@ -1,25 +1,23 @@
 import React, { Component } from "react";
 import history from "../utils/history";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 class Header extends Component {
-
   render() {
     return (
       <div>
-        <Link to="/KILO/kreiranjeZadace/?idPredmeta=3">
+        <a href="/KILO/kreiranjeZadace/?idPredmeta=3">
           <button
             type="button"
             class="meniBtn"
             className="btn btn-primary left-buttons"
             id="KreiranjeKilo"
             style={{ width: "100%" }}
-
           >
             Kreiranje zadaće
-        </button>
-        </Link>
+          </button>
+        </a>
 
-        <Link to="/KILO/azuriranjeZadace/?idPredmeta=3">
+        <a href="/KILO/azuriranjeZadace/?idPredmeta=3">
           <button
             type="button"
             class="meniBtn"
@@ -28,10 +26,10 @@ class Header extends Component {
             style={{ width: "100%" }}
           >
             Ažuriranje zadaće
-         </button>
-        </Link>
+          </button>
+        </a>
 
-        <Link to="/KILO/brisanjeZadace/?idPredmeta=3">
+        <a href="/KILO/brisanjeZadace/">
           <button
             type="button"
             class="meniBtn"
@@ -40,10 +38,10 @@ class Header extends Component {
             style={{ width: "100%" }}
           >
             Brisanje zadaće
-         </button>
-        </Link>
+          </button>
+        </a>
 
-        <Link to="/KILO/ocjenjivanjeZadace/">
+        <a href="/KILO/ocjenjivanjeZadace/">
           <button
             type="button"
             class="meniBtn"
@@ -53,9 +51,9 @@ class Header extends Component {
           >
             Ocjenjivanje zadaće
           </button>
-        </Link>
+        </a>
 
-        <Link to="/KILO/student/">
+        <a href="/KILO/student/">
           <button
             type="button"
             class="meniBtn"
@@ -64,14 +62,10 @@ class Header extends Component {
           >
             Student
           </button>
-        </Link>
-
+        </a>
       </div>
     );
-
-
   }
-
 }
 
 export default Header;

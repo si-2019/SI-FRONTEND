@@ -34,7 +34,7 @@ class FormaAsistent extends Component {
 
       componentDidMount(){
        
-        axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -90,7 +90,7 @@ class FormaAsistent extends Component {
         const xhr = new XMLHttpRequest();
 
         const body1 = JSON.stringify(body);
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewAssistant', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewAssistant', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -169,7 +169,7 @@ class FormaAsistent extends Component {
                  
                   lista.length ? lista.map(list => 
                   
-                  <option key={list.idOdsjek} value={[ list.naziv]}> {list.naziv} </option>
+                  <option key={list.idOdsjek} value={[ list.idOdsjek]}> {list.naziv} </option>
                 
                   ): null
                 }

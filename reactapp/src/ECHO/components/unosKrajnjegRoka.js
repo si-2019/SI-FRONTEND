@@ -46,10 +46,10 @@ class UnosKrajnjegRoka extends Component {
           </Alert>
           <div class="card-body">
             <h4 class="card-title">Unos krajnjeg roka</h4>
-            <p class="card-text">
+            <h6 className="card-subtitle mb-2 text-muted">
               Unesite krajnji rok za unos i promjenu slobodnih termina nastavnog
-              osoblja:
-            </p>
+              osoblja
+            </h6>
             <br />
             <Datetime input={false} isValidDate={valid} />
             <div id="dugmeKalendar">

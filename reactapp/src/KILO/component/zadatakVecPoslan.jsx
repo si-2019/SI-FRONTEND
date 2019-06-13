@@ -10,7 +10,7 @@ class ZadatakVecPoslan extends Component {
       <div class=" card mt-3 ml-4" id="formaZadPos">
         <div className="card-title pl-3">
           <h4>
-            <b>Zadaæa {this.props.podaci.state.brojZadace}. </b>
+            <b>Zadaća {this.props.podaci.state.brojZadace}. </b>
             <div name="idiNazad" onClick={this.props.podaci.handleClick}>
               <Icon
                 type="indicator"
@@ -112,7 +112,7 @@ class ZadatakVecPoslan extends Component {
           <div class="col">
             <div className="card" id="ponovoForma">
               <div className="card-title px-4 py-2 ml-4">
-                <b>Ponovno uèitavanje datoteke</b>
+                <b>Ponovno učitavanje datoteke</b>
               </div>
 
               <label id="stLabdoz" class="mr-5">

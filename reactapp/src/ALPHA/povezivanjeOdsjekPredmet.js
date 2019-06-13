@@ -21,7 +21,7 @@ class FormaProfPred extends Component {
      }
 
      componentDidMount(){
-       axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+       axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({listaOdsjeka: response.data});
@@ -30,7 +30,7 @@ class FormaProfPred extends Component {
            console.log(error)
        })
 
-       axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+       axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({listaPredmeta: response.data});
@@ -65,7 +65,7 @@ class FormaProfPred extends Component {
 
        const xhr = new XMLHttpRequest();
 
-       xhr.open('POST', 'http://localhost:31901/api/povezivanje/SpojiOdsjekPredmet', true);
+       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/povezivanje/SpojiOdsjekPredmet', true);
        xhr.setRequestHeader('Content-Type', 'application/json');
        xhr.onload = () => {
          if(xhr.status === 200) {

@@ -42,16 +42,17 @@ class PrijavljeniIspiti extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class="container-fluid" style={{marginTop: "30px"}}>
+      <h2 style={{marginBottom: "30px"}}>Prijavljeni ispiti</h2>
         {this.renderNotification()}
         
-        <Link
+        <button
             type="button"
             className="btn btn-primary"            
-            to="/charlie/prijava-ispita"
+            
         >
             Nazad
-          </Link>
+          </button>
       </div>
     );
   }

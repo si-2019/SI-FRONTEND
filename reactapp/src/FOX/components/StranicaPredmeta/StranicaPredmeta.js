@@ -32,19 +32,20 @@ class StranicaPredmeta extends Component {
     localStorage.setItem("NazivPredmeta",predmet);
    
     return (
-      <div className="StranicaPredmeta" className="footerDno">
+      <div className="StranicaPredmeta" className="footerDno" style={{paddingBottom: "50px"}}>
         <Container fluid style={{padding:"0", margin: "0"}}>
-          <Row>
-            <Col md="3">
+          <Row noGutters>
+            <Col lg="3" md="12">
             <Header isPocetna={false}/>
             </Col>
             <Col style={{textAlign: "left"}}>
-            <br></br>
-            <h4>Pregled studenata</h4>
-            <h5> {predmet && predmet}</h5>
-            <h5> {grupa && grupa}</h5>
-            <br></br>
-            <TabelaStudenti/>
+              <div style={{padding: "15px"}}>
+                <h4>Pregled studenata</h4>
+                <h5> {predmet && predmet}</h5>
+                <h5> {grupa && grupa}</h5>
+                <br></br>
+                <TabelaStudenti/>
+              </div>
             </Col> 
           </Row>
         </Container>

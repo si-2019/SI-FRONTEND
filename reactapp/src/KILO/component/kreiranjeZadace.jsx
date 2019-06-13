@@ -51,9 +51,15 @@ class KreiranjeZadace extends Component {
   onChangePostavka = e => {
     // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
     if (e) {
-      this.setState({
-        postavka: e.target.files
-      });
+      if(e.target.files[0].size > 25000000) { // ogranicava na 25MB 
+        alert ("Prevelik fajl");
+        document.getElementById("file").value = null;
+        this.setState({ postavka: [null] });
+      } else {
+        this.setState({
+          postavka: e.target.files
+        });
+      }
     }
   };
 
@@ -191,7 +197,6 @@ class KreiranjeZadace extends Component {
           porukeGreske: porukeGreske
         });
         var valid = true;
-        console.log("1111111111111111111111");
         for (var i = 0; i < porukeGreske.length; i++) {
           if (porukeGreske[i] != "") {
             valid = false;
@@ -239,8 +244,8 @@ class KreiranjeZadace extends Component {
           }*/}
           if (porukeGreske[3] !== "") {
             document.getElementById("brbodKILO").className =
-              "form-control is-invalid";
-            document.getElementById("brbodKILO").style.margin = "0 auto";
+              "form-control is-invalid static";
+            /*document.getElementById("brbodKILO").style.margin = "0 auto";*/
           }
           this.setState({
             validno: false
@@ -259,7 +264,7 @@ class KreiranjeZadace extends Component {
 
         if (this.state.postavka[0] !== null) {
           var file = this.state.postavka[0];
-          if (file) {
+          if (file ) { //manji od 25 MB
             fData.append("file", new Blob([file], { type: file.type }));
             fData.append("imeFajlaPostavke", file.name);
           }
@@ -460,12 +465,15 @@ class KreiranjeZadace extends Component {
                   podaci={this}
                 />
               </div>
-              <div clas="col-3">
-                <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
-              </div>
 
-              <div class="col-3">
+              <div class="col-9">
                 <BodoviZadaca onChange={this.handleChange} podaci={this} />
+              </div>
+            </div>
+            <br></br><br></br>
+            <div class="row">
+            <div class="col">
+                <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
               </div>
             </div>
           </div>

@@ -12,21 +12,19 @@ class UnosOcjene extends Component {
      render()
      {
          return (
-            <div className="footerDno">
+            <div className="footerDno" style={{paddingBottom: "50"}}>
                 <Container fluid style={{padding:"0", margin: "0"}}>
-                    <Row>
+                    <Row noGutters>
                         <Col md="3">
                             <Header isPocetna={false}/>
                         </Col>
                         <Col>
-                            <br/>
-                            <Ocjena/>
+                            <div style={{padding: "15px"}}>
+                                <Ocjena/>
+                            </div>
                         </Col>
                     </Row>
                 </Container>
-
-                <br/>
-                <br/>
                 
                 <Footer/>
             </div>        

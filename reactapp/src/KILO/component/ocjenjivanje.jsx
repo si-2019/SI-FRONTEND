@@ -94,17 +94,18 @@ class Ocjenjivanje extends Component {
       });
     });
   };
-
+/*
   preuzmiDatoteku = () => {
     axios.get("http://localhost:31911/getDatoteku").then(res => {
     });
   }
-
+*/  
+/*
   pregledDatoteke = () => {
     axios.get("http://localhost:31911/getPregledDatoteke").then(res => {
     });
   }
-
+*/
   pokupiZadacuStudenta = async (idZadace, idStudenta) => {
 
     idStudenta = 1;
@@ -136,16 +137,31 @@ class Ocjenjivanje extends Component {
         break;
       }
       case "preuzmi": {
-        //salji na rutu u backendu
-        console.log("preuzmi button acitvated");
+        
+        var idStudent = this.state.idStudenta;
+        var idZadatak = this.state.idZadatak;
+
+        axios.get(`http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
+          
+          let resultByte = res.data.datoteka.data;
+          var bytes = new Uint8Array(resultByte);
+          var blob = new Blob([bytes], { type: res.data.mimeTipFajla});
+    
+          var link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = res.data.nazivDatoteke
+          link.click();
+        }).catch(e => console.log(e));
+
         break;
       }
-
+/*
       case "pregled": {
         //salji na rutu u backendu
         console.log("pregled button acitvated");
         break;
       }
+*/      
       case "ok": {
         var infoOcjenjivanje = new FormData();
         var kom = document.getElementById("komentar").value;

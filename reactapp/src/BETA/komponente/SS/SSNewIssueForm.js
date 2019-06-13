@@ -84,22 +84,44 @@ class NoviIssueForma extends React.Component {
 
         saveAsDraft = () => {
             
-            if(this.state.issueTitle.length == 0)
-                alert("Odaberite naslov!");
-
-            else{
-
-                const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
-
-                axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
-                .then((result) => {
-                    alert(result.data)
-                });
-                this.props.onCloseModalAndSaveAsDraft(); // ----> TREBA STAVITI OVU FUNKCIJU U RODITELJA!!!!
-            
+            const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
+    
+                axios.post('https://si2019beta.herokuapp.com/issues/draft/add/ss', { issueTitle, issueText, procitaoStudent, procitalaSS})
+                .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
+                else{
+                    { this.setState({ greska: true})}
+                    alert(JSON.stringify(result.data));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ greska: true });
+            });
+         }
+    
+         fileChangedHandler = (event) => {
+            if(event.target.files[0] == null){
+                this.setState({fileTooBig : false});
+                this.setState({fileWrong : false});
             }
-            
-        }
+            else{
+                if(event.target.files[0].size/1024/1024 > 25){
+                    this.setState({fileTooBig : true});
+                }
+                else{
+                    this.setState({fileTooBig : false});
+                }
+                
+                this.setState({fileWrong : true});
+                for(var i=0;i<this.state.allowedFiles.length;i++)
+                    if(event.target.files[0].type == this.state.allowedFiles[i]){
+                        this.setState({fileWrong : false});
+                        break;
+                    }
+            }
+            //let file_name = event.target.files[0].name;
+            };
+    
 
         deattachFile = () => {
             this.refs.inputFileSS.value = "";

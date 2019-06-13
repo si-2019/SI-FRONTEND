@@ -25,8 +25,8 @@ class prikazAsistenta extends Component{
         }
       }
     
-     if(param!='') xhttp.open("get", "http://localhost:31901/api/korisnik/searchProfessor?ime="+param, true);
-     else xhttp.open("get", "http://localhost:31901/api/korisnik/getAllProfessors", true);
+     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchProfessor?ime="+param, true);
+     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors", true);
      
       xhttp.send();
     }

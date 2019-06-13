@@ -40,6 +40,8 @@ class IssueList extends React.Component {
 
         axios.get('https://si2019beta.herokuapp.com/category/get').then( res => {
 
+            
+
             let displayNames = [];
             for(let i = 1; i < res.data.length; i++)
             {
@@ -58,6 +60,7 @@ class IssueList extends React.Component {
             let dn = issue.messages;
             dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
         });
+
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {

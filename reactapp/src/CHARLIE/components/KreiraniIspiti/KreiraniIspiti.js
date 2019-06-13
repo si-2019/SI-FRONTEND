@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ModalUredi from "../SharedComponents/ModalUredi";
 import Modal3 from "../SharedComponents/Modal3";
 import Modal2 from "../SharedComponents/Modal2";
 import axios from 'axios'
@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom';
 import "../SharedComponents/tabeleCharlie.css";
 import { FormGroup, Table } from "reactstrap";
 import PregledStudenata from "../PregledStudenata";
+import UrediIspit from "../UrediIspit";
 
 class KreiraniIspiti extends React.Component{
   constructor (...args) {
@@ -26,7 +27,8 @@ class KreiraniIspiti extends React.Component{
       ],
 
       modalShow: false,
-      isEmptyState: false
+      isEmptyState: false,
+      modalUredi: false
     };
 }
 
@@ -46,6 +48,13 @@ togglePregled = (idIspit) => {
   });
 }
 
+toggleUredi = (idIspit) => {
+  this.setState({
+    modaUredi: !this.state.modalUredi,
+    idIspit: idIspit
+  });
+}
+
 obrisiIspit = () => {
   this.setState({ ispiti: this.state.ispiti.filter(ispit => ispit.idIspit !== this.state.idIspit) });
   this.setState({
@@ -60,6 +69,12 @@ saveState = (type, state, idIspit) => {
               modalShow: state,
               idIspit: idIspit
           });
+          break;
+      case "modalUredi":
+            this.setState({
+                modalUredi: state,
+                idIspit: idIspit
+            });
           break;
           case "isEmptyState":
             this.setState({
@@ -79,6 +94,7 @@ state = {response:[]}
     const profesorID = 250;
     const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/kreiraniIspiti/${profesorID}`);
     //Za svaki entry nadji ime predmeta na osnovu id-a
+    console.log(ispiti);
     this.setState({ ispiti: ispiti.data });
   } 
 
@@ -99,24 +115,27 @@ state = {response:[]}
             >
               Studenti
             </button>
-            
+            <br />
     
          
 
-            <Link
-              type="button"
+            <button  
+              type="button"            
               id="btnUredi"
               class="btn btn-link"
-              style={{ marginRight: "5px" }}
-              onClick={() => this.toggleModal2(el.idIspit)}
+              style={{ marginRight: "5px", marginTop: "10px" }}
+              
             >
               Uredi
-            </Link>
+            </button>
+
+
             <button
               type="button"
 
               id="btnIzbrisi"
               className="btn btn-danger"
+              style={{marginTop: "10px"}}
               onClick={() => this.toggleModal(el.idIspit)}
 
             >
@@ -131,11 +150,12 @@ state = {response:[]}
     const { ispiti } = this.state;
    
     return(
-      <div>
-
+      
+<div class="container-fluid" style={{marginTop: "30px"}}>
+        <h2 style={{marginBottom: "30px"}}>Kreirani ispiti</h2>
 
 <div>
-<FormGroup className="px-4" style={{marginTop: "16px"}}>
+<FormGroup className="px-4" style={{marginTop: "20px"}}>
           <Table className="table table-bordered text-center bg-active border-solid">
             <thead>
               <tr className="bg-primary text-light">
@@ -165,6 +185,14 @@ state = {response:[]}
                       this.obrisiIspit
                     }
                    onClose={this.toggleModal}
+
+          />
+          <ModalUredi
+                    saveState={this.saveState}
+                    show={this.state.modalUredi}
+                    naslovModala="Uredi ispit"
+                   
+                   onClose={this.toggleUredi}
 
           />
       <Modal3

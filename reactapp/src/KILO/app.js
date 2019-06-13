@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div class="container-fluid" style={{minWidth:"100%"}}>
+        <div style={{minWidth:"100%"}}>
 
         <div id="mainKilo" className="row" style={{ margin: "0px", padding: "0px" }}>
         <div id="leftKilo"

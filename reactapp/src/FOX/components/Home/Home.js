@@ -8,41 +8,25 @@ import '../../ZajednickiCSS.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import NavbarFox from '../Navbar/Navbar';
 
 const Home = () => {
     return (
-        <div className="footerDno">
-        <Container fluid style={{padding:"0", margin: "0"}}>
-            <Row>
-                <Col md="3">
-                    <Header isPocetna={true}/>
-                </Col>
-                <Col>
-                    <div className="Home">
-                        
-                        <div style={{textAlign: "center"}}>
-                            <br/>
+        <div className="footerDno" style={{paddingBottom: "50px"}}>
+            <Container fluid style={{padding:"0", margin: "0"}}>
+                <Row noGutters>
+                    <Col md="3">
+                        <Header isPocetna={true}/>
+                    </Col>
+                    <Col style={{textAlign: "center"}}>
+                        <div className="Home" style={{padding: "15px"}}>
                             <PozdravnaPoruka/>
                             <DanDatum/>
                             <Predmet/>
                         </div>
-                        
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-        <Footer/>
-        {/* <div className="Home">
-            <Header isPocetna={true}/>
-            <div style={{padding: "25px", textAlign: "center"}}>
-                <PozdravnaPoruka/>
-                <DanDatum/>
-                <Predmet/>
-            </div>
-            <Footer className="footerDno"/>
-        </div> */}
-
+                    </Col>
+                </Row>
+            </Container>
+            <Footer/>
         </div>
     );
 }

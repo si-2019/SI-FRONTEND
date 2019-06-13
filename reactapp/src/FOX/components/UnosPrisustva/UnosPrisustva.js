@@ -117,23 +117,20 @@ class UnosPrisustva extends React.Component {
         });
 
         axios.put(`http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`, studenti)
-        .then((res) => {
+        .then(() => {
             this.setState({greskaBaza: 2});
         })
-        .catch((err)=> {
+        .catch(()=> {
             this.setState({greskaBaza: 1});
         });
     }
 
     handleClickSedmica = (brojSedmice) => {
         this.setState({sedmica: brojSedmice});
-    }
-    
-    componentDidMount() {
-        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 100;
-        const sedmica = this.state.sedmica;
 
-        axios.get(`http://localhost:31906/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`).then(response => {
+        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 100;
+
+        axios.get(`http://localhost:31906/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${brojSedmice}`).then(response => {
             let studenti = response.data.map(s => {
                 return {
                     id: s.id,
@@ -146,10 +143,13 @@ class UnosPrisustva extends React.Component {
             })
              this.setState({studenti: studenti, idPredmeta: idPredmeta});
         })
-        .catch((err)=> {
-            
+        .catch(()=> {
         });
-   }
+    }
+    
+    componentDidMount() {
+        
+    }
 
     render() {
         return (

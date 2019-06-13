@@ -5,11 +5,13 @@ import LeftMenu from "./components/LeftMenu.js";
 import NaslovnaTermin from "./components/naslovnaTermin";
 import Sale from "./components/sale";
 import NaslovnaKalendar from "./components/naslovnaKalendar";
+import ProfessorsAvailability from "./old/ProfessorsAvailability/ProfessorsAvailability";
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeContentId: 1
+        activeContentId: 1,
+        professorId: -1
     };
   }
   onChangeActiveId = id => {
@@ -17,6 +19,12 @@ class App extends Component {
       activeContentId: id
     });
   };
+
+    onChangeProfessorId = id => {
+        this.setState({
+            professorId: id
+        });
+    };
   render() {
     const { open } = this.state;
     return (
@@ -35,7 +43,7 @@ class App extends Component {
               margin: "0px"
             }}
           >
-            <LeftMenu triggerChangeActiveId={this.onChangeActiveId} />
+            <LeftMenu triggerChangeActiveId={this.onChangeActiveId} triggerChangeProfessorId = {this.onChangeProfessorId} />
           </div>
           <div
             className="col-lg flex-grow-1 col-sm-12 col-md"
@@ -53,7 +61,7 @@ class App extends Component {
                 width: "100%"
               }}
             >
-              <NaslovnaTermin />
+              <NaslovnaTermin professorId={this.state.professorId}/>
             </div>
             <div
               id="Sale"
@@ -77,6 +85,7 @@ class App extends Component {
                 display: this.state.activeContentId == 4 ? "inherit" : "none"
               }}
             >
+                <ProfessorsAvailability triggerChangeActiveId={this.onChangeActiveId} triggerChangeProfessorId = {this.onChangeProfessorId}/>
               {/*DODATI KOMPONENTU PRETRAGA UNUTAR KOJE SE DEFINISE IZGLED TABOVA */}
             </div>
           </div>

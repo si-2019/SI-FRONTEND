@@ -17,7 +17,15 @@ class ProfessorsAvailability extends Component {
             size: 10,
             total: 0,
             input: '',
+            activeDivId: 4,
+            professorId: -1
         }
+    }
+    changeActiveId(id) {
+        this.props.triggerChangeActiveId(id);
+    }
+    changeProfessorId(id) {
+        this.props.triggerChangeProfessorId(id);
     }
     onChangeHandler(e){
         this.setState({
@@ -31,14 +39,9 @@ class ProfessorsAvailability extends Component {
            page: current,
         }, this.componentDidMount)
     }
-    onStaffEdit(e){
-        console.log('KAMIJON', e.target.value );
-        this.props.history.push({
-            pathname:"/unos-termina",
-            state:{
-                key:e.target.value
-            }
-        });
+    onStaffEdit(id){
+        this.changeActiveId(1);
+        this.changeProfessorId(id);
     }
     componentDidMount() {
         fetch("http://localhost:31905/si2019/echo/getTeachingStaff", {
@@ -77,10 +80,10 @@ class ProfessorsAvailability extends Component {
             return(
                 <Fragment key={prof.id}>
                     <tr>
-                        <td>{prof.ime} {prof.prezime}</td>
-                        <td>{prof.email}</td>
-                        <td>{prof.titula}</td>
-                        <td><a onClick={ProfessorsAvailability.onStaffEdit.bind(prof)}><EditIcon/></a></td>
+                        <td class="tabtip1">{prof.ime} {prof.prezime}</td>
+                        <td class="tabtip1">{prof.email}</td>
+                        <td class="tabtip1">{prof.titula}</td>
+                        <td class="tabtip1"><a onClick={this.onStaffEdit(prof.id)}><EditIcon/></a></td>
                     </tr>
                 </Fragment>
             )
@@ -95,10 +98,10 @@ class ProfessorsAvailability extends Component {
                     <table id="teachingStaffTable" className="table table-bordered table-hover professors-table shadow-border">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Title</th>
-                            <th></th>
+                            <th class="tabtip">Name</th>
+                            <th class="tabtip">Email</th>
+                            <th class="tabtip">Title</th>
+                            <th class="tabtip"/>
                         </tr>
                         </thead>
                         <tbody>
@@ -120,4 +123,4 @@ class ProfessorsAvailability extends Component {
     }
 }
 
-export default withRouter(ProfessorsAvailability);
+export default ProfessorsAvailability;

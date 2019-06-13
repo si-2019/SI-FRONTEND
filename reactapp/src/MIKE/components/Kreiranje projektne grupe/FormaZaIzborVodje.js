@@ -17,12 +17,12 @@ class IzborVodje extends Component {
     kreirajFormu() {
         
         return (
-            <div className="card" style={{float: "left", width:"100%", top:"40px"}}> 
+            <div className="card" style={{float: "left", width:"100%"}}> 
                 <div class="card-body" id="formaIzbor">
                 <h4 class="card-title" style={{textAlign:"left"}}>Izbor vodje </h4>
                 <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unesite vodju za odabranu grupu</h6>
         <br/>
-                <label class="col-form-label" style={{textAlign:"left"}}>Projektna grupa</label>
+                <label class="col-form-label" style={{float:"left"}}>Projektna grupa</label>
                             <div class="select-option">
                                     <select  className="form-control" id="selectGrupe"  >
                                         <option  className="list-group-item" value="" selected="selected">Odaberite grupu</option>
@@ -35,7 +35,7 @@ class IzborVodje extends Component {
                             </div>
                            
                         <br/>
-                            <label class="col-form-label" for="name" style={{textAlign:"left"}}>Unesite vodju za odabranu grupu:</label>
+                            <label class="col-form-label" for="name" style={{float:"left"}}>Unesite vodju za odabranu grupu:</label>
                             
                        
                            

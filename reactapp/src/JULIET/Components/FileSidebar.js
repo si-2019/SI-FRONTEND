@@ -17,11 +17,20 @@ class FileSidebar extends Component {
     }
 
     componentWillMount(){
-        Axios.get('http://localhost:31910/files' + this.props.roomId)
-        .then(res => 
-            this.setState({
-                files: res.data
-            })
+        Axios.get('http://si2019juliet.herokuapp.comfiles' + this.props.roomId)
+        .then(res => {
+            if(res.data === null){
+
+            }
+            else{
+                console.log(res.data);
+
+                this.setState({
+                    files: res.data
+                })
+            }
+        }
+            
         )
         .catch(err => console.log(err));
     }

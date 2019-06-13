@@ -39,6 +39,12 @@ var data = [{
     opis:["Kreirane osnovne stranice za kreiranje, popunjavanje i pregled rezultata ankete,...",
     "Kreirane stranice sa listama anketa za popunjavanje, pregled rezultata,..."]
 },{
+    grupa:"Juliet",
+    opis:["Dodane nove funkcionalnosti share fajlova, pinovanje poruka, slanje dokumenata i slika, reply na poruku.",
+    "Dodana mogućnost kreiranja javnih i privatnih soba, dodavanja osoba u chat i event planer.",
+    "Dodani emoji i color picker.",
+    "Preuređen izgled frontenda."]
+},{
     grupa:"Kilo",
     opis:["Fronted ocjenjivanja zadaće.",
     "Frontend studentovog pregleda zadaća.",
@@ -50,12 +56,30 @@ var data = [{
     grupa:"Oscar",
     opis:["Dodano 25 novih privilegija.","Prepravljeni i dodani autotestovi.","Ispravljene otkrivene greške i bugovi."]
 },{
+    grupa:"Mike",
+    opis:["Učitavanje projektnih zadataka za projekat.",
+    "Omogućeno kreiranje projekta za predmet.",
+    "Promjena redoslijeda opcija kreiranja projektne grupe.",
+    "Uneseni testni podataci za kreirane opcije."]
+},{
     grupa:"Papa",
     opis:["Omogućen pregled predmeta, profesora i asistenata.",
     "Omogućen pregled obavijesti (od profesora, asistenata, admina i studentske službe), upisanih ocjena, prijave na ispite."]
 },{
+    grupa:"Romeo",
+    opis:["Urađen HTML i CSS za home page.",
+    "Napisane odgovarajuće skripte za home page, komunikacija i redirectanje između logina i home pagea.",
+    "Urađena uspostava konekcije na bazu i završetak tokena."]
+},{
     grupa:"Siera",
     opis:["Omogućena prijava završnog ispita","Omogućeno kreiranje ugovora o učenju."]
+},{
+    grupa:"Tango",
+    opis:["Kreiran sticky za temu.", 
+    "Dodan prikaz odgovora na komentare.",
+    "Kreirano sortiranje komentara.",
+    "Dodana opcija za brisanje teme.",
+    "Dodana paginacija tema."]
 },{
     grupa:"Uniform",
     opis:["Prikaz rasporeda studenta.","Dodani API-ji."]

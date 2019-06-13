@@ -95,7 +95,7 @@ class Login extends Component {
           var id = res2.data;
           localStorage.setItem("token", data.token);
           localStorage.setItem("username", data.user);
-          localStorage.setItem("userID", id);
+          localStorage.setItem("id", id);
           this.props.history.push("/romeo/home");
         });
         

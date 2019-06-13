@@ -285,10 +285,8 @@ class Student extends Component {
           velicinaFajla = 0.1;
         }
 
-        if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 25) {
-          // upload prhvatljiv
-          // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 25 (MB)s
-          var nazivFajlaSplit = file.name.split(".");
+        if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 25) { // upload prhvatljiv
+          var nazivFajlaSplit = file.name.split('.');
           var nazivFajla = "";
           for (var i = 0; i < nazivFajlaSplit.length - 1; i++) {
             nazivFajla = nazivFajla + nazivFajlaSplit[i];
@@ -310,7 +308,12 @@ class Student extends Component {
           });
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
-          alert("Nije dobar tip ili je fajl prevelik");
+          if(!this.state.listaTipova.includes(ekstenzija)) {
+            alert("Nije dobar tip")
+          }
+          else {
+            alert("Prevelik fajl")
+          }
         }
 
         break;
@@ -388,19 +391,28 @@ class Student extends Component {
 
         if (document.getElementById("uploadButton2").value === "") {
           // prvi put slanje
-          await axios
-            .post("http://localhost:31911/slanjeZadatka", fData)
-            .then(res => {
-              if (res.status === 200) {
-                alert("Uspjesno ste poslali zadatak");
-              } else if (res.status === 201) {
-                alert("Vec postoji ovaj zadatak");
-              } else {
-                alert("Greska sa bazom");
-              }
+          await axios.post("http://localhost:31911/slanjeZadatka", fData).then(res => {
+            if (res.status === 200) {
+              alert("Uspjesno ste poslati zadatak");
+            }
+            else if (res.status === 201) {
+              alert("Vec postoji ovaj zadatak")
+            }
+            else {
+              alert("Greska sa bazom")
+            }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
 
-              // rutiranje nazad
-            });
+            // rutiranje nazad
+          });
+
         } else {
           // ponovno slanje zadatka
           axios.put("http://localhost:31911/slanjeZadatka", fData).then(res => {
@@ -411,6 +423,14 @@ class Student extends Component {
             } else {
               alert("Greska sa bazom");
             }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
 
             //rutiranje nazad
           });

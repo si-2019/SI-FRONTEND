@@ -54,22 +54,22 @@ class KontaktPod extends Component {
             <>
                 <h4 className="card-title">Kontakt podaci</h4>
                 <div className="form-group">
-                    <label class="col-form-label" for="inputDefault">Telefon</label>
+                    <label className="col-form-label" for="inputDefault">Telefon</label>
                     <br></br>
                     <h4>{this.state.brtel}</h4>
                 </div>
                 <div className="form-group">
-                    <label class="col-form-label" for="inputDefault">Adresa</label>
+                    <label className="col-form-label" for="inputDefault">Adresa</label>
                     <br></br>
                     <h4>{this.state.adresa}</h4>
                 </div>
                 <div className="form-group">
-                    <label class="col-form-label" for="inputDefault">Email</label>
+                    <label className="col-form-label" for="inputDefault">Email</label>
                     <br></br>
                     <h4>{this.state.email}</h4>
                 </div>
 
-                <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })} >Edit</button>
+                <button type="button" className="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })} >Edit</button>
 
                 <ModalComponent
                     saveState={this.saveState}

@@ -162,25 +162,25 @@ class ModalComponent extends React.Component {
                 <form onSubmit={this.handlePutEvent}>
                     <Modal.Body>
                         <h4>{this.props.nazivPromjene}</h4>
-                        <div class="form-group">
+                        <div className="form-group">
                         <>
-                            <label class="col-form-label" for="inputDefault" >Nova fotografija</label>
+                            <label className="col-form-label" for="inputDefault" >Nova fotografija</label>
                             <br></br>
-                            <input type="file" class="form-control-file" name="foto" aria-describedby="fileHelp"
+                            <input type="file" className="form-control-file" name="foto" aria-describedby="fileHelp"
                                 onChange={this.handleChange}
                             />
                             <br></br>
-                            <label class="col-form-label" for="inputDefault" >Ime</label>
-                            <input type="text" class="form-control" name="ime"
+                            <label className="col-form-label" for="inputDefault" >Ime</label>
+                            <input type="text" className="form-control" name="ime"
                                 onChange={this.handleChange}
                                 />
-                            <label class="col-form-label" for="inputDefault" >Prezime</label>
-                            <input type="text" class="form-control" name="prezime"
+                            <label className="col-form-label" for="inputDefault" >Prezime</label>
+                            <input type="text" className="form-control" name="prezime"
                                 onChange={this.handleChange}
                                 />
 
-                            <label class="col-form-label" for="inputDefault">Državljanstvo</label>
-                            <input type="text" class="form-control" name="drzavljanstvo"
+                            <label className="col-form-label" for="inputDefault">Državljanstvo</label>
+                            <input type="text" className="form-control" name="drzavljanstvo"
                                 onChange={this.handleChange}
                                 />
                         </>
@@ -188,8 +188,8 @@ class ModalComponent extends React.Component {
 
                     </Modal.Body>
                     <Modal.Footer>
-                    <button type="submit" id="spasiBtn" class="btn btn-primary">{this.props.btnPotvrdi}</button>
-                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Zatvori</button>
+                    <button type="submit" id="spasiBtn" className="btn btn-primary">{this.props.btnPotvrdi}</button>
+                        <button type="button" className="btn btn-secondary" onClick={this.handleClose}>Zatvori</button>
                     </Modal.Footer>
                 </form>
             </Modal>

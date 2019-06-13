@@ -52,18 +52,18 @@ class Stranice extends Component {
         <div style={{ flexDirection: "column", textAlign: "left" }}>
           <h4 className="card-title" style={{ textAlign: "left" }}>Stranice</h4>
           <div className="form-group">
-            <label class="col-form-label" for="inputDefault"> LinkedIn:&nbsp;</label>
+            <label className="col-form-label" for="inputDefault"> LinkedIn:&nbsp;</label>
             <br></br>
-            <h4><a href={this.state.LinkedIn} class="card-link">{this.state.LinkedIn}</a></h4>
+            <h4><a href={this.state.LinkedIn} className="card-link">{this.state.LinkedIn}</a></h4>
           </div>
 
-          <button class="btn btn-link" onClick={() => this.otvoriModalLinkedIn()}>Edit</button>
+          <button className="btn btn-link" onClick={() => this.otvoriModalLinkedIn()}>Edit</button>
           <div className="form-group">
-            <label class="col-form-label" for="inputDefault">  Website:&nbsp;</label>
+            <label className="col-form-label" for="inputDefault">  Website:&nbsp;</label>
             <br></br>
-            <h4><a href={this.state.Website} class="card-link">{this.state.Website}</a></h4>
+            <h4><a href={this.state.Website} className="card-link">{this.state.Website}</a></h4>
           </div>
-          <button class="btn btn-link" onClick={() => this.otvoriModalWebsite()}> Edit </button>
+          <button className="btn btn-link" onClick={() => this.otvoriModalWebsite()}> Edit </button>
         </div>
 
         <ModalnaKomponenta

@@ -80,7 +80,7 @@ class PrikaziStatus extends Component {
 
     return (
       <>
-        <button type="submit" class="btn btn-primary" onClick={this.handleShow}>Prikaži status</button>
+        <button type="submit" className="btn btn-primary" onClick={this.handleShow}>Prikaži status</button>
         <Modal show={this.state.show}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
@@ -96,7 +96,7 @@ class PrikaziStatus extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button type="submit" onClick={this.handleClose} class="btn btn-secondary">Zatvori</button>
+            <button type="submit" onClick={this.handleClose} className="btn btn-secondary">Zatvori</button>
 
           </Modal.Footer>
         </Modal>

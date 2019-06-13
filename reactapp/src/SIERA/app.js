@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 
-import { BrowserRouter, Route } from "react-router-dom"
 import LicniPod from "./licniPod.jsx";
 import Ocjene from "./Ocjene";
-import ProfilStudenta from "./ProfilStudenta";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import "./AppSiera.css";
-import PrikaziStatus from "./PrikaziStatus";
 import LeftMenuStudentSiera from "./LeftMenuStudentSiera";
 
 import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
-import Kontakt from "./kontaktPod";
-import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
 import Predmeti from "./predmeti";

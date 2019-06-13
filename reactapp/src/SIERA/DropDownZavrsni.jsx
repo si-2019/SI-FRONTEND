@@ -158,17 +158,17 @@ class DropDownZavrsni extends React.Component {
             <>
                 <div className="container-fluid" style={{ marginTop: "30px" }}>
                     <h2 style={{ marginBottom: "30px" }}>Završni rad</h2>
-                    <div class="card align-items-center">
-                        <div class="card-body" style={{ minWidth: "100%" }}>
-                            <div class="row justify-content-lg-around justify-content-md-center">
-                                <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
-                                    <h4 class="card-title">Prijava završnog rada</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
+                    <div className="card align-items-center">
+                        <div className="card-body" style={{ minWidth: "100%" }}>
+                            <div className="row justify-content-lg-around justify-content-md-center">
+                                <div className="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+                                    <h4 className="card-title">Prijava završnog rada</h4>
+                                    <h6 className="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
                                     <div style={{ textAlign: "left" }}>
-                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Mentori</label>
+                                        <label className="col-form-label col-form-label-lg" htmlFor="inputLarge">Mentori</label>
                                     </div>
 
-                                    <select class="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
+                                    <select className="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
                                         {this.state.profesori.map(
                                             (prof) =>
                                                 <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
@@ -177,9 +177,9 @@ class DropDownZavrsni extends React.Component {
                                     </select>
 
                                     <div style={{ textAlign: "left" }}>
-                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Teme</label>
+                                        <label className="col-form-label col-form-label-lg" htmlFor="inputLarge">Teme</label>
                                     </div>
-                                    <select class={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
+                                    <select className={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
 
                                         {this.state.teme.map(
                                             (teme) =>
@@ -187,14 +187,14 @@ class DropDownZavrsni extends React.Component {
                                         )}
                                     </select>
 
-                                    <div class="invalid-feedback" style={{ visibility: this.state.greskaVisible }}>Morate odabrati temu!</div>
+                                    <div className="invalid-feedback" style={{ visibility: this.state.greskaVisible }}>Morate odabrati temu!</div>
 
-                                    <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
-                                        <button type="button" class="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
+                                    <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
+                                        <button type="button" className="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
                                     </div>
                                     <hr></hr>
-                                    <h4 class="card-title">Status</h4>
-                                    <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
+                                    <h4 className="card-title">Status</h4>
+                                    <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
                                         <PrikaziStatus />
                                     </div>
                                 </div>
@@ -219,17 +219,17 @@ class DropDownZavrsni extends React.Component {
                     <form onSubmit={this.handlePost}>
                         <Modal.Body>
                             <h4>Da li ste sigurni da želite prijaviti završni rad?</h4>
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <label class="col-form-label" htmlFor="inputDefault">Mentor: {this.state.selProf}</label>
+                            <div className="form-group">
+                                <div className="form-group">
+                                    <label className="col-form-label" htmlFor="inputDefault">Mentor: {this.state.selProf}</label>
                                     <br></br>
-                                    <label class="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
+                                    <label className="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
                                 </div>
                             </div>
 
                         </Modal.Body>
                         <Modal.Footer>
-                            <button type="submit" id="spasiBtn" class="btn btn-primary">Potvrdi</button>
+                            <button type="submit" id="spasiBtn" className="btn btn-primary">Potvrdi</button>
                         </Modal.Footer>
                     </form>
                 </Modal>

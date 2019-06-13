@@ -132,17 +132,17 @@ class ModalComponent extends React.Component {
                 <form onSubmit={this.handlePutEvent}>
                     <Modal.Body>
                         <h4>{this.props.nazivPromjene}</h4>
-                        <div class="form-group">
+                        <div className="form-group">
 
                             <br></br>
-                            <label class="col-form-label" for="inputDefault" >Telefon</label>
-                            <input type="text" class="form-control" name="brtel" onChange={this.handleChange} />
+                            <label className="col-form-label" for="inputDefault" >Telefon</label>
+                            <input type="text" className="form-control" name="brtel" onChange={this.handleChange} />
 
-                            <label class="col-form-label" for="inputDefault" >Adresa</label>
-                            <input type="text" class="form-control" name="adresa" onChange={this.handleChange} />
+                            <label className="col-form-label" for="inputDefault" >Adresa</label>
+                            <input type="text" className="form-control" name="adresa" onChange={this.handleChange} />
 
-                            <label class="col-form-label" for="inputDefault">Email</label>
-                            <input type="text" class="form-control" name="email" onChange={this.handleChange} />
+                            <label className="col-form-label" for="inputDefault">Email</label>
+                            <input type="text" className="form-control" name="email" onChange={this.handleChange} />
 
 
                         </div>
@@ -150,8 +150,8 @@ class ModalComponent extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
 
-                        <button type="submit" id="spasiBtn" class="btn btn-primary">Spasi Promjene</button>
-                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
+                        <button type="submit" id="spasiBtn" className="btn btn-primary">Spasi Promjene</button>
+                        <button type="button" className="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
                     </Modal.Footer>
                 </form>
             </Modal>

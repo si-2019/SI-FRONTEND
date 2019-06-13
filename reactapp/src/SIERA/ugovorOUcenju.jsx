@@ -13,8 +13,9 @@ class UgovorOUcenju extends Component {
       izabranaGodina: 1,
       izabraniSmjer: 1,
       izabraniSemestar: 1,
-      listaIzbornih: [],
-      listaObaveznih: [],
+      listaIzbornih: "",
+      listaObaveznih: "",
+      izborniForma: [],
       hasError: false,
       studentId: 1,
       pdfUrl: null,
@@ -34,18 +35,18 @@ class UgovorOUcenju extends Component {
   }
   handleCreate() {
     //kreiranje ugovora
-    //popravi smjer
-    console.log("odsjek: " + this.state.izabraniSmjer);
+    var obPred = this.state.listaObaveznih.length == 0 ? "test, test" : this.state.listaIzbornih;
+    var izPred = this.state.listaIzbornih.length == 0 ? "nwa, nes" : this.state.listaIzbornih;
     axios
-      .get("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
+      .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
         ime: this.state.ime,
         prezime: this.state.prezime,
         semestar: this.state.izabraniSemestar,
         ciklus: this.state.ciklus,
         odsjek: this.state.izabraniSmjer,
         indeks: this.state.indeks,
-        obavezni: this.state.listaObaveznih,
-        izborni: this.state.listaIzbornih,
+        obavezni: obPred,
+        izborni: izPred,
         godina: this.state.izabranaGodina
       })
       .then(res => {
@@ -110,18 +111,33 @@ class UgovorOUcenju extends Component {
         .then(res => {
 
           if (res.data.dostupniPredmeti != undefined) {
-            const predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
-            const obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
-            const izborni = [];
-            for (var i = 0; i < obavezan.length; i++) {
-              if (obavezan[i] == "0") {
-                izborni.push(predmeti[i]);
+            var predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
+            var obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
+            var help = [];
+            var izborni = "";
+            var obavezni = "";
+
+            for (var i = 0; i < predmeti.length; i++) {
+              if (i != 0) {
+                if (obavezan[i] == "0") {
+                  izborni += ("," + predmeti[i]);
+                  help.push(predmeti[i]);
+                }
+                else obavezni += ("," + predmeti[i]);
               }
+              else if (i == 0) {
+                if (obavezan[i] == "0") {
+                  izborni += predmeti[i];
+                  help.push(predmeti[i]);
+                }
+                else obavezni += predmeti[i];
+              }
+
             }
-            this.setState({ listaIzbornih: izborni });
+            this.setState({ listaIzbornih: izborni, listaObaveznih: obavezni, izborniForma:help });
           }
           else {
-            this.setState({ listaIzbornih: [] });
+            this.setState({ listaIzbornih: "", listaObaveznih: "", izborniForma:[] });
           }
         });
     } catch (e) { }
@@ -253,7 +269,7 @@ class UgovorOUcenju extends Component {
                     ) : (
                         ""
                       )}
-                    {this.state.listaIzbornih.map((item, i) => (
+                    {this.state.izborniForma.map((item, i) => (
                       <div className="custom-control custom-checkbox" key={i}>
                         <input
                           type="checkbox"
@@ -271,8 +287,8 @@ class UgovorOUcenju extends Component {
                   </div>
                   <div className="d-flex justify-content-end">
                     <button type="submit" className="btn btn-primary" onClick={this.handleCreate}>Kreiraj ugovor</button>
-                    
-                    <button type="button" className="btn btn-primary" onClick={this.handlePrikaz} style={{marginLeft:"10px"}}>Prikaži ugovor</button>
+
+                    <button type="button" className="btn btn-primary" onClick={this.handlePrikaz} style={{ marginLeft: "10px" }}>Prikaži ugovor</button>
                   </div>
 
                 </div>

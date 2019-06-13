@@ -86,26 +86,26 @@ class modalnaKomponenta extends Component {
         centered
       >
         {this.renderujPotvrdu()}
-        <Modal.Header closeButton class="modal-header">
-          <Modal.Title id="contained-modal-title-vcenter" class="modal-title">
+        <Modal.Header closeButton className="modal-header">
+          <Modal.Title id="contained-modal-title-vcenter" className="modal-title">
             Unesite novu vrijednost polja
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body class="modal-body">
-          <label class="col-form-label">{this.props.nazivpromjene}:</label>
+        <Modal.Body className="modal-body">
+          <label className="col-form-label">{this.props.nazivpromjene}:</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder={this.props.nazivpromjene}
             id="inputDefault"
             onChange={this.promjenaInputa}
           />
         </Modal.Body>
         <Modal.Footer>
-          <button class="btn btn-primary" onClick={() => this.posaljiZahtjev()}>
+          <button className="btn btn-primary" onClick={() => this.posaljiZahtjev()}>
             Pošalji zahtjev
           </button>
-          <button class="btn btn-secondary" onClick={this.props.onHide}>
+          <button className="btn btn-secondary" onClick={this.props.onHide}>
             Zatvori
           </button>
         </Modal.Footer>

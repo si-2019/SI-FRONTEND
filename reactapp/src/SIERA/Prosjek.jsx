@@ -71,23 +71,23 @@ class Prosjek extends Component {
                 <h2 style={{ marginBottom: "30px" }}>Prosjek</h2>
                 <div className="card align-items-center">
                     <div className="card-body" style={{ minWidth: "100%" }}>
-                        <div class="row justify-content-lg-around justify-content-md-center">
-                            <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+                        <div className="row justify-content-lg-around justify-content-md-center">
+                            <div className="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
                                 <div style={{ visibility: "hidden" }}>dssffds</div>
-                                <h6 class="card-subtitle mb-2 text-muted">Ukupan prosjek ciklusa: </h6>
+                                <h6 className="card-subtitle mb-2 text-muted">Ukupan prosjek ciklusa: </h6>
                                 <label>{this.state.ukupanProsjek}</label>
                                 <div style={{ visibility: "hidden" }}>dssffds</div>
                                 <div style={{ visibility: "hidden" }}>dssffds</div>
                                 <div>
                                     {this.state.prosjekGodina.map((prosjek, index) => (
-                                        <div class="text-center">
-                                            <div className="row" class="text-center" >
+                                        <div className="text-center">
+                                            <div className="row" className="text-center" >
                                                 {this.vratiGod(prosjek, index)}
                                             </div>
-                                            <div className="row" class="text-center">
+                                            <div className="row" className="text-center">
                                                 {this.vratiZimski(prosjek, index)}
                                             </div>
-                                            <div className="row" class="text-center">
+                                            <div className="row" className="text-center">
                                                 {this.vratiLjetni(prosjek, index)}
                                             </div>
                                         </div>

@@ -77,38 +77,38 @@ class LicniPod extends Component {
     render() {
         return (
             <>
-                <div class="container-fluid" style={{ marginTop: "30px" }}>
+                <div className="container-fluid" style={{ marginTop: "30px" }}>
                     <h2 style={{ marginBottom: "30px" }}>Profil</h2>
                     <div className="card align-items-center">
                         <div className="card-body" style={{ minWidth: "100%" }}>
-                            <div class="row justify-content-lg-around justify-content-md-start">
-                                <div class="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center ">
+                            <div className="row justify-content-lg-around justify-content-md-start">
+                                <div className="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center ">
                                     <h4 className="card-title">Lični podaci</h4>
                                     <div style={{ textAlign: "left" }}>
                                         <div className="form-group">
-                                            <label class="col-form-label">Ime i Prezime</label>
+                                            <label className="col-form-label">Ime i Prezime</label>
                                             <br></br>
                                             <h4>{this.state.ime} {this.state.prezime}</h4>
-                                            <label class="col-form-label">Mjesto rodjenja</label>
+                                            <label className="col-form-label">Mjesto rodjenja</label>
                                             <br></br>
                                             <h4>{this.state.mjestoRodjenja}</h4>
-                                            <label class="col-form-label" for="inputDefault">Drzavljanstvo</label>
+                                            <label className="col-form-label" for="inputDefault">Drzavljanstvo</label>
                                             <br></br>
                                             <h4>{this.state.Drzavljanstvo}</h4>
-                                            <label class="col-form-label" for="inputDefault">Index</label>
+                                            <label className="col-form-label" for="inputDefault">Index</label>
                                             <h4>{this.state.Index}</h4>
-                                            <label class="col-form-label" for="inputDefault">Ime i prezime oca</label>
+                                            <label className="col-form-label" for="inputDefault">Ime i prezime oca</label>
                                             <h4>{this.state.imePrezimeOca}</h4>
-                                            <label class="col-form-label" for="inputDefault">Ime i prezime majke</label>
+                                            <label className="col-form-label" for="inputDefault">Ime i prezime majke</label>
                                             <h4>{this.state.imePrezimeMajke}</h4>
                                         </div>
-                                        <button type="button" class="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Edit</button>
+                                        <button type="button" className="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Edit</button>
                                     </div>
                                 </div>
-                                <div class="col-auto justify-content-center">
+                                <div className="col-auto justify-content-center">
                                     <Fotografija fotografija={this.state.fotka} />
                                 </div>
-                                <div class="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center">
+                                <div className="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center">
                                     <div style={{ textAlign: "left" }}>
                                         <Kontakt />
                                     </div>

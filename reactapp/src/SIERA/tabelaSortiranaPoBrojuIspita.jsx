@@ -29,9 +29,9 @@ class TabelaSortiranaPoBrojuIspita extends Component {
                 {this.state.sortiraniPredmetiPoBrojuIspita.length == 0 ? <span style={{ float: "left", marginLeft: "30px" }}>Student nije polagao nijedan ispit</span> :
                     <table className="table table-bordered text-center bg-active border-solid" style={{ float: "left", marginLeft: "20px" }}>
                         <tbody>
-                            <tr class="bg-primary text-light">
-                                <th class="tabtip">Predmet</th>
-                                <th class="tabtip">Broj polaganih ispita</th>
+                            <tr className="bg-primary text-light">
+                                <th className="tabtip">Predmet</th>
+                                <th className="tabtip">Broj polaganih ispita</th>
                             </tr>
                             {this.state.sortiraniPredmetiPoBrojuIspita.map((item, i) => (
                                 <tr className="tabtip1" key={i}>

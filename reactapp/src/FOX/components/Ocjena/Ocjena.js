@@ -35,10 +35,17 @@ class Ocjena extends Component {
             greskaBaza: 0
         }
         this.ocjena=React.createRef();
+        this.indeks=React.createRef();
+        this.handleClick = this.handleClick.bind(this);
     }
 
-     
-
+    handleClick() {
+        console.log("Clicked");
+        //Poziv apija /fox/getStudentInfo/:id
+        axios.get("http://localhost:31906/fox/getStudentInfo/1").then((res)=> {
+            this.setState({ student: res.data });
+        })
+    }
 
     handleSubmit(event) {
         const form = event.currentTarget;
@@ -78,6 +85,20 @@ class Ocjena extends Component {
     render() {
         const {validated} = this.state.validated;
         const {greskaBaza}= this.state.greskaBaza;
+        const student = this.state.student;
+        let rezPretrage;
+        if (student!=undefined) {
+            rezPretrage = <div>
+                <Col style={{textAlign: "center"}}>
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Student sa indeksom {this.indeks.current.value} je pronađen! <br></br>
+                        {student.ime + " " + student.prezime}
+                    </div>
+                </Col>
+                
+            </div>
+        }
         return (
             <div class="card" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">
@@ -94,8 +115,10 @@ class Ocjena extends Component {
                             <Form.Row className="justify-content-center">
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Index: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                                    <Form.Control  ref={ this.indeks } required type="text" name="name">
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
+                                    <Form.Control.Feedback type= "invalid"> Indeks nije validan </Form.Control.Feedback>
                                 </Col>
                             </Form.Row>
 
@@ -109,7 +132,7 @@ class Ocjena extends Component {
                                 <Col style={{textAlign: "center"}}>
                                     <br/>
                                     <label>
-                                        
+                                    {rezPretrage}
                                     </label> 
                                 </Col>
                             </Form.Row>
@@ -128,7 +151,7 @@ class Ocjena extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
-                                    <Button> Unesi </Button>
+                                <Button variant="primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -138,6 +161,7 @@ class Ocjena extends Component {
                                         <br/>
                                 </Col>
                             </Form.Row>
+                            
                         </Form>
                     </div>
                 </div>

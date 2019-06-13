@@ -28,7 +28,7 @@ class Header extends Component {
               <button type="button" className="btn btn-primary left-buttons">Uputstvo</button>
             </a>
 
-            <a href="Romeo">
+            <a href="http://localhost:3000/Romeo">
               <button type="button" className="btn btn-primary left-buttons">Odjava</button>
             </a>
             

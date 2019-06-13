@@ -39,12 +39,12 @@ class UgovorOUcenju extends Component {
 
     if (this.state.listaObaveznih.length == 0 || this.state.listaIzbornih.length == 0) {
       this.setState({
-        manjak:"block"
+        manjak: "block"
       })
-     }
+    }
     else {
       this.setState({
-        manjak:"none"
+        manjak: "none"
       })
       axios
         .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
@@ -58,12 +58,12 @@ class UgovorOUcenju extends Component {
           izborni: this.state.listaIzbornih,
           godina: this.state.izabranaGodina
         })
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(res => {
-        console.log("greskaaa");
-      });
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(res => {
+          console.log("greskaaa");
+        });
     }
 
   }
@@ -194,18 +194,29 @@ class UgovorOUcenju extends Component {
   }
   handlePrikaz() {
     //prikaz u prozoru
-    const win = window.open("", "_self");
-    let html = '';
+    if (this.state.pdfUrl == null) {
+      this.setState({
+        manjak:"block"
+      })
+    }
+    else {
+      this.setState({
+        manjak:"none"
+      })
+      const win = window.open("", "_self");
+      let html = '';
 
-    html += '<html>';
-    html += '<body style="margin:0!important">';
-    html += '<embed width="100%" height="100%" src="' + this.state.pdfUrl + '" type="application/pdf" />';
-    html += '</body>';
-    html += '</html>';
+      html += '<html>';
+      html += '<body style="margin:0!important">';
+      html += '<embed width="100%" height="100%" src="' + this.state.pdfUrl + '" type="application/pdf" />';
+      html += '</body>';
+      html += '</html>';
 
-    setTimeout(() => {
-      win.document.write(html);
-    }, 0);
+      setTimeout(() => {
+        win.document.write(html);
+      }, 0);
+      // this.props.history.push(this.state.pdfUrl);}
+    }
   }
 
   render() {
@@ -297,7 +308,7 @@ class UgovorOUcenju extends Component {
                   </div>
                   <div class="form-group has-danger" style={{ dispaly: this.state.manjak }}>
                     <input type="text" class="form-control is-invalid" id="inputInvalid" style={{ display: "none" }} />
-                    <div class="invalid-feedback" >Ugovor nije moguće kreirati radi manjka podataka u bazi.</div>
+                    <div class="invalid-feedback" >Ugovor nije moguće kreirati niti prikazati radi manjka podataka u bazi.</div>
                   </div>
 
                   <div className="d-flex justify-content-end">

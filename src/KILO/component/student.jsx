@@ -141,7 +141,7 @@ class Student extends Component {
     var pomoc = 3;
     try {
       const res = await axios.get(
-        `http://localhost:31911/dajZadaceZaStudenta/${this.state.idStudenta}/${
+        `https://si2019kilo.herokuapp.com/dajZadaceZaStudenta/${this.state.idStudenta}/${
           this.state.idPredmeta
         }`
       );
@@ -168,7 +168,7 @@ class Student extends Component {
     if (povratna_vrijednost) {
       await axios
         .get(
-          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+          `https://si2019kilo.herokuapp.com/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
         )
         .then(res => {
           this.setState({ listaTipova: res.data });
@@ -202,7 +202,7 @@ class Student extends Component {
     if (povratna_vrijednost) {
       await axios
         .get(
-          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+          `https://si2019kilo.herokuapp.com/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
         )
         .then(res => {
           this.setState({ listaTipova: res.data });
@@ -220,7 +220,7 @@ class Student extends Component {
     }
     await axios
       .get(
-        `http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`
+        `https://si2019kilo.herokuapp.com/popuniZadatakVecPoslan/${vrijednostIdZadatka}`
       )
       .then(res => {
         this.setState({
@@ -251,7 +251,7 @@ class Student extends Component {
     var nazivZadace = this.state.zadacaState.listaZadaca[r];
 
     axios
-      .get(`http://localhost:31911/downloadPostavka/${nazivZadace}`)
+      .get(`https://si2019kilo.herokuapp.com/downloadPostavka/${nazivZadace}`)
       .then(res => {
         let resultByte = res.data.postavka.data;
         var bytes = new Uint8Array(resultByte);
@@ -391,7 +391,7 @@ class Student extends Component {
 
         if (document.getElementById("uploadButton2").value === "") {
           // prvi put slanje
-          await axios.post("http://localhost:31911/slanjeZadatka", fData).then(res => {
+          await axios.post("https://si2019kilo.herokuapp.com/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
               alert("Uspjesno ste poslati zadatak");
             }
@@ -415,7 +415,7 @@ class Student extends Component {
 
         } else {
           // ponovno slanje zadatka
-          axios.put("http://localhost:31911/slanjeZadatka", fData).then(res => {
+          axios.put("https://si2019kilo.herokuapp.com/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
               alert("Uspjesno ste poslati zadatak");
             } else if (res.status === 201) {
@@ -458,7 +458,7 @@ class Student extends Component {
 
         axios
           .get(
-            `http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`
+            `https://si2019kilo.herokuapp.com/downloadZadatak/${idStudent}/${idZadatak}`
           )
           .then(res => {
             let resultByte = res.data.datoteka.data;
@@ -479,7 +479,7 @@ class Student extends Component {
         //salji na rutu u backendu
 
         await axios
-          .get("http://localhost:31911/getPregledDatoteke")
+          .get("https://si2019kilo.herokuapp.com/getPregledDatoteke")
           .then(res => {});
         break;
       }

@@ -37,7 +37,7 @@ class AzuriranjeZadace extends Component {
   }
 
   pokupiIzBaze = (idPredmeta) => {
-    axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
+    axios.get(`https://si2019kilo.herokuapp.com/getZadace/${idPredmeta}`).then(res => {
       this.setState({
         listaZadacaZaAzuriranje: res.data
       });
@@ -98,7 +98,7 @@ class AzuriranjeZadace extends Component {
   getZadacaById = async zadacaId => {
     try {
       const res = await axios.get(
-        `http://localhost:31911/getZadacaById/${zadacaId}`
+        `https://si2019kilo.herokuapp.com/getZadacaById/${zadacaId}`
       );
       this.setState({
         azuriranjeState: res.data

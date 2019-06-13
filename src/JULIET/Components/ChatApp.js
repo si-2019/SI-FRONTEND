@@ -134,9 +134,9 @@ class ChatApp extends Component {
             .then(() => {
                 
             })
-       
+        const url = 'http://si2019juliet.herokuapp.com/pinovanePoruke';
             
-        Axios.get('http://si2019juliet.herokuapp.com/pinovanePoruke').then(res => {
+        Axios.get(url).then(res => {
             this.setState({ 
                 pinnedMessages: this.state.pinnedMessages.concat(res.data)
             }, () => {
@@ -439,8 +439,8 @@ class ChatApp extends Component {
                 )}, () => { 
                     //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages)); 
                 });
-                
-                Axios.delete('http://si2019juliet.herokuapp.com/pinujPoruku/' + message.id).then(res => {}).catch(e => {console.log(e)});
+                const url2 = 'http://si2019juliet.herokuapp.com/pinujPoruku/' + message.id;
+                Axios.delete(url2).then(res => {}).catch(e => {console.log(e)});
             } 
         });
     }

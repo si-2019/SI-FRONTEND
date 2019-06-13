@@ -124,7 +124,7 @@ state = {response:[]}
               id="btnUredi"
               class="btn btn-link"
               style={{ marginRight: "5px", marginTop: "10px" }}
-              onClick={() => this.toggleUredi(el.idIspit)}
+              
             >
               Uredi
             </button>

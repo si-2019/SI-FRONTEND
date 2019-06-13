@@ -16,9 +16,17 @@ class PrijavaIspita extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        
-        <div id="vrsteIspita" style={{alignItems: "left"}}>
+      <div class="container-fluid" style={{marginTop: "30px"}}>
+      <h2 style={{marginBottom: "30px"}}>Prijava ispita</h2>
+        <div id="zaCharlijeveKartice" style={{display: "inherit"}}>
+        <div id="vrsteIspita" style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyItems: "space-evenly",
+          flexWrap: "wrap"
+        }}>
         <IspitCard ispiti={this.state.ispiti} tipIspita="Prvi parcijalni ispit"/>
           {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
           <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
@@ -26,15 +34,16 @@ class PrijavaIspita extends React.Component {
           <IspitCard ispiti={this.state.ispiti} tipIspita="Integralni ispit" id="integralniIspit" />
           <IspitCard ispiti={this.state.ispiti} tipIspita="Uvid u radove" id="uvidURadove" />
         </div>
-        <Link
+        <div class="col" style={{textAlign: "center"}}>
+        <button
           type="button"
           id="prijavljeniIspiti"
           className="btn btn-primary"
-          style={{float: "right", marginTop: "10px"}}
-          to="/charlie/prijavljeni-ispiti"
+          
+          
         >
           Prijavljeni ispiti
-        </Link>
+        </button></div></div>
       </div>
     );
   }

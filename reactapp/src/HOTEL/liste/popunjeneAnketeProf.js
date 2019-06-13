@@ -12,12 +12,12 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>
-                <h1>Popunjene ankete na mojim predmetima</h1>
+            <div className="okvirListe">
+            <div className="naslovliste"><h1>Popunjene ankete na mojim predmetima</h1></div>
 
             <br></br>
 
-            <table className="table table-bordered text-center bg-active border-solid" align="center">
+            <table className="tabelaLista table-bordered text-center bg-active border-solid" align="center">
                 <tr className="bg-primary text-light">
                 <td class="tabtip">Naziv ankete</td>
                 <td class="tabtip">Opis</td>

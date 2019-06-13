@@ -4,6 +4,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import papaApi from './papaApi'
+import ColorPicker from './manjeKomponente/ColorPicker';
 
 
 
@@ -27,7 +28,11 @@ class PredmetOne extends Component {
     this.trenutniAsistenti = this.trenutniAsistenti.bind(this); 
   }
 
-  
+  promijeniBoju(novaBoja){
+    this.setState({
+      boja:novaBoja  
+    });
+  }
   
   trenutniPredmeti(){
     papaApi.trenutniPredmeti().then((res) => {
@@ -153,9 +158,9 @@ class PredmetOne extends Component {
     return (
       <div style={{ width: '100%', minHeight: '22rem'}}>
         <Card border="secondary" style={{ width: '100%', minHeight: '22rem', backgroundColor:this.state.boja}}>
-        <Card.Header>
+        <Card.Header className='bg-primary' >
           <div style={{width: '100%',  display: 'flex',justifyContent:'space-between'}}>
-            {<h3 style={{}} >Predmeti</h3>}
+            {<h3 style={{color:"white"}} >Predmeti</h3>}
             <ButtonGroup vertical  style={{alignSelf: 'flex-end'}}>
               <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
                 <Dropdown.Item eventKey="1" onClick={this.trenutniPredmeti}>Trenutni predmeti</Dropdown.Item>
@@ -180,6 +185,7 @@ class PredmetOne extends Component {
               </ul>
           </div>
         </Card.Body>
+        <ColorPicker promijeniBoju={this.promijeniBoju.bind(this)}/>
       </Card>
       </div>
     );

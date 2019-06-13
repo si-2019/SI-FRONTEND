@@ -165,7 +165,7 @@ class DropDownZavrsni extends React.Component {
                                     <h4 class="card-title">Prijava završnog rada</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
                                     <div style={{ textAlign: "left" }}>
-                                        <label class="col-form-label col-form-label-lg" for="inputLarge">Mentori</label>
+                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Mentori</label>
                                     </div>
 
                                     <select class="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
@@ -177,7 +177,7 @@ class DropDownZavrsni extends React.Component {
                                     </select>
 
                                     <div style={{ textAlign: "left" }}>
-                                        <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
+                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Teme</label>
                                     </div>
                                     <select class={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
 
@@ -221,9 +221,9 @@ class DropDownZavrsni extends React.Component {
                             <h4>Da li ste sigurni da želite prijaviti završni rad?</h4>
                             <div class="form-group">
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">Mentor: {this.state.selProf}</label>
+                                    <label class="col-form-label" htmlFor="inputDefault">Mentor: {this.state.selProf}</label>
                                     <br></br>
-                                    <label class="col-form-label" for="inputDefault">Tema: {this.state.selTema}</label>
+                                    <label class="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
                                 </div>
                             </div>
 

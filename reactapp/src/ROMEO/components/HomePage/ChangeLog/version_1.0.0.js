@@ -60,14 +60,20 @@ var data = [{
     "Napravljeno odbrojavanje isteka roka za popunjavanje ankete na stranici za popunjavanje.",
     "Na stranici rezultata prikazan datum isteka roka za popunjavanja."]
 },{
+    grupa:"Juliet",
+    opis:["Napravljen dio backend-a .",
+    "Napravljen Login.",
+    "Napravljene 3 osnovne komponente za frontend.",
+    "Dodane funkcionalnosti  real time slanja poruka, primanje poruka, kreiranje chatova.",
+    "Napravljen chatbot koji odgovara na zahtjeve za izvještajima sa predmeta."]
+},{
     grupa:"Kilo",
     opis:["Kreiranje zadaće.","Ažuriranje zadaće.", "Brisanje zadaće."]
 },{
     grupa:"Mike",
-    opis:["Kreirane osnovne forme za kreiranje, pregled i bodovanje projekata.",
-    "Kreirani servisi za kreiranje projekata, projektnih zadataka i bodovanje projekata.",
-    "Kreiran servis za generisanje projektnih grupa.",
-    "Omogućen samo osnovni prikaz funkcionalnosti."]
+    opis:["Omogućeno kreiranje projektne grupe.",
+    "Omogućen prikaz projekata studenta i asistenta.",
+    "Kreiran početni meni."]
 },{
     grupa:"Oscar",
     opis:["Dodano 20 novih privilegija.",

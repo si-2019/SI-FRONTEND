@@ -5,44 +5,26 @@ import axios from 'axios'
 
 class JedanPredmet extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      idKorisnika: 1,
-      link: "",
-      privilegija: 0
-    };
+  state={
+    trenutnaAkademskaGodina: ""
   }
 
+  componentDidMount(){
+    axios.get(`http://localhost:31907/r1/nazivTrenutneAkademskeGodine`).then(res => {
+      this.setState({
+          trenutnaAkademskaGodina: res.data.naziv
+      })
+      console.log(this.state)
+  })
+  }
 
- componentDidMount(){
-   axios.get(`http://localhost:31907/r3/dajPrivilegije/${this.state.idKorisnika}/${this.props.predmet.id}`).then(res =>{
-     const nesto = res.data;
-     console.log(nesto);
-      if(nesto.privilegija == 1){
-        var varijabla = "/Golf/stranicaPredmetaProfesor/" + this.props.predmet.id + "/" + this.state.idKorisnika
-        this.setState({
-          link: varijabla
-        })
-      }
-      else {
-        var varijabla = "/Golf/stranicaPredmetaStudent/" + this.props.predmet.id + "/" + this.state.idKorisnika
-        this.setState({
-          link: varijabla
-        })
-      }
-     this.setState({
-        privilegija: nesto.privilegija
-     })
-   })
- }
 
   render() {
     return (
     <div>
-      <div class="card">
+      <div class="card sss">
         <div class="card-body">
-          <h4 class="card-title"><Link id="nazivPredmeta" to={this.state.link}>{this.props.predmet.naziv}</Link></h4>
+          <h4 class="card-title"><Link id="nazivPredmeta" to={'/Golf/stranicaPredmeta/'+encodeURIComponent(this.state.trenutnaAkademskaGodina)+'/'+this.props.predmet.id+'/'+this.props.idKorisnika}>{this.props.predmet.naziv}</Link></h4>
           {this.props.predmet.opis}
         </div>
       </div>

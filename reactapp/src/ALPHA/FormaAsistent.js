@@ -169,7 +169,7 @@ class FormaAsistent extends Component {
                  
                   lista.length ? lista.map(list => 
                   
-                  <option key={list.idOdsjek} value={[ list.naziv]}> {list.naziv} </option>
+                  <option key={list.idOdsjek} value={[ list.idOdsjek]}> {list.naziv} </option>
                 
                   ): null
                 }

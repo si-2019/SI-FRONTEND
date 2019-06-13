@@ -18,7 +18,8 @@ class TabelaStudenti extends Component {
 
     componentDidMount() {
         //Promise
-        axios.get('http://localhost:31906/api/fox/tabelaStudenti')
+        let idPredmeta = window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64;
+        axios.get('http://localhost:31906/api/fox/tabelaStudenti/predmet/'+ idPredmeta)
             .then(
                 res => this.setState({studenti: res.data})
             );
@@ -79,7 +80,7 @@ class TabelaStudenti extends Component {
                         })
                     }
                     <tr className="table-light" hover="false">
-                    <td scope="row">1</td>
+                    <td scope="row">0</td>
                     <td>12345</td>
                     <td>Ime Prezime</td>
                     <td>10</td>

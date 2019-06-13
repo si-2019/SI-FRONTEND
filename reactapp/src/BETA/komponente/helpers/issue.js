@@ -133,6 +133,7 @@ export default class Issue extends React.Component {
                                    
                                     <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
 
+
                                      <Button onClick={() => this.setIdForReply(issue.id)}>Odgovori</Button>
 
                                 </div>

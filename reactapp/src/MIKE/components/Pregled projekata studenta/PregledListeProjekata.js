@@ -44,13 +44,14 @@ class PregledListeProjekata extends Component {
 
     kreirajTabelu() {
         return(
+            <div class ="card m1-3 h-100"> 
             <form  >
-            <table id="tabelaProjekata">
-                <thead>
-                    <tr>
-                        <th>Naziv projekta</th>
-                        <th>Naziv predmeta</th>
-                        <th>Opis projekta</th>
+            <table id="tabelaProjekata" className="table table-dark table-bordered text-center border-solid">
+                <thead  >
+                    <tr className="bg-primary text-dark">
+                        <th class="tabtip" >Naziv projekta</th>
+                        <th class="tabtip">Naziv predmeta</th>
+                        <th class="tabtip">Opis projekta</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +59,7 @@ class PregledListeProjekata extends Component {
                         this.state.postoje_projekti != false ? 
                         this.state.projekti.map((projekti) => {
                             return (
-                                <tr>
+                                <tr className="bg-primary text-dark">
                                     <td onClick={()=>{this.setState((state)=>({projekti:state.projekti,postoje_projekti:state.postoje_projekti,lista:true, odabrani_projekat:projekti.idProjekat-1}))}}>{projekti.nazivProjekta}</td>
                                     <td>{projekti.naziv}</td>
                                     <td>{projekti.opisProjekta}</td>
@@ -70,6 +71,7 @@ class PregledListeProjekata extends Component {
                 </tbody>
             </table>
             </form>
+            </div>
         );
     }
 
@@ -95,17 +97,29 @@ class PregledListeProjekata extends Component {
     kreirajDetaljeZadatka() {
         return (
             <form id="detaljiZadatka" style={{textAlign:"left"}}>
-                <label> idProjekta: {this.state.id_odabranog_projekta}</label> 
+                <label className="col-form-label col-form-label-lg">idProjekta:</label>
                 <br/>
-                <label> Opis zadatka: {this.state.opis_zadatka}</label>
+                <label>  {this.state.id_odabranog_projekta}</label> 
                 <br/>
-                <label> Datum pocetka: {this.state.datum_pocetka}</label>
+                <label className="col-form-label col-form-label-lg">Opis zadatka:</label>
                 <br/>
-                <label> Datum zavrsetka: {this.state.datum_zavrsetka}</label>
+                <label> {this.state.opis_zadatka}</label>
                 <br/>
-                <label> Zavrsen: {this.state.zavrsen}</label>
+                <label className="col-form-label col-form-label-lg">Datum pocetka:</label>
                 <br/>
-                <label> Komentar asistenta: {this.state.komentar_asistenta}</label>
+                <label>{this.state.datum_pocetka}</label>
+                <br/>
+                <label className="col-form-label col-form-label-lg">Datum zavrsetka:</label>
+                <br/>
+                <label> {this.state.datum_zavrsetka}</label>
+                <br/>
+                <label className="col-form-label col-form-label-lg">Zavrsen:</label>
+                <br/>
+                <label>{this.state.zavrsen}</label>
+                <br/>
+                <label className="col-form-label col-form-label-lg">Komentar asistenta:</label>
+                <br/>
+                <label> {this.state.komentar_asistenta}</label>
             </form>
         );
     }

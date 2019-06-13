@@ -19,14 +19,8 @@ class MainContent extends Component {
             path={"/KILO/azuriranjeZadace/"}
             component={AzuriranjeZadace}
           />
-          <Route
-            path={"/KILO/brisanjeZadace/?idPredmeta=3"}
-            component={BrisanjeZadace}
-          />
-          <Route
-            path={"/KILO/ocjenjivanjeZadace/"}
-            component={Ocjenjivanje}
-          />
+          <Route path={"/KILO/brisanjeZadace/"} component={BrisanjeZadace} />
+          <Route path={"/KILO/ocjenjivanjeZadace/"} component={Ocjenjivanje} />
           <Route path={"/KILO/student/"} component={Student} />
           {/*<Redirect to={"/KILO/kreiranjeZadace/?idPredmeta=" + idPredmeta} />*/}
         </Switch>

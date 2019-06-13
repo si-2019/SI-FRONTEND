@@ -10,7 +10,8 @@ class Semestri4 extends Component{
 	
     render(){
         return(
-            <div className="treci">
+            <div class="vanjski">
+            <div class="treci">
                     
                     <Link to={'/Golf/semestarPredmeti/'+this.props.ciklus+'/'+this.props.odsjek+'/1'}>
                         <button type="button" class="btn btn-primary left-buttons" id="mpl">1. semestar</button>
@@ -25,6 +26,7 @@ class Semestri4 extends Component{
                         <button type="button" class="btn btn-primary left-buttons" id="mpl">4. semestar</button>
                     </Link>                   
                 
+            </div>
             </div>
         )
     }

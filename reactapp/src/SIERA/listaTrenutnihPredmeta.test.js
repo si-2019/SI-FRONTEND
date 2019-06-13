@@ -5,17 +5,12 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-it('prvi div ima klasu container-fluid', () => {
+it('prvi div ima klasu "align-self-start"', () => {
     const wrapper = shallow(<ListaTrenutnihPredmeta />);
-    expect(wrapper.find('div').first().hasClass('container-fluid')).toBeTruthy();
+    expect(wrapper.find('div').first().hasClass('align-self-start')).toBeTruthy();
 });
 
-it('postoji lista', () => {
+it('postoji div', () => {
     const wrapper = shallow(<ListaTrenutnihPredmeta />);
-    expect(wrapper.find('ul').exists()).toBeTruthy();
-});
-
-it('prvi element liste ima klasu list-group-item', () => {
-    const wrapper = shallow(<ListaTrenutnihPredmeta />);
-    expect(wrapper.find('li').first().hasClass('list-group-item')).toBeTruthy();
+    expect(wrapper.find('div').exists()).toBeTruthy();
 });

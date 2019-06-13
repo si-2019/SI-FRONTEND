@@ -7,21 +7,22 @@ class IspitCard extends Component {
       .map(el => (
         <li key={el.idIspit}>
           {el.idPredmet}
-          <Link to={`/charlie/informacije-o-ispitu/${el.idIspit}`} style={{float:"right"}}>
+          <button type="button" class="btn btn-primary" style={{float:"right"}}>
                   Info o ispitu
-            </Link>
+            </button>
         </li>
       ));
 
   render() {
     return (
       <div
-        className="card col"
-        style={{ width: "33.3%", display: "inline-block" }}
+        className="card"
+        style={{ width: "30%", marginRight: "10px" }}
       >
         <div className="card-body">
-          <h5 className="card-title">{this.props.tipIspita}</h5>
-          <ul style={{ listStyle: "none" }}>
+          <h4 className="card-title">{this.props.tipIspita}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Otvorene prijave</h6>
+          <ul style={{ listStyle: "none", textAlign: "left" }}>
             {this.renderIspit(this.props.tipIspita)}
           </ul>
         </div>

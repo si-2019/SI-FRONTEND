@@ -37,7 +37,7 @@ class NaslovnaTermin extends Component {
   render() {
     return (
       <main>
-        <ul class="nav nav-tabs" style={{ background: "#eff7fe" }}>
+        <ul class="nav nav-tabs">
           <li class="nav-item">
             <a
               class={"nav-link " + this.state.styles[0]}
@@ -46,7 +46,7 @@ class NaslovnaTermin extends Component {
               href="#"
               onClick={() => this.changeActiveId(1)}
             >
-              Unos
+              Unos termina
             </a>
           </li>
           <li class="nav-item">
@@ -57,7 +57,7 @@ class NaslovnaTermin extends Component {
               href="#"
               onClick={() => this.changeActiveId(2)}
             >
-              Prikaz
+              Prikaz termina
             </a>
           </li>
         </ul>

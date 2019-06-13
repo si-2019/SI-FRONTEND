@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import './golf.css'
+
 
 class dropdown extends React.Component {
-  state = {
-    isOpen: false
-  };
 
-  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
-
-  componentDidMount(){
-    console.log("***********************")
-    console.log(this.props)
+  constructor(props){
+    super(props)
+    this.state={
+      naziv: props.nazivAg,
+      isOpen: false
+    }
   }
 
+  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
 
   render() {
     const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
     return (
       <div class="dd">
-      <div className="dropdown" onClick={this.toggleOpen}>
+      <div class="dropdown dd" onClick={this.toggleOpen}>
         <button
           className="btn btn-primary dropdown-toggle"
           type="button"
@@ -29,7 +30,7 @@ class dropdown extends React.Component {
           {this.props.nazivAg}
         </button>
         <div className={menuClass} aria-labelledby="dropdownMenuButton">
-          {this.props.godine.map(naslov => <Link to={"/Golf/materijali/"+this.props.idPredmeta+"/"+this.props.idKorisnika+"/"+naslov } class="dropdown-item">{naslov}</Link>)}
+          {this.props.godine.map(naslov => <Link to={"/Golf/stranicaPredmeta/"+encodeURIComponent(naslov)+"/"+this.props.idPredmeta+"/"+this.props.idKorisnika} class="dropdown-item">{naslov}</Link>)}
         </div>
       </div>
       </div>

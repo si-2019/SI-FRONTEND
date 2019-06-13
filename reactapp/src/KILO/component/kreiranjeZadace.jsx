@@ -244,8 +244,8 @@ class KreiranjeZadace extends Component {
           }*/}
           if (porukeGreske[3] !== "") {
             document.getElementById("brbodKILO").className =
-              "form-control is-invalid";
-            document.getElementById("brbodKILO").style.margin = "0 auto";
+              "form-control is-invalid static";
+            /*document.getElementById("brbodKILO").style.margin = "0 auto";*/
           }
           this.setState({
             validno: false

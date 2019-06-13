@@ -52,7 +52,7 @@ class KreiranjeZadace extends Component {
     // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
     if (e) {
       if(e.target.files[0].size > 25000000) { // ogranicava na 25MB 
-        alert ("prevelik fajl");
+        alert ("Prevelik fajl");
         document.getElementById("file").value = null;
         this.setState({ postavka: [null] });
       } else {

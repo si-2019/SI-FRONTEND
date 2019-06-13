@@ -54,6 +54,7 @@ class Student extends Component {
     };
   }
   testirajVrijeme = (r) => {
+    return true;
     var povratna_vrijednost; 
     var danas = new Date();
     var trengodina = danas.getFullYear();
@@ -252,7 +253,6 @@ console.log('rezultat'+povratna_vrijednost);
         }
 
         if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 25) { // upload prhvatljiv
-          // velicina na phpMyAdminu je ogranicena na 64KiB tako da velicinaFajla nikad nece biti veca od 25 (MB)s
           var nazivFajlaSplit = file.name.split('.');
           var nazivFajla = "";
           for (var i = 0; i < nazivFajlaSplit.length - 1; i++) {
@@ -274,7 +274,12 @@ console.log('rezultat'+povratna_vrijednost);
           })
           document.getElementById("uploadButton").value = null;
           document.getElementById("uploadButton2").value = null;
-          alert("Nije dobar tip ili je fajl prevelik")
+          if(!this.state.listaTipova.includes(ekstenzija)) {
+            alert("Nije dobar tip")
+          }
+          else {
+            alert("Prevelik fajl")
+          }
         }
 
         break;
@@ -349,6 +354,14 @@ console.log('rezultat'+povratna_vrijednost);
             else {
               alert("Greska sa bazom")
             }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
 
             // rutiranje nazad
           });
@@ -365,6 +378,14 @@ console.log('rezultat'+povratna_vrijednost);
             else {
               alert("Greska sa bazom")
             }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
 
             //rutiranje nazad
           });

@@ -103,6 +103,7 @@ class ChatApp extends Component {
         chatManager.connect()
             .then(currentUser => {
                 this.setState({ currentUser: currentUser }, () => { 
+                    
                     Axios.get('http://localhost:31910/colorscheme/' + this.state.currentUser.id).then(res => {
                         if (res.data === 0) { // korisnik nema svoj colorscheme
                             this.setState({
@@ -123,14 +124,15 @@ class ChatApp extends Component {
                         })
                     })
                 })
+                this.initRooms(currentUser);
+                this.joinRoomById(testRoomId,currentUser);
+            })
+            .then(() => {
+                
                 
             })
             .then(() => {
-                this.initRooms();
                 
-            })
-            .then(() => {
-                this.joinRoomById(testRoomId);
             })
         const url = 'http://localhost:31910/pinovanePoruke';
             
@@ -165,26 +167,26 @@ class ChatApp extends Component {
     changeState(){
 
     }
-    initRooms() {
-        this.state.currentUser.rooms.forEach(userRoom => {
-            this.state.currentUser.subscribeToRoom({
+    initRooms(CU) {
+        CU.rooms.forEach(userRoom => {
+            CU.subscribeToRoom({
                 roomId: userRoom.id
             }).then(() => {
-                if (userRoom.name === this.state.currentUser.id && userRoom.users.length > 1) {
-                    this.state.currentUser.updateRoom({
+                if (userRoom.name === CU.id && userRoom.users.length > 1) {
+                    CU.updateRoom({
                         roomId: userRoom.id,
-                        name: this.state.currentUser.id === userRoom.users[0].id ? userRoom.users[1].id : userRoom.users[0].id
+                        name: CU.id === userRoom.users[0].id ? userRoom.users[1].id : userRoom.users[0].id
                     })
                 }
 
             })
         })
-        this.setState({ rooms: this.state.currentUser.rooms });
+        this.setState({ rooms: CU.rooms });
     }
 
-    joinRoomById(roomId) {
+    joinRoomById(roomId,CU) {
         this.setState({ messages: [] });
-        this.state.currentUser.subscribeToRoom({
+        CU.subscribeToRoom({
             roomId: roomId,
             messageLimit: 20,
             hooks: {
@@ -224,7 +226,7 @@ class ChatApp extends Component {
             this.setState({
                 currentRoom: room,
                 room_users: room.users,
-                users: this.state.currentUser.users,
+                users: CU.users,
             })
         })
     }
@@ -233,7 +235,7 @@ class ChatApp extends Component {
         this.setState({ messages: [] });
         const room = this.state.rooms.filter(room => room.name === userId);
         if (room.length > 0) {
-            this.joinRoomById(room[0].id);
+            this.joinRoomById(room[0].id,this.state.currentUser);
         } else {
             this.state.currentUser.createRoom({
                 name: userId,
@@ -241,7 +243,7 @@ class ChatApp extends Component {
                 addUserIds: [userId]               
             }).then((room) => {
                 this.setState({ rooms: [...this.state.rooms, room] });
-                this.joinRoomById(room.id);
+                this.joinRoomById(room.id,this.state.currentUser);
             });
         }
     }
@@ -312,7 +314,7 @@ class ChatApp extends Component {
             private: true            
         }).then(room => {
             this.setState({ rooms: [...this.state.rooms, room] });
-            this.joinRoomById(room.id);
+            this.joinRoomById(room.id,this.state.currentUser);
         })
         .catch(err=> console.log("err wth cr room", err))
     }
@@ -326,7 +328,7 @@ class ChatApp extends Component {
             }
           })
             .then(() => {
-              this.joinRoomById(rid);
+              this.joinRoomById(rid,this.state.currentUser);
               this.setState({hasErrorAddUser:false});
             })
             .catch(err => {
@@ -340,7 +342,7 @@ class ChatApp extends Component {
             private: false           
         }).then(room => {
             this.setState({ rooms: [...this.state.rooms, room] });
-            this.joinRoomById(room.id);            
+            this.joinRoomById(room.id,this.state.currentUser);            
         })
         .catch(err=> console.log("err wth cr room", err))
     }
@@ -489,7 +491,7 @@ class ChatApp extends Component {
                 console.log(`Error leaving room ${this.state.currentRoom.id}: ${err}`)
                 })
             this.setState({hasErrorBlockUser:false});
-            this.joinRoomById(this.state.rooms[0].id);
+            this.joinRoomById(this.state.rooms[0].id,this.state.currentUser);
         } else if(UsersToBlock.length !== 0){
             this.setState({
                 blockedUsers: [...this.state.blockedUsers, UsersToBlock[0]]
@@ -499,7 +501,7 @@ class ChatApp extends Component {
                 roomId: this.state.currentRoom.id
               })
                 .then(() => {
-                    this.joinRoomById(this.state.currentRoom.id);
+                    this.joinRoomById(this.state.currentRoom.id,this.state.currentUser);
                     this.setState({hasErrorBlockUser:false});
                     if(this.state.currentRoom.users.length === 0){
                         this.state.currentUser.deleteRoom({ roomId: this.state.currentRoom.id })

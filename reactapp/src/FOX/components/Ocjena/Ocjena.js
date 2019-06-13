@@ -15,7 +15,8 @@ class Ocjena extends Component {
             opisUspjeh: "",
             naslovUspjeh: "",
             naslovGreska: "",
-            opisGreska: ""
+            opisGreska: "",
+            isFetching: false
         }
         this.ocjena = React.createRef();
         this.indeks = React.createRef();
@@ -23,9 +24,14 @@ class Ocjena extends Component {
 
     handleClick = () => {
         //Poziv apija /fox/getStudentInfo/:id
-        console.log("klikno hehe")
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
         axios.get("http://localhost:31906/fox/getStudentInfo/" + this.indeks.current.value).then((res)=> {
             this.setState({
+                isFetching: false,
                 student: res.data,
                 greskaBaza: 2,
                 opisUspjeh: "Student je pronađen.",
@@ -34,6 +40,7 @@ class Ocjena extends Component {
         })
         .catch(()=> {
             this.setState({ greskaBaza: 1,
+                isFetching: false,
                 naslovGreska: "Greška!",
                 opisGreska: "Student nije pronađen."
             });
@@ -42,43 +49,62 @@ class Ocjena extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
         const form = event.currentTarget;
 
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+            this.setState({
+                isFetching: false,
+                greskaBaza: 0
+            });
         }
         else {
-            let reqBody = {
-                idStudent: this.state.student.id, //pristup lokalnom storage-u --> Ne treba lokalni storage, sprema se u state
-                idPredmet: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
-                idAkademskaGodina: 11,
-                ocjena: this.ocjena.current.value
-            };
-            if(this.ocjena.current.value > 10 || this.ocjena.current.value < 6)
+            if(this.state.student !== null) {
+                let reqBody = {
+                    idStudent: this.state.student.id, //pristup lokalnom storage-u --> Ne treba lokalni storage, sprema se u state
+                    idPredmet: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
+                    idAkademskaGodina: 11,
+                    ocjena: this.ocjena.current.value
+                };
+                    
+                axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
+                .then((res) => {
+                    const student = this.state.student;
+                    this.setState({
+                        greskaBaza: 2,
+                        isFetching: false,
+                        student: null,
+                        opisUspjeh: "Ocjena je upisana.",
+                        naslovUspjeh: student !== null ?
+                            student.ime + " " + student.prezime + " " + "(" + student.indeks + ")" + ", " + this.ocjena.current.value : ""
+                    });
+                    this.ocjena.current.value = null;
+                    this.indeks.current.value = null;
+                })
+                .catch((err)=> {
+                    this.setState({
+                        greskaBaza: 1,
+                        isFetching: false,
+                        naslovGreska: "Greška!",
+                        opisGreska: "Baza podataka nije dostupna."
+                    });
+                });
+            }
+            else {
                 this.setState({
                     greskaBaza: 1,
+                    isFetching: false,
                     naslovGreska: "Greška!",
-                    opisGreska: "Ocjena nije validna."
+                    opisGreska: "Ne možete unijeti ocjenu, student nije pronađen."
                 });
-                
-            axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
-            .then((res) => {
-                const student = this.state.student;
-                this.setState({
-                    greskaBaza: 2,
-                    opisUspjeh: "Ocjena je upisana.",
-                    naslovUspjeh: student !== null ?
-                        student.ime + " " + student.prezime + " " + "(" + student.indeks + ")" + ", " + this.ocjena.current.value : ""
-                });
-            })
-            .catch((err)=> {
-                this.setState({
-                    greskaBaza: 1,
-                    naslovGreska: "Greška!",
-                    opisGreska: "Baza podataka nije dostupna."
-                });
-            });
+            }
        }
         this.setState({ validated: true });
     }
@@ -110,6 +136,7 @@ class Ocjena extends Component {
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Indeks: </Form.Label>
                                     <Form.Control
+                                    placeholder="Unesite indeks"
                                     ref={ this.indeks }
                                     required
                                     type="number"
@@ -136,6 +163,7 @@ class Ocjena extends Component {
                                     <Form.Control
                                     ref={ this.ocjena }
                                     required
+                                    placeholder="Unesite ocjenu"
                                     type="number"
                                     min={6}
                                     max={10}

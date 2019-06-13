@@ -68,7 +68,7 @@ export default class App extends React.Component {
         return (
             <div class="card border-primary mb-3">
                 <div class="form-group" style={{margin: "10px"}}>
-                    <textarea class="form-control" placeholder="Unesi tekst pitanja" id="tekstPitanjaTextArea" rows="1" name="tekstPitanja" onKeyDown={this.handleInputChange}></textarea>
+                    <textarea class="form-control" placeholder="Unesi tekst pitanja" id="tekstPitanjaTextArea" rows="1" name="tekstPitanja" onChange={this.handleInputChange}></textarea>
                 </div>
                 {this.state.odgovori.map((odgovor, i) => {
                     return (
@@ -79,12 +79,12 @@ export default class App extends React.Component {
                                 <textarea placeholder="Unesi tekst odgovora" class="form-control" id="tekstPitanjaTextArea" value={this.state.odgovori[i]} name={`${i}`} rows="1" onChange={this.handleInputChange}></textarea>
                             </div>
                             <div className="col-2">
-                                <button className="btn btn-secondary btn-block" name={`${i}`} onClick={this.dodajOdgovor} type="button">
+                                <button className="btn btn-primary btn-block" name={`${i}`} onClick={this.dodajOdgovor} type="button">
                                     Dodaj
                                 </button> 
                             </div>
                             <div className="col-2">
-                                <button className="btn btn-secondary btn-block" name={`${i}`} onClick={this.obrisiOdgovor} type="button">
+                                <button className="btn btn-primary btn-block" name={`${i}`} onClick={this.obrisiOdgovor} type="button">
                                     Obriši
                                 </button> 
                             </div>

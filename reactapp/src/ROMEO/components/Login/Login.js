@@ -126,23 +126,24 @@ class Login extends Component {
           <img 
             src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
             alt="new"
+            data-placement="right"
           />
         </div>
         <div className="card text-white bg-primary " >
           <form className="loginForma">
-          <label htmlFor="exampleInputEmail1">Korisnicko ime:</label>
-          <input type="email" className="korisnickoIme" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
+          <label htmlFor="exampleInputEmail1">Korisničko ime:</label>
+          <input type="email" className="korisnickoIme" readonly="" className="form-control-plaintext" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
 <br></br>
           <label htmlFor="exampleInputPassword1">Password:</label>
-      <input type="password" className="sifra" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
+      <input type="password" className="sifra" readonly="" className="form-control-plaintext" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
             
 
-            <button type="button" className="btn btn-secondary" onClick = {this.Submitaj} >LOGIN</button>
+            <button type="button" className="btn btn-primary" onClick = {this.Submitaj} >LOGIN</button>
           </form>
           
         </div>
         <div className="alert alert-dismissible alert-danger mb-0" id="dioGreske">
-          <button type="button" className="close" data-dismiss="alert" onClick = {this.UkloniGresku} >&times;</button>
+          <button type="button" className="close" data-placement="right" data-dismiss="alert" onClick = {this.UkloniGresku} >&times;</button>
           <div id="greske"></div>
         </div>
         <div className="footer">

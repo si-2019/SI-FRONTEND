@@ -9,7 +9,7 @@ class Predmeti extends Component {
     state = {}
     render() {
         return (
-            <div class="container-fluid" style={{ marginTop: "30px" }}>
+            <div className="container-fluid" style={{ marginTop: "30px" }}>
                 <h2 style={{ marginBottom: "30px" }}>Predmeti</h2>
                 <div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
                     <div className="row">

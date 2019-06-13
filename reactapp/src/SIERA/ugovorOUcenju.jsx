@@ -23,7 +23,8 @@ class UgovorOUcenju extends Component {
       prezime: "Neko",
       indeks: "00000",
       ciklus: 1,
-      sviSmjerovi: []
+      sviSmjerovi: [],
+      manjak: "none"
 
     };
     this.handleCreate = this.handleCreate.bind(this);
@@ -35,26 +36,35 @@ class UgovorOUcenju extends Component {
   }
   handleCreate() {
     //kreiranje ugovora
-    var obPred = this.state.listaObaveznih.length == 0 ? "test, test" : this.state.listaIzbornih;
-    var izPred = this.state.listaIzbornih.length == 0 ? "nwa, nes" : this.state.listaIzbornih;
-    axios
-      .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
-        ime: this.state.ime,
-        prezime: this.state.prezime,
-        semestar: this.state.izabraniSemestar,
-        ciklus: this.state.ciklus,
-        odsjek: this.state.izabraniSmjer,
-        indeks: this.state.indeks,
-        obavezni: obPred,
-        izborni: izPred,
-        godina: this.state.izabranaGodina
+
+    if (this.state.listaObaveznih.length == 0 || this.state.listaIzbornih.length == 0) {
+      this.setState({
+        manjak:"block"
       })
+     }
+    else {
+      this.setState({
+        manjak:"none"
+      })
+      axios
+        .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
+          ime: this.state.ime,
+          prezime: this.state.prezime,
+          semestar: this.state.izabraniSemestar,
+          ciklus: this.state.ciklus,
+          odsjek: this.state.izabraniSmjer,
+          indeks: this.state.indeks,
+          obavezni: this.state.listaObaveznih,
+          izborni: this.state.listaIzbornih,
+          godina: this.state.izabranaGodina
+        })
       .then(res => {
         console.log(res.data);
       })
       .catch(res => {
         console.log("greskaaa");
       });
+    }
 
   }
   componentDidCatch(error, info) {
@@ -134,10 +144,10 @@ class UgovorOUcenju extends Component {
               }
 
             }
-            this.setState({ listaIzbornih: izborni, listaObaveznih: obavezni, izborniForma:help });
+            this.setState({ listaIzbornih: izborni, listaObaveznih: obavezni, izborniForma: help });
           }
           else {
-            this.setState({ listaIzbornih: "", listaObaveznih: "", izborniForma:[] });
+            this.setState({ listaIzbornih: "", listaObaveznih: "", izborniForma: [] });
           }
         });
     } catch (e) { }
@@ -285,6 +295,11 @@ class UgovorOUcenju extends Component {
                       </div>
                     ))}
                   </div>
+                  <div class="form-group has-danger" style={{ dispaly: this.state.manjak }}>
+                    <input type="text" class="form-control is-invalid" id="inputInvalid" style={{ display: "none" }} />
+                    <div class="invalid-feedback" >Ugovor nije moguće kreirati radi manjka podataka u bazi.</div>
+                  </div>
+
                   <div className="d-flex justify-content-end">
                     <button type="submit" className="btn btn-primary" onClick={this.handleCreate}>Kreiraj ugovor</button>
 
@@ -294,7 +309,6 @@ class UgovorOUcenju extends Component {
                 </div>
               </div>
             </div>
-            <div className="col" />
           </div>
         </div>
       </div>

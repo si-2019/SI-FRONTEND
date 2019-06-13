@@ -124,10 +124,10 @@ export class Body_Cell extends Component {
       if(!(this.state.title == undefined || this.state.title==""))
       {
         this.props.termin.biljeska = this.state.title;
-        console.log('http://localhost:31920/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
+        console.log('http://si2019uniform.herokuapp.com/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
         axios({
           method:'get',
-          url:'http://localhost:31920/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
+          url:'http://si2019uniform.herokuapp.com/addZabiljeska'+'/'+this.props.termin.biljeska+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
           responseType:'json'
         })
           .then(function (response) {
@@ -150,10 +150,10 @@ export class Body_Cell extends Component {
       if(!(this.state.title == undefined || this.state.title==""))
       {
         this.props.termin.biljeska = this.state.title;
-        console.log('http://localhost:31920/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
+        console.log('http://si2019uniform.herokuapp.com/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
         axios({
           method:'get',
-          url:'http://localhost:31920/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
+          url:'http://si2019uniform.herokuapp.com/updateZabiljeska'+'/'+this.state.title+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
           responseType:'json'
         })
           .then(function (response) {
@@ -179,10 +179,10 @@ export class Body_Cell extends Component {
     this.state.signalString="Uspjesno izbrisano";
 
     this.props.termin.biljeska = this.state.title;
-    console.log('http://localhost:31920/deleteZabiljeska'+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
+    console.log('http://si2019uniform.herokuapp.com/deleteZabiljeska'+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit);
       axios({
         method:'get',
-        url:'http://localhost:31920/deleteZabiljeska'+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
+        url:'http://si2019uniform.herokuapp.com/deleteZabiljeska'+'/'+this.props.idStudenta+'/'+this.props.termin.id+'/'+this.props.termin.ispit,
         responseType:'json'
       })
         .then(function (response) {

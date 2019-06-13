@@ -10,13 +10,13 @@
     top: 0;
     left: 0;
     right: 0;
-    margin-top: 76px;
+    margin-top: 0px;
     background-color:  #E4EBF6; 
     overflow-y: scroll
 }
 #headerPopuni{
     height: 10%;
-    background-color: #00203F
+    background-color: #2C3E50
  }
 
 #contentPopuni{
@@ -30,7 +30,6 @@
     display: flex;
     padding-top: 35px;
     justify-content: center;
-    background-color: lightslategrey
 }
 #info1Popuni{
     width: 80%;

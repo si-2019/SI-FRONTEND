@@ -6,7 +6,8 @@ import axios from 'axios';
 class semestarPredmeti extends Component {
 
   state={
-    predmeti: []
+    predmeti: [],
+    korisnik: 1
   }
 
   ucitaj(props){
@@ -30,8 +31,13 @@ class semestarPredmeti extends Component {
   render() {
 
     return(
-      <div>
-        <SviPredmeti predmeti={this.state.predmeti}/>
+      <div style={{
+        overflowY: "scroll",
+        height: "100%",
+        position: "absolute",
+        width: "100%"
+      }}>
+        <SviPredmeti predmeti={this.state.predmeti} idKorisnika={this.state.korisnik}/>
       </div>  
     )
   }

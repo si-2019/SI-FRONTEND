@@ -74,7 +74,8 @@ class Login extends Component {
       document.getElementById('dioGreske').style.display = "block";
 	  } else {
       //validacija uspjesna
-      var baseUrl = 'http://localhost:31917';
+      //var baseUrl = 'http://localhost:31917';
+      var baseUrl = 'https://si2019romeo.herokuapp.com';
       var body = {
         username: this.state.korisnickoIme,
         password: this.state.sifra
@@ -87,9 +88,17 @@ class Login extends Component {
       axios.post(baseUrl + '/login', body, headers).then((res) => {
         var data = res.data;
         this.setState.logiran = true;
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.user);
-        this.props.history.push("/romeo/home");
+        
+        const parametar = '?username=' + this.state.korisnickoIme;
+        //trazi id usera
+        axios.get(baseUrl + '/users/id' + parametar).then((res2) => {
+          var id = res2.data;
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("username", data.user);
+          localStorage.setItem("id", id);
+          this.props.history.push("/romeo/home");
+        });
+        
       }).catch((error) => {
         var res = error.response;
         if(res) {
@@ -105,8 +114,8 @@ class Login extends Component {
       });
       
 
-      //nnekic1
-      //password
+      //stest1
+      //qwertzui
     }
   }
 
@@ -132,10 +141,10 @@ class Login extends Component {
         <div className="card text-white bg-primary " >
           <form className="loginForma">
           <label htmlFor="exampleInputEmail1">Korisničko ime:</label>
-          <input type="email" className="korisnickoIme" readonly="" className="form-control-plaintext" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
+          <input type="email" className="korisnickoIme" className="form-control-plaintext" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesi korisnicko ime" onChange={this.pratiPromjenuKorisnickogImena} required></input>
 <br></br>
           <label htmlFor="exampleInputPassword1">Password:</label>
-      <input type="password" className="sifra" readonly="" className="form-control-plaintext" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
+      <input type="password" className="sifra" className="form-control-plaintext" id="exampleInputPassword1" placeholder="Unesi password" onChange={this.pratiPromjenuSifre} required></input>
             
 
             <button type="button" className="btn btn-primary" onClick = {this.Submitaj} >LOGIN</button>

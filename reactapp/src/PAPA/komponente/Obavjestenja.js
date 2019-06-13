@@ -5,6 +5,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import papaApi from './papaApi';
 import { TramRounded } from '@material-ui/icons';
+import ColorPicker from './manjeKomponente/ColorPicker';
 
 
 
@@ -30,7 +31,11 @@ class ObavjestenjaPapa extends Component {
     this.kliknutPredmet=this.kliknutPredmet.bind(this)
   }
 
-  
+  promijeniBoju(novaBoja){
+    this.setState({
+      boja:novaBoja  
+    });
+  }
   
   obavjestenjaAdmin(){
     papaApi.obavjestenjaAdmin().then((res) => {
@@ -167,9 +172,9 @@ class ObavjestenjaPapa extends Component {
     return (
       <div style={{ width: '100%', height: '22rem'}}>
         <Card border="secondary" style={{ width: '100%', minHeight: '22rem', backgroundColor:this.state.boja}}>
-        <Card.Header>
+        <Card.Header className='bg-primary'>
           <div style={{width: '100%',  display: 'flex',justifyContent:'space-between'}}>
-            {<h3 style={{}} >Obavijesti</h3>}
+            {<h3 style={{color:"white"}} >Obavijesti</h3>}
             <ButtonGroup vertical  style={{alignSelf: 'flex-end'}}>
               <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
                 <Dropdown.Item eventKey="1" onClick={this.obavjestenjaAdmin}>Obavjestenja admin</Dropdown.Item>
@@ -194,6 +199,7 @@ class ObavjestenjaPapa extends Component {
               </ul>
           </div>
         </Card.Body>
+        <ColorPicker promijeniBoju={this.promijeniBoju.bind(this)}/>
       </Card>
       </div>
     );

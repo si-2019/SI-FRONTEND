@@ -12,10 +12,21 @@ class BlockedUsers extends Component {
     }
     onSubmit(e){
         e.preventDefault();
-        this.props.blockAUser(this.state.user);
-        this.setState({
-            user: ''
-        })
+        this.props.getUserRole();
+        if(this.props.currentUserRole == 'admin'){
+            this.props.banUser(this.state.user);
+            this.props.blockAUser(this.state.user);
+            this.setState({
+                user: ''
+            });
+            
+
+        }else{
+            this.props.blockAUser(this.state.user);
+            this.setState({
+                user: ''
+            })
+        }
     }
     onChangeHandlerBlock(e){
         this.setState({

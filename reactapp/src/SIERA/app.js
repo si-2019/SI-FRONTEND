@@ -16,6 +16,7 @@ import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
 import Predmeti from "./predmeti";
 import Prosjek from "./Prosjek.jsx";
+import Statistika1 from "./Statistika1.jsx";
 //vrati rutu za grupu tango!
 class App extends Component {
   constructor() {
@@ -48,6 +49,11 @@ class App extends Component {
       {
         btnText: "Prosjek",
         component: <Prosjek />
+      },
+      ,
+      {
+        btnText: "Sortirani predmeti prema bodovima na zadaće",
+        component: <Statistika1 />
       }
     
     ],

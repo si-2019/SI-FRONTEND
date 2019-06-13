@@ -6,13 +6,6 @@ class IspitCard extends Component {
     var danas = new Date().getTime()
     var difference_ms = Math.abs(el.rokPrijave - danas);
     var brDana = Math.round(difference_ms/ONEDAY);
-    if(brDana > 2){
-      return "#98f442"
-    }
-    else if(brDana > 0)
-      return "#f4f442" 
-    else 
-      return "#ce0e0e"
   }
   renderIspit = () =>
     this.props.ispiti

@@ -55,7 +55,7 @@ class MessageList extends Component {
     }
 
     handleDialogOpen = (message) => {
-        Axios.post(`http://si2019juliet.herokuapp.com/thread`, { messageId: message.id })
+        Axios.post(`https://si2019juliet.herokuapp.com/thread`, { messageId: message.id })
             .then(() => {
                 this.setState({ threadMessages: [] });
                 this.getThreadMessages(message);
@@ -72,7 +72,7 @@ class MessageList extends Component {
     }
 
     getThreadMessages = (message) => {
-        Axios.get(`http://si2019juliet.herokuapp.com/thread/${message.id}`)
+        Axios.get(`https://si2019juliet.herokuapp.com/thread/${message.id}`)
             .then(res => {
                 this.setState({ openThread: true, selectedMessage: message, threadMessages: res.data });
             }).catch(err => {
@@ -81,7 +81,7 @@ class MessageList extends Component {
     }
 
     addThreadMessage = (message) => {
-        Axios.put(`http://si2019juliet.herokuapp.com/thread/${this.state.selectedMessage.id}`, {
+        Axios.put(`https://si2019juliet.herokuapp.com/thread/${this.state.selectedMessage.id}`, {
             sender: this.props.currentId,
             text: message
         }).then(res => {

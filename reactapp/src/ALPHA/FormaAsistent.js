@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
 class FormaAsistent extends Component {
     constructor(props) {
         super(props)
   
         this.initialState = {
+          lista: [],
+          odsjek: 'RI',
           ime: '',
           prezime: '',
           otac: '',
@@ -18,17 +21,28 @@ class FormaAsistent extends Component {
           adresa: '',
           email: '',
           telefon: '',
-          odsjek: '',
           linkedin: '',
           website: '',
           spol: '',
           username: '',
           password: '',
-          spol: ''
+          spol: 'zensko'
         }
     
         this.state = this.initialState
       }
+
+      componentDidMount(){
+       
+        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({lista: response.data});     
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+    }
 
       handleChange = (event) => {
         event.preventDefault()
@@ -51,7 +65,7 @@ class FormaAsistent extends Component {
 
         const body =
         {   
-            "odsjek": data.odsjek,
+            "idOdsjek": data.odsjek,
             "ime": data.ime,
             "prezime": data.prezime,
             "datumRodjenja": data.datum_rodjenja,
@@ -76,7 +90,7 @@ class FormaAsistent extends Component {
         const xhr = new XMLHttpRequest();
 
         const body1 = JSON.stringify(body);
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewAssistant', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewAssistant', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -93,7 +107,7 @@ class FormaAsistent extends Component {
      
 
     render() {
-        const { ime, prezime, otac, majka, spol, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, odsjek, username, linkedin, website} = this.state;
+        const { ime, lista, prezime, otac, majka, spol, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, idOdsjek, username, linkedin, website} = this.state;
 
         return (
           <div className="card">
@@ -114,9 +128,15 @@ class FormaAsistent extends Component {
 
 
               <label className="radio-inline">Spol </label>
-              <input id="1" className="custom-control custom-radio" type="radio" value="zensko" onChange={this.handleOptionChange} checked={this.state.spol === "zensko"}/> Žensko
-              <input id="2" className="custom-control custom-radio" type="radio" value="musko" onChange={this.handleOptionChange} checked={this.state.spol === "musko"}/>Muško <br/><br/>
-              
+              <div className="custom-control custom-radio">
+                <input id="1" className="custom-control-input" type="radio" value="zensko" onChange={this.handleOptionChange} checked={this.state.spol === "zensko"}/> 
+                <label class="custom-control-label" for="1">Žensko</label>
+              </div>
+              <div className="custom-control custom-radio">
+                <input id="2" className="custom-control-input" type="radio" value="musko" onChange={this.handleOptionChange} checked={this.state.spol === "musko"}/>
+                <label class="custom-control-label" for="2">Muško</label><br/><br/>
+              </div>
+
               <label>JMBG </label>
               <input className="form-control " type="text" name="jmbg" value={jmbg} onChange={this.handleChange} /><br />
               
@@ -141,9 +161,22 @@ class FormaAsistent extends Component {
               <label>Telefon </label>
               <input className="form-control " type="tel" name="telefon" value={telefon} onChange={this.handleChange} /><br />
 
-              <label>Odsjek </label>
-              <input className="form-control " type="text" name="odsjek" value={odsjek} onChange={this.handleChange} /><br />
 
+              <label >Odsjek </label>
+              <select className="custom-select" name="odsjek"  onChange={this.onChange} onChange={this.handleChange}> 
+               
+                {
+                 
+                  lista.length ? lista.map(list => 
+                  
+                  <option key={list.idOdsjek} value={[ list.idOdsjek]}> {list.naziv} </option>
+                
+                  ): null
+                }
+                </select><br /><br />
+
+
+              
               <label>Username </label>
               <input className="form-control " type="text" name="username" value={username} onChange={this.handleChange} /><br />
 

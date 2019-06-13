@@ -1,106 +1,107 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
-class FormaPrikazStud extends Component{
-    constructor(props){
+class prikazAsistenta extends Component{
+    constructor(props) {
         super(props)
-        
-        this.initialState={
-            lista: [],
-            index: ''
+
+        this.state = {
+          lista: [], 
+          search: ''
         }
-        this.state = this.initialState
     }
+
+   
+
     componentDidMount(param){
-        var xhttp = new XMLHttpRequest();
-        var self = this;
-
-        xhttp.onreadystatechange = function(){
-            if (xhttp.readyState === 4 && xhttp.status === 200){
-                self.setState({
-                lista: JSON.parse(this.response)
-                });
-            }
+      var xhttp = new XMLHttpRequest();
+      var self = this;
+      
+     xhttp.onreadystatechange = function(){
+        if (xhttp.readyState == 4 && xhttp.status == 200){
+            self.setState({
+            lista: JSON.parse(this.response)
+          });
         }
+      }
+    
+    //"http://localhost:31901/api/korisnik/searchStudent?ime="+param
+    //"http://localhost:31901/api/korisnik/getAllStudents"
 
-        if(param!=='') xhttp.open("get", "https://jsonplaceholder.typicode.com/posts?userId="+param, true);
-        else xhttp.open("get", "https://jsonplaceholder.typicode.com/posts", true);
-        xhttp.send();
-    };
-
-    handleChange = (event) => {
-        event.preventDefault()
-        this.setState({
-          index: event.target.value
-        })
+     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchStudent?ime="+param, true);
+     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents", true);
+     
+      xhttp.send();
     }
 
-    render(){
+    handleChange = (e) =>{
+      this.setState({
+        search:e.target.value
+      }) 
+    }
 
-        const{lista, index} = this.state;
+   
 
-        return(
-            <div> 
-                <br />
-                <label>Unesite broj indexa za pretraživanje studenta:(ako ostavite ovo prazno, ispisat ce se svi studenti)</label>    
+    render (){
+        const {lista, search}=this.state
+        console.log("LISTA", lista.length);
+        return (
+          <div className="card">
+            <div className="card-body">
+              <br /> 
+                <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange} placeholder="Ime studenta"></input>  <br />
+                <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
+              <br />
               
-                <div className='row'>
-                    <br>
-                    </br>
-                    
-                    <div className ='col-md-1'>
-                        <input className="form-control " type="number" name="index" value={index} onChange={this.handleChange} />     
-                    </div> 
-                    
-                    <div className='col-md-1'>
-                        <button className="btn btn-success btn-block" onClick={()=> this.componentDidMount(index)}>Search</button>
-                        <br /><br /> 
-                    </div>
-                </div>
-
-               
-                <label > Tabelaran prikaz studenata:</label> <br />
                 
-                <table className="table table-sm table-primary"> 
-                <tr>
-                    <th >ID</th>
-                    <th >IME</th>
-                    <th >PREZIME</th>
-                    <th >INDEX</th>
-                    <th >DATUM ROĐENJA</th>
-                    <th >JMBG</th>
-                    <th >EMAIL</th>
-                    <th >MJESTO ROĐENJA</th>
-                    <th >KANTON</th>
-                    <th >DRŽAVLJANSTVO</th>
-                    <th >TELEFON</th>
-                    <th >SPOL</th>
-                    <th >IME RODITELJA</th>
-                    <th >ADRESA</th>
-                </tr>
-                {               
+              <table>  
+                <thead className="table table-sm table-primary">
+                  <tr>
+                      <th >ID</th>
+                      <th >IME</th>
+                      <th >PREZIME</th>
+                      <th >IME RODITELJA</th>
+                      <th >SPOL</th>
+                      <th >JMBG</th>
+                      <th >DATUM ROĐENJA</th>
+                      <th >MJESTO ROĐENJA</th>
+                      <th >KANTON</th>
+                      <th >DRŽAVLJANSTVO</th>
+                      <th >EMAIL</th>
+                      <th >TELEFON</th>
+                      <th >USERNAME</th>
+                  </tr>
+                </thead>
+                <tbody className="table table-sm">
+                {
                     lista.length ? lista.map(list => 
                         <tr key={list.id}>
-                            <th><input className="form-control" type="text"  readOnly value={list.id}></input></th>
-                            <th><input className="form-control" type="text" value={list.body} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={list.title} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th>{list.id}</th>
+                            <th>{list.ime}</th>
+                            <th>{list.prezime}</th>
+                            <th>
+                              {list.imePrezimeMajke} <br />
+                              {list.imePrezimeOca}
+                            </th>
+                            <th>{list.spol}</th>
+                            <th>{list.JMBG}</th>
+                            <th>{list.datumRodjenja}</th>
+                            <th>{list.mjestoRodjenja}</th>
+                            <th>{list.kanton}</th>
+                            <th>{list.drzavljanstvo}</th>
+                            <th>{list.email}</th>
+                            <th>{list.telefon}</th>
+                            <th>{list.username}</th>
                         </tr>)
                     : null
                 }
-                </table><br /><br />
-            </div>    
+                </tbody>
+              </table><br /><br />
+              
+            </div>
+            </div>
         );
     }
 }
 
-export default FormaPrikazStud
+export default prikazAsistenta

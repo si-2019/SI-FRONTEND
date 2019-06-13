@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Link from 'react-router-dom/Link';
 
 class NavbarFox extends Component {
+
+    klikZadace =() =>{
+      window.location.replace("/KILO");
+    }
+    klikAnkete = () => {
+      window.location.replace("/HOTEL");
+    }
+    klikStatistika = () => {
+      window.location.replace("/LIMA");
+    }
+    klikRaspored = () => {
+      window.location.replace("/UNIFORM");
+    }
+    klikChat = () => {
+      window.location.replace("/JULIET");
+    }
+    klikForum = ()  => {
+      window.location.replace("/TANGO");
+    }
     render() {
       const x = "StranicaPredmeta?predmetId="+localStorage.getItem("NazivPredmeta");
       return (
@@ -74,32 +86,40 @@ class NavbarFox extends Component {
               <button type="button" className="btn btn-primary left-buttons">Obavijesti</button>
             </a>
 
-            <a href="zadace">
+            <a onClick={this.klikZadace}>
               <button type="button" className="btn btn-primary left-buttons">Zadaće</button>
             </a>
 
-            <a href="ankete">
+            <a onClick={this.klikAnkete}>
               <button type="button" className="btn btn-primary left-buttons">Ankete</button>
             </a>
 
-            <a href="statistika">
+            <a onClick={this.klikStatistika}>
               <button type="button" className="btn btn-primary left-buttons">Statistika</button>
             </a>
 
-            <a href="raspored">
+            <a onClick={this.klikRaspored}>
               <button type="button" className="btn btn-primary left-buttons">Raspored</button>
             </a>
 
-            <a href="chat">
+            <a onClick={this.klikChat}>
               <button type="button" className="btn btn-primary left-buttons">Chat</button>
             </a>
 
-            <a href="forum">
+            <a onClick={this.klikForum}>
               <button type="button" className="btn btn-primary left-buttons">Forum</button>
             </a>
 
             <a href="materijali">
               <button type="button" className="btn btn-primary left-buttons">Materijali</button>
+            </a>
+
+            <a href="http://yiiisu.com/load.php?action=download&id=3">
+              <button type="button" className="btn btn-primary left-buttons">Uputstvo</button>
+            </a>
+
+            <a href="https://www.iiicareer.com/OTS/Client/logout.php">
+              <button type="button" className="btn btn-primary left-buttons">Odjava</button>
             </a>
             
         </div>

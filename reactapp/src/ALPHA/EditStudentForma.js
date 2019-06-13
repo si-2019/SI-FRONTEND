@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import { postRequest } from './actions/post'
 
 class Forma extends Component {
     constructor(props) {
@@ -21,7 +20,8 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllStudents')
+        //http://localhost:31901/api/korisnik/getAllStudents
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -32,13 +32,12 @@ class Forma extends Component {
     }
 
     onChange = (e) => {
-        var split=e.target.value.split(" - ");     
-        this.setState({
-          selectedValue: split[1], id: split[0], ime: split[1], 
-          prezime: split[2], email: split[3], telefon: split[4] , adresa: split[5],   indeks: split[6]
-         })  
-    }
-
+      var split=e.target.value.split(",");   
+      this.setState({
+        selectedValue: e.target.value, id: split[0], ime: split[1], 
+        prezime: split[2], email: split[3], telefon: split[4], adresa: split[5], indeks: split[6]
+       })
+      }
 
       handleChange = (event) => {
         event.preventDefault()
@@ -51,31 +50,22 @@ class Forma extends Component {
         event.preventDefault()
         const data=this.state
         console.log("Svi potrebni podaci: ", data)
-        const body = JSON.stringify(data);
-       // postRequest(data)
-        let config = {
-          headers: {
-            'Content-Type': "text/plain",
-            'Content-Type': "application/json",
-            'Access-Control-Allow-Headers': 'Content-Type, Origin, X-Requested-With, Accept, Authorization',
-            'Access-Control-Request-Method': 'POST',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true'
-          },
-          credentials: "include"
-        }
-
-        axios.post('http://localhost:31901/api/korisnik/updateStudent', body, config).then(response=>{
-          console.log(response)
-        }).catch(error=>{
-          console.log(error);
-        })
+        const body =
+        {  "id": data.id,
+            "ime": data.ime,
+            "prezime": data.prezime,
+            "email": data.email, 
+            "telefon": data.telefon,
+            "adresa": data.adresa,
+            "indeks": data.indeks
+        };
         
-      /*  const xhr = new XMLHttpRequest();
-        const body = JSON.stringify(data);
+        const xhr = new XMLHttpRequest();
+        
+        const body1=JSON.stringify(body);
+        console.log("Body1: ", body1);
 
-        console.log(body);
-        xhr.open('POST','http://localhost:31901/api/korisnik/updateStudent', true);
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -85,25 +75,36 @@ class Forma extends Component {
         }
         xhr.onerror = () => {
           console.log(xhr.statusText);
+          alert(xhr.responseText);
         }
-        xhr.send(body);   */  
+        xhr.send(body1);   
       
       }
      
+      promote(id){
+        const json={id};
+        axios.post("https://si2019alpha.herokuapp.com/api/korisnik/promoteStudentToAssistant", json)
+        .then(response=>{
+          console.log(response);
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+      }
 
     render() {
         const { ime, prezime, email, telefon, adresa, indeks, lista, selectedValue, id} = this.state;
        
         return (
-          
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card"> 
+          <div className="card-body col-md-4 col-md-offset-4" >
             <br />
                 <p>Prikaz svih studenata: </p><br />
-                <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
+                <select className="custom-select" value={selectedValue} onChange={this.onChange} onClick={this.onChange}> 
                 {
                   lista.length ? lista.map(list => 
-                  <option key={list.id}>{list.id} - {list.ime} - {list.prezime} - {list.email} - {list.telefon} - {list.adresa} - {list.indeks}</option>
-                  ): null
+                 <option key={list.id} value={[list.id, list.ime, list.prezime, list.email, list.telefon, list.adresa, list.indeks]}>{list.ime} {list.prezime}</option>
+                 ): null
                 }
                 </select><br /><br />
                 
@@ -128,16 +129,18 @@ class Forma extends Component {
               <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />
 
-              <label>  indeks </label>
-              <input className="form-control" type="text" name="index" value={indeks} onChange={this.handleChange} /><br />
+              <label>  Indeks </label>
+              <input className="form-control" type="text" name="indeks" value={indeks} onChange={this.handleChange} /><br />
               
-              <input type="submit" value="Edit" className="btn btn-success btn-block" />
-             </form>
+              <input type="submit" value="Izmijeni" className="btn btn-primary btn-block" />
+             </form><br />
+
+             <button className="btn btn-primary btn-block" onClick={()=>this.promote(id)}>Unaprijedi u asistenta</button>
    
-    </div>
+      </div>
+      </div>
         );
     }
 }
 
 export default Forma
-

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Icon } from "@opuscapita/react-icons";
 
- 
 class OcjenjivanjeJedanZadatak extends Component {
   render() {
     return (
@@ -13,7 +12,12 @@ class OcjenjivanjeJedanZadatak extends Component {
               type="indicator"
               name="arrowLeft"
               className="mr-2 float-right"
-              onClick={() => this.props.podaci.handleBackNaJednaZadaca(this.props.podaci.state.student,this.props.podaci.state.idStudenta)}
+              onClick={() =>
+                this.props.podaci.handleBackNaJednaZadaca(
+                  this.props.podaci.state.student,
+                  this.props.podaci.state.idStudenta
+                )
+              }
             />{" "}
           </h4>
           <h5 id="zNo">Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
@@ -21,33 +25,27 @@ class OcjenjivanjeJedanZadatak extends Component {
         <br />
         <div class="row">
           <div class="col">
-        <button
-          name="preuzmi"
-          id="preuzmiB1"
-          type="button"
-          className="btn btn-primary"
-          onClick={this.props.podaci.handleClick}
-        >
-          <Icon type="indicator" name="sortDesc" className="mr-2" onClick = {this.props.podaci.preuzmiDatoteku()}/>
-          Preuzmi datoteku
-        </button>
-        </div>
-        <div class="col">
-        <button
-          name="pregled"
-          id="pregledajB"
-          type="button"
-          className="btn btn-primary"
-          onClick={this.props.podaci.handleClick}
-        >
-          <Icon type="indicator" name="search" className="mr-2" onClick = {this.props.podaci.pregledDatoteke()} />
-          Pregled datoteke
-        </button>
-        </div>
+            <button
+              name="preuzmi"
+              id="preuzmiB1"
+              type="button"
+              className="btn btn-primary"
+              onClick={this.props.podaci.handleClick}
+            >
+              <Icon
+                type="indicator"
+                name="sortDesc"
+                className="mr-2"
+              />
+              Preuzmi datoteku
+            </button>
+          </div>
         </div>
         <br />
-        
-        <h6 id="osB" className="control-label">Osvojeni bodovi:</h6>
+
+        <h6 id="osB" className="control-label">
+          Osvojeni bodovi:
+        </h6>
         <div id="osBi">
           <input
             className="form-control  text-body text-center"
@@ -71,7 +69,7 @@ class OcjenjivanjeJedanZadatak extends Component {
             rows="4"
           />
           <small id="emailHelp" className="form-text text-muted">
-            Ova mogućnost je opcionalna.
+            Ova moguænost je opcionalna.
           </small>
         </div>
         <div>
@@ -94,17 +92,28 @@ class OcjenjivanjeJedanZadatak extends Component {
           <hr className="bg-danger ml-3 mr-3" />
         </div>
         <div class="row pb-2">
-        
-        <div class="col">
-        <button type="button" name="otkazi" id="otkazuj" onClick={this.props.podaci.handleClick} class="btn btn-outline-danger text-danger ">
-          Otkaži
-        </button>
-        </div>
-        <div class="col">
-        <button type="button" id="oky" name="ok" onClick={this.props.podaci.handleClick}  class="btn btn-primary">
-          OK
-        </button>
-        </div>
+          <div class="col">
+            <button
+              type="button"
+              name="otkazi"
+              id="otkazuj"
+              onClick={this.props.podaci.handleClick}
+              class="btn btn-outline-danger text-danger "
+            >
+              Otkaži
+            </button>
+          </div>
+          <div class="col">
+            <button
+              type="button"
+              id="oky"
+              name="ok"
+              onClick={this.props.podaci.handleClick}
+              class="btn btn-primary"
+            >
+              OK
+            </button>
+          </div>
         </div>
       </div>
     );

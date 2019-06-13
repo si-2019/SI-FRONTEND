@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import Modal from 'react-responsive-modal'; //paket za gotove modale odnosno popup-e
 import './App.css';
-import NoviIssueForma from './komponente/Student/NoviIssueForma.js';
 import LeftMenuStudent from './komponente/Student/LeftMenuStudent.js';
 import IssueList from './komponente/Student/issueList.js';
 import FAQ from './komponente/Student/FAQ.js';
 import Drafts from './komponente/Student/Drafts.js';
 import Archived from './komponente/Student/ArchivedPart.js'
+import LeftMenuSS from './komponente/SS/LeftMenuSS.js';
 
 
 class App extends Component {
@@ -18,8 +17,8 @@ class App extends Component {
   }
 
 
-  
- 
+
+
 
   onChangeActiveId = (id) => {
     this.setState({
@@ -40,7 +39,7 @@ class App extends Component {
                 <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
               </div>
               <div id="rightBeta">
-            
+
                 <div
                   id="TrackIssuesContent"
                   style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
@@ -71,9 +70,10 @@ class App extends Component {
 
           </div>
 
-         
+
 
         </div>
+        
       </div>
     );
   }

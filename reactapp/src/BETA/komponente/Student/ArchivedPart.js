@@ -61,7 +61,7 @@ class ArchivedPart extends React.Component {
         for(let i = 0; i < data.length; i++){
             const id = data[i].id;
             
-            axios.put('http://localhost:31902/issues/archived/delete', { trashStudent, trashSS, id })
+            axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id })
             .then((result) => {
             });
         }
@@ -86,7 +86,7 @@ class ArchivedPart extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('http://localhost:31902/issues/archived/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/archived/get');
 
         let dN = [];
         let dIP = [];
@@ -94,21 +94,21 @@ class ArchivedPart extends React.Component {
 
         //new
         res.data.new.forEach( async (issue) => {
-            let cn = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dn = issue.messages;
             dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
         });
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
-            let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dip = issue.messages;
             dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
-            let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dr = issue.messages;
             dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
         });
@@ -141,7 +141,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="new"
-                        title={`New (${this.state.dataNew.length})`}
+                        title={`Novi (${this.state.dataNew.length})`}
                     >
                         
                         {!this.state.isLoading &&
@@ -160,7 +160,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="inProgress"
-                        title={`In progress (${this.state.dataInProgress.length})`}
+                        title={`U progresu (${this.state.dataInProgress.length})`}
                     >
                         <div className="tab-button-container">
                             <Button onClick = {() => this.emptyFolder(this.state.dataInProgress, 2)}>Isprazni folder</Button>
@@ -175,7 +175,7 @@ class ArchivedPart extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="resolved"
-                        title={`Resolved (${this.state.dataResolved.length})`}
+                        title={`Riješeni (${this.state.dataResolved.length})`}
                     >
                         <div className="tab-button-container">
                             <Button onClick = {() => this.emptyFolder(this.state.dataResolved, 3)}>Isprazni folder</Button>

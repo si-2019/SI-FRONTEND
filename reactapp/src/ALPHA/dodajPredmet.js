@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import FormaPredmet from './FormaPredmet'
 import Forma from './editPredmeta'
+import FormaPrikaz from './prikazPredmeta'
+import FormaDodavanje from './povezivanjeOdsjekPredmet'
 
 
 import Tabs from 'react-bootstrap/Tabs'
@@ -19,6 +21,14 @@ class DodajPredmet extends Component {
                     
                     <Tab eventKey="profile2" title="Uredi predmet">
                         <Forma />
+                    </Tab>
+					
+					<Tab eventKey="profile3" title="Prikaz predmeta">
+                        <FormaPrikaz />
+                    </Tab>
+					
+					<Tab eventKey="profile4" title="Dodaj predmet na odsjek">
+                        <FormaDodavanje />
                     </Tab>
                   
                 </Tabs>

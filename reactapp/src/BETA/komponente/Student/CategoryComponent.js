@@ -12,11 +12,11 @@ class CategoryComponent extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:31902/category/get').then( res => {
+    axios.get('https://si2019beta.herokuapp.com/category/get').then( res => {
 
       let displayNames = [];
       
-      for(let i = 1; i < res.data.length; i++)
+      for(let i = 0; i < res.data.length; i++)
       {
         displayNames.push(res.data[i].naziv)
       }

@@ -8,6 +8,7 @@ class Forma extends Component {
 
         this.state = {
             lista: [],
+			listaOdsjeka: [],
             selectedValue: '',
             id: '',
             ime: '',
@@ -33,10 +34,19 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllProfessors')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+		
+		axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({listaOdsjeka: response.data});     
         })
         . catch (error =>{
             console.log(error)
@@ -111,7 +121,7 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
 
-        xhr.open('POST','http://localhost:31901/api/korisnik/updateProfessor', true);
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateProfessor', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -129,7 +139,7 @@ class Forma extends Component {
       obrisi(id){
         const json={id};
         console.log(id);
-        axios.delete('http://localhost:31901/api/korisnik/deleteProfessor?id='+id)
+        axios.delete('https://si2019alpha.herokuapp.com/api/korisnik/deleteProfessor?id='+id)
         .then(response=>{
           console.log(response);
         })
@@ -140,7 +150,7 @@ class Forma extends Component {
       
 
     render() {
-        const { ime, prezime, otac, majka, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, odsjek, username, linkedin, website, lista, selectedValue, id} = this.state;
+        const { ime, prezime, otac, majka, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, odsjek, username, linkedin, website, lista, selectedValue, id,listaOdsjeka} = this.state;
        
         return (
           
@@ -200,9 +210,20 @@ class Forma extends Component {
               
               <label>Telefon </label>
               <input className="form-control " type="tel" name="telefon" value={telefon} onChange={this.handleChange} /><br />
+			  
+			  <label >Odsjek </label>
+              <select className="custom-select" name="odsjek" onChange={this.onChange} onChange={this.handleChange}> 
+               
+                {
+                 
+                  listaOdsjeka.length ? listaOdsjeka.map(list => 
+                  
+                  <option key={list.idOdsjek} value={[ list.naziv]}> {list.naziv} </option>
+                
+                  ): null
+                }
+                </select><br /><br />
 
-              <label>Odsjek </label>
-              <input className="form-control " type="text" name="odsjek" value={odsjek} onChange={this.handleChange} /><br />
 
               <label>Username </label>
               <input className="form-control " type="text" name="username" value={username} onChange={this.handleChange} /><br />

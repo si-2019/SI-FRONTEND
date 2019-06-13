@@ -33,13 +33,6 @@ class Header extends Component {
             </a>
             
           </div>
-
-          {/* <Navbar bg="primary" variant="dark" className="justify-content-end">
-            <Nav className="mr-auto" className="justify-content-end">
-              <Nav.Link href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</Nav.Link>
-              <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>
-            </Nav>    
-          </Navbar> */}
       }
       else {
         meni = <NavbarFox />;

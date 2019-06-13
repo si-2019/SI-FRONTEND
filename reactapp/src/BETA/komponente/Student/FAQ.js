@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
-import ModalComponent from '../SS/NewFAQModal.js';
 
 class FAQ extends React.Component {
     constructor() {
@@ -26,36 +25,18 @@ class FAQ extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: true });
-        axios.get('http://localhost:31902/frequentIssue/get').then(res => {
+        axios.get('https://si2019beta.herokuapp.com/frequentIssue/get').then(res => {
             if (!(typeof res.data === 'string' || res.data instanceof String)) {
                 this.setState({
                     issues: res.data,
                     isLoading: false
                 });
             }
-            console.log("niz issues: " + res.data)
+            
         });
     }
 
-    saveState = (type, state) => {
-        switch (type) {
-            case "modalShow":
-                this.setState({
-                    modalShow: state
-                });
-                break;
-            case "noviFAQ":
-                console.log(state);
-                this.setState(state, () => {
-                    this.setState({
-                        modalShow: false
-                    });
-                });
-                break;
-            default:
-                break;
-        }
-    }
+   
 
     render() {
         if (this.state.isLoading) {
@@ -102,25 +83,10 @@ class FAQ extends React.Component {
 
                 </div>
 
-                <button
-                    id="buttonObjaviFaq"
-                    type="submit"
-                    className="btn btn-primary float-right btn-lg "
-                    onClick={() => this.setState({ modalShow: true })}
-                    style={{ marginTop: '30px' }}
-                >Istakni novi upit
-                        </button>
+               
 
 
-                <ModalComponent
-
-                    show={this.state.modalShow}
-                    naslovModala="Objavi rjesenje novog upita"
-                    btnPotvrdi="Objavi upit"
-                    saveState={this.saveState}
-                    noviFAQ={this.state}
-
-                />
+                
             </div>
 
 

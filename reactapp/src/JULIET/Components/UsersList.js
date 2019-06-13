@@ -94,7 +94,7 @@ class UsersList extends Component {
                         </div>
                         {this.props.rooms.filter(room => !room.isPrivate && room.name.includes(this.state.input)).map((room, index) => {
                             const active = this.props.room.id === room.id ? "active" : "";
-                            return <li className={"juliet-room" + active + " juliet-user"} onClick={() => this.props.joinRoomById(room.id)}
+                            return <li className={"juliet-room" + active + " juliet-user"} onClick={() => this.props.joinRoomById(room.id,this.props.currentUser)}
                             key={index}>
                                 <div className="juliet-presence-state"><i class="material-icons md-12">public</i> </div>
                                 <div className="juliet-username-name">{room.name}</div>
@@ -103,7 +103,7 @@ class UsersList extends Component {
 
                         {this.props.rooms.filter(room => room.isPrivate && room.name.includes(this.state.input)).map((room, index) => {
                             const active = this.props.room.id === room.id ? "active" : "";
-                            return <li className={"juliet-room" + active + " juliet-user"} onClick={() => this.props.joinRoomById(room.id)} 
+                            return <li className={"juliet-room" + active + " juliet-user"} onClick={() => this.props.joinRoomById(room.id,this.props.currentUser)} 
                             key={index}>
                                 <div className="juliet-presence-state"><i class="material-icons md-12">lock</i> </div>
                                 <div className="juliet-username-name">{room.name}</div>
@@ -113,7 +113,7 @@ class UsersList extends Component {
                         {this.props.joinableRooms.length > 0 && <h5 className="juliet-section-header">Joinable Public Rooms</h5>}
                         {this.props.joinableRooms.filter(room => room.name.includes(this.state.input)).map(room => {
                         return (
-                            <li key={room.id} className="juliet-room juliet-user" onClick={()=>this.props.joinRoomById(room.id)}>
+                            <li key={room.id} className="juliet-room juliet-user" onClick={()=>this.props.joinRoomById(room.id,this.props.currentUser)}>
                                 <div className="juliet-presence-state"><i class="material-icons md-12">public</i> </div>
                                 <div className="juliet-username-name">{room.name}</div>
                             </li>                        

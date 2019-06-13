@@ -18,7 +18,7 @@ class  Signup extends Component {
         e.preventDefault();
         if(this.state.username.length===0){}
         else{
-            Axios.get('http://localhost:31910/blockedUser/'+ this.state.username).then(res=>{
+            Axios.get('http://si2019juliet.herokuapp.com/blockedUser/'+ this.state.username).then(res=>{
                 if(res.data === null){
                     this.props.onSubmit(this.state.username);
                 

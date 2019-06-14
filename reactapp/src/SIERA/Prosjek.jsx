@@ -3,9 +3,13 @@ import axios from "axios";
 
 class Prosjek extends Component {
     constructor() {
+        var id=1;
+        if(window.localStorage.getItem("id")!=null && window.localStorage.getItem("id") != undefined){
+            id=window.localStorage.getItem("id");
+        }
         super();
         this.state = {
-            StudentID: 2,
+            StudentID: id,
             ukupanProsjek: 2.0,
             prosjekGodina: [],
             zimski: [],

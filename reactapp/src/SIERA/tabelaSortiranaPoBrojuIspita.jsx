@@ -2,10 +2,17 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class TabelaSortiranaPoBrojuIspita extends Component {
-    state = {
-        sortiraniPredmetiPoBrojuIspita: [],
-        brojIspita: [],
-        trenutnoLogovaniStudentID: 100
+    constructor(...args) {
+        super(...args);
+        var id = 1;
+        if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
+            id = window.localStorage.getItem("id");
+        }
+        this.state = {
+            sortiraniPredmetiPoBrojuIspita: [],
+            brojIspita: [],
+            trenutnoLogovaniStudentID: id
+        }
     };
 
     componentDidMount() {

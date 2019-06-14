@@ -5,8 +5,12 @@ import Modal from "react-bootstrap/Modal";
 class PrikaziStatus extends Component {
   constructor() {
     super();
+    var id = 1;
+    if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
+      id = window.localStorage.getItem("id");
+    }
     this.state = {
-      StudentID: 1,
+      StudentID: id,
       status: [],
       teme: [],
       od: "Odobreno",

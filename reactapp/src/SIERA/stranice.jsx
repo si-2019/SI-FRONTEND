@@ -5,15 +5,19 @@ import ModalnaKomponenta from "./modalnaKomponenta";
 class Stranice extends Component {
   constructor(...args) {
     super(...args);
+    var id = 1;
+    if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
+      id = window.localStorage.getItem("id");
+    }
+    this.state = {
+      StudentID: id,
+      LinkedIn: "",
+      Website: "",
+      otvorenModalLinkedIn: false,
+      otvorenModalWebsite: false
+    };
   }
 
-  state = {
-    StudentID: 1,
-    LinkedIn: "",
-    Website: "",
-    otvorenModalLinkedIn: false,
-    otvorenModalWebsite: false
-  };
   componentDidMount() {
     axios
       .get(`http://localhost:31918/studenti/` + this.state.StudentID)

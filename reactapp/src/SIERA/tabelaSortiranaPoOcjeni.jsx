@@ -2,10 +2,17 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class TabelaSortiranaPoOcjeni extends Component {
-  state = {
-    sortiraniPredmetiPoOcjeni: [],
-    ocjene: [],
-    trenutnoLogovaniStudentID: 100
+  constructor(...args) {
+    super(...args);
+    var id = 1;
+    if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
+      id = window.localStorage.getItem("id");
+    }
+    this.state = {
+      sortiraniPredmetiPoOcjeni: [],
+      ocjene: [],
+      trenutnoLogovaniStudentID: id
+    }
   };
 
   componentDidMount() {

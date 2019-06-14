@@ -6,9 +6,13 @@ class Ocjene extends React.Component {
 
     constructor() {
         super();
+        var id=1;
+        if(window.localStorage.getItem("id")!=null && window.localStorage.getItem("id") != undefined){
+            id=window.localStorage.getItem("id");
+        }
         this.state = {
             dummyOcjene: [],
-            idStudenta: 1
+            idStudenta: id
         }
     }
     componentDidMount() {

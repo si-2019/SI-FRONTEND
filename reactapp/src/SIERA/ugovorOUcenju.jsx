@@ -9,6 +9,10 @@ class UgovorOUcenju extends Component {
   //fali api za obavezne predmete
   constructor() {
     super();
+    var id = 1;
+    if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
+      id = window.localStorage.getItem("id");
+    }
     this.state = {
       izabranaGodina: 1,
       izabraniSmjer: 1,
@@ -17,7 +21,7 @@ class UgovorOUcenju extends Component {
       listaObaveznih: "",
       izborniForma: [],
       hasError: false,
-      studentId: 1,
+      studentId: id,
       pdfUrl: null,
       ime: "Neko",
       prezime: "Neko",

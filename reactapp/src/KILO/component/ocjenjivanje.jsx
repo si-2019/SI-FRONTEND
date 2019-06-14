@@ -4,6 +4,8 @@ import OcjenjivanjePocetna from "./ocjenjivanjePocetna";
 import OcjenjivanjeJednaZadaca from "./ocjenjivanjeJednaZadaca";
 import axios from "axios";
 import { async } from "q";
+import jQuery from 'jquery'; 
+
 
 class Ocjenjivanje extends Component {
   constructor(props) {
@@ -45,6 +47,28 @@ class Ocjenjivanje extends Component {
       }
     };
   }
+  
+  provjeriToken = () => {
+    axios({
+      url: 'https://si2019romeo.herokuapp.com/users/validate',
+      type: 'get',
+      dataType: 'json',
+      data: jQuery.param({
+        username: window.localStorage.getItem("username")
+      }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+      },
+      complete: function (response) {
+        if (response.status == 200) {
+          return true;
+        }
+        else{
+          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+        } 
+      }  
+    });
+  }
 
   componentDidMount = () => {
 
@@ -64,6 +88,7 @@ class Ocjenjivanje extends Component {
   };
 
   pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
+    this.provjeriToken();
     axios.get(`http://localhost:31911/getStudenteKojiSuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiPregledano: res.data
@@ -72,6 +97,7 @@ class Ocjenjivanje extends Component {
   };
 
   pokupiStudenteKojiNisuPoslaliZadacu = (idZadace) => {
+    this.provjeriToken();
     axios.get(`http://localhost:31911/getStudenteKojiNisuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiNisuPoslali: res.data
@@ -80,6 +106,7 @@ class Ocjenjivanje extends Component {
   };
 
   pokupiStudenteKojimaNijePregledanaZadaca = (idZadace) => {
+    this.provjeriToken();
     axios.get(`http://localhost:31911/getStudenteKojimaNijePregledanaZadaca/${idZadace}`).then(res => {
       this.setState({
         studentiNijePregledano: res.data
@@ -88,6 +115,7 @@ class Ocjenjivanje extends Component {
   };
 
   pokupiZadace = () => {
+    this.provjeriToken();
     axios.get(`http://localhost:31911/getZadaceZaOcjenjivanje/${this.state.idPredmeta}`).then(res => {
       this.setState({
         listaZadaca: res.data
@@ -110,6 +138,7 @@ class Ocjenjivanje extends Component {
 
     //idStudenta = 1;
     try {
+      this.provjeriToken();
       const res = await axios.get(
         `http://localhost:31911/getZadacuStudenta/${idZadace}/${idStudenta}`
       );
@@ -141,6 +170,7 @@ class Ocjenjivanje extends Component {
         var idStudent = this.state.idStudenta;
         var idZadatak = this.state.idZadatak;
 
+        this.provjeriToken();
         axios.get(`http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
           
           let resultByte = res.data.datoteka.data;
@@ -180,6 +210,8 @@ class Ocjenjivanje extends Component {
         else stanjeZadatka = 2;
         infoOcjenjivanje.append('prepisanZadatak', prepisan);
         infoOcjenjivanje.append('stanjeZadatka', stanjeZadatka);
+
+        this.provjeriToken();
         axios.post("http://localhost:31911/ocijeniZadatak", infoOcjenjivanje).then(res => {
           if (res.status === 200) {
             this.setState({ uspjehOcjenjivanja: true });

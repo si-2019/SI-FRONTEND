@@ -131,13 +131,7 @@ class Login extends Component {
 
     return (
       <div className="body">
-        <div className="header">
-          <img 
-            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
-            alt="new"
-            data-placement="right"
-          />
-        </div>
+         
         <div className="card text-white bg-primary " >
           <form className="loginForma">
           <label htmlFor="exampleInputEmail1">Korisničko ime:</label>
@@ -155,9 +149,7 @@ class Login extends Component {
           <button type="button" className="close" data-placement="right" data-dismiss="alert" onClick = {this.UkloniGresku} >&times;</button>
           <div id="greske"></div>
         </div>
-        <div className="footer">
-          &copy; 2019 Elektrotehnički fakultet u Sarajevu
-        </div>
+        
       </div>
     );
   }

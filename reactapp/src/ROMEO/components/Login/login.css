@@ -1,6 +1,7 @@
 
-.card{
-    width: 100%;
+.cardRomeo{
+    /**width: 100%;*/
+    margin-bottom: 13%;
 }
 
 .greska {
@@ -49,7 +50,22 @@
 
 .loginForma button{
     margin-left: 80%;
-    align: right;
+    box-align: right;
     width: 30%;
 }
 
+@media only screen and (max-width: 600px) {
+    .cardRomeo {
+      width: 100%;
+      padding-right: 70%;
+      margin: 0%;
+    }
+    .loginForma{
+        width: 100%;
+        padding-right: 10%;
+    }
+    .loginForma button{
+        margin-left: 10%;
+        /*margin: 0 auto;*/
+    }
+  }

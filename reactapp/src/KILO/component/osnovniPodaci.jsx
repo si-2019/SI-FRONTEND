@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import axios from 'axios';
 import "./../bootstrap.css";
+import jQuery from 'jquery'; 
 
 
 class OsnovniPodaci extends Component {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
 import './table.css'
 import axios from 'axios';
 
@@ -10,10 +9,6 @@ class TabelaStudenti extends Component {
     state = {
         studenti: [],
         ispiti: []
-    }
-
-    constructor(props) {
-        super(props);
     }
 
     componentDidMount() {
@@ -32,7 +27,7 @@ class TabelaStudenti extends Component {
     
     render() {
         let listaIspita = [];
-        if (this.state.ispiti.length == 0) {
+        if (this.state.ispiti.length === 0) {
             listaIspita = [
                 <th>Prvi parcijalni ispit</th>,
                 <th>Drugi parcijalni ispit</th>,

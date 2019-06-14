@@ -57,10 +57,6 @@ class UnosPrisustva extends React.Component {
         isFetching: false
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     handleChangeSvi = (event) => {
         const {name, value} = event.target;
         this.setState({
@@ -162,6 +158,10 @@ class UnosPrisustva extends React.Component {
         });
     }
 
+    handleNazad = () => {
+        this.setState({sedmica: 0});
+    }
+
     render() {
         return (
             <div id="unosPrisustvaID" className="footerDno">
@@ -180,7 +180,8 @@ class UnosPrisustva extends React.Component {
                                             handleSubmit={this.handleSubmit}
                                             handleSubmitSvi={this.handleSubmitSvi}
                                             handleChange={this.handleChange}
-                                            handleChangeSvi={this.handleChangeSvi}/>
+                                            handleChangeSvi={this.handleChangeSvi}
+                                            handleNazad={this.handleNazad}/>
                                 }
                                 {   
                                     this.state.sedmica === 0 &&

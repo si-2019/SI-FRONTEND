@@ -19,7 +19,7 @@ function UnosPrisustvaForma(props) {
     };
 
     return (
-        <div id="unosPrisustvaFormaID">
+        <div id="unosPrisustvaFormaID" paddingBottom="50px">
 
             <Container fluid style={{padding:"0", margin: "0"}}>
                 <Row noGutters style={{margin: "0"}}>
@@ -153,12 +153,12 @@ function UnosPrisustvaForma(props) {
                                                         <tbody>
                                                             {
                                                                 props.data.studenti.map((student, counter) =>
-                                                                    <tr key={student.id}>
+                                                                    <tr key={student.indeks}>
                                                                         <td>{counter + 1}</td>
                                                                         <td>{student.indeks}</td>
                                                                         <td>{student.ime}</td>
                                                                         <td>
-                                                                            <div class="form-group" style={{margin: "0"}}>
+                                                                            <div key={student.indeks} class="form-group" style={{margin: "0"}}>
                                                                                 <select
                                                                                     class="custom-select"
                                                                                     style={student.predavanje === "da" ? daStyle : student.predavanje === "ne" ? neStyle : null}
@@ -172,7 +172,7 @@ function UnosPrisustvaForma(props) {
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            <div class="form-group" style={{margin: "0"}}>
+                                                                            <div key={student.indeks} class="form-group" style={{margin: "0"}}>
                                                                                 <select
                                                                                     class="custom-select"
                                                                                     style={student.vjezbe === "da" ? daStyle : student.vjezbe === "ne" ? neStyle : null}
@@ -186,7 +186,7 @@ function UnosPrisustvaForma(props) {
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            <div class="form-group" style={{margin: "0"}}>
+                                                                            <div key={student.indeks} class="form-group" style={{margin: "0"}}>
                                                                                 <select
                                                                                     class="custom-select"
                                                                                     style={student.tutorijal === "da" ? daStyle : student.tutorijal === "ne" ? neStyle : null}
@@ -224,6 +224,12 @@ function UnosPrisustvaForma(props) {
                         </div>
                     </Col> 
                 </Row >
+
+                <Row notGutters style={{margin: "0"}} noGutters>
+                    <Col style={{textAlign: "center"}}>
+                        <Button variant="primary" onClick={props.handleNazad}>Nazad na sedmice</Button>
+                    </Col>
+                </Row>
 
             </Container>
 

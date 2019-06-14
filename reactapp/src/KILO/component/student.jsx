@@ -17,7 +17,7 @@ import { async } from "q";
 class Student extends Component {
   constructor(props) {
     super(props);
-
+    const urlParams = new URLSearchParams(window.location.search);
     this.state = {
       rendajOpet: true,
       zadacaState: {
@@ -30,7 +30,7 @@ class Student extends Component {
         rokZaPredaju: [],
         idPoZadacimaZadaca: []
       },
-      potrebno: [[], [], [], []],
+      potrebno: [[], [], [], [] ],
       ukupnoBodova: [],
       moguceBodova: [],
       blokirajSelect: false,
@@ -39,9 +39,13 @@ class Student extends Component {
       brojZadatka: 0,
       listaTipova: [],
       komentar: "",
-      idStudenta: 1,
+      idStudenta: urlParams.get("idStudenta")
+      ? Number(urlParams.get("idStudenta"))
+      : 1,
       idZadatak: 0,
-      idPredmeta: 3,
+      idPredmeta: urlParams.get("idPredmeta")
+      ? Number(urlParams.get("idPredmeta"))
+      : 3,
       uploadZadatka: [null],
       velicinaFajla: "",
       nazivFajla: "",
@@ -145,7 +149,15 @@ class Student extends Component {
           this.state.idPredmeta
         }`
       );
-      this.setState({ zadacaState: res.data });
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     //mora se prvo promijeniti potrebno, jer baca exception ukoliko ima vise zadaca, nego elemenata u nizu potrebno, onda prvo podesimo potrebno, pa tek onda liste, zbog izuzetaka koje je bacalo
+      var privremeniPotrebno=[];
+      for(var i=0; i<res.data.listaZadaca.length; i++)
+        privremeniPotrebno.push([]);
+       // console.log('privremeni ');
+        //console.log(privremeniPotrebno);
+        this.setState({potrebno:privremeniPotrebno}); 
+        this.setState({ zadacaState: res.data });
       this.obracunBodova(
         res.data.bodoviPoZadacimaZadaca,
         res.data.maxBodoviPoZadacimaPoZadacama
@@ -320,15 +332,7 @@ class Student extends Component {
       }
 
       case "posaljiZadatak": {
-        if (this.state.rendajOpet == false) {
-          this.setState({
-            rendajOpet: true
-          });
-        } else {
-          this.setState({
-            rendajOpet: false
-          });
-        }
+        
         // logika provjere validnog vremena slanja
         if (!this.testirajVrijeme(this.state.brojZadace - 1)) {
           this.setState({
@@ -393,7 +397,7 @@ class Student extends Component {
           // prvi put slanje
           await axios.post("http://localhost:31911/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
-              alert("Uspjesno ste poslati zadatak");
+              alert("Čestitamo! Uspješno ste poslali zadatak!");
             }
             else if (res.status === 201) {
               alert("Vec postoji ovaj zadatak")
@@ -490,14 +494,27 @@ class Student extends Component {
 
   handleBack = () => {
     //ne kontam sto nece normalno da mi promijeni ikone :/ na ocjenjivanju radi sve ok
-    document.location.reload();
+   document.location.reload();
+   if (this.state.rendajOpet == false) {
+    this.setState({
+      rendajOpet: true
+    });
+  } else {
+    this.setState({
+      rendajOpet: false
+    });
+  }
 
+  //this.forceUpdate();
     document.getElementById("tabelaPregledaZadaca").style.display = "block";
     document.getElementById("prviPutSlanjeZadatka").style.display = "none";
     document.getElementById("zadatakVecPoslan").style.display = "none";
   };
   render() {
-    console.log("state:", this.state);
+
+   
+   // console.log('student');
+    //console.log(this.state);
     return (
       <div>
         <div id="tabelaPregledaZadaca">

@@ -64,8 +64,8 @@ class OcjenjivanjeJednaZadaca extends Component {
                             </th>
                            ))}
                           */}
-                <th class="tabtip1">{this.props.podaci.state.sumaOsvojeni}</th>
-                <th class="tabtip1">{this.props.podaci.state.sumaMoguci}</th>
+                <th class="tabtip1">{Math.round(this.props.podaci.state.sumaOsvojeni*100)/100}</th>
+                <th class="tabtip1">{Math.round(this.props.podaci.state.sumaMoguci*100)/100}</th>
                 <th class="tabtip1">{this.props.podaci.state.zadacaState.postavkaZadace}{<Icon type="indicator" name="save" className=" ml-3" />}</th>
                 <th class="tabtip1">{this.props.podaci.state.zadacaState.rokZaPredaju}</th>
               </tr>

@@ -15,77 +15,83 @@ class Header extends Component {
 
     return (
       <div>
-        
+        <div> <Link to={"/KILO/kreiranjeZadace/?idPredmeta="+this.props.podaci.state.idPredmet}  onClick={this.props.podaci.postaviIdeve}>
           <button
             type="button"
             class="meniBtn"
             className="btn btn-primary left-buttons"
             id="KreiranjeKilo"
             style={{ width: "100%" }}
+            style={{ display: this.props.podaci.state.idStudent === null ? 'inherit' : 'none' }}
             onClick={()=>this.props.podaci.postaviAktivniDiv(1)}
           >
-            <Link to="/KILO/kreiranjeZadace/?idPredmeta=3">
-            Kreiranje zadaće</Link>
-          </button>
-       
-
-       
+           
+            Kreiranje zadaće
+          </button></Link>
+       </div>
+<div>
+          <Link to= {"/KILO/azuriranjeZadace/?idPredmeta="+this.props.podaci.state.idPredmet} onClick={this.props.podaci.postaviIdeve}>
           <button
             type="button"
             class="meniBtn"
             className="btn btn-primary left-buttons"
             id="AzuriranjeKilo"
             style={{ width: "100%" }}
+            style={{ display: this.props.podaci.state.idStudent === null ? 'inherit' : 'none' }}
             onClick={()=>this.props.podaci.postaviAktivniDiv(2)}
-          ><Link to="/KILO/azuriranjeZadace/?idPredmeta=3">
+          >
             Ažuriranje zadaće
-            </Link>
+          
           </button>
-       
-
-        
+       </Link>
+</div>
+        <div> <Link to={"/KILO/brisanjeZadace/?idPredmeta="+this.props.podaci.state.idPredmet}  onClick={this.props.podaci.postaviIdeve}>
+           
           <button
             type="button"
             class="meniBtn"
             className="btn btn-primary left-buttons"
             id="BrisanjeKilo"
             style={{ width: "100%" }}
+            style={{ display: this.props.podaci.state.idStudent === null ? 'inherit' : 'none' }}
             onClick={()=>this.props.podaci.postaviAktivniDiv(3)}
           >
-            <Link to="/KILO/brisanjeZadace/?idPredmeta=3">
             Brisanje zadaće
-            </Link>
-          </button>
+          
+          </button>  </Link>
       
-
-        
+</div>
+        <div><Link to={"/KILO/ocjenjivanjeZadace/?idPredmeta="+this.props.podaci.state.idPredmet}  onClick={this.props.podaci.postaviIdeve}>
           <button
             type="button"
             class="meniBtn"
             className="btn btn-primary left-buttons"
             id="OcjenivanjeKilo"
             style={{ width: "100%" }}
+            style={{ display: this.props.podaci.state.idStudent === null ? 'inherit' : 'none' }}
             onClick={()=>this.props.podaci.postaviAktivniDiv(4)}
           >
-            <Link to="/KILO/ocjenjivanjeZadace/?idPredmeta=3">
+            
             Ocjenjivanje zadaće
-            </Link>
-          </button>
-     
+          
+          </button>  </Link>
+     </div>
 
-        
+        <div>
+          <Link to={"/KILO/student/?idStudenta="+this.props.podaci.state.idStudent+"&idPredmeta="+this.props.podaci.state.idPredmet}  onClick={this.props.podaci.postaviIdeve}>
           <button
             type="button"
             class="meniBtn"
             className="btn btn-primary left-buttons"
             style={{ width: "100%" }}
             onClick={()=>this.props.podaci.postaviAktivniDiv(5)}
+            style={{ display: this.props.podaci.state.idStudent === null ? 'none' : 'inherit' }}
           >
-            <Link to="/KILO/student/?idStudenta=1">
+            
             Student
-            </Link>
-          </button>
-        
+          
+          </button>  </Link>
+        </div>
       
       </div>
     );

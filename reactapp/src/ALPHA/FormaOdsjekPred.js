@@ -23,7 +23,8 @@ class FormaOdsjekPred extends Component {
         const { odsjek, predmet } = this.state;
 
         return (
-          <div className="col-md-2">
+        <div className="card align-items-center">
+          <div className=" card-body col-md-2">
           
             <form  onSubmit={this.OnSubmit} className="container-fluid">
               <label className="col-md-2">Odaberite odsjek </label>
@@ -38,6 +39,7 @@ class FormaOdsjekPred extends Component {
               
               <input type="submit" value="Dodaj" className="btn btn-success btn-block" />
             </form>
+            </div>
           </div>
         );
     }

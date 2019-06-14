@@ -3,6 +3,7 @@ import Modal from 'react-responsive-modal'; //paket za gotove modale odnosno pop
 import CategoryComponent from './SSCategoryComponent.js';
 import axios from 'axios'
 import AddNewCategoryForm from './AddNewCategoryForm.js';
+import {standardHeaders} from '../helpers/getStandardHeaders';
 
 class NoviIssueForma extends React.Component {
 
@@ -42,7 +43,7 @@ class NoviIssueForma extends React.Component {
             // get our form data out of state
             const { issueTitle, issueText } = this.state;
 
-            axios.post('https://si2019beta.herokuapp.com/issue/send/ss?issueTitle='+issueTitle+'&issueText='+issueText)
+            axios.post('https://si2019beta.herokuapp.com/issue/send/ss?issueTitle='+issueTitle+'&issueText='+issueText, standardHeaders())
             .then((result) => {
                 alert(result.data); //Ovdje treba pokupiti odgovor od backend-a, ali ne znam kako !!!!!
             });
@@ -86,7 +87,7 @@ class NoviIssueForma extends React.Component {
             
             const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
     
-                axios.post('https://si2019beta.herokuapp.com/issues/draft/add/ss', { issueTitle, issueText, procitaoStudent, procitalaSS})
+                axios.post('https://si2019beta.herokuapp.com/issues/draft/add/ss', { issueTitle, issueText, procitaoStudent, procitalaSS}, standardHeaders())
                 .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
                 else{
                     { this.setState({ greska: true})}

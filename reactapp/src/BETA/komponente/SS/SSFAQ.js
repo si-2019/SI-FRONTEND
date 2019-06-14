@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import ModalComponent from './NewFAQModal.js';
+import {standardHeaders} from '../helpers/getStandardHeaders';
 
 class SSFAQ extends React.Component {
     constructor() {
@@ -26,7 +27,7 @@ class SSFAQ extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: true });
-        axios.get('https://si2019beta.herokuapp.com/frequentIssue/get').then(res => {
+        axios.get('https://si2019beta.herokuapp.com/frequentIssue/get', standardHeaders()).then(res => {
             if (!(typeof res.data === 'string' || res.data instanceof String)) {
                 this.setState({
                     issues: res.data,

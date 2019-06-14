@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "../helpers/Potvrda.js";
+import {standardHeaders} from '../helpers/getStandardHeaders';
 
 class AddNewCategoryModal extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class AddNewCategoryModal extends React.Component {
 
         event.preventDefault();
         const naziv = this.state.naziv;
-        axios.post('https://si2019beta.herokuapp.com/category/add', { naziv })
+        axios.post('https://si2019beta.herokuapp.com/category/add', { naziv }, standardHeaders())
             .then((result) => {
                 if (result.data === "Successfully added category!") {
                     this.setState({ greska: false, greskaVecPostoji:false });

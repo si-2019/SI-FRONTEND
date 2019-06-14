@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda.js";
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 class ModalComponent extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class ModalComponent extends React.Component {
 
         const {issueText } = this.state;
 
-        axios.post('https://si2019beta.herokuapp.com/issue/reply/student', { issueID, issueText})
+        axios.post('https://si2019beta.herokuapp.com/issue/reply/student', { issueID, issueText}, standardHeaders())
         .then(result => {
             if (result.data === "Uspjesan upis!") { { this.setState({ greska: false}); } }
             else{

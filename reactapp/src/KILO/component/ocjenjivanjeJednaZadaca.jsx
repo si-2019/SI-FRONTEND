@@ -40,7 +40,7 @@ class OcjenjivanjeJednaZadaca extends Component {
 
                 {this.props.podaci.state.ostvareniMoguci.map((ostvareniBodovi, indeks2) => (
                   <th class="tabtip1">{ostvareniBodovi}
-                    {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 0 && <Icon type="indicator" name="attachment" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}
+                    {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 0 && <Icon type="indicator" name="attachment" className=" ml-3"/>}
                     {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 1 && <Icon type="indicator" name="search" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}
                     {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 2 && <Icon type="indicator" name="ok" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}
                     {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 3 && <Icon type="indicator" name="error" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}

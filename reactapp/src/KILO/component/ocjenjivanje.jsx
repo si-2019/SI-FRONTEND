@@ -108,7 +108,7 @@ class Ocjenjivanje extends Component {
 */
   pokupiZadacuStudenta = async (idZadace, idStudenta) => {
 
-    idStudenta = 1;
+    //idStudenta = 1;
     try {
       const res = await axios.get(
         `http://localhost:31911/getZadacuStudenta/${idZadace}/${idStudenta}`

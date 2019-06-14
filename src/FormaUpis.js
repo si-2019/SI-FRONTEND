@@ -105,9 +105,9 @@ class FormaUpis extends Component {
                 lista.length ? lista.map(list => <option key={list.id}>{list.id} - {list.title} - {list.body}</option>): null
               }
             </select><br /><br />
-
           
-            <form  onSubmit={this.OnSubmit} className="container-fluid">
+              
+            <form  onSubmit={this.OnSubmit}>
               <label>ID</label>
               <input className="form-control" type="text" name="name"  readOnly value={id}/><br />
 
@@ -117,17 +117,17 @@ class FormaUpis extends Component {
               <label>Prezime studenta </label>
               <input className="form-control" type="text" name="name"  readOnly value={prezime}/><br />
 
-              <label className="col-md-2">Ciklus </label>
+              <label>Ciklus </label>
               <input className="form-control" type="number" name="ciklus" value={ciklus} onChange={this.handleInputChange} /><br />
               
-              <label className="col-md-2">Semestar </label>
+              <label>Semestar </label>
               <input className="form-control" type="number" name="sem" value={sem} onChange={this.handleInputChange} /><br />
 
               <label >Tip studenta </label>
               <input className="form-control" type="number" name="tip" value={tip} onChange={this.handleInputChange} /><br />
 
-              <label className="col-md-2">Odsjek </label><br />
-              <select className="custom-select" name="odsjek" value={odsjek} onChange={this.handleInputChange}>{opcije}</select><br />
+              <label >Odsjek </label><br />
+              <select className="custom-select" name="odsjek" value={odsjek} onChange={this.handleInputChange}>{opcije}</select><br /><br />
               
               
               <input type="submit" value="Upiši" className="btn btn-success btn-block" />

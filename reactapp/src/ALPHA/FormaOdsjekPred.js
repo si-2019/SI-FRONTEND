@@ -27,11 +27,11 @@ class FormaOdsjekPred extends Component {
           <div className=" card-body col-md-2">
           
             <form  onSubmit={this.OnSubmit} className="container-fluid">
-              <label className="col-md-2">Odaberite odsjek </label>
+              <label className="col-md-4">Odaberite odsjek </label>
               <select className="form-control"  name="asistent" value={odsjek} onChange={this.handleInputChange}> </select>
               <br />
               
-              <label className="col-md-2">Odaberite predmet </label>
+              <label className="col-md-4">Odaberite predmet </label>
               <select className="form-control"  name="predmet" value={predmet} onChange={this.handleInputChange} > </select>
               <br />
 

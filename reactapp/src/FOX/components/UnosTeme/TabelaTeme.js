@@ -116,7 +116,7 @@ class TabelaStudenti extends Component {
                             <td>Opis</td>
                             <td>Da</td>
                             <td>Neko Nekic</td>
-                            <td><Form><Button variant="primary" href="#">Izmjeni</Button></Form></td>
+                            <td><Form><Button variant="primary" href={"izmjenaTeme/0/Naziv/Opis"}>Izmjeni</Button></Form></td>
                             <td><Form onSubmit={(e) => this.izbrisiTemu(e, 0)}>
                                 <Button variant="danger" type="submit">Izbriši</Button>
                                 </Form>

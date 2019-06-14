@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import Header from '../Header/Header';
@@ -55,7 +54,7 @@ class IzmjeniTemu extends Component {
                 opis: this.opisTeme.current.value
             };
             const {id} = this.state;
-            axios.put('http://localhost:31906/api/fox/temeZavrsnih/izmjeniTemu/' + id, reqBody)
+            axios.put('https://si2019fox.herokuapp.com/api/fox/temeZavrsnih/izmjeniTemu/' + id, reqBody)
             .then(() => {
                 this.setState({
                     greskaBaza: 2,

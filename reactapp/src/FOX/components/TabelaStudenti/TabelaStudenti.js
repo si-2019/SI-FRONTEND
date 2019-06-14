@@ -14,12 +14,12 @@ class TabelaStudenti extends Component {
     componentDidMount() {
         //Promise
         let idPredmeta = window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64;
-        axios.get('http://localhost:31906/api/fox/tabelaStudenti/predmet/'+ idPredmeta)
+        axios.get('https://si2019fox.herokuapp.com/api/fox/tabelaStudenti/predmet/'+ idPredmeta)
             .then(
                 res => this.setState({studenti: res.data})
             );
 
-        axios.get('http://localhost:31906/api/fox/tabelaStudenti/ispiti')
+        axios.get('https://si2019fox.herokuapp.com/api/fox/tabelaStudenti/ispiti')
             .then(
                 res => this.setState({ispiti: res.data})
             );

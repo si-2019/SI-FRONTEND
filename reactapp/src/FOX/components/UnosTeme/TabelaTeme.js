@@ -32,7 +32,7 @@ class TabelaStudenti extends Component {
             greskaBaza: 3
         });
 
-        axios.delete('http://localhost:31906/api/fox/temeZavrsnih/izbrisiTemu/' + id) //idPredmeta kao parametar
+        axios.delete('https://si2019fox.herokuapp.com/api/fox/temeZavrsnih/izbrisiTemu/' + id) //idPredmeta kao parametar
             .catch(() => {
                 this.setState({
                     greskaBaza: 1,
@@ -51,7 +51,7 @@ class TabelaStudenti extends Component {
             greskaBaza: 3
         });
 
-        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/' + idPredmeta) //idPredmeta kao parametar iz local storega
+        axios.get('https://si2019fox.herokuapp.com/api/fox/temeZavrsnih/tabelaTemeZavsnih/' + idPredmeta) //idPredmeta kao parametar iz local storega
             .then(
                 res => this.setState({
                     teme: res.data,

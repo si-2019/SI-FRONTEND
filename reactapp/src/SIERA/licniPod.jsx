@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import "./bootstrap.min.css"
-import Fotografija from "./fotografija.jsx"
 import ModalComponent from "./ModalLicni"
 import Kontakt from "./kontaktPod"
 import Stranice from "./stranice";

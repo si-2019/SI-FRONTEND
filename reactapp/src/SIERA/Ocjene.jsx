@@ -16,7 +16,7 @@ class Ocjene extends React.Component {
             .get("http://localhost:31918/ocjene/" + this.state.idStudenta)
             .then(res => {
                 this.setState({
-                    dummyOcjene: res.data.ocjene
+                    dummyOcjene: res.data.ocjene[0]
                 })
 
             })

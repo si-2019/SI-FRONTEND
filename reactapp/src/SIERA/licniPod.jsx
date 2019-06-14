@@ -32,7 +32,6 @@ class LicniPod extends Component {
                 });
                 break;
             case "podaciKorisnika":
-                console.log(state);
                 this.setState(state, () => {
                     this.setState({
                         modalShow: false
@@ -106,12 +105,14 @@ class LicniPod extends Component {
                                     </div>
                                 </div>
                                 <div className="col-auto justify-content-center">
-                                    <Fotografija fotografija={this.state.fotka} />
-                                   
+                                    <div style={{ display: "inline-block" }}>
+                                        <img className="rounded-circle" style={{ height: "350px", width: "350px", display: "block" }} src={this.state.fotka} />
+                                    </div>
+
                                 </div>
                                 <div className="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center">
                                     <div style={{ textAlign: "left" }}>
-                                    <Kontakt/>
+                                        <Kontakt />
                                     </div>
                                     <Stranice />
                                 </div>

@@ -10,6 +10,7 @@ class ModalComponent extends React.Component {
             greska: null,
             greskaFoto: null,
             brojac: 0,
+            novaSlikaPrikaz: null,
             noviInput: {
                 ime: null,
                 prezime: null,
@@ -27,8 +28,10 @@ class ModalComponent extends React.Component {
     handleChange = (e) => {
         const { name, value } = e.target;
         let state = JSON.parse(JSON.stringify(this.state.noviInput));
-        
-        if(name=="foto") state["foto"] = e.target.files[0];
+
+        if (name == "foto") {
+            state["foto"] = e.target.files[0];
+        }
         else state[name] = value;
         this.setState({
             noviInput: state
@@ -40,7 +43,8 @@ class ModalComponent extends React.Component {
         podaci.ime = ime ? ime : podaci.ime;
         podaci.prezime = prezime ? prezime : podaci.prezime;
         podaci.Drzavljanstvo = drzavljanstvo ? drzavljanstvo : podaci.Drzavljanstvo;
-        podaci.fotka = foto ? foto : podaci.fotka;
+        podaci.fotka = this.state.novaSlikaPrikaz;
+        console.log("foto: " + foto);
         this.setState({
             greska: null,
             greskaFoto: null
@@ -102,7 +106,12 @@ class ModalComponent extends React.Component {
                     .put(
                         `http://localhost:31918/studenti/update/foto/` + this.state.studentID, formData, config)
                     .then(res => {
-                        this.setState({ greskaFoto: false, greska:false});
+                        this.setState({
+                            greskaFoto: false, 
+                            greska: false, 
+                            novaSlikaPrikaz: "data:image/png;base64," + res.data.fotografija
+                        });
+                        console.log("res.fotografija: " + res.data.fotografija);
                     })
                     .catch(err => {
                         this.setState({ greskaFoto: true });
@@ -113,7 +122,7 @@ class ModalComponent extends React.Component {
 
     }
     renderujPotvrdu() {
-        if (this.state.greska==false) {
+        if (this.state.greska == false) {
             return (
                 <Potvrda
                     key={this.brojac}

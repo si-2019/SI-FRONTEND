@@ -90,8 +90,8 @@ class FormaProfPred extends Component {
        const {listaOdsjeka, listaPredmeta, selectedValueO, selectedValueP, godina, semestar, ciklus, obavezan}= this.state;
        console.log(godina, semestar, ciklus, obavezan);
        return (
-         <div className="card">
-         <div className="card-body col-md-4">
+         <div className="card align-items-center">
+         <div className="card-body col-md-2">
              <p>Prikaz svih odsjeka: </p><br />
                <select className="custom-select" value={selectedValueO} onChange={this.onChangeOdsjek} onClick={this.onChangeOdsjek}>
                {

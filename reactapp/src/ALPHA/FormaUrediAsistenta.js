@@ -114,8 +114,8 @@ class Forma extends Component {
         const { ime, prezime, email, telefon, adresa, lista, selectedValue, id} = this.state;
        
         return (
-          
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body col-md-4" >
             <br />
                 <p>Prikaz svih asistenata: </p><br />
                 <select className="custom-select" onChange={this.onChange} onClick={this.onChange}> 
@@ -128,7 +128,7 @@ class Forma extends Component {
                 
                 <br />
              
-            <form  onSubmit={this.handleSubmit}>
+            <form  onSubmit={this.handleSubmit} className="container-fluid">
               <label className="font-weight-bold">ID studenta</label>
               <input className="form-control font-weight-bold" readOnly value={id} /> <br />
 
@@ -152,7 +152,7 @@ class Forma extends Component {
 
              <button className="btn btn-primary btn-block" onClick={()=>this.promote(id)}>Promovisi</button>
              <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(id)}>Obrisi</button>
-
+        </div>
     </div>
         );
     }

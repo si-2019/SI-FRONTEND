@@ -158,7 +158,7 @@ class promijeniLozinku extends Component {
                 
                 <br />
              
-            <form  onSubmit={this.handleSubmit} className="container-fluid">
+            <form  onSubmit={this.handleSubmit}>
             
 
               <label>Username </label>

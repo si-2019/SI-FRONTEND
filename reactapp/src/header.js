@@ -16,7 +16,7 @@ export default class App extends React.Component {
                 {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
                 <button type="button" className="odjava" data-placement="right" margin-left="70%" text-align="center" onClick={this.Odjavi} >Odjavi se</button>   
                 
-                
+                <button onClick={() => this.setState({ modalShow: true })} >Prikazi log</button> 
           </div>
 
         ) 

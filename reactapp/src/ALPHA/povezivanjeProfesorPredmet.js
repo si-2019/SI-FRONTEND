@@ -71,7 +71,7 @@ class FormaProfPred extends Component {
         const {profesor, predmet, listaProfesora, listaPredmeta} = this.state;
 
         return (
-          <div className="col-md-2">
+          <div className="col-md-4 col-md-offset-4">
             <br />
               <p>Odaberite profesora: </p><br />
                 <select className="custom-select"  onChange={this.onChangeProfesor}> 

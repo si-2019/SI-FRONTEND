@@ -91,7 +91,7 @@ class FormaProfPred extends Component {
        console.log(godina, semestar, ciklus, obavezan);
        return (
          <div className="card">
-         <div className="card-body col-md-2">
+         <div className="card-body col-md-4">
              <p>Prikaz svih odsjeka: </p><br />
                <select className="custom-select" value={selectedValueO} onChange={this.onChangeOdsjek} onClick={this.onChangeOdsjek}>
                {

@@ -117,19 +117,19 @@ class Forma extends Component {
               <label>Ime </label>
               <input  className="form-control" type="text" name="ime" value={ime} onChange={this.handleChange} /><br />
               
-              <label >Prezime </label>
+              <label>Prezime </label>
               <input className="form-control" type="text" name="prezime" value={prezime} onChange={this.handleChange}  /><br />
 
-              <label >Email </label>
+              <label>Email </label>
               <input className="form-control " type="email" name="email" value={email} onChange={this.handleChange} /><br />
 
-              <label >Telefon </label>
+              <label>Telefon </label>
               <input className="form-control " type="tel" name="telefon" value={telefon} onChange={this.handleChange} /><br />
                            
               <label>Adresa </label>
               <input className="form-control" type="text" name="adresa" value={adresa} onChange={this.handleChange} /><br />
 
-              <label>  Indeks </label>
+              <label>Indeks </label>
               <input className="form-control" type="text" name="indeks" value={indeks} onChange={this.handleChange} /><br />
               
               <input type="submit" value="Izmijeni" className="btn btn-primary btn-block" />

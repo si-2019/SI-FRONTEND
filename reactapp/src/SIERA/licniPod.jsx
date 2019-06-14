@@ -102,15 +102,16 @@ class LicniPod extends Component {
                                             <label className="col-form-label" for="inputDefault">Ime i prezime majke</label>
                                             <h4>{this.state.imePrezimeMajke}</h4>
                                         </div>
-                                        <button type="button" className="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Edit</button>
+                                        <button type="button" className="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Uredi</button>
                                     </div>
                                 </div>
                                 <div className="col-auto justify-content-center">
                                     <Fotografija fotografija={this.state.fotka} />
+                                   
                                 </div>
                                 <div className="col-lg-3 col-sm-12 col-md-6 justify-content-sm-center">
                                     <div style={{ textAlign: "left" }}>
-                                        <Kontakt />
+                                    <Kontakt/>
                                     </div>
                                     <Stranice />
                                 </div>

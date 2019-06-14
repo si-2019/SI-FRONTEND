@@ -159,7 +159,10 @@ class UnosPrisustva extends React.Component {
     }
 
     handleNazad = () => {
-        this.setState({sedmica: 0});
+        this.setState({
+            sedmica: 0,
+            greskaBaza: 0
+        });
     }
 
     render() {

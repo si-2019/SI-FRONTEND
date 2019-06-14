@@ -227,7 +227,7 @@ function UnosPrisustvaForma(props) {
 
                 <Row notGutters style={{margin: "0"}} noGutters>
                     <Col style={{textAlign: "center"}}>
-                        <Button variant="primary" onClick={props.handleNazad}>Nazad na sedmice</Button>
+                        <Button variant="primary" onClick={props.handleNazad} style={{marginBottom: "15px"}}>Nazad na sedmice</Button>
                     </Col>
                 </Row>
 

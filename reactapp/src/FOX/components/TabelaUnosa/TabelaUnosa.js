@@ -201,7 +201,7 @@ class TabelaUnosa extends Component {
                                     <Form.Control
                                     ref={ this.bodovi }
                                     required
-                                    placeholder="Unesite ocjenu"
+                                    placeholder="Unesite bodove"
                                     type="number"
                                     min={-100}
                                     max={100}

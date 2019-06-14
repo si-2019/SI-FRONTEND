@@ -123,9 +123,7 @@ class TabelaUnosa extends Component {
             this.setState({
                 ispiti: res.data,
                 isFetching: false,
-                greskaBaza: 2,
-                naslovGreska: "Ispiti su učitani!",
-                opisGreska: "Ispiti su uspješno učitani iz baze podataka."
+                greskaBaza: 0
             });
         })
         .catch(()=> {

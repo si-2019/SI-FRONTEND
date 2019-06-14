@@ -29,56 +29,68 @@ function Poruka(props) {
 
 class IzmjeniTemu extends Component {
     constructor(props) {
-        super(props);
-        //this.handleSubmit = this.handleSubmit.bind(this);  
+        super(props); 
         this.state = { 
             validated: false,
             greskaBaza: 0,
+            opisUspjeh: "",
+            naslovUspjeh: "",
+            naslovGreska: "",
+            opisGreska: "",
+            isFetching: false,
             id: undefined,
             naziv: undefined,
             opis: undefined
-         }
-        /* 1. Initialize Ref */
+        }
+
         this.nazivTeme = React.createRef();
         this.opisTeme = React.createRef();
     }
 
     handleSubmit(event) {
+        event.preventDefault();
+        event.stopPropagation();
         const form = event.currentTarget;
-        console.log(event.currentTarget.checkValidity());
+
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+            this.setState({
+                isFetching: false,
+                greskaBaza: 0
+            });
         }
         else {
-            event.preventDefault();
-            event.stopPropagation();
-            //Poziv API-a
-            //Promise
-            /* 3. Get Ref Value here (or anywhere in the code!) */
-            console.log(this.nazivTeme.current.value);
-            console.log(this.opisTeme.current.value);
             let reqBody = {
                 naziv: this.nazivTeme.current.value,
                 opis: this.opisTeme.current.value
             };
             const {id} = this.state;
-            axios.put('http://localhost:31906/api/fox/temeZavrsnih/izmjeniTemu/'+id, reqBody)
-            .then((res) => {
-                console.log(res);
-                this.setState({greskaBaza: 2});
+            axios.put('http://localhost:31906/api/fox/temeZavrsnih/izmjeniTemu/' + id, reqBody)
+            .then(() => {
+                this.setState({
+                    greskaBaza: 2,
+                    isFetching: false,
+                    opisUspjeh: "Tema je uspješno spremljena u bazu podataka.",
+                    naslovUspjeh: "Tema je izmijenjena!"
+                });
             })
-            .catch((err)=> {
-                console.log("Greska:" + err);
-                this.setState({greskaBaza: 1});
+            .catch(()=> {
+                this.setState({
+                    greskaBaza: 1,
+                    isFetching: false,
+                    opisGreska: "Baza podataka nije dostupna.",
+                    naslovGreska: "Tema nije izmijenjena!"
+                });
             });
         }
+
         this.setState({ validated: true });
-        event.preventDefault();
-        event.stopPropagation();
-
-
-        
     }
 
     componentDidMount() {

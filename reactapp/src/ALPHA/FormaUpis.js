@@ -90,7 +90,7 @@ class FormaUpis extends Component {
 
        return (
          <div className="card align-items-center">
-         <div className="card-body col-md-2">
+         <div className="card-body col-md-4">
            <br />
            <input type="text" className="form-control" value={search} onChange={this.handleChange} placeholder="Ime studenta"></input> <br />
            <button className="btn btn-primary btn-block" onClick={()=> this.componentDidMount(search)}>Pretraži</button>

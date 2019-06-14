@@ -126,7 +126,7 @@ class promijeniLozinku extends Component {
         <div className="promijeniLozinku" style={{color: "#2C3E50"}} id="content">
             <h1 style={{color: "#fff", background: "#2C3E50"}} id="h1">Promjena lozinke</h1>
           <div className="card align-items-center">
-          <div className="card-body col-md-2">
+          <div className="card-body col-md-4">
             <br />
 
             <p>Uloga korisnika: </p><br />

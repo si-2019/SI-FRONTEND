@@ -6,6 +6,8 @@ import { taggedTemplateExpression, isNullLiteral } from "@babel/types";
 import PrviPutSlanjeZadatka from "./prviPutSlanjeZadatka";
 import ZadatakVecPoslan from "./zadatakVecPoslan";
 import { async } from "q";
+import jQuery from 'jquery'; 
+
 
 /*0 "nije poslano", 
   1 "nije pregledano", 
@@ -144,6 +146,7 @@ class Student extends Component {
     //2. parametar axiosa, je sta ce tamo biti u backendu req.body
     var pomoc = 3;
     try {
+      this.provjeriToken();
       const res = await axios.get(
         `http://localhost:31911/dajZadaceZaStudenta/${this.state.idStudenta}/${
           this.state.idPredmeta
@@ -178,6 +181,7 @@ class Student extends Component {
 
     //validacija ako je rok prosao, nema liste tipova
     if (povratna_vrijednost) {
+      this.provjeriToken();
       await axios
         .get(
           `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
@@ -212,6 +216,7 @@ class Student extends Component {
 
     //validacija ako je rok prosao, nema liste tipova
     if (povratna_vrijednost) {
+      this.provjeriToken();
       await axios
         .get(
           `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
@@ -230,6 +235,7 @@ class Student extends Component {
       document.getElementById("uploadButton2").disabled = true;
       document.getElementById("posalji2").disabled = true;
     }
+    this.provjeriToken();
     await axios
       .get(
         `http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`
@@ -261,7 +267,7 @@ class Student extends Component {
     }
 
     var nazivZadace = this.state.zadacaState.listaZadaca[r];
-
+    this.provjeriToken();
     axios
       .get(`http://localhost:31911/downloadPostavka/${nazivZadace}`)
       .then(res => {
@@ -395,6 +401,7 @@ class Student extends Component {
 
         if (document.getElementById("uploadButton2").value === "") {
           // prvi put slanje
+          this.provjeriToken();
           await axios.post("http://localhost:31911/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
               alert("Čestitamo! Uspješno ste poslali zadatak!");
@@ -419,6 +426,7 @@ class Student extends Component {
 
         } else {
           // ponovno slanje zadatka
+          this.provjeriToken();
           axios.put("http://localhost:31911/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
               alert("Uspjesno ste poslati zadatak");
@@ -459,7 +467,7 @@ class Student extends Component {
       case "preuzmi": {
         var idStudent = this.state.idStudenta;
         var idZadatak = this.state.idZadatak;
-
+        this.provjeriToken();
         axios
           .get(
             `http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`
@@ -481,7 +489,8 @@ class Student extends Component {
 
       case "pregled": {
         //salji na rutu u backendu
-
+        
+        this.provjeriToken();
         await axios
           .get("http://localhost:31911/getPregledDatoteke")
           .then(res => {});

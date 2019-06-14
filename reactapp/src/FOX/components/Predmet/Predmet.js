@@ -14,7 +14,7 @@ class Predmet extends Component {
      }
      state = {
           predmeti: [
-               {id: 64, naziv: "Tehnike programiranja", opis: "Opis predemeta"},
+               {id: 0, naziv: "Tehnike programiranja", opis: "Opis predemeta"},
                {id: 1, naziv: "Numerički algoritmi", opis: "Opis predemeta"},
                {id: 2, naziv: "Diskretna matematika", opis: "Opis predemeta"}
           ],
@@ -26,12 +26,14 @@ class Predmet extends Component {
      }
 
      componentDidMount() {
-          const idKorisnika = window.localStorage.getItem('idKorisnika') !== null ? window.localStorage.getItem("idKorisnika") : 64;
+          const korisnik = window.localStorage.getItem('idKorisnika');
+          const idKorisnika = korisnik !== null ? korisnik : 64;
 
           axios.get(`http://localhost:31906/api/fox/predmeti/${idKorisnika}`).then(response => {
                this.setState({predmeti: response.data});
           });
-
+          
+          // Ostaje hardkodirani poziv jer grupe nisu implementirane u projektu
           axios.get('http://localhost:31906/api/fox/grupe/1').then(response => {
                this.setState({grupe: response.data})
           });

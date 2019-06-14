@@ -10,6 +10,8 @@ import {
   promjeniListuTipova,
   promjenaBodova
 } from "../utils/kreiranje-zadace";
+import jQuery from 'jquery'; 
+
 
 class KreiranjeZadace extends Component {
   constructor(props) {
@@ -37,6 +39,28 @@ class KreiranjeZadace extends Component {
       neuspjehKreiranja: false,
       vecPostojiImeZadace: false
     };
+  }
+
+  provjeriToken = () => {
+    axios({
+      url: 'https://si2019romeo.herokuapp.com/users/validate',
+      type: 'get',
+      dataType: 'json',
+      data: jQuery.param({
+        username: window.localStorage.getItem("username")
+      }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+      },
+      complete: function (response) {
+        if (response.status == 200) {
+          return true;
+        }
+        else{
+          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+        } 
+      }  
+    });
   }
 
   handleChangeProps = props => {
@@ -272,6 +296,7 @@ class KreiranjeZadace extends Component {
         fData.append("state", JSON.stringify(this.state));
 
         if (this.state.radnja === "Kreiranje") {
+          this.provjeriToken();
           axios
             .post("http://localhost:31911/addZadaca", fData)
             .then(res => {
@@ -285,6 +310,7 @@ class KreiranjeZadace extends Component {
             })
             .catch(() => this.setState({ neuspjehKreiranja: true }));
         } else if (this.state.radnja === "Azuriranje") {
+          this.provjeriToken();
           axios
             .put(
               `http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`,

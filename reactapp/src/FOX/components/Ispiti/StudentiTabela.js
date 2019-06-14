@@ -1,7 +1,9 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom';
-import ReactTable from 'react-table';
 import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 class TabelaPredmeti extends  React.Component {
     constructor(props){
@@ -127,6 +129,18 @@ class TabelaPredmeti extends  React.Component {
                             }
                         </tbody>
                     </Table>
+                    
+                    <Container>
+                      <Row className="justify-content-md-center" style={{margin: "0"}}>
+                          <Col style={{textAlign: "center"}}>
+                              <button 
+                                  type="button" 
+                                  className="btn btn-primary"
+                                  onClick={this.props.handleNazad}> Nazad na listu ispita
+                              </button>
+                          </Col>
+                      </Row>
+                  </Container>
             </div>
         );
       }

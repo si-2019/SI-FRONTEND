@@ -53,16 +53,16 @@ class UnosPrisustva extends React.Component {
         tutorijalSvi: "izaberiOpciju",
         sedmica: 0,
         idPredmeta: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
-        greskaBaza: 0
-    }
-
-    constructor(props) {
-        super(props);
+        greskaBaza: 0,
+        isFetching: false
     }
 
     handleChangeSvi = (event) => {
         const {name, value} = event.target;
-        this.setState({[name]: value});
+        this.setState({
+            [name]: value,
+            greskaBaza: 0
+        });
     }
 
     handleSubmitSvi = (event) => {
@@ -98,10 +98,15 @@ class UnosPrisustva extends React.Component {
                 })
             }
         })
+        this.setState({greskaBaza: 0});
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.setState({
+            greskaBaza: 3,
+            isFetching: true
+        })
 
         const idPredmeta = this.state.idPredmeta;
         const sedmica = this.state.sedmica;
@@ -118,17 +123,23 @@ class UnosPrisustva extends React.Component {
 
         axios.put(`http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`, studenti)
         .then(() => {
-            this.setState({greskaBaza: 2});
+            this.setState({
+                greskaBaza: 2,
+                isFetching: false
+            });
         })
         .catch(()=> {
-            this.setState({greskaBaza: 1});
+            this.setState({
+                greskaBaza: 1,
+                isFetching: false
+            });
         });
     }
 
     handleClickSedmica = (brojSedmice) => {
         this.setState({sedmica: brojSedmice});
 
-        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 100;
+        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 101;
 
         axios.get(`http://localhost:31906/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${brojSedmice}`).then(response => {
             let studenti = response.data.map(s => {
@@ -146,9 +157,12 @@ class UnosPrisustva extends React.Component {
         .catch(()=> {
         });
     }
-    
-    componentDidMount() {
-        
+
+    handleNazad = () => {
+        this.setState({
+            sedmica: 0,
+            greskaBaza: 0
+        });
     }
 
     render() {
@@ -169,7 +183,8 @@ class UnosPrisustva extends React.Component {
                                             handleSubmit={this.handleSubmit}
                                             handleSubmitSvi={this.handleSubmitSvi}
                                             handleChange={this.handleChange}
-                                            handleChangeSvi={this.handleChangeSvi}/>
+                                            handleChangeSvi={this.handleChangeSvi}
+                                            handleNazad={this.handleNazad}/>
                                 }
                                 {   
                                     this.state.sedmica === 0 &&

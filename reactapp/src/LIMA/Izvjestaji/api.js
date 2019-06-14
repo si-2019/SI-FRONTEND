@@ -300,6 +300,7 @@ export const student = {
           },
           error => reject({ message: "Ne može se konektovati na bazu" })
         );
+        
       /* setTimeout(() => {
         //vraca niz objekata oblika {naziv: "2016/2017", godinaId: "idgodine", prosjek: 6.6}
         resolve([
@@ -309,6 +310,26 @@ export const student = {
         ]);
 
       }, 100);*/
+        /*
+        export const ispiti = {
+    get:() => {
+        return new Promise((resolve, reject) => {
+            fetch("http://localhost:31912/ispiti")
+            .then(res=>res.json())
+            .then(rezultat => resolve(rezultat));
+        })
+    },
+    getUsmeni: studentId =>{
+        //Vraca usmeni ispit za nekog studenta
+        return new Promise((resolve,reject)=>{
+        studentId = 100;
+        fetch("http://localhost:31912/usmeni_ispit?studentId="+studentId)
+        .then(res=> res.json())
+        .then(rezultat =>resolve(rezultat));
+    });
+}
+};
+        */
     });
   }
 };

@@ -21,8 +21,8 @@ class TabelaUnosa extends Component {
             ispiti: null
         }
 
-        this.indeks=React.createRef();
-        this.bodovi=React.createRef();
+        this.indeks = React.createRef();
+        this.bodovi = React.createRef();
     }
 
     handleClick = (e) => {

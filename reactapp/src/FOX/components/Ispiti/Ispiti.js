@@ -14,6 +14,7 @@ class Ispiti extends  Component {
       test: '',
     }
   }
+  
 render() {
     return(
       <div className="footerDno" style={{paddingBottom: "50px"}}>

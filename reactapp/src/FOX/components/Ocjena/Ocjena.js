@@ -3,105 +3,125 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
-import Alert from 'react-bootstrap/Alert';
-
-function Poruka(props) {
-    const greska = props.greska;
-    const student= props.student;
-    if (greska === 1) {
-        return (
-            <div class="alert alert-dismissible alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Nespješan unos!</strong> <br/> Došlo je do greške sa bazom.
-            </div>
-        );
-    }
-    if (greska === 2) {
-        return (
-            <div class="alert alert-dismissible alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Uspješno unesena ocjena!</strong> <br/> Ocjena je uspješno dodana u bazu podataka.
-            </div>
-        );
-    }
-    return ""
-}
+import Poruka from '../Poruka/Poruka';
 
 class Ocjena extends Component {
     constructor(props){
         super(props);
-        this.state ={
+        this.state = {
             validated: false,
-            greskaBaza: 0
+            student: null,
+            greskaBaza: 0,
+            opisUspjeh: "",
+            naslovUspjeh: "",
+            naslovGreska: "",
+            opisGreska: "",
+            isFetching: false
         }
-        this.ocjena=React.createRef();
-        this.indeks=React.createRef();
-        this.handleClick = this.handleClick.bind(this);
+        this.ocjena = React.createRef();
+        this.indeks = React.createRef();
     }
 
-    handleClick() {
-        console.log("Clicked");
+    handleClick = () => {
         //Poziv apija /fox/getStudentInfo/:id
-        axios.get("http://localhost:31906/fox/getStudentInfo/1").then((res)=> {
-            this.setState({ student: res.data });
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
+        axios.get("http://localhost:31906/fox/getStudentInfo/" + this.indeks.current.value).then((res)=> {
+            this.setState({
+                isFetching: false,
+                student: res.data,
+                greskaBaza: 2,
+                opisUspjeh: "Student je pronađen.",
+                naslovUspjeh: res.data !== null ? res.data.ime + " " + res.data.prezime : ""
+            });
         })
+        .catch(()=> {
+            this.setState({ greskaBaza: 1,
+                isFetching: false,
+                naslovGreska: "Greška!",
+                opisGreska: "Student nije pronađen."
+            });
+        });
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
         const form = event.currentTarget;
-        console.log(event.currentTarget.checkValidity());
+
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+            this.setState({
+                isFetching: false,
+                greskaBaza: 0
+            });
         }
         else {
-            //Poziv API-a
-            //Promise
-            /* 3. Get Ref Value here (or anywhere in the code!) */
-           
-            console.log(this.ocjena.current.value);
-            let reqBody = {
-                idStudent: 2, //pristup lokalnom storage-u
-                idPredmet: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
-                idAkademskaGodina: 11,
-                ocjena: this.ocjena.current.value
-            };
-            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
-            console.log(this.ocjena.current.value);
-            axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
-            .then((res) => {
-                console.log(res);
-                this.setState({greskaBaza: 2});
-            })
-            .catch((err)=> {
-                console.log("Greska:" + err);
-                this.setState({greskaBaza: 1});
-            });
+            if(this.state.student !== null) {
+                let reqBody = {
+                    idStudent: this.state.student.id, //pristup lokalnom storage-u --> Ne treba lokalni storage, sprema se u state
+                    idPredmet: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
+                    idAkademskaGodina: 11,
+                    ocjena: this.ocjena.current.value
+                };
+                    
+                axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
+                .then((res) => {
+                    const student = this.state.student;
+                    this.setState({
+                        greskaBaza: 2,
+                        isFetching: false,
+                        student: null,
+                        opisUspjeh: "Ocjena je upisana.",
+                        naslovUspjeh: student !== null ?
+                            student.ime + " " + student.prezime + " " + "(" + student.indeks + ")" + ", " + this.ocjena.current.value : ""
+                    });
+                    this.ocjena.current.value = null;
+                    this.indeks.current.value = null;
+                })
+                .catch((err)=> {
+                    this.setState({
+                        greskaBaza: 1,
+                        isFetching: false,
+                        naslovGreska: "Greška!",
+                        opisGreska: "Baza podataka nije dostupna."
+                    });
+                });
+            }
+            else {
+                this.setState({
+                    greskaBaza: 1,
+                    isFetching: false,
+                    naslovGreska: "Greška!",
+                    opisGreska: "Ne možete unijeti ocjenu, student nije pronađen."
+                });
+            }
        }
         this.setState({ validated: true });
-        event.preventDefault();
     }
      
     render() {
-        const {validated} = this.state.validated;
-        const {greskaBaza}= this.state.greskaBaza;
-        const student = this.state.student;
-        let rezPretrage;
-        if (student!=undefined) {
-            rezPretrage = <div>
-                <Col style={{textAlign: "center"}}>
-                    <div class="alert alert-dismissible alert-success">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        Student sa indeksom {this.indeks.current.value} je pronađen! <br></br>
-                        {student.ime + " " + student.prezime}
-                    </div>
-                </Col>
-                
-            </div>
-        }
+        const validated = this.state.validated;
+
         return (
             <div class="card" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">
+                    <Poruka
+                    greska={this.state.greskaBaza}
+                    naslovUspjeh={this.state.naslovUspjeh}
+                    naslovGreska={this.state.naslovGreska}
+                    opisUspjeh={this.state.opisUspjeh}
+                    opisGreska={this.state.opisGreska}
+                    />
                     <h4 class="card-title text-center" >Unos ocjene</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos ocjene.</h6>
                     <br/>
@@ -114,8 +134,14 @@ class Ocjena extends Component {
 
                             <Form.Row className="justify-content-center">
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
-                                    <Form.Label> Index: </Form.Label>
-                                    <Form.Control  ref={ this.indeks } required type="text" name="name">
+                                    <Form.Label> Indeks: </Form.Label>
+                                    <Form.Control
+                                    placeholder="Unesite indeks"
+                                    ref={ this.indeks }
+                                    required
+                                    type="number"
+                                    min={0}
+                                    name="indeks">
                                     </Form.Control>
                                     <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
                                     <Form.Control.Feedback type= "invalid"> Indeks nije validan </Form.Control.Feedback>
@@ -124,16 +150,8 @@ class Ocjena extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}} >
-                                    <Button onClick={this.handleClick}> Pretrazi </Button>
-                                </Col>
-                            </Form.Row>
-
-                            <Form.Row>
-                                <Col style={{textAlign: "center"}}>
-                                    <br/>
-                                    <label>
-                                    {rezPretrage}
-                                    </label> 
+                                    <Button
+                                    onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
@@ -142,7 +160,15 @@ class Ocjena extends Component {
                             <Form.Row className="justify-content-center">
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Ocjena: </Form.Label>
-                                    <Form.Control  ref={ this.ocjena } required type="text" name="name">
+                                    <Form.Control
+                                    ref={ this.ocjena }
+                                    required
+                                    placeholder="Unesite ocjenu"
+                                    type="number"
+                                    min={6}
+                                    max={10}
+                                    name="ocjena"
+                                    value={this.state.ocjena}>
                                     </Form.Control>
                                     <Form.Control.Feedback> Validna ocjena </Form.Control.Feedback> 
                                     <Form.Control.Feedback type= "invalid"> Ocjena nije validna </Form.Control.Feedback> 
@@ -151,14 +177,7 @@ class Ocjena extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
-                                <Button variant="primary" type="submit"> Unesi </Button>
-                                </Col>
-                            </Form.Row>
-
-                            <Form.Row>
-                                <Col style={{textAlign: "center", padding: "10px"}}>
-                                    <Poruka greska={greskaBaza} />
-                                        <br/>
+                                    <Button variant="primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
                             

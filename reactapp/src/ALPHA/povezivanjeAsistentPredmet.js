@@ -66,7 +66,7 @@ class FormaProfPred extends Component {
 
         return (
           <div className="card align-items-center">
-          <div className="card-body col-md-2 ">
+          <div className="card-body col-md-4 ">
               <p>Prikaz svih asistenata: </p><br />
                 <select className="custom-select" value={asistent} onChange={this.onChangeAsistent}> 
                 {

@@ -310,7 +310,7 @@ export const student = {
         ]);
 
       }, 100);*/
-        /*
+        
         export const ispiti = {
     get:() => {
         return new Promise((resolve, reject) => {
@@ -329,7 +329,7 @@ export const student = {
     });
 }
 };
-        */
+        
     });
   }
 };

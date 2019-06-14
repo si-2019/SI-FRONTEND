@@ -40,7 +40,7 @@ class BrisanjeZadace extends Component {
   }
 
   pokupiIzBaze = (idPredmeta) => {
-    axios.get(`https://si2019kilo.herokuapp.com/getZadace/${idPredmeta}`).then(res => {
+    axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
       this.setState({
         listaZadacaZaBrisanje: res.data
       });
@@ -53,7 +53,7 @@ class BrisanjeZadace extends Component {
   getZadacaById = async zadacaId => {
     try {
       const res = await axios.get(
-        `https://si2019kilo.herokuapp.com/getZadacaById/${zadacaId}`
+        `http://localhost:31911/getZadacaById/${zadacaId}`
       );
       this.setState({
         brisanjeState: res.data
@@ -65,7 +65,7 @@ class BrisanjeZadace extends Component {
   handleClick = event => {
     axios
       .delete(
-        `https://si2019kilo.herokuapp.com/zadaca/${this.state.brisanjeState.idZadaca}`
+        `http://localhost:31911/zadaca/${this.state.brisanjeState.idZadaca}`
       )
       .then(res => {
         if (res.status === 200) {

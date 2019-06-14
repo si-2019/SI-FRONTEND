@@ -104,13 +104,13 @@ class ChatApp extends Component {
             .then(currentUser => {
                 this.setState({ currentUser: currentUser }, () => { 
                     
-                    Axios.get('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
+                    Axios.get('http://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                         if (res.data === 0) { // korisnik nema svoj colorscheme
                             this.setState({
                                 colorForUser: null
                             });
                         } else { 
-                            Axios.get('https://si2019juliet.herokuapp.com/colorschemeUser/' + this.state.currentUser.id).then(res => {
+                            Axios.get('http://si2019juliet.herokuapp.com/colorschemeUser/' + this.state.currentUser.id).then(res => {
                                 this.setState({
                                     colorForUser: res.data.colorId
                                 })
@@ -134,7 +134,7 @@ class ChatApp extends Component {
             .then(() => {
                 
             })
-        const url = 'https://si2019juliet.herokuapp.com/pinovanePoruke';
+        const url = 'http://si2019juliet.herokuapp.com/pinovanePoruke';
             
         Axios.get(url).then(res => {
             this.setState({ 
@@ -147,7 +147,7 @@ class ChatApp extends Component {
         
     }
     getUserRole(){
-        Axios.get('https://si2019juliet.herokuapp.com/users/'+this.state.currentUser.id +'/roles').then(res=>{
+        Axios.get('http://si2019juliet.herokuapp.com/users/'+this.state.currentUser.id +'/roles').then(res=>{
             this.setState({
                 currentUserRole : res.data[0].role_name
             })
@@ -273,7 +273,7 @@ class ChatApp extends Component {
             }
             else if(text.substr(0,11) === '@setAvatar '){
                 let url = text.substr(text.indexOf(' ') +1,text.length); 
-                Axios.post('https://si2019juliet.herokuapp.com/updateAvatar', {
+                Axios.post('http://si2019juliet.herokuapp.com/updateAvatar', {
                     url: url,
                     currentUId:this.state.currentUser.id
                 }).then(res => {
@@ -300,7 +300,7 @@ class ChatApp extends Component {
         }).catch(error => console.error('error', error));
     }
     banUser(userID){
-        Axios.post('https://si2019juliet.herokuapp.com/blockedUser', {
+        Axios.post('http://si2019juliet.herokuapp.com/blockedUser', {
             user_id: userID
         }).then(res =>{
             console.log("otisao u bazu i vratio se");
@@ -364,7 +364,7 @@ class ChatApp extends Component {
             }
         }
 
-        Axios.post('https://si2019juliet.herokuapp.com/upload', fData, config).then(res => {
+        Axios.post('http://si2019juliet.herokuapp.com/upload', fData, config).then(res => {
             window.alert('Uspješno upisano u bazu!');
             this.addMessage('Downloaduj file: ' + file.name);
             
@@ -372,7 +372,7 @@ class ChatApp extends Component {
     }
 
     downloadClick(name){
-        const url = 'https://si2019juliet.herokuapp.com/download/' + name;
+        const url = 'http://si2019juliet.herokuapp.com/download/' + name;
 
         Axios.get(url).then(res => {
             let resultByte = res.data.file.data;
@@ -387,7 +387,7 @@ class ChatApp extends Component {
     }
 
     deleteClick(message, index){
-        Axios.post('https://si2019juliet.herokuapp.com/deleteMessage', {
+        Axios.post('http://si2019juliet.herokuapp.com/deleteMessage', {
             message_id: message.id
         })
         .catch(e => console.log(e));
@@ -404,7 +404,7 @@ class ChatApp extends Component {
     }
 
     pinMessage(message) {
-        const url = 'https://si2019juliet.herokuapp.com/pinovanePoruke/' + message.id;
+        const url = 'http://si2019juliet.herokuapp.com/pinovanePoruke/' + message.id;
         //console.log(url);
         Axios.get(url).then(res => {
             if (res.data === 0) { // ne postoji u bazi
@@ -419,7 +419,7 @@ class ChatApp extends Component {
                     pinnedMessages: this.state.pinnedMessages.concat([trenutnaPoruka])
                 }, () => {
                     //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages));
-                    Axios.post('https://si2019juliet.herokuapp.com/pinujPoruku', {
+                    Axios.post('http://si2019juliet.herokuapp.com/pinujPoruku', {
                         messageCreatedAt: message.createdAt,
                         messageId: message.id + '',
                         roomId: message.roomId,
@@ -439,7 +439,7 @@ class ChatApp extends Component {
                 )}, () => { 
                     //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages)); 
                 });
-                const url2 = 'https://si2019juliet.herokuapp.com/pinujPoruku/' + message.id;
+                const url2 = 'http://si2019juliet.herokuapp.com/pinujPoruku/' + message.id;
                 Axios.delete(url2).then(res => {}).catch(e => {console.log(e)});
             } 
         });
@@ -448,15 +448,15 @@ class ChatApp extends Component {
         this.setState({
             colorForUser: color.hex
         }, () => {
-            Axios.get('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
+            Axios.get('http://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                 if (res.data === 0) {
-                    Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
+                    Axios.post('http://si2019juliet.herokuapp.com/colorscheme', {
                         colorId: color, 
                         userId: this.state.currentUser.id
                     });
                 } else {
-                    Axios.delete('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
-                        Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
+                    Axios.delete('http://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
+                        Axios.post('http://si2019juliet.herokuapp.com/colorscheme', {
                             colorId: color, 
                             userId: this.state.currentUser.id
                         });

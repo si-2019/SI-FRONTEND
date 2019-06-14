@@ -273,7 +273,7 @@ class KreiranjeZadace extends Component {
 
         if (this.state.radnja === "Kreiranje") {
           axios
-            .post("https://si2019kilo.herokuapp.com/addZadaca", fData)
+            .post("http://localhost:31911/addZadaca", fData)
             .then(res => {
               if (res.status === 200) {
                 this.setState({ uspjehKreiranja: true });
@@ -287,7 +287,7 @@ class KreiranjeZadace extends Component {
         } else if (this.state.radnja === "Azuriranje") {
           axios
             .put(
-              `https://si2019kilo.herokuapp.com/zadaca/${this.props.mainState.idZadaca}`,
+              `http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`,
               fData
             )
             .then(res => {

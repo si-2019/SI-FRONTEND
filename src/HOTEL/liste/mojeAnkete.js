@@ -14,11 +14,11 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>
-                <h1 className="row justify-content-center">Moje ankete</h1>
+            <div className="okvirListe">
+                <div className="naslovliste"><h1>Moje ankete</h1></div>
             
             <br></br>
-            <table className="table table-bordered text-center bg-active border-solid" align="center">
+            <table className="table-bordered text-center bg-active border-solid tabelaLista" align="center">
                 <tr className="bg-primary text-light">
                 <td class="tabtip">Naziv ankete</td>
                 <td class="tabtip">Opis</td>
@@ -35,9 +35,9 @@ class App extends React.Component {
                                 <th class="tabtip1">{anketa.naziv}</th>
                                 <th class="tabtip1">{anketa.opisAnkete}</th>
                                 <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                                <th class="tabtip1"><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
-                                <th class="tabtip1"><button type="button" class="btn btn-primary" id="urediButton">Uredi</button></th>
-                                <th class="tabtip1"><button type="button" class="btn btn-primary" id="obrisiButton" 
+                                <th class="tabtip1"><Link to={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Rezultati</button></Link></th>
+                                <th class="tabtip1"><Link to={"/hotel/uredi/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="urediButton">Uredi</button></Link></th>
+                                <th class="tabtip1"><button type="button" class="btn btn-danger" id="obrisiButton" 
                                 onClick= {() => this.obrisiAnketu(anketa) }>Obriši</button></th>
                                 </tr>
 

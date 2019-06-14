@@ -26,13 +26,45 @@ export default class Calendar extends React.Component {
             ispiti:[],
             neradniDani:[]
         }
-    
+
+        this.fijaZaNeradneDane = this.fijaZaNeradneDane.bind(this);
+        this.promijeniBoju=this.promijeniBoju.bind(this);
         this.ispitiFakultet=this.ispitiFakultet.bind(this);
         this.ispitiFakultet=this.ispitiFakultet.bind(this);
         this.ispitiSmijer=this.ispitiSmijer.bind(this);
         this.ispitiGodina=this.ispitiGodina.bind(this);
         this.neradniDani=this.neradniDani.bind(this);
     }
+
+
+    promijeniBoju = (d,m) => {
+        this.setState(prevState => ({
+            selectedDays: [...prevState.selectedDays, {dan: d, mijesec:m}]
+        }));
+    }
+    fijaZaNeradneDane(){
+        papaApi.neradniDani().then((res)=>{
+            console.log(res.data);
+            let niz=[];
+            for (let a = 0; a < res.data.length; a++ ) {
+                let datum=new moment(res.data[a].datum)
+                niz.push({
+                    naziv:res.data[a].naziv,
+                    dan:datum.format('D'),
+                    mijesec:datum.format('MMMM')
+                });
+            }
+            console.log(niz);
+            this.setState({
+                neradniDani:niz
+            });
+        }).catch((err)=>{
+            this.setState({
+                neradniDani:[]
+            });
+        });
+    }
+
     componentDidMount() {
         papaApi.sviIspita().then((res) => {
             let niz=[];
@@ -50,6 +82,7 @@ export default class Calendar extends React.Component {
             this.setState({
               ispiti:niz
             });
+            this.fijaZaNeradneDane();
           }).catch((err)=>{
             this.setState({
               ispiti:[]});
@@ -73,41 +106,24 @@ export default class Calendar extends React.Component {
         });
     }
     ispitiGodina(){
-        
+        this.setState({
+            showFakultet: false,
+            showGodine: true,
+            showSmijer: false,
+            showNeradniDani: false
+        });
     }
     neradniDani(){
-        papaApi.neradniDani().then((res)=>{
-            console.log(res.data);
-            let niz=[];
-            for (let a = 0; a < res.data.length; a++ ) {
-                let datum=new moment(res.data[a].datum)
-                niz.push({
-                    naziv:res.data[a].naziv,
-                    dan:datum.format('D'),
-                    mijesec:datum.format('MMMM')
-                });
-            }
-            console.log(niz);
-            this.setState({
-                showFakultet: false,
-                showGodine: false,
-                showSmijer: false,
-                showNeradniDani: true,
-                neradniDani:niz
-            });
-        }).catch((err)=>{
-            this.setState({
-                showFakultet: false,
-                showGodine: false,
-                showSmijer: false,
-                showNeradniDani: true,
-                neradniDani:[]
-            });
+        this.setState({
+            showNeradniDani: true,
+            showFakultet: false,
+            showGodine: false,
+            showSmijer: false
         });
     }
 
     weekdays = moment.weekdays(); //["Sunday", "Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday"]
-    weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    weekdaysShort =  ["Ned", "Pon", "Uto", "Sri", "Cet", "Pet", "Sub"];
     months = moment.months();
 
     year = () => {
@@ -266,7 +282,7 @@ export default class Calendar extends React.Component {
                     string=string+")"
                 }
                 else if( this.state.showNeradniDani ){
-                    string=string+list[i].naziv;
+                    string=string+ "(" +list[i].naziv + ")";
                 }
             }
         }
@@ -275,7 +291,7 @@ export default class Calendar extends React.Component {
     render(){
         let weekdays = this.weekdaysShort.map((day) => {
             return (
-                <td key={day} className="week-day">{day}</td>
+                <td key={day} className="week-day" >{day}</td>
             )
         });
 
@@ -295,14 +311,14 @@ export default class Calendar extends React.Component {
                 let className = (d == this.currentDay() && a==moment().format('MMMM')? "day current-day": "day");
                 let selectedClass = (this.containsObject({dan: d, mijesec:a}, this.state.selectedDays ) ? " selected-day " : "");
                 let staPise;
-                if(this.state.showneradniDani) {
+                if(this.state.showNeradniDani) {
                     staPise = (this.containsObject({dan: d, mijesec:a}, this.state.neradniDani ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.neradniDani) : d);
                 }
                 else{
                     staPise = (this.containsObject({dan: d, mijesec:a}, this.state.ispiti ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.ispiti) : d);
                 }
                 daysInMonth.push(
-                    <td key={d} className={className + selectedClass} >
+                    <td key={d} className={className + selectedClass} onDoubleClick ={(e) => this.promijeniBoju(d,a)}>
                         {staPise}
                     </td>
                 );
@@ -336,8 +352,8 @@ export default class Calendar extends React.Component {
         })
         return (
             <div className="calendar-container">
-                <div style={{width: '100%',  display: 'flex',justifyContent:'space-between', padding:'1%', backgroundColor:"#eaecef"}}>
-                    {<h3 style={{}} >Kalendar</h3>}
+                <div className='bg-primary' style={{width: '100%',  display: 'flex',justifyContent:'space-between', padding:'1%', backgroundColor:"#eaecef"}}>
+                    {<h3 style={{color:"white"}} >Kalendar</h3>}
                     <ButtonGroup vertical >
                     <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
                         <Dropdown.Item eventKey="1" onClick={this.ispitiFakultet}>Ispiti na nivou fakulteta</Dropdown.Item>
@@ -350,17 +366,25 @@ export default class Calendar extends React.Component {
                 <table className="calendar">
                     <thead>
                         <tr className="calendar-header">
+                        <td className="nav-month">
+                               <div >
+                                    <ButtonToolbar style={{float:"left"}} >
+                                        <ToggleButtonGroup type="checkbox" defaultValue={[1, 2]}>
+                                        <button className="myButton" value={1} onClick={(e)=> {this.prevMonth()}} > &lt; </button>
+                                        </ToggleButtonGroup>
+                                    </ButtonToolbar>
+                               </div>
+                            </td>
                             <td colSpan="5" className="naslov">
                                 <this.MonthNav />
                                 {" "}
                                 <this.YearNav />
                             </td>
-                            <td colSpan="2" className="nav-month">
+                            <td className="nav-month">
                                <div >
                                     <ButtonToolbar style={{float:"right"}} >
                                         <ToggleButtonGroup type="checkbox" defaultValue={[1, 3]}>
-                                        <button className="myButton" value={1} onClick={(e)=> {this.prevMonth()}} > Nazad </button>
-                                        <button className="myButton" value={2} onClick={(e)=> {this.nextMonth()}} > Naprijed </button>
+                                        <button className="myButton" value={2} onClick={(e)=> {this.nextMonth()}} > &gt; </button>
                                         </ToggleButtonGroup>
                                     </ButtonToolbar>
                                </div>

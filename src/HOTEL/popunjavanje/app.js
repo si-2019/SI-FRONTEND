@@ -120,12 +120,30 @@ class Popunjavanje extends Component {
     }
     console.log("ima/brojac", ima, br)
     if (ima && br===0) {
+      let odg = []
+      for(let i = 0; i < this.state.odgovori.length; i++) {
+        let ans = this.state.odgovori[i]
+        if(!ans.sviOdg)
+          odg.push(ans)
+        else {
+          for(let j = 0; j < ans.sviOdg.length; j++) {
+            let o = ans.sviOdg[j]
+            if(o.isChecked) {
+              odg.push({
+                idPitanja: ans.idPitanja,
+                tekstOdgovora: o.tekstOdgovora,
+                idPonudjeniOdgovor: o.idPonudjeniOdgovor
+              })
+            }
+          }
+        }
+      }
       fetch(url + '/popuniAnketu', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           idAnketa: params.id,
-          odgovori: this.state.odgovori,
+          odgovori: odg,
           idPopunio: 1,
           vrijemePopunjavanja: new Date().toISOString().slice(0, 19).replace('T', ' '),
         })
@@ -223,20 +241,34 @@ class Popunjavanje extends Component {
         }
         {
           this.state.showError &&
-          <div class="alert alert-dismissible alert-danger">
-            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
-            <strong>{this.state.showError}</strong>
+          <div className="alert alert-dismissible alert-danger">
+            <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
+            {this.state.showError}
           </div>
         }
         <div id="proradi">
           <div id="headerPopuni">
             <h1 style={{ color: 'white' }}>Popunjavanje</h1>
           </div >
+          {
+          this.state.showSucess &&
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSucess: false }); window.location.reload(); }}>&times;</button>
+            <strong>Uspješno ste popunili anketu!</strong>
+          </div>
+        }
+        {
+          this.state.showError &&
+          <div className="alert alert-dismissible alert-danger">
+            <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
+            {this.state.showError}
+          </div>
+        }
           <div id="contentPopuni">
             <div id="infoPopuni" >
               <div id="info1Popuni" >
                 <div class="card border-primary mb-3">
-                  <div class="card-header" style={{ backgroundColor: '#00203F' }}><h4 style={{ color: 'white' }} class="card-title">Info</h4></div>
+                  <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Info</h4></div>
                   <div class="card-body">
                     <h6 class="card-title">Predmet</h6>
                     <p class="card-text">{this.state.nazivPredmeta}</p>
@@ -263,7 +295,7 @@ class Popunjavanje extends Component {
             <div id="showPopuni" >
               <div id="show1Popuni" >
                 <div class="card border-light mb-3" style={{ padding: 15, alignItems: 'right' }}>
-                  <div class="card-header" style={{ backgroundColor: '#00203F' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
+                  <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
                   {pitanjaa}
                   <div >
                     <button disabled={this.state.isteklo} onClick={() => this.popunianketu()} type="button" class="btn btn-primary float-right" id="buttonPopuni">Pošalji</button>

@@ -69,7 +69,7 @@ export default class App extends React.Component {
         return (
             <div class="card border-primary mb-3">
                 <div class="form-group" style={{margin: "10px"}}>
-                    <textarea class="form-control" placeholder="Unesi tekst pitanja" id="tekstPitanjaTextArea" rows="1" name="tekstPitanja" onKeyDown={this.handleInputChange}></textarea>
+                    <textarea class="form-control" placeholder="Unesi tekst pitanja" id="tekstPitanjaTextArea" rows="1" name="tekstPitanja" onChange={this.handleInputChange}></textarea>
                 </div>
                 <div style={{paddingLeft: "20px"}}>
                     <RStarRating

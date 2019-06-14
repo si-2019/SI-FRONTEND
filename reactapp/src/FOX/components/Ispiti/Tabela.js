@@ -31,13 +31,13 @@ class TabelaPredmeti extends  React.Component {
     constructor(props){
         super(props);
         this.state = {
-            studenti : false,
+            studenti: false,
             data: dataX
         }
     }
+    
     funkcija = (e) =>{
-        console.log("X",e.target.getAttribute('value'));
-        let dataNova;
+        /* let dataNova;
         for(let i = 0; i<3; i++){
             if(this.state.data[i].tip === e.target.getAttribute('value')){
                 dataNova = {
@@ -54,16 +54,25 @@ class TabelaPredmeti extends  React.Component {
                 data: dataNova
             })
         }
-        
+         */
+        this.setState({
+            studenti: true
+        })
     }
+
     redirectt = (e) => {
         window.location.replace("/charlie");
         //this.props.history.push('/charlie/kreiraj-ispit-detalji');
     }
+
+    handleNazad = () => {
+        this.setState({studenti: false});
+    }
+
     render() {
         const data2 = this.state.data;
         var brojac = 0;
-        console.log(data2);       
+
         return (
             <div className="text-center">
                 {!this.state.studenti && 
@@ -71,9 +80,9 @@ class TabelaPredmeti extends  React.Component {
                     <Row noGutters>
                         <Col>
                                 {this.state.studenti === false && 
-                                    <Table striped bordered responsive bsPrefix="table">
+                                    <Table striped bordered responsive hover bsPrefix="table">
                                     <thead>
-                                        <tr className="table-primary">
+                                        <tr hover="false" className="table-primary">
                                             <th>Tip</th>
                                             <th>Datum</th>
                                             <th>Sala</th>
@@ -114,7 +123,7 @@ class TabelaPredmeti extends  React.Component {
                 <Container fluid style={{padding:"0", margin: "0"}}>
                     <Row noGutters>
                         <Col style={{textAlign: "center"}}>
-                            {this.state.studenti===true && <StudentiTabela tipIspita={this.state.data.tip}/>}
+                            {this.state.studenti === true && <StudentiTabela tipIspita={this.state.data.tip} handleNazad={this.handleNazad}/>}
                         </Col>
                     </Row>
                 </Container>

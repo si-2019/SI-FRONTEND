@@ -106,7 +106,6 @@ class MessageList extends Component {
     }
 
     componentDidMount() {
-        localStorage.clear();
         
         this.setState({
             messages: this.props.messages,

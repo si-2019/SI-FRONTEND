@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./bootstrap.min.css";
 import { pdfjs } from "react-pdf";
+import {withRouter} from "react-router-dom"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 class UgovorOUcenju extends Component {
@@ -28,7 +29,8 @@ class UgovorOUcenju extends Component {
       indeks: "00000",
       ciklus: 1,
       sviSmjerovi: [],
-      manjak: "none"
+      classKreiraj: "btn btn-primary",
+      classPrikazi:"btn btn-primary"
 
     };
     this.handleCreate = this.handleCreate.bind(this);
@@ -40,16 +42,6 @@ class UgovorOUcenju extends Component {
   }
   handleCreate() {
     //kreiranje ugovora
-
-    if (this.state.listaObaveznih.length == 0 || this.state.listaIzbornih.length == 0) {
-      this.setState({
-        manjak: "block"
-      })
-    }
-    else {
-      this.setState({
-        manjak: "none"
-      })
       axios
         .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
           ime: this.state.ime,
@@ -66,11 +58,11 @@ class UgovorOUcenju extends Component {
           console.log(res.data);
         })
         .catch(res => {
-          console.log("greskaaa");
+          console.log(res);
         });
     }
 
-  }
+  
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
   }
@@ -148,11 +140,24 @@ class UgovorOUcenju extends Component {
               }
 
             }
-            this.setState({ listaIzbornih: izborni, listaObaveznih: obavezni, izborniForma: help });
+            this.setState({ 
+              listaIzbornih: izborni, 
+              listaObaveznih: obavezni, 
+              izborniForma: help,
+              classKreiraj: "btn btn-primary",
+              classPrikazi: this.state.pdfUrl!=null ? "btn btn-primary" : "btn btn-primary disabled"  
+            });
           }
           else {
-            this.setState({ listaIzbornih: "", listaObaveznih: "", izborniForma: [] });
+            this.setState({ 
+              listaIzbornih: "", 
+              listaObaveznih: "", 
+              izborniForma: [],
+              classKreiraj:"btn btn-primary disabled",
+              classPrikazi:"btn btn-primary disabled" 
+            });
           }
+         
         });
     } catch (e) { }
   }
@@ -176,9 +181,9 @@ class UgovorOUcenju extends Component {
       .get("http://localhost:31918/studenti/" + this.state.studentId)
       .then(res => {
         this.setState({
-          ime: res.data.ime,
-          prezime: res.data.prezime,
-          indeks: res.data.index
+          ime: res.data[0].ime,
+          prezime: res.data[0].prezime,
+          indeks: res.data[0].index
         });
       })
       .catch(res => {
@@ -195,35 +200,45 @@ class UgovorOUcenju extends Component {
       .catch(res => {
         console.log(res);
       });
+      if(this.state.pdfUrl!= null){
+        this.setState({
+          classPrikazi:"btn btn-primary"
+        })
+      }
+      else{
+        this.setState({
+          classPrikazi:"btn btn-primary disabled"
+        })
+      }
+    
   }
   handlePrikaz() {
     //prikaz u prozoru
-    if (this.state.pdfUrl == null) {
-      this.setState({
-        manjak:"block"
-      })
-    }
-    else {
-      this.setState({
-        manjak:"none"
-      })
+    
+      
       const win = window.open("", "_self");
       let html = '';
 
       html += '<html>';
       html += '<body style="margin:0!important">';
-      html += '<embed width="100%" height="100%" src="' + this.state.pdfUrl + '" type="application/pdf" />';
+      html += '<embed width="100%" type="application/pdf" javascript="allow" height="100%" src="' + this.state.pdfUrl + '" />';
       html += '</body>';
       html += '</html>';
 
+
       setTimeout(() => {
         win.document.write(html);
+       // win.location.replace(this.state.pdfUrl);
+       this.props.history.push(this.state.pdfUrl);
+       // this.props.location.assign(this.state.pdfUrl);
       }, 0);
-      // this.props.history.push(this.state.pdfUrl);}
-    }
+       //this.props.history.push(this.state.pdfUrl);
+       
+    
   }
 
   render() {
+  
     return (
       <div>
         <div className="container-fluid" style={{ marginTop: "30px" }} >
@@ -310,15 +325,12 @@ class UgovorOUcenju extends Component {
                       </div>
                     ))}
                   </div>
-                  <div class="form-group has-danger" style={{ dispaly: this.state.manjak }}>
-                    <input type="text" class="form-control is-invalid" id="inputInvalid" style={{ display: "none" }} />
-                    <div class="invalid-feedback" >Ugovor nije moguće kreirati niti prikazati radi manjka podataka u bazi.</div>
-                  </div>
+                
 
                   <div className="d-flex justify-content-end">
-                    <button type="submit" className="btn btn-primary" onClick={this.handleCreate}>Kreiraj ugovor</button>
+                    <button type="submit" className={this.state.classKreiraj}  onClick={this.handleCreate}>Kreiraj ugovor</button>
 
-                    <button type="button" className="btn btn-primary" onClick={this.handlePrikaz} style={{ marginLeft: "10px" }}>Prikaži ugovor</button>
+                    <button type="button" className={this.state.classPrikazi} onClick={this.handlePrikaz} style={{ marginLeft: "10px" }}>Prikaži ugovor</button>
                   </div>
 
                 </div>
@@ -332,4 +344,4 @@ class UgovorOUcenju extends Component {
   }
 }
 
-export default UgovorOUcenju;
+export default withRouter(UgovorOUcenju);

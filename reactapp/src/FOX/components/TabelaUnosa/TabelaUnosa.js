@@ -32,7 +32,7 @@ class TabelaUnosa extends Component {
             greskaBaza: 3
         });
 
-        axios.get("http://localhost:31906/fox/getStudentInfo/" + this.indeks.current.value).then((res)=> {
+        axios.get("https://si2019fox.herokuapp.com/fox/getStudentInfo/" + this.indeks.current.value).then((res)=> {
             this.setState({
                 isFetching: false,
                 student: res.data,
@@ -76,7 +76,7 @@ class TabelaUnosa extends Component {
                     bodovi: this.bodovi.current.value
                 };
                     
-                axios.post('http://localhost:31906/api/fox/ispiti', reqBody)
+                axios.post('https://si2019fox.herokuapp.com/api/fox/ispiti', reqBody)
                 .then(() => {
                     const student = this.state.student;
                     this.setState({
@@ -119,7 +119,7 @@ class TabelaUnosa extends Component {
 
         const predmet = window.localStorage.getItem("idPredmeta");
         const idPredmeta = predmet !== null ? predmet : 64
-        axios.get("http://localhost:31906/api/fox/ispiti/" + idPredmeta).then((res)=> {
+        axios.get("https://si2019fox.herokuapp.com/api/fox/ispiti/" + idPredmeta).then((res)=> {
             this.setState({
                 ispiti: res.data,
                 isFetching: false,
@@ -201,7 +201,7 @@ class TabelaUnosa extends Component {
                                     <Form.Control
                                     ref={ this.bodovi }
                                     required
-                                    placeholder="Unesite ocjenu"
+                                    placeholder="Unesite bodove"
                                     type="number"
                                     min={-100}
                                     max={100}

@@ -121,7 +121,7 @@ class UnosPrisustva extends React.Component {
             };
         });
 
-        axios.put(`http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`, studenti)
+        axios.put(`https://si2019fox.herokuapp.com/api/fox/prisustvo/unosIzmjena?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`, studenti)
         .then(() => {
             this.setState({
                 greskaBaza: 2,
@@ -141,7 +141,7 @@ class UnosPrisustva extends React.Component {
 
         const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 101;
 
-        axios.get(`http://localhost:31906/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${brojSedmice}`).then(response => {
+        axios.get(`https://si2019fox.herokuapp.com/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${brojSedmice}`).then(response => {
             let studenti = response.data.map(s => {
                 return {
                     id: s.id,

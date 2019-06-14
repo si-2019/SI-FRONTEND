@@ -2,30 +2,13 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-
-function Poruka(props) {
-    const greska = props.greska;
-    if (greska==1) {
-        return <Alert variant='danger'>
-            <Alert.Heading>Tema nije izmijenjena!</Alert.Heading>
-            <p>Došlo je do greške sa bazom</p>
-        </Alert>
-    }
-    if (greska===2) {
-        return <Alert variant='success'>
-            <Alert.Heading>Uspješno izmijenjena tema!</Alert.Heading>
-            <p>Kreirana je nova tema i uspješno dodana u bazu podataka.</p>
-        </Alert>
-    }
-    return ""
-}
+import Poruka from '../Poruka/Poruka';
 
 class IzmjeniTemu extends Component {
     constructor(props) {
@@ -71,7 +54,7 @@ class IzmjeniTemu extends Component {
                 opis: this.opisTeme.current.value
             };
             const {id} = this.state;
-            axios.put('http://localhost:31906/api/fox/temeZavrsnih/izmjeniTemu/' + id, reqBody)
+            axios.put('https://si2019fox.herokuapp.com/api/fox/temeZavrsnih/izmjeniTemu/' + id, reqBody)
             .then(() => {
                 this.setState({
                     greskaBaza: 2,
@@ -103,6 +86,10 @@ class IzmjeniTemu extends Component {
         this.setState({id: id});
     }
 
+    vratiNazad = () => {
+        window.location.replace("/fox/unosTeme");
+    }
+
     render() {
         const {validated} = this.state;
         const {greskaBaza} = this.state;
@@ -120,9 +107,15 @@ class IzmjeniTemu extends Component {
                     
                     <Col style={{textAlign: "left"}}>
                         <div style={{padding: "15px"}}>
-                            <Poruka greska={greskaBaza} />
                             <Card style={{margin: "0"}}>
                                 <Card.Body>
+                                    <Poruka
+                                    greska={this.state.greskaBaza}
+                                    naslovUspjeh={this.state.naslovUspjeh}
+                                    naslovGreska={this.state.naslovGreska}
+                                    opisUspjeh={this.state.opisUspjeh}
+                                    opisGreska={this.state.opisGreska}
+                                    />
                                     <Card.Title className="text-center">Izmjena teme za završni rad</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted text-center">U ovoj formi možete izmjeniti završni rad na predmetu </Card.Subtitle>
                                     <br/>
@@ -137,8 +130,8 @@ class IzmjeniTemu extends Component {
                                                 <Form.Control 
                                                     ref={this.nazivTeme}
                                                     required 
-                                                    type="text" 
-                                                    defaultValue={naziv}
+                                                    type="text"
+                                                    placeholder="Unesite naziv teme"
                                                 />
                                                 <Form.Control.Feedback>Validan naziv!</Form.Control.Feedback>
                                                 <Form.Control.Feedback type="invalid">Unesite naziv</Form.Control.Feedback>
@@ -152,7 +145,7 @@ class IzmjeniTemu extends Component {
                                                     ref={this.opisTeme} 
                                                     required 
                                                     type="text" 
-                                                    defaultValue={opis}
+                                                    placeholder="Unesite opis teme"
                                                 />
                                                 <Form.Control.Feedback>Validan opis!</Form.Control.Feedback>
                                                 <Form.Control.Feedback type="invalid">Unesite opis</Form.Control.Feedback>
@@ -162,7 +155,7 @@ class IzmjeniTemu extends Component {
                                         <Form.Row className="justify-content-center">
                                             <Col  style={{textAlign: "right"}} lg="4" md="6" sm="8" xs="12">
                                                 <Button variant="primary" type="submit" style={{marginRight: "10px"}}>Izmjeni</Button>
-                                                <Button variant="secondary" href='unosTeme'>Nazad</Button>  
+                                                <Button variant="secondary" onClick={this.vratiNazad} >Nazad</Button>
                                             </Col>  
                                         </Form.Row>
 

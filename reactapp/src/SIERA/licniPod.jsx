@@ -17,7 +17,9 @@ class LicniPod extends Component {
             imePrezimeOca: "Nekila",
             imePrezimeMajke: "Nekic",
             Drzavljanstvo: "Bih",
-            StudentID: 1,
+            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            token: window.localStorage.getItem("token"),
             fotka: null,
             modalShow: false,
         }

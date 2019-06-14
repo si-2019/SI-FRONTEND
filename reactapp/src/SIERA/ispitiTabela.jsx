@@ -61,7 +61,9 @@ class IspitiTabela extends Component {
         }
       ]
     ],
-    trenutnoLogovaniStudentID: 1
+    trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+    username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+    token: window.localStorage.getItem("token"),
   };
 
   componentDidMount() {
@@ -74,7 +76,7 @@ class IspitiTabela extends Component {
           const lista = res.data.akademskeGodine;
           this.setState({ listaIspita: lista });
         }
-        else{
+        else {
           this.setState({ listaIspita: [] });
         }
       });

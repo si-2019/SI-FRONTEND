@@ -6,7 +6,9 @@ class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            studentID: 1,
+            studentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            token: window.localStorage.getItem("token"),
             greska: null,
             greskaFoto: null,
             brojac: 0,

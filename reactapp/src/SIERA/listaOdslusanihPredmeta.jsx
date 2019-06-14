@@ -4,7 +4,9 @@ import axios from "axios";
 class ListaPredmeta extends Component {
   state = {
     predmeti: ["Predmet1", "Predmet2", "Predmet3", "Predmet4", "Predmet5"],
-    trenutnoLogovaniStudentID: 1
+    trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+    username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+    token: window.localStorage.getItem("token"),
   };
 
   componentDidMount() {

@@ -3,14 +3,21 @@ import axios from 'axios';
 import ModalComponent from "./ModalKontakt";
 
 class KontaktPod extends Component {
-    state = {
-        StudentID: 1,
-        adresa: "lala",
-        email: "isajdi",
-        brtel: "98426",
-        modalShow: false,
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            token: window.localStorage.getItem("token"),
+            adresa: "lala",
+            email: "isajdi",
+            brtel: "98426",
+            modalShow: false,
+
+        }
     }
+
     saveState = (type, state) => {
         switch (type) {
             case "modalShow":

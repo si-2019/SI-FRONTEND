@@ -8,7 +8,9 @@ class modalnaKomponenta extends Component {
   state = {
     vrijednostInputa: "",
     greska: null,
-    trenutnoLogovaniStudentID: 1
+    trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+    username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+    token: window.localStorage.getItem("token"),
   };
 
   constructor(props) {
@@ -25,7 +27,7 @@ class modalnaKomponenta extends Component {
         axios
           .put(
             `http://localhost:31918/studenti/update/linkedin/` +
-              this.state.trenutnoLogovaniStudentID,
+            this.state.trenutnoLogovaniStudentID,
             { linkedin: this.state.vrijednostInputa }
           )
           .then(res => {
@@ -38,7 +40,7 @@ class modalnaKomponenta extends Component {
         axios
           .put(
             `http://localhost:31918/studenti/update/website/` +
-              this.state.trenutnoLogovaniStudentID,
+            this.state.trenutnoLogovaniStudentID,
             { website: this.state.vrijednostInputa }
           )
           .then(res => {

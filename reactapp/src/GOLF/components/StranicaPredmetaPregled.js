@@ -11,39 +11,64 @@ class StranicaPredmetaPregled extends Component {
       naziv: "",
       godine: [],
       nazivAg: props.akademskaGodina,
-      text: ""}
+      text: "",
+      dodano: 0
+    }
     }
 
   componentDidMount(){
-    axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.idPredmeta}`).then(res =>{
+    axios.get(`http://si2019golf.herokuapp.com/r5/dajNaziv/${this.props.idPredmeta}`).then(res =>{
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else{
       this.setState({
         naziv: res.data.naziv
       })
+    }
   })
-  axios.get(`http://localhost:31907/r8/getAkademskaGodina/`).then(res =>{  
+  axios.get(`http://si2019golf.herokuapp.com/r8/getAkademskaGodina/`).then(res =>{  
+    if(res.data.loginError) {
+      window.location.href = window.location.origin + '/romeo/login'
+    }
+else{
     this.setState({
       godine:res.data.godine
     })
+  }
   })
 
-  axios.get(`http://localhost:31907/r6/provjera/${this.props.idKorisnika}/${this.props.idPredmeta}`).then(res2 =>{
+  axios.get(`http://si2019golf.herokuapp.com/r6/provjera/${this.props.idKorisnika}/${this.props.idPredmeta}`).then(res2 =>{
+    if(res2.data.loginError) {
+      window.location.href = window.location.origin + '/romeo/login'
+    }
+    else{
   let tekst = ""  
+  let dodano = 0
   if(res2.data.veza == '1'){
       tekst='Ukloni iz mojih predmeta'
+      dodano=1
       }
       else{
         tekst='Dodaj u moje predmete'
+        dodano=0
       }
       this.setState({
-        text: tekst
+        text: tekst,
+        dodano: dodano
       })
+    }
 })
 
 }
 
 klikNaDugme = () => {
   if(this.state.dodano==0){
-    axios.post(`http://localhost:31907/r1/dodajMojPredmet/${this.props.idKorisnika}/${this.props.idPredmeta}`).then(res => {
+    axios.post(`http://si2019golf.herokuapp.com/r1/dodajMojPredmet/${this.props.idKorisnika}/${this.props.idPredmeta}`).then(res => {
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else{
       if(res.data.message=='OK'){
         let tekst = 'Ukloni iz mojih predmeta'
         let dodano = 1
@@ -52,11 +77,16 @@ klikNaDugme = () => {
           dodano:dodano
         })
       }
+    }
     })
   }
   else{
-    axios.get(`http://localhost:31907/r6/obrisi/${this.props.idKorisnika}/${this.props.idPredmeta}`).then(res => {
-      if(res.data.obrisano==1){
+    axios.get(`http://si2019golf.herokuapp.com/r6/obrisi/${this.props.idKorisnika}/${this.props.idPredmeta}`).then(res => {
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else{
+      if(res.data.message=='OK'){
         let tekst = 'Dodaj u moje predmete'
         let dodano = 0
         this.setState({
@@ -64,6 +94,7 @@ klikNaDugme = () => {
           dodano:dodano
         })
       }
+    }
     })
   }
 }
@@ -84,7 +115,7 @@ render() {
         <Dropdown godine={this.state.godine} nazivAg = {this.props.akademskaGodina} idKorisnika={this.props.idKorisnika} idPredmeta={this.props.idPredmeta}/>
       </div>
 
-      <ObjaveStudent idPredmeta={this.props.idPredmeta} akademskaGodina={this.props.akademskaGodina}></ObjaveStudent>
+      <ObjaveStudent idPredmeta={this.props.idPredmeta} akademskaGodina={this.props.akademskaGodina} trenutnaAkademskaGodina={this.props.trenutnaAkademskaGodina}></ObjaveStudent>
     </div>
 
     

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import MojiPredmeti from './components/mojiPredmeti.js'
 import Ciklusi from './components/ciklusi.js'
-import proba from './components/proba.js'
 import SemestarPredmeti from './components/semestarPredmeti.js'
 import StranicaPredmeta from './components/stranicaPredmeta.js'
 import './components/golf.css'
@@ -25,19 +24,20 @@ class App extends Component {
                       backgroundColor: "#2C3E50",
                       height: "100%",
                       padding: "0px",
-                       margin: "0px"
+                      margin: "0px",
+                      overflowY: "scroll"
                     }}>
-                      <Link to='/Golf/mojiPredmeti/1' class="dugmeLink">
+                      <Link to='/Golf/mojiPredmeti' class="dugmeLink">
                           <button type="button" class="btn btn-primary left-buttons" id="mpl">Moji predmeti</button>
                       </Link>
                      <Ciklusi />
                      
                     </div>
                     <div class='col-9'>
-                        <Route exact path="/Golf" component={proba} />
-                        <Route path="/Golf/mojiPredmeti/:idKorisnika" component={MojiPredmeti}/>
+                        <Route exact path="/Golf" component={MojiPredmeti} />
+                        <Route path="/Golf/mojiPredmeti" component={MojiPredmeti}/>
                         <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={SemestarPredmeti}/>  
-                        <Route path="/Golf/stranicaPredmeta/:nazivAG/:idPredmeta/:idKorisnika" component={StranicaPredmeta}/>    
+                        <Route path="/Golf/stranicaPredmeta/:nazivAG/:idPredmeta" component={StranicaPredmeta}/>    
 				              </div>
                 </div>
             </Router>

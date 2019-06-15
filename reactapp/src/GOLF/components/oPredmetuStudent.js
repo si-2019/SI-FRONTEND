@@ -12,25 +12,41 @@ class oPredmetuStudent extends Component {
   }
 
   ucitaj(props){
-    axios.get(`http://localhost:31907/r3/dajOPredmetu/${this.props.idPredmeta}/${encodeURIComponent(props.naziv)}`).then(res =>{
-      console.log(res.data.objave[0])
+    axios.get(`http://si2019golf.herokuapp.com/r3/dajOPredmetu/${this.props.idPredmeta}/${encodeURIComponent(props.naziv)}`).then(res =>{
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else{
       this.setState({
         objave: res.data.objave[0],
         fileovi: res.data.objave[0].datoteke
       })
-      console.log(this.state)
+    }
   })
   }
 
+  skiniFile(naziv, id){
+    axios({
+      url: `http://si2019golf.herokuapp.com/r1/dajFile?id=${id}`,
+      method: 'GET',
+      responseType: 'stream'
+    }).then((res) => {
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else{
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', naziv);
+        document.body.appendChild(link);
+        link.click();
+      }
+    });
+  }
+
   componentDidMount(){
-    axios.get(`http://localhost:31907/r3/dajOPredmetu/${this.props.idPredmeta}/${encodeURIComponent(this.props.naziv)}`).then(res =>{
-      console.log(res.data.objave[0])
-      this.setState({
-        objave: res.data.objave[0],
-        fileovi: res.data.objave[0].datoteke
-      })
-      console.log(this.state)
-  })
+    this.ucitaj(this.props)
 
   }
 
@@ -48,7 +64,7 @@ class oPredmetuStudent extends Component {
             <div class="card" id="objava">
               <div class="card-body">
                 <div>{this.state.objave.opis}</div>
-                {this.state.fileovi.map(file => [<a href={'http://localhost:31907/r1/dajFile?id='+file.id} target="_blank" class='card-link'>{file.naziv}</a>,<br></br>])}
+                {this.state.fileovi.map(file => [<a href="#" onClick={() => this.skiniFile(file.naziv, file.id)} class='card-link'>{file.naziv}</a>,<br></br>])}
               </div>
             </div>
         </div>

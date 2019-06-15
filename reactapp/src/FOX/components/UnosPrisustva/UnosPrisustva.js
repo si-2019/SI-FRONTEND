@@ -149,8 +149,10 @@ class UnosPrisustva extends React.Component {
                     tutorijal: s.tutorijal === null ? "-" : s.tutorijal,
                     vjezbe: s.vjezbe === null ? "-" : s.vjezbe 
                 };
+                
             })
-             this.setState({studenti: studenti, idPredmeta: idPredmeta});
+            console.log(response.data);
+            this.setState({studenti: studenti, idPredmeta: idPredmeta});
         })
         .catch(()=> {
         });

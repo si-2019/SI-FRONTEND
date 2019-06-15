@@ -12,7 +12,7 @@ class Predmet extends Component {
      }
      state = {
           predmeti: [
-               {id: 0, naziv: "Tehnike programiranja", opis: "Opis predemeta"},
+               {id: 100, naziv: "Tehnike programiranja", opis: "Opis predemeta"},
                {id: 1, naziv: "Numerički algoritmi", opis: "Opis predemeta"},
                {id: 2, naziv: "Diskretna matematika", opis: "Opis predemeta"}
           ],

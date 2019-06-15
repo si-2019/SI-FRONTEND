@@ -51,17 +51,15 @@ class OcjenjivanjePocetna extends Component {
             </h4>
           </div>
           <div id="kontOcjenjivanje">
-            <div>
-              <div>
+            
                 <div id="ZadaceZaOcjenjivanje">
-                  {/*className="custom-select w-50"*/}
                   <ButtonDropdown
                     id="selK1"
                     multiple=""
                     isOpen={this.state.dropdownOpen[0]}
                     toggle={() => this.toggle(0)}
                   >
-                    <DropdownToggle caret>Lista zadaća</DropdownToggle>
+                    <DropdownToggle caret color="white" id="bbb3">Lista zadaća</DropdownToggle>
                     <DropdownMenu>
                       {this.props.podaci.state.listaZadaca.map(clan => (
                         <DropdownItem
@@ -88,7 +86,6 @@ class OcjenjivanjePocetna extends Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </div>
-              </div>
               <div className="card-body" id="StudentiZaOcjenjivanje">
                 <br />
                 <h6 id="nisupos">
@@ -182,7 +179,6 @@ class OcjenjivanjePocetna extends Component {
                   </DropdownMenu>
                 </ButtonDropdown>
               </div>
-            </div>
           </div>
         </div>
       </div>

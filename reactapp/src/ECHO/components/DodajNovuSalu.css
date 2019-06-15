@@ -1,17 +1,17 @@
 #karticaBody {
-    display: flex;
-    flex-direction: column;
-  }
-  #kartica{
-    width: 50%;
+  display: flex;
+  align-self: center;
+  width: 50%;
+  flex-direction: column;
+}
+#kartica {
+  display: flex;
+}
+#check {
+  margin-top: 3%;
+  text-align: left;
+}
 
-  left: 25%;
-  right:25%;
-  top: 10%;
-   height: 50%;
-  }
-  #check{
-      margin-top: 3%;
-      text-align: left;
-  }
- 
+#omotacECHO {
+  padding: 15px;
+}

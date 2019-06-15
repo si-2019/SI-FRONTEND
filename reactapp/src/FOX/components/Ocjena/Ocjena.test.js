@@ -5,7 +5,7 @@ import Ocjena  from './Ocjena'
 describe('<Ocjena />', () => {
   it('renderuje formu za unos ocjene', () => {
     const wrapper = shallow(<Ocjena/>)
-    expect(wrapper.find('form').exists()).toBe(true)
+    expect(wrapper.find('#form').exists()).toBe(true)
   })
 
   it('da li ima input za index', () => {

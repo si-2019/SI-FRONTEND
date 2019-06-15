@@ -18,7 +18,7 @@ class LicniPod extends Component {
             imePrezimeOca: "",
             imePrezimeMajke: "",
             Drzavljanstvo: "",
-            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
             username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
             token: window.localStorage.getItem("token"),
             fotka: null,
@@ -72,6 +72,7 @@ class LicniPod extends Component {
             })
             .catch(err => {
                 console.log(err);
+                console.log("catch licni");
             });
     }
     componentDidMount() {

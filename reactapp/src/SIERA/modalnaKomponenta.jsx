@@ -3,7 +3,7 @@ import "./bootstrap.css";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class modalnaKomponenta extends Component {
   state = {
@@ -12,6 +12,8 @@ class modalnaKomponenta extends Component {
     trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
     username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
     token: window.localStorage.getItem("token"),
+    OK: true,
+    msg: ""
   };
 
   constructor(props) {
@@ -32,8 +34,25 @@ class modalnaKomponenta extends Component {
             { linkedin: this.state.vrijednostInputa }
           )
           .then(res => {
-            this.setState({ greska: false });
-            window.location.reload();
+            if (res.data.success && res.data.userAutorizacija) {
+              this.setState({ greska: false, OK: true, msg: "" });
+              window.location.reload();
+            }
+            else if (!res.data.userAutorizacija) {
+              //nema privilegiju
+              this.setState({
+                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                OK: false
+              })
+            }
+            else {
+              //kod nas greska
+              this.setState({
+                msg: "Došlo je do greške!",
+                OK: false
+              })
+            }
+
           });
       } else if (this.props.nazivpromjene == "Website") {
         axios
@@ -43,30 +62,52 @@ class modalnaKomponenta extends Component {
             { website: this.state.vrijednostInputa }
           )
           .then(res => {
-            this.setState({ greska: false });
-            window.location.reload();
+            if (res.data.success && res.data.userAutorizacija) {
+              this.setState({ greska: false, OK: true, msg: "" });
+              window.location.reload();
+            }
+            else if (!res.data.userAutorizacija) {
+              //nema privilegiju
+              this.setState({
+                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                OK: false
+              })
+            }
+            else {
+              //kod nas greska
+              this.setState({
+                msg: "Došlo je do greške!",
+                OK: false
+              })
+            }
+          })
+          .catch(res=>{
+            this.setState({
+              OK:false,
+              msg:"Došlo je do greške!"
+            })
           });
       }
     }
   }
-  handleAuth = ()=>{
+  handleAuth = () => {
     if (window.localStorage.getItem("id") != null) {
       var ajax = new XMLHttpRequest();
       ajax.onreadystatechange = () => {
-          if (this.readyState == 4 && this.status == 200) {
-              //radi sta hoces
-              this.posaljiZahtjev();
-          }
-          else {
-              //vrati na login
-              this.props.history.push("/Romeo");
-          }
+        if (this.readyState == 4 && this.status == 200) {
+          //radi sta hoces
+          this.posaljiZahtjev();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
       }
       ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
       ajax.setRequestHeader("Authorization", this.state.token);
       ajax.send();
-  }
-  else this.posaljiZahtjev();
+    }
+    else this.posaljiZahtjev();
 
   }
   promjenaInputa(event) {
@@ -118,6 +159,7 @@ class modalnaKomponenta extends Component {
             id="inputDefault"
             onChange={this.promjenaInputa}
           />
+          {this.state.OK ? "" : <div className="invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
         </Modal.Body>
         <Modal.Footer>
           <button className="btn btn-primary" onClick={() => this.posaljiZahtjev()}>

@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +12,8 @@ class ModalComponent extends React.Component {
             token: window.localStorage.getItem("token"),
             greska: null,
             brojac: 0,
+            OK: false,
+            msg: "",
             noviInput: {
                 adresa: null,
                 email: null,
@@ -62,7 +64,28 @@ class ModalComponent extends React.Component {
                         }
                     )
                     .then(res => {
-                        this.setState({ greska: false });
+                        if (res.data.success && res.data.userAutorizacija) {
+                            this.setState({
+                                greska: false,
+                                OK: true,
+                                msg: ""
+                            });
+                        }
+                        else if (!res.data.userAutorizacija) {
+                            //nema privilegiju
+                            this.setState({
+                                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                                OK: false
+                            })
+                        }
+                        else {
+                            //kod nas greska
+                            this.setState({
+                                msg: "Došlo je do greške!",
+                                OK: false
+                            })
+                        }
+
                     })
                     .catch(err => {
                         console.log(err);
@@ -78,7 +101,27 @@ class ModalComponent extends React.Component {
                         }
                     )
                     .then(res => {
-                        this.setState({ greska: false });
+                        if (res.data.success && res.data.userAutorizacija) {
+                            this.setState({
+                                greska: false,
+                                OK: true,
+                                msg: ""
+                            });
+                        }
+                        else if (!res.data.userAutorizacija) {
+                            //nema privilegiju
+                            this.setState({
+                                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                                OK: false
+                            })
+                        }
+                        else {
+                            //kod nas greska
+                            this.setState({
+                                msg: "Došlo je do greške!",
+                                OK: false
+                            })
+                        }
                     })
                     .catch(err => {
                         console.log(err);
@@ -94,7 +137,27 @@ class ModalComponent extends React.Component {
                         }
                     )
                     .then(res => {
-                        this.setState({ greska: false });
+                        if (res.data.success && res.data.userAutorizacija) {
+                            this.setState({
+                                greska: false,
+                                OK: true,
+                                msg: ""
+                            });
+                        }
+                        else if (!res.data.userAutorizacija) {
+                            //nema privilegiju
+                            this.setState({
+                                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                                OK: false
+                            })
+                        }
+                        else {
+                            //kod nas greska
+                            this.setState({
+                                msg: "Došlo je do greške!",
+                                OK: false
+                            })
+                        }
                     })
                     .catch(err => {
                         console.log(err);
@@ -145,50 +208,49 @@ class ModalComponent extends React.Component {
     }
 
 
-render() {
-    ++this.brojac;
-    return (
-        <Modal
-            {...this.props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            onHide={this.handleExit}
-        >
-            {this.renderujPotvrdu()}
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    {this.props.naslovModala}
-                </Modal.Title>
-            </Modal.Header>
-            <form onSubmit={this.handleAuth}>
-                <Modal.Body>
-                    <h4>{this.props.nazivPromjene}</h4>
-                    <div className="form-group">
+    render() {
+        ++this.brojac;
+        return (
+            <Modal
+                {...this.props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                onHide={this.handleExit}
+            >
+                {this.renderujPotvrdu()}
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        {this.props.naslovModala}
+                    </Modal.Title>
+                </Modal.Header>
+                <form onSubmit={this.handleAuth}>
+                    <Modal.Body>
+                        <h4>{this.props.nazivPromjene}</h4>
+                        <div className="form-group">
 
-                        <br></br>
-                        <label className="col-form-label" for="inputDefault" >Telefon</label>
-                        <input type="text" className="form-control" name="brtel" onChange={this.handleChange} />
-                        
-                        <label className="col-form-label" for="inputDefault" >Adresa</label>
-                        <input type="text" className="form-control" name="adresa" onChange={this.handleChange} />
+                            <br></br>
+                            <label className="col-form-label" for="inputDefault" >Telefon</label>
+                            <input type="text" className="form-control" name="brtel" onChange={this.handleChange} />
 
-                        <label className="col-form-label" for="inputDefault">Email</label>
-                        <input type="text" className="form-control" name="email" onChange={this.handleChange} />
+                            <label className="col-form-label" for="inputDefault" >Adresa</label>
+                            <input type="text" className="form-control" name="adresa" onChange={this.handleChange} />
 
+                            <label className="col-form-label" for="inputDefault">Email</label>
+                            <input type="text" className="form-control" name="email" onChange={this.handleChange} />
+                            {this.state.OK ? "" : <div className= "invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
 
-                    </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
 
-                </Modal.Body>
-                <Modal.Footer>
-
-                    <button type="submit" id="spasiBtn" className="btn btn-primary">Spasi Promjene</button>
-                    <button type="button" className="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
-                </Modal.Footer>
-            </form>
-        </Modal>
-    );
-}
+                        <button type="submit" id="spasiBtn" className="btn btn-primary">Spasi Promjene</button>
+                        <button type="button" className="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
+                    </Modal.Footer>
+                </form>
+            </Modal>
+        );
+    }
 }
 export default withRouter(ModalComponent);
 

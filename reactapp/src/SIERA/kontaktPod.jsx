@@ -13,7 +13,7 @@ class KontaktPod extends Component {
             token: window.localStorage.getItem("token"),
             adresa: "",
             email: "",
-            brtel: "9426",
+            brtel: "",
             modalShow: false,
 
         }
@@ -53,8 +53,8 @@ class KontaktPod extends Component {
             const adr = res.data.map(obj => obj.adresa);
             this.setState({ adresa: adr });
         })
-        .catch(err => {
-            console.log(err);
+        .catch(res => {
+            console.log("usao u catch");
         });
     }
     componentDidMount() {

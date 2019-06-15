@@ -11,7 +11,7 @@ class DropDownZavrsni extends React.Component {
         this.state = {
             profesori: [],
             teme: [],
-            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 3,
+            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
             username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
             token: window.localStorage.getItem("token"),
             profId: 1,
@@ -280,9 +280,8 @@ class DropDownZavrsni extends React.Component {
                                     <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
                                         <button type="button" className="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
                                     </div>
-                                   <div className="form-group has-danger">
-                                    {this.state.OK ? "" : <div className="invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
-                                    </div>
+                                    {this.state.OK ? "" : <div className= "invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
+                                    
                                     <hr></hr>
                                     <h4 className="card-title">Status</h4>
                                     <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>

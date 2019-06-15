@@ -14,11 +14,11 @@ describe('<Obavijesti />', () => {
   })
   it('da li ima textarea polje za sadrzaj', () => {
     const wrapper = shallow(<KreirajIspitDetalji/>)
-    expect(wrapper.find('#sadrzaj').exists()).toBe(true)
+    expect(wrapper.find('#sadrzajId').exists()).toBe(true)
   })
   it('da li ima dugme za spasavanje obavijesti', () => {
     const wrapper = shallow(<KreirajIspitDetalji/>)
-    expect(wrapper.find('#sacuvaj').exists()).toBe(true)
+    expect(wrapper.find('#sacuvajId').exists()).toBe(true)
   })
 
 })

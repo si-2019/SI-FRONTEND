@@ -126,6 +126,7 @@ class Obavijesti extends Component {
                                                     as="textarea"
                                                     rows="5"
                                                     type="text"
+                                                    id="sadrzajId"
                                                     placeholder="Unesite sadrzaj obavijesti"
                                                     ref={ this.sadrzaj }
                                                     required
@@ -141,7 +142,7 @@ class Obavijesti extends Component {
 
                                             <Form.Row className="justify-content-center">
                                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
-                                                    <Button type="submit"> Sačuvaj </Button>
+                                                    <Button id="sacuvajId" type="submit"> Sačuvaj </Button>
                                                 </Col>
                                             </Form.Row>
                                             </Form>

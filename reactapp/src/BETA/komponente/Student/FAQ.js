@@ -41,7 +41,7 @@ class FAQ extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <Spinner animation='border' role='status'>
+                <Spinner animation='border' role='status' id="listaFAQBeta">
                     <span className="sr-only">Učitavanje...</span>
                 </Spinner>
             );
@@ -54,7 +54,7 @@ class FAQ extends React.Component {
                 tekst: x.tekst
             }))
         return (
-            <div className="col-12" >
+            <div className="col-12" id="listaFAQBeta">
 
 
                 <br></br>

@@ -18,6 +18,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      profesor: false,
+      fetched: false,
       activeContentId: 0,
       menuButtonTitles: [, "Ispiti"],
       menuButtonsProfesor: [{
@@ -71,7 +73,7 @@ class App extends Component {
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
   }
-  componentDidMount() {
+  async componentDidMount() {
     var help = [];
     var i = 0;
     var helps = [];
@@ -100,33 +102,31 @@ class App extends Component {
       menuComponentsStudent: helps
     });
 
+    const id = window.localStorage.getItem("id")||5;
+    const token = window.localStorage.getItem("token");
+    const username = window.localStorage.getItem("username");
+
+    const uloga = 'PROFESOR';
+    try {
+      // const {status} = await axios.get('https://si2019romeo.herokuapp.com/users/validate', username, {
+      //   headers : {"Authorization": token}
+      // })
+      // console.log(status)
+
+      const {data} = await axios.get(`https://si2019oscar.herokuapp.com/pretragaId/imaUlogu/${id}/${uloga}`)
+      this.setState({fetched:true})
+      this.setState({profesor:data})
+    } catch (error) {
+      console.log('Greska')
+      console.log(error.message)
+    }
+
   }
   onChangeActiveId = (id) => {
     this.setState({
       activeContentId: id,
     })
   };
-
-  isProfesor = () =>{
-    const id = window.localStorage.getItem("id") || 1;
-    const token = window.localStorage.getItem("token");
-    const username = window.localStorage.getItem("username");
-
-    // axios.get('https://si2019romeo.herokuapp.com/users/validate', username, {
-    //   "Authorization": token
-    // })
-    const uloga = 'PROFESOR';
-    return false
-    //Kad oscar rijesi cors, ubaci ovaj dio
-    // try {
-    //   return false
-    //   const {data, status} = await axios.get(`https://si2019oscar.herokuapp.com/pretragaId/imaUlogu/${id}/${uloga}`)
-    //   return data  
-    // } catch (error) {
-    //   console.log(error.message)
-    // }
-    
-  }
 
   render() {
     return (
@@ -143,7 +143,7 @@ class App extends Component {
               }}>
                 <LeftMenuCharlie
                   triggerChangeActiveId={this.onChangeActiveId}
-                  btnList={this.isProfesor() ? this.state.menuComponentsProfesor : this.state.menuComponentsStudent}
+                  btnList={this.state.fetched && (this.state.profesor ? this.state.menuComponentsProfesor : this.state.menuComponentsStudent) || []}
                 />
               </div>
               <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
@@ -152,8 +152,8 @@ class App extends Component {
                 margin: "0px",
                 padding: "0px"
               }}>
-                { this.isProfesor() ? this.state.menuComponentsProfesor[this.state.activeContentId].component
-                  : this.state.menuComponentsStudent[this.state.activeContentId].component
+                { this.state.fetched && (this.state.profesor ? this.state.menuComponentsProfesor[this.state.activeContentId].component
+                  : this.state.menuComponentsStudent[this.state.activeContentId].component)
                 }
               </div>
             </div>

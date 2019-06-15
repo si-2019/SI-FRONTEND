@@ -10,6 +10,8 @@ import DodavanjeObjave from './dodavanjeObjave';
 import OPredmetuProfesor from './oPredmetuProfesor';
 import OPredmetuStudent from './oPredmetuStudent';
 import Sedmica from './sedmica';
+import Dropdown from './dropdown';
+import UredjivanjeObjave from './UredjivanjeObjave'
 
 class proba extends Component {
   render() {
@@ -50,16 +52,9 @@ class proba extends Component {
       
         <div>
             <h1>Moji predmeti</h1>
-            <SviPredmeti predmeti={this.state.svipredmeti} />
-            <LiteraturaStudent/>
-            <LiteraturaProfesor/>
-            <DodavanjeDatuma datumobjave={this.state.datumobjave}/>
-            <ObjavaStudent naslov="Predavanje 1" opisMaterijala="Opis predavanja..." fileovi={this.state.fileovi2}></ObjavaStudent>
-            <ObjavaProfesor naslov="Tutorijal 2" opisMaterijala="Opis tutorijala..."fileovi={this.state.fileovi}></ObjavaProfesor>
-            <DodavanjeObjave/>
-            <OPredmetuProfesor opis='opis' fileovi={this.state.fileovi2}/>
-            <OPredmetuStudent opis='opis'fileovi={this.state.fileovi}/>
-            <Sedmica></Sedmica>
+            <DodavanjeObjave></DodavanjeObjave>
+            <UredjivanjeObjave></UredjivanjeObjave>
+            
         </div>
         
 

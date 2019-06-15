@@ -1,48 +1,54 @@
 import React, { Component } from "react";
 import { Icon } from "@opuscapita/react-icons";
 
- 
 class OcjenjivanjeJedanZadatak extends Component {
   render() {
     return (
-      <div>
-        <div className="card-header bg-primary text-light">
+      <div class="card w-50 ml-4">
+        <div className="card-title ml-3 mt-3">
           <h4>
-            <b>Zadaća {this.props.podaci.state.zadaca}. </b>
+            <b>{this.props.podaci.state.zadaca}. </b>
             <Icon
               type="indicator"
               name="arrowLeft"
-              className="mr-2 bg-light float-right"
-              onClick={() => this.props.podaci.handleBackNaJednaZadaca(this.props.podaci.state.student,this.props.podaci.state.idStudenta)}
+              className="mr-2 float-right"
+              onClick={() =>
+                this.props.podaci.handleBackNaJednaZadaca(
+                  this.props.podaci.state.student,
+                  this.props.podaci.state.idStudenta
+                )
+              }
             />{" "}
           </h4>
-          <h5>Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
+          <h5 id="zNo">Zadatak broj {this.props.podaci.state.brojZadatka}</h5>
         </div>
         <br />
-        <button
-          name="preuzmi"
-          type="button"
-          className="btn btn-primary ml-3"
-          onClick={this.props.podaci.handleClick}
-        >
-          <Icon type="indicator" name="sortDesc" className="mr-2" onClick = {this.props.podaci.preuzmiDatoteku()}/>
-          Preuzmi datoteku
-        </button>
-        <button
-          name="pregled"
-          type="button"
-          className="btn btn-primary ml-5"
-          onClick={this.props.podaci.handleClick}
-        >
-          <Icon type="indicator" name="search" className="mr-2" onClick = {this.props.podaci.pregledDatoteke()} />
-          Pregled datoteke
-        </button>
+        <div class="row">
+          <div class="col">
+            <button
+              name="preuzmi"
+              id="preuzmiB1"
+              type="button"
+              className="btn btn-primary"
+              onClick={this.props.podaci.handleClick}
+            >
+              <Icon
+                type="indicator"
+                name="sortDesc"
+                className="mr-2"
+              />
+              Preuzmi datoteku
+            </button>
+          </div>
+        </div>
         <br />
-        <hr />
-        <h5 className="control-label ml-3">Osvojeni bodovi:</h5>
-        <div className=" d-flex justify-content-center">
+
+        <h6 id="osB" className="control-label">
+          Osvojeni bodovi:
+        </h6>
+        <div id="osBi">
           <input
-            className="form-control ml-3 mr-3  text-body text-center col-2"
+            className="form-control  text-body text-center"
             type="number"
             id="osvojeniBodovi"
             name="osvojeniBodovi"
@@ -55,20 +61,20 @@ class OcjenjivanjeJedanZadatak extends Component {
         </div>
         <br />
         <div className="form-group mr-4">
-          <h5 className="ml-3">Komentar:</h5>
+          <h6 id="komentarr">Komentar:</h6>
           <textarea
             className="form-control  ml-3 mr-3"
             placeholder="Ovdje napišite Vaš komentar."
             id="komentar"
             rows="4"
           />
-          <small id="emailHelp" className="form-text text-muted ml-3">
-            Ova mogućnost je opcionalna.
+          <small id="emailHelp" className="form-text text-muted">
+            Ova moguænost je opcionalna.
           </small>
         </div>
         <div>
           <hr className="bg-danger ml-3 mr-3" />
-          <div class="custom-control custom-switch">
+          <div id="prepisan" class="custom-control custom-switch">
             <input
               type="checkbox"
               class="custom-control-input"
@@ -78,19 +84,37 @@ class OcjenjivanjeJedanZadatak extends Component {
               className="custom-control-label ml-3"
               htmlFor="prepisanZadatak"
             >
-              <h5>
+              <h6>
                 Zadatak je <b className="text-danger">prepisan.</b>
-              </h5>
+              </h6>
             </label>
           </div>{" "}
           <hr className="bg-danger ml-3 mr-3" />
         </div>
-        <button type="button" name="ok" onClick={this.props.podaci.handleClick}  class="btn btn-primary ml-3">
-          OK
-        </button>
-        <button type="button" name="otkazi" onClick={this.props.podaci.handleClick} class="btn btn-outline-primary ml-3 ">
-          Otkaži
-        </button>
+        <div class="row pb-2">
+          <div class="col">
+            <button
+              type="button"
+              name="otkazi"
+              id="otkazuj"
+              onClick={this.props.podaci.handleClick}
+              class="btn btn-outline-danger text-danger "
+            >
+              Otkaži
+            </button>
+          </div>
+          <div class="col">
+            <button
+              type="button"
+              id="oky"
+              name="ok"
+              onClick={this.props.podaci.handleClick}
+              class="btn btn-primary"
+            >
+              OK
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

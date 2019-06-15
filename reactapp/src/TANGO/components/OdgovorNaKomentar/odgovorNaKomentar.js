@@ -64,10 +64,8 @@ class OdgovoriNaKomentar extends Component {
                     </textarea>
       </Modal.Body>
       <Modal.Footer>
-        <button variant="secondary" onClick={this.handleClose}>
-          Povratak
-        </button>
-        <button type="button" class="btn btn-success" onClick={this.handleUnesi}>Spasi Promjene</button>
+      <button type="button" class="btn btn-primary" onClick={this.handleUnesi}>Spasi Promjene</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={this.props.close}>Povratak</button>
       </Modal.Footer>
     </Modal>
       

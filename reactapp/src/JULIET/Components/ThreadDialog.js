@@ -45,24 +45,24 @@ export default class ThreadDialog extends Component {
                 >
                     <DialogTitle id="thread-dialog-title">Message #{this.props.message.id}</DialogTitle>
                     <DialogContent>
-                        <ul style={listStyle} className="list-group message-list">
+                        <ul style={listStyle} className="list-group juliet-message-list">
                             {this.props.messagelist.map((message, index) => (
                                 <li
-                                    className="list-group-item" style={messageStyle} key={index}>
-                                    <h4 className="message-sender">{message.sender}</h4>
-                                    <p style={messageTextStyle} className="message-text" >
+                                    className="list-group-item juliet-message" style={messageStyle} key={index}>
+                                    <h4 className="juliet-message-sender">{message.sender}</h4>
+                                    <p className="juliet-message-text" >
                                         {message.text}
                                     </p>
                                 </li>
                             ))}</ul>
                         <form onSubmit={this.handleSubmit}>
-                            <input className="input-group mb-3 message-input" type="text" style={inputStyle}
-                                placeholder="Write something..." onChange={this.handleChange} value={this.state.messageToSend} />
+                            <input className="input-group mb-3 juliet-message-input" type="text" style={inputStyle}
+                                onChange={this.handleChange} value={this.state.messageToSend} />
                             <input className="btn btn-outline-primary" style={buttonStyle} type="submit" value="Send" />
                         </form>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">Close</Button>
+                        <Button onClick={this.handleClose} style={{color: '#2C3E50'}}>Close</Button>
                     </DialogActions>
                 </Dialog>
             </div>
@@ -70,15 +70,7 @@ export default class ThreadDialog extends Component {
     }
 }
 
-const messageTextStyle = {
-    color: 'black',
-    border: "1px solid #7856AD",
-    padding: '10px',
-    width: 'auto'
-}
-
 const listStyle = {
-    overflowX: 'hidden',
     height: '100%',
     textAlign: 'left'
 }

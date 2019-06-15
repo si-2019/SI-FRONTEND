@@ -3,7 +3,8 @@ import { unstable_createResource } from "react-cache";
 import {
   withRouter
 } from 'react-router-dom'
-import Lista from '../ListaTema/listaTema'
+import Lista from '../ListaTema/listaTema';
+import {Link} from 'react-router-dom';
 
 class NovaTema extends Component {
   constructor() {
@@ -76,42 +77,56 @@ headers:{
 
     
     return (
-      <div className="row justify-content-center mt-5 ">
-        <div className="col-sm-auto">      
-        </div>
-        <div className="form-group bg-light col-md-4 p-4 ">
-          <form onSubmit = {this.handleUnesi}>
-            <p className="lead mb-1">Naziv Teme</p>
-            <input
-              className="form-control form-control-lg"
-              type="text"
-              id="nazivTeme"
-              value={this.state.naziv}
-              onChange={this.handleNazivTemeChange}
-            />
-            <p className="lead mb-1">Tekst</p>
-            <textarea
-              className="form-control"
-              id="opisTeme"
-              rows="4"
-              value={this.state.opis}
-              onChange={this.handleOpisTemeChange}
-            />
-            <p v-html="desc" />
-
-            <button
-              className="btn btn-primary btn-xs form-control"
-              disabled={!isEnabled}
-              onClick={this.handleUnesi}
-            >
-              Unesi
-            </button>
-          </form>
-          <hr></hr>
-          <button color="primary" className="btn btn-primary my-1 btn-sm"
-          onClick={this.handleSubmit}> Povratak </button>
+      <div class="row">
+      <div class="col"> </div>
+      <div class="col"> 
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Nova tema</h4>
+            <div>
+              <div>
+                <form onSubmit = {this.handleUnesi}>
+                  <div class="form-group">
+                    <label  class = "col-sm" for="nazivTeme">Naziv teme</label>
+                    <input 
+                      type="text" 
+                      class="form-control mb-2" 
+                      id="nazivTeme" 
+                      placeholder="Naziv teme"  
+                      value={this.state.naziv}
+                      onChange={this.handleNazivTemeChange}/>
+                  </div>
+                  <div class="form-group">
+                    <label for="opisTeme">Opis teme</label>
+                    <textarea
+                    className="form-control mb-2"
+                    id="opisTeme"
+                    rows="4"
+                    placeholder="Opis teme"
+                    value={this.state.opis}
+                    onChange={this.handleOpisTemeChange}
+                  />
+                  </div>
+                  <p v-html="desc" />
+                  <div class="d-flex flex-row-reverse">
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      disabled={!isEnabled}
+                      onClick={this.handleUnesi}
+                    > Unesi </button>
+                    <Link to ={{pathname: '/Tango/Teme'}}>
+                      <button type="button" className="btn btn-primary mr-2" >Povratak</button>
+                    </Link>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="col"> </div>
+    </div>
     );
   }}
 }

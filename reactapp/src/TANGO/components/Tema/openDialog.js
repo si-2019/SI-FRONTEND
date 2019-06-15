@@ -29,10 +29,9 @@ class OpenDialog extends Component {
       <Modal.Body> Da li želite izbrisati Temu {this.props.naziv}
       </Modal.Body>
       <Modal.Footer>
-        <button variant="secondary" onClick={this.props.close}>
-          Povratak
-        </button>
-        <button type="button" class="btn btn-success" onClick={this.handleDelete}>Obriši</button>
+      <button type="button" class="btn btn-primary" onClick={this.handleDelete}>Obriši</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={this.props.close}>Povratak</button>
+        
       </Modal.Footer>
     </Modal>
       

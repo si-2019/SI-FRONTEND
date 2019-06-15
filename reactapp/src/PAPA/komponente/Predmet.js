@@ -15,7 +15,7 @@ class PredmetOne extends Component {
                     boja:"white",
                     naslov: "Izaberite nacin prikazivanja",
                     lista:[],
-                    showPredmet:false
+                    showPredmet:true
                  };
     this.trenutniPredmeti = this.trenutniPredmeti.bind(this); 
     this.odslusaniPredmeti = this.odslusaniPredmeti.bind(this); 
@@ -30,34 +30,94 @@ class PredmetOne extends Component {
   
   
   trenutniPredmeti(){
-   
+    papaApi.trenutniPredmeti().then((res) => {
+        this.setState({
+          showPredmet:true,
+          naslov:"Trenutni predmeti",
+          lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Trenutni predmeti",
+        lista:[]});
+    });
   }
   odslusaniPredmeti(){
     
   }
   polozeniPredmeti(){
-    
+    papaApi.polozeniPredmeti().then((res) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Polozeni predmeti",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Polozeni predmeti",
+        lista:[]});
+    });
   }
   nePolozeniPredmeti(){
-    
+    papaApi.nePolozeniPredmeti().then((res) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Nepolozeni predmeti",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Nepolozeni predmeti",
+        lista:[]});
+    });
   }
   trenutniSaDrugihOdsjeka(){
-    
+    papaApi.trenutniSaDrugihOdsjeka().then((res) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Predmeti sa drugih odsjeka",
+        lista:res.data});
+    }).catch((err)=>{
+      this.setState({
+        showPredmet:true,
+        naslov:"Predmeti sa drugih odsjeka",
+        lista:[]});
+    });
   }
   trenutniSaDrugihSemestara(){
     papaApi.trenutniSaDrugihSemestara().then((res) => {
       this.setState({
-        showPredmet:true,
         naslov:"Predmeti sa drugih semestara",
-        lista:res.data});
+        lista:res.data,
+        showPredmet:true
+    });
     }).catch((err) => {
       this.setState({
         naslov:"Predmeti sa drugih semestara",
-        lista:[]});
+        lista:[],
+        showPredmet:true
+       });
     });
   }
   trenutniAsistenti(){
-    
+    papaApi.trenutniAsistenti().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+        niz.push({
+          id:res.data[a].id,
+          naziv:res.data[a].ime+" "+res.data[a].prezime
+        })
+      }
+      this.setState({
+        showPredmet:false,
+        naslov:"Asistenti",
+        lista:niz});
+    }).catch((err) => {
+      this.setState({
+        showPredmet:false,
+        naslov:"Asistenti",
+        lista:[]});
+    });
   }
   
   trenutniProfesori(){
@@ -71,12 +131,22 @@ class PredmetOne extends Component {
       }
       this.setState({
         naslov:"Profesori",
-        lista:niz});
+        lista:niz,
+        showPredmet:false
+      });
     }).catch((err) =>{
       this.setState({
         naslov:"Profesori",
-        lista:[]});
+        lista:[],
+        showPredmet:false
+      });
     });
+  }
+
+  kliknutPredmet(){
+    if(this.state.showPredmet){
+        this.props.fija();      
+    }
   }
 
   render() {
@@ -105,7 +175,7 @@ class PredmetOne extends Component {
           <div>
               <ul style={{listStyleType: "square"}}>
                 {this.state.lista.map(item => (
-                  <li style={{ margin: "1rem"}} key={item.id} >{item.naziv}</li>
+                  <li style={{ margin: "1rem"}} key={item.id} onClick={this.kliknutPredmet.bind(this)}>{item.naziv}</li>
                 ))}
               </ul>
           </div>

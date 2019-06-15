@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import TabelaPregledaZadaca from "./tabelaPregledaZadaca";
-import { taggedTemplateExpression } from "@babel/types";
+import { taggedTemplateExpression, isNullLiteral } from "@babel/types";
 import PrviPutSlanjeZadatka from "./prviPutSlanjeZadatka";
 import ZadatakVecPoslan from "./zadatakVecPoslan";
 import { async } from "q";
 
+/*0 "nije poslano", 
+  1 "nije pregledano", 
+  2 "pregledano", 
+  3 "prepisano", 
+  4 "komentar"*/
 
 //user story 68 i user story 66 pushani skupa
 class Student extends Component {
@@ -14,80 +19,98 @@ class Student extends Component {
     super(props);
 
     this.state = {
-      zadacaState:{
-      listaZadaca: ["Zadaća 1", "Zadaća 2", "Zadaća 3", "Zadaća 4"],
-      listaZadataka: ["Zadatak 1", "Zadatak 2", "Zadatak 3"],
-      maxBodoviPoZadacimaPoZadacama: [
-        [2, 3, 4],
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 1, 3]
-      ],
-      
-      bodoviPoZadacimaZadaca: [
-        [2, 3, 4],
-        [1, 0, 3], 
-        [1, 2, 3], 
-        [0, 0, 3]
-      ],
-     
-      stanjeZadacaPoZadacima: [
-        [0, 0, 0], 
-        [2, 2, 2], 
-        [3, 4, 0], 
-        [1, 1, 1]
-      ], 
-      /* 0 "nije poslano", 
-      1 "nije pregledano", 
-      2 "pregledano", 
-      3 "prepisano", 
-      4 "komentar"*/ 
-       postavka: [],
-      rokZaPredaju: [
-        "2020-12-01 23:59",
-        "2020-12-01 23:59",
-        "2020-12-01 23:59",
-        "2020-12-01 23:59"
-      ]},
- potrebno: [
-        [], 
-        [], 
-        [], 
-        []
-      ],  
+      rendajOpet: true,
+      zadacaState: {
+        listaZadaca: [],
+        listaZadataka: [],
+        maxBodoviPoZadacimaPoZadacama: [],
+        bodoviPoZadacimaZadaca: [],
+        stanjeZadacaPoZadacima: [],
+        postavka: [],
+        rokZaPredaju: [],
+        idPoZadacimaZadaca: []
+      },
+      potrebno: [[], [], [], []],
       ukupnoBodova: [],
       moguceBodova: [],
-    
-    
+      blokirajSelect: false,
+      blokirajSelect2: false,
       brojZadace: 0,
       brojZadatka: 0,
-      listaTipova: [
-        ".pdf", 
-        ".rar", 
-        ".doc",
-        ".jpeg",
-        ".png",
-        ".txt"
-      ],
-      datumSlanja: "25.05.19",
-      vrijemeSlanja: "23:23",
-      nazivFajla: "Zadatak1",
-      velicinaFajla: "1MB",
-      komentar:
-        "zadaca je ok zadaca je ok zadaca je ok",
-      indeksStudenta: 9999
-      };
-     
+      listaTipova: [],
+      komentar: "",
+      idStudenta: 1,
+      idZadatak: 0,
+      idPredmeta: 3,
+      uploadZadatka: [null],
+      velicinaFajla: "",
+      nazivFajla: "",
+      tipFajla: "",
+      datumSlanja: "",
+      vrijemeSlanja: ""
+    };
   }
+  testirajVrijeme = r => {
+    var povratna_vrijednost;
+    var danas = new Date();
+    var trengodina = danas.getFullYear();
+    var trenmjesec = danas.getMonth() + 1;
+    var trendan = danas.getDate();
 
-  obracunBodova =async (bodoviPoZadacimaZadaca, maxBodoviPoZadacimaPoZadacama) => {
+    var vrijeme = {
+      sati: danas.getHours(),
+      minute: danas.getMinutes()
+    };
+
+    var nasagodina = Number.parseInt(
+      this.state.zadacaState.rokZaPredaju[r].substring(0, 4)
+    );
+    var nasmjesec = Number.parseInt(
+      this.state.zadacaState.rokZaPredaju[r].substring(5, 7)
+    );
+    var nasdan = Number.parseInt(
+      this.state.zadacaState.rokZaPredaju[r].substring(8, 10)
+    );
+    if (trengodina > nasagodina) povratna_vrijednost = false;
+    else if (trengodina === nasagodina && trenmjesec > nasmjesec)
+      povratna_vrijednost = false;
+    else if (
+      trengodina === nasagodina &&
+      trenmjesec === nasmjesec &&
+      trendan > nasdan
+    )
+      povratna_vrijednost = false;
+    else if (
+      trengodina === nasagodina &&
+      trenmjesec === nasmjesec &&
+      trendan === nasdan
+    )
+      if (
+        vrijeme.sati < this.state.zadacaState.rokZaPredaju[r].substring(10, 13)
+      )
+        povratna_vrijednost = true;
+      else if (
+        vrijeme.sati ===
+          this.state.zadacaState.rokZaPredaju[r].substring(10, 13) &&
+        vrijeme.minute <
+          this.state.zadacaState.rokZaPredaju[r].substring(13, 16)
+      )
+        povratna_vrijednost = true;
+      else povratna_vrijednost = false;
+    else povratna_vrijednost = true;
     
+    return povratna_vrijednost;
+  };
+
+  obracunBodova = async (
+    bodoviPoZadacimaZadaca,
+    maxBodoviPoZadacimaPoZadacama
+  ) => {
     var arr = new Array(bodoviPoZadacimaZadaca.length);
 
     for (var i = 0; i < bodoviPoZadacimaZadaca.length; i++) {
       arr[i] = new Array(bodoviPoZadacimaZadaca[i].length);
     }
-
     var pomocniUkupno = [];
     var pomocniMoguce = [];
 
@@ -98,242 +121,387 @@ class Student extends Component {
         arr[i][j] =
           bodoviPoZadacimaZadaca[i][j] +
           "/" +
-         maxBodoviPoZadacimaPoZadacama[i][j];
+          maxBodoviPoZadacimaPoZadacama[i][j];
         zbirUkupno = zbirUkupno + bodoviPoZadacimaZadaca[i][j];
-        zbirMoguce =
-          zbirMoguce + maxBodoviPoZadacimaPoZadacama[i][j];
+        zbirMoguce = zbirMoguce + maxBodoviPoZadacimaPoZadacama[i][j];
       }
       pomocniUkupno.push(zbirUkupno);
       pomocniMoguce.push(zbirMoguce);
     }
-    
-    
-      this.setState({
-        potrebno:arr,
+    this.setState({
+      potrebno: arr,
       ukupnoBodova: pomocniUkupno,
       moguceBodova: pomocniMoguce
     });
   };
 
- 
-
-
-  componentDidMount = async() => {
-     //na osnovu indeksa studenta, prikupiti podatke o zadacama
+  componentDidMount = async () => {
+    //na osnovu indeksa studenta, prikupiti podatke o zadacama
     //2. parametar axiosa, je sta ce tamo biti u backendu req.body
-     await axios.get("http://localhost:31911/dajZadaceZaStudenta/"+this.state.indeksStudenta).then(res => { 
-   
-   this.setState({zadacaState:res.data});
-   this.obracunBodova(res.data.bodoviPoZadacimaZadaca, res.data.maxBodoviPoZadacimaPoZadacama);
-  });
-    
-  
-
+    var pomoc = 3;
+    try {
+      const res = await axios.get(
+        `http://localhost:31911/dajZadaceZaStudenta/${this.state.idStudenta}/${
+          this.state.idPredmeta
+        }`
+      );
+      this.setState({ zadacaState: res.data });
+      this.obracunBodova(
+        res.data.bodoviPoZadacimaZadaca,
+        res.data.maxBodoviPoZadacimaPoZadacama
+      );
+    } catch (e) {
+      console.error("Error fetching zadaca by id", e);
+    }
     document.getElementById("tabelaPregledaZadaca").style.display = "block";
     document.getElementById("prviPutSlanjeZadatka").style.display = "none";
     document.getElementById("zadatakVecPoslan").style.display = "none";
   };
 
-  
-  
-  klikNaPoslati = (r, k) => {
-    //nasa = rok
-    var povratna_vrijednost;
-    var trengodina = new Date().getFullYear();
-    var trenmjesec = new Date().getMonth() + 1;
-    var trendan = new Date().getDate();
-   // console.log('g: '+trengodina+ ' m: '+trenmjesec+ ' d: '+trendan);
-    //console.log('broj zadace '+r);
-    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
-    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
-    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
-   // console.log('***g: '+nasagodina+ ' m: '+nasmjesec+ ' d: '+nasdan);
-    if (trengodina > nasagodina) povratna_vrijednost =false;
-    else if (trengodina == nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
-    else if (trengodina == nasagodina && trenmjesec == nasmjesec && trendan > nasdan)
-    povratna_vrijednost =false;
-    else if (
-      trengodina == nasagodina &&
-      trenmjesec == nasmjesec &&
-      trendan == nasdan &&
-      this.state.vrijeme != "23:59"
-    )
-      povratna_vrijednost= false;
-    else povratna_vrijednost= true;
+  klikNaPoslati = async (r, k) => {
+    var vrijednostIdZadatka = this.state.zadacaState.idPoZadacimaZadaca[r][k];
+    this.setState({ idZadatak: vrijednostIdZadatka });
 
-    
-//console.log('povratna je '+povratna_vrijednost);
+    var povratna_vrijednost = this.testirajVrijeme(r);
 
- //validacija ako je rok prosao, nema liste tipova
-    if(povratna_vrijednost) {
-      axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
-      this.setState({listaTipova:res.data});
-      
-    });
-    document.getElementById("uploadButton").disabled=false;
-  }
-   else {
-     this.setState({listaTipova:[]});
-     document.getElementById("uploadButton").disabled=true;
-   }
-    
+    //validacija ako je rok prosao, nema liste tipova
+    if (povratna_vrijednost) {
+      await axios
+        .get(
+          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+        )
+        .then(res => {
+          this.setState({ listaTipova: res.data });
+        });
+      document.getElementById("uploadButton").disabled = false;
+      this.setState({ blokirajSelect: false });
+      if (this.state.uploadZadatka[0] !== null) {
+        document.getElementById("posalji1").disabled = false;
+      }
+    } else {
+      this.setState({ blokirajSelect: true });
+      document.getElementById("uploadButton").disabled = true;
+      document.getElementById("posalji1").disabled = true;
+    }
     this.setState({
-      brojZadace: r+1,
-      brojZadatka: k+1
+      brojZadace: r + 1,
+      brojZadatka: k + 1
     });
-
     document.getElementById("tabelaPregledaZadaca").style.display = "none";
     document.getElementById("prviPutSlanjeZadatka").style.display = "block";
     document.getElementById("zadatakVecPoslan").style.display = "none";
   };
 
-  
+  klikNaVecPoslano = async (r, k) => {
+    var vrijednostIdZadatka = this.state.zadacaState.idPoZadacimaZadaca[r][k];
+    this.setState({ idZadatak: vrijednostIdZadatka });
 
-  klikNaVecPoslano = (r, k) => {
-    
+    var povratna_vrijednost = this.testirajVrijeme(r);
 
-    var povratna_vrijednost;
-    var trengodina = new Date().getFullYear();
-    var trenmjesec = new Date().getMonth() + 1;
-    var trendan = new Date().getDate();
-    //console.log('g: '+trengodina+ ' m: '+trenmjesec+ ' d: '+trendan);
-    //console.log('broj zadace '+r);
-    //console.log(this.state.zadacaState.rokZaPredaju[r]);
-    var nasagodina = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(0, 4));
-    var nasmjesec = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(5, 7));
-   
-    var nasdan = Number.parseInt(this.state.zadacaState.rokZaPredaju[r].substring(8, 10));
-   // console.log('***g: '+nasagodina+ ' m: '+nasmjesec+ ' d: '+nasdan);
-    if (trengodina > nasagodina) povratna_vrijednost =false;
-    else if (trengodina == nasagodina && trenmjesec > nasmjesec) povratna_vrijednost = false;
-    else if (trengodina == nasagodina && trenmjesec == nasmjesec && trendan > nasdan)
-    povratna_vrijednost =false;
-    else if (
-      trengodina == nasagodina &&
-      trenmjesec == nasmjesec &&
-      trendan == nasdan &&
-      this.state.vrijeme != "23:59"
-    )
-      povratna_vrijednost= false;
-    else povratna_vrijednost= true;
-    
-//console.log('povratna je '+povratna_vrijednost);
+    //validacija ako je rok prosao, nema liste tipova
+    if (povratna_vrijednost) {
+      await axios
+        .get(
+          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+        )
+        .then(res => {
+          this.setState({ listaTipova: res.data });
 
- //validacija ako je rok prosao, nema liste tipova
-    if(povratna_vrijednost) {
-      axios.get("http://localhost:31911/dozvoljeniTipoviZadatka").then(res => { 
-      this.setState({listaTipova:res.data});
-      
-    });
-    document.getElementById("uploadButton2").disabled=false;
-  }
-   else{ this.setState({listaTipova:[]});
-   document.getElementById("uploadButton2").disabled=true;
-}
-
-  axios.get("http://localhost:31911/popuniZadatakVecPoslan").then(res => { 
-    //console.log(res.data);
-    //console.log(res.data);
-        this.setState({datumSlanja:res.data.datumSlanja,
-        vrijemeSlanja:res.data.vrijemeSlanja,
-      nazivFajla:res.data.nazivFajla,
-    velicinaFajla:res.data.velicinaFajla,
-  komentar:res.data.komentar});
+          document.getElementById("uploadButton2").disabled = false;
+          this.setState({ blokirajSelect2: false });
+          if (this.state.uploadZadatka[0] !== null) {
+            document.getElementById("posalji2").disabled = false;
+          }
+        });
+    } else {
+      this.setState({ blokirajSelect2: true });
+      document.getElementById("uploadButton2").disabled = true;
+      document.getElementById("posalji2").disabled = true;
+    }
+    await axios
+      .get(
+        `http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`
+      )
+      .then(res => {
+        this.setState({
+          datumSlanja: res.data.datumSlanja,
+          vrijemeSlanja: res.data.vrijemeSlanja,
+          nazivFajla: res.data.nazivFajla,
+          velicinaFajla: res.data.velicinaFajla,
+          komentar: res.data.komentar
+        });
       });
 
     this.setState({
-      brojZadace: r+1,
-      brojZadatka: k+1
+      brojZadace: r + 1,
+      brojZadatka: k + 1
     });
     document.getElementById("tabelaPregledaZadaca").style.display = "none";
     document.getElementById("prviPutSlanjeZadatka").style.display = "none";
     document.getElementById("zadatakVecPoslan").style.display = "block";
   };
 
-  handleClick =  async event => {
-    var ime = event.target.name; //name uzmem
-    
+  downloadPostavka = async r => {
+    if (this.state.zadacaState.postavka[r] === null) {
+      // nema postavke za ovu zadacu
+      alert("Ne postoji postavka za ovu zadaæu");
+      return;
+    }
+
+    var nazivZadace = this.state.zadacaState.listaZadaca[r];
+
+    axios
+      .get(`http://localhost:31911/downloadPostavka/${nazivZadace}`)
+      .then(res => {
+        let resultByte = res.data.postavka.data;
+        var bytes = new Uint8Array(resultByte);
+        var blob = new Blob([bytes], { type: res.data.tipFajlaPostavke });
+
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = res.data.naziv + "-" + res.data.imeFajlaPostavke;
+        link.click();
+      })
+      .catch(e => console.log(e));
+  };
+
+  handleClick = async event => {
+    var ime = event.target.name;
+
     switch (ime) {
-      //ako je rok prosao, blokirati upload
+      case "uploadFajla": {
+        var nazivUploada = document.getElementById("uploadButton").value;
+        if (nazivUploada === "") {
+          nazivUploada = document.getElementById("uploadButton2").value;
+        }
+
+        var ekstenzija = "." + nazivUploada.split(".").pop();
+        var file = event.target.files[0];
+
+        var velicinaFajla = file.size / 1000000;
+        velicinaFajla = parseInt(velicinaFajla * 10) / 10;
+        if (velicinaFajla < 0.1) {
+          // najmanje sto cemo upisivati u bazu je 0.1MB
+          velicinaFajla = 0.1;
+        }
+
+        if (this.state.listaTipova.includes(ekstenzija) && velicinaFajla < 25) { // upload prhvatljiv
+          var nazivFajlaSplit = file.name.split('.');
+          var nazivFajla = "";
+          for (var i = 0; i < nazivFajlaSplit.length - 1; i++) {
+            nazivFajla = nazivFajla + nazivFajlaSplit[i];
+          }
+
+          this.setState({
+            uploadZadatka: event.target.files,
+            velicinaFajla: velicinaFajla,
+            nazivFajla: nazivFajla,
+            tipFajla: ekstenzija
+          });
+        } else {
+          // upload neprihvatljiv
+          this.setState({
+            uploadZadatka: [null],
+            velicinaFajla: "",
+            nazivFajla: "",
+            tipFajla: ""
+          });
+          document.getElementById("uploadButton").value = null;
+          document.getElementById("uploadButton2").value = null;
+          if(!this.state.listaTipova.includes(ekstenzija)) {
+            alert("Nije dobar tip")
+          }
+          else {
+            alert("Prevelik fajl")
+          }
+        }
+
+        break;
+      }
 
       case "posaljiZadatak": {
-       //if( document.getElementById("prviPutSlanjeZadatka").style.display.value == "block")     
-        var nazivUploada = document.getElementById("uploadButton").value;
-        if(nazivUploada==="") 
-          nazivUploada = document.getElementById("uploadButton2").value;
-      if(nazivUploada===""){/*console.log("ne radi nista");*/}
-        else{
-       // console.log("Posalji zadatak dugme aktivirano "+nazivUploada);
-        var ekstenzija='.'+nazivUploada.split('.').pop();
-        //validacija tipa ucitanog fajla
-        
-        if(this.state.listaTipova.includes(ekstenzija)){
-          this.setState({nazivFajla:nazivUploada});
-          //console.log('ekstenzija je '+ekstenzija); 
-          //poslati backendu fajl
-          //kod post, drugi parametar je body!!! postttt
-           await axios.post("http://localhost:31911/slanjeZadatka",nazivUploada).then(res => { 
-   //console.log('odgovor ');
-   console.log(res.data);
-  });
-}
+        if (this.state.rendajOpet == false) {
+          this.setState({
+            rendajOpet: true
+          });
+        } else {
+          this.setState({
+            rendajOpet: false
+          });
         }
-          
-           
-        break;
-      }
-      case "ponisti": {
-        var temp=document.getElementById("uploadButton").value;
-        if(temp==="") document.getElementById("uploadButton2").value="";
-        else document.getElementById("uploadButton").value="";
-        //imala 2 elementa sa istim id-em, pa je to pravilo probleme
+        // logika provjere validnog vremena slanja
+        if (!this.testirajVrijeme(this.state.brojZadace - 1)) {
+          this.setState({
+            uploadZadatka: [null],
+            velicinaFajla: "",
+            nazivFajla: "",
+            tipFajla: ""
+          });
+          document.getElementById("uploadButton").value = null;
+          document.getElementById("uploadButton2").value = null;
+          alert("Vrijeme za slanje zadace je isteklo!");
+
+          break;
+        }
+
+        // datum i vrijeme slanja
+        var datumIVrijemeSlanja = new Date().getFullYear().toString() + "-";
+
+        if (new Date().getMonth() + 1 < 10) {
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
+        }
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + (new Date().getMonth() + 1).toString() + "-";
+
+        if (new Date().getDate() < 10) {
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
+        }
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getDate().toString() + " ";
+
+        if (new Date().getHours() < 10) {
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
+        }
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getHours().toString() + ":";
+
+        if (new Date().getMinutes() < 10) {
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
+        }
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getMinutes().toString() + ":";
+
+        if (new Date().getSeconds() < 10) {
+          datumIVrijemeSlanja = datumIVrijemeSlanja + "0";
+        }
+        datumIVrijemeSlanja =
+          datumIVrijemeSlanja + new Date().getSeconds().toString();
+        // kraj datum i vrijeme
+
+        const fData = new FormData();
+        var file = this.state.uploadZadatka[0];
+
+        fData.append("file", new Blob([file], { type: file.type }));
+        fData.append("nazivFajla", this.state.nazivFajla);
+        fData.append("velicinaFajla", this.state.velicinaFajla);
+        fData.append("tipFajla", this.state.tipFajla);
+        fData.append("idStudent", this.state.idStudenta);
+        fData.append("idZadatak", this.state.idZadatak);
+        fData.append("datumIVrijemeSlanja", datumIVrijemeSlanja);
+
+        if (document.getElementById("uploadButton2").value === "") {
+          // prvi put slanje
+          await axios.post("http://localhost:31911/slanjeZadatka", fData).then(res => {
+            if (res.status === 200) {
+              alert("Uspjesno ste poslati zadatak");
+            }
+            else if (res.status === 201) {
+              alert("Vec postoji ovaj zadatak")
+            }
+            else {
+              alert("Greska sa bazom")
+            }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
+
+            // rutiranje nazad
+          });
+
+        } else {
+          // ponovno slanje zadatka
+          axios.put("http://localhost:31911/slanjeZadatka", fData).then(res => {
+            if (res.status === 200) {
+              alert("Uspjesno ste poslati zadatak");
+            } else if (res.status === 201) {
+              alert("Vec postoji ovaj zadatak");
+            } else {
+              alert("Greska sa bazom");
+            }
+            this.setState({
+              uploadZadatka: [null],
+              velicinaFajla: "",
+              nazivFajla: "",
+              tipFajla: ""
+            })
+            document.getElementById("uploadButton").value = null;
+            document.getElementById("uploadButton2").value = null;
+
+            //rutiranje nazad
+          });
+        }
+
         break;
       }
 
-      
+      case "ponisti": {
+        this.setState({
+          uploadZadatka: [null],
+          velicinaFajla: "",
+          nazivFajla: "",
+          tipFajla: ""
+        });
+        document.getElementById("uploadButton").value = null;
+        document.getElementById("uploadButton2").value = null;
+
+        break;
+      }
+
       case "preuzmi": {
-        //salji na rutu u backendu
-        await axios.get("http://localhost:31911/getDatoteku").then(res => { 
-   //console.log('odgovor ');
-   //console.log(res.data);
-  });
-        
+        var idStudent = this.state.idStudenta;
+        var idZadatak = this.state.idZadatak;
+
+        axios
+          .get(
+            `http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`
+          )
+          .then(res => {
+            let resultByte = res.data.datoteka.data;
+            var bytes = new Uint8Array(resultByte);
+            var blob = new Blob([bytes], { type: res.data.mimeTipFajla });
+
+            var link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = res.data.nazivDatoteke;
+            link.click();
+          })
+          .catch(e => console.log(e));
+
         break;
       }
 
       case "pregled": {
         //salji na rutu u backendu
 
-         await axios.get("http://localhost:31911/getPregledDatoteke").then(res => { 
-          //console.log('odgovor ');
-          //console.log(res.data);
-         });
+        await axios
+          .get("http://localhost:31911/getPregledDatoteke")
+          .then(res => {});
         break;
       }
       default: {
       }
     }
   };
-  
- handleBack=()=>{
-  document.getElementById("tabelaPregledaZadaca").style.display = "block";
-  document.getElementById("prviPutSlanjeZadatka").style.display = "none";
-  document.getElementById("zadatakVecPoslan").style.display = "none";
-  
 
- }
+  handleBack = () => {
+    //ne kontam sto nece normalno da mi promijeni ikone :/ na ocjenjivanju radi sve ok
+    document.location.reload();
 
- 
-
-
+    document.getElementById("tabelaPregledaZadaca").style.display = "block";
+    document.getElementById("prviPutSlanjeZadatka").style.display = "none";
+    document.getElementById("zadatakVecPoslan").style.display = "none";
+  };
   render() {
-   
-    //console.log('medi: '+this.state.zadacaState);
-   // console.log('potrebno: '+this.state);
+    console.log("state:", this.state);
     return (
       <div>
         <div id="tabelaPregledaZadaca">
-          <TabelaPregledaZadaca podaci={this} />
+          <TabelaPregledaZadaca key={this.state.rendajOpet} podaci={this} />
         </div>
         <div id="prviPutSlanjeZadatka">
           <PrviPutSlanjeZadatka podaci={this} />

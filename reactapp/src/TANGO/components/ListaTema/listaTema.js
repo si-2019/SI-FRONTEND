@@ -23,7 +23,8 @@ class Lista extends Component{
       podnizTema: [],
       trenutnaStranica: 1,
       maxPoStranici: 10,
-      obrnut: false
+      obrnut: false,
+      ukupno:0
     };
     
   }
@@ -39,7 +40,7 @@ class Lista extends Component{
         var ts= this.state.trenutnaStranica - 1;
         var leng= this.state.teme.length;
         var pocetniPodniz = this.dajPodniz(ts,(leng>=10) ? 10 : leng);
-        this.setState({teme:teme, podnizTema: pocetniPodniz, ucitavanje:false})
+        this.setState({teme:teme, podnizTema: pocetniPodniz, ucitavanje:false, ukupno:leng})
       });
     //this.setState({teme:LISTA_PROBNA,ucitavanje:false});
   }
@@ -84,16 +85,29 @@ class Lista extends Component{
         ucitavanje : false
     })
   }
+  searchTema (evt) {
+    var pom = this.state.teme;
+    this.setState({trenutnaStranica: 1});
+
+    pom =  pom.filter(function(item) {
+      console.log(JSON.stringify(item));
+      console.log(item.title.indexOf((evt.target.value)));
+      return item.title.indexOf((evt.target.value))!=-1;
+  });
+  this.setState({ukupno: pom.length});
+
+    this.setState({podnizTema:pom});
   
 
-  
+  }
+
   render(){
     if(this.state.ucitavanje){
       return <p>Ucitavanje...</p>
     }
       return(
         <div>
-          <div>< button><a href="/Tango/NovaTema">Dodaj novu temu</a></button>
+          <div>< button type="button" class="btn btn-primary"><a href="/Tango/NovaTema">Dodaj novu temu</a></button>
  </div>
           <div>
             <DugmeZaSort 
@@ -103,18 +117,20 @@ class Lista extends Component{
             />
           </div>
           <div>
-            <input type='text' class="form-control bg-white rounded" placeholder="Search"></input>
+            <input type='text' class="form-control bg-white rounded" onChange={this.searchTema.bind(this)} placeholder="Search"></input>
           </div>
           {/* <button onClick={() => {this.sortirajAZ(this.state.teme)}}>a-z</button> */}
         <div>
           <Teme teme={this.state.podnizTema}/>
         </div>
         <div>
-          <Paginacija onChange={this.handlePromjenuStranice} current={this.state.trenutnaStranica} total={this.state.teme.length}/>
+          <Paginacija onChange={this.handlePromjenuStranice} current={this.state.trenutnaStranica} total={this.state.ukupno}/>
         </div>
         </div>
       );
   }
+  
+  
 }
 
 export default Lista;

@@ -18,10 +18,17 @@ class Stranice extends Component {
     axios
       .get(`http://localhost:31918/studenti/` + this.state.StudentID)
       .then(res => {
-        const In = res.data.map(obj => obj.linkedin);
-        this.setState({ LinkedIn: In });
-        const web = res.data.map(obj => obj.website);
-        this.setState({ Website: web });
+        if (res.data.linkedin != undefined) {
+          const In = res.data.map(obj => obj.linkedin);
+          this.setState({ LinkedIn: In });
+        }
+        if (res.data.website != undefined) {
+          const web = res.data.map(obj => obj.website);
+          this.setState({ Website: web });
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -38,40 +45,27 @@ class Stranice extends Component {
       this.setState({ otvorenModalLinkedIn: false });
     let zatvoriModalWebsite = () =>
       this.setState({ otvorenModalWebsite: false });
+
     return (
-      <div style={{ display: "inline-block" }}>
-        <ul
-          class="list-group list-group-flush"
-          style={{ width: "100%", display: "inline-block" }}
-        >
-          <li class="card-header">Web Stranice</li>
-          <li class="list-group-item">
-            LinkedIn:&nbsp;
-            <a href={this.state.LinkedIn} class="card-link">
-              {this.state.LinkedIn}
-            </a>
-            <button
-              class="btn btn-warning float-right"
-              stlyle={{ float: "right" }}
-              onClick={() => this.otvoriModalLinkedIn()}
-            >
-              Izmijeni
-            </button>
-          </li>
-          <li class="list-group-item">
-            Website:&nbsp;
-            <a href={this.state.Website} class="card-link">
-              {this.state.Website}
-            </a>
-            <button
-              class="btn btn-warning float-right"
-              stlyle={{ float: "right" }}
-              onClick={() => this.otvoriModalWebsite()}
-            >
-              Izmijeni
-            </button>
-          </li>
-        </ul>
+      <div>
+
+        <div style={{ flexDirection: "column", textAlign: "left" }}>
+          <h4 className="card-title" style={{ textAlign: "left" }}>Stranice</h4>
+          <div className="form-group">
+            <label class="col-form-label" for="inputDefault"> LinkedIn:&nbsp;</label>
+            <br></br>
+            <h4><a href={this.state.LinkedIn} class="card-link">{this.state.LinkedIn}</a></h4>
+          </div>
+
+          <button class="btn btn-link" onClick={() => this.otvoriModalLinkedIn()}>Edit</button>
+          <div className="form-group">
+            <label class="col-form-label" for="inputDefault">  Website:&nbsp;</label>
+            <br></br>
+            <h4><a href={this.state.Website} class="card-link">{this.state.Website}</a></h4>
+          </div>
+          <button class="btn btn-link" onClick={() => this.otvoriModalWebsite()}> Edit </button>
+        </div>
+
         <ModalnaKomponenta
           show={this.state.otvorenModalLinkedIn}
           onHide={zatvoriModalLinkedIn}
@@ -82,7 +76,7 @@ class Stranice extends Component {
           onHide={zatvoriModalWebsite}
           nazivpromjene="Website"
         />
-      </div>
+      </div >
     );
   }
 }

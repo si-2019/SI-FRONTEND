@@ -10,8 +10,10 @@ const IssueMessage = (props) => {
                     {message.tekst}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                    <Button variant="primary" type='submit'>Reply</Button>
-                    <Button variant="primary" type='submit'>Delete</Button>
+                    <div className="issue-message">
+                        <Button variant="primary" type='submit'>Odgovori</Button>
+                        <Button variant="primary" type='submit'>Obriši</Button>
+                    </div>
                 </ListGroup.Item>
             </ListGroup.Item>
 

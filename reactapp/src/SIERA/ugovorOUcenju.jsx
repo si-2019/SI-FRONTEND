@@ -16,21 +16,21 @@ class UgovorOUcenju extends Component {
   }
 
   promjenaGodineStudija(event) {
-    this.setState({ izabranaGodina: event.target.value }, function() {
+    this.setState({ izabranaGodina: event.target.value }, function () {
       console.log(this.state.izabranaGodina);
       this.prikaziIzborne();
     });
   }
 
   promjenaSmjera(event) {
-    this.setState({ izabraniSmjer: event.target.value }, function() {
+    this.setState({ izabraniSmjer: event.target.value }, function () {
       console.log(this.state.izabraniSmjer);
       this.prikaziIzborne();
     });
   }
 
   promjenaSemestra(event) {
-    this.setState({ izabraniSemestar: event.target.value }, function() {
+    this.setState({ izabraniSemestar: event.target.value }, function () {
       console.log(this.state.izabraniSemestar);
       this.prikaziIzborne();
     });
@@ -41,46 +41,51 @@ class UgovorOUcenju extends Component {
       axios
         .get(
           `http://localhost:31918/predmeti/` +
-            this.state.izabraniSmjer +
-            `/` +
-            this.state.izabranaGodina +
-            `/` +
-            this.state.izabraniSemestar
+          this.state.izabraniSmjer +
+          `/` +
+          this.state.izabranaGodina +
+          `/` +
+          this.state.izabraniSemestar
         )
         .then(res => {
-          const predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
-          const obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
-          const izborni = [];
-          for (var i = 0; i < obavezan.length; i++) {
-            if (obavezan[i] == "0") {
-              izborni.push(predmeti[i]);
+          if (res.data.dostupniPredmeti != undefined) {
+            const predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
+            const obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
+            const izborni = [];
+            for (var i = 0; i < obavezan.length; i++) {
+              if (obavezan[i] == "0") {
+                izborni.push(predmeti[i]);
+              }
             }
+            this.setState({ listaIzbornih: izborni });
           }
-          this.setState({ listaIzbornih: izborni });
-          console.log(this.state.listaIzbornih);
+          else {
+            this.setState({ listaIzbornih: [] });
+          }
         });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   componentDidMount() {
     this.prikaziIzborne();
   }
 
-  prikaziCheckBoxoveZaIzborne() {}
+  prikaziCheckBoxoveZaIzborne() { }
 
   render() {
     return (
-      <div>
-        <div className="row" style={{ margin: "0px" }}>
-          <div className="col" />
-          <div className="col" style={{ textAlign: "center" }}>
-            <div className="card" style={{ display: "inline-block" }}>
-              <div className="card-body">
-                <h3 className="card-title">Ugovor o učenju</h3>
+      <div className="container-fluid" style={{ marginTop: "30px" }} >
+        <h2 style={{ marginBottom: "30px" }}>Ugovor o učenju</h2>
+        <div className="card align-items-center">
+          <div className="card-body" style={{ minWidth: "100%" }}>
+            <div class="row justify-content-lg-around justify-content-md-center">
+              <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+                <h4 className="card-title">Kreiranje ugovora</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Ovdje možete kreirati ugovor o učenju za upis u naredni semestar.</h6>
                 <div style={{ textAlign: "left" }}>
                   <label className="col-form-label col-form-label-lg">
                     Godina studija
-                  </label>
+                </label>
                 </div>
 
                 <select
@@ -100,7 +105,7 @@ class UgovorOUcenju extends Component {
                 <div style={{ textAlign: "left" }}>
                   <label className="col-form-label col-form-label-lg">
                     Smjer
-                  </label>
+                </label>
                 </div>
                 <select
                   className="custom-select"
@@ -115,7 +120,7 @@ class UgovorOUcenju extends Component {
                 <div style={{ textAlign: "left" }}>
                   <label className="col-form-label col-form-label-lg">
                     Semestar
-                  </label>
+                </label>
                 </div>
                 <select
                   className="custom-select"
@@ -129,14 +134,14 @@ class UgovorOUcenju extends Component {
                   <div style={{ textAlign: "left" }}>
                     <label className="col-form-label col-form-label-lg">
                       Izborni predmeti
-                    </label>
+                  </label>
                   </div>
 
                   {this.state.listaIzbornih.length === 0 ? (
                     <p>Nema izbornih predmeta</p>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                   {this.state.listaIzbornih.map((item, i) => (
                     <div class="custom-control custom-checkbox" key={i}>
                       <input
@@ -156,7 +161,6 @@ class UgovorOUcenju extends Component {
               </div>
             </div>
           </div>
-          <div className="col" />
         </div>
       </div>
     );

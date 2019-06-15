@@ -4,8 +4,6 @@ import axios from "axios";
 class ListaPredmeta extends Component {
   state = {
     predmeti: ["Predmet1", "Predmet2", "Predmet3", "Predmet4", "Predmet5"],
-    vidljiv: false,
-    znak: "+",
     trenutnoLogovaniStudentID: 1
   };
 
@@ -13,20 +11,17 @@ class ListaPredmeta extends Component {
     axios
       .get(
         `http://localhost:31918/predmeti/odslusani/` +
-          this.state.trenutnoLogovaniStudentID
+        this.state.trenutnoLogovaniStudentID
       )
       .then(res => {
-        console.log(res);
-        const predmeti = res.data.odslusaniPredmeti.map(obj => obj.naziv);
-        this.setState({ predmeti });
+        if (res.data.odslusaniPredmeti != undefined) {
+          const predmeti = res.data.odslusaniPredmeti.map(obj => obj.naziv);
+          this.setState({ predmeti });
+        }
+        else {
+          this.setState({ predmeti: [] });
+        }
       });
-  }
-
-  toggle() {
-    this.setState({
-      vidljiv: !this.state.vidljiv,
-      znak: !this.state.vidljiv ? "-" : "+"
-    });
   }
 
   prikazPredmeta() {
@@ -38,10 +33,9 @@ class ListaPredmeta extends Component {
         <ul>
           {this.state.predmeti.map(predmet => (
             <li
-              className="list-group-item list-group-item-action mt-2"
               key={predmet}
             >
-              {predmet}
+              <label className="col-form-label">{predmet}</label>
             </li>
           ))}
         </ul>
@@ -51,24 +45,7 @@ class ListaPredmeta extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="align-self-start">
-            <input
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={() => this.toggle()}
-              value={this.state.znak}
-            />
-          </div>
-          <h5 className="text-muted">Lista odslusanih predmeta</h5>
-        </div>
-        <div className="row">
-          <div className="align-self-start">
-            {this.state.vidljiv ? this.prikazPredmeta() : ""}
-          </div>
-        </div>
-      </div>
+      <div className="align-self-start">{this.prikazPredmeta()}</div>
     );
   }
 }

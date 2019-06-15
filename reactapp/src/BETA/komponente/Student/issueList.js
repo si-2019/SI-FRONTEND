@@ -22,7 +22,9 @@ class IssueList extends React.Component {
                 title: null,
                 messages: null,
             },
-            isLoading: true
+            isLoading: true,
+            categoryTitle: 'Sve',
+            categoryArray: [],
         }
     };
 
@@ -34,7 +36,19 @@ class IssueList extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('http://localhost:31902/issues/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/get');
+
+        axios.get('https://si2019beta.herokuapp.com/category/get').then( res => {
+
+            
+
+            let displayNames = [];
+            for(let i = 1; i < res.data.length; i++)
+            {
+                displayNames.push(res.data[i].naziv)
+            }
+            this.setState({categoryArray: displayNames, loading: true});
+        });
 
         let dN = [];
         let dIP = [];
@@ -42,21 +56,22 @@ class IssueList extends React.Component {
 
         //new
         res.data.new.forEach( async (issue) => {
-            let cn = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dn = issue.messages;
             dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
         });
 
+
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
-            let cip = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dip = issue.messages;
             dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
-            let cr = await axios.get(`http://localhost:31902/category/get/${issue.categoryID}`);
+            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
             let dr = issue.messages;
             dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
         });
@@ -68,16 +83,105 @@ class IssueList extends React.Component {
         this.setState({isLoading: false});
     }
 
+    async changeIssueState(){
+        // this.setState({kategorija : sljedecaKategorija});
+                //alert(sljedecaKategorija.category);
+                this.setState({isLoading: true});
+                const res = await axios.get('https://si2019beta.herokuapp.com/issues/get');
+                //const kategorija = await axios.get('http://localhost:31902/category/get/naziv?categoryNaziv='+'Da');
+                //alert(kategorija.data);
+
+                let dN = [];
+                let dIP = [];
+                let dR = [];
+
+                //new
+                res.data.new.forEach( async (issue) => {
+                    let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+                    if(this.state.categoryTitle == 'Sve' ||  cn.data.naziv == this.state.categoryTitle){
+                    let dn = issue.messages;
+                    dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
+                    }
+                });
+
+                //inProgress
+                res.data.inProgress.forEach( async (issue) => {
+                    let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+                    if(this.state.categoryTitle == 'Sve' ||  cip.data.naziv == this.state.categoryTitle){
+                    let dip = issue.messages;
+                    dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
+                    }
+                });
+
+                //resolved
+                res.data.resolved.forEach( async (issue) => {
+                    let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+                    if(this.state.categoryTitle == 'Sve' ||  cr.data.naziv == this.state.categoryTitle){
+                    let dr = issue.messages;
+                    dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
+                    }
+                });
+
+                this.setStateAsync({dataNew: dN});
+                this.setStateAsync({dataInProgress: dIP});
+                this.setStateAsync({dataResolved: dR});
+
+                this.setState({isLoading: false});
+    };
+
+    onChangeTitle = (e) => {
+        this.setState({categoryTitle: e.target.value});
+        this.changeIssueState();
+        };
+
+    onRefreshListNew = (newArray) => {
+        this.setState({
+            dataNew: newArray
+        })
+    };
+
+    onRefreshListInProgress = (newArray) => {
+        this.setState({
+            dataInProgress: newArray
+        })
+    };
+
+    onRefreshListResolved = (newArray) => {
+        this.setState({
+            dataResolved: newArray
+        })
+    };
+
+    sortIssuesFromEarliest = (list) => {
+
+    }
+
     render() {
         if (this.state.isLoading) {
             return (
                 <Spinner animation='border' role='status'>
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only">Učitavanje...</span>
                 </Spinner>
             );
         }
+
+        let options = [];
+        options.push(<option>{this.state.categoryTitle}</option>);
+        if(this.state.categoryTitle != 'Sve')
+            options.push(<option>Sve</option>);
+        for(let j = 0; j < this.state.categoryArray.length; j++)
+            options.push(<option key={j}>{this.state.categoryArray[j]}</option>);
+
         return (
             <div >
+                <div id="search-issue-tab-Beta">
+                    <p id = "search-issue-text">Kategorija</p>
+                    <select id = "search-issue-filter"
+                        className="form-control"
+                        onChange = {this.onChangeTitle}
+                    >{options}
+                    </select>
+                </div>
                 <Tabs
                     className=".p-3"
                     id="tabs"
@@ -87,11 +191,11 @@ class IssueList extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="new"
-                        title={`New (${this.state.dataNew.length})`}
+                        title={`Novi (${this.state.dataNew.length})`}
                     >
                         {!this.state.isLoading &&
                             <div>
-                                <Issue
+                                <Issue triggerRefreshList = {this.onRefreshListNew}
                                 className="tab-issue card"
                                 data={this.state.dataNew}
                                 />
@@ -102,10 +206,10 @@ class IssueList extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="inProgress"
-                        title={`In progress (${this.state.dataInProgress.length})`}
+                        title={`U progresu (${this.state.dataInProgress.length})`}
                     >
                         {!this.state.isLoading  &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListInProgress}
                                 className="tab-issue card"
                                 data={this.state.dataInProgress}
                             />
@@ -114,10 +218,10 @@ class IssueList extends React.Component {
                     <Tab
                         className = "tab-issue"
                         eventKey="resolved"
-                        title={`Resolved (${this.state.dataResolved.length})`}
+                        title={`Riješeni (${this.state.dataResolved.length})`}
                     >
                         {!this.state.isLoading &&
-                            <Issue
+                            <Issue triggerRefreshList = {this.onRefreshListResolved}
                                 className="tab-issue card"
                                 data={this.state.dataResolved}
                             />

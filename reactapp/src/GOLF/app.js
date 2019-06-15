@@ -6,6 +6,7 @@ import proba from './components/proba.js'
 import semestarPredmeti from './components/semestarPredmeti.js'
 import StranicaPredmetaStudent from './components/stranicaPredmetaStudent'
 import StranicaPredmetaProfesor from './components/stranicaPredmetaProfesor.js'
+import PrethodnaAkademskaGodina from './components/prethodnaAkademskaGodina.js'
 
 class App extends Component {
 
@@ -16,12 +17,15 @@ class App extends Component {
         <div>
         <Router>
                 <div class='row' id='glavni'>
-                    <div class='col-3'>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <Link id='mpl' to='/Golf/mojiPredmeti/1'>Moji predmeti</Link>
-                            </li>
-                        </ul>
+                    <div class='col-3' id="meni" style={{
+                      backgroundColor: "#2C3E50",
+                      minHeight: "100%",
+                      padding: "0px",
+                       margin: "0px"
+                    }}>
+                      <Link to='/Golf/mojiPredmeti/1' class="dugmeLink">
+                          <button type="button" class="btn btn-primary left-buttons" id="mpl">Moji predmeti</button>
+                      </Link>
                      <Ciklusi />
                      
                     </div>
@@ -31,7 +35,7 @@ class App extends Component {
                         <Route path="/Golf/semestarPredmeti/:ciklus/:odsjek/:semestar" component={semestarPredmeti}/>  
                         <Route path="/Golf/stranicaPredmetaStudent/:idPredmeta/:idKorisnika" component={StranicaPredmetaStudent}/>
                         <Route path="/Golf/stranicaPredmetaProfesor/:idPredmeta/:idKorisnika" component={StranicaPredmetaProfesor}/>
-                 
+                        <Route path="/Golf/materijali/:idPredmeta/:idKorisnika/:naziv" component={PrethodnaAkademskaGodina}/>
 				              </div>
                 </div>
             </Router>

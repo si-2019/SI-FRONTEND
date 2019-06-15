@@ -11,7 +11,7 @@ class Fotografija extends Component {
     render() {
         return (
             <div style={{ display: "inline-block" }}>
-                <img style={{ height: "200px", width: "100%", display: "block" }} src={this.props.fotografija} />
+                <img class="rounded-circle" style={{  height:"350px", width:"350px", display: "block" }} src={this.props.fotografija} />
             </div>
                 );
             }

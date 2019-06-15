@@ -5,7 +5,7 @@ class LiteraturaProfesor extends Component {
     return (
       <div class="divsaokvirom">
       <h4 class='naslov'>Literatura</h4>
-        
+      
     </div>
     );
   }

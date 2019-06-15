@@ -31,3 +31,52 @@
     transform: rotate(360deg);
   }
 }
+
+#naslovTango{
+  overflow: hidden;
+  width: 100%;
+  background-color: #2C3E50;
+  text-align: left; 
+  padding-left: 40px !important;
+}
+#tekstNaslova{
+  color: white;
+}
+
+#glavniTango {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+#lijeviTango {
+  width: 20%;
+  background-color: #2C3E50;
+  
+  
+}
+
+#desniTango {
+  width: 80%;
+}
+
+.left-buttons{
+  width: 100% !important;
+  height: 60px;
+  border: none !important;
+  text-align: left !important;
+  padding-left: 40px !important;
+}
+
+#buttonDraft{
+  margin-left: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  #exampleInputFile{
+    width: 100%;
+  }
+}

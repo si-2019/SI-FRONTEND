@@ -1,11 +1,11 @@
 import React, { Component} from 'react';
-import Col from 'react-bootstrap/Col';
 import TabelaUnosa from '../TabelaUnosa/TabelaUnosa';
-import Form from 'react-bootstrap/Form';
-import ReturnButton from '../ReturnButton/ReturnButton';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import '../../ZajednickiCSS.css';
 
 
 class UnosBodova extends  Component {
@@ -28,26 +28,22 @@ state = {
 
 render() {
     return(
-        <div>
-            <Header isPocetna={false}/>
-          <Form>
-              <Form.Row>
-                  <Col md={{ span: 5, offset: 4}}>
-                   </Col>
-               </Form.Row>
-               <Form.Row>
-                    <Col md= {{ span: 5, offset : 4}}>
-                    <TabelaUnosa/>
+        <div className="footerDno" style={{paddingBottom: "50px"}}>
+            <Container fluid style={{padding:"0", margin: "0"}}>
+                <Row noGutters style={{padding:"0", margin: "0"}}>
+                    <Col md="3">
+                        <Header isPocetna={false}/>
                     </Col>
-               </Form.Row>
-               <Form.Row>
-                    <Col md={{ span: 8, offset: 5}}>
-                    <Nav.Link href= "/fox/Ispiti">     Nazad na listu ispita </Nav.Link>
-                    <Footer/>
+                    <Col>
+                        <div style={{padding: "15px"}}>
+                            <TabelaUnosa/>
+                        </div>
                     </Col>
-                    
-                </Form.Row>
-          </Form>
+                </Row>
+            </Container>
+
+            <Footer/>
+
           </div>
         );
     }

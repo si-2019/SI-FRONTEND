@@ -3,19 +3,20 @@ import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import Input from './Input';
 import MessageList from './MessageList';
 import '../styles/ChatApp.css';
-import RoomList from './RoomList';
-import { instanceLocator, testToken, testRoomId, apiUrl, secretKey } from './../config.js'
+import { instanceLocator, testToken, testRoomId} from './../config.js'
 import UsersList from './UsersList';
 import TypingIndicator from './TypingIndicator';
 import '../styles/ChatApp.css';
-import CreateRoom from './CreateRoom';
-import AddUser from './AddUser';
 import UploadFile from './UploadFile';
 import Axios from 'axios';
 import {SwatchesPicker} from 'react-color';
 import { Droplet } from 'react-feather';
 import FileSidebar from './FileSidebar';
-import NewPublicRoomForm from './NewPublicRoomForm';
+import Members from './Members';
+import PinnedMessages from './PinnedMessages';
+import EventPlanner  from './EventPlanner';
+import BlockedUsers  from './BlockedUsers';
+
 
 let predmeti = require('../predmeti.json');
 
@@ -40,14 +41,16 @@ class ChatApp extends Component {
             messages: [],
             messageToSend: '',
             users: [],
-            usersAvatars: new Map(),
+            room_users: [],
             rooms: [],
             hasErrorAddUser: null,
+            hasErrorBlockUser: false,
             typingUsers: [], 
             pinnedMessages: [], 
             colorForUser: null, 
             showColorPicker: false,
-            joinableRooms:[]
+            joinableRooms:[],
+            blockedUsers: []
         }
         this.addMessage = this.addMessage.bind(this);
         this.openPrivateChat = this.openPrivateChat.bind(this);
@@ -64,6 +67,7 @@ class ChatApp extends Component {
         this.toggleColorPicker = this.toggleColorPicker.bind(this);
         this.handleReply = this.handleReply.bind(this);
         this.createPublicRoom = this.createPublicRoom.bind(this);
+        this.blockAUser = this.blockAUser.bind(this);
     }
     toggleColorPicker() {
         this.setState({
@@ -95,7 +99,7 @@ class ChatApp extends Component {
             .then(currentUser => {
                 this.setState({ currentUser: currentUser }, () => { 
                     Axios.get('http://localhost:31910/colorscheme/' + this.state.currentUser.id).then(res => {
-                        if (res.data == 0) { // korisnik nema svoj colorscheme
+                        if (res.data === 0) { // korisnik nema svoj colorscheme
                             this.setState({
                                 colorForUser: null
                             });
@@ -162,8 +166,8 @@ class ChatApp extends Component {
                         return;
                     }
                     this.setState({
-                        messages: [...this.state.messages, message]
-                    })
+                        messages: [...this.state.messages, message]                      
+                    })                  
                 },
                 onPresenceChanged: () => this.forceUpdate(),
                 onUserJoinedRoom: () => this.forceUpdate(),
@@ -192,8 +196,8 @@ class ChatApp extends Component {
 
             this.setState({
                 currentRoom: room,
-                users: room.users,
-                usersAvatars: usersMap
+                room_users: room.users,
+                users: this.state.currentUser.users,
             })
         })
     }
@@ -207,7 +211,7 @@ class ChatApp extends Component {
             this.state.currentUser.createRoom({
                 name: userId,
                 private: true,
-                addUserIds: [userId]
+                addUserIds: [userId]               
             }).then((room) => {
                 this.setState({ rooms: [...this.state.rooms, room] });
                 this.joinRoomById(room.id);
@@ -220,7 +224,7 @@ class ChatApp extends Component {
         this.state.currentUser.sendMessage({
             text: text,
             roomId: this.state.currentRoom.id
-        }).then(() => {
+        }).then(() => {       
             if(text.substr(0, 11) === "@izvjestaj ") {
                 var name = text.substr(11);
                 var predmetGodina = name.split(", ");
@@ -270,7 +274,7 @@ class ChatApp extends Component {
     createRoom(roomName){
         this.state.currentUser.createRoom({
             name: roomName,
-            private: true
+            private: true            
         }).then(room => {
             this.setState({ rooms: [...this.state.rooms, room] });
             this.joinRoomById(room.id);
@@ -294,14 +298,14 @@ class ChatApp extends Component {
               this.setState({hasErrorAddUser:true});
             })
     }
-
+    
     createPublicRoom(roomName){
         this.state.currentUser.createRoom({
             name: roomName,
-            private: false
+            private: false           
         }).then(room => {
             this.setState({ rooms: [...this.state.rooms, room] });
-            this.joinRoomById(room.id);
+            this.joinRoomById(room.id);            
         })
         .catch(err=> console.log("err wth cr room", err))
     }
@@ -366,7 +370,7 @@ class ChatApp extends Component {
         const url = 'http://localhost:31910/pinovanePoruke/' + message.id;
         //console.log(url);
         Axios.get(url).then(res => {
-            if (res.data == 0) { // ne postoji u bazi
+            if (res.data === 0) { // ne postoji u bazi
                 let trenutnaPoruka = {
                     messageCreatedAt: message.createdAt,
                     messageId: message.id + '',
@@ -408,7 +412,7 @@ class ChatApp extends Component {
             colorForUser: color.hex
         }, () => {
             Axios.get('http://localhost:31910/colorscheme/' + this.state.currentUser.id).then(res => {
-                if (res.data == 0) {
+                if (res.data === 0) {
                     Axios.post('http://localhost:31910/colorscheme', {
                         colorId: color, 
                         userId: this.state.currentUser.id
@@ -425,69 +429,143 @@ class ChatApp extends Component {
             
         });
     }
+    blockAUser(userID){
+        const UsersToBlock = this.state.users.filter(user => user.id === userID);
+        const roomIfDelete = this.state.currentRoom.id;
+        if(this.state.currentUser.id === userID){
+            this.setState({ rooms: [...this.state.rooms.filter(roomaa => roomaa.id !== roomIfDelete)] });
+            this.state.currentUser.leaveRoom({ roomId: this.state.currentRoom.id })
+            .then(room => {
+                if(room.users.length === 0){
+                    this.state.currentUser.deleteRoom({ roomId: this.state.currentRoom.id })
+                    .then(() => {
+                        
+                        console.log('Deleted room with ID: ');
+                        
+                    })
+                    .catch(err => {
+                        console.log(`Err`);
+                    })
+                    
+                    
+                }
+                })
+                .catch(err => {
+                console.log(`Error leaving room ${this.state.currentRoom.id}: ${err}`)
+                })
+            this.setState({hasErrorBlockUser:false});
+            this.joinRoomById(this.state.rooms[0].id);
+        } else if(UsersToBlock.length !== 0){
+            this.setState({
+                blockedUsers: [...this.state.blockedUsers, UsersToBlock[0]]
+            })
+            this.state.currentUser.removeUserFromRoom({
+                userId: userID,
+                roomId: this.state.currentRoom.id
+              })
+                .then(() => {
+                    this.joinRoomById(this.state.currentRoom.id);
+                    this.setState({hasErrorBlockUser:false});
+                    if(this.state.currentRoom.users.length === 0){
+                        this.state.currentUser.deleteRoom({ roomId: this.state.currentRoom.id })
+                        .then(() => {
+                            console.log('Deleted room with ID: '+ this.state.currentRoom.id);
+                                                    
+                    
+                        })
+                        .catch(err => {
+                            console.log(`Error deleted room ${this.state.currentRoom.id}: ${err}`)
+                        })
+                        
+                    }
+                
+                })
+                .catch(err => {
+                  console.log('Error removing user from room:'+ err);
+                })
+            
+        }else{
+        this.setState({hasErrorBlockUser:true});
+        console.log('No such user');
+    }
+    }
     render() {
-        let colorScheme = this.state.colorForUser != null ? this.state.colorForUser : "#5E0565";
+        let colorScheme = this.state.colorForUser != null ? this.state.colorForUser : "#2C3E50";
         const {
             showColorPicker,
         } = this.state;
-        return (
-            <div className="chat-app-wrapper">
-                <div style={{'background': colorScheme}} className="room-wrapper">
-                    <RoomList room={this.state.currentRoom} joinRoomById={this.joinRoomById} rooms={this.state.rooms} joinableRooms={this.state.joinableRooms} />
-                    <div className="create-room-wrapper">                     
-                        <CreateRoom  style={createRoomStyle} createRoom={this.createRoom}/>
-                        <AddUser style={addUserStyle} addUser={this.addUser}/>
-                        {this.state.hasErrorAddUser?<p style={{gridColumn: 1/3}}>Error adding user</p>:null} 
-                    </div>
-                    <NewPublicRoomForm createPublicRoom={this.createPublicRoom}/>
-                    <div>
-                        <h3 style={{marginTop: '1rem', marginBottom: '1rem'}}>Pinned messages</h3>
-                        <ul style={{maxHeight: '200px', overflowY: 'scroll', overflowWrap: 'break-word'}}>
-                            {this.state.pinnedMessages.filter(message => message.roomId == this.state.currentRoom.id).map((message,index) => (
-                                <div key={index} style={{
-                                    'border' : '1px solid white'
-                                }}><li>{message.senderId + ' : ' + message.text}</li></div>
-                            ))}
-                        </ul>
-                </div>
+        return ( 
+            <div className="juliet-chat-app-wrapper">
+
+                <div style={{'background': colorScheme}} className="juliet-list-wrapper">
+                    <UsersList 
+                        openPrivateChat={this.openPrivateChat} 
+                        users={this.state.users} 
+                        room_users={this.state.room_users}
+                        currentUser={this.state.currentUser}
+                        room={this.state.currentRoom}
+                        joinRoomById={this.joinRoomById}
+                        rooms={this.state.rooms}
+                        joinableRooms={this.state.joinableRooms}
+                        chatkit={this.props.chatkit}
+                        createRoom={this.createRoom}
+                        createPublicRoom={this.createPublicRoom}
+                        addUser={this.addUser}
+                        hasErrorAddUser={this.state.hasErrorAddUser}
+                    />
                 </div>
 
-                <div className="msg-wrapper">
-                    <h2 style={{'background': colorScheme}} className="header">Let's Talk</h2>
-                    <MessageList currentId={this.props.currentId} replyToMessage={this.handleReply}
-                        messages={this.state.messages} pinMessage={this.pinMessage} downloadClick={this.downloadClick} deleteClick={this.deleteClick}
-                        usersAvatars={this.state.usersAvatars} />
-                    <TypingIndicator typingUsers={this.state.typingUsers} />
+                <div className="juliet-msg-wrapper">
                     
-                    <Input className="input-field" onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
-                    <UploadFile onSubmit={this.uploadFile} />
-                    <ul className="colors-popup" onMouseLeave={this.toggleColorPicker} >
-                    {this.state.showColorPicker ? 
-                        <SwatchesPicker onChange={this.handleColorChange}/> 
-                    : null}
-                    </ul>
-                    <button
-                        type="button"
-                        className="toggle-colors"
-                        onClick={this.toggleColorPicker}>
-                        <Droplet />
-                    </button>
+                    <div className="juliet-messages">
+                        <MessageList currentId={this.props.currentId} replyToMessage={this.handleReply} currentRoom={this.state.currentRoom}
+                            messages={this.state.messages.slice(0).slice(-30)} pinMessage={this.pinMessage} downloadClick={this.downloadClick} deleteClick={this.deleteClick}
+                            users={this.state.users} colorScheme={colorScheme}/>
+                        <TypingIndicator typingUsers={this.state.typingUsers} />
+                    </div>
+                    
+                    <div className="juliet-input-all">
+                        <Input onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
+                        <UploadFile onSubmit={this.uploadFile} />
+                    </div>
                     
                 </div>
-                <div style={{'background': colorScheme}} className="list-wrapper">
-                    <UsersList openPrivateChat={this.openPrivateChat} users={this.state.users} />
-                    <FileSidebar downloadClick={this.downloadClick} />
+                <div style={{'background': colorScheme}} className="juliet-list-wrapper juliet-right-wrapper">
+                    <BlockedUsers blockAUser={this.blockAUser}/>
+                    <Members 
+                        openPrivateChat={this.openPrivateChat} 
+                        room_users={this.state.room_users}
+                        currentUser={this.state.currentUser}
+                        room={this.state.currentRoom}
+                        chatkit={this.props.chatkit}
+                        addUser={this.addUser}
+                    />
+                    <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id}/>
+                    <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
+                    <EventPlanner currentId={this.props.currentId}/> 
+                    <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >
+                        {this.state.showColorPicker ? 
+                            <SwatchesPicker onChange={this.handleColorChange}/> 
+                        : null}
+                    </ul>
+                    <div style={{width: '100%', padding: '10px 0'}}>   
+                        <div className="juliet-section-h">
+                        <div className="juliet-section-header" style={{width: 'calc(100% - 24px)'}}>
+                            <h5 style={{display: 'inline-block'}}>Choose theme:</h5>
+                        </div>
+                        <button
+                            style={{display: 'inline-block'}}
+                            type="button"
+                            className="juliet-toggle-colors"
+                            onClick={this.toggleColorPicker}>
+                            <Droplet />
+                        </button>   
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         )
     }
-}
-const createRoomStyle ={
-   
-    gridColumn: 1/2
-}
-const addUserStyle = {
-   
-    gridColumn: 2/3
 }
 export default ChatApp;

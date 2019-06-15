@@ -9,8 +9,8 @@ class KreirajIspit extends Component{
 
 
   async componentDidMount(){
-    const {data} = await axios.get('http://localhost:31903/api/predmeti')
-    //const {data1} = await axios.get('http://localhost:31903/api/brojStudenata') - kad se napravi na BE
+    const {data} = await axios.get('http://si2019charlie.herokuapp.com/api/predmeti')
+    //const {data1} = await axios.get('http://si2019charlie.herokuapp.com/api/brojStudenata') - kad se napravi na BE
     const data1=15 // hardkodirana vrijednost
     this.setState({response:data})
     this.setState({brojStudenata:data1})
@@ -33,7 +33,7 @@ class KreirajIspit extends Component{
     const subjectNAme = this.refs.odabirPredmeta.value
     const typeOfExam = this.refs.odabirTipIspita.value
     if(typeOfExam != "Usmeni" && typeOfExam != "Uvid") {
-      const {data} = axios.get('http://localhost:31903/predmet/' + subjectNAme + '/' + typeOfExam)
+      const {data} = axios.get('http://si2019charlie.herokuapp.com/predmet/' + subjectNAme + '/' + typeOfExam)
       if(data > 4 || (data > 3 && typeOfExam == "Integralni")){
         e.preventDefault();
         this.setState({validationError: true})
@@ -45,61 +45,61 @@ class KreirajIspit extends Component{
 
   render(){
     return(
-    <div className='container'>
-      <form>
-        <div className='row'>
-            
-            <div className='col-3'>
-            <label htmlFor="odabirPredmeta">Odaberite predmet: </label>
+    <div class="container-fluid" style={{marginTop: "30px"}}>
+        <h2 style={{marginBottom: "30px"}}>Kreiraj ispit</h2>
 
-                <select className="form-control" id="odabirPredmeta" ref="odabirPredmeta">
-
-                    {this.renderOptions()}
-                </select>
-                <button type="button" class="btn btn-primary" id="nazadDugme" onClick={() => window.open( 'http://www.google.ba')}>Nazad</button>
-           </div> 
-            <div className='col-3'>
-              <label htmlFor="odabirTipIspita">Tip Ispita: </label>
-
-                <select className="form-control2" id="odabirTipIspita" ref="odabirTipIspita">
-
+        <div class="card align-items-center">
+          <div class="card-body" style={{minWidth: "100%"}}>
+          <div class="row justify-content-lg-around justify-content-md-center">
+          <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+            <h4 class="card-title">Kreiranje ispita</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Ovdje je potrebno izabrati predmet za koji se želi kreirati ispit, kao i tip ispita.</h6>
+            <div style={{textAlign: "left"}}>
+            <label class="col-form-label col-form-label-lg" htmlFor="odabirPredmeta">Odaberite predmet: </label>
+            </div>
+            <select class="custom-select"  id="odabirPredmeta" >
+              {this.renderOptions()}
+            </select>
+            <div style={{textAlign: "left"}}>
+              <label class="col-form-label col-form-label-lg" htmlFor="odabirTipIspita">Tip ispita: </label>
+              </div>   
+                <select class="custom-select" id="odabirTipIspita" >
                     <option>Prvi parcijalni</option>
                     <option>Drugi parcijalni</option>
                     <option>Integralni</option>
                     <option>Usmeni</option>
                     <option>Uvid</option>
                 </select>
+                
+                <div style={{textAlign: "left"}}>
+            <label class="col-form-label col-form-label-lg" htmlFor="brojStudenata">Broj studenata na predmetu: </label>
+             </div> 
+             <div style={{textAlign: "left"}}> 
+              <label class="col-form-label col-form-label-lg" id="brojStudenata">{this.brojStudenata()}</label></div>
+            <div style={{float: "right"}}>
+              
+           
+                  <button type="button" class="btn btn-primary" id="kreirajDugme" style={{marginTop: "20px", marginRight: "10px"}} onClick={() => this.props.onChangeActiveId(2)}>Kreiraj</button>
+                  <Link to="/fox/ispiti"> 
+                    <button type="button" class="btn btn-primary" id="nazadDugme" style={{marginTop:"20px"}}>Nazad</button>
+                  </Link>
             </div> 
-            <div className='col-3'>
-              <label htmlFor="brojStudenata">Broj studenata na predmetu: </label>
-              <label id="brojStudenata">{this.brojStudenata()}</label>
+              
+              
+              
+            
             </div> 
-            <div className='col-3'>
-            <Link to="/charlie/kreiraj-ispit-detalji">
-
-                  <button type="button" class="btn btn-primary" id="kreirajDugme" onClick={this.validate}>Kreiraj</button>
-              </Link>
-              {this.state.validationError && (
-                <div className="alert alert-danger" role="alert">
-                  <i
-                    className="fas fa-exclamation-triangle"
-                    style={{ marginRight: "5px" }}
-                  />
-                  {this.state.validationErrorMessage}
-                </div>
-              )}
-
-              <br />
-              <Link to="/charlie/kreirani-ispiti">
-                <button type="button" class="btn btn-primary">Kreirani ispiti</button>
-              </Link>
             </div>
+            </div> 
+            </div> 
+
+            
 
             </div>
             
             
-      </form>
-    </div>)
+     
+    )
   }
 }
 

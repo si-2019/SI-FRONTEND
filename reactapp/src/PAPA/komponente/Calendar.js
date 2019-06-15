@@ -28,7 +28,10 @@ export default class Calendar extends React.Component {
         }
     
         this.ispitiFakultet=this.ispitiFakultet.bind(this);
-        
+        this.ispitiFakultet=this.ispitiFakultet.bind(this);
+        this.ispitiSmijer=this.ispitiSmijer.bind(this);
+        this.ispitiGodina=this.ispitiGodina.bind(this);
+        this.neradniDani=this.neradniDani.bind(this);
     }
     componentDidMount() {
         papaApi.sviIspita().then((res) => {
@@ -43,8 +46,7 @@ export default class Calendar extends React.Component {
                     dan:datum.format('D'),
                     mijesec:datum.format('MMMM')
                 });
-            }
-            console.log(niz); 
+            } 
             this.setState({
               ispiti:niz
             });
@@ -62,6 +64,47 @@ export default class Calendar extends React.Component {
         });
     }
     
+    ispitiSmijer(){
+        this.setState({
+            showFakultet: false,
+            showGodine: false,
+            showSmijer: true,
+            showNeradniDani: false
+        });
+    }
+    ispitiGodina(){
+        
+    }
+    neradniDani(){
+        papaApi.neradniDani().then((res)=>{
+            console.log(res.data);
+            let niz=[];
+            for (let a = 0; a < res.data.length; a++ ) {
+                let datum=new moment(res.data[a].datum)
+                niz.push({
+                    naziv:res.data[a].naziv,
+                    dan:datum.format('D'),
+                    mijesec:datum.format('MMMM')
+                });
+            }
+            console.log(niz);
+            this.setState({
+                showFakultet: false,
+                showGodine: false,
+                showSmijer: false,
+                showNeradniDani: true,
+                neradniDani:niz
+            });
+        }).catch((err)=>{
+            this.setState({
+                showFakultet: false,
+                showGodine: false,
+                showSmijer: false,
+                showNeradniDani: true,
+                neradniDani:[]
+            });
+        });
+    }
 
     weekdays = moment.weekdays(); //["Sunday", "Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday"]
     weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -105,7 +148,7 @@ export default class Calendar extends React.Component {
         this.setState({
             dateContext: dateContext
         });
-        //this.props.onNextMonth && this.props.onNextMonth();
+        this.props.onNextMonth && this.props.onNextMonth();
     }
 
     prevMonth = () => {
@@ -207,15 +250,13 @@ export default class Calendar extends React.Component {
     containsObject = (obj, list) => {
         for (let i =  0; i < list.length; i++) {
             if (list[i].dan == obj.dan && list[i].mijesec == obj.mijesec) {
-                console.log(obj);
-                console.log(list);
                 return true;
             }
         }
         return false;
     }
     staTrebaPisati = (obj,list) => {
-        let string="";
+        let string=""+obj.dan;
         for (let i =  0; i < list.length; i++) {
             if (list[i].dan == obj.dan && list[i].mijesec == obj.mijesec) {
                 if(this.state.showFakultet || this.state.showGodine || this.state.showSmijer){
@@ -225,7 +266,7 @@ export default class Calendar extends React.Component {
                     string=string+")"
                 }
                 else if( this.state.showNeradniDani ){
-                    string=string+list[i].naslov;
+                    string=string+list[i].naziv;
                 }
             }
         }
@@ -254,8 +295,12 @@ export default class Calendar extends React.Component {
                 let className = (d == this.currentDay() && a==moment().format('MMMM')? "day current-day": "day");
                 let selectedClass = (this.containsObject({dan: d, mijesec:a}, this.state.selectedDays ) ? " selected-day " : "");
                 let staPise;
-                if(this.state.showneradniDani) staPise = (this.containsObject({dan: d, mijesec:a}, this.state.neradniDani ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.neradniDani) : d);
-                else staPise = (this.containsObject({dan: d, mijesec:a}, this.state.ispiti ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.ispiti) : d);
+                if(this.state.showneradniDani) {
+                    staPise = (this.containsObject({dan: d, mijesec:a}, this.state.neradniDani ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.neradniDani) : d);
+                }
+                else{
+                    staPise = (this.containsObject({dan: d, mijesec:a}, this.state.ispiti ) ? this.staTrebaPisati({dan: d, mijesec:a},this.state.ispiti) : d);
+                }
                 daysInMonth.push(
                     <td key={d} className={className + selectedClass} >
                         {staPise}
@@ -296,6 +341,9 @@ export default class Calendar extends React.Component {
                     <ButtonGroup vertical >
                     <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
                         <Dropdown.Item eventKey="1" onClick={this.ispitiFakultet}>Ispiti na nivou fakulteta</Dropdown.Item>
+                        <Dropdown.Item eventKey="2" onClick={this.ispitiSmijer}>Ispiti po smijeru </Dropdown.Item>
+                        <Dropdown.Item eventKey="3" onClick={this.ispitiGodina}>Ispiti po godinama </Dropdown.Item>
+                        <Dropdown.Item eventKey="4" onClick={this.neradniDani}>Neradni dani</Dropdown.Item>
                     </DropdownButton>
                     </ButtonGroup>
                 </div>

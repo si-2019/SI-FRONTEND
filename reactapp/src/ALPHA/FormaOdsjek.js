@@ -32,7 +32,7 @@ class FormaOdsjek extends Component {
         var currentUsername = window.localStorage.getItem("username");
           
         //Drugi URL
-        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/odsjek/AddNewOdsjek?currentUsername=' + currentUsername + '?token=' + token, true);
+        xhr.open('POST', 'http://localhost:31901/api/odsjek/AddNewOdsjek?currentUsername=' + currentUsername + '?token=' + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {

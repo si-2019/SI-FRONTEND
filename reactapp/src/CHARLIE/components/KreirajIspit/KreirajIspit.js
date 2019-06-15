@@ -9,7 +9,8 @@ class KreirajIspit extends Component{
 
 
   async componentDidMount(){
-    const {data} = await axios.get('http://si2019charlie.herokuapp.com/api/predmeti')
+    const idKorisnika = window.localStorage.getItem('id')
+    const {data} = await axios.get('https://si2019alpha.herokuapp.com/api/korisnik/getPredmetiAsisProf?idKorisnik=' + idKorisnika + '&Uloga=3')
     //const {data1} = await axios.get('http://si2019charlie.herokuapp.com/api/brojStudenata') - kad se napravi na BE
     const data1=15 // hardkodirana vrijednost
     this.setState({response:data})
@@ -23,17 +24,23 @@ class KreirajIspit extends Component{
     );
   }
 
-  brojStudenata = () => {
+  brojStudenata() {
     if(!this.state.brojStudenata) return
     return this.state.brojStudenata
   }
 
 
   validate = (e) => {
+    var subjectId;
     const subjectNAme = this.refs.odabirPredmeta.value
+    for (var i = 0; i < this.state.response.length; i++) {
+      if (this.state.response[i].naziv === subjectNAme) {
+          subjectId = this.state.response[i].id;
+      }
+  }
     const typeOfExam = this.refs.odabirTipIspita.value
     if(typeOfExam != "Usmeni" && typeOfExam != "Uvid") {
-      const {data} = axios.get('http://si2019charlie.herokuapp.com/predmet/' + subjectNAme + '/' + typeOfExam)
+      const {data} = axios.get('http://si2019charlie.herokuapp.com/predmet/' + subjectId + '/' + typeOfExam)
       if(data > 4 || (data > 3 && typeOfExam == "Integralni")){
         e.preventDefault();
         this.setState({validationError: true})

@@ -31,7 +31,7 @@ class FormaProfPred extends Component {
         const { profesor, predmet } = this.state;
 
         return (
-          <div className="col-md-2">
+          <div className="col-md-4">
           
             <form  onSubmit={this.OnSubmit} className="container-fluid">
               <label>Odaberite profesora </label>

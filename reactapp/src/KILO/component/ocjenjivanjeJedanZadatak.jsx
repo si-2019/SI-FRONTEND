@@ -32,11 +32,7 @@ class OcjenjivanjeJedanZadatak extends Component {
               className="btn btn-primary"
               onClick={this.props.podaci.handleClick}
             >
-              <Icon
-                type="indicator"
-                name="sortDesc"
-                className="mr-2"
-              />
+              <Icon type="indicator" name="sortDesc" className="mr-2" />
               Preuzmi datoteku
             </button>
           </div>

@@ -20,31 +20,31 @@ class MainContent extends Component {
       <div>
         <Router history={history}>
         <Switch>
-          <Route path={"/KILO/kreiranjeZadace/"}  />
-          <Route
+          <Route onChange={this.props.podaci.postaviIdeve} path={"/KILO/kreiranjeZadace/"}   />
+          <Route  onChange={this.props.podaci.postaviIdeve}
             path={"/KILO/azuriranjeZadace/"}
-            component={AzuriranjeZadace}
+            
           />
-          <Route path={"/KILO/brisanjeZadace/"}  />
-          <Route path={"/KILO/ocjenjivanjeZadace/"} />
-          <Route path={"/KILO/student/"}  />
+          <Route  onChange={this.props.podaci.postaviIdeve} path={"/KILO/brisanjeZadace/"}  />
+          <Route   onChange={this.props.podaci.postaviIdeve} path={"/KILO/ocjenjivanjeZadace/"} />
+          <Route  onChange={this.props.podaci.postaviIdeve} path={"/KILO/student/"}  />
           {/*<Redirect to={"/KILO/kreiranjeZadace/?idPredmeta=" + idPredmeta} />*/}
         </Switch>
       </Router>
       <div style={{ display: this.props.podaci.state.aktivirajDiv == 1 ? 'inherit' : 'none' }}>
-        <KreiranjeZadace key={this.props.podaci.state.rendajOpet}></KreiranjeZadace>
+        <KreiranjeZadace key={this.props.podaci.state.rendajOpet} podaci={this.props.podaci.state}></KreiranjeZadace>
       </div>
       <div style={{ display: this.props.podaci.state.aktivirajDiv == 2 ? 'inherit' : 'none' }}>
-      <AzuriranjeZadace key={this.props.podaci.state.rendajOpet}></AzuriranjeZadace>
+      <AzuriranjeZadace key={this.props.podaci.state.rendajOpet}  podaci={this.props.podaci.state}></AzuriranjeZadace>
       </div>
       <div style={{ display: this.props.podaci.state.aktivirajDiv == 3 ? 'inherit' : 'none' }}>
-        <BrisanjeZadace key={this.props.podaci.state.rendajOpet}></BrisanjeZadace>
+        <BrisanjeZadace key={this.props.podaci.state.rendajOpet}  podaci={this.props.podaci.state}></BrisanjeZadace>
       </div>
       <div style={{ display: this.props.podaci.state.aktivirajDiv == 4 ? 'inherit' : 'none' }}>
-        <Ocjenjivanje key={this.props.podaci.state.rendajOpet}></Ocjenjivanje>
+        <Ocjenjivanje key={this.props.podaci.state.rendajOpet}  podaci={this.props.podaci.state} ></Ocjenjivanje>
       </div>
       <div style={{ display: this.props.podaci.state.aktivirajDiv == 5 ? 'inherit' : 'none' }}>
-        <Student key={this.props.podaci.state.rendajOpet}></Student>
+        <Student key={this.props.podaci.state.rendajOpet}  podaci={this.props.podaci.state}></Student>
       </div>
 
 

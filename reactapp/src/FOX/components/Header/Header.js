@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import NavbarFox from '../Navbar/Navbar';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 
 class Header extends Component {
   constructor(props) {

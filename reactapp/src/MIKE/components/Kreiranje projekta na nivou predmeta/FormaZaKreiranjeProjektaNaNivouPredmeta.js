@@ -83,7 +83,7 @@ class KreiranjeProjekta extends Component {
     }
 
     render() {
-        return (
+        if(this.state.predmeti.length>0)return (
             <Fragment>
                 <Form>
   
@@ -91,6 +91,9 @@ class KreiranjeProjekta extends Component {
                 </Form>
             </Fragment>
         );
+        else return(
+            <p>Nema predmeta</p>
+        )
     }
     notDone() {
         alert("Nije implementirano!");

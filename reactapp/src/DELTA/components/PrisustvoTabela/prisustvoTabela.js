@@ -1,6 +1,5 @@
-//import React from 'react'
-
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export class prisustvoTabela extends Component {
     
@@ -9,10 +8,25 @@ export class prisustvoTabela extends Component {
         prisustvoTutorijali : [{brojSedmice: 1, prisutan: "NE"}, {brojSedmice: 2, prisutan: "DA"}]
     };
 
+    componentDidMount(){
+
+        let idPredmeta = this.props.idPredmeta
+        let idStudenta = this.props.idStudenta
+
+        axios.get("http://si2019delta.herokuapp.com/prisustvoPredavanja/" + idPredmeta + "/" + idStudenta)
+        .then(res => this.setState({prisustvoPredavanja: res.data}))
+
+        axios.get("http://si2019delta.herokuapp.com/prisustvoTutorijala/" + idPredmeta + "/" + idStudenta)
+        .then(res => this.setState({prisustvoTutorijali: res.data}))
+    }
+
     dajStilPolja = (p) => {
-        let boja = "green"
-        if (p == "NE")
+        let boja = "yellow"
+        if (p == "ne")
             boja = "red"
+        else if (p == "da")
+        boja = "green"
+    
         let stil = {backgroundColor:boja, minWidth: 30}
         return stil;
     }
@@ -31,6 +45,7 @@ export class prisustvoTabela extends Component {
                 {prisustva[i].brojSedmice}
             </td>)
             let p = prisustva[i].prisutan;
+            if (p == null) p = "null"
             children[1].push(
             <td style = {this.dajStilPolja(p)}>
                 {p}

@@ -57,7 +57,8 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajAnketeZaProfesoraPoPredmetima?idKorisnik=36', {
+        fetch(url + '/dajAnketeZaProfesoraPoPredmetima?idKorisnik=' + window.localStorage.getItem("id") +
+             "&username=" + window.localStorage.getItem("username"), {
             method: 'GET',
             headers: {
                 'Authorization': window.localStorage.getItem("token")
@@ -65,25 +66,32 @@ class App extends React.Component {
         })
         .then(res => res.json())
         .then(result => {
-            
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             this.setState({
                 items: result
             })
         }, error => {
             this.setState({
-                items: [error, "error"]
+                error: [error, "error"]
             })
         })
     }
     obrisiAnketu(anketaZaBrisanje){
         console.log("Morel")
-        fetch(url + '/obrisiAnketu?idKorisnik=1&idAnketa=' + anketaZaBrisanje.idAnketa, { 
+        fetch(url + '/obrisiAnketu?idKorisnik=' + window.localStorage.getItem("id") + '&idAnketa=' + anketaZaBrisanje.idAnketa + '&username=' + window.localStorage.getItem("username"), { 
             method: 'POST',
             headers: {
                 'Authorization': window.localStorage.getItem("token")
             }
         }).then(res => res.json())
           .then((res) => {
+            if(res.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             console.log(res)
              if(res.error) {
                  alert("Nije obrisana anketa")

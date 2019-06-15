@@ -37,7 +37,7 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent=1', {
+        fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent='+window.localStorage.getItem("id")+ '&username=' + window.localStorage.getItem("username"), {
             method: 'GET',
             headers: {
                 'Authorization': window.localStorage.getItem("token")
@@ -45,6 +45,10 @@ class App extends React.Component {
         })
         .then(res => res.json())
         .then(result => {
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             console.log("hoce")
             this.setState({
                 items: {

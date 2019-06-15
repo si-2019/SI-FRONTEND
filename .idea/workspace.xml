@@ -1,624 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c57a927-323a-4bc9-9816-6bbbb66ee109" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/debug.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/public/avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/EditStudentForma.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaOdsjekPred.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaPredmet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaPrikazProf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaPrikazStud.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaUrediAsistenta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaUrediProf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/actions/post.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/alphaCss.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajPredmet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/editOdsjeka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/editPredmeta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/povezivanjeAsistentPredmet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/povezivanjeOdsjekPredmet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/povezivanjeProfesorPredmet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/prikazAsistenta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/prikazOdsjeka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/prikazPredmeta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/promijeniLozinku.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/AddNewCategoryModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/Archived.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/ArchivedMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/ArchivedPart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/Draft.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/DraftMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/Drafts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/IssueListSS.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/IssueMessageSS.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/LeftMenuSS.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/NewFAQModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/SSFAQ.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/ArchivedPart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/NoviIssueModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/Archived.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/ArchivedMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/OdgovorForma.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/PopUp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/Potvrda.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/LeftMenuCharlie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/appCharlie.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/PregledStudenata/PregledStudenata.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/Modal2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/Modal3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/ModalUredi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/PopUp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/Potvrda.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/tabeleCharlie.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/DELTA/AppDelta.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/Predmet/AppDelta.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/DodajNovuSalu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/DodajNovuSalu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/LeftMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/PrikaziSaleForma.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/PrikaziSaleForma.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/naslovnaKalendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/naslovnaTermin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/prikazTermina.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/prikazTermina.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/sale.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/unosKrajnjegRoka.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/unosKrajnjegRoka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/unosTermina.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ECHO/components/unosTermina.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/FOX/ZajednickiCSS.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosPrisustvaSedmice/UnosPrisustvaSedmice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosTeme/IzmjeniTemu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosTeme/NovaTema.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/UredjivanjeLiterature.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/UredjivanjeOPredmetu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/UredjivanjeObjave.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/dodavanjeLiterature.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/dropdown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/prethodnaAkademskaGodina.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/stranicaPredmeta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/kreiranje/StarRating.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/kreiranje/TextBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/kreiranje/tests/starrating.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/kreiranje/tests/textbox.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/anketePoPredmetimaProf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/anketePoPredmetimaStudenti.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/popunjeneAnketeAdmin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/popunjeneAnketeProf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/rezultatiAnketaKorisnik.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/sveAnketeSviPredmetiAdmin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/anketePoPredmetima.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/app.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/javneAnkete.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/listaAnketa.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/mojeAnkete.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/popunjeneAnkete.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/rezultatiAnketa.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/tests/sveAnketeSviPredmetiAdmin.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/BlockedUsers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/EventPlanner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/Members.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/Message_.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/NewEventForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/PinnedMessages.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/EventPlanner.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/Signup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/KILO/AppKilo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/DrugiParcijalniPoPredmetu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/OcjenePoPredmetu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/ProsjekPoGodinama.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/PrviParcijalniPoPredmetu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/UkupniBrojPoPredmetu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/UsmeniPoPredmetu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/ZadacePoPredmetu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Export/ExportButtons.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/GodinaPredmet/GodinaPredmet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/LicniIzvjestaj/LicniIzvjestaj.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Modali/ConfirmationModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Modali/DodajIzvjestajModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Modali/PregledajIzvjestajModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Precice/Precica.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Precice/Precice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Precice/TrenutnaGodina.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/LIMA/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/api/bodovanje.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/BodovanjeProjekataStudenti/BodovanjeProjekataStudenti.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/BodovanjeProjekataStudenti/BodovanjeProjekataStudenti.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/BodovanjeProjekataStudenti/RedTabele.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/BodovanjeProjekataStudenti/TabelaGrupa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Generisanje projektnih grupa/GenerisanjeGrupa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Generisanje projektnih grupa/bootstrapflatly.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projekta na nivou predmeta/FormaZaKreiranjeProjektaNaNivouPredmeta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projekta na nivou predmeta/bootstrapflatly.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/BrisanjeClanovaGrupe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/FormaZaIzborVodje.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/InterfejsUredjivanjeClanovaGrupe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/UnosInformacija.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/bootstrapflatly.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/prikazListe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata asistenta/PregledDetaljaPredmeta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata asistenta/PrikazDetaljaProjektneGrupe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata asistenta/PrikazListeProjektnihGrupa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata asistenta/prikazListePredmetaAsistenta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata studenta/PregledDetaljaZadatka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata studenta/PregledDetaljaZadatka.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata studenta/PregledListeProjekata.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata studenta/PrikazListeZadataka.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata studenta/bootstrapflatly.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/RadNaProjektu/UploadFiles/UploadFiles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/RadNaProjektu/UploadFiles/UploadFiles.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/RadNaProjektu/UploadFiles/komponenta.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/ChangeLog/Grupe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/ChangeLog/v1.0.0.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/ChangeLog/version_1.0.0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/ChangeLog/version_1.0.1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/ChangeLog/version_1.0.2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/AppSiera.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/LeftMenuStudentSiera.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/ModalLicni.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/Navigation.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/Ocjene.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/PaneSiera.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/Prosjek.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/TabContentSiera.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/TabListSiera.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/TabelaOcjene.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/TabsSiera.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/predmeti.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/statistika.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/tabela.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/tabelaSortiranaPoBrojuIspita.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/tabelaSortiranaPoBrojuIspita.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/tabelaSortiranaPoOcjeni.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/SIERA/tabelaSortiranaPoOcjeni.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/LijeviMeni/LijeviMeni.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/LijeviMeni/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/AppUniform.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Home/LeftMenuStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SI-FRONTEND.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/SI-FRONTEND/v15/.suo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/Forma.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/Forma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaAsistent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaAsistent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaAsistentPred.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaAsistentPred.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaOdsjek.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaOdsjek.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaPr.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaPr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaProfPred.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaProfPred.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaUpis.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/FormaUpis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajAsistenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajAsistenta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajOdsjek.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajOdsjek.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajProfesora.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajProfesora.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajStudenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/dodajStudenta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ALPHA/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ALPHA/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/AddNewCategoryForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/FormaNewFAQ.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/SSCategoryComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/SSCategoryComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/SSNewIssueForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/SS/SSNewIssueForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/CategoryComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/CategoryComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/Drafts.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/Drafts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/FAQ.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/FAQ.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/IssueMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/IssueMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/LeftMenuStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/LeftMenuStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/NoviIssueForma.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/issueList.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/Student/issueList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/DraftMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/DraftMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/Draftt.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/Draftt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/IssueMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/IssueMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/issue.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/BETA/komponente/helpers/issue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/InformacijeOIspitu/InformacijeOIspitu.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/InformacijeOIspitu/InformacijeOIspitu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreirajIspit/KreirajIspit.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreirajIspit/KreirajIspit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreirajIspitDetalji/KreirajIspitDetalji.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreirajIspitDetalji/KreirajIspitDetalji.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreirajIspitDetalji/KreirajIspitDetalji.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreirajIspitDetalji/KreirajIspitDetalji.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreiraniIspiti/KreiraniIspiti.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/KreiraniIspiti/KreiraniIspiti.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/PregledStudenata/PregledStudenata.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/PregledStudenata/PregledStudenata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/PrijavaIspita/PrijavaIspita.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/PrijavaIspita/PrijavaIspita.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/PrijavljeniIspiti/PrijavljeniIspiti.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/PrijavljeniIspiti/PrijavljeniIspiti.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/FormCharlie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/Form.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/FormCharlie.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/IspitCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/SharedComponents/IspitCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/UrediIspit/UrediIspit.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/UrediIspit/UrediIspit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/UrediIspit/UrediIspit.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/CHARLIE/components/UrediIspit/UrediIspit.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Ankete.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Ankete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/DrugiModuli.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/DrugiModuli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Forum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Izvjestaji.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Izvjestaji.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Materijali.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Materijali.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Raspored.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/DrugiModuli/Raspored.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/Ispiti/Ispiti.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/Ispiti/Ispiti.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/KonacnaOcjena/KonacnaOcjena.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/KonacnaOcjena/KonacnaOcjena.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/ListaPredmeta/ListaPredmeta.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/ListaPredmeta/ListaPredmeta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/Predmet/Predmet.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/Predmet/Predmet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/DELTA/components/Zadace/Zadace.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/DELTA/components/Zadace/Zadace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/AdminPromjenaTermina/AdminPromjenaTermina.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/AdminPromjenaTermina/AdminPromjenaTermina.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/AdminPromjenaTermina/AdminPromjenaTermina.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/AdminPromjenaTermina/AdminPromjenaTermina.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/AdminPromjenaTermina/AdminPromjenaTermina.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/AdminPromjenaTermina/AdminPromjenaTermina.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/AdminPromjenaTermina/__snapshots__/AdminPromjenaTermina.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/AdminPromjenaTermina/__snapshots__/AdminPromjenaTermina.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/DodajNovuSalu.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/DodajNovuSalu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/DodajNovuSalu.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/DodajNovuSalu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/DodajNovuSalu.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/DodajNovuSalu.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/__snapshots__/prikazTermina.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/__snapshots__/prikazTermina.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/izgled.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/izgled.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/naslovnaTermin.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/naslovnaTermin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/naslovnaTermin.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/naslovnaTermin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/prikazTermina.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/prikazTermina.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/prikazTermina.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/prikazTermina.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/unosTermina.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/unosTermina.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/NaslovnaTermin/unosTermina.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/NaslovnaTermin/unosTermina.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/OdabirDana.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/OdabirDana.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/OdabirDana.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/OdabirDana.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/OdabirDana.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/OdabirDana.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/PrikaziSaleForma.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/PrikaziSaleForma.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/PrikaziSaleForma.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/PrikaziSaleForma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/PrikaziSaleForma.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/PrikaziSaleForma.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/ProfessorsAvailability/ProfessorsAvailability.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/ProfessorsAvailability.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/ProfessorsAvailability/ProfessorsAvailability.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/ProfessorsAvailability.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/ProfessorsAvailability/ProfessorsAvailability.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/ProfessorsAvailability.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/ProfessorsAvailability/__snapshots__/ProfessorsAvailability.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/__snapshots__/ProfessorsAvailability.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/__snapshots__/OdabirDana.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/__snapshots__/OdabirDana.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/__snapshots__/PrikaziSaleForma.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/__snapshots__/PrikaziSaleForma.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/__snapshots__/dani.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/__snapshots__/dani.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/__snapshots__/unosKrajnjegRoka.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/__snapshots__/unosKrajnjegRoka.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/__snapshots__/unosTermina.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/__snapshots__/unosTermina.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/__snapshots__/unosTerminaAdmin.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/__snapshots__/unosTerminaAdmin.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/components/OdabirDana.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/components/OdabirDana.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/components/OdabirDana.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/components/OdabirDana.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/components/OdabirDana.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/components/OdabirDana.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/components/__snapshots__/OdabirDana.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/components/__snapshots__/OdabirDana.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/dani.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/dani.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/dani.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/dani.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/izgled.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/izgled.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/odabirDanaAdmin/__snapshots__/odabirDanaAdmin.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/odabirDanaAdmin/__snapshots__/odabirDanaAdmin.test.js.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/odabirDanaAdmin/odabirDanaAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/odabirDanaAdmin/odabirDanaAdmin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/odabirDanaAdmin/odabirDanaAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/odabirDanaAdmin/odabirDanaAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/odabirDanaAdmin/odabirDanaAdmin.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/odabirDanaAdmin/odabirDanaAdmin.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/pocetnaStranica.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/pocetnaStranica.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/pocetnaStranica.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/pocetnaStranica.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/pocetnaStranica.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/pocetnaStranica.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/pocetni.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/pocetni.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/porukaNevalidanUnos.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/porukaNevalidanUnos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/porukaValidanUnos.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/porukaValidanUnos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosKrajnjegRoka.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosKrajnjegRoka.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosKrajnjegRoka.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosKrajnjegRoka.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosKrajnjegRoka.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosKrajnjegRoka.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosTermina.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosTermina.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosTermina.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosTermina.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosTermina.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosTermina.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosTerminaAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosTerminaAdmin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosTerminaAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosTerminaAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ECHO/unosTerminaAdmin.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ECHO/old/unosTerminaAdmin.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/App/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/App/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Footer/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Ispiti/Ispiti.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Ispiti/Ispiti.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Ispiti/StudentiTabela.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Ispiti/StudentiTabela.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Ispiti/Tabela.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Ispiti/Tabela.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Navbar/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Navbar/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Obavijesti/Obavijesti.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Obavijesti/Obavijesti.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Ocjena/Ocjena.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Ocjena/Ocjena.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/Predmet/Predmet.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/Predmet/Predmet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/ReturnButton/ReturnButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/ReturnButton/ReturnButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/StranicaPredmeta/StranicaPredmeta.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/StranicaPredmeta/StranicaPredmeta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/TabelaStudenti/TabelaStudenti.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/TabelaStudenti/TabelaStudenti.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/TabelaUnosa/TabelaUnosa.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/TabelaUnosa/TabelaUnosa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosBodova/UnosBodova.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosBodova/UnosBodova.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosOcjene/UnosOcjene.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosOcjene/UnosOcjene.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosPrisustva/UnosPrisustva.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosPrisustva/UnosPrisustva.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosPrisustvaForma/UnosPrisustvaForma.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosPrisustvaForma/UnosPrisustvaForma.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosPrisustvaForma/UnosPrisustvaForma.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosPrisustvaForma/UnosPrisustvaForma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosTeme/TabelaTeme.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosTeme/TabelaTeme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosTeme/TemeZavrsnih.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/FOX/components/UnosTeme/TemeZavrsnih.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/DodavanjeDatuma.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/DodavanjeDatuma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/JedanPredmet.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/JedanPredmet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/Semestri4.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/Semestri4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/Semestri6.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/Semestri6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/ciklusi.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/ciklusi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/dodavanjeObjave.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/dodavanjeObjave.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/golf.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/golf.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/literaturaProfesor.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/literaturaProfesor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/literaturaStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/literaturaStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/oPredmetuProfesor.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/oPredmetuProfesor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/oPredmetuStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/oPredmetuStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/objavaProfesor.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/objavaProfesor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/objavaStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/objavaStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/odsjeci.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/odsjeci.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/proba.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/proba.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/sedmica.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/sedmica.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/stranicaPredmetaProfesor.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/stranicaPredmetaProfesor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/GOLF/components/stranicaPredmetaStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/GOLF/components/stranicaPredmetaStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/kreiranje/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/kreiranje/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/anketePoPredmetima.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/javneAnkete.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/javneAnkete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/mojeAnkete.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/mojeAnkete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/popunjeneAnkete.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/rezultatiAnketa.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/stil.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/stil.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/sveAnkete.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/liste/testoviListe.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/pocetnaStranica/pocetna.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/pocetnaStranica/pocetna.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/pocetnaStranica/pocetna.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/pocetnaStranica/pocetna.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/popunjavanje/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/popunjavanje/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/popunjavanje/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/popunjavanje/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/HOTEL/rezultati/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/HOTEL/rezultati/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/AddUser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/ChatApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/ChatApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/ChatMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/ChatMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/CreateRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/CreateRoom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/FileSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/FileSidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/Input.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/MessageList.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/MessageList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/NewPublicRoomForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/NewPublicRoomForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/RoomList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/ThreadDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/ThreadDialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/TypingIndicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/TypingIndicator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/UploadFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/UploadFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/Components/UsersList.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/Components/UsersList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/serviceWorker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/AddUser.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/ChangeLog/v1.0.1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/ChatApp.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/ChatApp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/CreateRoom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/FileSidebar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/Message.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/Message.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/MessageList.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/MessageList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/RoomList.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/RoomList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/JULIET/styles/UsersList.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/JULIET/styles/UsersList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/azuriranjeZadace.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/azuriranjeZadace.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/bodoviZadaca.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/bodoviZadaca.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/brisanje.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/brisanje.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/dodavanjeTipovaFileova.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/dodavanjeTipovaFileova.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/kreiranjeZadace.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/kreiranjeZadace.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/mainContent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/mainContent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanje.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanje.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanjeJedanZadatak.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanjeJedanZadatak.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanjeJednaZadaca.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanjeJednaZadaca.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanjePocetna.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/ocjenjivanjePocetna.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/osnovniPodaci.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/osnovniPodaci.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/previewZadace.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/previewZadace.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/prviPutSlanjeZadatka.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/prviPutSlanjeZadatka.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/student.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/student.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/tabelaPregledaZadaca.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/tabelaPregledaZadaca.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/KILO/component/zadatakVecPoslan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/KILO/component/zadatakVecPoslan.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_23_I_35/Izvjestaj_prosjeka_ocjena_po_godinama.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_23_I_35/components/ProsjekChart.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/I_US_25.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/I_US_25.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/I_US_25.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/komponente/forma.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/komponente/izvjestaj.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/komponente/progressBar.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_25/provjeraDaLiRadi.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/I_US_26.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/I_US_26.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/I_US_26.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/komponente/forma.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/komponente/izvjestaj.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_26/provjeraDaLiRadi.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_27/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_27/I_US_27.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_27/I_US_27.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_27/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_27/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_30/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_30/I_US_30.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_30/I_US_30.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_30/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_30/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_48/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_48/I_US_48.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_48/I_US_48.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_48/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/I_US_48/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/IzvjestajiRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/IzvjestajiRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/GrafikStavka.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/GrafikStavka.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/PrisustvoPoPredmetu.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/components/Dijagrami/PrisustvoPoPredmetu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/static/dummy.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Izvjestaji/static/dummy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/PotvrdeRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/PotvrdeRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_14_i_20/PodnesiZahtjev.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_14_i_20/components/__snapshots__/besplatenePotvrde.test.js.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_14_i_20/components/__snapshots__/svrhaPotvrde.test.js.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_14_i_20/components/besplatenePotvrde.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_14_i_20/components/besplatnePotvrde.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_14_i_20/components/svrhaPotvrde.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_14_i_20/components/svrhaPotvrde.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/US_18.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/US_18.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/US_18.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/komponente/forma.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/komponente/red.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/komponente/tabela.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_18/provjeraDaLiRadi.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/US_21.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/US_21.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/US_21.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/komponente/red.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/komponente/tabela.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_21/provjeraDaLiRadi.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/Dokaz_o_radu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/US_23.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/US_23.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/komponente/red.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/US_23/komponente/tabela.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/components/PregledPotvrde/PregledPotvrde.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/Potvrde/components/PregledPotvrde/PregledPotvrde.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/LIMA/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/LIMA/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/InterfejsUredjivanjeClanovaGrupe.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/InterfejsUredjivanjeClanovaGrupe.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/InterfejsUredjivanjeClanovaGrupe.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/PregledListeProjekata.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/PrikazPredmeta.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/PrikazPredmeta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/PrikazPredmeta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/PrikazPredmeta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/UnosInformacija.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/api/projekti_zadaci.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/api/projekti_zadaci.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/DostupniPredmetiZaGrupu/DostupniPredmetiZaGrupu.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/DostupniPredmetiZaGrupu/DostupniPredmetiZaGrupu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/FormaZaIzborVodje.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/FormaZaIzborVodje.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/FormaZaIzborVodje.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projekta na nivou predmeta/FormaZaKreiranjeProjektaNaNivouPredmeta.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/KreiranjeProjekta/FormaZaKreiranjeProjektaNaNivouPredmeta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projekta na nivou predmeta/FormaZaKreiranjeProjektaNaNivouPredmeta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledDetaljaPredmeta/PregledDetaljaPredmeta.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledDetaljaPredmeta/PregledDetaljaPredmeta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata asistenta/PregledDetaljaPredmeta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledDetaljaZadatka.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledListeProjekata.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledListeProjekata/PregledListeProjekata.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledListeProjekata/PregledListeProjekataAcceptance.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata studenta/PregledListeProjekataAcceptance.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledProjektnihGrupa/PrikazDetaljaProjektneGrupe.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledProjektnihGrupa/PrikazListeProjektnihGrupa.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledProjektnihGrupa/PrikazListeProjektnihGrupa.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata asistenta/PrikazListeProjektnihGrupa.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledZadatakaProjekta/PregledZadatakaProjekta.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/PregledZadatakaProjekta/PregledZadatakaProjekta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/components/PrikazListeZadataka.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Pregled projekata studenta/PrikazListeZadataka.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/prikazListe.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/prikazListe.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/MIKE/components/Kreiranje projektne grupe/prikazListe.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/MIKE/prikazListePredmetaAsistenta.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/PAPA/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/PAPA/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/Calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/Obavjestenja.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/Obavjestenja.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/Predmet.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/Predmet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/papaApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/PAPA/komponente/papaApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/HomePage/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ROMEO/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/Login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/ROMEO/components/Login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/ROMEO/components/Login/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/DropDownZavrsni.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/DropDownZavrsni.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/Modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/ModalKontakt.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/Modal.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/ModalKontakt.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/Modal1.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/Modal1.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/ModalLicni.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/PrikaziStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/PrikaziStatus.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/fotografija.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/fotografija.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/ispitiTabela.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/ispitiTabela.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/ispitiTabela.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/ispitiTabela.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/kontaktPod.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/kontaktPod.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/licniPod.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/licniPod.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/listaOdslusanihPredmeta.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/listaOdslusanihPredmeta.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/listaOdslusanihPredmeta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/listaOdslusanihPredmeta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/listaTrenutnihPredmeta.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/listaTrenutnihPredmeta.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/listaTrenutnihPredmeta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/listaTrenutnihPredmeta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/modalnaKomponenta.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/modalnaKomponenta.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/promjenaLinkaStranice.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/promjenaLinkaStranice.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/stranice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/stranice.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/SIERA/ugovorOUcenju.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/SIERA/ugovorOUcenju.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/DugmeZaObjavu/dugmeZaObjavu.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/DugmeZaObjavu/dugmeZaObjavu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/DugmeZaSort/dugmeZaSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/DugmeZaSort/dugmeZaSort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/Komentar/komentar.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/Komentar/komentar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/ListaKomentara/listakomentara.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/ListaKomentara/listakomentara.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/ListaOdgovora/listaodgovora.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/ListaOdgovora/listaodgovora.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/ListaTema/listaTema.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/ListaTema/listaTema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/NovaTema/novaTema.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/NovaTema/novaTema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/ObjaviKomentar/objaviKomentar.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/ObjaviKomentar/objaviKomentar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/OdgovorNaKomentar/odgovorNaKomentar.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/OdgovorNaKomentar/odgovorNaKomentar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/TANGO/components/Tema/openDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/TANGO/components/Tema/openDialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/body_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/body_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/footer_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/footer_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/grupeProfesor.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/grupeProfesor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/grupeProfesor.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/grupeProfesor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/header_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/header_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/nesvrstani_body_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/nesvrstani_body_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/nesvrstani_header_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/nesvrstani_header_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/tabelaGrupa.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/tabelaGrupa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/tabelaNesvrstani.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeProfesor/tabelaNesvrstani.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/body_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/body_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/grupeStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/grupeStudent.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/grupeStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/grupeStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/header_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/header_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/tabela.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Grupe/grupeStudent/tabela.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/body_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/body_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/head_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/head_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/raspored.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/raspored.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/raspored.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedProfesora/raspored.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/body_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/body_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/head_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/head_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/raspored.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/raspored.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/raspored.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaProfesora/raspored.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/body_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/body_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/head_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/head_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/raspored.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/raspored.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/raspored.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedSaleZaStudenta/raspored.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/body_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/body_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/head_cell.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/head_cell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/raspored.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/raspored.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/raspored.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/UNIFORM/components/Raspored/rasporedStudenta/raspored.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="2c57a927-323a-4bc9-9816-6bbbb66ee109" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -662,11 +45,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/ProfessorsAvailability.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-308">
-              <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+            <state relative-caret-position="187">
+              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reactapp/package-lock.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="11205" column="37" selection-start-line="11205" selection-start-column="37" selection-end-line="11205" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -688,17 +80,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reactapp/src/FOX/FOXv4/components/App/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -713,6 +94,7 @@
     <findStrings>
       <find>onStaffEd</find>
       <find>Console</find>
+      <find>head</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -731,6 +113,7 @@
         <option value="$PROJECT_DIR$/reactapp/src/ECHO/ProfessorsAvailability/ProfessorsAvailability.css" />
         <option value="$PROJECT_DIR$/reactapp/src/ECHO/index.js" />
         <option value="$PROJECT_DIR$/reactapp/src/ECHO/app.js" />
+        <option value="$PROJECT_DIR$/reactapp/package-lock.json" />
       </list>
     </option>
   </component>
@@ -880,7 +263,7 @@
       <workItem from="1555664858424" duration="12094000" />
       <workItem from="1558772261326" duration="5431000" />
       <workItem from="1560637066967" duration="389000" />
-      <workItem from="1560637492896" duration="241000" />
+      <workItem from="1560637492896" duration="521000" />
     </task>
     <servers />
   </component>
@@ -911,7 +294,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77355000" />
+    <option name="totallyTimeSpent" value="77635000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1028,9 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/reactapp/src/ALPHA/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1096,10 +476,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactapp/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11205" column="37" selection-start-line="11205" selection-start-column="37" selection-end-line="11205" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/reactapp/src/ECHO/old/ProfessorsAvailability/ProfessorsAvailability.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308">
-          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state relative-caret-position="187">
+          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>

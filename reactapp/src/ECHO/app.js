@@ -5,12 +5,8 @@ import LeftMenu from "./components/LeftMenu.js";
 import NaslovnaTermin from "./components/naslovnaTermin";
 import Sale from "./components/sale";
 import NaslovnaKalendar from "./components/naslovnaKalendar";
-<<<<<<< HEAD
 import ProfessorsAvailability from "./old/ProfessorsAvailability/ProfessorsAvailability";
-=======
 import Raspored from "./components/raspored";
-
->>>>>>> develop
 class App extends Component {
   constructor(props) {
     super(props);

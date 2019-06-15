@@ -140,7 +140,7 @@ class TabelaUnosa extends Component {
         const validated = this.state.validated;
 
         return (
-            <div class="card" style={{margin: "0", marginBottom: "50px"}}>
+            <div id="form" class="card" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">
                     <Poruka
                     greska={this.state.greskaBaza}
@@ -160,7 +160,7 @@ class TabelaUnosa extends Component {
                         >
                             <Form.Row className="justify-content-center">
                                 <Form.Group as={Col} lg="4" md="6" sm="8" xs="12" style={{textAlign: "left"}}>
-                                    <select required class="custom-select" ref={ this.ispit }>
+                                    <select id="dropId" required class="custom-select" ref={ this.ispit }>
                                         {
                                             this.state.ispiti && this.state.ispiti.map(ispit => {
                                                 return <option value={ispit.id} key={ispit.id}>{ispit.tip} {ispit.datum}</option>
@@ -174,12 +174,13 @@ class TabelaUnosa extends Component {
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Indeks: </Form.Label>
                                     <Form.Control
+                                    id="indeksId"
                                     placeholder="Unesite indeks"
                                     ref={ this.indeks }
                                     required
                                     type="number"
                                     min={0}
-                                    name="indeks">
+                                    id="indeks">
                                     </Form.Control>
                                     <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
                                     <Form.Control.Feedback type="invalid"> Indeks nije validan </Form.Control.Feedback>
@@ -188,7 +189,7 @@ class TabelaUnosa extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}} >
-                                    <Button
+                                    <Button id="pretraziId"
                                     onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
@@ -199,23 +200,24 @@ class TabelaUnosa extends Component {
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Bodovi: </Form.Label>
                                     <Form.Control
+                                    id="bodoviId"
                                     ref={ this.bodovi }
                                     required
                                     placeholder="Unesite bodove"
                                     type="number"
                                     min={-100}
                                     max={100}
-                                    name="ocjena"
-                                    value={this.state.ocjena}>
+                                    name="bodovi"
+                                    value={this.state.bodovi}>
                                     </Form.Control>
                                     <Form.Control.Feedback> Validni bodovi </Form.Control.Feedback> 
-                                    <Form.Control.Feedback type= "invalid"> Bodovi nije validna </Form.Control.Feedback> 
+                                    <Form.Control.Feedback type= "invalid"> Bodovi nisu validni </Form.Control.Feedback> 
                                 </Col>
                             </Form.Row>
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
-                                    <Button variant="primary" type="submit"> Unesi </Button>
+                                    <Button id="unesiId" variant="primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
                             

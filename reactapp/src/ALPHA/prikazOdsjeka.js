@@ -67,7 +67,6 @@ class prikazOdsjeka extends Component{
                 <table >
                     <thead className="table table-sm table-primary">
                         <tr>
-                            <th>ID</th>
                             <th>NAZIV</th>
                             <th>OBRIŠI</th>
                         </tr>
@@ -76,7 +75,6 @@ class prikazOdsjeka extends Component{
                         {
                             lista.length ? lista.map(list => 
                                 <tr key={list.idOdsjek}>
-                                    <th>{list.idOdsjek}</th>
                                     <th>{list.naziv}</th>
                                     <th><button className="btn btn-primary btn-block"  onClick={()=>this.obrisi(list.naziv)}>Obriši</button></th>
                                 </tr>

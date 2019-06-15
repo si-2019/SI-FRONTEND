@@ -125,7 +125,8 @@ class BrisanjeZadace extends Component {
             id="brissel"
             multiple=""
           >
-            <DropdownToggle caret>Lista zadaća</DropdownToggle>
+            <DropdownToggle caret color="white"
+            id="bbb"> Lista zadaća</DropdownToggle>
 
             <DropdownMenu>
               {lista.map(item => (

@@ -19,7 +19,7 @@ class Signup extends Component {
 
     handleSubmit = () => {
         this.setState({ username: localStorage.getItem('username') });
-        Axios.get('http://si2019juliet.herokuapp.com/blockedUser/' + localStorage.getItem('username')).then(res => {
+        Axios.get('https://si2019juliet.herokuapp.com/blockedUser/' + localStorage.getItem('username')).then(res => {
             if (res.data === null) {
                 this.props.onSubmit(localStorage.getItem('username'));
 

@@ -16,7 +16,6 @@ class StranicaPredmeta extends Component {
     const predmetId = this.props.match.params.predmetId;
     const params = new URLSearchParams(this.props.location.search);
     const grupaId = (params.get('grupaId'))
-    console.log(predmetId, grupaId)
     this.setState({
       predmet:predmetId,
       grupaId:grupaId
@@ -26,7 +25,6 @@ class StranicaPredmeta extends Component {
     const params = new URLSearchParams(this.props.location.search);
     let predmetIgrupa = (params.get('predmetId'));
     var res = predmetIgrupa.split("?");
-    console.log(predmetIgrupa, res);
     const predmet = res[0];
     const grupa = res[1];
     localStorage.setItem("NazivPredmeta",predmet);

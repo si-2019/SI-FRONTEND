@@ -36,7 +36,7 @@ class EventPlanner extends Component {
         }.bind(this), 60000);
     }
     getEvents(){
-        Axios.get('http://localhost:31910/events')
+        Axios.get('https://si2019juliet.herokuapp.com/events')
         .then(res => {
             this.setState({
                 events: res.data
@@ -45,7 +45,7 @@ class EventPlanner extends Component {
         .catch(err => console.log(err));
     }
     addEvent = (ime,pocinje,kraj)=>{
-        Axios.post(`http://localhost:31910/event` , {
+        Axios.post('https://si2019juliet.herokuapp.com' , {
             kreirao:this.props.currentId,
             naziv:ime,
             pocetak:pocinje,

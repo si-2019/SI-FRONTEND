@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-responsive-modal'; //paket za gotove modale odnosno popup-e
 import CategoryComponent from './SSCategoryComponent.js';
 import axios from 'axios'
-import AddNewCategoryForm from './AddNewCategoryForm.js';
+import AddNewCategoryForm from './AddNewCategoryModal.js';
 
 class NoviIssueForma extends React.Component {
 

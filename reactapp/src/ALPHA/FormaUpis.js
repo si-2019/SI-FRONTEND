@@ -106,10 +106,7 @@ class FormaUpis extends Component {
            </select><br /><br />
 
         
-           <form  onSubmit={this.OnSubmit} className="container-fluid">
-             <label>ID</label>
-             <input className="form-control" type="text" name="name"  readOnly value={id}/><br />
-
+           <form  onSubmit={this.OnSubmit}>
              <label>Ime studenta </label>
              <input className="form-control" type="text" name="name"  readOnly value={ime}/><br />
 
@@ -139,3 +136,5 @@ export default FormaUpis
 
 /*<input className="form-control" type="number" name="odsjek" value={odsjek} onChange={this.handleInputChange} /><br />*/
  
+/*<label>ID</label>
+  <input className="form-control" type="text" name="name"  readOnly value={id}/><br />*/

@@ -119,7 +119,7 @@ class Popunjavanje extends Component {
       }
     }
     console.log("ima/brojac", ima, br)
-    if (ima && br===0) {
+    if (br===0) {
       let odg = []
       for(let i = 0; i < this.state.odgovori.length; i++) {
         let ans = this.state.odgovori[i]
@@ -147,7 +147,7 @@ class Popunjavanje extends Component {
         body: JSON.stringify({
           idAnketa: params.id,
           odgovori: odg,
-          idPopunio: 1,
+          idPopunio: window.localStorage.getItem("id"),
           vrijemePopunjavanja: new Date().toISOString().slice(0, 19).replace('T', ' '),
         })
       })

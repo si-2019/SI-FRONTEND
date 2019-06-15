@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./bootstrap.min.css";
 import { pdfjs } from "react-pdf";
-import {withRouter} from "react-router-dom"
+import { withRouter } from "react-router-dom"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 class UgovorOUcenju extends Component {
@@ -10,10 +10,6 @@ class UgovorOUcenju extends Component {
   //fali api za obavezne predmete
   constructor() {
     super();
-    var id = 1;
-    if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
-      id = window.localStorage.getItem("id");
-    }
     this.state = {
       izabranaGodina: 1,
       izabraniSmjer: 1,
@@ -22,7 +18,9 @@ class UgovorOUcenju extends Component {
       listaObaveznih: "",
       izborniForma: [],
       hasError: false,
-      studentId: id,
+      studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      token: window.localStorage.getItem("token"),
       pdfUrl: null,
       ime: "Neko",
       prezime: "Neko",
@@ -30,7 +28,7 @@ class UgovorOUcenju extends Component {
       ciklus: 1,
       sviSmjerovi: [],
       classKreiraj: "btn btn-primary",
-      classPrikazi:"btn btn-primary"
+      classPrikazi: "btn btn-primary"
 
     };
     this.handleCreate = this.handleCreate.bind(this);
@@ -42,27 +40,45 @@ class UgovorOUcenju extends Component {
   }
   handleCreate() {
     //kreiranje ugovora
-      axios
-        .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
-          ime: this.state.ime,
-          prezime: this.state.prezime,
-          semestar: this.state.izabraniSemestar,
-          ciklus: this.state.ciklus,
-          odsjek: this.state.izabraniSmjer,
-          indeks: this.state.indeks,
-          obavezni: this.state.listaObaveznih,
-          izborni: this.state.listaIzbornih,
-          godina: this.state.izabranaGodina
-        })
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(res => {
-          console.log(res);
-        });
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+          this.handleGetKreiraj();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
     }
+    else this.handleGetKreiraj();
+  }
 
-  
+  handleGetKreiraj = () => {
+    axios
+      .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
+        ime: this.state.ime,
+        prezime: this.state.prezime,
+        semestar: this.state.izabraniSemestar,
+        ciklus: this.state.ciklus,
+        odsjek: this.state.izabraniSmjer,
+        indeks: this.state.indeks,
+        obavezni: this.state.listaObaveznih,
+        izborni: this.state.listaIzbornih,
+        godina: this.state.izabranaGodina
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(res => {
+        console.log(res);
+      });
+  }
+
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
   }
@@ -104,67 +120,102 @@ class UgovorOUcenju extends Component {
   }
 
   prikaziIzborne() {
-    try {
-      axios
-        .get(
-          `http://localhost:31918/predmeti/` +
-          this.state.izabraniSmjer +
-          `/` +
-          this.state.izabranaGodina +
-          `/` +
-          this.state.izabraniSemestar
-        )
-        .then(res => {
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+          this.handleGetIzborni();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+    }
+    else this.handleGetIzborni();
+  }
 
-          if (res.data.dostupniPredmeti != undefined) {
-            var predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
-            var obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
-            var help = [];
-            var izborni = "";
-            var obavezni = "";
+  handleGetIzborni = () => {
+    axios
+      .get(
+        `http://localhost:31918/predmeti/` +
+        this.state.izabraniSmjer +
+        `/` +
+        this.state.izabranaGodina +
+        `/` +
+        this.state.izabraniSemestar
+      )
+      .then(res => {
 
-            for (var i = 0; i < predmeti.length; i++) {
-              if (i != 0) {
-                if (obavezan[i] == "0") {
-                  izborni += ("," + predmeti[i]);
-                  help.push(predmeti[i]);
-                }
-                else obavezni += ("," + predmeti[i]);
+        if (res.data.dostupniPredmeti != undefined) {
+          var predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
+          var obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
+          var help = [];
+          var izborni = "";
+          var obavezni = "";
+
+          for (var i = 0; i < predmeti.length; i++) {
+            if (i != 0) {
+              if (obavezan[i] == "0") {
+                izborni += ("," + predmeti[i]);
+                help.push(predmeti[i]);
               }
-              else if (i == 0) {
-                if (obavezan[i] == "0") {
-                  izborni += predmeti[i];
-                  help.push(predmeti[i]);
-                }
-                else obavezni += predmeti[i];
-              }
-
+              else obavezni += ("," + predmeti[i]);
             }
-            this.setState({ 
-              listaIzbornih: izborni, 
-              listaObaveznih: obavezni, 
-              izborniForma: help,
-              classKreiraj: "btn btn-primary",
-              classPrikazi: this.state.pdfUrl!=null ? "btn btn-primary" : "btn btn-primary disabled"  
-            });
+            else if (i == 0) {
+              if (obavezan[i] == "0") {
+                izborni += predmeti[i];
+                help.push(predmeti[i]);
+              }
+              else obavezni += predmeti[i];
+            }
+
           }
-          else {
-            this.setState({ 
-              listaIzbornih: "", 
-              listaObaveznih: "", 
-              izborniForma: [],
-              classKreiraj:"btn btn-primary disabled",
-              classPrikazi:"btn btn-primary disabled" 
-            });
-          }
-         
-        });
-    } catch (e) { }
+          this.setState({
+            listaIzbornih: izborni,
+            listaObaveznih: obavezni,
+            izborniForma: help,
+            classKreiraj: "btn btn-primary",
+            classPrikazi: this.state.pdfUrl != null ? "btn btn-primary" : "btn btn-primary disabled"
+          });
+        }
+        else {
+          this.setState({
+            listaIzbornih: "",
+            listaObaveznih: "",
+            izborniForma: [],
+            classKreiraj: "btn btn-primary disabled",
+            classPrikazi: "btn btn-primary disabled"
+          });
+        }
+      });
   }
 
   componentDidMount() {
     this.prikaziIzborne();
     //dobavljanje ugovora za prikaz
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+          this.handleGetGlavni();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+    }
+    else this.handleGetGlavni();
+  }
+
+  handleGetGlavni = () => {
     axios
       .get("http://localhost:31918/ugovori/url/" + this.state.studentId)
       .then(res => {
@@ -200,45 +251,45 @@ class UgovorOUcenju extends Component {
       .catch(res => {
         console.log(res);
       });
-      if(this.state.pdfUrl!= null){
-        this.setState({
-          classPrikazi:"btn btn-primary"
-        })
-      }
-      else{
-        this.setState({
-          classPrikazi:"btn btn-primary disabled"
-        })
-      }
-    
+    if (this.state.pdfUrl != null) {
+      this.setState({
+        classPrikazi: "btn btn-primary"
+      })
+    }
+    else {
+      this.setState({
+        classPrikazi: "btn btn-primary disabled"
+      })
+    }
   }
+
   handlePrikaz() {
     //prikaz u prozoru
-    
-      
-      const win = window.open("", "_self");
-      let html = '';
-
-      html += '<html>';
-      html += '<body style="margin:0!important">';
-      html += '<embed width="100%" type="application/pdf" javascript="allow" height="100%" src="' + this.state.pdfUrl + '" />';
-      html += '</body>';
-      html += '</html>';
 
 
-      setTimeout(() => {
-        win.document.write(html);
-       // win.location.replace(this.state.pdfUrl);
-       this.props.history.push(this.state.pdfUrl);
-       // this.props.location.assign(this.state.pdfUrl);
-      }, 0);
-       //this.props.history.push(this.state.pdfUrl);
-       
-    
+    const win = window.open("", "_self");
+    let html = '';
+
+    html += '<html>';
+    html += '<body style="margin:0!important">';
+    html += '<embed width="100%" type="application/pdf" javascript="allow" height="100%" src="' + this.state.pdfUrl + '" />';
+    html += '</body>';
+    html += '</html>';
+
+
+    setTimeout(() => {
+      win.document.write(html);
+      // win.location.replace(this.state.pdfUrl);
+      this.props.history.push(this.state.pdfUrl);
+      // this.props.location.assign(this.state.pdfUrl);
+    }, 0);
+    //this.props.history.push(this.state.pdfUrl);
+
+
   }
 
   render() {
-  
+
     return (
       <div>
         <div className="container-fluid" style={{ marginTop: "30px" }} >
@@ -325,10 +376,10 @@ class UgovorOUcenju extends Component {
                       </div>
                     ))}
                   </div>
-                
+
 
                   <div className="d-flex justify-content-end">
-                    <button type="submit" className={this.state.classKreiraj}  onClick={this.handleCreate}>Kreiraj ugovor</button>
+                    <button type="submit" className={this.state.classKreiraj} onClick={this.handleCreate}>Kreiraj ugovor</button>
 
                     <button type="button" className={this.state.classPrikazi} onClick={this.handlePrikaz} style={{ marginLeft: "10px" }}>Prikaži ugovor</button>
                   </div>

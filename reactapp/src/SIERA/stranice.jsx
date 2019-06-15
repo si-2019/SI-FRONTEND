@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ModalnaKomponenta from "./modalnaKomponenta";
+import {withRouter} from "react-router-dom";
 
 class Stranice extends Component {
   constructor(...args) {
     super(...args);
-    var id = 1;
-    if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
-      id = window.localStorage.getItem("id");
-    }
     this.state = {
-      StudentID: id,
+      StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      token: window.localStorage.getItem("token"),
       LinkedIn: "",
       Website: "",
       otvorenModalLinkedIn: false,
@@ -19,6 +18,25 @@ class Stranice extends Component {
   }
 
   componentDidMount() {
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+          this.handleGet();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+    }
+    else this.handleGet();
+  }
+
+  handleGet = () => {
     axios
       .get(`http://localhost:31918/studenti/` + this.state.StudentID)
       .then(res => {
@@ -84,4 +102,4 @@ class Stranice extends Component {
   }
 }
 
-export default Stranice;
+export default withRouter(Stranice);

@@ -1,21 +1,39 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {withRouter} from "react-router-dom";
 
 class TabelaSortiranaPoOcjeni extends Component {
   constructor(...args) {
     super(...args);
-    var id = 1;
-    if (window.localStorage.getItem("id") != null && window.localStorage.getItem("id") != undefined) {
-      id = window.localStorage.getItem("id");
-    }
     this.state = {
       sortiraniPredmetiPoOcjeni: [],
       ocjene: [],
-      trenutnoLogovaniStudentID: id
+      trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      token: window.localStorage.getItem("token")
     }
   };
 
   componentDidMount() {
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+          this.handleGet();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+    }
+    else this.handleGet();
+  }
+
+  handleGet = () => {
     axios
       .get(
         `http://localhost:31918/ocjene/` +
@@ -29,7 +47,6 @@ class TabelaSortiranaPoOcjeni extends Component {
         }
       });
   }
-
 
   render() {
     return (
@@ -55,4 +72,4 @@ class TabelaSortiranaPoOcjeni extends Component {
   }
 }
 
-export default TabelaSortiranaPoOcjeni;
+export default withRouter(TabelaSortiranaPoOcjeni);

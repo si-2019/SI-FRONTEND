@@ -65,7 +65,7 @@ class DodavanjeTipovaFileova extends Component {
               <Table bordered className="table table-bordered text-center">
                 <thead>
                   <tr className="text-dark">
-                    <th class="tabtip">Naziv zadace</th>
+                    <th class="tabtip">Naziv zadaće</th>
 
                     {kolone.map(jedno => (
                       <th class="tabtip" scope="col" key={jedno}>

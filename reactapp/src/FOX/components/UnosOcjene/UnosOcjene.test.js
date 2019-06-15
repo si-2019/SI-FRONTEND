@@ -11,3 +11,5 @@ describe('<UnosOcjene />', () => {
     const wrapper = shallow(<UnosOcjene/>)
     expect(wrapper.find('#cont').exists()).toBe(true)
   })
+  
+})

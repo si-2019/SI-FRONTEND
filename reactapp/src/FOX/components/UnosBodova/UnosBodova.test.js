@@ -10,4 +10,5 @@ describe('<UnosBodova />', () => {
   it('da li ima container za bodove', () => {
     const wrapper = shallow(<UnosBodova/>)
     expect(wrapper.find('#cont').exists()).toBe(true)
-  })
+    })
+})

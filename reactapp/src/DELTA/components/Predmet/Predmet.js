@@ -15,10 +15,10 @@ class Predmet extends Component {
      //hardkodirane vrijednosti
       const idPredmet=64;
 
-      const {data} = await axios.get('http://localhost:31904/dohvatiPredmet/'+idPredmet); 
+      const {data} = await axios.get('http://si2019delta.herokuapp.com/dohvatiPredmet/'+idPredmet); 
       this.setState({predmet:data});
       const idProf = this.state.predmet.idProfesora;
-      const {data1} = await axios.get('http://localhost:31904/dohvatiProfesora/'+this.state.predmet.idProfesora); 
+      const {data1} = await axios.get('http://si2019delta.herokuapp.com/dohvatiProfesora/'+this.state.predmet.idProfesora); 
       this.setState({profesor:data1});
       
       

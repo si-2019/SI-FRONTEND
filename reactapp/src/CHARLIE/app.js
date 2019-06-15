@@ -136,7 +136,7 @@ class App extends Component {
   };
 
   render() {
-    if(this.state.error.length > 0) return <div>{this.state.error}</div>
+    const {fetched, profesor, menuComponentsProfesor, activeContentId, menuComponentsStudent, error} = this.state
     return (
       <>
       
@@ -160,9 +160,10 @@ class App extends Component {
                 margin: "0px",
                 padding: "0px"
               }}>
-                { this.state.fetched && (this.state.profesor ? this.state.menuComponentsProfesor[this.state.activeContentId].component
-                  : this.state.menuComponentsStudent[this.state.activeContentId].component)
+                { error.length > 0 && <div>{error}</div> || fetched && (profesor ? menuComponentsProfesor[activeContentId].component
+                  : menuComponentsStudent[activeContentId].component)
                 }
+                
               </div>
             </div>
           </div>

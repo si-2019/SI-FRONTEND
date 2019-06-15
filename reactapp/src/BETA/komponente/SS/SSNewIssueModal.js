@@ -48,7 +48,7 @@ class ModalComponent extends React.Component {
         //ukoliko neki rezultira greskom, postavite greska na true
         const { issueTitle, issueText, studentTitle } = this.state;
 
-        axios.post('http://localhost:31902/issue/send/ss?issueTitle='+issueTitle+'&issueText='+issueText+'&username='+studentTitle)
+        axios.post('https://si2019beta.herokuapp.com/issue/send/ss?issueTitle='+issueTitle+'&issueText='+issueText+'&username='+studentTitle)
             .then(result => {
                 if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, issueTitle: "", issueText: " ", draft:false }); } }
                 else{
@@ -67,7 +67,7 @@ class ModalComponent extends React.Component {
             
         const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
 
-            axios.post('http://localhost:31902/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+            axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
             .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
             else{
                 { this.setState({ greska: true})}

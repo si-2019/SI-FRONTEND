@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./bootstrap.min.css";
 import axios from "axios";
-import { FormGroup, Table } from "reactstrap";
+import {withRouter} from "react-router-dom";
 import "./tabela.css"
 
 class IspitiTabela extends Component {
@@ -157,4 +157,4 @@ class IspitiTabela extends Component {
   }
 }
 
-export default IspitiTabela;
+export default withRouter(IspitiTabela);

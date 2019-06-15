@@ -4,6 +4,7 @@ import "./bootstrap.min.css"
 import ModalComponent from "./ModalLicni"
 import Kontakt from "./kontaktPod"
 import Stranice from "./stranice";
+import {withRouter} from "react-router-dom";
 
 class LicniPod extends Component {
     constructor(...args) {
@@ -153,4 +154,4 @@ class LicniPod extends Component {
 
 
 
-export default LicniPod;
+export default withRouter(LicniPod);

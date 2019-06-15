@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
+import {withRouter} from "react-router-dom";
 class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -226,4 +227,4 @@ class ModalComponent extends React.Component {
         );
     }
 }
-export default ModalComponent;
+export default withRouter(ModalComponent);

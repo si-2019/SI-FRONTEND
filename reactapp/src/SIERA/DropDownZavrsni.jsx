@@ -11,7 +11,7 @@ class DropDownZavrsni extends React.Component {
         this.state = {
             profesori: [],
             teme: [],
-            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 3,
             username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
             token: window.localStorage.getItem("token"),
             profId: 1,
@@ -20,7 +20,9 @@ class DropDownZavrsni extends React.Component {
             selProf: null,
             selTema: null,
             greskaVisible: "hidden",
-            selectClass: "custom-select"
+            selectClass: "custom-select",
+            OK: false,
+            msg: ""
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeProf = this.handleChangeProf.bind(this);
@@ -50,6 +52,7 @@ class DropDownZavrsni extends React.Component {
     }
     handlePost(e) {
         e.preventDefault();
+        //autorizacija
 
         axios
             .post("http://localhost:31918/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
@@ -57,7 +60,29 @@ class DropDownZavrsni extends React.Component {
                 idTema: this.state.temaId
             })
             .then(res => {
-                console.log("uspjesno poslan post");
+                if (res.data.success && res.data.userAutorizacija) {
+                    //radi sta hoces
+                    this.setState({
+                        msg: "",
+                        OK: true
+                    })
+
+                }
+                else if (!res.data.userAutorizacija) {
+                    //nema privilegiju
+                    this.setState({
+                        msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                        OK: false
+                    })
+                }
+                else {
+                    //kod nas greska
+                    this.setState({
+                        msg: "Došlo je do greške!",
+                        OK: false
+                    })
+                }
+
             })
             .catch(res => {
                 console.log("greska u postu: " + res.data);
@@ -219,6 +244,7 @@ class DropDownZavrsni extends React.Component {
         return (
             <>
                 <div className="container-fluid" style={{ marginTop: "30px" }}>
+
                     <h2 style={{ marginBottom: "30px" }}>Završni rad</h2>
                     <div className="card align-items-center">
                         <div className="card-body" style={{ minWidth: "100%" }}>
@@ -250,9 +276,12 @@ class DropDownZavrsni extends React.Component {
                                     </select>
 
                                     <div className="invalid-feedback" style={{ visibility: this.state.greskaVisible }}>Morate odabrati temu!</div>
-
+                                    <div></div>
                                     <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
                                         <button type="button" className="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
+                                    </div>
+                                   <div className="form-group has-danger">
+                                    {this.state.OK ? "" : <div className="invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
                                     </div>
                                     <hr></hr>
                                     <h4 className="card-title">Status</h4>
@@ -263,6 +292,7 @@ class DropDownZavrsni extends React.Component {
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <Modal
                     {...this.props}
@@ -276,7 +306,7 @@ class DropDownZavrsni extends React.Component {
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Prijava završnog rada
-                        </Modal.Title>
+                </Modal.Title>
                     </Modal.Header>
                     <form onSubmit={this.handlePost}>
                         <Modal.Body>
@@ -296,6 +326,7 @@ class DropDownZavrsni extends React.Component {
                     </form>
                 </Modal>
             </>
+
         );
     }
 }

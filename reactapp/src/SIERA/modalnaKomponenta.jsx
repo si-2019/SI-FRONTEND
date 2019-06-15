@@ -3,6 +3,7 @@ import "./bootstrap.css";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
+import {withRouter} from "react-router-dom";
 
 class modalnaKomponenta extends Component {
   state = {
@@ -131,4 +132,4 @@ class modalnaKomponenta extends Component {
   }
 }
 
-export default modalnaKomponenta;
+export default withRouter(modalnaKomponenta);

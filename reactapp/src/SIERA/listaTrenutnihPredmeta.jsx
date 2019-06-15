@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {withRouter} from "react-router-dom";
 
 class ListaPredmeta extends Component {
   state = {
@@ -71,4 +72,4 @@ class ListaPredmeta extends Component {
   }
 }
 
-export default ListaPredmeta;
+export default withRouter(ListaPredmeta);

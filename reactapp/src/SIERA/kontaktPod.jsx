@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ModalComponent from "./ModalKontakt";
+import {withRouter} from "react-router-dom";
 
 class KontaktPod extends Component {
 
@@ -10,9 +11,9 @@ class KontaktPod extends Component {
             StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
             username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
             token: window.localStorage.getItem("token"),
-            adresa: "lala",
-            email: "isajdi",
-            brtel: "98426",
+            adresa: "",
+            email: "",
+            brtel: "9426",
             modalShow: false,
 
         }
@@ -109,4 +110,4 @@ class KontaktPod extends Component {
     }
 }
 
-export default KontaktPod;
+export default withRouter(KontaktPod);

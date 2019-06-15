@@ -45,7 +45,7 @@ class PrikaziStatus extends Component {
         this.state.StudentID
       )
       .then(res => {
-        if (res.data.teme != undefined) {
+        if (res.data.success) {
           const Teme = res.data.teme.map(obj => obj.naziv);
           this.setState({ teme: Teme });
 

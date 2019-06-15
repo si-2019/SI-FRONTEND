@@ -28,8 +28,8 @@ class UgovorOUcenju extends Component {
       ciklus: 1,
       sviSmjerovi: [],
       classKreiraj: "btn btn-primary",
-      classPrikazi: "btn btn-primary"
-
+      classPrikazi: "btn btn-primary",
+      OK: true
     };
     this.handleCreate = this.handleCreate.bind(this);
     this.handlePrikaz = this.handlePrikaz.bind(this);
@@ -72,7 +72,12 @@ class UgovorOUcenju extends Component {
         godina: this.state.izabranaGodina
       })
       .then(res => {
-        console.log(res.data);
+        if (res.data.success && res.data.userAutorizacija) {
+          this.setState({ OK: true });
+        }
+        else {
+          this.setState({ OK: false });
+        }
       })
       .catch(res => {
         console.log(res);
@@ -150,7 +155,7 @@ class UgovorOUcenju extends Component {
       )
       .then(res => {
 
-        if (res.data.dostupniPredmeti != undefined) {
+        if (res.data.success) {
           var predmeti = res.data.dostupniPredmeti.map(obj => obj.naziv);
           var obavezan = res.data.dostupniPredmeti.map(obj => obj.obavezan);
           var help = [];
@@ -216,12 +221,15 @@ class UgovorOUcenju extends Component {
   }
 
   handleGetGlavni = () => {
+
     axios
       .get("http://localhost:31918/ugovori/url/" + this.state.studentId)
       .then(res => {
-        this.setState({
-          pdfUrl: res.data.link
-        });
+        if (res.data.success) {
+          this.setState({
+            pdfUrl: res.data.link
+          });
+        }
       })
       .catch(res => {
         console.log(res.error);
@@ -231,11 +239,13 @@ class UgovorOUcenju extends Component {
     axios
       .get("http://localhost:31918/studenti/" + this.state.studentId)
       .then(res => {
-        this.setState({
-          ime: res.data[0].ime,
-          prezime: res.data[0].prezime,
-          indeks: res.data[0].index
-        });
+        if (res.data.success) {
+          this.setState({
+            ime: res.data[0].ime,
+            prezime: res.data[0].prezime,
+            indeks: res.data[0].index
+          });
+        }
       })
       .catch(res => {
         console.log(res.error);
@@ -244,9 +254,11 @@ class UgovorOUcenju extends Component {
     axios
       .get("http://localhost:31918/odsjek")
       .then(res => {
-        this.setState({
-          sviSmjerovi: res.data.odsjeci
-        })
+        if (res.data.success) {
+          this.setState({
+            sviSmjerovi: res.data.odsjeci
+          })
+        }
       })
       .catch(res => {
         console.log(res);
@@ -292,105 +304,105 @@ class UgovorOUcenju extends Component {
 
     return (
       <div>
-        <div className="container-fluid" style={{ marginTop: "30px" }} >
-          <h2 style={{ marginBottom: "30px" }}>Ugovor o učenju</h2>
-          <div className="card align-items-center">
-            <div className="card-body" style={{ minWidth: "100%" }}>
-              <div className="row justify-content-lg-around justify-content-md-center">
-                <div className="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
-                  <h4 className="card-title">Kreiranje ugovora</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">Ovdje možete kreirati ugovor o učenju za upis u naredni semestar.</h6>
-                  <div style={{ textAlign: "left" }}>
-                    <label className="col-form-label col-form-label-lg">
-                      Godina studija
-                  </label>
-                  </div>
-
-                  <select
-                    className="custom-select"
-                    onChange={e => this.promjenaGodineStudija(e)}
-                  >
-                    <option value="1">1.</option>
-                    <option value="2">2.</option>
-                    <option value="3">3.</option>
-                    <option value="4">4.</option>
-                    <option value="5">5.</option>
-                    <option value="6">6.</option>
-                    <option value="7">7.</option>
-                    <option value="8">8.</option>
-                  </select>
-
-                  <div style={{ textAlign: "left" }}>
-                    <label className="col-form-label col-form-label-lg">
-                      Smjer
-                  </label>
-                  </div>
-                  <select
-                    className="custom-select"
-                    onChange={e => this.promjenaSmjera(e)}
-                  >
-                    {this.state.sviSmjerovi.map(x =>
-                      <option value={x.idOdsjek}>{x.naziv}</option>
-                    )}
-                  </select>
-
-                  <div style={{ textAlign: "left" }}>
-                    <label className="col-form-label col-form-label-lg">
-                      Semestar
-                  </label>
-                  </div>
-                  <select
-                    className="custom-select"
-                    name="semestri"
-                    onChange={e => this.promjenaSemestra(e)}
-                  >
-                    <option value="1">1.</option>
-                    <option value="2">2.</option>
-                  </select>
-
-                  <div className="form-group">
+          <div className="container-fluid" style={{ marginTop: "30px" }} >
+            <h2 style={{ marginBottom: "30px" }}>Ugovor o učenju</h2>
+            <div className="card align-items-center">
+              <div className="card-body" style={{ minWidth: "100%" }}>
+                <div className="row justify-content-lg-around justify-content-md-center">
+                  <div className="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+                    <h4 className="card-title">Kreiranje ugovora</h4>
+                    <h6 className="card-subtitle mb-2 text-muted">Ovdje možete kreirati ugovor o učenju za upis u naredni semestar.</h6>
+                    {!this.state.OK ? <h6 className="card-subtitle mb-2 text-danger">Došlo je do greške!</h6>:""}
                     <div style={{ textAlign: "left" }}>
                       <label className="col-form-label col-form-label-lg">
-                        Izborni predmeti
-                    </label>
+                        Godina studija
+                  </label>
                     </div>
 
-                    {this.state.listaIzbornih.length === 0 ? (
-                      <p>Nema izbornih predmeta</p>
-                    ) : (
-                        ""
+                    <select
+                      className="custom-select"
+                      onChange={e => this.promjenaGodineStudija(e)}
+                    >
+                      <option value="1">1.</option>
+                      <option value="2">2.</option>
+                      <option value="3">3.</option>
+                      <option value="4">4.</option>
+                      <option value="5">5.</option>
+                      <option value="6">6.</option>
+                      <option value="7">7.</option>
+                      <option value="8">8.</option>
+                    </select>
+
+                    <div style={{ textAlign: "left" }}>
+                      <label className="col-form-label col-form-label-lg">
+                        Smjer
+                  </label>
+                    </div>
+                    <select
+                      className="custom-select"
+                      onChange={e => this.promjenaSmjera(e)}
+                    >
+                      {this.state.sviSmjerovi.map(x =>
+                        <option value={x.idOdsjek}>{x.naziv}</option>
                       )}
-                    {this.state.izborniForma.map((item, i) => (
-                      <div className="custom-control custom-checkbox" key={i}>
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id={"customCheck" + i}
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor={"customCheck" + i}
-                        >
-                          {item}
-                        </label>
+                    </select>
+
+                    <div style={{ textAlign: "left" }}>
+                      <label className="col-form-label col-form-label-lg">
+                        Semestar
+                  </label>
+                    </div>
+                    <select
+                      className="custom-select"
+                      name="semestri"
+                      onChange={e => this.promjenaSemestra(e)}
+                    >
+                      <option value="1">1.</option>
+                      <option value="2">2.</option>
+                    </select>
+
+                    <div className="form-group">
+                      <div style={{ textAlign: "left" }}>
+                        <label className="col-form-label col-form-label-lg">
+                          Izborni predmeti
+                    </label>
                       </div>
-                    ))}
+
+                      {this.state.listaIzbornih.length === 0 ? (
+                        <p>Nema izbornih predmeta</p>
+                      ) : (
+                          ""
+                        )}
+                      {this.state.izborniForma.map((item, i) => (
+                        <div className="custom-control custom-checkbox" key={i}>
+                          <input
+                            type="checkbox"
+                            className="custom-control-input"
+                            id={"customCheck" + i}
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor={"customCheck" + i}
+                          >
+                            {item}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+
+
+                    <div className="d-flex justify-content-end">
+                      <button type="submit" className={this.state.classKreiraj} onClick={this.handleCreate}>Kreiraj ugovor</button>
+
+                      <button type="button" className={this.state.classPrikazi} onClick={this.handlePrikaz} style={{ marginLeft: "10px" }}>Prikaži ugovor</button>
+                    </div>
+
                   </div>
-
-
-                  <div className="d-flex justify-content-end">
-                    <button type="submit" className={this.state.classKreiraj} onClick={this.handleCreate}>Kreiraj ugovor</button>
-
-                    <button type="button" className={this.state.classPrikazi} onClick={this.handlePrikaz} style={{ marginLeft: "10px" }}>Prikaži ugovor</button>
-                  </div>
-
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
-
     );
   }
 }

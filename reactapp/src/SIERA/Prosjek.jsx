@@ -42,7 +42,7 @@ class Prosjek extends Component {
                 this.state.StudentID
             )
             .then(res => {
-                if (res.data.prosjeci != undefined) {
+                if (res.data.success) {
                     const Store = [];
                     Store.push(res.data);
                     const uk = Store.map(obj => obj.ukupan);

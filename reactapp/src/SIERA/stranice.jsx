@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ModalnaKomponenta from "./modalnaKomponenta";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Stranice extends Component {
   constructor(...args) {
@@ -40,7 +40,7 @@ class Stranice extends Component {
     axios
       .get(`http://localhost:31918/studenti/` + this.state.StudentID)
       .then(res => {
-        if (res.data != undefined) {
+        if (res.data.success) {
           const In = res.data.map(obj => obj.linkedin);
           this.setState({ LinkedIn: In });
 

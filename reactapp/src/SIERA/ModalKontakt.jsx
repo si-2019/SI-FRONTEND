@@ -15,15 +15,16 @@ class ModalComponent extends React.Component {
                 adresa: null,
                 email: null,
                 brtel: null
-            }
+            },
+            greskaVisible: "hidden"
         }
-        this.handlePutEvent = this.handlePutEvent.bind(this);
     }
     handleClose = () => {
         this.props.saveState("modalShow", false);
     }
     //promjena podataka bez refreshanja
     handleChange = (e) => {
+
         const { name, value } = e.target;
         let state = JSON.parse(JSON.stringify(this.state.noviInput));
         state[name] = value;
@@ -31,7 +32,6 @@ class ModalComponent extends React.Component {
             noviInput: state
         });
     }
-
     handleExit = () => {
 
         const { adr, mail, telefon } = this.state.noviInput;
@@ -45,7 +45,7 @@ class ModalComponent extends React.Component {
             this.props.saveState("podaciKontakt", podaci);
         })
     }
-    handlePutEvent(event) {
+    handlePutEvent = (event) => {
         event.preventDefault();
         if (this.state.noviInput.adresa == null && this.state.noviInput.email == null && this.state.noviInput.brtel == null) {
             this.setState({ greska: true });
@@ -62,6 +62,9 @@ class ModalComponent extends React.Component {
                     )
                     .then(res => {
                         this.setState({ greska: false });
+                    })
+                    .catch(err => {
+                        console.log(err);
                     });
             }
             if (this.state.noviInput.email) {
@@ -75,10 +78,12 @@ class ModalComponent extends React.Component {
                     )
                     .then(res => {
                         this.setState({ greska: false });
+                    })
+                    .catch(err => {
+                        console.log(err);
                     });
             }
             if (this.state.noviInput.brtel) {
-
                 axios
                     .put(
                         `http://localhost:31918/studenti/update/tel/` +
@@ -89,12 +94,34 @@ class ModalComponent extends React.Component {
                     )
                     .then(res => {
                         this.setState({ greska: false });
+                    })
+                    .catch(err => {
+                        console.log(err);
                     });
-
             }
         }
 
     }
+    handleAuth = (event) => {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    //radi sta hoces
+                    this.handlePutEvent(event);
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handlePutEvent(event)
+    }
+
     renderujPotvrdu() {
         if (this.state.greska == false) {
             return (
@@ -115,50 +142,52 @@ class ModalComponent extends React.Component {
         }
         return null;
     }
-    render() {
-        ++this.brojac;
-        return (
-            <Modal
-                {...this.props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                onHide={this.handleExit}
-            >
-                {this.renderujPotvrdu()}
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        {this.props.naslovModala}
-                    </Modal.Title>
-                </Modal.Header>
-                <form onSubmit={this.handlePutEvent}>
-                    <Modal.Body>
-                        <h4>{this.props.nazivPromjene}</h4>
-                        <div className="form-group">
-
-                            <br></br>
-                            <label className="col-form-label" for="inputDefault" >Telefon</label>
-                            <input type="text" className="form-control" name="brtel" onChange={this.handleChange} />
-
-                            <label className="col-form-label" for="inputDefault" >Adresa</label>
-                            <input type="text" className="form-control" name="adresa" onChange={this.handleChange} />
-
-                            <label className="col-form-label" for="inputDefault">Email</label>
-                            <input type="text" className="form-control" name="email" onChange={this.handleChange} />
 
 
-                        </div>
+render() {
+    ++this.brojac;
+    return (
+        <Modal
+            {...this.props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            onHide={this.handleExit}
+        >
+            {this.renderujPotvrdu()}
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    {this.props.naslovModala}
+                </Modal.Title>
+            </Modal.Header>
+            <form onSubmit={this.handleAuth}>
+                <Modal.Body>
+                    <h4>{this.props.nazivPromjene}</h4>
+                    <div className="form-group">
 
-                    </Modal.Body>
-                    <Modal.Footer>
+                        <br></br>
+                        <label className="col-form-label" for="inputDefault" >Telefon</label>
+                        <input type="text" className="form-control" name="brtel" onChange={this.handleChange} />
+                        
+                        <label className="col-form-label" for="inputDefault" >Adresa</label>
+                        <input type="text" className="form-control" name="adresa" onChange={this.handleChange} />
 
-                        <button type="submit" id="spasiBtn" className="btn btn-primary">Spasi Promjene</button>
-                        <button type="button" className="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
-        );
-    }
+                        <label className="col-form-label" for="inputDefault">Email</label>
+                        <input type="text" className="form-control" name="email" onChange={this.handleChange} />
+
+
+                    </div>
+
+                </Modal.Body>
+                <Modal.Footer>
+
+                    <button type="submit" id="spasiBtn" className="btn btn-primary">Spasi Promjene</button>
+                    <button type="button" className="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
+                </Modal.Footer>
+            </form>
+        </Modal>
+    );
+}
 }
 export default ModalComponent;
 

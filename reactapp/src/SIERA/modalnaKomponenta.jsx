@@ -33,8 +33,6 @@ class modalnaKomponenta extends Component {
           .then(res => {
             this.setState({ greska: false });
             window.location.reload();
-            //console.log(res);
-            //console.log(res.data);
           });
       } else if (this.props.nazivpromjene == "Website") {
         axios
@@ -46,13 +44,30 @@ class modalnaKomponenta extends Component {
           .then(res => {
             this.setState({ greska: false });
             window.location.reload();
-            //console.log(res);
-            //console.log(res.data);
           });
       }
     }
   }
+  handleAuth = ()=>{
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+          if (this.readyState == 4 && this.status == 200) {
+              //radi sta hoces
+              this.posaljiZahtjev();
+          }
+          else {
+              //vrati na login
+              this.props.history.push("/Romeo");
+          }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+  }
+  else this.posaljiZahtjev();
 
+  }
   promjenaInputa(event) {
     this.setState({ vrijednostInputa: event.target.value });
   }

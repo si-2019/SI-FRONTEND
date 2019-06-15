@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
-import {withRouter} from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import PrikaziStatus from "./PrikaziStatus";
 
 class DropDownZavrsni extends React.Component {
@@ -51,28 +51,6 @@ class DropDownZavrsni extends React.Component {
     handlePost(e) {
         e.preventDefault();
 
-        /*    $.ajax({
-                url: 'https://si2019romeo.herokuapp.com/users/validate',
-                type: 'get',
-                dataType: 'json',
-                data: jQuery.param({
-                    username: this.state.username
-                }),
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Authorization", this.state.token);
-                },
-                complete: function (response) {
-                    if (response.status == 200) {
-                        //radite ono sto trebate raditi ili uputite neki drugi poziv npr. prema autorizaciji
-                        
-                    }
-                    else {
-                        this.props.history.push("/Romeo");
-                    }
-                }
-            });
-    */
-
         axios
             .post("http://localhost:31918/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
                 isStudent: this.state.studentId,
@@ -85,84 +63,39 @@ class DropDownZavrsni extends React.Component {
                 console.log("greska u postu: " + res.data);
             });
     }
-    componentDidMount() {
-        var ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
-                //radi sta hoces
-
-                axios
-                    .get("http://localhost:31918/profesori")
-                    .then(res => {
-                        this.setState(
-                            {
-                                profesori: res.data.data,
-                                profId: res.data.data[0].id,
-                                selProf: res.data.data[0]
-                            });
-                    })
-                    .catch(res => {
-                        console.log("Doslo je do greske! " + res.data);
-                    });
-                //teme koje se vezu za 1 mentora
-                axios
-                    .get("http://localhost:31918/profesori/temeZavrsni/" + this.state.profId)
-                    .then(res => {
-                        this.setState({
-                            teme: res.data.data
-                        });
-                        if (this.state.teme.length == 0) {
-                            this.setState({
-                                temaId: null,
-                                selTema: null
-                            })
-                        }
-                        else {
-                            this.setState({
-                                temaId: res.data.data[0].id,
-                                selTema: res.dara.data[0].naziv
-                            })
-                        }
-                    })
-                    .catch(
-                        res => {
-                            console.log("nesto ne valja");
-                            console.log(res.error);
-                        }
-                    );
-            }
-            else {
-                //vrati na login
-                this.props.history.push("/Romeo");
-            }
-        }
-        ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-        ajax.setRequestHeader("Authorization", this.state.token);
-        ajax.send();
-
-
-    }
-    handleChangeProf(selectedId) {
-
+    handleGet = () => {
         axios
-            .get("http://localhost:31918/profesori/temeZavrsni/" + selectedId)
+            .get("http://localhost:31918/profesori")
+            .then(res => {
+                this.setState(
+                    {
+                        profesori: res.data.data,
+                        profId: res.data.data[0].id,
+                        selProf: res.data.data[0]
+                    });
+            })
+            .catch(res => {
+                console.log("Doslo je do greske! " + res.data);
+            });
+        //teme koje se vezu za 1 mentora
+        axios
+            .get("http://localhost:31918/profesori/temeZavrsni/" + this.state.profId)
             .then(res => {
                 this.setState({
-                    teme: res.data.data,
-                    profId: selectedId
-
+                    teme: res.data.data
                 });
                 if (this.state.teme.length == 0) {
                     this.setState({
-                        temaId: null
+                        temaId: null,
+                        selTema: null
                     })
                 }
                 else {
                     this.setState({
-                        temaId: res.data.data[0].id
+                        temaId: res.data.data[0].id,
+                        selTema: res.dara.data[0].naziv
                     })
                 }
-
             })
             .catch(
                 res => {
@@ -170,6 +103,96 @@ class DropDownZavrsni extends React.Component {
                     console.log(res.error);
                 }
             );
+    }
+    componentDidMount() {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    //radi sta hoces
+                    this.handleGet();
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handleGet();
+
+    }
+
+    handleChangeProf(selectedId) {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    axios
+                        .get("http://localhost:31918/profesori/temeZavrsni/" + selectedId)
+                        .then(res => {
+                            this.setState({
+                                teme: res.data.data,
+                                profId: selectedId
+                            });
+                            if (this.state.teme.length == 0) {
+                                this.setState({
+                                    temaId: null
+                                })
+                            }
+                            else {
+                                this.setState({
+                                    temaId: res.data.data[0].id
+                                })
+                            }
+                        })
+                        .catch(
+                            res => {
+                                console.log("nesto ne valja");
+                                console.log(res.error);
+                            }
+                        );
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else {
+            axios
+                .get("http://localhost:31918/profesori/temeZavrsni/" + selectedId)
+                .then(res => {
+                    this.setState({
+                        teme: res.data.data,
+                        profId: selectedId
+
+                    });
+                    if (this.state.teme.length == 0) {
+                        this.setState({
+                            temaId: null
+                        })
+                    }
+                    else {
+                        this.setState({
+                            temaId: res.data.data[0].id
+                        })
+                    }
+
+                })
+                .catch(
+                    res => {
+                        console.log("nesto ne valja");
+                        console.log(res.error);
+                    }
+                );
+        }
+
 
     }
     handleClick() {

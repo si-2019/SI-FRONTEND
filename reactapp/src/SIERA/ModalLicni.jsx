@@ -45,14 +45,33 @@ class ModalComponent extends React.Component {
         podaci.ime = ime ? ime : podaci.ime;
         podaci.prezime = prezime ? prezime : podaci.prezime;
         podaci.Drzavljanstvo = drzavljanstvo ? drzavljanstvo : podaci.Drzavljanstvo;
-        podaci.fotka = this.state.novaSlikaPrikaz;
-        console.log("foto: " + foto);
+        podaci.fotka = this.state.novaSlikaPrikaz==null ? podaci.fotka : this.state.novaSlikaPrikaz;
+       
         this.setState({
             greska: null,
             greskaFoto: null
         }, () => {
             this.props.saveState("podaciKorisnika", podaci);
         })
+    }
+    handleAuth = (event) => {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    //radi sta hoces
+                    this.handlePutEvent(event);
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handlePutEvent(event)
     }
 
     handlePutEvent(event) {
@@ -61,7 +80,7 @@ class ModalComponent extends React.Component {
             this.setState({ greska: true });
         }
         else {
-            if (this.state.noviInput.ime) {
+            if (this.state.noviInput.ime != null && this.state.noviInput.prezime != null) {
                 axios
                     .put(
                         `http://localhost:31918/studenti/update/imeprezime/` +
@@ -94,8 +113,7 @@ class ModalComponent extends React.Component {
                         console.log(err);
                     });;
             }
-            if (this.state.noviInput.foto) {
-                console.log(this.state.noviInput.foto);
+            if (this.state.noviInput.foto != null) {
                 var tmp = this.state.noviInput.foto;
                 const formData = new FormData();
                 formData.append('foto', tmp);
@@ -109,8 +127,8 @@ class ModalComponent extends React.Component {
                         `http://localhost:31918/studenti/update/foto/` + this.state.studentID, formData, config)
                     .then(res => {
                         this.setState({
-                            greskaFoto: false, 
-                            greska: false, 
+                            greskaFoto: false,
+                            greska: false,
                             novaSlikaPrikaz: "data:image/png;base64," + res.data.fotografija
                         });
                         console.log("res.fotografija: " + res.data.fotografija);
@@ -171,7 +189,7 @@ class ModalComponent extends React.Component {
                         {this.props.naslovModala}
                     </Modal.Title>
                 </Modal.Header>
-                <form onSubmit={this.handlePutEvent}>
+                <form onSubmit={this.handleAuth}>
                     <Modal.Body>
                         <h4>{this.props.nazivPromjene}</h4>
                         <div className="form-group">
@@ -209,10 +227,3 @@ class ModalComponent extends React.Component {
     }
 }
 export default ModalComponent;
-
-//
-/*
-
-PROPS: modalBody, onHide (funkcija), modalTitle, nazivPromjene, noviInput (json), btnPotvrdi
-
-*/

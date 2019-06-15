@@ -9,14 +9,14 @@ class LicniPod extends Component {
     constructor(...args) {
         super(...args);
         this.state = {
-            ime: "DamirMasina",
-            prezime: "Nekic",
-            datumRodjenja: "30.07.1997",
-            mjestoRodjenja: "Sarajevo",
-            Index: "17807",
-            imePrezimeOca: "Nekila",
-            imePrezimeMajke: "Nekic",
-            Drzavljanstvo: "Bih",
+            ime: "",
+            prezime: "",
+            datumRodjenja: "",
+            mjestoRodjenja: "",
+            Index: "",
+            imePrezimeOca: "",
+            imePrezimeMajke: "",
+            Drzavljanstvo: "",
             StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
             username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
             token: window.localStorage.getItem("token"),
@@ -43,9 +43,8 @@ class LicniPod extends Component {
                 break;
         }
     }
-
-    componentDidMount() {
-        axios
+    handleGet = ()=>{
+         axios
             .get(
                 `http://localhost:31918/studenti/` +
                 this.state.StudentID
@@ -74,6 +73,25 @@ class LicniPod extends Component {
                 console.log(err);
             });
     }
+    componentDidMount() {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    //radi sta hoces
+                    this.handleGet();
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handleGet();
+    }
     render() {
         return (
             <>
@@ -92,14 +110,14 @@ class LicniPod extends Component {
                                             <label className="col-form-label">Mjesto rodjenja</label>
                                             <br></br>
                                             <h4>{this.state.mjestoRodjenja}</h4>
-                                            <label className="col-form-label" for="inputDefault">Drzavljanstvo</label>
+                                            <label className="col-form-label" htmlFor="inputDefault">Drzavljanstvo</label>
                                             <br></br>
                                             <h4>{this.state.Drzavljanstvo}</h4>
-                                            <label className="col-form-label" for="inputDefault">Index</label>
+                                            <label className="col-form-label" htmlFor="inputDefault">Index</label>
                                             <h4>{this.state.Index}</h4>
-                                            <label className="col-form-label" for="inputDefault">Ime i prezime oca</label>
+                                            <label className="col-form-label" htmlFor="inputDefault">Ime i prezime oca</label>
                                             <h4>{this.state.imePrezimeOca}</h4>
-                                            <label className="col-form-label" for="inputDefault">Ime i prezime majke</label>
+                                            <label className="col-form-label" htmlFor="inputDefault">Ime i prezime majke</label>
                                             <h4>{this.state.imePrezimeMajke}</h4>
                                         </div>
                                         <button type="button" className="btn btn-link" id="editBtn" onClick={() => this.setState({ modalShow: true })}>Uredi</button>

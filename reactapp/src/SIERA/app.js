@@ -1,26 +1,23 @@
 import React, { Component } from "react";
-
 import LicniPod from "./licniPod.jsx";
 import Ocjene from "./Ocjene";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import "./AppSiera.css";
 import LeftMenuStudentSiera from "./LeftMenuStudentSiera";
-
-import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
 import Predmeti from "./predmeti";
 import Prosjek from "./Prosjek.jsx";
 import Statistika from "./statistika.jsx";
 import Zadace from "./Zadace";
-//vrati rutu za grupu tango!
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      token: window.localStorage.getItem("token"),
       activeContentId: 0,
-      menuButtonTitles: [, "Ispiti"],
-      komponente: [<ListaTrenutnihPredmeta />],
       menuButtons: [{
         btnText: "Profil",
         component:
@@ -37,7 +34,7 @@ class App extends Component {
       }, {
         btnText: "Ispiti po godinama",
         component: <IspitiTabela />
-      }, 
+      },
       {
         btnText: "Zadaće po godinama",
         component: <Zadace />
@@ -54,8 +51,8 @@ class App extends Component {
         btnText: "Statistika",
         component: <Statistika />
       }
-    
-    ],
+
+      ],
       menuComponents: [{
         naziv: "Profil",
         changeId: 0,

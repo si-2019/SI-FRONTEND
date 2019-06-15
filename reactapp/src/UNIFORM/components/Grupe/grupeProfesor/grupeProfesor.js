@@ -5,6 +5,7 @@ import './grupeProfesor.css';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import TabelaGrupa from './tabelaGrupa.js';
 import TabelaNesvrstani from './tabelaNesvrstani.js';
+import jQuery from 'jquery'; 
 
 
 class Grupe extends Component {
@@ -15,6 +16,28 @@ state = {
     predmet:undefined,
     nesvrstani:[],
     trenutniRedoslijed:undefined
+  }
+
+  provjeriToken = () => {
+    axios({
+      url: 'https://si2019romeo.herokuapp.com/users/validate',
+      type: 'get',
+      dataType: 'json',
+      data: jQuery.param({
+        username: window.localStorage.getItem("username")
+      }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+      },
+      complete: function (response) {
+        if (response.status == 200) {
+          return true;
+        }
+        else{
+          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+        } 
+      }  
+    });
   }
 
   componentDidMount = () =>{
@@ -48,6 +71,8 @@ state = {
                 });
             });
         });
+
+        this.provjeriToken();
   }
 
 render = () =>{ 

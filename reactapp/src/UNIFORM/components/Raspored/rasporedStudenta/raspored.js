@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import axios from 'axios';
 import Body_Cell from './body_cell.js';
 import Head_cell from './head_cell.js';
+import jQuery from 'jquery'; 
 import './raspored.css';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
@@ -101,6 +102,29 @@ class Raspored extends Component {
 state={
   raspored: [],
   isLoaded: false
+}
+
+provjeriToken = () => {
+  axios({
+    url: 'https://si2019romeo.herokuapp.com/users/validate',
+    type: 'get',
+    dataType: 'json',
+    data: jQuery.param({
+      username: window.localStorage.getItem("username")
+    }),
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+    },
+    complete: function (response) {
+      if (response.status == 200) {
+        return true;
+      }
+      else{
+        window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+      } 
+    }  
+  });
+  this.provjeriToken();
 }
 
 componentDidMount = () => {  

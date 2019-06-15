@@ -13,10 +13,10 @@ export class Raspored extends Component {
   state={}
 
   componentDidMount = () =>{
-    fetch("http://si2019uniform.herokuapp.com/getTerminiSala/1/9")
+    fetch("https://si2019uniform.herokuapp.com/getTerminiSala/1/9")
         .then(resTermini => resTermini.json())
         .then(jsonTermini => {
-          fetch("http://si2019uniform.herokuapp.com/getIspitiSala/1/9")
+          fetch("https://si2019uniform.herokuapp.com/getIspitiSala/1/9")
             .then(resIspiti => resIspiti.json())
             .then(jsonIspiti => {
               var raspored=[];

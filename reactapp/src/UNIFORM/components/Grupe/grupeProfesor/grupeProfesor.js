@@ -18,19 +18,19 @@ state = {
   }
 
   componentDidMount = () =>{
-    fetch("http://si2019uniform.herokuapp.com/getRedoslijed")
+    fetch("https://si2019uniform.herokuapp.com/getRedoslijed")
       .then(resRedoslijed => resRedoslijed.json())
       .then(jsonRedoslijed => {
         var linkGrupe;
         if(jsonRedoslijed.naziv=="Redoslijed abecede")
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
+          linkGrupe="https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
         else
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
+          linkGrupe="https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
 
-          fetch("http://si2019uniform.herokuapp.com/getPredmet/4")
+          fetch("https://si2019uniform.herokuapp.com/getPredmet/4")
             .then(resPredmet => resPredmet.json())
             .then(jsonPredmet => {
-                fetch("http://si2019uniform.herokuapp.com/getNesvrstaniStudentiNaPredmetu/4")
+                fetch("https://si2019uniform.herokuapp.com/getNesvrstaniStudentiNaPredmetu/4")
                  .then(resNesvrstani => resNesvrstani.json())
                  .then(jsonNesvrstani => {
                     fetch(linkGrupe)

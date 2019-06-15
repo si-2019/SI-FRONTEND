@@ -104,10 +104,10 @@ state={
 }
 
 componentDidMount = () => {  
-  fetch("http://si2019uniform.herokuapp.com/getStudentTermini/1")
+  fetch("https://si2019uniform.herokuapp.com/getStudentTermini/1")
     .then(resTermini => resTermini.json())
     .then(jsonTermini => {
-      fetch("http://si2019uniform.herokuapp.com/getStudentIspiti/1")
+      fetch("https://si2019uniform.herokuapp.com/getStudentIspiti/1")
         .then(resIspiti => resIspiti.json())
         .then(jsonIspiti => {
           var raspored=[];

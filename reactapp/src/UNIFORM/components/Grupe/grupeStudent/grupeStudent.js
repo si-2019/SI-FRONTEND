@@ -17,18 +17,18 @@ state={
 };
 
 componentDidMount = () =>{
-  fetch("http://si2019uniform.herokuapp.com/getRedoslijed")
+  fetch("https://si2019uniform.herokuapp.com/getRedoslijed")
       .then(resRedoslijed => resRedoslijed.json())
       .then(jsonRedoslijed => {
         var linkGrupe;
         if(jsonRedoslijed.naziv=="Redoslijed abecede")
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
+          linkGrupe="https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
         else
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
+          linkGrupe="https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
     fetch(linkGrupe)
         .then(resGrupe => resGrupe.json())
         .then(jsonGrupe => {
-          fetch("http://si2019uniform.herokuapp.com/getPredmet/4")
+          fetch("https://si2019uniform.herokuapp.com/getPredmet/4")
             .then(resPredmet => resPredmet.json())
             .then(jsonPredmet => {
 

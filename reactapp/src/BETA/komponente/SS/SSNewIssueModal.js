@@ -186,13 +186,13 @@ class ModalComponent extends React.Component {
                             <>
                             
                                 <label className="col-form-label" for="inputDefault" >Student:</label>
-                                <div className="col-form-label">
+                                <div className="col-form-label" id="BETA_Students_Component">
                                     <StudentsComponent triggerGetTitleFromStudentsComponent={this.onChangeTitleInStudentsComponent}
                                     />
                                 </div>
               
                                 <label className="col-form-label" for="inputDefault" >Naslov:</label>
-                                <div className="col-form-label">
+                                <div className="col-form-label" id="BETA_Category_Component">
                                     <CategoryComponent triggerGetTitleFromCategoryComponent={this.onChangeTitleInCategoryComponent}
                                     />
                                 </div>

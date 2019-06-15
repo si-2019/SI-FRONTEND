@@ -107,7 +107,7 @@ class PrijavljeniIspiti extends React.Component {
         <button
             type="button"
             className="btn btn-primary"            
-            
+            onClick={() => this.props.onChangeActiveId(3)}
         >
             Nazad
           </button>

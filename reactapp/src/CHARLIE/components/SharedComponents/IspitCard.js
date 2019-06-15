@@ -1,6 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ModalInfo from "../SharedComponents/ModalInfo";
+import InformacijeOIspitu from "../InformacijeOIspitu";
+
 class IspitCard extends Component {
+  constructor (...args) {
+    super(...args);
+
+    this.state = {
+      modalInfo: false
+    };
+}
+toggleInfo = (idIspit) => {
+  this.setState({
+    modalInfo: !this.state.modalInfo
+  });
+}
+
+saveState = (type, state, idIspit) => {
+  switch (type) {
+      case "modalInfo":
+          this.setState({
+              modalInfo: state
+          });
+          break;
+      
+      default:
+          break;
+  }
+}
+
   dajBoju (el) {
     var ONEDAY = 1000 * 60 * 60 * 24;
     var danas = new Date().getTime()
@@ -21,7 +50,7 @@ class IspitCard extends Component {
                 <div style={{borderRadius:"50px", width:"15px", height:"15px", backgroundColor:this.dajBoju(el)}}></div>
               </div>
               <div style={{width:"45%"}} >{el.idPredmet}</div>
-              <button style={{width:"45%"}} type="button" class="btn btn-primary" >
+              <button style={{width:"45%"}} type="button" class="btn btn-primary"  onClick={() => this.setState({ modalInfo: true, idIspit: el.idIspit })}>
                         Info o ispitu
               </button>
             </div>
@@ -41,6 +70,14 @@ class IspitCard extends Component {
             {this.renderIspit(this.props.tipIspita)}
           </ul>
         </div>
+        <ModalInfo
+                    saveState={this.saveState}
+                    show={this.state.modalInfo}
+                    idIspit={this.state.idIspit}
+                    naslovModala="Informacije o ispitu"
+                    tijeloModala={<InformacijeOIspitu idIspit={this.state.idIspit}/>}
+                    onClose={this.toggleInfo}
+          />
       </div>
     );
   }

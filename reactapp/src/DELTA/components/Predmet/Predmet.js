@@ -5,6 +5,7 @@ import DrugiModuli from "../DrugiModuli/DrugiModuli";
 import Ispiti from "../Ispiti/Ispiti";
 import Zadace from "../Zadace/Zadace";
 import KonacnaOcjena from "../KonacnaOcjena/KonacnaOcjena";
+import Prisustvo from "../PrisustvoTabela/prisustvoTabela"
 import "./AppDelta.css";
 
 class Predmet extends Component {
@@ -51,6 +52,8 @@ class Predmet extends Component {
             <br />
             <Ispiti />
             <br />
+            <Prisustvo/>
+            <br/>
             <div className="row">
               <div className="col-3" />
 

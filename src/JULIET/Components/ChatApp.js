@@ -37,7 +37,7 @@ class ChatApp extends Component {
         this.state = {
             currentUser: null,
             botUser: null,
-            currentRoom: null,
+            currentRoom: {},
             messages: [],
             messageToSend: '',
             users: [],

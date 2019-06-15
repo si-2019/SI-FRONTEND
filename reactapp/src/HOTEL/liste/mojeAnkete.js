@@ -51,14 +51,20 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajMojeAnkete?idNapravio=1', {
-            method: 'GET'
+        fetch(url + '/dajMojeAnkete?idNapravio=1&username=' + window.localStorage.getItem("username"), {
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
             this.setState({
                 items: result
             })
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+            }
         }, error => {
             this.setState({
                 items: [error, "error"]
@@ -69,7 +75,17 @@ class App extends React.Component {
         console.log("Morel")
         fetch(url + '/obrisiAnketu?idKorisnik=1&idAnketa=' + anketaZaBrisanje.idAnketa, { 
             method: 'POST'
-        }).then(() => this.componentDidMount())
+        }).then(res => res.json())
+          .then((res) => {
+            console.log(res)
+             if(res.error) {
+                 alert("Nije obrisana anketa")
+             }
+             else {
+                 alert("Anketa uspješno obrisana")
+             }
+             this.componentDidMount()
+        })
     }
 }
 

@@ -9,7 +9,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       activeContentId: 0,
-      IDaktivnog: 0
+      IDaktivnog: 0,
+      //DODANO JE OVO
+      open: false,  //open pokazuje da li formu treba prikazati ili ne
+      activeContentId: 1
     };
   }
 
@@ -73,7 +76,7 @@ class App extends React.Component {
             </div>
 
           </div>    
-          
+
         </div>
       </div>
     );

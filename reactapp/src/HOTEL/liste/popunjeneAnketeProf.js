@@ -7,7 +7,6 @@ class App extends React.Component {
         this.state = {
             items: {}
         }
-        this.obrisiAnketu = this.obrisiAnketu.bind(this)
     }
     render() {
         const items = this.state.items
@@ -20,20 +19,13 @@ class App extends React.Component {
             <table className="tabelaLista table-bordered text-center bg-active border-solid" align="center">
                 <tr className="bg-primary text-light">
                 <td class="tabtip">Naziv ankete</td>
-                <td class="tabtip">Opis</td>
-                <td class="tabtip">Datum isteka</td>
                 <td class="tabtip">Prikaz ankete</td>
-                <td class="tabtip">Obriši</td>
                 </tr>
             
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
                         <th class="tabtip1">{anketa.naziv}</th>
-                        <th class="tabtip1">{anketa.opis}</th>
-                        <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                        <th class="tabtip1"><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
-                        <th class="tabtip1"><button type="button" class="btn btn-primary" id="obrisiButton" 
-                                onClick= {() => this.obrisiAnketu(anketa) }>Obriši</button></th>
+                        <th class="tabtip1"><a href={"/Hotel/popunjenaanketa/" + anketa.idPopunjenaAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
                     </tr>
                 )) : "Loading..."}
                 </table>
@@ -41,11 +33,16 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajSveAnketeZaKojePostojeRezultati?idKorisnik=235', {
-            method: 'GET'
+        console.log(1234567)
+        fetch(url + '/dajPopunjeneAnketeProfesor?idKorisnik=1', {
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
+            console.log(4322123)
             this.setState({
                 items: result
             })
@@ -55,12 +52,7 @@ class App extends React.Component {
             })
         })
     }
-    obrisiAnketu(anketaZaBrisanje){
-        console.log("Morel")
-        fetch(url + '/obrisiAnketu?idKorisnik=1&idAnketa=' + anketaZaBrisanje.idAnketa, { 
-            method: 'POST'
-        }).then(() => this.componentDidMount())
-    }
+    
 }
 
 export default App;

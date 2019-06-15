@@ -91,8 +91,8 @@ saveState = (type, state, idIspit) => {
 state = {response:[]}
 
   async componentDidMount() {
-    const profesorID = 250;
-    const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/kreiraniIspiti/${profesorID}`);
+    const idKorisnika = window.localStorage.getItem('id')
+    const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/kreiraniIspiti/${idKorisnika}`);
     //Za svaki entry nadji ime predmeta na osnovu id-a
     console.log(ispiti);
     this.setState({ ispiti: ispiti.data });

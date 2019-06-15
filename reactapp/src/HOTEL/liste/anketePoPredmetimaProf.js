@@ -46,7 +46,7 @@ class App extends React.Component {
                             <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
                             <th class="tabtip1"><a href={"/Hotel/popunjavanje/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
                             <th class="tabtip1"><button type="button" class="btn btn-primary" id="urediButton">Uredi</button></th>
-                            <th class="tabtip1"><button type="button" class="btn btn-primary" id="obrisiButton" 
+                            <th class="tabtip1"><button type="button" class="btn btn-danger" id="obrisiButton" 
                                 onClick= {() => this.obrisiAnketu(anketa) } >Obriši</button></th>
                             </tr>
                         )))
@@ -57,11 +57,15 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajAnketeZaProfesoraPoPredmetima?idProfesora=1', {
-            method: 'GET'
+        fetch(url + '/dajAnketeZaProfesoraPoPredmetima?idKorisnik=36', {
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
+            
             this.setState({
                 items: result
             })
@@ -74,8 +78,21 @@ class App extends React.Component {
     obrisiAnketu(anketaZaBrisanje){
         console.log("Morel")
         fetch(url + '/obrisiAnketu?idKorisnik=1&idAnketa=' + anketaZaBrisanje.idAnketa, { 
-            method: 'POST'
-        }).then(() => this.componentDidMount())
+            method: 'POST',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
+        }).then(res => res.json())
+          .then((res) => {
+            console.log(res)
+             if(res.error) {
+                 alert("Nije obrisana anketa")
+             }
+             else {
+                 alert("Anketa uspješno obrisana")
+             }
+             this.componentDidMount()
+        })
     }
 }
 

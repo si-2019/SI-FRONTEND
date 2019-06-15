@@ -8,7 +8,10 @@ export default class App extends React.Component {
         super(props)
         this.state = {
             idAnketa: props.match.params.id,
-            datumIstekaAnkete: new Date()
+            datumIstekaAnkete: new Date(),
+            nazivAnkete: '',
+            showError: '',
+            showSuccess: ''
         }
         this.handleDateChange = this.handleDateChange.bind(this)
         this.promijeni = this.promijeni.bind(this)
@@ -20,12 +23,17 @@ export default class App extends React.Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 datumIstekaAnkete: this.state.datumIstekaAnkete,
-                idAnketa: this.state.idAnketa
+                idAnketa: this.state.idAnketa,
             })  
         }).then((res, err) => {
             if(res.error) {
                 this.setState({
-                    error: res.error
+                    showError: "Došlo je do greške!"
+                })
+            }
+            else {
+                this.setState({
+                    showSuccess: "Uspješno ste promijenili datum roka za popunjavanje."
                 })
             }
         })
@@ -38,6 +46,10 @@ export default class App extends React.Component {
                     <h1>Promijeni datum isteka</h1>
                 </div>
                 <div id="urediBody">
+                    <div>
+                        <h5>Anketa: {this.state.nazivAnkete}</h5>
+                        <br/>
+                    </div>
                     <h5>Datum isteka ankete:</h5>
                     <div>  
                         <DatePicker
@@ -50,10 +62,26 @@ export default class App extends React.Component {
                     </div>
                     <button className="btn btn-primary" onClick={this.promijeni} style={{
                         width: "30%",
-                        marginTop: "10px"
+                        marginTop: "10px",
+                        marginBottom: "10px"
                     }}>
                         Promijeni
                     </button>
+                    {
+                    this.state.showSuccess &&
+                        <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSuccess: '' }); window.location.reload(); }}>&times;</button>
+                        <strong>{this.state.showSuccess}</strong>
+                        </div>
+                    }
+                    {
+                        this.state.showError &&
+                        <div className="alert alert-dismissible alert-danger">
+                        <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
+                        {this.state.showError}
+                        </div>
+                    }
+
                  </div>
             </div>
         )
@@ -71,7 +99,8 @@ export default class App extends React.Component {
             res => {
                 this.setState({
                     anketa: res.anketa,
-                    datumIstekaAnkete: new Date(Date.parse(res.anketa.datumIstekaAnkete))
+                    datumIstekaAnkete: new Date(Date.parse(res.anketa.datumIstekaAnkete)),
+                    nazivAnkete: res.anketa.naziv
                 })
                 console.log(res)
             }

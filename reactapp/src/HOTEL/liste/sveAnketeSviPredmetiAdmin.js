@@ -1,5 +1,6 @@
 import React from 'react';
 import url from '../url'
+import {Link} from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
@@ -12,18 +13,18 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>          
-            <h1>Prikaz svih anketa</h1>
+            <div className="okvirListe">          
+             <div className="naslovliste"><h1>Prikaz svih anketa</h1></div>
 
             <br></br>
-            <table className="table table-bordered text-center bg-active border-solid" align="center">
+            <table className="table-bordered text-center bg-active border-solid tabelaLista" align="center">
 
                 {
                     items.ankete ? Object.keys(items.ankete).map(key => {
                         console.log(items.ankete)
                         let header = [(
                             <tr>
-                                <td colspan="6">{items.ankete[key].nazivPredmeta}</td>
+                                <td colspan="6"><h4>{items.ankete[key].nazivPredmeta}</h4></td>
                             </tr>
                         ),
                         (
@@ -44,9 +45,9 @@ class App extends React.Component {
                             <th class="tabtip1">{anketa.naziv}</th>
                             <th class="tabtip1">{anketa.opisAnkete}</th>
                             <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                            <th class="tabtip1"><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary disabled" id="prikaziButton">Prikaži</button></a></th>
-                            <th class="tabtip1"><button type="button" class="btn btn-primary disabled" id="urediButton">Uredi</button></th>
-                            <th class="tabtip1"><button type="button" class="btn btn-primary disabled" id="obrisiButton" 
+                            <th class="tabtip1"><Link to={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></Link></th>
+                            <th class="tabtip1"><button type="button" class="btn btn-primary" id="urediButton">Uredi</button></th>
+                            <th class="tabtip1"><button type="button" class="btn btn-danger" id="obrisiButton" 
                                 onClick= {() => this.obrisiAnketu(anketa) }>Obriši</button></th>
                             </tr>
                         )))
@@ -77,7 +78,17 @@ class App extends React.Component {
         console.log("Morel")
         fetch(url + '/obrisiAnketu?idKorisnik=1&idAnketa=' + anketaZaBrisanje.idAnketa, { 
             method: 'POST'
-        }).then(() => this.componentDidMount())
+        }).then(res => res.json())
+          .then((res) => {
+            console.log(res)
+             if(res.error) {
+                 alert("Nije obrisana anketa")
+             }
+             else {
+                 alert("Anketa uspješno obrisana")
+             }
+             this.componentDidMount()
+        })
     }
 }
 

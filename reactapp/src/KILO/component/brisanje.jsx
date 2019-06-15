@@ -113,9 +113,11 @@ class BrisanjeZadace extends Component {
     console.log('State:',this.state)
     return (
       <div>
-        <div class="card w-25 ml-3 mt-4">
+        <div class="card p-3 w-50 ml-5">
           <div class="card-title" id="brisanjeT">
-            Lista zadaća koje je moguće obrisati:
+          <h4>
+              <b>Lista zadaća koje je moguće obrisati: </b>
+            </h4>
           </div>
           <ButtonDropdown
             isOpen={this.state.dropdownOpen}

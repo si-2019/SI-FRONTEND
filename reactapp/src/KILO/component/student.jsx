@@ -47,7 +47,7 @@ class Student extends Component {
       idZadatak: 0,
       idPredmeta: urlParams.get("idPredmeta")
       ? Number(urlParams.get("idPredmeta"))
-      : 3,
+      : 1,
       uploadZadatka: [null],
       velicinaFajla: "",
       nazivFajla: "",
@@ -56,6 +56,32 @@ class Student extends Component {
       vrijemeSlanja: ""
     };
   }
+  provjeriToken = () => {
+    try{
+    axios({
+      url: 'https://si2019romeo.herokuapp.com/users/validate',
+      type: 'get',
+      dataType: 'json',
+      data: jQuery.param({
+        username: window.localStorage.getItem("username")
+      }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+      },
+      complete: function (response) {
+        if (response.status == 200) {
+          return true;
+        }
+        else{
+          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+        } 
+      }  
+    });}
+    catch(e){
+
+    }
+  }
+
   testirajVrijeme = r => {
     var povratna_vrijednost;
     var danas = new Date();

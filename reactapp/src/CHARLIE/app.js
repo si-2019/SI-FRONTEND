@@ -107,7 +107,7 @@ class App extends Component {
     })
   };
 
-  isProfesor = async() =>{
+  isProfesor = () =>{
     const id = window.localStorage.getItem("id") || 1;
     const token = window.localStorage.getItem("token");
     const username = window.localStorage.getItem("username");
@@ -143,8 +143,7 @@ class App extends Component {
               }}>
                 <LeftMenuCharlie
                   triggerChangeActiveId={this.onChangeActiveId}
-                  btnList={this.isProfesor() && this.state.menuComponentsProfesor
-                    || this.state.menuComponentsStudent}
+                  btnList={this.isProfesor() ? this.state.menuComponentsProfesor : this.state.menuComponentsStudent}
                 />
               </div>
               <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
@@ -153,8 +152,8 @@ class App extends Component {
                 margin: "0px",
                 padding: "0px"
               }}>
-                { this.isProfesor() && this.state.menuComponentsProfesor[this.state.activeContentId].component
-                  || this.state.menuComponentsStudent[this.state.activeContentId].component
+                { this.isProfesor() ? this.state.menuComponentsProfesor[this.state.activeContentId].component
+                  : this.state.menuComponentsStudent[this.state.activeContentId].component
                 }
               </div>
             </div>

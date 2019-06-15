@@ -13,7 +13,7 @@ class Modal2 extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
    
-  /*  renderujPotvrdu() {
+    renderujPotvrdu() {
         if (!this.state.greska) {
             return (
                 <Potvrda
@@ -32,9 +32,10 @@ class Modal2 extends React.Component {
             );
         }
         return "";
-    }*/
+    }
     handleSubmit(event) {
         event.preventDefault();
+        this.props.handleSubmit();
         //ovjde saljete post/put zahtjeve
         //ukoliko neki rezultira greskom, postavite greska na true
        
@@ -56,7 +57,7 @@ class Modal2 extends React.Component {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-               
+                {this.renderujPotvrdu()}
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         {this.props.naslovModala}

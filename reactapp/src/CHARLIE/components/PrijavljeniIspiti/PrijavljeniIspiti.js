@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import "../SharedComponents/tabeleCharlie.css";
 import { FormGroup, Table } from "reactstrap";
+import Modal2 from "../SharedComponents/Modal2";
 
 class PrijavljeniIspiti extends React.Component {
   constructor () {
@@ -72,9 +73,24 @@ class PrijavljeniIspiti extends React.Component {
         <td class="tabtip1">{el.tipIspita}</td>
         <td class="tabtip1">{new Date(el.termin).toUTCString()}</td>
         <td  class="tabtip1"></td>
+        <button
+            type="button"
+            className="btn btn-primary"            
+        >
+            Odjavi
+          </button>
       </tr>
     ));
   };
+
+  handleSubmit = async() => {
+    try {
+      const {status}=await axios.delete(`http://si2019charlie.herokuapp.com/prijava/${ispitID}/${predmetID}`)  
+    } catch (error) {
+      console.log(error.message)
+    }
+    
+  }
 
   render() {
     return (
@@ -111,6 +127,18 @@ class PrijavljeniIspiti extends React.Component {
         >
             Nazad
           </button>
+          <Modal2
+            saveState={this.saveState}
+            show={this.state.modalShow}
+            naslovModala="Jeste li sigurni da želite odjaviti ispit?"
+            obrisiIspit={this.state}
+            potvrdiBtnCharlie="Potvrdi"
+            onConfirm={
+              this.obrisiIspit
+            }
+            onClose={this.toggleModal}
+            handleSubmit={this.handleSubmit}
+          />
       </div>
     );
   }

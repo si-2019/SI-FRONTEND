@@ -5,17 +5,17 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-it('prvi div ima klasu container-fluid', () => {
+it('postoji prvi div', () => {
     const wrapper = shallow(<ListaOdslusanihPredmeta />);
-    expect(wrapper.find('div').first().hasClass('container-fluid')).toBeTruthy();
+    expect(wrapper.find('div').exists()).toBeTruthy();
 });
 
-it('postoji naslov', () => {
+it('postoji labela', () => {
     const wrapper = shallow(<ListaOdslusanihPredmeta />);
-    expect(wrapper.find('h5').exists()).toBeTruthy();
+    expect(wrapper.find('label').exists()).toBeTruthy();
 });
 
-it('postoji dugme', () => {
+it('labela ima klasu "col-form-label"', () => {
     const wrapper = shallow(<ListaOdslusanihPredmeta />);
-    expect(wrapper.find('input').first().hasClass('btn')).toBeTruthy();
+    expect(wrapper.find('label').exists()).toBeTruthy();
 });

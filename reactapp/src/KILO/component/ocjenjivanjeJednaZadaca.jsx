@@ -40,7 +40,7 @@ class OcjenjivanjeJednaZadaca extends Component {
 
                 {this.props.podaci.state.ostvareniMoguci.map((ostvareniBodovi, indeks2) => (
                   <th class="tabtip1">{ostvareniBodovi}
-                    {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 0 && <Icon type="indicator" name="attachment" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}
+                    {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 0 && <Icon type="indicator" name="attachment" className=" ml-3"/>}
                     {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 1 && <Icon type="indicator" name="search" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}
                     {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 2 && <Icon type="indicator" name="ok" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}
                     {this.props.podaci.state.zadacaState.stanjeZadatakaZadace[indeks2] === 3 && <Icon type="indicator" name="error" className=" ml-3" onClick={() => this.props.podaci.handleNaOcjenjivanjeJedanZadatak(indeks2)} />}
@@ -64,8 +64,8 @@ class OcjenjivanjeJednaZadaca extends Component {
                             </th>
                            ))}
                           */}
-                <th class="tabtip1">{this.props.podaci.state.sumaOsvojeni}</th>
-                <th class="tabtip1">{this.props.podaci.state.sumaMoguci}</th>
+                <th class="tabtip1">{Math.round(this.props.podaci.state.sumaOsvojeni*100)/100}</th>
+                <th class="tabtip1">{Math.round(this.props.podaci.state.sumaMoguci*100)/100}</th>
                 <th class="tabtip1">{this.props.podaci.state.zadacaState.postavkaZadace}{<Icon type="indicator" name="save" className=" ml-3" />}</th>
                 <th class="tabtip1">{this.props.podaci.state.zadacaState.rokZaPredaju}</th>
               </tr>

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Modal, ModalFooter, ModalBody, ModalHeader, Button } from "reactstrap";
 import PreviewZadace from "./previewZadace";
 import axios from "axios";
+import jQuery from 'jquery'; 
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -29,8 +30,30 @@ class BrisanjeZadace extends Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  provjeriToken = () => {
+    axios({
+      url: 'https://si2019romeo.herokuapp.com/users/validate',
+      type: 'get',
+      dataType: 'json',
+      data: jQuery.param({
+        username: window.localStorage.getItem("username")
+      }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+      },
+      complete: function (response) {
+        if (response.status == 200) {
+          return true;
+        }
+        else{
+          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+        } 
+      }  
+    });
+  }
+
   componentDidMount() {
-    this.pokupiIzBaze();
+    this.pokupiIzBaze(this.state.idPredmet);
   }
 
   toggle() {
@@ -39,8 +62,9 @@ class BrisanjeZadace extends Component {
     });
   }
 
-  pokupiIzBaze = () => {
-    axios.get("http://localhost:31911/getZadace").then(res => {
+  pokupiIzBaze = (idPredmeta) => {
+    this.provjeriToken();
+    axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
       this.setState({
         listaZadacaZaBrisanje: res.data
       });
@@ -52,6 +76,7 @@ class BrisanjeZadace extends Component {
 
   getZadacaById = async zadacaId => {
     try {
+      this.provjeriToken();
       const res = await axios.get(
         `http://localhost:31911/getZadacaById/${zadacaId}`
       );
@@ -63,6 +88,7 @@ class BrisanjeZadace extends Component {
     }
   };
   handleClick = event => {
+    this.provjeriToken();
     axios
       .delete(
         `http://localhost:31911/zadaca/${this.state.brisanjeState.idZadaca}`
@@ -84,6 +110,7 @@ class BrisanjeZadace extends Component {
   };
   render() {
     const lista = this.state.listaZadacaZaBrisanje; // this.pokupiIzBaze();
+    console.log('State:',this.state)
     return (
       <div>
         <div class="card w-25 ml-3 mt-4">

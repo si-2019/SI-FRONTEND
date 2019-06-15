@@ -110,8 +110,8 @@ class FormaAsistent extends Component {
         const { ime, lista, prezime, otac, majka, spol, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, idOdsjek, username, linkedin, website} = this.state;
 
         return (
-          <div className="card">
-          <div className="card-body  col-md-4 col-md-offset-4">
+          <div className="card align-items-center">
+          <div className="card-body  col-md-4">
             <form  onSubmit={this.handleSubmit} className="container-fluid">
 
               <label>Ime </label>
@@ -169,7 +169,7 @@ class FormaAsistent extends Component {
                  
                   lista.length ? lista.map(list => 
                   
-                  <option key={list.idOdsjek} value={[ list.naziv]}> {list.naziv} </option>
+                  <option key={list.idOdsjek} value={[ list.idOdsjek]}> {list.naziv} </option>
                 
                   ): null
                 }

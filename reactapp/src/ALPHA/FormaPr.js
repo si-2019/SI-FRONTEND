@@ -114,7 +114,8 @@ class FormaPr extends Component {
         const {idOdsjek, ime, prezime, datumRodjenja, JMBG, email, mjestoRodjenja, kanton, drzavljanstvo, telefon, spol, imePrezimeMajke, imePrezimeOca, adresa, website, linkedin, titula, lista } = this.state;
 
         return (
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body col-md-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
               <br />
               <label >Odsjek </label>
@@ -182,6 +183,7 @@ class FormaPr extends Component {
               
               <input type="submit" value="Dodaj" className="btn btn-primary btn-block" />
     </form>
+    </div>
     </div>
         );
     }

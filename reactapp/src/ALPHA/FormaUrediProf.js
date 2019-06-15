@@ -8,6 +8,7 @@ class Forma extends Component {
 
         this.state = {
             lista: [],
+			listaOdsjeka: [],
             selectedValue: '',
             id: '',
             ime: '',
@@ -37,6 +38,15 @@ class Forma extends Component {
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+		
+		axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({listaOdsjeka: response.data});     
         })
         . catch (error =>{
             console.log(error)
@@ -140,11 +150,11 @@ class Forma extends Component {
       
 
     render() {
-        const { ime, prezime, otac, majka, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, odsjek, username, linkedin, website, lista, selectedValue, id} = this.state;
+        const { ime, prezime, otac, majka, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, odsjek, username, linkedin, website, lista, selectedValue, id,listaOdsjeka} = this.state;
        
         return (
-          
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body col-md-4" >
             <br />
             <br />
                 <p>Prikaz svih profesora: </p><br />
@@ -200,9 +210,20 @@ class Forma extends Component {
               
               <label>Telefon </label>
               <input className="form-control " type="tel" name="telefon" value={telefon} onChange={this.handleChange} /><br />
+			  
+			  <label >Odsjek </label>
+              <select className="custom-select" name="odsjek" onChange={this.onChange} onChange={this.handleChange}> 
+               
+                {
+                 
+                  listaOdsjeka.length ? listaOdsjeka.map(list => 
+                  
+                  <option key={list.idOdsjek} value={[ list.naziv]}> {list.naziv} </option>
+                
+                  ): null
+                }
+                </select><br /><br />
 
-              <label>Odsjek </label>
-              <input className="form-control " type="text" name="odsjek" value={odsjek} onChange={this.handleChange} /><br />
 
               <label>Username </label>
               <input className="form-control " type="text" name="username" value={username} onChange={this.handleChange} /><br />
@@ -218,7 +239,7 @@ class Forma extends Component {
               <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(id)}>Obrisi</button>
 
              
-
+              </div>
     </div>
         );
     }

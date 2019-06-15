@@ -31,8 +31,8 @@ class modalnaKomponenta extends Component {
           .then(res => {
             this.setState({ greska: false });
             window.location.reload();
-            console.log(res);
-            console.log(res.data);
+            //console.log(res);
+            //console.log(res.data);
           });
       } else if (this.props.nazivpromjene == "Website") {
         axios
@@ -44,8 +44,8 @@ class modalnaKomponenta extends Component {
           .then(res => {
             this.setState({ greska: false });
             window.location.reload();
-            console.log(res);
-            console.log(res.data);
+            //console.log(res);
+            //console.log(res.data);
           });
       }
     }

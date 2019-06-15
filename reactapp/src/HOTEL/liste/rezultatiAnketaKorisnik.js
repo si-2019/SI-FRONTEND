@@ -12,11 +12,11 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>          
-            <h1>Rezultati anketa</h1>
+            <div className="okvirListe">
+            <div className="naslovliste"><h1>Rezultati anketa</h1></div>
 
             <br></br>
-            <table className="table table-bordered text-center bg-active border-solid" align="center">
+            <table className="tabelaLista table-bordered text-center bg-active border-solid" align="center">
                 <tr className="bg-primary text-light">
                     <td class="tabtip">Naziv ankete</td>
                     <td class="tabtip">Opis</td>
@@ -29,7 +29,7 @@ class App extends React.Component {
                     <th class="tabtip1">{anketa.naziv}</th>
                     <th class="tabtip1">{anketa.opisAnkete}</th>
                     <th class="tabtip1">{anketa.datumIstekaAnkete.substr(0,10)}</th>
-                    <th class="tabtip1"><a href={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
+                    <th class="tabtip1"><Link to={"/Hotel/rezultati/" + anketa.idAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></Link></th>
                     </tr>
                 )) : "Loading..."}
                 </table>

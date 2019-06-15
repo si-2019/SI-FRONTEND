@@ -18,12 +18,16 @@ class Stranice extends Component {
     axios
       .get(`http://localhost:31918/studenti/` + this.state.StudentID)
       .then(res => {
-        const In = res.data.map(obj => obj.linkedin);
-        this.setState({ LinkedIn: In });
-        const web = res.data.map(obj => obj.website);
-        this.setState({ Website: web });
+        if (res.data.linkedin != undefined) {
+          const In = res.data.map(obj => obj.linkedin);
+          this.setState({ LinkedIn: In });
+        }
+        if (res.data.website != undefined) {
+          const web = res.data.map(obj => obj.website);
+          this.setState({ Website: web });
+        }
       })
-      .catch(err=>{
+      .catch(err => {
         console.log(err);
       });
   }
@@ -46,7 +50,7 @@ class Stranice extends Component {
       <div>
 
         <div style={{ flexDirection: "column", textAlign: "left" }}>
-        <h4 className="card-title" style={{ textAlign: "left" }}>Stranice</h4>
+          <h4 className="card-title" style={{ textAlign: "left" }}>Stranice</h4>
           <div className="form-group">
             <label class="col-form-label" for="inputDefault"> LinkedIn:&nbsp;</label>
             <br></br>
@@ -61,7 +65,7 @@ class Stranice extends Component {
           </div>
           <button class="btn btn-link" onClick={() => this.otvoriModalWebsite()}> Edit </button>
         </div>
-        
+
         <ModalnaKomponenta
           show={this.state.otvorenModalLinkedIn}
           onHide={zatvoriModalLinkedIn}

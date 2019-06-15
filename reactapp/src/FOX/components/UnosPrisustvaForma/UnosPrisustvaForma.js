@@ -6,6 +6,7 @@ import './UnosPrisustvaForma.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Poruka from '../Poruka/Poruka';
 
 function UnosPrisustvaForma(props) {
     const daStyle = {
@@ -18,7 +19,7 @@ function UnosPrisustvaForma(props) {
     };
 
     return (
-        <div id="unosPrisustvaFormaID">
+        <div id="unosPrisustvaFormaID" paddingBottom="50px">
 
             <Container fluid style={{padding:"0", margin: "0"}}>
                 <Row noGutters style={{margin: "0"}}>
@@ -38,7 +39,7 @@ function UnosPrisustvaForma(props) {
                                     <h6 class="card-subtitle mb-2 text-muted text-center">Unos prisustva za sve studente omogućava brz unos prisustva za sve.</h6>
                                     <br/>
                                     <div>
-                                        <Form onSubmit={props.handleSubmitSvi}>
+                                        <Form  onSubmit={props.handleSubmitSvi}>
                                             
                                             <Form.Row >
                                                 <Col></Col>
@@ -123,11 +124,18 @@ function UnosPrisustvaForma(props) {
                         <div style={{padding: "15px"}}>
                             <div class="card" style={{margin: "0"}}>
                                 <div class="card-body">
+                                    <Poruka
+                                    greska={props.data.greskaBaza}
+                                    naslovUspjeh="Prisustvo sačuvano!"
+                                    naslovGreska="Prisustvo nije sačuvano!"
+                                    opisUspjeh="Prisustvo je dodano u bazu podataka."
+                                    opisGreska="Baza podataka nije dostupna."
+                                    />
                                     <h4 class="card-title text-center">Unos prisustva pojedinačno</h4>
                                     <h6 class="card-subtitle mb-2 text-muted text-center">Unos prisustva pojedinačno omogućava unos prisustva za svakog studenta posebno.</h6>
                                     <br/>
                                     <div>
-                                        <Form onSubmit={props.onSubmit}>
+                                        <Form onSubmit={props.handleSubmit}>
 
                                             <Form.Row>
                                                 <Col sm={{span: 12}}>
@@ -145,12 +153,12 @@ function UnosPrisustvaForma(props) {
                                                         <tbody>
                                                             {
                                                                 props.data.studenti.map((student, counter) =>
-                                                                    <tr key={student.id}>
+                                                                    <tr key={student.indeks}>
                                                                         <td>{counter + 1}</td>
                                                                         <td>{student.indeks}</td>
                                                                         <td>{student.ime}</td>
                                                                         <td>
-                                                                            <div class="form-group" style={{margin: "0"}}>
+                                                                            <div key={student.indeks} class="form-group" style={{margin: "0"}}>
                                                                                 <select
                                                                                     class="custom-select"
                                                                                     style={student.predavanje === "da" ? daStyle : student.predavanje === "ne" ? neStyle : null}
@@ -164,7 +172,7 @@ function UnosPrisustvaForma(props) {
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            <div class="form-group" style={{margin: "0"}}>
+                                                                            <div key={student.indeks} class="form-group" style={{margin: "0"}}>
                                                                                 <select
                                                                                     class="custom-select"
                                                                                     style={student.vjezbe === "da" ? daStyle : student.vjezbe === "ne" ? neStyle : null}
@@ -178,7 +186,7 @@ function UnosPrisustvaForma(props) {
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            <div class="form-group" style={{margin: "0"}}>
+                                                                            <div key={student.indeks} class="form-group" style={{margin: "0"}}>
                                                                                 <select
                                                                                     class="custom-select"
                                                                                     style={student.tutorijal === "da" ? daStyle : student.tutorijal === "ne" ? neStyle : null}
@@ -216,6 +224,12 @@ function UnosPrisustvaForma(props) {
                         </div>
                     </Col> 
                 </Row >
+
+                <Row notGutters style={{margin: "0"}} noGutters>
+                    <Col style={{textAlign: "center"}}>
+                        <Button variant="primary" onClick={props.handleNazad} style={{marginBottom: "15px"}}>Nazad na sedmice</Button>
+                    </Col>
+                </Row>
 
             </Container>
 

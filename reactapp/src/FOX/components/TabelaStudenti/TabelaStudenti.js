@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
 import './table.css'
 import axios from 'axios';
 
@@ -12,18 +11,15 @@ class TabelaStudenti extends Component {
         ispiti: []
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         //Promise
-        axios.get('http://localhost:31906/api/fox/tabelaStudenti')
+        let idPredmeta = window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64;
+        axios.get('https://si2019fox.herokuapp.com/api/fox/tabelaStudenti/predmet/'+ idPredmeta)
             .then(
                 res => this.setState({studenti: res.data})
             );
 
-        axios.get('http://localhost:31906/api/fox/tabelaStudenti/ispiti')
+        axios.get('https://si2019fox.herokuapp.com/api/fox/tabelaStudenti/ispiti')
             .then(
                 res => this.setState({ispiti: res.data})
             );
@@ -31,7 +27,7 @@ class TabelaStudenti extends Component {
     
     render() {
         let listaIspita = [];
-        if (this.state.ispiti.length == 0) {
+        if (this.state.ispiti.length === 0) {
             listaIspita = [
                 <th>Prvi parcijalni ispit</th>,
                 <th>Drugi parcijalni ispit</th>,
@@ -79,7 +75,7 @@ class TabelaStudenti extends Component {
                         })
                     }
                     <tr className="table-light" hover="false">
-                    <td scope="row">1</td>
+                    <td scope="row">0</td>
                     <td>12345</td>
                     <td>Ime Prezime</td>
                     <td>10</td>

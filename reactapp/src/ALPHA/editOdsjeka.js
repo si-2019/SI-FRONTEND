@@ -99,8 +99,8 @@ class Forma extends Component {
         const { idOdsjek, naziv, lista, selectedValue } = this.state;
        
         return (
-          
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body  col-md-4">
             <br />
                 <p>Odaberite odsjek: </p><br />
                 <select className="custom-select"  onChange={this.onChange}> 
@@ -131,7 +131,7 @@ class Forma extends Component {
              </form><br />
 
              
-   
+             </div>
     </div>
         );
     }

@@ -75,8 +75,8 @@ class Forma extends Component {
 
         console.log(body);
 
-        //https://si2019alpha.herokuapp.com/api/korisnik/AddNewStudent
-       xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewStudent', true);
+       //http://localhost:31901/api/korisnik/AddNewStudent
+       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewStudent', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -102,7 +102,7 @@ class Forma extends Component {
         const { ime, prezime, datumRodjenja, JMBG, email, mjestoRodjenja, kanton, drzavljanstvo, telefon, adresa, imePrezimeOca, imePrezimeMajke} = this.state;
 
         return (
-          <div className="card">
+          <div className="card align-items-center">
           <div className="card-body  col-md-4 col-md-offset-4">
             <form  onSubmit={this.handleSubmit} className="container-fluid">
               <label>Ime </label>

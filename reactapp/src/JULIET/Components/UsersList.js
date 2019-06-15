@@ -74,7 +74,7 @@ class UsersList extends Component {
             const currentUser = this.props.currentUser;
             return(
                 <div style={{height: '100%', width: '100%'}}>           
-                    <input placeholder="Pretraži..." className="juliet-user-search-input" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
+                    <input placeholder="Traži" className="juliet-user-search-input" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
                     <ul style={{overflowX: 'hidden', height:'calc(100% - 54px)', margin: '0'}}>
                         <div className="juliet-section-h">
                             <div className="juliet-section-header"><h5>Sobe</h5></div>

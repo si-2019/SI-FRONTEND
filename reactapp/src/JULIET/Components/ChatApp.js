@@ -228,6 +228,8 @@ class ChatApp extends Component {
                 room_users: room.users,
                 users: CU.users,
             })
+
+            console.log(room, this.currentRoom, room.id);
         })
     }
 
@@ -451,13 +453,13 @@ class ChatApp extends Component {
             Axios.get('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                 if (res.data === 0) {
                     Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
-                        colorId: color, 
+                        colorId: color.hex, 
                         userId: this.state.currentUser.id
                     });
                 } else {
                     Axios.delete('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                         Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
-                            colorId: color, 
+                            colorId: color.hex, 
                             userId: this.state.currentUser.id
                         });
                     }).catch(e => console.log(e));
@@ -582,7 +584,7 @@ class ChatApp extends Component {
                         chatkit={this.props.chatkit}
                         addUser={this.addUser}
                     />
-                    <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id}/>
+                    <FileSidebar downloadClick={this.downloadClick} roomId={this.testRoomId}/>
                     <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
                     <EventPlanner currentId={this.props.currentId} colorScheme={colorScheme}/> 
                     <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >

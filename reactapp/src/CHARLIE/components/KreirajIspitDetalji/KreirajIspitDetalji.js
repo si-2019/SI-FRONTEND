@@ -25,6 +25,28 @@ class KreirajIspitDetalji extends Component {
                         
                 
               />  
+              <div style={{textAlign: "left"}}>  
+              <label htmlFor="sala" class="col-form-label col-form-label-lg">Sala:</label>
+              </div>
+              <select
+                multiple
+                class="custom-select"
+                id="sala"                
+                            
+              >
+                <option>VA</option>
+                <option>MA</option>
+                <option>S0</option>
+                <option>S1</option>
+                <option>S3</option>
+              </select>
+              <div style={{textAlign: "left"}}>  
+              <label htmlFor="termin" class="col-form-label col-form-label-lg">Termin: </label> 
+            </div>
+              <DatePicker
+                        id="termin"                        
+                                   
+              /> 
               <div style={{textAlign: "left"}}>                
               <label class="col-form-label col-form-label-lg" htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> </div>
               <input type="number" className="form-control" id="vrijemeT" />
@@ -47,7 +69,7 @@ class KreirajIspitDetalji extends Component {
             
               <button type="button" class="btn btn-primary" id="btnSpasi" style={{marginTop:"20px", marginRight: "10px"}}>Kreiraj ispit</button>
            
-              <button type="button" class="btn btn-secondary" id="btnPovratak" style={{marginTop: "20px"}}>Odustani</button>
+              <button type="button" class="btn btn-secondary" id="btnPovratak" style={{marginTop: "20px"}} onClick={() => this.props.onChangeActiveId(0)}>Odustani</button>
             
            </div>
 

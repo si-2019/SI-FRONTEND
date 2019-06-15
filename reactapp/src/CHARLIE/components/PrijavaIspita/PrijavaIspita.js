@@ -28,18 +28,18 @@ class PrijavaIspita extends React.Component {
           flexWrap: "wrap"
         }}>
         <IspitCard ispiti={this.state.ispiti} tipIspita="Prvi parcijalni ispit"/>
-          {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>
-          <IspitCard ispiti={this.state.ispiti} tipIspita="II parcijalni ispit"/>*/}
+          {/*<IspitCard ispiti={this.state.ispiti} tipIspita="I parcijalni ispit"/>*/}
+          <IspitCard ispiti={this.state.ispiti} tipIspita="Drugi parcijalni ispit"/>
           <IspitCard ispiti={this.state.ispiti} tipIspita="Usmeni ispit" id="usmeniIspiti" />
-          <IspitCard ispiti={this.state.ispiti} tipIspita="Integralni ispit" id="integralniIspit" />
-          <IspitCard ispiti={this.state.ispiti} tipIspita="Uvid u radove" id="uvidURadove" />
+          <IspitCard ispiti={this.state.ispiti} tipIspita="Integralni ispit" id="integralniIspit" style={{marginTop: "20px"}} />
+          <IspitCard ispiti={this.state.ispiti} tipIspita="Uvid u radove" id="uvidURadove" style={{marginTop: "20px"}} />
         </div>
-        <div class="col" style={{textAlign: "center"}}>
+        <div class="col" style={{textAlign: "center", marginTop: "20px"}}>
         <button
           type="button"
           id="prijavljeniIspiti"
           className="btn btn-primary"
-          
+          onClick={() => this.props.onChangeActiveId(5)}
           
         >
           Prijavljeni ispiti

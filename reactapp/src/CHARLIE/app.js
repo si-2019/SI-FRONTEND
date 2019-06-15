@@ -28,16 +28,16 @@ class App extends Component {
         component: <KreiraniIspiti />
       }, {
         btnText: "Kreiraj ispit detalji",
-        component: <KreirajIspitDetalji />
+        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} />
       }, {
         btnText: "Informacije o ispitu",
-        component: <InformacijeOIspitu />
+        component: <InformacijeOIspitu onChangeActiveId={this.onChangeActiveId} />
       }, {
         btnText: "Prijava ispita",
-        component: <PrijavaIspita />
+        component: <PrijavaIspita onChangeActiveId={this.onChangeActiveId} />
       }, {
         btnText: "Prijavljeni ispiti",
-        component: <PrijavljeniIspiti />
+        component: <PrijavljeniIspiti onChangeActiveId={this.onChangeActiveId}/>
       }],
       menuComponentsProfesor: [{
         naziv: "Profil",

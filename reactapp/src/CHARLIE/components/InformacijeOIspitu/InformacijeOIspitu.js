@@ -31,11 +31,59 @@ class InformacijeOIspitu extends Component {
                         disabled
                 
               /> 
+              <div style={{textAlign: "left"}}>  
+              <label htmlFor="sala" class="col-form-label col-form-label-lg">Sala:</label>
+              </div>
+              <select
+                multiple
+                class="custom-select"
+                id="sala"                
+                disabled               
+              >
+                <option>VA</option>
+                <option>MA</option>
+                <option>S0</option>
+                <option>S1</option>
+                <option>S3</option>
+              </select>
+              <div style={{textAlign: "left"}}>  
+              <label htmlFor="termin" class="col-form-label col-form-label-lg">Termin: </label> 
+            </div>
+              <DatePicker
+                        id="termin2"                        
+                        disabled                
+              /> 
+               <div style={{textAlign: "left"}}>                
+              <label class="col-form-label col-form-label-lg" htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> </div>
+              <input type="number" className="form-control" id="vrijemeT2" disabled />
+              <div style={{textAlign: "left"}}>
+              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet">Kapacitet: </label> </div>
+              <input type="number" className="form-control" id="kapacitet2" disabled/>
+              <div style={{textAlign: "left"}}>
+              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet">Napomena: </label> </div>
+              
+           <textarea
+                    
+                    className="form-control"
+                    id="ispitnaNapomena2"
+                    placeholder="Ovdje unesite napomenu..."
+                    rows="15"
+                    disabled
+                   
+        />
+          <div style={{float: "right"}}>
+            
+              
+           
+            <button type="button" class="btn btn-primary" id="btnPovratak2" style={{marginTop: "20px"}} onClick={() => this.props.onChangeActiveId(4)}>Nazad</button>
           
+         </div>
+       </div>
+       
        </div>
        </div>
        </div>
-       </div>
+
       </div>)
   }
 }

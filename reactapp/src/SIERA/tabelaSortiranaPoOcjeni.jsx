@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class TabelaSortiranaPoOcjeni extends Component {
   constructor(...args) {
@@ -40,7 +40,7 @@ class TabelaSortiranaPoOcjeni extends Component {
         this.state.trenutnoLogovaniStudentID + "/sort"
       )
       .then(res => {
-        if (res.data.ocjene != undefined) {
+        if (res.data.success) {
           const sortiraniPredmeti = res.data.ocjene.map(obj => obj.naziv);
           const ocjene = res.data.ocjene.map(obj => obj.ocjena);
           this.setState({ sortiraniPredmetiPoOcjeni: sortiraniPredmeti, ocjene: ocjene });

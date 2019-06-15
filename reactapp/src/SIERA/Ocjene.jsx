@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./tabela.css";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Ocjene extends React.Component {
 
@@ -37,10 +37,11 @@ class Ocjene extends React.Component {
         axios
             .get("http://localhost:31918/ocjene/" + this.state.idStudenta)
             .then(res => {
-                this.setState({
-                    dummyOcjene: res.data.ocjene[0]
-                })
-
+                if (res.data.success) {
+                    this.setState({
+                        dummyOcjene: res.data.ocjene[0]
+                    })
+                }
             })
             .catch(res => {
                 console.log(res.error);

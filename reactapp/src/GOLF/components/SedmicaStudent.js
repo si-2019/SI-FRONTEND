@@ -12,21 +12,20 @@ class SedmicaStudent extends Component {
   }
 
   ucitaj(props){
-    axios.get(`http://localhost:31907/r3/dajMaterijaleZaStudenta/${this.props.idPredmet}/${props.sedmice}/${encodeURIComponent(props.naziv)}`).then(res =>{
+    axios.get(`http://si2019golf.herokuapp.com/r3/dajMaterijaleZaStudenta/${this.props.idPredmet}/${props.sedmice}/${encodeURIComponent(props.naziv)}`).then(res =>{
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else{
         this.setState({
           objave: res.data.objave
         })
-        console.log(props.naziv)
-        console.log(res.data.objave)
+      }
     })  
   }
 
   componentDidMount(){
-      axios.get(`http://localhost:31907/r3/dajMaterijaleZaStudenta/${this.props.idPredmet}/${this.props.sedmice}/${encodeURIComponent(this.props.naziv)}`).then(res =>{
-        this.setState({
-          objave: res.data.objave
-        })
-    })  
+      this.ucitaj(this.props)
   }
 
   componentWillReceiveProps(props){

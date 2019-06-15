@@ -128,10 +128,7 @@ class Forma extends Component {
                 
                 <br />
              
-            <form  onSubmit={this.handleSubmit} className="container-fluid">
-              <label className="font-weight-bold">ID studenta</label>
-              <input className="form-control font-weight-bold" readOnly value={id} /> <br />
-
+            <form  onSubmit={this.handleSubmit}>
               <label>Ime </label>
               <input  className="form-control" type="text" name="ime" value={ime} onChange={this.handleChange} /><br />
               
@@ -159,3 +156,7 @@ class Forma extends Component {
 }
 
 export default Forma
+
+/*              <label className="font-weight-bold">ID studenta</label>
+              <input className="form-control font-weight-bold" readOnly value={id} /> <br />
+*/

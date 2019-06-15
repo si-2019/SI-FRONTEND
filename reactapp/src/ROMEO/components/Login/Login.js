@@ -96,6 +96,8 @@ class Login extends Component {
           localStorage.setItem("token", data.token);
           localStorage.setItem("username", data.user);
           localStorage.setItem("id", id);
+          //mora se sve reloadati da bi se osvjezio header
+          window.location.reload();
           this.props.history.push("/romeo/home");
         });
         
@@ -113,9 +115,14 @@ class Login extends Component {
         document.getElementById('dioGreske').style.display = "block";
       });
       
-
+      //STUDENT
       //stest1
       //qwertzui
+
+      //PROFESOR
+      //zjuric1
+      //password1
+
     }
   }
 
@@ -131,7 +138,13 @@ class Login extends Component {
 
     return (
       <div className="body">
-         
+        <div className="header">
+          <img 
+            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
+            alt="new"
+            data-placement="right"
+          />
+        </div>
         <div className="card text-white bg-primary " >
           <form className="loginForma">
           <label htmlFor="exampleInputEmail1">Korisničko ime:</label>
@@ -149,7 +162,9 @@ class Login extends Component {
           <button type="button" className="close" data-placement="right" data-dismiss="alert" onClick = {this.UkloniGresku} >&times;</button>
           <div id="greske"></div>
         </div>
-        
+        <div className="footer">
+          &copy; 2019 Elektrotehnički fakultet u Sarajevu
+        </div>
       </div>
     );
   }

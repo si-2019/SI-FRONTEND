@@ -24,6 +24,8 @@
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    width: 40%;
+    margin: auto;
   }
   
 .juliet-signup-button {

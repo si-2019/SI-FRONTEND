@@ -77,9 +77,11 @@ render() {
 
   return (
     <div>
-      <div class="card w-25 ml-3 mt-4">
+      <div class="card p-3 w-50 ml-5">
         <div class="card-title" id="azuriranjeT">
-          Lista zadaća koje je moguće ažurirati:
+          <h4>
+              <b>Lista zadaća koje je moguće ažurirati: </b>
+            </h4>
           </div>
         <ButtonDropdown
           isOpen={this.state.dropdownOpen}
@@ -87,7 +89,7 @@ render() {
           id="azsel"
           multiple=""
         >
-          <DropdownToggle caret>Lista zadaća</DropdownToggle>
+          <DropdownToggle caret color="white" id="bbb2">Lista zadaća</DropdownToggle>
 
           <DropdownMenu>
             {lista.map(item => (

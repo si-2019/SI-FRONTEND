@@ -31,7 +31,15 @@
     box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);
     height: 600px;
 }
-
+#bbb{
+    border-color:black; 
+}
+#bbb2{
+    border-color:black; 
+}
+#bbb3{
+    border-color:black; 
+}
 #bodovi{
     margin-top: 50px;
     margin-left: 255px;
@@ -211,9 +219,9 @@
 #prvoSlForma{
     width: 30%;
 }
-#selK1{
+/*#selK1{
     margin-left:-50%;
-}
+}*/
 #selK2{
     margin-left:-50%;
 }
@@ -300,10 +308,10 @@ margin-left: 91.5%;
     margin-left: 10%;
     width:80%;
 }
-#kontOcjenjivanje{
+/*#kontOcjenjivanje{
     width:100%;
     margin-left: 28%;
-}
+}*/
 #zNo{
     margin-left: -80%;
 }

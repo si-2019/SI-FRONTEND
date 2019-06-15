@@ -31,6 +31,8 @@ class FormaOdsjek extends Component {
         var token = window.localStorage.getItem("token");
         var currentUsername = window.localStorage.getItem("username");
           
+        console.log(token);
+          console.log(currentUsername);
         //Drugi URL
         xhr.open('POST', 'http://localhost:31901/api/odsjek/AddNewOdsjek?currentUsername=' + currentUsername + '?token=' + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');

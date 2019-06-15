@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
+import PrikaziStatus from "./PrikaziStatus";
 
 class DropDownZavrsni extends React.Component {
 
@@ -137,15 +138,15 @@ class DropDownZavrsni extends React.Component {
         this.otvori();
 
     }
-     validateTema(id) {
+    validateTema(id) {
         if (id == null) {
-             this.setState({
+            this.setState({
                 selectClass: "custom-select form-control is-invalid",
                 greskaVisible: "visible"
             })
         }
         else {
-             this.setState({
+            this.setState({
                 selectClass: "custom-select",
                 greskaVisible: "hidden"
             })
@@ -155,47 +156,46 @@ class DropDownZavrsni extends React.Component {
         let zatvoriModal = () => this.setState({ otvori: false });
         return (
             <>
-                <div className="container-fluid" style={{ height: "100%" }}>
-                    <div className="d-flex justify-content-center" style={{ height: "100%" }}>
-                        <div className="d-flex align-items-center">
-                            <div class="row" style={{ margin: "0px" }}>
-                                <div class="col-lg col-md" >
+                <div className="container-fluid" style={{ marginTop: "30px" }}>
+                    <h2 style={{ marginBottom: "30px" }}>Završni rad</h2>
+                    <div class="card align-items-center">
+                        <div class="card-body" style={{ minWidth: "100%" }}>
+                            <div class="row justify-content-lg-around justify-content-md-center">
+                                <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+                                    <h4 class="card-title">Prijava završnog rada</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
+                                    <div style={{ textAlign: "left" }}>
+                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Mentori</label>
+                                    </div>
 
-                                    <div class="card" style={{ width: "30rem" }}>
-                                        <div class="card-body">
-                                            <h4 class="card-title">Završni rad</h4>
-                                            <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
-                                            <div style={{ textAlign: "left" }}>
-                                                <label class="col-form-label col-form-label-lg" for="inputLarge">Mentori</label>
-                                            </div>
+                                    <select class="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
+                                        {this.state.profesori.map(
+                                            (prof) =>
+                                                <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
 
-                                            <select class="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
-                                                {this.state.profesori.map(
-                                                    (prof) =>
-                                                        <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
+                                        )}
+                                    </select>
 
-                                                )}
-                                            </select>
+                                    <div style={{ textAlign: "left" }}>
+                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Teme</label>
+                                    </div>
+                                    <select class={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
 
-                                            <div style={{ textAlign: "left" }}>
-                                                <label class="col-form-label col-form-label-lg" for="inputLarge">Teme</label>
-                                            </div>
-                                            <select class={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
+                                        {this.state.teme.map(
+                                            (teme) =>
+                                                <option key={teme.id} value={teme.id}>{teme.naziv}</option>
+                                        )}
+                                    </select>
 
-                                                {this.state.teme.map(
-                                                    (teme) =>
-                                                        <option key={teme.id} value={teme.id}>{teme.naziv}</option>
-                                                )}
-                                            </select>
-                                                
-                                                <div class="invalid-feedback" style={{visibility: this.state.greskaVisible}}>Morate odabrati temu!</div>
-                                           
-                                            <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
-                                                <button type="button" class="btn btn-primary" style={{marginTop:"20px"}} onClick={this.handleClick}>Prijavi završni</button>
-                                            </div>
+                                    <div class="invalid-feedback" style={{ visibility: this.state.greskaVisible }}>Morate odabrati temu!</div>
 
-
-                                        </div>
+                                    <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
+                                        <button type="button" class="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
+                                    </div>
+                                    <hr></hr>
+                                    <h4 class="card-title">Status</h4>
+                                    <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
+                                        <PrikaziStatus />
                                     </div>
                                 </div>
                             </div>
@@ -221,9 +221,9 @@ class DropDownZavrsni extends React.Component {
                             <h4>Da li ste sigurni da želite prijaviti završni rad?</h4>
                             <div class="form-group">
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">Mentor: {this.state.selProf}</label>
+                                    <label class="col-form-label" htmlFor="inputDefault">Mentor: {this.state.selProf}</label>
                                     <br></br>
-                                    <label class="col-form-label" for="inputDefault">Tema: {this.state.selTema}</label>
+                                    <label class="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
                                 </div>
                             </div>
 
@@ -233,7 +233,6 @@ class DropDownZavrsni extends React.Component {
                         </Modal.Footer>
                     </form>
                 </Modal>
-
             </>
         );
     }

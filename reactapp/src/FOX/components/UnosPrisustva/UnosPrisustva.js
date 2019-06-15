@@ -9,7 +9,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
 class UnosPrisustva extends React.Component {
     state = {
         studenti: [
@@ -52,16 +51,18 @@ class UnosPrisustva extends React.Component {
         predavanjeSvi: "izaberiOpciju",
         vjezbaSvi: "izaberiOpciju",
         tutorijalSvi: "izaberiOpciju",
-        sedmica: 0
-    }
-
-    constructor(props) {
-        super(props);
+        sedmica: 0,
+        idPredmeta: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64,
+        greskaBaza: 0,
+        isFetching: false
     }
 
     handleChangeSvi = (event) => {
         const {name, value} = event.target;
-        this.setState({[name]: value});
+        this.setState({
+            [name]: value,
+            greskaBaza: 0
+        });
     }
 
     handleSubmitSvi = (event) => {
@@ -97,9 +98,18 @@ class UnosPrisustva extends React.Component {
                 })
             }
         })
+        this.setState({greskaBaza: 0});
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.setState({
+            greskaBaza: 3,
+            isFetching: true
+        })
+
+        const idPredmeta = this.state.idPredmeta;
+        const sedmica = this.state.sedmica;
         const studenti = this.state.studenti.map(s => {
             return {
                 id: s.id,
@@ -110,16 +120,28 @@ class UnosPrisustva extends React.Component {
                 vjezbe: s.vjezbe === "-" ? null : s.vjezbe 
             };
         });
-        axios.post('http://localhost:31906/api/fox/prisustvo/unosIzmjena?idPredmeta=4&brojSedmice=1', studenti);
+
+        axios.put(`https://si2019fox.herokuapp.com/api/fox/prisustvo/unosIzmjena?idPredmeta=${idPredmeta}&brojSedmice=${sedmica}`, studenti)
+        .then(() => {
+            this.setState({
+                greskaBaza: 2,
+                isFetching: false
+            });
+        })
+        .catch(()=> {
+            this.setState({
+                greskaBaza: 1,
+                isFetching: false
+            });
+        });
     }
 
     handleClickSedmica = (brojSedmice) => {
         this.setState({sedmica: brojSedmice});
-    }
-    
-    componentDidMount() {
-        // Privremeno rješnje
-        axios.get('http://localhost:31906/api/fox/prisustvo?idPredmeta=4&brojSedmice=1').then(response => {
+
+        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 101;
+
+        axios.get(`https://si2019fox.herokuapp.com/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${brojSedmice}`).then(response => {
             let studenti = response.data.map(s => {
                 return {
                     id: s.id,
@@ -130,21 +152,30 @@ class UnosPrisustva extends React.Component {
                     vjezbe: s.vjezbe === null ? "-" : s.vjezbe 
                 };
             })
-             this.setState({studenti: studenti});
+             this.setState({studenti: studenti, idPredmeta: idPredmeta});
+        })
+        .catch(()=> {
         });
-   }
+    }
+
+    handleNazad = () => {
+        this.setState({
+            sedmica: 0,
+            greskaBaza: 0
+        });
+    }
 
     render() {
         return (
             <div id="unosPrisustvaID" className="footerDno">
 
                 <Container fluid style={{padding:"0", margin: "0"}}>
-                    <Row>
+                    <Row noGutters>
                         <Col md="3">
                             <Header isPocetna={false}/>
                         </Col>
                         <Col>
-                            <div style={{textAlign: "center"}}>
+                            <div style={{textAlign: "center", paddgin: "15px"}}>
                                 {
                                     this.state.sedmica !== 0 &&
                                         <UnosPrisustvaForma
@@ -152,7 +183,8 @@ class UnosPrisustva extends React.Component {
                                             handleSubmit={this.handleSubmit}
                                             handleSubmitSvi={this.handleSubmitSvi}
                                             handleChange={this.handleChange}
-                                            handleChangeSvi={this.handleChangeSvi}/>
+                                            handleChangeSvi={this.handleChangeSvi}
+                                            handleNazad={this.handleNazad}/>
                                 }
                                 {   
                                     this.state.sedmica === 0 &&

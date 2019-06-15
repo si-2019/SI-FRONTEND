@@ -34,13 +34,15 @@ class DodavanjeTipovaFileova extends Component {
     }
 
     return (
-      <div class="card ml-3 h-100" style={{ width: "25rem", height: "50%" }}>
+      <div /*class="card ml-3 h-100"*/ style={{ width: "25rem", height: "50%" }}>
         <Form>
           <div id="tipoviT" className="card-title p-2">
             <h4>
               <b>Tipovi fileova za svaki zadatak</b>
+
             </h4>
           </div>
+        
           <FormGroup row>
             <div id="labTip" sm={10}>
               <label>Da li svi zadaci imaju iste tipove fileova:</label>
@@ -59,6 +61,7 @@ class DodavanjeTipovaFileova extends Component {
 
           <FormGroup >
             <div id="tabelaTipovi" className="p-2">
+              <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
               <Table bordered className="table table-bordered text-center">
                 <thead>
                   <tr className="text-dark">

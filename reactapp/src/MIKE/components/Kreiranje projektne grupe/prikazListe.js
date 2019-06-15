@@ -1,41 +1,31 @@
 import React, { Component } from 'react';
 import PrikazPredmeta from './PrikazPredmeta'
 import './bootstrapflatly.css'
+import UnosInformacija from './UnosInformacija';
+import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe';
 
   class Lista extends Component {
     constructor(props){
-      super();
-    }
-    render(){
-      return (
-        <form>
-          <fieldset>
-            <div>
-              <Select submit={this.props.submit}/>        
-            </div>
-          </fieldset>
-         </form>
-      )
-    }
-  }
-  
-  class Select extends Component {
-    constructor(props){
-      super();
+      super(props);
       this.state = {
-        tech: 'Lista predmeta '
+        tech: 'Lista predmeta: ',
+        predmeti:props.predmeti,
+        trenutniPredmet:0,
+        forma:"null",
+        naziv:"",
+        opis:""
       };
+      this.informacije=this.informacije.bind(this);
     }
     handleChange(e){
+      var selekt=document.getElementById("selectListe").selectedIndex;
       this.setState({
-        tech: e.target.value
+        tech: e.target.value,
+        trenutniPredmet:selekt-1
       })
     }
     render(){
-      return (
-        
-
-        
+      if(this.state.forma=="null") return (
         <div className="card" style={{float: "left", width:"100%"}}>
           <div class="card-body"> 
          <h4 class="card-title" style={{textAlign:"left"}}>{this.state.tech}</h4>
@@ -43,21 +33,26 @@ import './bootstrapflatly.css'
           <br/>
           <select  className="form-control" id="selectListe" onChange={this.handleChange.bind(this)} value={this.state.tech}>
             <option className="list-group-item" value="Lista predmeta">Odaberite predmet</option>
-            <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
-            <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
-            <option className="list-group-item" value="Projektovanje informacionih sistema">Projektovanje informacionih sistema</option>
-            <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
+            {
+              this.state.predmeti.map(predmet=>{
+                return <option className="list-group-item" value={predmet.naziv}>{predmet.naziv}</option>
+              })
+            }
           </select>
-         
-      <PrikazPredmeta opisProjekta={"Ovo je opis projekta koji je potrebno uraditi na odabranom predmetu"} brojMogucihBodova={20}/>
-        
-        
+          {/*opis radi ako postoje predmeti, inace ne*/}
+        <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].opis} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].bodovi}/>
         <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.props.submit}>Dalje</button>
         </div>
         </div>
-       
-      )
-
+      );
+      else if(this.state.forma=="informacije") return(
+        <UnosInformacija informacije={this.sacuvajInformacije}/>
+      );
+    }
+    informacije(){
+      this.setState({
+        forma:"informacije"
+      })
     }
   }
 

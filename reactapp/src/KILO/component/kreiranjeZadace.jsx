@@ -10,6 +10,8 @@ import {
   promjeniListuTipova,
   promjenaBodova
 } from "../utils/kreiranje-zadace";
+import jQuery from 'jquery'; 
+
 
 class KreiranjeZadace extends Component {
   constructor(props) {
@@ -39,6 +41,28 @@ class KreiranjeZadace extends Component {
     };
   }
 
+  provjeriToken = () => {
+    axios({
+      url: 'https://si2019romeo.herokuapp.com/users/validate',
+      type: 'get',
+      dataType: 'json',
+      data: jQuery.param({
+        username: window.localStorage.getItem("username")
+      }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+      },
+      complete: function (response) {
+        if (response.status == 200) {
+          return true;
+        }
+        else{
+          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+        } 
+      }  
+    });
+  }
+
   handleChangeProps = props => {
     if (props.mainState) {
       this.setState({
@@ -51,9 +75,15 @@ class KreiranjeZadace extends Component {
   onChangePostavka = e => {
     // ovo bi se trebalo ubaciti u funkciju iznad "handleChangeProps" ili koju vec da ne bude posebna
     if (e) {
-      this.setState({
-        postavka: e.target.files
-      });
+      if(e.target.files[0].size > 25000000) { // ogranicava na 25MB 
+        alert ("Prevelik fajl");
+        document.getElementById("file").value = null;
+        this.setState({ postavka: [null] });
+      } else {
+        this.setState({
+          postavka: e.target.files
+        });
+      }
     }
   };
 
@@ -191,7 +221,6 @@ class KreiranjeZadace extends Component {
           porukeGreske: porukeGreske
         });
         var valid = true;
-        console.log("1111111111111111111111");
         for (var i = 0; i < porukeGreske.length; i++) {
           if (porukeGreske[i] != "") {
             valid = false;
@@ -239,8 +268,8 @@ class KreiranjeZadace extends Component {
           }*/}
           if (porukeGreske[3] !== "") {
             document.getElementById("brbodKILO").className =
-              "form-control is-invalid";
-            document.getElementById("brbodKILO").style.margin = "0 auto";
+              "form-control is-invalid static";
+            /*document.getElementById("brbodKILO").style.margin = "0 auto";*/
           }
           this.setState({
             validno: false
@@ -259,7 +288,7 @@ class KreiranjeZadace extends Component {
 
         if (this.state.postavka[0] !== null) {
           var file = this.state.postavka[0];
-          if (file) {
+          if (file ) { //manji od 25 MB
             fData.append("file", new Blob([file], { type: file.type }));
             fData.append("imeFajlaPostavke", file.name);
           }
@@ -267,6 +296,7 @@ class KreiranjeZadace extends Component {
         fData.append("state", JSON.stringify(this.state));
 
         if (this.state.radnja === "Kreiranje") {
+          this.provjeriToken();
           axios
             .post("http://localhost:31911/addZadaca", fData)
             .then(res => {
@@ -280,6 +310,7 @@ class KreiranjeZadace extends Component {
             })
             .catch(() => this.setState({ neuspjehKreiranja: true }));
         } else if (this.state.radnja === "Azuriranje") {
+          this.provjeriToken();
           axios
             .put(
               `http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`,
@@ -460,12 +491,15 @@ class KreiranjeZadace extends Component {
                   podaci={this}
                 />
               </div>
-              <div clas="col-3">
-                <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
-              </div>
 
-              <div class="col-3">
+              <div class="col-9">
                 <BodoviZadaca onChange={this.handleChange} podaci={this} />
+              </div>
+            </div>
+            <br></br><br></br>
+            <div class="row">
+            <div class="col">
+                <DodavanjeTipovaFileova onChange={this.handleChange} podaci={this} />
               </div>
             </div>
           </div>

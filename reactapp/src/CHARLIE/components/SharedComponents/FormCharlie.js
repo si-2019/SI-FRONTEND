@@ -19,7 +19,7 @@ class FormCharlie extends Component {
   render() {
     return (
       <div className="form-group">
-        <label htmlFor="ispitnaNapomena">{this.props.labelTitle}</label>
+       
         {this.state.validationError && (
           <div className="alert alert-danger" role="alert">
             <i

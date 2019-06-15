@@ -16,7 +16,7 @@ class FormaProfPred extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/getAllProfessors')
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaProfesora: response.data});
@@ -25,7 +25,7 @@ class FormaProfPred extends Component {
             console.log(error)
         })
 
-        axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaPredmeta: response.data});
@@ -56,7 +56,7 @@ class FormaProfPred extends Component {
       else {
         console.log(profesor,predmet);
         const json={"idPredmet":predmet, "idProfesor":profesor}
-        axios.post("http://localhost:31901/api/povezivanje/linkProfessorSubject", json)
+        axios.post("https://si2019alpha.herokuapp.com/api/povezivanje/linkProfessorSubject", json)
         .then(response => {
             console.log(response);
         })
@@ -71,7 +71,8 @@ class FormaProfPred extends Component {
         const {profesor, predmet, listaProfesora, listaPredmeta} = this.state;
 
         return (
-          <div className="col-md-2">
+          <div className="card align-items-center">
+          <div className="card-body col-md-2">
             <br />
               <p>Odaberite profesora: </p><br />
                 <select className="custom-select"  onChange={this.onChangeProfesor}> 
@@ -94,7 +95,7 @@ class FormaProfPred extends Component {
                 </select><br /><br />
 
                 <button className="btn btn-primary btn-block" onClick={()=>this.spoji(predmet,profesor)}>Dodaj</button>
-
+                </div>
           </div>
         );
     }

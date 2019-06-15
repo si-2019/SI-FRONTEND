@@ -14,24 +14,24 @@ class Ispiti extends  Component {
       test: '',
     }
   }
+  
 render() {
     return(
-      <div className="footerDno">
+      <div className="footerDno" style={{paddingBottom: "50px"}}>
         <Container fluid style={{padding:"0", margin: "0"}}>
-          <Row>
+          <Row noGutters>
             <Col md="3">
               <Header/>
             </Col>
             <Col>
-              <br></br>
-              <h4>Pregled ispita</h4>
-              <br></br>
-              <Tabela/>
+              <div style={{padding: "15px"}}>
+                <Tabela/>
+              </div>
             </Col>
           </Row>
         </Container>
       
-      <Footer/>
+        <Footer/>
       </div>
         );
     }

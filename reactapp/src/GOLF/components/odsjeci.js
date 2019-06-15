@@ -41,8 +41,8 @@ class Odsjeci extends Component {
 
     render(){
         return(
-            <div id="drugi" class='side'>
-
+            <div class='vanjski'>
+                <div class="side" id="drugi">
                 <button type="button" class="btn btn-primary left-buttons" onClick={() => this.Otvori(1)}>Računarstvo i informatika</button>
                 <br></br>
                 {this.state.kliknutRI && this.props.ciklus == "1" &&<Semestri6 ciklus={this.props.ciklus} odsjek='RI'> </Semestri6> || this.state.kliknutRI  && <Semestri4 ciklus={this.props.ciklus} odsjek='RI'></Semestri4>}
@@ -55,6 +55,7 @@ class Odsjeci extends Component {
                 <button type="button" class="btn btn-primary left-buttons" onClick={() => this.Otvori(4)}>Telekomunikacije</button>
                 <br></br>
                 {this.state.kliknutTK && this.props.ciklus == "1" && <Semestri6 ciklus={this.props.ciklus} odsjek='TK'> </Semestri6> || this.state.kliknutTK  && <Semestri4 ciklus={this.props.ciklus} odsjek='TK'></Semestri4>}
+            </div>
             </div>
         )
     }

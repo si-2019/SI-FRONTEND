@@ -17,7 +17,7 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -59,7 +59,7 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
         
-        xhr.open('POST','http://localhost:31901/api/odsjek/PromijeniOdsjek', true);
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/odsjek/PromijeniOdsjek', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -83,7 +83,7 @@ class Forma extends Component {
       obrisi(naziv){
         const json={naziv};
         console.log(naziv);
-        axios.delete("http://localhost:31901/api/odsjek/DeleteOdsjek?naziv="+ naziv)
+        axios.delete("https://si2019alpha.herokuapp.com/api/odsjek/DeleteOdsjek?naziv="+ naziv)
         .then(response=>{
           alert("Uspješno obrisan odsjek!")
         })
@@ -99,8 +99,8 @@ class Forma extends Component {
         const { idOdsjek, naziv, lista, selectedValue } = this.state;
        
         return (
-          
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body  col-md-4">
             <br />
                 <p>Odaberite odsjek: </p><br />
                 <select className="custom-select"  onChange={this.onChange}> 
@@ -126,12 +126,12 @@ class Forma extends Component {
               
 
               
-              <button className="btn btn-success btn-block" onClick={()=>this.promijeni(selectedValue)}>Spremi izmjene</button>
-              <button className="btn btn-success btn-block" onClick={()=>this.obrisi(selectedValue)}>Obrisi odsjek</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.promijeni(selectedValue)}>Spremi izmjene</button>
+              <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(selectedValue)}>Obrisi odsjek</button>
              </form><br />
 
              
-   
+             </div>
     </div>
         );
     }

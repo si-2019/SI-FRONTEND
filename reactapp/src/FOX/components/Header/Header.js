@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import NavbarFox from '../Navbar/Navbar';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 
 class Header extends Component {
   constructor(props) {
@@ -28,18 +26,11 @@ class Header extends Component {
               <button type="button" className="btn btn-primary left-buttons">Uputstvo</button>
             </a>
 
-            <a href="https://www.iiicareer.com/OTS/Client/logout.php">
+            <a href="http://localhost:3000/Romeo">
               <button type="button" className="btn btn-primary left-buttons">Odjava</button>
             </a>
             
           </div>
-
-          {/* <Navbar bg="primary" variant="dark" className="justify-content-end">
-            <Nav className="mr-auto" className="justify-content-end">
-              <Nav.Link href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</Nav.Link>
-              <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>
-            </Nav>    
-          </Navbar> */}
       }
       else {
         meni = <NavbarFox />;

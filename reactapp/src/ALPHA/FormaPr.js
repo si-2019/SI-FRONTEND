@@ -18,7 +18,7 @@ class FormaPr extends Component {
           kanton: '',
           drzavljanstvo: '',
           telefon: '',
-          spol:'',
+          spol:'zensko',
           imePrezimeMajke:'',
           imePrezimeOca:'',
           adresa:'',
@@ -34,7 +34,7 @@ class FormaPr extends Component {
       }
       componentDidMount(){
        
-        axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -84,7 +84,7 @@ class FormaPr extends Component {
         };
         const body = JSON.stringify(body1);
         console.log("Svi potrebni podaci strng: ", body);
-        xhr.open('POST', 'http://localhost:31901/api/korisnik/AddNewProfessor', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewProfessor', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -114,7 +114,8 @@ class FormaPr extends Component {
         const {idOdsjek, ime, prezime, datumRodjenja, JMBG, email, mjestoRodjenja, kanton, drzavljanstvo, telefon, spol, imePrezimeMajke, imePrezimeOca, adresa, website, linkedin, titula, lista } = this.state;
 
         return (
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body col-md-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
               <br />
               <label >Odsjek </label>
@@ -152,10 +153,17 @@ class FormaPr extends Component {
               <label>Telefon </label>
               
               <input className="form-control " type="tel" name="telefon" required onChange={this.handleChange} /><br />
+
               <label className="radio-inline">Spol </label>
-              <input id="1" className="custom-control custom-radio" type="radio" value="zensko" onChange={this.handleOptionChange} checked={this.state.spol === "zensko"}/> Žensko
-              <input id="2" className="custom-control custom-radio" type="radio" value="musko" onChange={this.handleOptionChange} checked={this.state.spol === "musko"}/>Muško <br/><br/>
-              
+              <div className="custom-control custom-radio">
+                <input id="1" className="custom-control-input" type="radio" value="zensko" onChange={this.handleOptionChange} checked={this.state.spol === "zensko"}/> 
+                <label class="custom-control-label" for="1">Žensko</label>
+              </div>
+              <div className="custom-control custom-radio">
+                <input id="2" className="custom-control-input" type="radio" value="musko" onChange={this.handleOptionChange} checked={this.state.spol === "musko"}/>
+                <label class="custom-control-label" for="2">Muško</label><br/><br/>
+              </div>
+
               <label >Ime i prezime majke</label>
               <input className="form-control " type="text" name="imePrezimeMajke" required  onChange={this.handleChange}/><br />
               <label >Ime i prezime oca</label>
@@ -175,6 +183,7 @@ class FormaPr extends Component {
               
               <input type="submit" value="Dodaj" className="btn btn-primary btn-block" />
     </form>
+    </div>
     </div>
         );
     }

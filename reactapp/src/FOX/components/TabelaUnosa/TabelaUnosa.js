@@ -1,124 +1,228 @@
-import React, {Component } from 'react';
-import Col from 'react-bootstrap/Col';
+import React, { Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import axios from 'axios';
+import Poruka from '../Poruka/Poruka';
+
 class TabelaUnosa extends Component {
     constructor(props){
         super(props);
-        this.state ={
+
+        this.state = {
             validated: false,
-            greskaBaza: 0
+            student: null,
+            greskaBaza: 0,
+            opisUspjeh: "",
+            naslovUspjeh: "",
+            naslovGreska: "",
+            opisGreska: "",
+            isFetching: false,
+            ispiti: null
         }
-        this.ocjena=React.createRef();
+
+        this.indeks = React.createRef();
+        this.bodovi = React.createRef();
     }
-    handleSubmit(event) {
+
+    handleClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
+        axios.get("https://si2019fox.herokuapp.com/fox/getStudentInfo/" + this.indeks.current.value).then((res)=> {
+            this.setState({
+                isFetching: false,
+                student: res.data,
+                greskaBaza: 2,
+                opisUspjeh: "Student je pronađen.",
+                naslovUspjeh: res.data !== null ? res.data.ime + " " + res.data.prezime : ""
+            });
+        })
+        .catch(()=> {
+            this.setState({ greskaBaza: 1,
+                isFetching: false,
+                naslovGreska: "Greška!",
+                opisGreska: "Student nije pronađen."
+            });
+        });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
         const form = event.currentTarget;
-        console.log(event.currentTarget.checkValidity());
+
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+            this.setState({
+                isFetching: false,
+                greskaBaza: 0
+            });
         }
         else {
-            //Poziv API-a
-            //Promise
-            /* 3. Get Ref Value here (or anywhere in the code!) */
-           
-            console.log(this.ocjena.current.value);
-            let reqBody = {
-              /*  idStudent: 2, //pristup lokalnom storage-u
-                idPredmet: 64,
-                idAkademskaGodina: 11,
-                ocjena: this.ocjena.current.value*/
-            };
-            if(this.ocjena.current.value>10 || this.ocjena.current.value<6)   this.setState({ greskaBaza: 1 });
-            console.log(this.ocjena.current.value);
-            axios.post('', reqBody)
-            .then((res) => {
-                console.log(res);
-                this.setState({greskaBaza: 2});
-            })
-            .catch((err)=> {
-                console.log("Greska:" + err);
-                this.setState({greskaBaza: 1});
-            });
+            if(this.state.student !== null && this.ispit != null) {
+                let reqBody = {
+                    idStudent: this.state.student.id,
+                    idIspit: this.ispit.current.value,
+                    bodovi: this.bodovi.current.value
+                };
+                    
+                axios.post('https://si2019fox.herokuapp.com/api/fox/ispiti', reqBody)
+                .then(() => {
+                    const student = this.state.student;
+                    this.setState({
+                        greskaBaza: 2,
+                        isFetching: false,
+                        student: null,
+                        opisUspjeh: "Bodovi su upisani.",
+                        naslovUspjeh: student !== null ?
+                            student.ime + " " + student.prezime + " " + "(" + student.indeks + ")" + ", " + this.ocjena.current.value : ""
+                    });
+                    this.ocjena.current.value = null;
+                    this.indeks.current.value = null;
+                })
+                .catch(()=> {
+                    this.setState({
+                        greskaBaza: 1,
+                        isFetching: false,
+                        naslovGreska: "Greška!",
+                        opisGreska: "Baza podataka nije dostupna."
+                    });
+                });
+            }
+            else {
+                this.setState({
+                    greskaBaza: 1,
+                    isFetching: false,
+                    naslovGreska: "Greška!",
+                    opisGreska: "Ne možete unijeti bodove, nepotpuni podaci."
+                });
+            }
        }
         this.setState({ validated: true });
-        event.preventDefault();
+    }
+
+    componentDidMount() {
+        this.setState({
+            isFetching: true,
+            greskaBaza: 3
+        });
+
+        const predmet = window.localStorage.getItem("idPredmeta");
+        const idPredmeta = predmet !== null ? predmet : 64
+        axios.get("https://si2019fox.herokuapp.com/api/fox/ispiti/" + idPredmeta).then((res)=> {
+            this.setState({
+                ispiti: res.data,
+                isFetching: false,
+                greskaBaza: 0
+            });
+        })
+        .catch(()=> {
+            this.setState({
+                greskaBaza: 1,
+                isFetching: false,
+                naslovGreska: "Ispiti nisu učitani!",
+                opisGreska: "Baza podataka nije dostupna."
+            });
+        });
     }
      
     render() {
-        return(
-            <div class="card">
+        const validated = this.state.validated;
+
+        return (
+            <div class="card" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">
+                    <Poruka
+                    greska={this.state.greskaBaza}
+                    naslovUspjeh={this.state.naslovUspjeh}
+                    naslovGreska={this.state.naslovGreska}
+                    opisUspjeh={this.state.opisUspjeh}
+                    opisGreska={this.state.opisGreska}
+                    />
                     <h4 class="card-title text-center" >Unos bodova ispita</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">Omogućava pretraživanje studenata i unos bodova.</h6>
                     <br/>
                     <div>
-                        <Form>
-
-                            <Form.Row>
-                                <Col></Col>
-                                <Form.Group as={Col} sm={{span: 4}}>
-                                    <select class="custom-select">
-                                        <option selected="">Otvori za odabir ispita</option>
-                                        <option value="1">I parcijalni, 20.4.2019.</option>
-                                        <option value="2">II parcijalni, 20.6.2019.</option>
-                                        <option value="3">Popravni I parcijalni, 1.7.2019.</option>
-                                        <option value="3">Popravni II parcijalni, 1.7.2019.</option>
-                                        <option value="3">Integralni ispit 1.9.2019.</option>
+                        <Form 
+                            noValidate 
+                            validated={validated}
+                            onSubmit = {e => this.handleSubmit(e)}
+                        >
+                            <Form.Row className="justify-content-center">
+                                <Form.Group as={Col} lg="4" md="6" sm="8" xs="12" style={{textAlign: "left"}}>
+                                    <select required class="custom-select" ref={ this.ispit }>
+                                        {
+                                            this.state.ispiti && this.state.ispiti.map(ispit => {
+                                                return <option value={ispit.id} key={ispit.id}>{ispit.tip} {ispit.datum}</option>
+                                            })
+                                            }
                                     </select>
                                 </Form.Group>
-                                <Col></Col>
                             </Form.Row>
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left"}}>
-                                    <Form.Label> Index: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
+                                    <Form.Label> Indeks: </Form.Label>
+                                    <Form.Control
+                                    placeholder="Unesite indeks"
+                                    ref={ this.indeks }
+                                    required
+                                    type="number"
+                                    min={0}
+                                    name="indeks">
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
+                                    <Form.Control.Feedback type="invalid"> Indeks nije validan </Form.Control.Feedback>
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>           
-                                    <Button onClick={this.handleClick}> Pretrazi </Button>
-                                </Col>
-                            </Form.Row>
-
-                            <Form.Row>
-                                <Col style={{textAlign: "center"}}>
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}} >
+                                    <Button
+                                    onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
 
                             <hr/>
 
-                            <Form.Row>
-                                <Col style={{textAlign: "left"}}>
+                            <Form.Row className="justify-content-center">
+                                <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Bodovi: </Form.Label>
-                                    <Form.Control type="text" name="name">
+                                    <Form.Control
+                                    ref={ this.bodovi }
+                                    required
+                                    placeholder="Unesite bodove"
+                                    type="number"
+                                    min={-100}
+                                    max={100}
+                                    name="ocjena"
+                                    value={this.state.ocjena}>
                                     </Form.Control>
+                                    <Form.Control.Feedback> Validni bodovi </Form.Control.Feedback> 
+                                    <Form.Control.Feedback type= "invalid"> Bodovi nije validna </Form.Control.Feedback> 
                                 </Col>
                             </Form.Row>
 
-                            <Form.Row style={{paddingTop: "10px"}}>
-                                <Col></Col>
-                                <Col md="auto" style={{textAlign: "right"}}>
-                                    <Button onClick={this.handleCli}> Unesi </Button>
+                            <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
+                                <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
+                                    <Button variant="primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
-
-                            <Form.Row>
-                                <Col style={{textAlign: "center"}}>
-                                    <br/>
-                                </Col>
-                            </Form.Row>
-                    </Form>
-                    </div>    
+                            
+                        </Form>
+                    </div>
                 </div>
             </div>
-            
         );
     }
 }

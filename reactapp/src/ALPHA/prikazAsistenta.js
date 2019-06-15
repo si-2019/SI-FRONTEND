@@ -25,8 +25,8 @@ class prikazAsistenta extends Component{
         }
       }
     
-     if(param!='') xhttp.open("get", "http://localhost:31901/api/korisnik/searchAssistant?ime="+param, true);
-     else xhttp.open("get", "http://localhost:31901/api/korisnik/getAllAssistants", true);
+     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchAssistant?ime="+param, true);
+     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants", true);
      
       xhttp.send();
     }
@@ -39,7 +39,7 @@ class prikazAsistenta extends Component{
 
     obrisi(id){
       console.log(id);
-      axios.delete("http://localhost:31901/api/korisnik/deleteAssistant?id="+id)
+      axios.delete("https://si2019alpha.herokuapp.com/api/korisnik/deleteAssistant?id="+id)
       .then(response => {
           console.log(response);    
       })
@@ -55,8 +55,8 @@ class prikazAsistenta extends Component{
           <div className="card">
             <div className="card-body">
               <br /> 
-                <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange}></input>  <br />
-                <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
+                <input type="text" className="form-control col-md-4" value={search} onChange={this.handleChange} placeholder="Ime i prezime"></input>  <br />
+                <button className="btn btn-primary btn-block col-md-4" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
               <br />
               
                 

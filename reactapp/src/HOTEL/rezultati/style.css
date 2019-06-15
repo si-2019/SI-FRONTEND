@@ -1,31 +1,29 @@
-#container{
+#containerRezultati{
     background-color:#d9d9d9;
     position: absolute;
     height: 100%;
     width: 100%; 
+    overflow-y: scroll;
 }
-#header{
-    background-color: #595959; 
-    height: 10%;
+#headerRezultati{
+    background-color: #2C3E50; 
  }
-#content{
+#contentRezultati{
     height: auto; 
     width: 100%; 
     position: absolute;
 }
-#info{
-    background-color: #b3b3b3;
+#infoRezultati{
     width:25%; 
-    height: 100%; 
     float: left; 
     padding-top: 35px;
     display: flex;
     justify-content: center;
 }
-#info1{
+#info1Rezultati{
     width: 80%;
 }
-#show{
+#showRezultati{
     background-color: #d9d9d9;
     float: right;
     height:100%; 
@@ -34,11 +32,19 @@
     display: flex;
     justify-content: center;
 }
-#show1{
-    width: 80%
-    }
-#button{
+#show1Rezultati{
+    width: 95%
+}
+#buttonRezultati{
     width:150; 
     height: 40;
     margin-top:15px; 
+}
+
+.card-body-pitanje {
+    border: 1px solid #2C3E50;
+    border-radius: 5px;
+    padding: 5%;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }

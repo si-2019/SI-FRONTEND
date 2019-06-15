@@ -25,8 +25,11 @@ class prikazAsistenta extends Component{
         }
       }
     
-     if(param!='') xhttp.open("get", "http://localhost:31901/api/korisnik/searchStudent?ime="+param, true);
-     else xhttp.open("get", "http://localhost:31901/api/korisnik/getAllStudents", true);
+    //"http://localhost:31901/api/korisnik/searchStudent?ime="+param
+    //"http://localhost:31901/api/korisnik/getAllStudents"
+
+     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchStudent?ime="+param, true);
+     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents", true);
      
       xhttp.send();
     }
@@ -46,8 +49,8 @@ class prikazAsistenta extends Component{
           <div className="card">
             <div className="card-body">
               <br /> 
-                <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange}></input>  <br />
-                <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
+                <input type="text" className="form-control col-md-4" value={search} onChange={this.handleChange} placeholder="Ime studenta"></input>  <br />
+                <button className="btn btn-primary btn-block col-md-4" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
               <br />
               
                 

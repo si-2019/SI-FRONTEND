@@ -6,7 +6,7 @@ import Predmet from './komponente/Predmet.js'
 import Obavijestenja from './komponente/Obavjestenja';
 import Calendar from './komponente/Calendar';
 import PredmetE from '../GOLF/app';
-
+import ProsjekPoGodinama from '../LIMA/Izvjestaji/components/Dijagrami/ProsjekPoGodinama.js';
 
 class App extends Component {
 
@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
     var ispis=(
-      <Container>
+      <Container style={{backgroundColor: "#fff"}}>
         <Row>
           <Col>
             <Predmet fija={this.fija}/>
@@ -42,7 +42,7 @@ class App extends Component {
           </Col>
         </Row>
         <Row>
-          <Col>Graf</Col>
+          <Col><ProsjekPoGodinama /></Col>
           <Col>Graf</Col>
           <Col>Graf</Col>
         </Row>

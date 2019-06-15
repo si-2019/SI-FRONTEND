@@ -24,7 +24,7 @@ export default class Archived extends React.Component {
     setIssue = (item) => {
         this.setState({
             clickedItem: {
-                data: item, expanded: true
+                data: item, expanded: !this.state.clickedItem.expanded
             }
         });
     };
@@ -33,7 +33,7 @@ export default class Archived extends React.Component {
         const {trashStudent, trashSS} = this.state;
         const id = id_Issue;
             
-        axios.put('http://localhost:31902/issues/archived/delete', { trashStudent, trashSS, id })
+        axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id })
         .then((result) => {
 
             for(let i = 0; i < this.props.data.length; i++){
@@ -47,6 +47,26 @@ export default class Archived extends React.Component {
 
             this.props.triggerRefreshList(this.state.newArray);
         });
+    }
+    resloveIssue = (idIssue) => {
+
+        const { trashStudent, trashSS } = this.state;
+        axios.put('http://localhost:31902/issues/reslove', { trashStudent, trashSS, idIssue })
+            .then((result) => {
+
+                for (let i = 0; i < this.props.data.length; i++) {
+                    if (this.props.data[i].id == idIssue) {
+                        this.props.data.splice(i, 1);
+                        this.setState({
+                            newArray: this.props.data
+                        })
+                    }
+                }
+
+                this.props.triggerRefreshList(this.state.newArray);
+            });
+
+
     }
     
 
@@ -85,6 +105,10 @@ export default class Archived extends React.Component {
                                     <div className = "issueButtonDelete">
                                         <Button onClick={() => this.deleteIssue(issue.id)}>Obriši</Button>
                                     </div>
+                                    <div className="issueButtonDelete">
+                                   
+                                    <Button onClick={() => this.resloveIssue(issue.id)}>Riješi</Button>
+                                </div>
                                 </div>
                             </div>
                             

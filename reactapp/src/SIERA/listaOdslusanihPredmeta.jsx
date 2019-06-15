@@ -4,8 +4,6 @@ import axios from "axios";
 class ListaPredmeta extends Component {
   state = {
     predmeti: ["Predmet1", "Predmet2", "Predmet3", "Predmet4", "Predmet5"],
-    vidljiv: false,
-    znak: "+",
     trenutnoLogovaniStudentID: 1
   };
 
@@ -13,20 +11,17 @@ class ListaPredmeta extends Component {
     axios
       .get(
         `http://localhost:31918/predmeti/odslusani/` +
-          this.state.trenutnoLogovaniStudentID
+        this.state.trenutnoLogovaniStudentID
       )
       .then(res => {
-        console.log(res);
-        const predmeti = res.data.odslusaniPredmeti.map(obj => obj.naziv);
-        this.setState({ predmeti });
+        if (res.data.odslusaniPredmeti != undefined) {
+          const predmeti = res.data.odslusaniPredmeti.map(obj => obj.naziv);
+          this.setState({ predmeti });
+        }
+        else {
+          this.setState({ predmeti: [] });
+        }
       });
-  }
-
-  toggle() {
-    this.setState({
-      vidljiv: !this.state.vidljiv,
-      znak: !this.state.vidljiv ? "-" : "+"
-    });
   }
 
   prikazPredmeta() {
@@ -50,7 +45,7 @@ class ListaPredmeta extends Component {
 
   render() {
     return (
-      <div className="align-self-start">{this.prikazPredmeta()}</div>     
+      <div className="align-self-start">{this.prikazPredmeta()}</div>
     );
   }
 }

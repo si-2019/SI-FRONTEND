@@ -9,9 +9,9 @@ class KreiranjeProjekta extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            idPredmeta: this.props.idPredmeta,
-            asistenti: this.props.asistenti,
-            idAsistenta:0,
+            idPredmeta:0,
+            predmeti: this.props.predmeti,
+            idAsistenta:4,
             opisProjekta: "",
             moguciBodovi: 40
         }
@@ -30,23 +30,23 @@ class KreiranjeProjekta extends Component {
                     <ul>
                         <li>
                             <label class="col-form-label" for="name">Naziv projekta:</label>
-                            <input type="text" className="form-control inputText" name="name" maxlength="100" />
+                            <input type="text" className="form-control inputText" id="name" maxlength="100" />
                          
                         </li>
                         <li>
                             <label class="col-form-label" for="description">Opis projekta:</label>
-                            <textarea name="projectDescription" className="form-control" maxlength="500"></textarea>
+                            <textarea id="projectDescription" className="form-control" maxlength="500"></textarea>
                             
                         </li>
                         <li>
-                            <label class="col-form-label" for="assistent">Predmetni asistent:</label>
+                            <label class="col-form-label" for="assistent">Predmet:</label>
                             <div class="select-option">
                                 <select className="form-control" id="pickupAssistent" name="pickupAssistent" onChange={() => (
-                                    this.odabraniAsistent(document.getElementById("pickupAssistent").selectedIndex)
+                                    this.odabraniPredmet(document.getElementById("pickupAssistent").selectedIndex)
                                 )}>
                                     {
-                                        this.state.asistenti.map(asistent => {
-                                            return <option class="option" className="list-group-item" >{asistent.ime}</option>
+                                        this.state.predmeti.map(predmet => {
+                                            return <option class="option" className="list-group-item" >{predmet.naziv}</option>
                                         })
                                     }
 
@@ -56,15 +56,9 @@ class KreiranjeProjekta extends Component {
                         </li>
                         <li class="points">
                             <label class="col-form-label" >Broj moguće ostvarenih bodova:</label>
-                            <input type="number" className="form-control" name="count"   />
-                            
-                           
+                            <input type="number" id="broj" className="form-control" name="count"   />
                         </li>
-                        <li class="points">
-                            <label class="col-form-label" >Broj trenutno ostvarenih bodova:</label>
-                            <input type="number" className="form-control" name="count"  />
-                            
-                        </li>
+
                         <li class="input-append date form_datetime">
                             <label class="col-form-label" >Rok završetka projekta:</label>
                             <input size="16" type="date" className="form-control inputText"/>
@@ -78,7 +72,7 @@ class KreiranjeProjekta extends Component {
                         </li>
                         <br/>
                         <li>
-                            <input type="submit" value="Uredu" className="btn btn-primary" style={{float:"right", margin:"10px"}}  onClick={this.saveProject}/>
+                            <button type="button" value="Uredu" className="btn btn-primary" style={{float:"right", margin:"10px"}}  onClick={this.saveProject}>Kreiraj</button>
                         </li>
                     </ul>
                 </form>
@@ -104,10 +98,12 @@ class KreiranjeProjekta extends Component {
     saveProject(){
         var ajax=new XMLHttpRequest();
         var komponenta=this;
+        var naziv=document.getElementById("name").value;
+        var opis=document.getElementById("projectDescription").value;
+        var bodovi=document.getElementById("broj").value;
         ajax.onreadystatechange=function(){
             if(ajax.readyState==4 && ajax.status=="200"){
 					var tekst=ajax.responseText;
-					console.log(tekst);
                     if(tekst.length==0) {
                         alert("Prazan json");
                         return;
@@ -115,21 +111,22 @@ class KreiranjeProjekta extends Component {
 					alert("Sve je ok");
 				}
 				else if(ajax.status!="200"){
-                    //alert("Doslo je do greske");
-                    alert("Uspjesno obavljeno");
 				}
 		}
 	    ajax.open("POST","http://localhost:31913/services/projects/newp",true);
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        ajax.send("naziv_projekta="+document.getElementsByName("name").value + "&id_predmeta=1&id_asistenta=1&opis_projekta=" +document.getElementsByName("projectDescription").value  + "&moguci_bodovi="+ document.getElementById("broj").value+ "&progess=1&rok_projekta='30.06.2019.'");
+        ajax.send("naziv_projekta="+naziv + 
+        "&id_predmeta="+komponenta.state.idPredmeta+"&id_asistenta="+komponenta.state.idAsistenta+
+        "&opis_projekta=" +opis + 
+        "&moguci_bodovi="+ bodovi+ "&progress=0&rok_projekta='30.06.2019.'");
         alert("Upisano u bazu");
 	}
 
-    odabraniAsistent(index) {
+    odabraniPredmet(index) {
         this.setState(state => ({
-            idPredmeta: state.idPredmeta,
-            asistenti: state.asistenti,
-            idAsistenta: state.asistenti[index].idAsistenta,
+            idPredmeta: state.predmeti[index].idPredmet,
+            predmeti: state.predmeti,
+            idAsistenta: state.idAsistenta,
             opisProjekta: state.opisProjekta,
             moguciBodovi: state.moguciBodovi
         }));

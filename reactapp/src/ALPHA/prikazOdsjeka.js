@@ -14,7 +14,7 @@ class prikazOdsjeka extends Component{
 
     componentDidMount(search){
         if(search==''){
-            axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
+            axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
             .then(response => {
                 console.log("Lista: ", response.data);
                 this.setState({lista: response.data});
@@ -24,7 +24,7 @@ class prikazOdsjeka extends Component{
             })
         }
         else{
-            axios.get ('http://localhost:31901/api/odsjek/GetOdsjek?naziv='+search)
+            axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjek?naziv='+search)
             .then(response => {
                 console.log("Lista: ", response.data);
                 this.setState({lista: [response.data]});
@@ -43,7 +43,7 @@ class prikazOdsjeka extends Component{
 
     obrisi(naziv){
         console.log(naziv);
-        axios.delete("http://localhost:31901/api/odsjek/DeleteOdsjek?naziv="+naziv)
+        axios.delete("https://si2019alpha.herokuapp.com/api/odsjek/DeleteOdsjek?naziv="+naziv)
         .then(response => {
             console.log(response);    
         })
@@ -59,8 +59,8 @@ class prikazOdsjeka extends Component{
             <div className="card">
             <div className="card-body col-md-7">
                 <br /> 
-                    <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange}></input>  <br />
-                    <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
+                    <input type="text" className="form-control col-md-5" value={search} onChange={this.handleChange} placeholder="Naziv"></input>  <br />
+                    <button className="btn btn-primary btn-block col-md-5" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
                 <br />
                 
 

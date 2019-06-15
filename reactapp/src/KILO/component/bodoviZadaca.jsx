@@ -17,7 +17,7 @@ class BodoviZadaca extends Component {
     }
 
     return (
-      <div class="card ml-2 h-100" style={{ width: "30rem" }}>
+      <div class="card ml-2 h-100" style={{ width: "33rem" }}>
         <div id="bodoviT" className="card-title p-2">
           <h4>
             <b>Bodovi zadaće</b>
@@ -26,12 +26,12 @@ class BodoviZadaca extends Component {
         <div className="card-body">
           <div>
             <div class="row" id="prviR">
-              <div id="bodoviLab" sm={10}>
+              <div class="col-10" id="bodoviLab" sm={10}>
                 <label>
                   Želim da svi zadaci imaju jednak maksimalan broj bodova:
                 </label>
               </div>
-              <div className="form-group" class="col" sm={2}>
+              <div className="form-group" class="col-1" sm={2}>
                 <div id="divsw" className="custom-control-static custom-switch">
                   <input
                     type="checkbox"
@@ -52,17 +52,35 @@ class BodoviZadaca extends Component {
             <div id="brbodLab">
               <label>Broj bodova:</label>
             </div>
-            <div id="Ok" class="row">
-              <div class="col">
+
+           <div id="Ok" class="row">
+             <div class="col-1"></div>
+              <div id="sirina" class="col-5">
+                
                 <input
                   id="brbodKILO"
                   type="text"
-                  className="form-control-static"
+                  class="form-control"
+                  /*className="form-control-static"*/
                   disabled={this.props.podaci.state.radnja == "Azuriranje"}
                 />
+                <div
+                  style={{
+                    visibility: !(
+                      this.props.podaci.state.porukeGreske[5] == "" ||
+                      this.props.podaci.state.porukeGreske[5] == undefined
+                    )
+                      ? "visible"
+                      : "hidden"
+                  }}
+                >
+                  <h8 className="text-danger">
+                    {this.props.podaci.state.porukeGreske[5]}
+                  </h8>
+                </div>
               </div>
 
-              <div class="col">
+              <div class="col-6">
                 <Button
                   id="sviBodoviIstiButton"
                   color="primary"
@@ -75,20 +93,6 @@ class BodoviZadaca extends Component {
                 >
                   OK
                 </Button>
-                <div
-                  style={{
-                    visibility: !(
-                      this.props.podaci.state.porukeGreske[5] == "" ||
-                      this.props.podaci.state.porukeGreske[5] == undefined
-                    )
-                      ? "visible"
-                      : "hidden"
-                  }}
-                >
-                  <p className="text-danger">
-                    {this.props.podaci.state.porukeGreske[5]}
-                  </p>
-                </div>
               </div>
               <hr />
             </div>
@@ -135,7 +139,7 @@ class BodoviZadaca extends Component {
                 : "hidden"
             }}
           >
-            <p class="text-danger">{this.props.podaci.state.porukeGreske[3]}</p>
+            <h8 class="text-danger">{this.props.podaci.state.porukeGreske[3]}</h8>
           </div>
           <br />
           <FormGroup row>

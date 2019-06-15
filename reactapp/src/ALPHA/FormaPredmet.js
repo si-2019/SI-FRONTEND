@@ -40,7 +40,7 @@ class FormaPredmet extends Component {
         const xhr = new XMLHttpRequest();
 
         const body = JSON.stringify(data);
-        xhr.open('POST', 'http://localhost:31901/api/predmet/AddNewPredmet', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/predmet/AddNewPredmet', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -69,8 +69,10 @@ class FormaPredmet extends Component {
         const { naziv, ects, brojPredavanja, brojVjezbi, opis } = this.state;
 
         return (
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className=" card-body col-md-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
+              <br />
               <label >Naziv predmeta</label>
               <input  className="form-control" type="text" name="naziv" required value={naziv} onChange={this.handleChange} /><br />
               
@@ -93,6 +95,7 @@ class FormaPredmet extends Component {
               
               <input type="submit" value="Dodaj" className="btn btn-primary btn-block" />
     </form>
+    </div>
     </div>
         );
     }

@@ -1,5 +1,7 @@
 import React, { Component} from 'react'
 import Odsjeci from './odsjeci'
+import './golf.css'
+
 
 class Ciklusi extends Component {
 

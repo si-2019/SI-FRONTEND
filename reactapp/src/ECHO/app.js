@@ -4,6 +4,7 @@ import LeftMenu from "./components/LeftMenu.js";
 import NaslovnaTermin from "./components/naslovnaTermin";
 import Sale from "./components/sale";
 import NaslovnaKalendar from "./components/naslovnaKalendar";
+import Raspored from "./components/raspored";
 
 class App extends Component {
   constructor(props) {
@@ -58,7 +59,8 @@ class App extends Component {
             <div
               id="Sale"
               style={{
-                display: this.state.activeContentId == 2 ? "inherit" : "none"
+                display: this.state.activeContentId == 2 ? "inherit" : "none",
+                width: "100%"
               }}
             >
               <Sale />
@@ -78,6 +80,15 @@ class App extends Component {
               }}
             >
               {/*DODATI KOMPONENTU PRETRAGA UNUTAR KOJE SE DEFINISE IZGLED TABOVA */}
+            </div>
+            <div
+              id="rasporedDiv"
+              style={{
+                display: this.state.activeContentId == 5 ? "inherit" : "none",
+                width: "100%"
+              }}
+            >
+              <Raspored />
             </div>
           </div>
         </div>

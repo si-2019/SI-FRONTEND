@@ -5,7 +5,6 @@ class LeftMenu extends React.Component {
     super(props);
     this.state = {
       activeDivId: 1 //open pokazuje da li formu treba prikazati ili ne
-      
     };
   }
 
@@ -38,7 +37,7 @@ class LeftMenu extends React.Component {
           id="moj"
           onClick={() => this.changeActiveId(3)}
         >
-         Kalendar
+          Kalendar
         </button>
         <button
           type="button"
@@ -47,6 +46,14 @@ class LeftMenu extends React.Component {
           onClick={() => this.changeActiveId(4)}
         >
           Pretraga profesora
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary left-buttons"
+          id="moj"
+          onClick={() => this.changeActiveId(5)}
+        >
+          Kreiranje rasporeda
         </button>
       </div>
     );

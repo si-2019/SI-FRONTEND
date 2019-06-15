@@ -125,7 +125,8 @@ class promijeniLozinku extends Component {
         return (
         <div className="promijeniLozinku" style={{color: "#2C3E50"}} id="content">
             <h1 style={{color: "#fff", background: "#2C3E50"}} id="h1">Promjena lozinke</h1>
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body col-md-4">
             <br />
 
             <p>Uloga korisnika: </p><br />
@@ -158,7 +159,7 @@ class promijeniLozinku extends Component {
                 
                 <br />
              
-            <form  onSubmit={this.handleSubmit} className="container-fluid">
+            <form  onSubmit={this.handleSubmit}>
             
 
               <label>Username </label>
@@ -171,7 +172,7 @@ class promijeniLozinku extends Component {
              </form><br />
 
              
-   
+   </div>
     </div>
     </div>
         );

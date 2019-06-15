@@ -48,8 +48,8 @@ class FormaOdsjek extends Component {
         const { naziv } = this.state;
 
         return (
-          <div className="card">
-          <div className="card-body  col-md-4 col-md-offset-4">
+          <div className="card align-items-center">
+          <div className="card-body  col-md-4">
             <form  onSubmit={this.OnSubmit} className="container-fluid">
               <label >Naziv odsjeka </label>
               <input className="form-control" type="text" name="naziv" value={naziv} onChange={this.handleInputChange} /><br />

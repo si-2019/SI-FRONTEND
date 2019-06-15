@@ -153,8 +153,8 @@ class Forma extends Component {
         const { ime, prezime, otac, majka, jmbg, titula, datum_rodjenja, mjesto_rodjenja, kanton, drzavljanstvo, adresa, email, telefon, odsjek, username, linkedin, website, lista, selectedValue, id,listaOdsjeka} = this.state;
        
         return (
-          
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body col-md-4" >
             <br />
             <br />
                 <p>Prikaz svih profesora: </p><br />
@@ -239,7 +239,7 @@ class Forma extends Component {
               <button className="btn btn-primary btn-block" onClick={()=>this.obrisi(id)}>Obrisi</button>
 
              
-
+              </div>
     </div>
         );
     }

@@ -69,7 +69,8 @@ class FormaPredmet extends Component {
         const { naziv, ects, brojPredavanja, brojVjezbi, opis } = this.state;
 
         return (
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className=" card-body col-md-4" >
             <form  onSubmit={this.handleSubmit} className="container-fluid">
               <br />
               <label >Naziv predmeta</label>
@@ -94,6 +95,7 @@ class FormaPredmet extends Component {
               
               <input type="submit" value="Dodaj" className="btn btn-primary btn-block" />
     </form>
+    </div>
     </div>
         );
     }

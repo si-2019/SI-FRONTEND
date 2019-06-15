@@ -21,6 +21,7 @@ class App extends Component {
       profesor: false,
       fetched: false,
       activeContentId: 0,
+      error: '',
       menuButtonTitles: [, "Ispiti"],
       menuButtonsProfesor: [{
         btnText: "Kreiraj ispit",
@@ -102,9 +103,15 @@ class App extends Component {
       menuComponentsStudent: helps
     });
 
-    const id = window.localStorage.getItem("id")||5;
+    const id = window.localStorage.getItem("id");
     const token = window.localStorage.getItem("token");
     const username = window.localStorage.getItem("username");
+
+    if(!id || !token || !username){
+      this.setState({error:'Neautorizovan pristup'})
+      return
+    }
+
 
     const uloga = 'PROFESOR';
     try {
@@ -129,6 +136,7 @@ class App extends Component {
   };
 
   render() {
+    if(this.state.error.length > 0) return <div>{this.state.error}</div>
     return (
       <>
       

@@ -42,14 +42,14 @@ class Signup extends Component {
                     <div style={divStyle}>
                         <label style={labelStyle}>Niste prijavljeni!</label>
                         <Link to="/Romeo">
-                            <button className="juliet-submit" style={buttonLogin}>Prijavite se!</button>
+                        <button className="juliet-submit" style={buttonLogin}>Prijavite se!</button>
                         </Link>
                     </div> :
                     <div style={divStyle}>
                         <label style={labelStyle}>{localStorage.getItem('username')}</label>
                         <button className="juliet-submit" onClick={this.handleSubmit} style={buttonLogin}>Nastavi</button>
                     </div>}
-                {this.state.banedUser ? <p style={{ color: "#000", padding: '10px 0' }}>Ovom korisniku je zabranjen pristup!</p> : null}
+                    {this.state.banedUser ? <p style={{ color: "#000", padding: '10px 0' }}>Ovom korisniku je zabranjen pristup!</p> : null}
             </div>
         )
     }

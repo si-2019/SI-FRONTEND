@@ -10,7 +10,7 @@ import React, { Component } from 'react';
         render() {
             return (
                 <div>
-                    <button className="juliet-chat-button" onClick={this.changeView}>Send a message</button>
+                    <button className="juliet-chat-button" onClick={this.changeView}>Pošalji poruku</button>
                 </div>
             )
         }

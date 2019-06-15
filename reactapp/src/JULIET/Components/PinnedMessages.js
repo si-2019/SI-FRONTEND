@@ -26,7 +26,7 @@ class PinnedMessages extends Component {
                         let innerHTML = node.innerHTML; 
                         node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
                     }}>
-                    <div className="juliet-section-header"><h5>Pinned messages</h5></div>
+                    <div className="juliet-section-header"><h5>Pinovane poruke</h5></div>
                     <i id="arrow-pinned" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                 </div> 
                 <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="pinned-messages">

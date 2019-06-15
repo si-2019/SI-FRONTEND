@@ -86,7 +86,7 @@ class UploadFile extends Component{
         return(
             <form onSubmit={this.handleSubmit} className="row" name="fileForm" encType="multipart/form-data" style={formStyle}>
                 <Tooltip title="Upload file">
-                    <IconButton style={{color: '#2C3E50'}} onClick={() => {this.handleUploadClick()}}>
+                    <IconButton style={{color: this.props.colorScheme}} onClick={() => {this.handleUploadClick()}}>
                         <CloudUpload />
                     </IconButton>
                 </Tooltip>
@@ -94,7 +94,7 @@ class UploadFile extends Component{
 
 
                 <Tooltip title="Upload image">
-                    <IconButton style={{color: '#2C3E50'}} onClick={() => {this.handleImageUpload()}}>
+                    <IconButton style={{color: this.props.colorScheme}} onClick={() => {this.handleImageUpload()}}>
                         <AddAPhoto />
                     </IconButton>
                 </Tooltip>
@@ -107,7 +107,7 @@ class UploadFile extends Component{
                 <input className="col" type="file" name="file" files={this.state.files} onChange={this.handleChange} 
                     style={fileStyle} />
 
-                <button className="col btn btn-outline-primary rounded juliet-submit" style={uploadStyle}>Upload</button>
+                <button className="col btn btn-outline-primary rounded juliet-submit" style={{width: '3em', float: 'right', color: 'white', background: this.props.colorScheme, marginTop: '0px'}}>Učitaj</button>
             </form>
         )
     }
@@ -119,20 +119,13 @@ const formStyle = {
     // marginLeft: '1em',
     // marginRight: '1em',
     margin: 'auto',
-    height: '40%',
+    height: '100%',
     padding: '4px 0 4px 0'
 }
 
 const fileStyle = {
     visibility: 'hidden',
     width: '20%'
-}
-
-const uploadStyle = {
-    width: '3em',
-    float: 'right',
-    color: 'white',
-    background: '#2C3E50'
 }
 
 export default UploadFile;

@@ -94,17 +94,17 @@ class EventPlanner extends Component {
                             let innerHTML = node.innerHTML; 
                             node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
                         }}>
-                        <div className="juliet-section-header"><h5>Event planner</h5></div>
+                        <div className="juliet-section-header"><h5>Organizator događaja</h5></div>
                         <i id="arrow-planners" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                     </div> 
                     <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="all-planners">
-                        <button id='juliet-create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: '#2C3E50', color: 'white', borderRadius: '10px'}}>Create a new event</button>
+                        <button id='juliet-create-event-btn' onClick={()=>this.showEventForm()} style={{width: '80%', background: this.props.colorScheme, color: 'white', borderRadius: '10px'}}>Kreirajte novi event</button>
                         {
                             this.state.showForm?
                             <NewEventForm addEvent={this.addEvent}/>
                             :null
                         }
-                        <div className="juliet-section-header juliet-section-element"><h6>Next 24h</h6></div>
+                        <div className="juliet-section-header juliet-section-element"><h6>Sljedećih 24 sata</h6></div>
                         {todaysEvents ? 
                             todaysEvents.map((event, index) => {
                                 const active = this.isNow(event)===true ?'active':'';
@@ -113,7 +113,7 @@ class EventPlanner extends Component {
                             })
                             :
                             null }
-                        <div className="juliet-section-header juliet-section-element"><h6>Later events</h6></div>
+                        <div className="juliet-section-header juliet-section-element"><h6>Kasniji događaji</h6></div>
                         {otherEvents ? 
                             otherEvents.map((event, index) => (
                                 <li className={"juliet-event" } key={index}>{ event.naziv+ ' @ '+new Intl.DateTimeFormat('it-IT',options).format(new Date( Date.parse(event.pocetak)))} </li>

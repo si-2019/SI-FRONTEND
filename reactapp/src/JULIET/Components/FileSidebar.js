@@ -17,7 +17,7 @@ class FileSidebar extends Component {
     }
 
     componentWillMount(){
-        Axios.get('http://si2019juliet.herokuapp.comfiles' + this.props.roomId)
+        Axios.get('https://si2019juliet.herokuapp.com/files' + this.props.roomId)
         .then(res => {
             if(res.data === null){
 

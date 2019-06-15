@@ -37,7 +37,7 @@ class ChatApp extends Component {
         this.state = {
             currentUser: null,
             botUser: null,
-            currentRoom: {},
+            currentRoom: null,
             messages: [],
             messageToSend: '',
             users: [],
@@ -228,6 +228,8 @@ class ChatApp extends Component {
                 room_users: room.users,
                 users: CU.users,
             })
+
+            console.log(room, this.currentRoom, room.id);
         })
     }
 
@@ -451,13 +453,13 @@ class ChatApp extends Component {
             Axios.get('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                 if (res.data === 0) {
                     Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
-                        colorId: color, 
+                        colorId: color.hex, 
                         userId: this.state.currentUser.id
                     });
                 } else {
                     Axios.delete('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                         Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
-                            colorId: color, 
+                            colorId: color.hex, 
                             userId: this.state.currentUser.id
                         });
                     }).catch(e => console.log(e));

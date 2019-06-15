@@ -39,7 +39,7 @@ class PrijavaIspita extends React.Component {
           type="button"
           id="prijavljeniIspiti"
           className="btn btn-primary"
-          onClick={() => this.props.onChangeActiveId(5)}
+          onClick={() => this.props.onChangeActiveId(4)}
           
         >
           Prijavljeni ispiti

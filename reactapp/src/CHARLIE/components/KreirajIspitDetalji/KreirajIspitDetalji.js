@@ -4,7 +4,21 @@ import { Link } from 'react-router-dom';
 import DatePicker from "react-datetime";
 
 class KreirajIspitDetalji extends Component {
-  state = { napomenaGreska: false };
+  constructor() {
+    super();
+    this.state = {
+      rokPrijave: new Date(),
+      termin: new Date(),
+      sale: [],
+      vrijemeTrajanja: 0,
+      kapacitet: 0,
+      napomena: "",
+      validno: true,
+      greske: ["", "", "", "", "", ""]
+    };
+  }
+
+    
 
   render() {
     return (
@@ -67,7 +81,7 @@ class KreirajIspitDetalji extends Component {
            
            <div style={{float: "right"}}>
             
-              <button type="button" class="btn btn-primary" id="btnSpasi" style={{marginTop:"20px", marginRight: "10px"}}>Kreiraj ispit</button>
+              <button type="button" class="btn btn-primary" id="btnSpasiCharlie" name="btnSpasiCharlie" style={{marginTop:"20px", marginRight: "10px"}}>Kreiraj ispit</button>
            
               <button type="button" class="btn btn-secondary" id="btnPovratak" style={{marginTop: "20px"}} onClick={() => this.props.onChangeActiveId(0)}>Odustani</button>
             

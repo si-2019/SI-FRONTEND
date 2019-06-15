@@ -2,70 +2,24 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
-class ModalUredi extends React.Component {
+class Modal3 extends React.Component {
     constructor(props) {
         super(props);
-        const {
-            idIspit
-          } = props;
         this.state = {
             korisnikID: 1,
             greska: 0,
             brojac: 0,
-            rokPrijave: new Date(),
-            termin: new Date(),
-            sale: [],
-            vrijemeTrajanja: 0,
-            kapacitet: 0,
-            napomena: "",
-            idIspit: idIspit || 0
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
    
-    handleRokPrijaveChange = e => {
-        this.setState({
-          rokPrijave: e.target
-        });
-      };
-    
-      handleTerminChange = e => {
-        this.setState({
-          termin: e.target
-        });
-      };
-    
-      handleSalaChange = e => {
-        this.setState({
-          sale: e.target
-        });
-      };
-    
-      onVrijemeTrajanjaChange = e => {
-        this.setState({
-          vrijemeTrajanja: e.target
-        });
-      };
-    
-      onKapacitetChange = e => {
-        this.setState({
-          kapacitet: e.target
-        });
-      };
-    
-      onNapomenaChange = e => {
-        this.setState({
-          napomena: e.target
-        });
-      };
-
-    renderujPotvrdu() {
+  /*  renderujPotvrdu() {
         if (!this.state.greska) {
             return (
                 <Potvrda
                     key={this.brojac}
                     successful="true"
-                    msg="Uspješno ste modifikovali informacije o ispitu!"
+                    msg="Zahtjev je uspješno poslan!"
                 />
             );
         } else if (this.state.greska) {
@@ -78,9 +32,7 @@ class ModalUredi extends React.Component {
             );
         }
         return "";
-    }
-    
-
+    }*/
     handleSubmit(event) {
         event.preventDefault();
         //ovjde saljete post/put zahtjeve
@@ -92,7 +44,7 @@ class ModalUredi extends React.Component {
       };
 
     handleClose = () => {
-        this.props.saveState("modalUredi", false);
+        this.props.saveState("modalInfo", false);
 }
 
     render() {
@@ -104,24 +56,23 @@ class ModalUredi extends React.Component {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-               {this.renderujPotvrdu()}
+               
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         {this.props.naslovModala}
                     </Modal.Title>
-                    
                 </Modal.Header>
                 <form onSubmit={this.handleSubmit}>
                     <Modal.Body>
                         <div class="form-group">
-                         {this.props.tijeloModala}
+                            {this.props.tijeloModala}
                         </div>
 
                     </Modal.Body>
                     <Modal.Footer>
-                    
-                        <button type="submit" id="potvrdiDugmeCharlie2" onClick={this.onConfirm} class="btn btn-primary">Potvrdi</button>
-                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Zatvori</button>
+                    <button type="submit" id="potvrdiBtnCharlie" onClick={this.onConfirm} class="btn btn-primary">Prijavi se</button>
+                        
+                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Nazad</button>
 
                     </Modal.Footer>
                 </form>
@@ -129,4 +80,4 @@ class ModalUredi extends React.Component {
         );
     }
 }
-export default ModalUredi;
+export default Modal3;

@@ -109,14 +109,14 @@ class TabelaPredmeti extends  React.Component {
             <div>
                 <Table striped bordered responsive bsPrefix="table">
                     <thead>
-                        <tr className="table-primary">
+                        <tr className="table-primary" hover="false">
                             <th>Ime</th>
                             <th>Prezime</th>
                             <th>Bodovi</th>
                             <th>Index</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="table-hover">
                         {
                             data2.map((dataf, i) => {
                                 return <tr>

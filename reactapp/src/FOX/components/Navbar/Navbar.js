@@ -4,7 +4,7 @@ import './Navbar.css';
 class NavbarFox extends Component {
 
     klikZadace =() =>{
-      window.location.replace("/KILO/kreiranjeZadace?idPredmet=" + window.localStorage.getItem("idPredmeta"));
+      window.location.replace("/KILO/kreiranjeZadace?idPredmeta=" + window.localStorage.getItem("idPredmeta"));
     }
     klikAnkete = () => {
       window.location.replace("/HOTEL");

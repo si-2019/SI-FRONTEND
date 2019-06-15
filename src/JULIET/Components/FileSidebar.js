@@ -8,7 +8,8 @@ class FileSidebar extends Component {
 
         this.state = {
             files: [],
-            input:''
+            input:'',
+            roomId: props.roomId
 
         }
 
@@ -17,6 +18,7 @@ class FileSidebar extends Component {
     }
 
     componentWillMount(){
+  console.log(this.roomId + ' : ' + this.props.roomId);
         Axios.get('https://si2019juliet.herokuapp.com/files/' + this.props.roomId)
         .then(res => {
             if(res.data === null){

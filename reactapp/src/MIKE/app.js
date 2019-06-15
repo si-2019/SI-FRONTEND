@@ -13,7 +13,7 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
-      korisnik:10,
+      korisnik:400,
       forma:"null",
       predmeti:[],
       token:0
@@ -106,7 +106,7 @@ class Mike extends Component {
               </div>
             </div>
             <div id="right">
-              <PregledListeProjekata />
+              <PregledListeProjekata projekti={this.state.predmeti}/>
             </div>
           </div>
         </div>
@@ -241,7 +241,7 @@ class Mike extends Component {
               </div>
             </div>
             <div id="right">
-              <GenerisanjeGrupa idAsistent={4} predmeti={this.state.predmeti}/>
+              <GenerisanjeGrupa idAsistent={this.state.korisnik} predmeti={this.state.predmeti}/>
             </div>
           </div>
         </div>
@@ -252,29 +252,23 @@ class Mike extends Component {
   kreiranjeGrupe(){
     let ajax=new XMLHttpRequest();
     var komponenta=this;
-    var jsonNovi=[{id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20},
-    {id:2,naziv:"Projektovanje informacionih sistema*",opis:"Informacioni sistem Crvenog Križa FBiH*",bodovi:30}];
+    //var jsonNovi=[{id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20},
+    //{id:2,naziv:"Projektovanje informacionih sistema*",opis:"Informacioni sistem Crvenog Križa FBiH*",bodovi:30}];
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
           var tekst=ajax.responseText;
           if(tekst.length==0) return;
           var json=JSON.parse(tekst).predmeti;
-          jsonNovi=[];
-          for(var i=0;i<json.length;i++){
-            var jsonProjekti=json[i].projekti;
-            if(jsonProjekti.length>0)
-              jsonNovi.push({id:json[i].id,naziv:json[i].naziv_predmeta,opis:jsonProjekti[0].opisProjekta,bodovi:jsonProjekti[0].moguciBodovi});
-          }
-          jsonNovi.push({id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20});
+          //jsonNovi.push({id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20});
           komponenta.setState(state=>({
             forma:"kreiranjeGrupe",
-            predmeti:jsonNovi
+            predmeti:json
           }));
         }
         else if(ajax.status>=500){
           komponenta.setState(state=>({
             forma:"kreiranjeGrupe",
-            predmeti:jsonNovi
+            predmeti:json
           }));
         }
       }
@@ -283,7 +277,29 @@ class Mike extends Component {
       ajax.send();
   }
   listaProjekata(){
-    this.setState({forma:"listaProjekata"});
+    let ajax=new XMLHttpRequest();
+    var komponenta=this;
+    var jsonNovi=[{idProjekat:1,nazivPredmeta:"predmet",opis:"opis",nazivProjekta:"projekt"}];
+    ajax.onreadystatechange=function(){
+        if(ajax.readyState==4 && ajax.status=="200"){
+          var tekst=ajax.responseText;
+          if(tekst.length==0) return;
+          var json=JSON.parse(tekst);
+        komponenta.setState(state=>({
+            forma:"listaProjekata",
+            predmeti:json
+          }));
+        }
+        else if(ajax.status>=500){
+          komponenta.setState(state=>({
+            forma:"listaProjekata",
+            predmeti:json
+          }));
+        }
+      }
+      ajax.open("GET","http://localhost:31913/services/viewA/getProjects/"+this.state.korisnik,true);
+      ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.send();
   }
   pregledDetaljaPredmeta(){
 		let ajax=new XMLHttpRequest();
@@ -296,25 +312,21 @@ class Mike extends Component {
 					var tekst=ajax.responseText;
           if(tekst.length==0) return;
 					var json=JSON.parse(tekst);
-					jsonNovi=[];
-					for(var i=0;i<json.length;i++){
-							jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
-					}
 					komponenta.setState(state=>({
             forma:"PregledAsistent",
-            predmeti:jsonNovi
+            predmeti:json
           }));
         }
         else if(ajax.status>=500){
           komponenta.setState(state=>({
             forma:"PregledAsistent",
-            predmeti:jsonNovi
+            predmeti:json
           }));
         }
 		}
-		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+		ajax.open("GET","http://localhost:31913/services/viewA/predmetiprojektiasistent/"+this.state.korisnik,true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("idKorisnik=41");
+    ajax.send();
   }
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});
@@ -365,26 +377,23 @@ class Mike extends Component {
       if(ajax.readyState==4 && ajax.status=="200"){
         var tekst=ajax.responseText;
         if(tekst.length==0) return;
+        console.log(tekst);
         var json=JSON.parse(tekst);
-        jsonNovi=[];
-        for(var i=0;i<json.length;i++){
-            jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
-        }
         komponenta.setState(state=>({
           forma:"generisanjeGrupe",
-          predmeti:jsonNovi
+          predmeti:json
         }));
       }
-      else if(ajax.status!="200"){
+      else if(ajax.status>=500){
         komponenta.setState(state=>({
           forma:"generisanjeGrupe",
-          predmeti:jsonNovi
+          predmeti:json
         }));
       }
     }
-		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+		ajax.open("GET","http://localhost:31913/services/projects/getInfoPredmeti/"+this.state.korisnik,true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("idKorisnik="+this.state.korisnik);
+    ajax.send();
   }
 
   token(){

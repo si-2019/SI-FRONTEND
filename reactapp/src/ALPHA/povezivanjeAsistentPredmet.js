@@ -65,7 +65,8 @@ class FormaProfPred extends Component {
         const {asistent, predmet, listaAsistenata, listaPredmeta} = this.state;
 
         return (
-          <div className="col-md-2">
+          <div className="card align-items-center">
+          <div className="card-body col-md-4 ">
               <p>Prikaz svih asistenata: </p><br />
                 <select className="custom-select" value={asistent} onChange={this.onChangeAsistent}> 
                 {
@@ -85,7 +86,7 @@ class FormaProfPred extends Component {
                 </select><br /><br />
 
                 <button className="btn btn-success btn-block" onClick={()=>this.spoji(asistent,predmet)}>Dodaj</button>
-
+                </div>
           </div>
         );
     }

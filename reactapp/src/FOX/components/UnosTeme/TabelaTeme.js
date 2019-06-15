@@ -32,7 +32,7 @@ class TabelaStudenti extends Component {
             greskaBaza: 3
         });
 
-        axios.delete('http://localhost:31906/api/fox/temeZavrsnih/izbrisiTemu/' + id) //idPredmeta kao parametar
+        axios.delete('https://si2019fox.herokuapp.com/api/fox/temeZavrsnih/izbrisiTemu/' + id) //idPredmeta kao parametar
             .catch(() => {
                 this.setState({
                     greskaBaza: 1,
@@ -51,7 +51,7 @@ class TabelaStudenti extends Component {
             greskaBaza: 3
         });
 
-        axios.get('http://localhost:31906/api/fox/temeZavrsnih/tabelaTemeZavsnih/' + idPredmeta) //idPredmeta kao parametar iz local storega
+        axios.get('https://si2019fox.herokuapp.com/api/fox/temeZavrsnih/tabelaTemeZavsnih/' + idPredmeta) //idPredmeta kao parametar iz local storega
             .then(
                 res => this.setState({
                     teme: res.data,
@@ -94,7 +94,7 @@ class TabelaStudenti extends Component {
                     <tbody>
                         {
                             this.state.teme.map((teme, i) => {
-                                return <tr className="table-light" hover="false" key={teme.id}>
+                                return <tr hover="false" key={teme.id}>
                                     <td scope="row">{i+1}</td>
                                     <td>{teme.naziv}</td>
                                     <td>{teme.opis}</td>
@@ -110,13 +110,13 @@ class TabelaStudenti extends Component {
                             })
                         }
 
-                        <tr className="table-light" hover="false">
+                        <tr hover="false">
                             <td scope="row">0</td>
                             <td>Naziv</td>
                             <td>Opis</td>
                             <td>Da</td>
                             <td>Neko Nekic</td>
-                            <td><Form><Button variant="primary" href="#">Izmjeni</Button></Form></td>
+                            <td><Form><Button variant="primary" href={"izmjenaTeme/0/Naziv/Opis"}>Izmjeni</Button></Form></td>
                             <td><Form onSubmit={(e) => this.izbrisiTemu(e, 0)}>
                                 <Button variant="danger" type="submit">Izbriši</Button>
                                 </Form>

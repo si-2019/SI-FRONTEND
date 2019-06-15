@@ -45,7 +45,7 @@ class NovaTema extends Component {
             });
         }
         else {
-            const korisnik = window.localStorage.getItem('idKorisnika');
+            const korisnik = window.localStorage.getItem('id');
             const idKorisnika = korisnik !== null ? korisnik : 64;
 
             let reqBody = {
@@ -54,7 +54,7 @@ class NovaTema extends Component {
                 idProfesora: idKorisnika,
                 idPredmeta: window.localStorage.getItem("idPredmeta") != null ? window.localStorage.getItem("idPredmeta") : 64
             };
-            axios.post('http://localhost:31906/api/fox/temeZavrsnih/novaTema', reqBody)
+            axios.post('https://si2019fox.herokuapp.com/api/fox/temeZavrsnih/novaTema', reqBody)
             .then(() => {
                 this.setState({
                     greskaBaza: 2,

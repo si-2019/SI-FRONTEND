@@ -46,28 +46,40 @@ class Obavijesti extends Component {
             });
         }
         else {
-            let reqBody = {
-                naslov: this.naslov.current.value,
-                sadrzaj: this.sadrzaj.current.value
-            };
-                
-            axios.post('', reqBody)
-            .then(() => {
-                this.setState({
-                    greskaBaza: 2,
-                    isFetching: false,
-                    opisUspjeh: "Obavijest je poslana studentima koji su upisani na predmet.",
-                    naslovUspjeh: "Obavijest je poslana."
+            if(window.localStorage.getItem("idPredmeta") !== null && window.localStorage.getItem("id") !== null) {
+                let reqBody = {
+                    naziv: this.naslov.current.value,
+                    opis: this.sadrzaj.current.value,
+                    idPredmeta: window.localStorage.getItem("idPredmeta"),
+                    idProfesora: window.localStorage.getItem("id")
+                };
+                    
+                axios.post('https://si2019fox.herokuapp.com/api/fox/posaljiObavijest', reqBody)
+                .then(() => {
+                    this.setState({
+                        greskaBaza: 2,
+                        isFetching: false,
+                        opisUspjeh: "Obavijest je poslana studentima koji su upisani na predmet.",
+                        naslovUspjeh: "Obavijest je poslana."
+                    });
+                })
+                .catch(()=> {
+                    this.setState({
+                        greskaBaza: 1,
+                        isFetching: false,
+                        naslovGreska: "Greška!",
+                        opisGreska: "Baza podataka nije dostupna."
+                    });
                 });
-            })
-            .catch(()=> {
+            }
+            else {
                 this.setState({
                     greskaBaza: 1,
                     isFetching: false,
                     naslovGreska: "Greška!",
                     opisGreska: "Baza podataka nije dostupna."
                 });
-            });
+            }
         }
         this.setState({ validated: true });
     }

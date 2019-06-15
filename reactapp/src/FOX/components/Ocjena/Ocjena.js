@@ -29,7 +29,7 @@ class Ocjena extends Component {
             greskaBaza: 3
         });
 
-        axios.get("http://localhost:31906/fox/getStudentInfo/" + this.indeks.current.value).then((res)=> {
+        axios.get("https://si2019fox.herokuapp.com/fox/getStudentInfo/" + this.indeks.current.value).then((res)=> {
             this.setState({
                 isFetching: false,
                 student: res.data,
@@ -74,7 +74,7 @@ class Ocjena extends Component {
                     ocjena: this.ocjena.current.value
                 };
                     
-                axios.post('http://localhost:31906/api/fox/ocjene/', reqBody)
+                axios.post('https://si2019fox.herokuapp.com/api/fox/ocjene/', reqBody)
                 .then((res) => {
                     const student = this.state.student;
                     this.setState({

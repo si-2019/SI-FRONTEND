@@ -5,7 +5,7 @@ export default class App extends React.Component {
         super(props)
         this.state = {
             tekstPitanja: '',
-            odgovori: ['', ''],
+            odgovori: [],
             vrstaPitanja: 'textbox'
         }
         this.props.azurirajPitanje(this.state)
@@ -68,7 +68,7 @@ export default class App extends React.Component {
         return (
             <div class="card border-primary mb-3">
                 <div class="form-group" style={{margin: "10px"}}>
-                    <textarea class="form-control" placeholder="Unesi tekst pitanja" id="tekstPitanjaTextArea" rows="1" name="tekstPitanja" onKeyDown={this.handleInputChange}></textarea>
+                    <textarea class="form-control" placeholder="Unesi tekst pitanja" id="tekstPitanjaTextArea" rows="1" name="tekstPitanja" onChange={this.handleInputChange}></textarea>
                 </div>
                 <div class="form-group" style={{margin: "20px"}}>
                     <textarea class="form-control" disabled={true} placeholder="Unesi tekst odgovora" id="tekstPitanjaTextArea" rows="1" name="tekstPitanja" onKeyDown={this.handleInputChange}></textarea>

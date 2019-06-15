@@ -102,7 +102,7 @@ class Forma extends Component {
         const { ime, prezime, datumRodjenja, JMBG, email, mjestoRodjenja, kanton, drzavljanstvo, telefon, adresa, imePrezimeOca, imePrezimeMajke} = this.state;
 
         return (
-          <div className="card">
+          <div className="card align-items-center">
           <div className="card-body  col-md-4 col-md-offset-4">
             <form  onSubmit={this.handleSubmit} className="container-fluid">
               <label>Ime </label>

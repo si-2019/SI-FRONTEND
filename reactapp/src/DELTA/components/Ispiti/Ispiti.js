@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Ispiti extends Component {  
-    state = {postotakBodovaZadace:33, postotakBodovaIspiti:70, ispitiObavjestenje:""}
+    state = {postotakBodovaZadace:33, postotakBodovaIspiti:70, ispitiObavjestenje:"", ispit:""}
 
+    
     async componentDidMount(){
         //hardkoridana vrijednost dok se ne kreira bekend za listu predmeta
         const idPredmeta=8;
+        const idStudent=1;
         
-        const {data} = await axios.get('http://localhost:31904/ispitObavjestenje/'+idPredmeta);
+        const {data} = await axios.get('http://si2019delta.herokuapp.com/ispitObavjestenje/'+idPredmeta);
         this.setState({ispitiObavjestenje:data});
+        const {data1} = await axios.get('http://si2019delta.herokuapp.com/rezultatiIspita/'+idPredmeta+'/'+idStudent); 
+         this.setState({ispit:data1});
       }
 
     getProgressBarStil = ()=>{
-        const stringicIspiti = this.state.postotakBodovaIspiti+"%";
+        const stringicIspiti = this.state.ispit+"%";
         var boja = 'red';
-        if (this.state.postotakBodovaIspiti < 40)
+        if (this.state.ispit < 20)
             boja = 'red';
-        else if (this.state.postotakBodovaIspiti >= 40 && this.state.postotakBodovaIspiti < 70)
+        else if (this.state.ispit >= 20 && this.state.ispit < 35)
             boja  = 'yellow';
         else
             boja = 'green';
@@ -34,7 +38,7 @@ class Ispiti extends Component {
             </div>
             <div className="col-6">
                 <div class="progress" style={{width:250, height:25,  margin:5}} >
-                  <div class="progress-bar" role="progressbar" style={this.getProgressBarStil()}  aria-valuenow={this.state.postotakBodovaIspiti} aria-valuemin="0" aria-valuemax="100">{this.state.postotakBodovaIspiti}%</div>
+                  <div class="progress-bar" role="progressbar" style={this.getProgressBarStil()}  aria-valuenow={this.state.ispit} aria-valuemin="0" aria-valuemax="40">{this.state.ispit}%</div>
                 </div>
             </div>
               <div className="col-3">

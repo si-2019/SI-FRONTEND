@@ -89,8 +89,8 @@ class FormaUpis extends Component {
        const { ime, prezime, id, ciklus, sem, odsjek,lista, selectedValue,search } = this.state;
 
        return (
-         <div className="card">
-         <div className="card-body col-md-2">
+         <div className="card align-items-center">
+         <div className="card-body col-md-4">
            <br />
            <input type="text" className="form-control" value={search} onChange={this.handleChange} placeholder="Ime studenta"></input> <br />
            <button className="btn btn-primary btn-block" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
@@ -106,10 +106,7 @@ class FormaUpis extends Component {
            </select><br /><br />
 
         
-           <form  onSubmit={this.OnSubmit} className="container-fluid">
-             <label>ID</label>
-             <input className="form-control" type="text" name="name"  readOnly value={id}/><br />
-
+           <form  onSubmit={this.OnSubmit}>
              <label>Ime studenta </label>
              <input className="form-control" type="text" name="name"  readOnly value={ime}/><br />
 
@@ -139,3 +136,5 @@ export default FormaUpis
 
 /*<input className="form-control" type="number" name="odsjek" value={odsjek} onChange={this.handleInputChange} /><br />*/
  
+/*<label>ID</label>
+  <input className="form-control" type="text" name="name"  readOnly value={id}/><br />*/

@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import './style.css';
-
+import {ProgressBar} from 'react-bootstrap'
+import Colors from './colorPalette'
 import axios from 'axios'; 
+import url from '../url'
+
+axios.interceptors.request.use(function (config) {
+  const token = window.localStorage.getItem("token");
+  config.headers.Authorization = token;
+  config.params = {
+    usernamehotel: window.localStorage.getItem("username")
+  }
+  return config;
+});
+
 class Rezultati extends Component {
   state= {
     imeKreator: '', 
@@ -10,7 +22,9 @@ class Rezultati extends Component {
     tipAnkete: '', 
     nazivPredmeta: '',
     singleChoicePitanjaState: {},
-    textboxPitanjaState: {}
+    textboxPitanjaState: {},
+    multipleChoicePitanjaState: {},
+    starRatingPitanjaState: {}
 
   }
    formatDate (string) {
@@ -19,68 +33,90 @@ class Rezultati extends Component {
 }
   componentDidMount() {
     const { match: { params } } = this.props;
-    axios.get(`http://localhost:9123/getKreator/?idAnketa=${params.id}`)
+    axios.get(`${url}/getKreator/?idAnketa=${params.id}`)
     .then((res) => {
       this.setState({imeKreator:res.data.kreator}); 
       console.log('res1', res);
     });
-    axios.get(`http://localhost:9123/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({datumKreiranjaAnkete:this.formatDate(res.data.datumKreiranja)}); 
       console.log('res2', res);
     });
-    axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumIstekaAnkete/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({datumIstekaAnkete:this.formatDate(res.data.datumIstekaAnkete)}); 
       console.log('res3', res);
     });
-    axios.get(`http://localhost:9123/getTipAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getTipAnkete/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({tipAnkete:res.data.tipAnkete}); 
       console.log('res4', res);
     });
-    axios.get(`http://localhost:9123/getPredmet/?idAnketa=${params.id}`)
+    axios.get(`${url}/getPredmet/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({nazivPredmeta:res.data.nazivPredmeta}); 
       console.log('res5', res);
     });
-    axios.get(`http://localhost:9123/getRezultatiAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getRezultatiAnkete/?idAnketa=${params.id}&username=` + window.localStorage.getItem("username"))
     .then((res) => {
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+        return
+      }
+
       var pitanja = res.data;
       var textboxPitanja = [];
       var singleChoicePitanja = [];
+      let multipleChoicePitanja = [];
+      let starRatingPitanja = [];
       for(var i=0;i<pitanja.length;i++){
         if(pitanja[i].vrstaPitanja == 'textbox') textboxPitanja.push(pitanja[i]);
         else if(pitanja[i].vrstaPitanja == 'single-choice') singleChoicePitanja.push(pitanja[i]);
+        else if(pitanja[i].vrstaPitanja == 'star-rating') starRatingPitanja.push(pitanja[i])
+        else multipleChoicePitanja.push(pitanja[i])
       }
-      this.setState({singleChoicePitanjaState: {singleChoicePitanja}});
+      this.setState({
+        singleChoicePitanjaState: {singleChoicePitanja},
+        multipleChoicePitanjaState: {multipleChoicePitanja},
+        starRatingPitanjaState: {starRatingPitanja}
+      });
       this.setState({textboxPitanjaState: {textboxPitanja}});
       console.log('single', singleChoicePitanja);
       console.log('res6', res);
     });
   }
+
+  styleProgress = {
+    height: "30px",
+    fontSize: "12px"
+  }
+
   render() {
     const itemsSingle = this.state.singleChoicePitanjaState;
     const itemsTextbox = this.state.textboxPitanjaState;
+    const itemsMultiple = this.state.multipleChoicePitanjaState;
+    const itemsStar = this.state.starRatingPitanjaState;
     console.log("items", itemsSingle);
     return (
-      <div className="App"  id="container">
+      <div className="App"  id="containerRezultati">
 
-        <div id="header">
+        <div className="naslovliste">
         <h1>Rezultati</h1>
         </div>       
 
-        <div id="content">
+        <div id="contentRezultati">
 
-            <div id="info">
-              <div id ="info1">
+            <div id="infoRezultati">
+              <div id ="info1Rezultati">
 
-                <div class="card text-white bg-secondary mb-3" >
-                            <div class="card-header"><h4 class="card-title">Info</h4></div>
+                <div class="card border-primary mb-3" >
+                            <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Info</h4></div>
+                  
                             <div class="card-body">
                               <h6 class="card-title">Predmet</h6>
                               <p class="card-text">{this.state.nazivPredmeta}</p>
@@ -106,25 +142,85 @@ class Rezultati extends Component {
               </div>        
             </div>
 
-            <div id="show">
-              <div id="show1">
+            <div id="showRezultati">
+              <div id="show1Rezultati">
 
-                <div class="card border-light mb-3" style={{padding:15, alignItems:'right'}}>
-                  <div class="card-header"><h4 class="card-title">Anketa</h4></div>
-                    <br></br>
+                <div class="card">
+                <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
+                    
+                    <div style={{padding: "3%"}}>
                     <div>
                       {itemsSingle.singleChoicePitanja ? itemsSingle.singleChoicePitanja.map(pitanje => (
-                        <div class="card-body" style={{backgroundColor:'white'}}>
-                          <h6 class="card-title">Pitanje : {pitanje.tekstPitanja}</h6>
-                          <br></br>
-                          <p class="card-text">Prosjecan odgovor : {pitanje.prosjecniOdgovor}</p>
-                          <br></br>
+                        <div class="card-body-pitanje" style={{backgroundColor:'white'}}>
+                          <h4 class="card-title">Pitanje : {pitanje.tekstPitanja}</h4>
+                          <hr/>
+                          <p class="card-text">Najčešći odgovor : {pitanje.prosjecniOdgovor}</p>
+              
                           <div>
-                            {pitanje.odgovori ? pitanje.odgovori.map(odgovor => (
-                              <div>
-                                <p class="card-text">Odgovor : {odgovor.odgovor}</p>
-                                <p class="card-text">Postotak ovih odgovora : {odgovor.postotak} %</p>
-                                <br></br>
+                            <ProgressBar style={this.styleProgress}>
+                              {
+                                (pitanje.odgovori && Colors.getRandom(pitanje.odgovori.length)) ? pitanje.odgovori.map((odgovor, i) => (
+                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} label={odgovor.postotak + "%"} />
+                              )): null}
+                            </ProgressBar>
+                          </div>
+                          <div >
+                            {pitanje.odgovori ? pitanje.odgovori.map((odgovor, i) => (
+                              <div style={{color: Colors.colors[i]}}>
+                                <p class="card-text">Odgovor : {odgovor.odgovor} </p>
+                                 
+                              </div>
+                            )) : "..."}
+                          </div>
+                        </div>
+                      )) : "Loading..."}
+                    </div>
+                    <div>
+                      {itemsMultiple.multipleChoicePitanja ? itemsMultiple.multipleChoicePitanja.map(pitanje => (
+                        <div class="card-body-pitanje" style={{backgroundColor:'white'}}>
+                          <h4 class="card-title">Pitanje : {pitanje.tekstPitanja}</h4>
+                          <hr/>
+                          <p class="card-text">Najčešći odgovor : {pitanje.prosjecniOdgovor}</p>
+              
+                          <div>
+                            <ProgressBar style={this.styleProgress}>
+                              {
+                                (pitanje.odgovori && Colors.getRandom(pitanje.odgovori.length)) ? pitanje.odgovori.map((odgovor, i) => (
+                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} label={odgovor.postotak + "%"} />
+                              )): null}
+                            </ProgressBar>
+                          </div>
+                          <div >
+                            {pitanje.odgovori ? pitanje.odgovori.map((odgovor, i) => (
+                              <div style={{color: Colors.colors[i]}}>
+                                <p class="card-text">Odgovor : {odgovor.odgovor} </p>
+                                 
+                              </div>
+                            )) : "..."}
+                          </div>
+                        </div>
+                      )) : "Loading..."}
+                    </div>
+                    <div>
+                      {itemsStar.starRatingPitanja ? itemsStar.starRatingPitanja.map(pitanje => (
+                        <div class="card-body-pitanje" style={{backgroundColor:'white'}}>
+                          <h4 class="card-title">Pitanje : {pitanje.tekstPitanja}</h4>
+                          <hr/>
+                          <p class="card-text">Najčešći odgovor : {pitanje.prosjecniOdgovor}</p>
+              
+                          <div>
+                            <ProgressBar style={this.styleProgress}>
+                              {
+                                (pitanje.odgovori && Colors.getRandom(pitanje.odgovori.length)) ? pitanje.odgovori.map((odgovor, i) => (
+                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} label={odgovor.postotak + "%"} />
+                              )): null}
+                            </ProgressBar>
+                          </div>
+                          <div>
+                            {pitanje.odgovori ? pitanje.odgovori.map((odgovor, i) => (
+                              <div style={{color: Colors.colors[i]}}>
+                                <p class="card-text">Odgovor : {odgovor.odgovor} </p>
+                                 
                               </div>
                             )) : "..."}
                           </div>
@@ -133,8 +229,9 @@ class Rezultati extends Component {
                     </div>
                     <div>
                       {itemsTextbox.textboxPitanja ? itemsTextbox.textboxPitanja.map(pitanje => (
-                        <div class="card-body" style={{backgroundColor:'white'}}>
-                          <h6 class="card-title">Pitanje : {pitanje.tekstPitanja}</h6>
+                        <div class="card-body-pitanje" style={{backgroundColor:'white'}}>
+                          <h4 class="card-title">Pitanje : {pitanje.tekstPitanja}</h4>
+                          <hr/>
                           <br></br>
                           <div>
                             {pitanje.odgovori ? pitanje.odgovori.map(odgovor => (
@@ -146,6 +243,7 @@ class Rezultati extends Component {
                           </div>
                         </div>
                       )) : "Loading..."}
+                    </div>
                     </div>
                 </div>
 

@@ -9,7 +9,7 @@ class ListaPredmetaAsistenta extends Component {
       idAsistent:this.props.idAsistent,
       predmeti:this.props.predmeti,
       detalji:false,
-      detaljiJSON:{naziv:"Zamger 2.0",opis:"Kreiranje informacionog sistema za fakultet",bodovi:30}
+      detaljiIndex:0
     };
     this.azuriraj=this.azuriraj.bind(this);
   }
@@ -29,11 +29,11 @@ class ListaPredmetaAsistenta extends Component {
                     return <option className="list-group-item">{predmet.naziv}</option>
                   })
                 }
-                <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
-                <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
-                <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
               </select>
-              <PregledDetaljaPredmeta naziv={this.state.detaljiJSON.naziv} opis={this.state.detaljiJSON.opis} bodovi={this.state.detaljiJSON.bodovi} brojGrupa={20}/>
+              <PregledDetaljaPredmeta naziv={this.state.predmeti[this.state.detaljiIndex].nazivProjekta} 
+              opis={this.state.predmeti[this.state.detaljiIndex].opis} 
+              bodovi={this.state.predmeti[this.state.detaljiIndex].moguciBodovi} 
+              brojGrupa={20}/>
               <ListaGrupa/>
             
         </div>
@@ -54,9 +54,6 @@ class ListaPredmetaAsistenta extends Component {
                     return <option className="list-group-item">{predmet.naziv}</option>
                   })
                 }
-                <option className="list-group-item" value="Softverski inzenjering">Softverski inzenjering</option>
-                <option className="list-group-item" value="Vjestacka inteligencija">Vjestacka inteligencija</option>
-                <option className="list-group-item" value="Dizajn i arhitektura softverskih sistema">Dizajn i arhitektura softverskih sistema</option>
               </select>
            
         </div>
@@ -64,7 +61,7 @@ class ListaPredmetaAsistenta extends Component {
     )
   }
   azuriraj(indeks){
-    var ajax=new XMLHttpRequest();
+    /*var ajax=new XMLHttpRequest();
     var komponenta=this;
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
@@ -89,7 +86,11 @@ class ListaPredmetaAsistenta extends Component {
 		}
 		ajax.open("POST","http://localhost:31913/services/viewA/getProject",true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("idPredmet=4");
+    ajax.send("idPredmet=4");*/
+    this.setState({
+      detaljiIndex:indeks-1,
+      detalji:true
+    })
   }
 }
 

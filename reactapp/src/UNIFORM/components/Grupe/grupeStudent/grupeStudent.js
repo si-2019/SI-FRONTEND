@@ -6,6 +6,7 @@ import { Combobox } from 'react-widgets'
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import Tabela from './tabela.js';
 import { link } from "fs";
+import jQuery from 'jquery'; 
 
 class Grupe extends Component {
 
@@ -16,19 +17,41 @@ state={
     trenutniRedoslijed:undefined    
 };
 
+provjeriToken = () => {
+  axios({
+    url: 'https://si2019romeo.herokuapp.com/users/validate',
+    type: 'get',
+    dataType: 'json',
+    data: jQuery.param({
+      username: window.localStorage.getItem("username")
+    }),
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+    },
+    complete: function (response) {
+      if (response.status == 200) {
+        return true;
+      }
+      else{
+        window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+      } 
+    }  
+  });
+}
+
 componentDidMount = () =>{
-  fetch("http://localhost:31920/getRedoslijed")
+  fetch("https://si2019uniform.herokuapp.com/getRedoslijed")
       .then(resRedoslijed => resRedoslijed.json())
       .then(jsonRedoslijed => {
         var linkGrupe;
         if(jsonRedoslijed.naziv=="Redoslijed abecede")
-          linkGrupe="http://localhost:31920/getGrupeAbeceda/4";
+          linkGrupe="https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
         else
-          linkGrupe="http://localhost:31920/getGrupePrijavljivanje/4";
+          linkGrupe="https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
     fetch(linkGrupe)
         .then(resGrupe => resGrupe.json())
         .then(jsonGrupe => {
-          fetch("http://localhost:31920/getPredmet/4")
+          fetch("https://si2019uniform.herokuapp.com/getPredmet/4")
             .then(resPredmet => resPredmet.json())
             .then(jsonPredmet => {
 
@@ -41,6 +64,8 @@ componentDidMount = () =>{
             });
           });
         }); 
+
+        this.provjeriToken();
   }
 
 render = () =>{ 

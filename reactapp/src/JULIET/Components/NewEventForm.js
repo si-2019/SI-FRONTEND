@@ -36,7 +36,7 @@ export class NewEventForm extends Component {
       <div className="new-event-form" style={{padding: '10px'}}>
         <form onSubmit={this.handleSubmit}>
             <input onChange={this.handleChangeName} type='text' placeholder='Choose event name...' value={this.state.eventName} style={{padding: '3px 6px'}}/>
-            <p style={{marginTop: '5px', marginBottom: '2px'}}>Event start</p>
+            <p style={{marginTop: '5px', marginBottom: '2px'}}>Početak događaja</p>
             <DatePicker style={{padding:'2px 6px'}}
                 selected={this.state.startDate}
                 timeInputLabel="Time:"
@@ -48,7 +48,7 @@ export class NewEventForm extends Component {
                 endDate={this.state.endDate}
                 onChange={this.handleChangeStart}
             />
-            <p style={{marginTop: '5px', marginBottom: '2px'}}>Event end</p>
+            <p style={{marginTop: '5px', marginBottom: '2px'}}>Završetak događaja</p>
              <DatePicker style={{padding:'2px 6px'}}
               selected={this.state.endDate}
               timeInputLabel="Time:"

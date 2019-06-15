@@ -5,24 +5,35 @@ import DrugiModuli from "../DrugiModuli/DrugiModuli";
 import Ispiti from "../Ispiti/Ispiti";
 import Zadace from "../Zadace/Zadace";
 import KonacnaOcjena from "../KonacnaOcjena/KonacnaOcjena";
+import Prisustvo from "../PrisustvoTabela/prisustvoTabela"
 import "./AppDelta.css";
 
 class Predmet extends Component {
 
-  state = {predmet:"", profesor:""};
+  state = {predmet:{naziv : "Kardkodirani", idProfesora : 1, opis : "nista", etcs: 23 }, 
+          profesor:"",
+          idPredmeta: 100,
+          idStudenta: 230};
 
-    async componentDidMount(){
-     //hardkodirane vrijednosti
-      const idPredmet=64;
+  /*constructor(props) {
+    super(props);
+    this.state = {predmet:"", profesor:""};
+  }*/
+    /*async componentDidMount(){
+     
+      const idPredmet=62;
+      console.log(idPredmet);
+      //console.log(this.props.idPredmeta);
+      //const idPredmet=64;
 
-      const {data} = await axios.get('http://localhost:31904/dohvatiPredmet/'+idPredmet); 
+      const {data} = await axios.get('http://si2019delta.herokuapp.com/dohvatiPredmet/'+idPredmet); 
       this.setState({predmet:data});
       const idProf = this.state.predmet.idProfesora;
-      const {data1} = await axios.get('http://localhost:31904/dohvatiProfesora/'+this.state.predmet.idProfesora); 
+      const {data1} = await axios.get('http://si2019delta.herokuapp.com/dohvatiProfesora/'+this.state.predmet.idProfesora); 
       this.setState({profesor:data1});
       
       
-    }
+    }*/
 
   render() {
     return (
@@ -30,7 +41,7 @@ class Predmet extends Component {
         <div className="row">
           <div className="col-8">
             <div className="row">
-              <b>Predmet:</b> { this.state.predmet.naziv}
+              <b>Predmet:</b> {this.state.predmet.naziv}
             </div>
             <div className="row">
               <b>Odgovorni nastavnik:</b> {this.state.predmet.idProfesora}
@@ -39,13 +50,15 @@ class Predmet extends Component {
               <b>Opis predmeta:</b>{this.state.predmet.opis}
             </div>
             <div className="row">
-              <b>Broj ETCS bodova: </b>{this.state.predmet.ects}
+              <b>Broj ETCS bodova: </b>{this.state.predmet.ects} 
             </div>
             <br />
             <Zadace />
             <br />
             <Ispiti />
             <br />
+            <Prisustvo idStudenta = {this.state.idStudenta} idPredmeta = {this.state.idPredmeta}/>
+            <br/>
             <div className="row">
               <div className="col-3" />
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import axios from 'axios';
 import "./../bootstrap.css";
+import jQuery from 'jquery'; 
 
 
 class OsnovniPodaci extends Component {
@@ -14,7 +14,7 @@ class OsnovniPodaci extends Component {
             <Form>
               <div id="kreirajT" className="card-title p-2 ">
                 <h4>
-                  <b>{title ? title : "Kreiranje zadace"}</b>
+                  <b>{title ? title : "Kreiranje zadaće"}</b>
                 </h4>
               </div>
               <FormGroup>

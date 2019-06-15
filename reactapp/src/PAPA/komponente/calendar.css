@@ -44,7 +44,7 @@ tr {
 
 .week-day {
     font-size: 0.8em;
-    background-color: #0e3575;
+    background-color:#2D3E50;
     color: white;
     font-weight:bold;
 }
@@ -116,7 +116,7 @@ tr {
 	background:-ms-linear-gradient(top, #2e466e 5%, #415989 100%);
 	background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
-	background-color:#2e466e;
+	background-color: #2D3E50;
 	-moz-border-radius:20px;
 	-webkit-border-radius:20px;
 	border-radius:5px;

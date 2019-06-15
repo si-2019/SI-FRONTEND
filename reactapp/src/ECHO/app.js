@@ -5,7 +5,12 @@ import LeftMenu from "./components/LeftMenu.js";
 import NaslovnaTermin from "./components/naslovnaTermin";
 import Sale from "./components/sale";
 import NaslovnaKalendar from "./components/naslovnaKalendar";
+<<<<<<< HEAD
 import ProfessorsAvailability from "./old/ProfessorsAvailability/ProfessorsAvailability";
+=======
+import Raspored from "./components/raspored";
+
+>>>>>>> develop
 class App extends Component {
   constructor(props) {
     super(props);
@@ -66,7 +71,8 @@ class App extends Component {
             <div
               id="Sale"
               style={{
-                display: this.state.activeContentId == 2 ? "inherit" : "none"
+                display: this.state.activeContentId == 2 ? "inherit" : "none",
+                width: "100%"
               }}
             >
               <Sale />
@@ -87,6 +93,15 @@ class App extends Component {
             >
                 <ProfessorsAvailability triggerChangeActiveId={this.onChangeActiveId} triggerChangeProfessorId = {this.onChangeProfessorId}/>
               {/*DODATI KOMPONENTU PRETRAGA UNUTAR KOJE SE DEFINISE IZGLED TABOVA */}
+            </div>
+            <div
+              id="rasporedDiv"
+              style={{
+                display: this.state.activeContentId == 5 ? "inherit" : "none",
+                width: "100%"
+              }}
+            >
+              <Raspored />
             </div>
           </div>
         </div>

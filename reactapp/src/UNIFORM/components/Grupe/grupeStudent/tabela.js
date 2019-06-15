@@ -22,9 +22,9 @@ export class tabela extends Component {
     prijaviStudenta = () =>
     {
         
-        axios.post("http://localhost:31920/addStudentToGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina).then()
+        axios.post("https://si2019uniform.herokuapp.com/addStudentToGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina).then()
         {
-            console.log("http://localhost:31920/addStudentToGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina)
+            console.log("https://si2019uniform.herokuapp.com/addStudentToGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina)
             document.location.reload();
         };
     } 
@@ -32,9 +32,9 @@ export class tabela extends Component {
     odjaviStudenta = () =>
     {
         
-        axios.post("http://localhost:31920/removeStudentFromGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina).then()
+        axios.post("https://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina).then()
         {
-            console.log("http://localhost:31920/removeStudentFromGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina)
+            console.log("https://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.idLogovanogStudenta+"/"+this.props.grupa.idGrupaTermina)
             document.location.reload();
         };
     }

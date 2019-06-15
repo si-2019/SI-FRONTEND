@@ -5,11 +5,14 @@
   }
   
 .juliet-form-container h1 {
-    padding: 10px;
+    height: 40px;
+    padding: 11px 0;
     background-color: #2C3E50;
-    font-size: 20px;
+    text-align: center;
+    font-size: 18px;
     color: white;
-    margin: 0;
+    margin: auto;
+    font-weight: bold;
 }
   
 .juliet-form {
@@ -18,17 +21,15 @@
 
 .juliet-submit  {
     background: #2C3E50;
-    height: 40px;
+    height: 36  px;
     padding: 0 20px;
     color: white;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    width: 40%;
+    margin: auto;
   }
-  
-.juliet-signup-button {
-  margin-top: 5px;
-}
 
 .juliet-input {
     display: block;

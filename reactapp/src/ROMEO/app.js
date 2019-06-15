@@ -8,7 +8,6 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        ROMEO
         <BrowserRouter>
           <Route
             path="/romeo/login"

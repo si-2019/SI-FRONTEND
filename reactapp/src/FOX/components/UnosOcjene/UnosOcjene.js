@@ -12,8 +12,8 @@ class UnosOcjene extends Component {
      render()
      {
          return (
-            <div className="footerDno" style={{paddingBottom: "50"}}>
-                <Container fluid style={{padding:"0", margin: "0"}}>
+            <div id="form" className="footerDno" style={{paddingBottom: "50"}}>
+                <Container id="cont" fluid style={{padding:"0", margin: "0"}}>
                     <Row noGutters>
                         <Col md="3">
                             <Header isPocetna={false}/>

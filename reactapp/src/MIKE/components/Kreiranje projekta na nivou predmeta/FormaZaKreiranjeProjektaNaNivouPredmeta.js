@@ -30,12 +30,12 @@ class KreiranjeProjekta extends Component {
                     <ul>
                         <li>
                             <label class="col-form-label" for="name">Naziv projekta:</label>
-                            <input type="text" className="form-control inputText" name="name" maxlength="100" />
+                            <input type="text" className="form-control inputText" id="name" maxlength="100" />
                          
                         </li>
                         <li>
                             <label class="col-form-label" for="description">Opis projekta:</label>
-                            <textarea name="projectDescription" className="form-control" maxlength="500"></textarea>
+                            <textarea id="projectDescription" className="form-control" maxlength="500"></textarea>
                             
                         </li>
                         <li>
@@ -72,7 +72,7 @@ class KreiranjeProjekta extends Component {
                         </li>
                         <br/>
                         <li>
-                            <button type="button" value="Uredu" className="btn btn-primary" style={{float:"right", margin:"10px"}}  onClick={this.saveProject}>Uredu</button>
+                            <button type="button" value="Uredu" className="btn btn-primary" style={{float:"right", margin:"10px"}}  onClick={this.saveProject}>Kreiraj</button>
                         </li>
                     </ul>
                 </form>
@@ -83,7 +83,7 @@ class KreiranjeProjekta extends Component {
     }
 
     render() {
-        return (
+        if(this.state.predmeti.length>0)return (
             <Fragment>
                 <Form>
   
@@ -91,6 +91,9 @@ class KreiranjeProjekta extends Component {
                 </Form>
             </Fragment>
         );
+        else return(
+            <p>Nema predmeta</p>
+        )
     }
     notDone() {
         alert("Nije implementirano!");
@@ -98,13 +101,12 @@ class KreiranjeProjekta extends Component {
     saveProject(){
         var ajax=new XMLHttpRequest();
         var komponenta=this;
-        var naziv=document.getElementsByName("name").value;
-        var opis=document.getElementsByName("projectDescription").value;
+        var naziv=document.getElementById("name").value;
+        var opis=document.getElementById("projectDescription").value;
         var bodovi=document.getElementById("broj").value;
         ajax.onreadystatechange=function(){
             if(ajax.readyState==4 && ajax.status=="200"){
 					var tekst=ajax.responseText;
-					console.log(tekst);
                     if(tekst.length==0) {
                         alert("Prazan json");
                         return;
@@ -112,11 +114,9 @@ class KreiranjeProjekta extends Component {
 					alert("Sve je ok");
 				}
 				else if(ajax.status!="200"){
-                    //alert("Doslo je do greske");
-                    alert("Uspjesno obavljeno");
 				}
 		}
-	    ajax.open("POST","http://localhost:31913/services/projects/newp",true);
+	    ajax.open("POST","https://si-mike-2019.herokuapp.com/services/projects/newp",true);
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajax.send("naziv_projekta="+naziv + 
         "&id_predmeta="+komponenta.state.idPredmeta+"&id_asistenta="+komponenta.state.idAsistenta+

@@ -23,9 +23,9 @@ export class dateTimePickerr extends Component {
       console.log(ddNew);
      
 
-      axios.post("http://localhost:31920/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew).then()
+      axios.post("https://si2019uniform.herokuapp.com/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew).then()
       {
-        console.log("http://localhost:31920/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew)
+        console.log("https://si2019uniform.herokuapp.com/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew)
         document.location.reload();
       };
       

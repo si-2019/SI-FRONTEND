@@ -17,7 +17,7 @@ class GenerisanjeGrupa extends Component {
 		this.notDone=this.notDone.bind(this);
   }
   render() {
-   	return ( 
+   	if(this.state.predmeti.length>0)return ( 
 			 <div className="card" style={{float: "left", width:"100%"}}>
 
 				 <div class="card-body"> 
@@ -33,14 +33,12 @@ class GenerisanjeGrupa extends Component {
 					)}>
 							{
 								this.state.predmeti.map(predmet=>{
-									return <option className="list-group-item">{predmet.nazivPredmeta}</option>
+									return <option className="list-group-item">{predmet.naziv}</option>
 								})
 							}
 					</select>
 					< label class="col-form-label" style={{textAlign:"left"}}>Broj studenata:</label>
-					{/*<label style={{textAlign:"left"}}>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
-					*/}
-					<label style={{textAlign:"left"}}>{30}</label>
+					<label style={{textAlign:"left"}}>{this.state.predmeti[this.state.predmetIndex].brojStudenata}</label>
 					<br/>
 					<label class="col-form-label" style={{textAlign:"left"}}>Broj projektnih grupa:</label>
 					<input className="form-control" id="broj" type="number" min="1" max="100" placeholder="10" style={{textAlign:"left"}}></input>
@@ -81,9 +79,10 @@ class GenerisanjeGrupa extends Component {
 				</div>
 			</div>
 		</div>
-	
-		
 		);
+	else return(
+		<p>Nema projekata</p>
+	)
   };
   notDone(){
     alert("Nije implementirano!");

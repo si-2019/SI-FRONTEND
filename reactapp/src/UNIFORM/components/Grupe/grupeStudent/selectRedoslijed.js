@@ -13,9 +13,9 @@ export class selectRedoslijed extends Component {
         changeRedoslijed = (event) =>
         {  
           this.setState({value: event.target.value});
-          axios.post("http://localhost:31920/promjenaRedoslijeda/").then()
+          axios.post("https://si2019uniform.herokuapp.com/promjenaRedoslijeda/").then()
           {
-            console.log("http://localhost:31920/promjenaRedoslijeda/")
+            console.log("https://si2019uniform.herokuapp.com/promjenaRedoslijeda/")
             document.location.reload();
           };
           

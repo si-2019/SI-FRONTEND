@@ -7,6 +7,7 @@ import SingleChoice from './SingleChoice'
 import MultipleChoice from './MultipleChoice'
 import StarRating from './StarRating'
 import TextBox from './TextBox'
+import axios from 'axios'
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,13 @@ class App extends Component {
       datumIstekaAnkete: new Date(),
       pitanja: [],
       vrstePitanja: [],
-      odabranaVrstaPitanja: 'single-choice'
+      odabranaVrstaPitanja: 'single-choice',
+      predmeti: [],
+      idPredmet: null,
+      svePopunjeno: true,
+      dateChanged: false,
+      upozorenje: "",
+      uloga: "STUDENT"
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,7 +54,8 @@ class App extends Component {
   handleDateChange(date) {
     this.setState({
       datumIstekaAnkete: date,
-      aa: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' ')
+      aa: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' '),
+      dateChanged: true
     });
   }
 
@@ -58,28 +66,41 @@ class App extends Component {
     })
   }
 
+  onSelectChange = event => {
+    console.log(this.state.idPredmet, event.target.value)
+    this.setState({
+      idPredmet: event.target.value
+    });
+  }
+
+
   render() {
     return ( 
-      <div style={{padding: '25px', backgroundColor: 'white'}}>
-         
-        <div className="row justify-content-center">
-          <div className="">
-            <h1>Kreiranje ankete</h1>
-          </div>
+    
+    <div id="containerKreiranje">
+      <div>
+        <div className="naslovliste">
+          <h1>Kreiranje ankete</h1>
         </div>
-        <hr/>
+      </div>
+      <div style={{
+          width: "80%",
+          margin: "auto",
+          padding: "25px"
+       }}>
+         
         <div>
           <form>
             <h5>Naziv ankete:</h5>
             <div className="row">
-              <div className="col-4">
+              <div className="col-6">
                 <input type="text" className="form-control inputText" name="nazivAnkete" onChange={this.handleInputChange}/>
               </div>
             </div>
             <br/>
             <h5>Opis ankete:</h5>
             <div className="row">
-              <div className="col-4">
+              <div className="col-6">
                 <input type="text" className="form-control inputText" name="opisAnkete" onChange={this.handleInputChange}/>
               </div>
             </div>
@@ -102,27 +123,29 @@ class App extends Component {
               <input type="radio" id="customRadio1" name="vrstaAnketeRadio" value="javna anketa" className="custom-control-input" onChange={this.handleRadioChange} defaultChecked/>
               <label className="custom-control-label" for="customRadio1">Javna anketa</label>
             </div>
+            {
+              (this.state.uloga == "PROFESOR" || this.state.uloga == "ASISTENT") &&
             <div className="custom-control custom-radio">
               <input type="radio" id="customRadio2" name="vrstaAnketeRadio" value="anketa za predmet" className="custom-control-input" onChange={this.handleRadioChange}/>
               <label className="custom-control-label" for="customRadio2">Anketa za predmet</label>
             </div>
+            }
+            { this.state.uloga == "ADMIN" &&
             <div className="custom-control custom-radio">
               <input type="radio" id="customRadio3" name="vrstaAnketeRadio" value="anketa za sve predmete"className="custom-control-input" onChange={this.handleRadioChange}/>
               <label className="custom-control-label" for="customRadio3">Anketa za sve predmete</label>
             </div>
-            
+            }
             { this.state.vrstaAnkete != 'anketa za predmet' || (
               <div>
                 <div className="form-group row">
-                  <div className="col-4">
+                  <div className="col-6">
                     <br/>
                     <label for="exampleSelect1">Predmet</label>
-                    <select className="form-control" id="exampleSelect1">
-                      <option>ARM</option>
-                      <option>SI</option>
-                      <option>OOI</option>
-                      <option>NA</option> 
-                      <option>Algoritmi i Strukture Podataka</option>
+                    <select className="form-control" id="exampleSelect1" value={this.state.idPredmet} onChange={e => this.onSelectChange(e)}>
+                      {this.state.predmeti.map(predmet => (
+                          <option value={predmet.id}>{predmet.naziv}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -145,7 +168,7 @@ class App extends Component {
             })}
             <div class="row">
               
-              <div class="form-group col-4 text-right">
+              <div class="form-group col-6 text-right">
                <select class="form-control" id="exampleSelect1" name="odabranaVrstaPitanja" onChange={this.handleInputChange}>
                   <option>single-choice</option>
                   <option>multiple-choice</option>
@@ -154,41 +177,139 @@ class App extends Component {
                 </select>
               </div>
               <div className="col-6 text-left">
-                <button className="btn btn-secondary" onClick={this.dodajPitanje} type="button">
+                <button className="btn btn-primary" onClick={this.dodajPitanje} type="button">
                   Dodaj pitanje
                 </button>
               </div>
             </div>
             <hr/>
             <div className="row justify-content-center">
-              <button className="btn btn-primary" onClick={this.kreirajAnketu}>
+              <button className="btn btn-primary" onClick={this.kreirajAnketu} style={{
+                width: "30%"
+              }}>
                 Kreiraj anketu
               </button>
             </div>
+              {
+                !this.state.svePopunjeno &&
+                <div className="alert alert-dismissible alert-danger" style={{marginTop: "10px"}}>
+                  <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ upozorenje: '', svePopunjeno: true }); }}>&times;</button>
+                  {this.state.upozorenje}
+                </div>
+              }
           </form>
         </div>
       </div>
+    </div>
     );
   }
 
-   kreirajAnketu() {
-      fetch(url + '/createAnketa', {
+  componentDidMount() {
+    let korisnik = window.localStorage.getItem("id")
+    console.log(korisnik)
+    axios.get(url + `/dajPredmete?idKorisnik=${korisnik}`).then(res => {
+      console.log(res)
+      this.setState({
+        predmeti: res.data
+      })
+    })
+
+    
+      fetch('http://si2019golf.herokuapp.com/r1/uloga/' + window.localStorage.getItem("id"), {
+          method: 'get',
+          headers: {
+              'Authorization': window.localStorage.getItem("token")
+          }
+      }).then(res => res.json())
+        .then(res => {
+              if(res.loginError) {
+                  window.location.href = window.location.origin + '/romeo/login'
+              }
+              else {
+                  this.setState({
+                    uloga: res.uloga
+                  })
+              }
+        })
+  }
+
+  nijePrazno(s) {
+    return s.replace(/\s/g,'') != ''
+  }
+
+  provjera() {
+    let s = this.state
+    let ok = true
+    ok = ok && this.nijePrazno(s.nazivAnkete) && this.nijePrazno(s.opisAnkete)
+    for(let i = 0; i < s.pitanja.length; i++) {
+      ok = ok && this.nijePrazno(s.pitanja[i].tekstPitanja)
+      if(s.pitanja[i].odgovori) {
+        for(let j = 0; j < s.pitanja[i].odgovori.length; j++) {
+          ok = ok && this.nijePrazno(s.pitanja[i].odgovori[j])
+        }
+      }
+    }
+    return ok
+  }
+
+   kreirajAnketu(e) {
+
+    if(!this.provjera()) {
+      e.preventDefault()
+      this.setState({
+        svePopunjeno: false,
+        upozorenje: "Sva polja moraju biti popunjena da biste kreirali anketu."
+      })
+      console.log("POPUNI SVE")
+      return
+    }
+    if(!this.state.dateChanged) {
+      e.preventDefault()
+      this.setState({
+        svePopunjeno: false,
+        upozorenje: "Datum roka za popunjavanje mora biti postavljen da biste kreirali anketu."
+      })
+      return
+    }
+
+     let korisnik = window.localStorage.getItem("id")
+     let idPredmet = this.state.idPredmet
+      if(this.state.vrstaAnkete == 'anketa za predmet' && this.state.idPredmet == null && this.state.predmeti.length > 0 ) {
+        idPredmet = this.state.predmeti[0].id
+      }
+
+      console.log("==============")
+      fetch(url + '/createAnketa?username=' + window.localStorage.getItem("username"), {
         method: 'post',
-        headers: {'Content-Type':'application/json'},
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': window.localStorage.getItem("token")
+        },
         body: JSON.stringify({
-          idNapravio: 1,
-          idPredmet: 4,
+          idNapravio: korisnik,
+          idPredmet: idPredmet,
           tipAnkete: this.state.vrstaAnkete,
           naziv: this.state.nazivAnkete,
           opisAnkete: this.state.opisAnkete,
           datumIstekaAnkete: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' '),
           pitanja: this.state.pitanja
         })
-      }).then((res, err) => {
+      }).then(res => res.json())
+      .then((res, err) => {
+        console.log(res.loginError)
+        if(res.loginError) {
+          e.preventDefault()
+          window.location.href = window.location.origin + '/romeo/login'
+          return
+        }
+        else {
+
+        }
         this.setState({
           error: err
         })
       })
+      
    }
 }
 

@@ -99,8 +99,8 @@ class Forma extends Component {
         const { idOdsjek, naziv, lista, selectedValue } = this.state;
        
         return (
-          
-          <div className="col-md-4 col-md-offset-4" >
+          <div className="card align-items-center">
+          <div className="card-body  col-md-4">
             <br />
                 <p>Odaberite odsjek: </p><br />
                 <select className="custom-select"  onChange={this.onChange}> 
@@ -117,9 +117,8 @@ class Forma extends Component {
                 
                 <br />
              
-            <form  onSubmit={this.handleSubmit} className="container-fluid">
-            <label className="font-weight-bold">ID odsjeka</label>
-              <input className="form-control font-weight-bold" readOnly value={idOdsjek} /> <br />
+            <form  onSubmit={this.handleSubmit}>
+            
 
               <label>Naziv </label>
               <input  className="form-control" type="text" name="naziv" value={naziv} onChange={this.handleChange} /><br />
@@ -131,10 +130,13 @@ class Forma extends Component {
              </form><br />
 
              
-   
+             </div>
     </div>
         );
     }
 }
 
 export default Forma
+
+/*<label className="font-weight-bold">ID odsjeka</label>
+  <input className="form-control font-weight-bold" readOnly value={idOdsjek} /> <br />*/

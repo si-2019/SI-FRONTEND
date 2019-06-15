@@ -9,9 +9,9 @@ export class tabela extends Component {
 
   dodajStudentaRandom = (idStudent,id) =>
   {       
-      axios.post("http://localhost:31920/dodajStudentaRandomGroup/"+idStudent).then()
+      axios.post("https://si2019uniform.herokuapp.com/dodajStudentaRandomGroup/"+idStudent).then()
       {
-          console.log("http://localhost:31920/dodajStudentaRandomGroup/"+idStudent);
+          console.log("https://si2019uniform.herokuapp.com/dodajStudentaRandomGroup/"+idStudent);
           document.location.reload();
       };
   } 

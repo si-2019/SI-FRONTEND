@@ -71,7 +71,8 @@ class FormaProfPred extends Component {
         const {profesor, predmet, listaProfesora, listaPredmeta} = this.state;
 
         return (
-          <div className="col-md-2">
+          <div className="card align-items-center">
+          <div className="card-body col-md-2">
             <br />
               <p>Odaberite profesora: </p><br />
                 <select className="custom-select"  onChange={this.onChangeProfesor}> 
@@ -94,7 +95,7 @@ class FormaProfPred extends Component {
                 </select><br /><br />
 
                 <button className="btn btn-primary btn-block" onClick={()=>this.spoji(predmet,profesor)}>Dodaj</button>
-
+                </div>
           </div>
         );
     }

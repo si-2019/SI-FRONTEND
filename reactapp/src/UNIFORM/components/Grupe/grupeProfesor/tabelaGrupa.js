@@ -14,18 +14,18 @@ export class tabela extends Component {
   odjaviStudenta = (index) =>
   {     
     
-      axios.post("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina).then()
+      axios.post("https://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina).then()
       {
-          console.log("http://localhost:31920/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina)
+          console.log("https://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina)
           document.location.reload();
       };
   } 
 
   izbrisiGrupu = () =>
   {        
-      axios.post("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina).then()
+      axios.post("https://si2019uniform.herokuapp.com/removeGroup/"+this.props.grupa.idGrupaTermina).then()
       {
-          console.log("http://localhost:31920/removeGroup/"+this.props.grupa.idGrupaTermina)
+          console.log("https://si2019uniform.herokuapp.com/removeGroup/"+this.props.grupa.idGrupaTermina)
           document.location.reload();
       };
   }

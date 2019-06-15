@@ -56,27 +56,27 @@ class Popunjavanje extends Component {
   }
   componentDidMount() {
     const { match: { params } } = this.props;
-    axios.get(`http://localhost:9123/getKreator/?idAnketa=${params.id}`)
+    axios.get(`${url}/getKreator/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ imeKreator: res.data.kreator });
       });
-    axios.get(`http://localhost:9123/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ datumKreiranjaAnkete: this.formatDate(res.data.datumKreiranja) });
       });
-    axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumIstekaAnkete/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ datumIstekaAnkete: res.data.datumIstekaAnkete });
       });
-    axios.get(`http://localhost:9123/getTipAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getTipAnkete/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ tipAnkete: res.data.tipAnkete });
       });
-    axios.get(`http://localhost:9123/getPredmet/?idAnketa=${params.id}`)
+    axios.get(`${url}/getPredmet/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ nazivPredmeta: res.data.nazivPredmeta });
       });
-    axios.get(`http://localhost:9123/getAnketa/?id=${params.id}`)
+    axios.get(`${url}/getAnketa/?id=${params.id}`)
       .then((res) => {
         const pit = [];
         const odg = [];
@@ -119,14 +119,35 @@ class Popunjavanje extends Component {
       }
     }
     console.log("ima/brojac", ima, br)
-    if (ima && br===0) {
+    if (br===0) {
+      let odg = []
+      for(let i = 0; i < this.state.odgovori.length; i++) {
+        let ans = this.state.odgovori[i]
+        if(!ans.sviOdg)
+          odg.push(ans)
+        else {
+          for(let j = 0; j < ans.sviOdg.length; j++) {
+            let o = ans.sviOdg[j]
+            if(o.isChecked) {
+              odg.push({
+                idPitanja: ans.idPitanja,
+                tekstOdgovora: o.tekstOdgovora,
+                idPonudjeniOdgovor: o.idPonudjeniOdgovor
+              })
+            }
+          }
+        }
+      }
       fetch(url + '/popuniAnketu', {
         method: 'post',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': window.localStorage.getItem("token")
+        },
         body: JSON.stringify({
           idAnketa: params.id,
-          odgovori: this.state.odgovori,
-          idPopunio: 1,
+          odgovori: odg,
+          idPopunio: window.localStorage.getItem("id"),
           vrijemePopunjavanja: new Date().toISOString().slice(0, 19).replace('T', ' '),
         })
       })
@@ -171,7 +192,7 @@ class Popunjavanje extends Component {
     for (const [index, value] of this.state.pitanja.entries()) {
       pitanjaa.push(
         <div key={index} class="card-body" style={index % 2 === 0 ? { backgroundColor: 'white' } : { backgroundColor: '#E4EBF6' }}>
-          <h6 class="card-title">{value.tekstPitanja}</h6>
+          <h4 class="card-title">{value.tekstPitanja}</h4>
           {value.vrstaPitanja === 'single-choice' ?
             <div>
               {value.odgovori.map((v, i) => {
@@ -214,29 +235,17 @@ class Popunjavanje extends Component {
     return (
 
       <div className="App" id="containerPopuni">
-        {
-          this.state.showSucess &&
-          <div class="alert alert-dismissible alert-success">
-            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSucess: false }); window.location.reload(); }}>&times;</button>
-            <strong>Uspješno ste popunili anketu!</strong>
-          </div>
-        }
-        {
-          this.state.showError &&
-          <div class="alert alert-dismissible alert-danger">
-            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
-            <strong>{this.state.showError}</strong>
-          </div>
-        }
+        
         <div id="proradi">
-          <div id="headerPopuni">
-            <h1 style={{ color: 'white' }}>Popunjavanje</h1>
+          <div className="naslovliste">
+            <h1>Popunjavanje</h1>
           </div >
+          
           <div id="contentPopuni">
             <div id="infoPopuni" >
               <div id="info1Popuni" >
                 <div class="card border-primary mb-3">
-                  <div class="card-header" style={{ backgroundColor: '#00203F' }}><h4 style={{ color: 'white' }} class="card-title">Info</h4></div>
+                  <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Info</h4></div>
                   <div class="card-body">
                     <h6 class="card-title">Predmet</h6>
                     <p class="card-text">{this.state.nazivPredmeta}</p>
@@ -262,12 +271,26 @@ class Popunjavanje extends Component {
             </div>
             <div id="showPopuni" >
               <div id="show1Popuni" >
-                <div class="card border-light mb-3" style={{ padding: 15, alignItems: 'right' }}>
-                  <div class="card-header" style={{ backgroundColor: '#00203F' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
+                <div class="card " style={{ alignItems: 'right' }}>
+                  <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
                   {pitanjaa}
                   <div >
-                    <button disabled={this.state.isteklo} onClick={() => this.popunianketu()} type="button" class="btn btn-primary float-right" id="buttonPopuni">Pošalji</button>
+                    <button disabled={this.state.isteklo} onClick={() => this.popunianketu()} type="button" class="btn btn-primary" id="buttonPopuni">Pošalji</button>
                   </div>
+                  {
+                  this.state.showSucess &&
+                    <div class="alert alert-dismissible alert-success">
+                      <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSucess: false }); window.location.reload(); }}>&times;</button>
+                      <strong>Uspješno ste popunili anketu!</strong>
+                    </div>
+                  }
+                  {
+                    this.state.showError &&
+                    <div className="alert alert-dismissible alert-danger">
+                      <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
+                      {this.state.showError}
+                    </div>
+                  }
                 </div>
               </div>
             </div>

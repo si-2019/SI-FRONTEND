@@ -22,8 +22,8 @@ export class NewPublicRoomForm extends Component {
     return (
       <div className="new-room-form">
         <form onSubmit={this.handleSubmit}>
-            <input className="input-group mb-3 juliet-message-input" style={inputStyle} onChange={this.handleChange} type='text' placeholder='Create public room...' value={this.state.roomName} />
-            <button id='create-room-btn' type="submit" style={{width: '10%'}}>+</button>
+            <input className="input-group mb-3 juliet-message-input" style={inputStyle} onChange={this.handleChange} type='text' placeholder='Kreirajte javnu sobu' value={this.state.roomName} />
+            <button id='create-room-btn' type="submit" style={{width: '30px%', height: '30px', borderRadius: '0.25rem', fontWeight: 'bold'}}>+</button>
         </form>
       </div>
     )
@@ -31,9 +31,14 @@ export class NewPublicRoomForm extends Component {
 }
 
 const inputStyle = {
-  width: '90%',
-  padding: '0',
-  display: 'inline-block'
+  width: '80%',
+  padding: '3px 6px',
+  marginRight: '5px',
+  display: 'inline-block',
+  borderRadius : '0.25rem',
+  height: '30px',
+  marginBottom: '4px',
+
 }
 
 export default NewPublicRoomForm

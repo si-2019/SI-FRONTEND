@@ -12,11 +12,11 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>          
-            <h1>Spisak anketa po predmetima</h1>
+            <div className="okvirListe">
+            <div className="naslovliste"><h1>Ankete po predmetima</h1></div>
 
             <br></br>
-                <table className="table table-bordered text-center bg-active border-solid" align="center">
+                <table className="tabelaLista table-bordered text-center bg-active border-solid" align="center">
                     <tr className="bg-primary text-light">
                     <td class="tabtip">Naziv ankete</td>
                     <td class="tabtip">Opis</td>
@@ -37,11 +37,18 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent=1', {
-            method: 'GET'
+        fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent='+window.localStorage.getItem("id")+ '&username=' + window.localStorage.getItem("username"), {
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             console.log("hoce")
             this.setState({
                 items: {
@@ -50,7 +57,7 @@ class App extends React.Component {
             })
         }, error => {
             this.setState({
-                items: [error, "error"]
+                error: [error, "error"]
             })
         })
     }

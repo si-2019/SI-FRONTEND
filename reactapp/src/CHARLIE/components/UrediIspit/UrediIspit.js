@@ -1,39 +1,44 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Modal from "../SharedComponents/Modal";
-import DateTimePicker from 'react-datetime-picker'
+import DatePicker from "react-datetime";
+import axios from "axios";
 
 class UrediIspit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '90', datumRokaPrijave: new Date(), kapacitet: 0};
+    const {
+      idIspit
+    } = props;
+    this.state = {
+      idIspit: idIspit || 0,
+      ispit: {}
+    };
+  }
 
-   /* this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);*/
-  }
-/*
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
-  toggleModal = () => {
+ /* handleRokPrijaveChange = e => {
     this.setState({
-      modalShow: !this.state.modalShow
+      rokPrijave: e.target
     });
-  }
+  };
 
-  urediIspit = () => {
+  handleTerminChange = e => {
     this.setState({
-      modalShow: !this.state.modalShow
+      termin: e.target
     });
-  }
-*/
-  onChangeRokPrijave = datumRokaPrijave => this.setState({ datumRokaPrijave })
+  };
 
+  handleSalaChange = e => {
+    this.setState({
+      sale: e.target
+    });
+  };
+
+  onVrijemeTrajanjaChange = e => {
+    this.setState({
+      vrijemeTrajanja: e.target
+    });
+  };
 
   onKapacitetChange = e => {
     this.setState({
@@ -41,60 +46,96 @@ class UrediIspit extends React.Component {
     });
   };
 
+  onNapomenaChange = e => {
+    this.setState({
+      napomena: e.target
+    });
+  };
+   state = { ispit: {} };*/
+
+  async componentDidMount() {
+    // vratit ce ispit kad se uradi backend
+    const { ispitID } = this.state.idIspit;
+    const ispit = (await axios.get(`http://si2019charlie.herokuapp.com/ispit/${ispitID}`))
+      .data;
+    console.log(ispit);
+    this.setState({ ispit });
+  }
+
   render() {
+    const {
+      rokPrijave,
+      termin,
+      sale,
+      vrijemeTrajanja,
+      kapacitet,
+      napomena
+    } = this.state.ispit;
+   
     return (
-      <div className="containter-fluid">
-       <div>
-          <h3>Uredi ispit</h3>
-          <form>
-            <label>Rok prijave ispita</label>
-            <br></br>
-            <DateTimePicker
-              onChange={this.onChangeRokPrijave}
-              value={this.state.datumRokaPrijave}
-              format="dd-MM-yyyy HH:mm"
-              id="rokPrijaveIspita"
-            />
-            <br></br>
-            <br></br>
-            <label>Trajanje ispita</label>
-            <br></br>
-            <input
-              type="number"
-              value={this.state.value}
-              id="trajanjeIspita"
-              onChange={this.handleChange}></input>
-            <label>minuta</label>
-            <br></br>
-
-            <label htmlfor="sala">Sala:</label><br/>
-            <input type="text" className="form-control" id="sala" />
-            <br/>
-            <div className="form-group">
-              <label htmlFor="kapacitet">Kapacitet:</label>
-              <br />
-              <input
-                type="number"
-                id="kapacitet"
-                onChange={this.onKapacitetChange}
-                value={this.state.kapacitet}
-              />
+      <div class="container-fluid" style={{marginTop: "30px", textAlign: "left"}}>    
+        
+            <div style={{textAlign: "left"}}>  
+              <label htmlFor="rokPrijave" class="col-form-label col-form-label-lg">Rok prijave: </label> 
             </div>
-            <br/>
-            <form
-              autoFocus
-              labelTitle="Napomena za ispit"
-              id="iNapomena"
-              placeholder="Nemojte zaboraviti indeks..."
-              validations={["required"]}
-            />
+              <DatePicker
+              id="rokPrijaveUredi"
+              selected={this.state.rokPrijave}
+              
+              value={rokPrijave} 
+              />  
+              <div style={{textAlign: "left"}}>  
+              <label htmlFor="sala" class="col-form-label col-form-label-lg">Sala:</label>
+              </div>
+              <select
+                multiple
+                class="custom-select"
+                id="salaUredi"    
+               
+                value={sale}            
+                            
+              >
+                <option>VA</option>
+                <option>MA</option>
+                <option>S0</option>
+                <option>S1</option>
+                <option>S3</option>
+              </select>
+              <div style={{textAlign: "left"}}>  
+              <label htmlFor="termin" class="col-form-label col-form-label-lg">Termin: </label> 
+            </div>
+              <DatePicker
+                id="terminUredi"                        
+                selected={this.state.termin}
+                
+                value={termin}        
+              /> 
+              <div style={{textAlign: "left"}}>                
+              <label class="col-form-label col-form-label-lg" htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> </div>
+              <input type="number" className="form-control" id="vrijemeTUredi"
+                value={vrijemeTrajanja} />
+              <div style={{textAlign: "left"}}>
+              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet">Kapacitet: </label> </div>
+              <input type="number" className="form-control" id="kapacitetUredi"
+                value={kapacitet}/>
+              <div style={{textAlign: "left"}}>
+              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet">Napomena: </label> </div>
+              
+           <textarea 
+                    
+                    className="form-control"
+                    id="ispitnaNapomenaUredi"
+                    placeholder="Ovdje unesite napomenu..."
+                    rows="15"
+                   
+                    value={napomena}
+                   
+        />
+           
+           
 
-            <br></br>
-            
-          </form>
-        </div>
-       
-      </div>
+          </div>
+        
     )
   }
 }

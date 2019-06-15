@@ -28,8 +28,13 @@ class FormaOdsjek extends Component {
 
         const body = JSON.stringify(data);
 
+        var token = window.localStorage.getItem("token");
+        var currentUsername = window.localStorage.getItem("username");
+          
+        console.log(token);
+          console.log(currentUsername);
         //Drugi URL
-        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/odsjek/AddNewOdsjek', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/odsjek/AddNewOdsjek?currentUsername=' + currentUsername + '&token=' + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -48,8 +53,8 @@ class FormaOdsjek extends Component {
         const { naziv } = this.state;
 
         return (
-          <div className="card">
-          <div className="card-body  col-md-4 col-md-offset-4">
+          <div className="card align-items-center">
+          <div className="card-body  col-md-4">
             <form  onSubmit={this.OnSubmit} className="container-fluid">
               <label >Naziv odsjeka </label>
               <input className="form-control" type="text" name="naziv" value={naziv} onChange={this.handleInputChange} /><br />

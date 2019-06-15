@@ -4,7 +4,7 @@ import './Navbar.css';
 class NavbarFox extends Component {
 
     klikZadace =() =>{
-      window.location.replace("/KILO");
+      window.location.replace("/KILO/kreiranjeZadace?idPredmeta=" + window.localStorage.getItem("idPredmeta"));
     }
     klikAnkete = () => {
       window.location.replace("/HOTEL");
@@ -21,6 +21,13 @@ class NavbarFox extends Component {
     klikForum = ()  => {
       window.location.replace("/TANGO");
     }
+    klikMaterijali = ()  => {
+      window.location.replace("/GOLF");
+    }
+    klikOdjava = ()  => {
+      window.location.replace("/ROMEO");
+    }
+
     render() {
       const x = "StranicaPredmeta?predmetId="+localStorage.getItem("NazivPredmeta");
       return (
@@ -29,34 +36,6 @@ class NavbarFox extends Component {
             float: "left",
             minHeight: "100vh"
         }}>
-        {/* <Navbar bg="primary" variant="dark" expand="lg">
-          <Navbar.Brand href="/fox">FOX</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto"> 
-              <Nav.Link href="StranicaPredmeta?predmetId=Tehnike Programiranja">Student</Nav.Link>
-              <NavDropdown bg="dark" title="Unos podataka" id="basic-nav-dropdown">
-                <NavDropdown.Item href="unosPrisustva">Prisustvo</NavDropdown.Item>
-                <NavDropdown.Item href="unosBodova">Ispiti</NavDropdown.Item>
-                <NavDropdown.Item href="unosOcjene">Ocjene</NavDropdown.Item>
-                <NavDropdown.Item href="unosTeme">Teme</NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="ispiti">Ispiti</Nav.Link>
-              <Nav.Link href="obavijesti">Obavijesti</Nav.Link>
-              <Nav.Link href="zadace">Zadaće</Nav.Link>
-              <Nav.Link href="ankete">Ankete</Nav.Link>
-              <Nav.Link href="statistika">Statistika</Nav.Link>
-              <Nav.Link href="raspored">Raspored</Nav.Link>
-              <Nav.Link href="chat">Chat</Nav.Link>
-              <Nav.Link href="forum">Forum</Nav.Link>
-              <Nav.Link href="materijali">Materijali</Nav.Link>
-            </Nav>
-            <Nav className="mr-auto" className="justify-content-end">
-              <Nav.Link href="https://www.iiicareer.com/OTS/Client/logout.php">Odjava</Nav.Link>
-              <Nav.Link href="http://yiiisu.com/load.php?action=download&id=3">Uputstvo</Nav.Link>
-            </Nav> 
-          </Navbar.Collapse>
-        </Navbar> */}
 
             <a href={x}>
               <button type="button" className="btn btn-primary left-buttons">Student</button>
@@ -110,7 +89,7 @@ class NavbarFox extends Component {
               <button type="button" className="btn btn-primary left-buttons">Forum</button>
             </a>
 
-            <a href="materijali">
+            <a onClick={this.klikMaterijali}>
               <button type="button" className="btn btn-primary left-buttons">Materijali</button>
             </a>
 
@@ -118,7 +97,7 @@ class NavbarFox extends Component {
               <button type="button" className="btn btn-primary left-buttons">Uputstvo</button>
             </a>
 
-            <a href="https://www.iiicareer.com/OTS/Client/logout.php">
+            <a onClick={this.klikOdjava}>
               <button type="button" className="btn btn-primary left-buttons">Odjava</button>
             </a>
             

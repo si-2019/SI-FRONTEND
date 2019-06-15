@@ -1,77 +1,88 @@
 import React from "react";
-import TabelaOcjene from "./TabelaOcjene";
 import axios from "axios";
+import "./tabela.css";
+import { withRouter } from "react-router-dom";
 
 class Ocjene extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            dummyOcjene: [{
-                AkademskaGodina: "2017",
-                Ocjene: [{
-                    Predmet: "lol",
-                    Ocjena: "6"
-                }]
-            },
-            {
-                AkademskaGodina: "2017",
-                Ocjene: [{
-                    Predmet: "lol",
-                    Ocjena: "6"
-                }]
-            },
-            {
-                AkademskaGodina: "2017",
-                Ocjene: [{
-                    Predmet: "lol",
-                    Ocjena: "6"
-                }]
-            },
-            {
-                AkademskaGodina: "2017",
-                Ocjene: [{
-                    Predmet: "lol",
-                    Ocjena: "6"
-                }]
-            },
-            {
-                AkademskaGodina: "2017",
-                Ocjene: [{
-                    Predmet: "lol",
-                    Ocjena: "6"
-                }]
-            }],
-            idStudenta: 1
+            dummyOcjene: [],
+            idStudenta: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            token: window.localStorage.getItem("token")
         }
     }
     componentDidMount() {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    this.handleGet();
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handleGet();
+    }
+
+    handleGet = () => {
         axios
-            .get("http://localhost:31918/ocjene/" + this.state.idStudenta)
+            .get("https://si2019siera.herokuapp.com/ocjene/" + this.state.idStudenta)
             .then(res => {
-                this.setState({
-                    dummyOcjene: res.data.ocjene
-                })
-                console.log(res.data.ocjene);
+                if (res.data.success) {
+                    this.setState({
+                        dummyOcjene: res.data.ocjene[0]
+                    })
+                }
             })
             .catch(res => {
                 console.log(res.error);
             });
     }
+
     render() {
         return (
             <div style={{ marginTop: "30px" }}>
                 <h2 style={{ marginBottom: "30px" }}>Ocjene po godinama</h2>
-                <div class="row" style={{ padding: "20px" }}>
-                    {this.state.dummyOcjene.map((x, i) =>
-                        <TabelaOcjene key={i}
-                            ocj={x.Ocjene}
-                            akGod={x.AkademskaGodina}
-                        />)}
+                <div className="row" style={{ padding: "20px" }}>
+                    {this.state.dummyOcjene.length == 0 ? <span style={{ float: "left", marginLeft: "30px" }}>Student trenutno nema ocjena.</span> :
+                        this.state.dummyOcjene.map(x =>
+                            <div className="col-sm-12 col-xs-12 col-md-12 col-lg-4">
+
+                                <table className="table table-bordered text-center bg-active border-solid" style={{ float: "left", marginLeft: "20px" }}>
+                                    <tbody>
+                                        <tr className="bg primary text-light">
+                                            <th className="tabtip" colSpan="2">Akademska godina {x.AkademskaGodina}</th>
+                                        </tr>
+                                        <tr className="bg-primary text-light">
+                                            <th className="tabtip">Predmet</th>
+                                            <th className="tabtip">Ocjena</th>
+                                        </tr>
+                                        {x.Ocjene.map(y =>
+                                            <tr className="tabtip1">
+                                                <td>{y.Predmet}</td>
+                                                <td>{y.Ocjena}</td>
+                                            </tr>
+                                        )}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        )
+                    }
+
                 </div>
             </div>
         );
     }
 }
 
-export default Ocjene;
+export default withRouter(Ocjene);

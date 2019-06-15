@@ -1,29 +1,29 @@
-
-#predmet_kartica{
-    max-width: 60rem;
-}
-
 #drugi{
     margin-left: 10%;
 }
 .treci{
     margin-left: 8%;
+    background-color: #2C3E50;
 }
 
-#naslovObjave{
-    width: 20%;
-}
 .divsaokvirom{
     width:85%;
     border: 1px solid #2C3E50;
+    border-radius: 5px;
     margin: auto;
     margin-top:1%;
     margin-bottom:1%;
 }
 
-.card{
-    width: 85%;
+#bedz{
+    margin-left: 5pt;
+}
+
+.sss{
+    width: 80%;
+    margin: auto;
     margin-top: 10pt;
+    margin-bottom: 10pt; 
 }
 
 .opis{
@@ -50,12 +50,7 @@
 }
 
 .side{
-    background-color: #ffffff;
-}
-
-.list-group{
-    width:100%;
-    margin-right: 0pt;
+    background-color: #2C3E50;
 }
 
 .naslov{
@@ -67,7 +62,7 @@
 .dd{
     margin-top: 10pt;
     margin-bottom: 10pt;
-    width: 120pt;
+    width: 100px;
 }
 
 .opis-uredjivanje{
@@ -93,10 +88,6 @@
     margin-left: 1%;
 }
 
-.checkbox{
-    margin-left: 2%;
-    margin-top: 1%;
-}
 
 #checkBox {
     margin: 20px;
@@ -116,17 +107,22 @@
 }
 
 #objava{
-    width:90%;
+    width:80%;
     margin: auto;
     margin-top: 5pt;
     margin-bottom: 5pt;
 }
 
-#dodavanjeObjave{
-    width:90%;
-    margin: auto;
-    margin-top: 5pt;
-    margin-bottom: 5pt;
+.golfDugme{
+    margin-left: 4pt;
+}
+
+.vanjski{
+    background-color: #ffffff;
+}
+
+.naslovPredmeta{
+    float: left;
 }
 
 

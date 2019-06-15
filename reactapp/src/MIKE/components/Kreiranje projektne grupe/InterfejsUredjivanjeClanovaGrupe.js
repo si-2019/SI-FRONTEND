@@ -8,12 +8,16 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
   constructor(props){
     super(props);
     this.state={
+      korisnik:props.korisnik,
+      projektID:props.projektID,
+      predmetID:props.predmetID,
       studentiUnutra:[],
-      studentiVani:[],
+      studentiVani:props.studenti,
+      predmet:props.predmet,
       forma:"null"
     }
     this.nizUnutra=[];
-    this.nizVani=[];
+    this.nizVani=props.studenti;
     this.nizStudenata=[];
     this.dohvatiStudenteProjekat=this.dohvatiStudenteProjekat.bind(this);
     this.premjestiVani=this.premjestiVani.bind(this);
@@ -24,62 +28,54 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     this.unosInformacija=this.unosInformacija.bind(this);
   }
 
-              render() {
-                if(this.state.forma=="null") {
-                return (
-                  <div className="card" style={{float: "left", width:"100%", top:"40px"}}>
-                    <div class="card-body">
-                    <h4 class="card-title" style={{textAlign:"left"}}>Uredjivanje clanova grupe</h4>
-                   <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Grupa 4</h6>
-                  <br/>
-                    
-                  <div className="bs-component">
-                    <div className="row">
-                      <div className="col-lg-4">
-                        <select multiple className="form-control" ref="unutra">
-                            {
-                              this.state.studentiUnutra.map(student=>{
-                                return <option className="list-group-item">{student.ime} {student.prezime}</option>
-                              })
-                            }
-                            <option className="list-group-item">test1</option>
-                            <option className="list-group-item">test2</option>
-                        </select>
-                      </div>
-                      <div className="btn-group-vertical">
-                        <button className="btn btn-secondary" onClick={this.premjestiVani}>>></button>
-                        <button className="btn btn-secondary" onClick={this.premjestiUnutra}>{`<<`}</button>
-                      </div>
-                      <div className="col-lg-4">
-                        <select multiple className="form-control" ref="vani">
-                            {
-                              this.state.studentiVani.map(student=>{
-                                return <option className="list-group-item">{student.ime} {student.prezime}</option>
-                              })
-                            }
-                            <option className="list-group-item">test3</option>
-                            <option className="list-group-item">test4</option>
-                        </select>
-                      </div>
-                    </div>
-                    <br/>
-                    <button className="btn btn-primary"  style={{float:"left", margin:"10px"}} onClick={this.unosInformacija}>Nazad</button>
-                    <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.brisanjeClanova}>Dalje</button>
-                    <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.sacuvajPromjene}>Sačuvaj</button>
-                   
-                    <button className="btn btn-primary"  style={{float:"right", margin:"10px"}} onClick={this.dohvatiStudenteProjekat}>Ucitaj liste - TEST</button>         
-                  </div>
-                  </div>
-                  </div>
-                );
-                          }
-            
-
+  render() {
+    if(this.state.forma=="null") {
+    return (
+      <div className="card" style={{float: "left", width:"100%"}}>
+        <div class="card-body">
+        <h4 class="card-title" style={{textAlign:"left"}}>Uredjivanje clanova grupe</h4>
+        <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Grupa 4</h6>
+      <br/>
+        
+      <div className="bs-component">
+        <div className="row">
+          <div className="col-lg-4">
+            <select multiple className="form-control" ref="unutra">
+                {
+                  this.state.studentiUnutra.map(student=>{
+                    return <option className="list-group-item">{student.ime} {student.prezime}</option>
+                  })
+                }
+            </select>
+          </div>
+          <div className="btn-group-vertical">
+            <button className="btn btn-secondary" onClick={this.premjestiVani}>>></button>
+            <button className="btn btn-secondary" onClick={this.premjestiUnutra}>{`<<`}</button>
+          </div>
+          <div className="col-lg-4">
+            <select multiple className="form-control" ref="vani">
+                {
+                  this.state.studentiVani.map(student=>{
+                    return <option className="list-group-item">{student.ime} {student.prezime}</option>
+                  })
+                }
+            </select>
+          </div>
+        </div>
+        <br/>
+        <button className="btn btn-primary"  style={{float:"left", margin:"10px"}} onClick={this.unosInformacija}>Nazad</button>
+        {/*<button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.brisanjeClanova}>Dalje</button>*/}
+        <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.sacuvajPromjene}>Sačuvaj</button>
+      </div>
+      </div>
+      </div>
+    );
+  }
     else if (this.state.forma=="brisanjeClanova") return (
       <BrisanjeClanova/> 
      );
      else if (this.state.forma=="unosInformacija") return (
-      <UnosInformacija/> 
+      <UnosInformacija korisnik={this.state.korisnik} predmet={this.state.predmet}/> 
      );
 
   };
@@ -107,7 +103,7 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
             komponenta.setState(thisState=>({studentiUnutra:jsonNovi,studentiVani:thisState.studentiVani}));
         }
     }
-    ajax.open("POST","http://localhost:31913/services/group/getProjectStudents",true);
+    ajax.open("POST","https://si-mike-2019.herokuapp.com/services/group/getProjectStudents",true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send("student=1&grupa=1");
 
@@ -125,7 +121,7 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
             komponenta.setState(thisState=>({studentiUnutra:thisState.studentiUnutra,studentiVani:jsonNovi}));
         }
     }
-    ajax2.open("POST","http://localhost:31913/services/group/getProjectStudents",true);
+    ajax2.open("POST","https://si-mike-2019.herokuapp.com/services/group/getProjectStudents",true);
     ajax2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax2.send("student=1&grupa=0");
   }
@@ -133,7 +129,14 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     var x=this.refs.unutra;
     var y=this.refs.vani;
     if(y.selectedIndex>=0){
-      this.nizUnutra.push(this.state.studentiVani[y.selectedIndex]);
+      var student=this.nizVani[y.selectedIndex];
+      this.nizUnutra.push(student);
+      for(var i=0;i<this.nizVani.length;i++){
+        if(this.nizVani[i].id==student.id){
+          this.nizVani.splice(i,1);
+          break;
+        }
+      }
       var o=y.options[y.selectedIndex];
       x.add(o);
     }
@@ -142,13 +145,42 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     var x=this.refs.unutra;
     var y=this.refs.vani;
     if(x.selectedIndex>=0){
-      this.nizVani.push(this.state.studentiUnutra[x.selectedIndex]);
+      var student=this.nizUnutra[x.selectedIndex];
+      this.nizVani.push(student);
+      for(var i=0;i<this.nizUnutra.length;i++){
+        if(this.nizUnutra[i].id==student.id){
+          this.nizUnutra.splice(i,1);
+          break;
+        }
+      }
       var o=x.options[x.selectedIndex];
       y.add(o);
     }
   }
   sacuvajPromjene(){
-    alert("Nije implementirano!");
+    var ajax=new XMLHttpRequest();
+    var komponenta=this;
+    ajax.onreadystatechange=function(){
+      if(ajax.readyState==4 && ajax.status=="200"){
+        var id=JSON.parse(ajax.responseText).id;
+        var payload=[];
+        for(var i=0;i<komponenta.nizUnutra.length;i++){
+          payload.push({idStudent:komponenta.nizUnutra[i].id,idGrupaProjekta:id})
+        }
+        let ajax2=new XMLHttpRequest();
+        ajax2.onreadystatechange=function(){
+          if(ajax2.readyState==4 && ajax2.status=="200"){
+          }
+        }
+        ajax2.open("POST","https://si-mike-2019.herokuapp.com/services/group/addmembers",true);
+        ajax2.setRequestHeader("Content-Type", "application/json");
+        ajax2.setRequestHeader("Accept","application/json");
+        ajax2.send(JSON.stringify(payload));  
+      }
+    }
+    ajax.open("POST","https://si-mike-2019.herokuapp.com/services/group/",true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send("idProjekat="+this.state.projektID+"&nazivGrupe="+this.props.naziv+"&ostvareniBodovi=0&komentarAsistenta= ");
   }
 }
 

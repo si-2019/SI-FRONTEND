@@ -124,7 +124,7 @@ state = {response:[]}
               id="btnUredi"
               class="btn btn-link"
               style={{ marginRight: "5px", marginTop: "10px" }}
-              
+              onClick={() => this.setState({ modalUredi: true, idIspit: el.idIspit })}
             >
               Uredi
             </button>
@@ -190,11 +190,12 @@ state = {response:[]}
           <ModalUredi
                     saveState={this.saveState}
                     show={this.state.modalUredi}
+                    idIspit={this.state.idIspit}
                     naslovModala="Uredi ispit"
-                   
-                   onClose={this.toggleUredi}
-
+                    tijeloModala={<UrediIspit idIspit={this.state.idIspit}/>}
+                    onClose={this.toggleUredi}
           />
+
       <Modal3
                     saveState={this.saveState}
                     show={this.state.isEmptyState}

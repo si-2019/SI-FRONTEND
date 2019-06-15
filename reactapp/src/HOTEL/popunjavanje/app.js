@@ -56,27 +56,27 @@ class Popunjavanje extends Component {
   }
   componentDidMount() {
     const { match: { params } } = this.props;
-    axios.get(`http://localhost:9123/getKreator/?idAnketa=${params.id}`)
+    axios.get(`${url}/getKreator/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ imeKreator: res.data.kreator });
       });
-    axios.get(`http://localhost:9123/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ datumKreiranjaAnkete: this.formatDate(res.data.datumKreiranja) });
       });
-    axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumIstekaAnkete/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ datumIstekaAnkete: res.data.datumIstekaAnkete });
       });
-    axios.get(`http://localhost:9123/getTipAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getTipAnkete/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ tipAnkete: res.data.tipAnkete });
       });
-    axios.get(`http://localhost:9123/getPredmet/?idAnketa=${params.id}`)
+    axios.get(`${url}/getPredmet/?idAnketa=${params.id}`)
       .then((res) => {
         this.setState({ nazivPredmeta: res.data.nazivPredmeta });
       });
-    axios.get(`http://localhost:9123/getAnketa/?id=${params.id}`)
+    axios.get(`${url}/getAnketa/?id=${params.id}`)
       .then((res) => {
         const pit = [];
         const odg = [];
@@ -140,7 +140,10 @@ class Popunjavanje extends Component {
       }
       fetch(url + '/popuniAnketu', {
         method: 'post',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': window.localStorage.getItem("token")
+        },
         body: JSON.stringify({
           idAnketa: params.id,
           odgovori: odg,
@@ -189,7 +192,7 @@ class Popunjavanje extends Component {
     for (const [index, value] of this.state.pitanja.entries()) {
       pitanjaa.push(
         <div key={index} class="card-body" style={index % 2 === 0 ? { backgroundColor: 'white' } : { backgroundColor: '#E4EBF6' }}>
-          <h6 class="card-title">{value.tekstPitanja}</h6>
+          <h4 class="card-title">{value.tekstPitanja}</h4>
           {value.vrstaPitanja === 'single-choice' ?
             <div>
               {value.odgovori.map((v, i) => {
@@ -232,38 +235,12 @@ class Popunjavanje extends Component {
     return (
 
       <div className="App" id="containerPopuni">
-        {
-          this.state.showSucess &&
-          <div class="alert alert-dismissible alert-success">
-            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSucess: false }); window.location.reload(); }}>&times;</button>
-            <strong>Uspješno ste popunili anketu!</strong>
-          </div>
-        }
-        {
-          this.state.showError &&
-          <div className="alert alert-dismissible alert-danger">
-            <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
-            {this.state.showError}
-          </div>
-        }
+        
         <div id="proradi">
-          <div id="headerPopuni">
-            <h1 style={{ color: 'white' }}>Popunjavanje</h1>
+          <div className="naslovliste">
+            <h1>Popunjavanje</h1>
           </div >
-          {
-          this.state.showSucess &&
-          <div class="alert alert-dismissible alert-success">
-            <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSucess: false }); window.location.reload(); }}>&times;</button>
-            <strong>Uspješno ste popunili anketu!</strong>
-          </div>
-        }
-        {
-          this.state.showError &&
-          <div className="alert alert-dismissible alert-danger">
-            <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
-            {this.state.showError}
-          </div>
-        }
+          
           <div id="contentPopuni">
             <div id="infoPopuni" >
               <div id="info1Popuni" >
@@ -294,12 +271,26 @@ class Popunjavanje extends Component {
             </div>
             <div id="showPopuni" >
               <div id="show1Popuni" >
-                <div class="card border-light mb-3" style={{ padding: 15, alignItems: 'right' }}>
+                <div class="card " style={{ alignItems: 'right' }}>
                   <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
                   {pitanjaa}
                   <div >
-                    <button disabled={this.state.isteklo} onClick={() => this.popunianketu()} type="button" class="btn btn-primary float-right" id="buttonPopuni">Pošalji</button>
+                    <button disabled={this.state.isteklo} onClick={() => this.popunianketu()} type="button" class="btn btn-primary" id="buttonPopuni">Pošalji</button>
                   </div>
+                  {
+                  this.state.showSucess &&
+                    <div class="alert alert-dismissible alert-success">
+                      <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSucess: false }); window.location.reload(); }}>&times;</button>
+                      <strong>Uspješno ste popunili anketu!</strong>
+                    </div>
+                  }
+                  {
+                    this.state.showError &&
+                    <div className="alert alert-dismissible alert-danger">
+                      <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
+                      {this.state.showError}
+                    </div>
+                  }
                 </div>
               </div>
             </div>

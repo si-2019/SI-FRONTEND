@@ -38,7 +38,10 @@ class App extends React.Component {
     }
     componentDidMount() { 
         fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent=1', {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
@@ -50,7 +53,7 @@ class App extends React.Component {
             })
         }, error => {
             this.setState({
-                items: [error, "error"]
+                error: [error, "error"]
             })
         })
     }

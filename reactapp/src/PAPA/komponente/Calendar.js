@@ -351,11 +351,14 @@ export default class Calendar extends React.Component {
             );
         })
         return (
-            <div className="calendar-container">
+            <div className="calendar-container"  style={{ width: '100%', height: '100%', margin:"0"}}>
                 <div className='bg-primary' style={{width: '100%',  display: 'flex',justifyContent:'space-between', padding:'1%', backgroundColor:"#eaecef"}}>
                     {<h3 style={{color:"white"}} >Kalendar</h3>}
                     <ButtonGroup vertical >
-                    <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
+                    <DropdownButton as={ButtonGroup} 
+                        alignRight
+                        title="Filteri "
+                        id="dropdown-menu-align-right">
                         <Dropdown.Item eventKey="1" onClick={this.ispitiFakultet}>Ispiti na nivou fakulteta</Dropdown.Item>
                         <Dropdown.Item eventKey="2" onClick={this.ispitiSmijer}>Ispiti po smijeru </Dropdown.Item>
                         <Dropdown.Item eventKey="3" onClick={this.ispitiGodina}>Ispiti po godinama </Dropdown.Item>

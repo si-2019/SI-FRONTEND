@@ -80,7 +80,7 @@ class TabelaPredmeti extends  React.Component {
                     <Row noGutters>
                         <Col>
                                 {this.state.studenti === false && 
-                                    <Table striped bordered responsive hover bsPrefix="table">
+                                    <Table striped bordered responsive bsPrefix="table">
                                     <thead>
                                         <tr hover="false" className="table-primary">
                                             <th>Tip</th>

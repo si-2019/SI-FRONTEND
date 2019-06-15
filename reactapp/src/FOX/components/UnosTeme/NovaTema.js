@@ -45,7 +45,7 @@ class NovaTema extends Component {
             });
         }
         else {
-            const korisnik = window.localStorage.getItem('idKorisnika');
+            const korisnik = window.localStorage.getItem('id');
             const idKorisnika = korisnik !== null ? korisnik : 64;
 
             let reqBody = {

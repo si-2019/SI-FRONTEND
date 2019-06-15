@@ -60,8 +60,8 @@ class PrijavljeniIspiti extends React.Component {
   }
 
   async componentDidMount() {
-    const studentID = 250;
-    const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/prijavljeniIspiti/${studentID}`);
+    const idKorisnika = window.localStorage.getItem('id')
+    const ispiti = await axios.get(`http://si2019charlie.herokuapp.com/prijavljeniIspiti/${idKorisnika}`);
     this.setState({ ispiti: ispiti.data });
   } 
 

@@ -39,7 +39,10 @@ class App extends React.Component {
     }
     componentDidMount() { 
         fetch(url + '/dajListuJavnihAnketa', {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {

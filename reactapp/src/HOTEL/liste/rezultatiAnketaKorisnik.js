@@ -38,7 +38,10 @@ class App extends React.Component {
     }
     componentDidMount() { 
         fetch(url + '/dajSveAnketeZaKojePostojeRezultati?idKorisnik=1', {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {

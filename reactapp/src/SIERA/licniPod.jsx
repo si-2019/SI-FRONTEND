@@ -47,7 +47,7 @@ class LicniPod extends Component {
     handleGet = ()=>{
          axios
             .get(
-                `http://localhost:31918/studenti/` +
+                `https://si2019siera.herokuapp.com/studenti/` +
                 this.state.StudentID
             )
             .then(res => {

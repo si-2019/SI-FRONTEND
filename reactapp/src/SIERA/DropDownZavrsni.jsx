@@ -55,7 +55,7 @@ class DropDownZavrsni extends React.Component {
         //autorizacija
 
         axios
-            .post("http://localhost:31918/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
+            .post("https://si2019siera.herokuapp.com/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
                 isStudent: this.state.studentId,
                 idTema: this.state.temaId
             })
@@ -90,7 +90,7 @@ class DropDownZavrsni extends React.Component {
     }
     handleGet = () => {
         axios
-            .get("http://localhost:31918/profesori")
+            .get("https://si2019siera.herokuapp.com/profesori")
             .then(res => {
                 this.setState(
                     {
@@ -104,7 +104,7 @@ class DropDownZavrsni extends React.Component {
             });
         //teme koje se vezu za 1 mentora
         axios
-            .get("http://localhost:31918/profesori/temeZavrsni/" + this.state.profId)
+            .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + this.state.profId)
             .then(res => {
                 this.setState({
                     teme: res.data.data
@@ -156,7 +156,7 @@ class DropDownZavrsni extends React.Component {
             ajax.onreadystatechange = () => {
                 if (this.readyState == 4 && this.status == 200) {
                     axios
-                        .get("http://localhost:31918/profesori/temeZavrsni/" + selectedId)
+                        .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId)
                         .then(res => {
                             this.setState({
                                 teme: res.data.data,
@@ -191,7 +191,7 @@ class DropDownZavrsni extends React.Component {
         }
         else {
             axios
-                .get("http://localhost:31918/profesori/temeZavrsni/" + selectedId)
+                .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId)
                 .then(res => {
                     this.setState({
                         teme: res.data.data,

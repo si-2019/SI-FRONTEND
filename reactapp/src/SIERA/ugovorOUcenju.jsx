@@ -60,7 +60,7 @@ class UgovorOUcenju extends Component {
 
   handleGetKreiraj = () => {
     axios
-      .post("http://localhost:31918/ugovori/kreiraj/" + this.state.studentId, {
+      .post("https://si2019siera.herokuapp.com/ugovori/kreiraj/" + this.state.studentId, {
         ime: this.state.ime,
         prezime: this.state.prezime,
         semestar: this.state.izabraniSemestar,
@@ -146,7 +146,7 @@ class UgovorOUcenju extends Component {
   handleGetIzborni = () => {
     axios
       .get(
-        `http://localhost:31918/predmeti/` +
+        `https://si2019siera.herokuapp.com/predmeti/` +
         this.state.izabraniSmjer +
         `/` +
         this.state.izabranaGodina +
@@ -223,7 +223,7 @@ class UgovorOUcenju extends Component {
   handleGetGlavni = () => {
 
     axios
-      .get("http://localhost:31918/ugovori/url/" + this.state.studentId)
+      .get("https://si2019siera.herokuapp.com/ugovori/url/" + this.state.studentId)
       .then(res => {
         if (res.data.success) {
           this.setState({
@@ -237,7 +237,7 @@ class UgovorOUcenju extends Component {
 
     //dobavljanje studenta
     axios
-      .get("http://localhost:31918/studenti/" + this.state.studentId)
+      .get("https://si2019siera.herokuapp.com/studenti/" + this.state.studentId)
       .then(res => {
         if (res.data.success) {
           this.setState({
@@ -252,7 +252,7 @@ class UgovorOUcenju extends Component {
       });
     //dobavljanje smjerova
     axios
-      .get("http://localhost:31918/odsjek")
+      .get("https://si2019siera.herokuapp.com/odsjek")
       .then(res => {
         if (res.data.success) {
           this.setState({

@@ -57,7 +57,7 @@ class ModalComponent extends React.Component {
             if (this.state.noviInput.adresa) {
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/adresa/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/adresa/` +
                         this.state.studentID,
                         {
                             adresa: this.state.noviInput.adresa
@@ -94,7 +94,7 @@ class ModalComponent extends React.Component {
             if (this.state.noviInput.email) {
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/mail/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/mail/` +
                         this.state.studentID,
                         {
                             mail: this.state.noviInput.email
@@ -130,7 +130,7 @@ class ModalComponent extends React.Component {
             if (this.state.noviInput.brtel) {
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/tel/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/tel/` +
                         this.state.studentID,
                         {
                             tel: this.state.noviInput.brtel

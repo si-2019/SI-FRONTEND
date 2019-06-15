@@ -13,7 +13,7 @@ class ListaPredmeta extends Component {
   handleGet = () => {
     axios
       .get(
-        `http://localhost:31918/predmeti/trenutni/` +
+        `https://si2019siera.herokuapp.com/predmeti/trenutni/` +
         this.state.trenutnoLogovaniStudentID
       )
       .then(res => {

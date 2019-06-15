@@ -38,7 +38,7 @@ class Prosjek extends Component {
     handleGet = () => {
         axios
             .get(
-                `http://localhost:31918/prosjek/` +
+                `https://si2019siera.herokuapp.com/prosjek/` +
                 this.state.StudentID
             )
             .then(res => {

@@ -86,7 +86,7 @@ class ModalComponent extends React.Component {
             if (this.state.noviInput.ime != null && this.state.noviInput.prezime != null) {
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/imeprezime/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/imeprezime/` +
                         this.state.studentID,
                         {
                             ime: this.state.noviInput.ime,
@@ -123,7 +123,7 @@ class ModalComponent extends React.Component {
             if (this.state.noviInput.drzavljanstvo) {
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/drzavljanstvo/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/drzavljanstvo/` +
                         this.state.studentID,
                         {
                             drzavljanstvo: this.state.noviInput.drzavljanstvo
@@ -167,7 +167,7 @@ class ModalComponent extends React.Component {
                 };
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/foto/` + this.state.studentID, formData, config)
+                        `https://si2019siera.herokuapp.com/studenti/update/foto/` + this.state.studentID, formData, config)
                     .then(res => {
                         if (res.data.success && res.data.userAutorizacija) {
                             this.setState({

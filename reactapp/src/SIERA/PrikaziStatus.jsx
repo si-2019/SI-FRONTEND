@@ -41,7 +41,7 @@ class PrikaziStatus extends Component {
   handleGet = () => {
     axios
       .get(
-        `http://localhost:31918/temezavrsni/` +
+        `https://si2019siera.herokuapp.com/temezavrsni/` +
         this.state.StudentID
       )
       .then(res => {

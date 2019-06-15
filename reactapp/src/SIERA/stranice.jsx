@@ -38,7 +38,7 @@ class Stranice extends Component {
 
   handleGet = () => {
     axios
-      .get(`http://localhost:31918/studenti/` + this.state.StudentID)
+      .get(`https://si2019siera.herokuapp.com/studenti/` + this.state.StudentID)
       .then(res => {
         if (res.data.success) {
           const In = res.data.map(obj => obj.linkedin);

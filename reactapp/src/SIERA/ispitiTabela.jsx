@@ -34,7 +34,7 @@ class IspitiTabela extends Component {
   handleGet = ()=>{
     axios
       .get(
-        `http://localhost:31918/ispiti/` + this.state.trenutnoLogovaniStudentID
+        `https://si2019siera.herokuapp.com/ispiti/` + this.state.trenutnoLogovaniStudentID
       )
       .then(res => {
         if (res.data.akademskeGodine != undefined) {

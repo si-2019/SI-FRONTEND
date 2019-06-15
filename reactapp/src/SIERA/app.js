@@ -84,7 +84,7 @@ class App extends Component {
   componentDidMount() {
     //autorizacija
     axios
-    .get("http://localhost:31918/studenti/" + this.state.studentId)
+    .get("https://si2019siera.herokuapp.com/studenti/" + this.state.studentId)
     .then(res=>{
       if(res.data.success && res.data.userAutorizacija){
         this.setState({

@@ -35,7 +35,7 @@ class Ocjene extends React.Component {
 
     handleGet = () => {
         axios
-            .get("http://localhost:31918/ocjene/" + this.state.idStudenta)
+            .get("https://si2019siera.herokuapp.com/ocjene/" + this.state.idStudenta)
             .then(res => {
                 if (res.data.success) {
                     this.setState({

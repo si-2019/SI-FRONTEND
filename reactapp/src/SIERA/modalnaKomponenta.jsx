@@ -29,7 +29,7 @@ class modalnaKomponenta extends Component {
       if (this.props.nazivpromjene == "LinkedIn") {
         axios
           .put(
-            `http://localhost:31918/studenti/update/linkedin/` +
+            `https://si2019siera.herokuapp.com/studenti/update/linkedin/` +
             this.state.trenutnoLogovaniStudentID,
             { linkedin: this.state.vrijednostInputa }
           )
@@ -57,7 +57,7 @@ class modalnaKomponenta extends Component {
       } else if (this.props.nazivpromjene == "Website") {
         axios
           .put(
-            `http://localhost:31918/studenti/update/website/` +
+            `https://si2019siera.herokuapp.com/studenti/update/website/` +
             this.state.trenutnoLogovaniStudentID,
             { website: this.state.vrijednostInputa }
           )

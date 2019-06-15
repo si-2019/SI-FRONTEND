@@ -36,7 +36,7 @@ class TabelaSortiranaPoBrojuIspita extends Component {
     handleGet = () => {
         axios
             .get(
-                `http://localhost:31918/predmeti/brojIspita/` +
+                `https://si2019siera.herokuapp.com/predmeti/brojIspita/` +
                 this.state.trenutnoLogovaniStudentID + "/sort"
             )
             .then(res => {

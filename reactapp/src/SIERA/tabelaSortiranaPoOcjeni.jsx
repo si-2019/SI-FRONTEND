@@ -36,7 +36,7 @@ class TabelaSortiranaPoOcjeni extends Component {
   handleGet = () => {
     axios
       .get(
-        `http://localhost:31918/ocjene/` +
+        `https://si2019siera.herokuapp.com/ocjene/` +
         this.state.trenutnoLogovaniStudentID + "/sort"
       )
       .then(res => {

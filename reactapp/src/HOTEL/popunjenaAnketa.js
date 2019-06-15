@@ -63,11 +63,18 @@ export default class App extends React.Component {
 
     componentDidMount() { 
        
-        fetch(url + '/dajPopunjenuAnketu?id='+this.state.id, {
-            method: 'GET'
+        fetch(url + '/dajPopunjenuAnketu?id='+ this.state.id + "&username=" + window.localStorage.getItem("username"), {
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             console.log(result)
             this.setState({
                 anketa: result

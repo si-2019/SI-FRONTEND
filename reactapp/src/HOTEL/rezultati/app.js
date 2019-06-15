@@ -62,8 +62,13 @@ class Rezultati extends Component {
       this.setState({nazivPredmeta:res.data.nazivPredmeta}); 
       console.log('res5', res);
     });
-    axios.get(`${url}/getRezultatiAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getRezultatiAnkete/?idAnketa=${params.id}&username=` + window.localStorage.getItem("username"))
     .then((res) => {
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+        return
+      }
+
       var pitanja = res.data;
       var textboxPitanja = [];
       var singleChoicePitanja = [];

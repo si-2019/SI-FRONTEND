@@ -18,14 +18,21 @@ export default class App extends React.Component {
     }
     
     promijeni() {
-       fetch(url + '/promijeniDatumIsteka', {
+       fetch(url + '/promijeniDatumIsteka?username=' + window.localStorage.getItem("username"), {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': window.localStorage.getItem("token")
+            },
             body: JSON.stringify({
                 datumIstekaAnkete: this.state.datumIstekaAnkete,
                 idAnketa: this.state.idAnketa,
             })  
         }).then((res, err) => {
+            if(res.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             if(res.error) {
                 this.setState({
                     showError: "Došlo je do greške!"

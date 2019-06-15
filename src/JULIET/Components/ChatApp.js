@@ -580,7 +580,7 @@ class ChatApp extends Component {
                         chatkit={this.props.chatkit}
                         addUser={this.addUser}
                     />
-                    <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id}/>
+                    <FileSidebar downloadClick={this.downloadClick} roomId={this.testRoomId}/>
                     <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
                     <EventPlanner currentId={this.props.currentId}/> 
                     <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >

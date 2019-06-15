@@ -563,13 +563,17 @@ class ChatApp extends Component {
                     </div>
                     
                     <div className="juliet-input-all">
-                        <Input onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
-                        <UploadFile onSubmit={this.uploadFile} />
+                        <div style={{height: '60%'}}>
+                            <Input onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
+                        </div>
+                        <div style={{height: '40%'}}>
+                            <UploadFile onSubmit={this.uploadFile} colorScheme={colorScheme} />
+                        </div>
                     </div>
                     
                 </div>
                 <div style={{'background': colorScheme}} className="juliet-list-wrapper juliet-right-wrapper">
-                    <BlockedUsers currentUserRole={this.state.currentUserRole} banUser={this.banUser} getUserRole={this.getUserRole} blockAUser={this.blockAUser}/>
+                    <BlockedUsers currentUserRole={this.state.currentUserRole} banUser={this.banUser} getUserRole={this.getUserRole} blockAUser={this.blockAUser} colorScheme={colorScheme}/>
                     <Members 
                         openPrivateChat={this.openPrivateChat} 
                         room_users={this.state.room_users}
@@ -580,7 +584,7 @@ class ChatApp extends Component {
                     />
                     <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id}/>
                     <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
-                    <EventPlanner currentId={this.props.currentId}/> 
+                    <EventPlanner currentId={this.props.currentId} colorScheme={colorScheme}/> 
                     <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >
                         {this.state.showColorPicker ? 
                             <SwatchesPicker onChange={this.handleColorChange}/> 
@@ -589,7 +593,7 @@ class ChatApp extends Component {
                     <div style={{width: '100%', padding: '10px 0'}}>   
                         <div className="juliet-section-h">
                         <div className="juliet-section-header" style={{width: 'calc(100% - 24px)'}}>
-                            <h5 style={{display: 'inline-block'}}>Choose theme:</h5>
+                            <h5 style={{display: 'inline-block'}}>Izaberi temu:</h5>
                         </div>
                         <button
                             style={{display: 'inline-block'}}

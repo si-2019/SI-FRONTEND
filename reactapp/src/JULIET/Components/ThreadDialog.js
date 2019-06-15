@@ -43,7 +43,7 @@ export default class ThreadDialog extends Component {
                     aria-labelledby="thread-dialog-title"
                     {...other}
                 >
-                    <DialogTitle id="thread-dialog-title">Message #{this.props.message.id}</DialogTitle>
+                    <DialogTitle id="thread-dialog-title">Poruka #{this.props.message.id}</DialogTitle>
                     <DialogContent>
                         <ul style={listStyle} className="list-group juliet-message-list">
                             {this.props.messagelist.map((message, index) => (
@@ -58,11 +58,11 @@ export default class ThreadDialog extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <input className="input-group mb-3 juliet-message-input" type="text" style={inputStyle}
                                 onChange={this.handleChange} value={this.state.messageToSend} />
-                            <input className="btn btn-outline-primary" style={buttonStyle} type="submit" value="Send" />
+                            <input className="btn btn-outline-primary" style={buttonStyle} type="submit" value="Pošalji" />
                         </form>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} style={{color: '#2C3E50'}}>Close</Button>
+                        <Button onClick={this.handleClose} style={{color: this.props.colorScheme}}>Zatvori</Button>
                     </DialogActions>
                 </Dialog>
             </div>

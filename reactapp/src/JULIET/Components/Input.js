@@ -47,7 +47,7 @@ class Input extends Component {
         this.setState({
             message: e.target.value,
             buttonValue: 'Send',
-            porukaPlaceholder: 'Say "Hi" to everyone'
+            porukaPlaceholder: 'Pozdravite druge korisnike'
         })
         this.props.onChange(e)
     }

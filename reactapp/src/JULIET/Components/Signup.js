@@ -37,38 +37,47 @@ class Signup extends Component {
     render() {
         return (
             <div style={signupStyle} className="juliet-form-container">
-                <h1>Let's Talk</h1>
+                <h1>ETF CHAT</h1>
                 {!localStorage.getItem('username') ?
                     <div style={divStyle}>
                         <label style={labelStyle}>Niste prijavljeni!</label>
                         <Link to="/Romeo">
-                            <button className="juliet-submit juliet-signup-button">Prijavite se!</button>
+                            <button className="juliet-submit" style={buttonLogin}>Prijavite se!</button>
                         </Link>
                     </div> :
                     <div style={divStyle}>
                         <label style={labelStyle}>{localStorage.getItem('username')}</label>
-                        <button className="juliet-submit juliet-signup-button" onClick={this.handleSubmit}>Nastavi</button>
+                        <button className="juliet-submit" onClick={this.handleSubmit} style={buttonLogin}>Nastavi</button>
                     </div>}
-                {this.state.banedUser ? <p style={{ color: "#000", padding: '10px 0' }}>This user is banned</p> : null}
+                {this.state.banedUser ? <p style={{ color: "#000", padding: '10px 0' }}>Ovom korisniku je zabranjen pristup!</p> : null}
             </div>
         )
     }
 }
 
 const signupStyle = {
-    width: '50%',
+    height: '200px',
+    width: '40%',
     margin: 'auto',
     marginTop: '10rem'
 }
 
+const buttonLogin = {
+    height: '35px',
+    fontSize: '14px',
+    width: '40%'
+}
 const divStyle = {
     textAlign: 'center',
     display: 'grid',
-    gridTemplateRows: 'auto auto'
+    gridTemplateRows: '2fr 1fr',
+    height: '160px'
 }
 
 const labelStyle = {
-    color: '#2C3E50', 
-    margin: '20px'
+    color: '#2C3E50',
+    margin: 'auto',
+    fontSize: '15px',
+    fontWeight: 'bold'
 }
 export default Signup;

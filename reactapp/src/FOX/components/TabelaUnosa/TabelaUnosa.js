@@ -179,7 +179,7 @@ class TabelaUnosa extends Component {
                                     required
                                     type="number"
                                     min={0}
-                                    name="indeks">
+                                    id="indeks">
                                     </Form.Control>
                                     <Form.Control.Feedback> Validan indeks </Form.Control.Feedback> 
                                     <Form.Control.Feedback type="invalid"> Indeks nije validan </Form.Control.Feedback>

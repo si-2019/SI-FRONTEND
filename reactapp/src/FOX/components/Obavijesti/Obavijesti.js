@@ -105,6 +105,7 @@ class Obavijesti extends Component {
                                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                                     <Form.Label> Naslov: </Form.Label>
                                                     <Form.Control
+                                                    id="naslovId"
                                                     type="text"
                                                     placeholder="Unesite naslov obavijesti"
                                                     ref={ this.naslov }

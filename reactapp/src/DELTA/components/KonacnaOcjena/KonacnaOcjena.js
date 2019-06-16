@@ -9,7 +9,7 @@ class Ankete extends Component {
      //hardkodirane vrijednosti
       const idStudent=1;
       const idPredmet=8;
-      const {data} = await axios.get('http://localhost:31904/ocjena/'+idPredmet+'/'+idStudent); 
+      const {data} = await axios.get('https://si2019delta.herokuapp.com/ocjena/'+idPredmet+'/'+idStudent); 
       this.setState({konacnaOcj:data})
       
     }

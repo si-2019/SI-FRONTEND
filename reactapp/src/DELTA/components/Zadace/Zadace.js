@@ -9,12 +9,12 @@ class Zadace extends Component {
 
     async componentDidMount(){
         //hardkodirane vrijednosti
-         const idzadaca=1;
-         const idStudent=1;
+         const idzadaca=3;
+         const idStudent=3;
          const idPredmeta=3;
-         const {data} = await axios.get('http://si2019kilo.herokuapp.com/bodoviZadace/'+idStudent+'/'+idzadaca); 
+         const {data} = await axios.get('https://si2019kilo.herokuapp.com/bodoviZadace/'+idStudent+'/'+idzadaca); 
          this.setState({zadaca:data});
-         const {data1} = await axios.get('http://si2019delta.herokuapp.com/zadacaObavjestenje/'+idPredmeta);
+         const {data1} = await axios.get('https://si2019delta.herokuapp.com/zadacaObavjestenje/'+idPredmeta);
         this.setState({zadaceObavjestenje:data1});
     }
 

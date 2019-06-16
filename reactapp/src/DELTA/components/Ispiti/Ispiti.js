@@ -7,12 +7,12 @@ class Ispiti extends Component {
     
     async componentDidMount(){
         //hardkoridana vrijednost dok se ne kreira bekend za listu predmeta
-        const idPredmeta=1;
+        const idPredmeta=8;
         const idStudent=1;
         
-        const {data} = await axios.get('http://si2019delta.herokuapp.com/ispitObavjestenje/'+idPredmeta);
+        const {data} = await axios.get('https://si2019delta.herokuapp.com/ispitObavjestenje/'+idPredmeta);
         this.setState({ispitiObavjestenje:data});
-        const {data1} = await axios.get('http://si2019delta.herokuapp.com/rezultatiIspita/'+idPredmeta+'/'+idStudent); 
+        const {data1} = await axios.get('https://si2019delta.herokuapp.com/rezultatiIspita/'+idPredmeta+'/'+idStudent); 
          this.setState({ispit:data1});
       }
 

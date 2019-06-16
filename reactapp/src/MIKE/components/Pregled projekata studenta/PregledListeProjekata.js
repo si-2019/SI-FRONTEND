@@ -144,7 +144,7 @@ class PregledListeProjekata extends Component {
     popuniPodatke() {
         var ajax=new XMLHttpRequest();
         var id_usera=1;
-        ajax.open('GET', 'http://localhost:31913/services/viewS/user-projects/:id'+id_usera, true);
+        ajax.open('GET', 'http://localhost:31913/services/viewS/user-projects/'+id_usera, true);
         ajax.setRequestHeader("Content-type", "application/json");
         ajax.send();
         ajax.onreadystatechange= function() {
@@ -169,8 +169,9 @@ class PregledListeProjekata extends Component {
     }
     klik(grupa){
         var ajax=new XMLHttpRequest();
-        ajax.open('GET', 'http://localhost:31913/services/viewA/getZadaci/'+grupa, true);
+        ajax.open('GET', 'http://localhost:31913/services/viewA/getZadaci/'+grupa+"?username="+window.localStorage.getItem("username"), true);
         ajax.setRequestHeader("Content-type", "application/json");
+        ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
         ajax.send();
         var komponenta=this;
         ajax.onreadystatechange= function() {
@@ -196,7 +197,6 @@ class PregledListeProjekata extends Component {
     promjenaZadatka(){
         var o=document.getElementById("lista").selectedIndex;
         var zavrsenTekst="Da";
-        console.log(this.state.zadaci[o]);
         if(!this.state.zadaci[o].zavrsen) zavrsenTekst="Ne";
         this.setState(state=>({
             opis_zadatka:state.zadaci[o].opis,

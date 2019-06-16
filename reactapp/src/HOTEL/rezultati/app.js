@@ -8,8 +8,12 @@ import url from '../url'
 axios.interceptors.request.use(function (config) {
   const token = window.localStorage.getItem("token");
   config.headers.Authorization = token;
-  config.params = {
-    usernamehotel: window.localStorage.getItem("username")
+  if(config.url.includes('si2019hotel') || config.url.includes('9123')) {
+    console.log(config.url)
+    config.params = {
+      username: window.localStorage.getItem("username"),
+      idKorisnik: window.localStorage.getItem("id")
+    }
   }
   return config;
 });

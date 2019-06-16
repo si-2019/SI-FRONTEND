@@ -10,7 +10,7 @@ class PrikazTermina extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:31905/si2019/echo/getZeljeniTerminByKorisnikId")
+    fetch("https://si-echo-2019.herokuapp.com/api/si2019/echo/getZeljeniTerminByKorisnikId") ////localhost:31905:
       .then(res => res.json())
       .then(json => {
         this.setState({

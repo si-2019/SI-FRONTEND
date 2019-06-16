@@ -14,44 +14,44 @@ state={
     isLoaded:false,
     grupe:[],
     predmet:undefined,
-    trenutniRedoslijed:undefined    
+    trenutniRedoslijed:undefined,
+    provjerenToken:false    
 };
 
-provjeriToken = () => {
-  axios({
-    url: 'https://si2019romeo.herokuapp.com/users/validate',
-    type: 'get',
-    dataType: 'json',
-    data: jQuery.param({
-      username: window.localStorage.getItem("username")
-    }),
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
-    },
-    complete: function (response) {
-      if (response.status == 200) {
-        return true;
-      }
-      else{
-        window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
-      } 
-    }  
-  });
-}
+
 
 componentDidMount = () =>{
-  fetch("https://si2019uniform.herokuapp.com/getRedoslijed")
+  if(!this.state.provjerenToken  && window.localStorage.getItem("uniformStanje")!='da')
+  {
+    var idItem  = window.localStorage.getItem("id");
+      if(idItem==null)
+      idItem="63813812";
+    fetch('https://cors-anywhere.herokuapp.com/'+'https://si2019oscar.herokuapp.com/pretragaId/' + idItem + '/dajUlogu', {
+      method: 'get',
+      headers: {
+          'Authorization': window.localStorage.getItem("token")
+      }
+    }).then(res => {
+          console.log(res)
+          if(res=="") {
+              window.location.href = window.location.origin + '/romeo/login'
+          }
+          else {                
+              this.setState({
+                  provjerenToken:true
+              })
+              fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getRedoslijed")
       .then(resRedoslijed => resRedoslijed.json())
       .then(jsonRedoslijed => {
         var linkGrupe;
         if(jsonRedoslijed.naziv=="Redoslijed abecede")
-          linkGrupe="https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
         else
-          linkGrupe="https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
     fetch(linkGrupe)
         .then(resGrupe => resGrupe.json())
         .then(jsonGrupe => {
-          fetch("https://si2019uniform.herokuapp.com/getPredmet/4")
+          fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getPredmet/4")
             .then(resPredmet => resPredmet.json())
             .then(jsonPredmet => {
 
@@ -64,13 +64,16 @@ componentDidMount = () =>{
             });
           });
         }); 
+          }
+      })
+  } 
+  
 
-        this.provjeriToken();
+        
   }
 
 render = () =>{ 
-    if(!this.state.isLoaded)
-    return <div>Loading...</div>;
+    
 
     var dataPredmet = this.state.predmet;   
     
@@ -83,6 +86,16 @@ render = () =>{
 
     var maxKapacitet=0;
     var rendering=[];
+    if(!spisakGrupe || spisakGrupe==undefined)
+  {
+    spisakGrupe=[];
+  }
+  if(!dataPredmet || dataPredmet==undefined)
+  {
+    dataPredmet={
+      naziv: "Projektovanje informacionih sistema"      
+    };
+  }
 
     for(var i=0;i<spisakGrupe.length;i++)
     {

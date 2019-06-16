@@ -117,7 +117,7 @@ export default class Hotel extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://si2019golf.herokuapp.com/r1/uloga/' + window.localStorage.getItem("id"), {
+        fetch('http://si2019golf.herokuapp.com/r1/uloga/' + window.localStorage.getItem("id") + '?username=' + window.localStorage.getItem("username"), {
             method: 'get',
             headers: {
                 'Authorization': window.localStorage.getItem("token")

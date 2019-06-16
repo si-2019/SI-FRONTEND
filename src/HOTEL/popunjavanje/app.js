@@ -4,7 +4,7 @@ import Countdown from './Countdown'
 import axios from 'axios';
 import url from '../url'
 import StarRatingComponent from 'react-star-rating-component';
-import {Redirect} from 'react-router'
+import Redirect from './Redirect'
 
 class Popunjavanje extends Component {
   constructor(props) {
@@ -69,6 +69,7 @@ class Popunjavanje extends Component {
       });
     axios.get(`${url}/getDatumIstekaAnkete/?idAnketa=${params.id}`)
       .then((res) => {
+        console.log(">>>>>", res.data, "<<<<<<")
         this.setState({ datumIstekaAnkete: res.data.datumIstekaAnkete });
       });
     axios.get(`${url}/getTipAnkete/?idAnketa=${params.id}`)
@@ -81,7 +82,6 @@ class Popunjavanje extends Component {
       });
     axios.get(`${url}/getAnketa/?id=${params.id}`)
       .then((res) => {
-        console.log(res, "-.--")
         if(res.data.loginError) {
           window.location.href = window.location.origin + '/romeo/login'
           return
@@ -198,12 +198,8 @@ class Popunjavanje extends Component {
   render() {
     if(this.state.error) {
       return (
-        <div style={{
-          width: "100%",
-          height: "100%",
-          background: "white",
-          margin: "auto"
-        }}>
+        <div className="alert alert-dismissible alert-danger" style={{ marginTop: "10px" }}>
+          <button type="button" className="close" data-dismiss="alert" onClick={() => { }}>&times;</button>
           {this.state.error}
         </div>
       )
@@ -256,7 +252,11 @@ class Popunjavanje extends Component {
     return (
 
       <div className="App" id="containerPopuni">
-        {this.state.error ? this.state.error : 
+        {this.state.error ? 
+                <div className="alert alert-dismissible alert-danger" style={{ marginTop: "10px"}}>
+                <button type="button" className="close" data-dismiss="alert" onClick={() => { }}>&times;</button>
+                {this.state.error}
+              </div> : 
         <div id="proradi">
           {this.state.popunjeno && <Redirect to='/hotel'/>}
           <div className="naslovliste">

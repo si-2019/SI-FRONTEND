@@ -17,7 +17,15 @@ const upisBodovaGrupno = (idGrupaProjekta, bodovi) => {
       });
 }
 
+const skaliranje = (idProjekta, faktor) => {
+    return axios.post('http://localhost:31913/api/bodovanjeprojekata/scaling', {
+        idProjekat: idProjekta,
+        faktorSkaliranja: faktor
+      });
+}
+
 export { 
     upisBodovaPojedinacno,
-    upisBodovaGrupno
+    upisBodovaGrupno,
+    skaliranje
 };

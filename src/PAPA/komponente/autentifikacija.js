@@ -8,7 +8,7 @@ const dajUloguTrenutnog = () => {
 const dajIdTrenutnog = () => {
     let id = window.localStorage.getItem("id");
     if (id==null || id ==undefined){
-        return 7; //Dami podatak ako se ne logujemo na sistem
+        return 1; //Dami podatak ako se ne logujemo na sistem
     }
     return id;
 }

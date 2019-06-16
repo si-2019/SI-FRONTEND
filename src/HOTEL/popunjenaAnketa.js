@@ -6,14 +6,19 @@ export default class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: this.props.match.params.id
+            id: this.props.match.params.id,
+            error: ''
         }
     }
 
     render() {
         return (
             <div className="okvirListe" id="containerKreiranje">
-                
+                {this.state.error ? <div className="alert alert-dismissible alert-danger" style={{marginTop: "10px"}}>
+                  <button type="button" className="close" data-dismiss="alert" onClick={() => {}}>&times;</button>
+                  {this.state.error}
+                </div> : 
+                <div>
                 <div className="naslovliste"><h1>Popunjena anketa #{this.state.id}</h1></div>
                 
                 <br></br>
@@ -56,14 +61,16 @@ export default class App extends React.Component {
                     </div>
                     ) : "Loading..."}
                 </div>
-
+                </div>
+            }
             </div>
         )
     }
 
     componentDidMount() { 
        
-        fetch(url + '/dajPopunjenuAnketu?id='+ this.state.id + "&username=" + window.localStorage.getItem("username"), {
+        fetch(url + '/dajPopunjenuAnketu?id='+ this.state.id + "&username=" + window.localStorage.getItem("username")
+        + "&idKorisnik=" + window.localStorage.getItem("id"), {
             method: 'GET',
             headers: {
                 'Authorization': window.localStorage.getItem("token")
@@ -71,6 +78,12 @@ export default class App extends React.Component {
         })
         .then(res => res.json())
         .then(result => {
+            if (result.accessError) {
+                this.setState({
+                    error: result.accessError
+                })
+                return
+            }
             if(result.loginError) {
                 window.location.href = window.location.origin + '/romeo/login'
                 return

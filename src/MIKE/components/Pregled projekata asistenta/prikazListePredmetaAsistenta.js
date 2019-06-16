@@ -5,7 +5,7 @@ import { Form, FormGroup, Label, Input, Table, Button } from 'reactstrap';
 
 import TabelaGrupa from '../BodovanjeProjekataStudenti/TabelaGrupa'
 import { sviPredmetiAsistenta, sveGrupeProjekta } from '../../api/projekti_zadaci';
-import { upisBodovaPojedinacno, upisBodovaGrupno } from '../../api/bodovanje';
+import { upisBodovaPojedinacno, upisBodovaGrupno, skaliranje } from '../../api/bodovanje';
 
 class ListaPredmetaAsistenta extends Component { 
   constructor(props) {
@@ -19,7 +19,8 @@ class ListaPredmetaAsistenta extends Component {
       predmeti:predmeti,
       selektani_predmet: null,
       grupe: [],
-      refresh: 1
+      refresh: 1,
+      faktorSkaliranja: 1
     };
 
     this.renderGrupe = this.renderGrupe.bind(this);
@@ -28,6 +29,7 @@ class ListaPredmetaAsistenta extends Component {
     this.ucitajGrupe = this.ucitajGrupe.bind(this);
     this.renderDetalji = this.renderDetalji.bind(this);
     this.prikaziGrupe = this.prikaziGrupe.bind(this);
+    this.skaliranje = this.skaliranje.bind(this);
   }
 
   componentDidMount() {
@@ -211,6 +213,20 @@ class ListaPredmetaAsistenta extends Component {
     );
   }
 
+  updateInputValueSkaliranje(val) {
+    this.setState({
+        faktorSkaliranja: val.target.value
+    });
+  }
+
+  skaliranje(faktor) {
+    if(this.state.selektani_predmet && faktor && !isNaN(faktor) && faktor > 0) {
+      skaliranje(this.state.selektani_predmet.idProjekat, faktor).then((res) => {
+        this.ucitajGrupe();
+      })
+    }
+  }
+
   renderDetalji() {
     return (
       <div style={{textAlign:"left"}}>
@@ -231,6 +247,17 @@ class ListaPredmetaAsistenta extends Component {
             <label className="col-form-label col-form-label-lg">Broj mogućih bodova:</label>
             <br/>
             <label className="control-label">{this.state.selektani_predmet.moguciBodovi}</label>
+            <hr/>
+
+            <label className="col-form-label col-form-label-lg">Skaliraj sve bodove:</label>
+            
+            <Input type="number" min="0" placeholder="Faktor skaliranja" onChange={val => this.updateInputValueSkaliranje(val)}></Input>
+
+            <br/>
+
+            <Button onClick={() => {this.skaliranje(this.state.faktorSkaliranja)}}>
+                Skaliraj bodove za sve studente na projektu
+            </Button>
 
             <hr/>
 

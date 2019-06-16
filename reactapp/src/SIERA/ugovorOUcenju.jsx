@@ -18,8 +18,8 @@ class UgovorOUcenju extends Component {
       listaObaveznih: "",
       izborniForma: [],
       hasError: false,
-      studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
       token: window.localStorage.getItem("token"),
       pdfUrl: null,
       ime: "Neko",
@@ -252,7 +252,7 @@ class UgovorOUcenju extends Component {
       });
     //dobavljanje smjerova
     axios
-      .get("https://si2019siera.herokuapp.com/odsjek")
+      .get("https://si2019siera.herokuapp.com/odsjek/" + this.state.studentId)
       .then(res => {
         if (res.data.success) {
           this.setState({
@@ -291,11 +291,8 @@ class UgovorOUcenju extends Component {
 
     setTimeout(() => {
       win.document.write(html);
-      // win.location.replace(this.state.pdfUrl);
       this.props.history.push(this.state.pdfUrl);
-      // this.props.location.assign(this.state.pdfUrl);
     }, 0);
-    //this.props.history.push(this.state.pdfUrl);
 
 
   }

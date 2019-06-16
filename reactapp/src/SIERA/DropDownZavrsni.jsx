@@ -11,8 +11,8 @@ class DropDownZavrsni extends React.Component {
         this.state = {
             profesori: [],
             teme: [],
-            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
             token: window.localStorage.getItem("token"),
             profId: 1,
             temaId: null,
@@ -20,8 +20,9 @@ class DropDownZavrsni extends React.Component {
             selProf: null,
             selTema: null,
             greskaVisible: "hidden",
+            succVisible:"hidden",
             selectClass: "custom-select",
-            OK: false,
+            OK: null,
             msg: ""
         }
         this.handleClick = this.handleClick.bind(this);
@@ -52,13 +53,12 @@ class DropDownZavrsni extends React.Component {
     }
     handlePost(e) {
         e.preventDefault();
-        //autorizacija
-
         axios
             .post("https://si2019siera.herokuapp.com/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
                 isStudent: this.state.studentId,
                 idTema: this.state.temaId
             })
+
             .then(res => {
                 if (res.data.success && res.data.userAutorizacija) {
                     //radi sta hoces
@@ -66,7 +66,7 @@ class DropDownZavrsni extends React.Component {
                         msg: "",
                         OK: true
                     })
-
+                    
                 }
                 else if (!res.data.userAutorizacija) {
                     //nema privilegiju
@@ -82,7 +82,7 @@ class DropDownZavrsni extends React.Component {
                         OK: false
                     })
                 }
-
+                this.handlePotvrda();
             })
             .catch(res => {
                 console.log("greska u postu: " + res.data);
@@ -104,8 +104,9 @@ class DropDownZavrsni extends React.Component {
             });
         //teme koje se vezu za 1 mentora
         axios
-            .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + this.state.profId)
+            .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + this.state.profId + "/" + this.state.studentId)
             .then(res => {
+                console.log("res.data.data iz temeZavrsni: " + res.data.data)
                 this.setState({
                     teme: res.data.data
                 });
@@ -156,7 +157,7 @@ class DropDownZavrsni extends React.Component {
             ajax.onreadystatechange = () => {
                 if (this.readyState == 4 && this.status == 200) {
                     axios
-                        .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId)
+                        .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId + "/" + this.state.studentId)
                         .then(res => {
                             this.setState({
                                 teme: res.data.data,
@@ -191,7 +192,7 @@ class DropDownZavrsni extends React.Component {
         }
         else {
             axios
-                .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId)
+                .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId + "/" + this.state.studentId)
                 .then(res => {
                     this.setState({
                         teme: res.data.data,
@@ -238,6 +239,19 @@ class DropDownZavrsni extends React.Component {
                 greskaVisible: "hidden"
             })
         }
+    }
+    handlePotvrda = ()=>{
+        if(this.state.OK){
+            this.setState({
+                greskaVisible:"hidden",
+                succVisible:"visible"
+            })
+        
+        }
+        else this.setState({
+            greskaVisible:"visible",
+            succVisible:"hidden"
+        })
     }
     render() {
         let zatvoriModal = () => this.setState({ otvori: false });
@@ -316,6 +330,8 @@ class DropDownZavrsni extends React.Component {
                                     <br></br>
                                     <label className="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
                                 </div>
+                                <div className="valid-feedback" style={{visibility:this.state.succVisible}} >Zahtjev je uspješno poslan.</div>
+                                <div className="invalid-feedback" style={{visibility:this.state.greskaVisible}}>Došlo je do greške!</div>
                             </div>
 
                         </Modal.Body>

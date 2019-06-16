@@ -6,18 +6,40 @@ class Zadace extends React.Component {
     constructor() {
         super();
         this.state = {
-            studentId: 1,
+            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
+            token: window.localStorage.getItem("token"),
             zadacePoGodinama: []
         }
     }
     componentDidMount() {
 
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    this.handleGet();
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handleGet();
+    }
+    handleGet = () => {
         axios
-            .get("http://localhost:31918/zadace/" + this.state.studentId)
+            .get("https://si2019siera.herokuapp.com/zadace/" + this.state.studentId)
             .then(res => {
-                this.setState({
-                    zadacePoGodinama: res.data.ZadacePoGodinamaIPredmetima
-                })
+                if(res.data.succes){
+                    this.setState({
+                        zadacePoGodinama: res.data.ZadacePoGodinamaIPredmetima
+                    })
+                }
             })
             .catch(err => {
                 console.log(err);

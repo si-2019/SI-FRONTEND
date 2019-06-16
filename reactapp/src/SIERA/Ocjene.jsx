@@ -9,8 +9,8 @@ class Ocjene extends React.Component {
         super();
         this.state = {
             dummyOcjene: [],
-            idStudenta: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            idStudenta: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
             token: window.localStorage.getItem("token")
         }
     }
@@ -39,7 +39,7 @@ class Ocjene extends React.Component {
             .then(res => {
                 if (res.data.success) {
                     this.setState({
-                        dummyOcjene: res.data.ocjene[0]
+                        dummyOcjene: res.data.ocjene
                     })
                 }
             })
@@ -60,13 +60,13 @@ class Ocjene extends React.Component {
                                 <table className="table table-bordered text-center bg-active border-solid" style={{ float: "left", marginLeft: "20px" }}>
                                     <tbody>
                                         <tr className="bg primary text-light">
-                                            <th className="tabtip" colSpan="2">Akademska godina {x.AkademskaGodina}</th>
+                                            <th className="tabtip" colSpan="2">Akademska godina {x[0].AkademskaGodina}</th>
                                         </tr>
                                         <tr className="bg-primary text-light">
                                             <th className="tabtip">Predmet</th>
                                             <th className="tabtip">Ocjena</th>
                                         </tr>
-                                        {x.Ocjene.map(y =>
+                                        {x[0].Ocjene.map(y =>
                                             <tr className="tabtip1">
                                                 <td>{y.Predmet}</td>
                                                 <td>{y.Ocjena}</td>

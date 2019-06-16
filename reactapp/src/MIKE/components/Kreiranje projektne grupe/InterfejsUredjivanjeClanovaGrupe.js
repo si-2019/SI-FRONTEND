@@ -162,24 +162,31 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
     var komponenta=this;
     ajax.onreadystatechange=function(){
       if(ajax.readyState==4 && ajax.status=="200"){
-        var id=JSON.parse(ajax.responseText).id;
-        var payload=[];
-        for(var i=0;i<komponenta.nizUnutra.length;i++){
-          payload.push({idStudent:komponenta.nizUnutra[i].id,idGrupaProjekta:id})
+        var id=JSON.parse(ajax.responseText);
+        if(id.message){
+          alert("Grupa je kreirana!");
         }
-        var jsonSend;
-        jsonSend["username"]=window.localStorage.getItem("username");
-        jsonSend["clanovi"]=payload;
-        let ajax2=new XMLHttpRequest();
-        ajax2.onreadystatechange=function(){
-          if(ajax2.readyState==4 && ajax2.status=="200"){
+        else{
+          id=id.id;
+          var payload=[];
+          for(var i=0;i<komponenta.nizUnutra.length;i++){
+            payload.push({idStudent:komponenta.nizUnutra[i].id,idGrupaProjekta:id})
           }
-        }
-        ajax2.open("POST","https://si-mike-2019.herokuapp.com/services/group/addmembers",true);
-        ajax2.setRequestHeader("Content-Type", "application/json");
-        ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
-        ajax2.setRequestHeader("Accept","application/json");
-        ajax2.send(JSON.stringify(jsonSend));  
+          var jsonSend;
+          jsonSend["username"]=komponenta.window.localStorage.getItem("username");
+          jsonSend["clanovi"]=payload;
+          let ajax2=new XMLHttpRequest();
+          ajax2.onreadystatechange=function(){
+            if(ajax2.readyState==4 && ajax2.status=="200"){
+              alert("Grupa je kreirana!");
+            }
+          }
+          ajax2.open("POST","https://si-mike-2019.herokuapp.com/services/group/addmembers",true);
+          ajax2.setRequestHeader("Content-Type", "application/json");
+          ajax2.setRequestHeader("Authorization",komponenta.window.localStorage.getItem("token"));
+          ajax2.setRequestHeader("Accept","application/json");
+          ajax2.send(JSON.stringify(jsonSend));
+        }  
       }
     }
     ajax.open("POST","https://si-mike-2019.herokuapp.com/services/group/",true);

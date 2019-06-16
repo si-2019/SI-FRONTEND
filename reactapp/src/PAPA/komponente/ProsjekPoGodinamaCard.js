@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
-import ProsjekPoGodinama from '../../LIMA/Izvjestaji/components/Dijagrami/ProsjekPoGodinama.js';
+import ProsjekPoGodinama from '../../LIMA/Student/Izvjestaji/components/Dijagrami/ProsjekPoGodinama.js';
 import './manjeKomponente/stil.css'
 import ColorPicker from './manjeKomponente/ColorPicker.js'
 

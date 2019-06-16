@@ -21,7 +21,10 @@ class objavaProfesor extends Component {
       uNaziv: props.naslov,
       uOpis: props.opis,
       uChecked: "",
-      datum: props.datumobjave
+      datum: props.datumobjave,
+      uspjesno: true,
+      tekstGreske: "",
+      tekstUredi: "Uredi"
     }
     this.handleNazivChange = this.handleNazivChange.bind(this)
     this.handleOpisChange = this.handleOpisChange.bind(this)
@@ -52,18 +55,6 @@ class objavaProfesor extends Component {
 
 
   componentDidMount() {
-    axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        let x = res.data.naziv == this.props.akademskaGodina
-        this.setState({
-          naziv: res.data.naziv,
-          x: x
-        })
-      }
-    })
 
     let tekst = ""
     if (!this.props.objavljeno) {
@@ -76,18 +67,11 @@ class objavaProfesor extends Component {
 
 
   ucitaj(props) {
-    axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        let x = res.data.naziv == props.akademskaGodina
+    let x = props.trenutnaAkademskaGodina == props.akademskaGodina
         this.setState({
-          naziv: res.data.naziv,
+          naziv: props.trenutnaAkademskaGodina,
           x: x
         })
-      }
-    })
   }
 
   componentWillReceiveProps(props) {
@@ -100,15 +84,39 @@ class objavaProfesor extends Component {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
+        if(res.data.error){
+          this.setState({
+            uspjesno: false,
+            tekstGreske: "Nije moguće obrisati materijal"
+          })
+        }
+        else{
+        this.setState({
+          uspjesno: true,
+          tekstGreske: ""
+        })
+        alert("Materijal uspješno obrisan")
         window.location.reload()
+        }
       }
     })
 
   }
 
   prikaziUredjivanje() {
+    let tekst="Uredi"
+    if(!this.state.showMe){
+      tekst="Poništi"
+    }
     this.setState({
-      showMe: !this.state.showMe
+      showMe: !this.state.showMe,
+      tekstUredi: tekst 
+    })
+  }
+
+  sakrij() {
+    this.setState({
+      uspjesno: !this.state.uspjesno
     })
   }
 
@@ -118,19 +126,24 @@ class objavaProfesor extends Component {
     data.append("naziv", document.getElementById("naziv").value)
     data.append("idMaterijal", this.props.id)
     data.append("objavljeno", !document.getElementById("objavljeno").checked)
-    console.log(document.getElementById("objavljeno").checked)
     let files = document.getElementById("fileovi").files
     for (let i = 0; i < files.length; i++) {
       data.append('file', files[i])
-      console.log(files[i].name)
     }
     axios.post("http://si2019golf.herokuapp.com/r1/updateMaterijal", data).then(res => {
       if (res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
-        console.log(res.data)
+        if(res.data.error){
+          this.setState({
+            uspjesno: false,
+            tekstGreske: "Nije moguće urediti materijal"
+          })
+        }
+        else{
         this.setState({
+          uspjesno:true,
           nazivObjave: res.data.objava.naziv,
           opisObjave: res.data.objava.opis,
           objavljeno: res.data.objava.objavljeno,
@@ -138,6 +151,7 @@ class objavaProfesor extends Component {
           showMe: !this.state.showMe,
           datum: res.data.objava.datum
         })
+      }
       }
     })
   }
@@ -177,7 +191,7 @@ class objavaProfesor extends Component {
             </div>
             <div class='col-4'>
               {this.state.x && <div>
-                <button type="button" class="btn btn-primary golfDugme" onClick={() => this.prikaziUredjivanje()}>Uredi</button>
+                <button type="button" class="btn btn-primary golfDugme" onClick={() => this.prikaziUredjivanje()}>{this.state.tekstUredi}</button>
                 <button type="submit" class="btn btn-danger golfDugme" onClick={() => this.obrisi()}>Obriši</button>
               </div>}
             </div>
@@ -204,6 +218,7 @@ class objavaProfesor extends Component {
                     <label for="exampleInputFile">Datoteke: </label>
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
+                    <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
                   </div>
                   <input type="checkbox" checked={this.state.uChecked} id="objavljeno" onChange={this.handleObjavljenoChange}></input> Sakrij objavu
                   <button type="button" class="btn btn-primary" id="dugmeObjavi" onClick={this.handleClick}>Izmijeni</button>
@@ -212,6 +227,10 @@ class objavaProfesor extends Component {
             </div>
           </div>
         }
+        {!this.state.uspjesno && <div class="alert alert-dismissible alert-danger golfw">
+          <button type="button" class="close" onClick={() => this.sakrij()} data-dismiss="alert">&times;</button>
+          {this.state.tekstGreske}
+        </div>}
       </div>
     );
   }

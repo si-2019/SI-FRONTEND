@@ -15,24 +15,24 @@ class semestarPredmeti extends Component {
   ucitaj(props) {
     let { ciklus, odsjek, semestar } = props.match.params;
     axios.get(`http://si2019golf.herokuapp.com/r1/predmeti/${ciklus}/${odsjek}/${semestar}`).then(res => {
-      if(res.data.loginError) {
-          window.location.href = window.location.origin + '/romeo/login'
+      if (res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else {
+        const predmeti = res.data;
+        if (res.data.error) {
+          this.setState({
+            predmeti: predmeti.predmeti,
+            greska: true
+          })
         }
-        else {
-      const predmeti = res.data;
-      if (res.status == 400) {
-        this.setState({
-          predmeti: predmeti.predmeti,
-          greska: true
-        })
+        else{
+          this.setState({
+            predmeti: predmeti.predmeti,
+            greska: false
+          });
+        }
       }
-      else if (res.status == 200) {
-        this.setState({
-          predmeti: predmeti.predmeti,
-          greska: false
-        });
-      }
-    }
     }).catch(function (err) {
       console.log(err)
     })

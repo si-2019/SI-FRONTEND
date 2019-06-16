@@ -12,10 +12,7 @@ Colors.names = {
     darkkhaki: "#bdb76b",
     darkmagenta: "#8b008b",
     darkolivegreen: "#556b2f",
-    darkorange: "#ff8c00",
-    darkorchid: "#9932cc",
     darkred: "#8b0000",
-    darksalmon: "#e9967a",
     darkviolet: "#9400d3",
     fuchsia: "#ff00ff",
     gold: "#ffd700",
@@ -27,24 +24,23 @@ Colors.names = {
     maroon: "#800000",
     navy: "#000080",
     olive: "#808000",
-    orange: "#ffa500",
-    pink: "#ffc0cb",
     purple: "#800080",
-    violet: "#800080",
-    red: "#ff0000",
-    silver: "#c0c0c0",
-    yellow: "#ffff00"
+    red: "#ff0000"
 };
 Colors.colors = []
 Colors.getRandom = n => {
     var arr = []
     let keys = Object.keys(Colors.names)
+    let prev = -1
     while(arr.length < n){
         var r = Math.floor(Math.random() * keys.length);
-        if(arr.indexOf(r) === -1) arr.push(r);
+        if(r != prev) {
+            arr.push(r)
+            prev = r
+        }
     }
-    console.log(n, arr)
     Colors.colors = arr.map(i => Colors.names[Object.keys(Colors.names)[i]])
+    Colors.colors[Math.floor(Math.random() * Colors.colors.length)] = "#f99759"
     return Colors.colors
 }
 

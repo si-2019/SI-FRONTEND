@@ -87,64 +87,68 @@ class UnosTermina extends Component {
   }
   render() {
     return (
-      <div className="card" id="terminCard">
-        <Alert
-          id="alertID"
-          color={this.state.alertColor}
-          toggle={this.toggle.bind(this)}
-          isOpen={this.state.alertVisible}
-        >
-          <strong> {this.state.alertMessageStatus}</strong> <br />
-          {this.state.alertMessage}
-        </Alert>
-        <div className="card-body" id="terminCardBody">
-          <h4 className="card-title m-2" id="terminCardTitle">
-            Unos termina
-          </h4>
-          <h6 className="card-subtitle mb-2 text-muted">
-            Unesite željene termine za odvijanje nastave
-          </h6>
-
-          <select
-            className="custom-select m-2"
-            id="listaDana"
-            onChange={this.handleSelect}
+      <div id="omotacECHO">
+        <div className="card" id="terminCard">
+          <Alert
+            id="alertID"
+            color={this.state.alertColor}
+            toggle={this.toggle.bind(this)}
+            isOpen={this.state.alertVisible}
           >
-            <option selected="" value="Pon">
-              Ponedjeljak
-            </option>
-            <option value="Uto">Utorak</option>
-            <option value="Sri">Srijeda</option>
-            <option value="Cet">Cetvrtak</option>
-            <option value="Pet">Petak</option>
-          </select>
-          <input
-            id="satnica"
-            type="time"
-            max="20:00"
-            min="08:00"
-            step="3600"
-            className="form-control m-2"
-            value={this.state.vrijeme}
-            onChange={this.handleVrijemeInput}
-          />
-          <input
-            id="brCasova"
-            type="number"
-            min="1"
-            max="12"
-            className="form-control m-2"
-            value={this.state.brCasova}
-            onChange={this.handleBrCasovaInput}
-          />
-          <button
-            id="dugme"
-            type="button"
-            className="btn btn-primary m-2"
-            onClick={this.handleSubmit}
-          >
-            Unesi
-          </button>
+            <strong> {this.state.alertMessageStatus}</strong> <br />
+            {this.state.alertMessage}
+          </Alert>
+          <div className="card-body" id="terminCardBody">
+            <h4 className="card-title m-2" id="terminCardTitle">
+              Unos termina
+            </h4>
+            <h6 className="card-subtitle mb-2 text-muted">
+              Unesite željene termine za odvijanje nastave
+            </h6>
+            <label className="labelECHO">Dan</label>
+            <select
+              className="custom-select m-2"
+              id="listaDana"
+              onChange={this.handleSelect}
+            >
+              <option selected="" value="Pon">
+                Ponedjeljak
+              </option>
+              <option value="Uto">Utorak</option>
+              <option value="Sri">Srijeda</option>
+              <option value="Cet">Cetvrtak</option>
+              <option value="Pet">Petak</option>
+            </select>
+            <label className="labelECHO">Vrijeme</label>
+            <input
+              id="satnica"
+              type="time"
+              max="20:00"
+              min="08:00"
+              step="3600"
+              className="form-control m-2"
+              value={this.state.vrijeme}
+              onChange={this.handleVrijemeInput}
+            />
+            <label className="labelECHO">Broj časova</label>
+            <input
+              id="brCasova"
+              type="number"
+              min="1"
+              max="12"
+              className="form-control m-2"
+              value={this.state.brCasova}
+              onChange={this.handleBrCasovaInput}
+            />
+            <button
+              id="dugmeECHO1"
+              type="button"
+              className="btn btn-primary m-2"
+              onClick={this.handleSubmit}
+            >
+              Unesi
+            </button>
+          </div>
         </div>
       </div>
     );

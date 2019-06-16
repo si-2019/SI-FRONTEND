@@ -6,7 +6,7 @@ class PozdravnaPoruka extends Component {
         //dobavimo podatke o profesoru/asistentu koji se prijavio
         //uzmemo ime
         const ime = 'profesor';
-        return 'Dobro došao, ' + ime;
+        return <h4>Dobro došli</h4>;
     }
     getAcademicYear = () => {
         //dobavimo podatke o akademskoj godini i semestru

@@ -4,7 +4,7 @@ class TypingIndicator extends Component {
         if (this.props.typingUsers.length > 0) {
             return (
               <div style={divStyle}>
-                {'Typing: ' + this.props.typingUsers.join(', ') + '...' }
+                {this.props.typingUsers.join(', ') + ' pišu...' }
               </div>
             )
           }

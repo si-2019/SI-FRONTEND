@@ -23,10 +23,10 @@ class Profil extends React.Component {
       }
     _renderLabels() {
         return (
-            <ul class="nav nav-tabs">
+            <ul className="nav nav-tabs">
                 {this.props.children.map((child, index) =>
-                    <li class="nav-item">
-                        <a key={child.props.label} class="nav-link" data-toggle="tab" href={"#"+child.props.label} onClick={() => { this.setTab(index) }}> {child.props.label}</a>
+                    <li className="nav-item">
+                        <a key={child.props.label} className="nav-link" data-toggle="tab" href={"#"+child.props.label} onClick={() => { this.setTab(index) }}> {child.props.label}</a>
                     </li>
                 )}
             </ul>

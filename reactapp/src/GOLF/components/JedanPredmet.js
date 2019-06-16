@@ -5,32 +5,36 @@ import axios from 'axios'
 
 class JedanPredmet extends Component {
 
-  state={
+  state = {
     trenutnaAkademskaGodina: ""
   }
 
-  componentDidMount(){
-    axios.get(`http://localhost:31907/r1/nazivTrenutneAkademskeGodine`).then(res => {
-      this.setState({
+  componentDidMount() {
+    axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
+      if (res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else {
+        this.setState({
           trenutnaAkademskaGodina: res.data.naziv
-      })
-      console.log(this.state)
-  })
+        })
+      }
+    })
   }
 
 
   render() {
     return (
-    <div>
-      <div class="card sss">
-        <div class="card-body">
-          <h4 class="card-title"><Link id="nazivPredmeta" to={'/Golf/stranicaPredmeta/'+encodeURIComponent(this.state.trenutnaAkademskaGodina)+'/'+this.props.predmet.id+'/'+this.props.idKorisnika}>{this.props.predmet.naziv}</Link></h4>
-          {this.props.predmet.opis}
+      <div>
+        <div class="card sss">
+          <div class="card-body">
+            <h4 class="card-title"><Link id="nazivPredmeta" to={'/Golf/stranicaPredmeta/' + encodeURIComponent(this.state.trenutnaAkademskaGodina) + '/' + this.props.predmet.id}>{this.props.predmet.naziv}</Link></h4>
+            {this.props.predmet.opis}
+          </div>
         </div>
       </div>
-    </div>
 
-  
+
     )
 
   }

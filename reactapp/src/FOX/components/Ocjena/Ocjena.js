@@ -83,7 +83,7 @@ class Ocjena extends Component {
                         student: null,
                         opisUspjeh: "Ocjena je upisana.",
                         naslovUspjeh: student !== null ?
-                            student.ime + " " + student.prezime + " " + "(" + student.indeks + ")" + ", " + this.ocjena.current.value : ""
+                            student.ime + " " + student.prezime + ", " + this.ocjena.current.value : ""
                     });
                     this.ocjena.current.value = null;
                     this.indeks.current.value = null;
@@ -113,7 +113,7 @@ class Ocjena extends Component {
         const validated = this.state.validated;
 
         return (
-            <div class="card" style={{margin: "0", marginBottom: "50px"}}>
+            <div class="card"id="form" style={{margin: "0", marginBottom: "50px"}}>
                 <div class="card-body">
                     <Poruka
                     greska={this.state.greskaBaza}
@@ -136,6 +136,7 @@ class Ocjena extends Component {
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Indeks: </Form.Label>
                                     <Form.Control
+                                    id="indeksId"
                                     placeholder="Unesite indeks"
                                     ref={ this.indeks }
                                     required
@@ -150,7 +151,7 @@ class Ocjena extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}} >
-                                    <Button
+                                    <Button id="pretraziId"
                                     onClick={this.handleClick}> Pretrazi </Button>
                                 </Col>
                             </Form.Row>
@@ -161,6 +162,7 @@ class Ocjena extends Component {
                                 <Col style={{textAlign: "left"}} lg="4" md="6" sm="8" xs="12">
                                     <Form.Label> Ocjena: </Form.Label>
                                     <Form.Control
+                                    id="ocjenaId"
                                     ref={ this.ocjena }
                                     required
                                     placeholder="Unesite ocjenu"
@@ -177,7 +179,7 @@ class Ocjena extends Component {
 
                             <Form.Row style={{paddingTop: "10px"}} className="justify-content-center">
                                 <Col lg="4" md="6" sm="8" xs="12" style={{textAlign: "right"}}>
-                                    <Button variant="primary" type="submit"> Unesi </Button>
+                                    <Button id="unesiId" variant="primary" type="submit"> Unesi </Button>
                                 </Col>
                             </Form.Row>
                             

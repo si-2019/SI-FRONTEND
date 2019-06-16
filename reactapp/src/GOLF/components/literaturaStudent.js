@@ -4,32 +4,37 @@ import axios from 'axios'
 
 class LiteraturaStudent extends Component {
 
-  state={
+  state = {
     objave: []
   }
 
-  ubicuseopet(props){
-    axios.get(`http://localhost:31907/r3/dajLiteraturuZaStudenta/${this.props.idPredmeta}/${encodeURIComponent(props.naziv)}`).then(res =>{
-      this.setState({
-        objave: res.data.objave
-            })
-  })
+  ubicuseopet(props) {
+    axios.get(`http://si2019golf.herokuapp.com/r3/dajLiteraturuZaStudenta/${this.props.idPredmeta}/${encodeURIComponent(props.naziv)}`).then(res => {
+      if (res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else {
+        this.setState({
+          objave: res.data.objave
+        })
+      }
+    })
 
   }
 
-  componentWillReceiveProps(props){
+  componentWillReceiveProps(props) {
     this.ubicuseopet(props)
   }
 
- render(){
+  render() {
 
 
     return (
-        <div class="divsaokvirom">
-        	<h4 class='naslov'>Literatura</h4>
-          {this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
-        </div>
-        
+      <div class="divsaokvirom">
+        <h4 class='naslov'>Literatura</h4>
+        {this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
+      </div>
+
     );
   }
 }

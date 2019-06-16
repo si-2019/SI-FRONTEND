@@ -5,7 +5,7 @@
     background-color: white;
     height: 100%;
   }
-h1{
+#hotel1{
   text-align: center; 
 }
 .tabtip{
@@ -15,7 +15,7 @@ h1{
 }
 .tabtip1{
   background-color: white;
-  color:black;
+  color:#2C3E50;
   border: rgba(50, 50, 50, 0.52);
 }
 #prikaziButton, #urediButton, #obrisiButton{
@@ -32,12 +32,14 @@ h1{
     height: 100%;
     width: 100%; 
     overflow-y: scroll;
+    background: white
 }
 
 .naslovliste{
-  height: 10%;
-  color: white;
-  background: #2C3E50
+  text-align: center;
+  margin-top: 6vh;
+  background: white;
+  color: black;
 }
 
 .tabelaLista {
@@ -46,8 +48,9 @@ h1{
 }
 
 #urediBody {
-  width: 100%;
+  width: 70%;
   height: 100%;
   background-color: white;
-  padding: 5%
+  margin: auto;
+  padding-top: 20px
 }

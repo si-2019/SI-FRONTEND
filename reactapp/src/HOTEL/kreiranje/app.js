@@ -25,7 +25,8 @@ class App extends Component {
       idPredmet: null,
       svePopunjeno: true,
       dateChanged: false,
-      upozorenje: ""
+      upozorenje: "",
+      uloga: "STUDENT"
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -76,15 +77,16 @@ class App extends Component {
   render() {
     return ( 
     
-    <div  id="containerKreiranje">
+    <div id="containerKreiranje">
       <div>
-        <div id="headerKreiranje">
-          <h1 style={{color: "white"}}>Kreiranje ankete</h1>
+        <div className="naslovliste">
+          <h1>Kreiranje ankete</h1>
         </div>
       </div>
       <div style={{
-          padding: '25px',
-          backgroundColor: 'white'
+          width: "80%",
+          margin: "auto",
+          padding: "25px"
        }}>
          
         <div>
@@ -121,15 +123,19 @@ class App extends Component {
               <input type="radio" id="customRadio1" name="vrstaAnketeRadio" value="javna anketa" className="custom-control-input" onChange={this.handleRadioChange} defaultChecked/>
               <label className="custom-control-label" for="customRadio1">Javna anketa</label>
             </div>
+            {
+              (this.state.uloga == "PROFESOR" || this.state.uloga == "ASISTENT") &&
             <div className="custom-control custom-radio">
               <input type="radio" id="customRadio2" name="vrstaAnketeRadio" value="anketa za predmet" className="custom-control-input" onChange={this.handleRadioChange}/>
               <label className="custom-control-label" for="customRadio2">Anketa za predmet</label>
             </div>
+            }
+            { this.state.uloga == "ADMIN" &&
             <div className="custom-control custom-radio">
               <input type="radio" id="customRadio3" name="vrstaAnketeRadio" value="anketa za sve predmete"className="custom-control-input" onChange={this.handleRadioChange}/>
               <label className="custom-control-label" for="customRadio3">Anketa za sve predmete</label>
             </div>
-            
+            }
             { this.state.vrstaAnkete != 'anketa za predmet' || (
               <div>
                 <div className="form-group row">
@@ -199,7 +205,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let korisnik = 36
+    let korisnik = window.localStorage.getItem("id")
     console.log(korisnik)
     axios.get(url + `/dajPredmete?idKorisnik=${korisnik}`).then(res => {
       console.log(res)
@@ -207,6 +213,24 @@ class App extends Component {
         predmeti: res.data
       })
     })
+
+    
+      fetch('http://si2019golf.herokuapp.com/r1/uloga/' + window.localStorage.getItem("id"), {
+          method: 'get',
+          headers: {
+              'Authorization': window.localStorage.getItem("token")
+          }
+      }).then(res => res.json())
+        .then(res => {
+              if(res.loginError) {
+                  window.location.href = window.location.origin + '/romeo/login'
+              }
+              else {
+                  this.setState({
+                    uloga: res.uloga
+                  })
+              }
+        })
   }
 
   nijePrazno(s) {
@@ -248,16 +272,19 @@ class App extends Component {
       return
     }
 
-     let korisnik = 36
+     let korisnik = window.localStorage.getItem("id")
      let idPredmet = this.state.idPredmet
       if(this.state.vrstaAnkete == 'anketa za predmet' && this.state.idPredmet == null && this.state.predmeti.length > 0 ) {
         idPredmet = this.state.predmeti[0].id
       }
 
-
-      fetch(url + '/createAnketa', {
+      console.log("==============")
+      fetch(url + '/createAnketa?username=' + window.localStorage.getItem("username"), {
         method: 'post',
-        headers: {'Content-Type':'application/json'},
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': window.localStorage.getItem("token")
+        },
         body: JSON.stringify({
           idNapravio: korisnik,
           idPredmet: idPredmet,
@@ -267,7 +294,17 @@ class App extends Component {
           datumIstekaAnkete: this.state.datumIstekaAnkete.toISOString().slice(0, 19).replace('T', ' '),
           pitanja: this.state.pitanja
         })
-      }).then((res, err) => {
+      }).then(res => res.json())
+      .then((res, err) => {
+        console.log(res.loginError)
+        if(res.loginError) {
+          e.preventDefault()
+          window.location.href = window.location.origin + '/romeo/login'
+          return
+        }
+        else {
+
+        }
         this.setState({
           error: err
         })

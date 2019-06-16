@@ -31,6 +31,7 @@ class BrisanjeZadace extends Component {
   }
 
   provjeriToken = () => {
+    try{
     axios({
       url: 'https://si2019romeo.herokuapp.com/users/validate',
       type: 'get',
@@ -49,9 +50,11 @@ class BrisanjeZadace extends Component {
           window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
         } 
       }  
-    });
-  }
+    });}
+    catch(e){
 
+    }
+  }
   componentDidMount() {
     this.pokupiIzBaze(this.state.idPredmet);
   }
@@ -125,7 +128,8 @@ class BrisanjeZadace extends Component {
             id="brissel"
             multiple=""
           >
-            <DropdownToggle caret>Lista zadaća</DropdownToggle>
+            <DropdownToggle caret color="white"
+            id="bbb"> Lista zadaća</DropdownToggle>
 
             <DropdownMenu>
               {lista.map(item => (

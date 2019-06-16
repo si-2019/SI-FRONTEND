@@ -2,26 +2,32 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
+import { withRouter } from "react-router-dom";
 class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            studentID: 1,
+            studentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            token: window.localStorage.getItem("token"),
             greska: null,
             brojac: 0,
+            OK: false,
+            msg: "",
             noviInput: {
                 adresa: null,
                 email: null,
                 brtel: null
-            }
+            },
+            greskaVisible: "hidden"
         }
-        this.handlePutEvent = this.handlePutEvent.bind(this);
     }
     handleClose = () => {
         this.props.saveState("modalShow", false);
     }
     //promjena podataka bez refreshanja
     handleChange = (e) => {
+
         const { name, value } = e.target;
         let state = JSON.parse(JSON.stringify(this.state.noviInput));
         state[name] = value;
@@ -29,7 +35,6 @@ class ModalComponent extends React.Component {
             noviInput: state
         });
     }
-
     handleExit = () => {
 
         const { adr, mail, telefon } = this.state.noviInput;
@@ -43,7 +48,7 @@ class ModalComponent extends React.Component {
             this.props.saveState("podaciKontakt", podaci);
         })
     }
-    handlePutEvent(event) {
+    handlePutEvent = (event) => {
         event.preventDefault();
         if (this.state.noviInput.adresa == null && this.state.noviInput.email == null && this.state.noviInput.brtel == null) {
             this.setState({ greska: true });
@@ -52,47 +57,135 @@ class ModalComponent extends React.Component {
             if (this.state.noviInput.adresa) {
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/adresa/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/adresa/` +
                         this.state.studentID,
                         {
                             adresa: this.state.noviInput.adresa
                         }
                     )
                     .then(res => {
-                        this.setState({ greska: false });
+                        if (res.data.success && res.data.userAutorizacija) {
+                            this.setState({
+                                greska: false,
+                                OK: true,
+                                msg: ""
+                            });
+                        }
+                        else if (!res.data.userAutorizacija) {
+                            //nema privilegiju
+                            this.setState({
+                                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                                OK: false
+                            })
+                        }
+                        else {
+                            //kod nas greska
+                            this.setState({
+                                msg: "Došlo je do greške!",
+                                OK: false
+                            })
+                        }
+
+                    })
+                    .catch(err => {
+                        console.log(err);
                     });
             }
             if (this.state.noviInput.email) {
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/mail/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/mail/` +
                         this.state.studentID,
                         {
                             mail: this.state.noviInput.email
                         }
                     )
                     .then(res => {
-                        this.setState({ greska: false });
+                        if (res.data.success && res.data.userAutorizacija) {
+                            this.setState({
+                                greska: false,
+                                OK: true,
+                                msg: ""
+                            });
+                        }
+                        else if (!res.data.userAutorizacija) {
+                            //nema privilegiju
+                            this.setState({
+                                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                                OK: false
+                            })
+                        }
+                        else {
+                            //kod nas greska
+                            this.setState({
+                                msg: "Došlo je do greške!",
+                                OK: false
+                            })
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
                     });
             }
             if (this.state.noviInput.brtel) {
-
                 axios
                     .put(
-                        `http://localhost:31918/studenti/update/tel/` +
+                        `https://si2019siera.herokuapp.com/studenti/update/tel/` +
                         this.state.studentID,
                         {
                             tel: this.state.noviInput.brtel
                         }
                     )
                     .then(res => {
-                        this.setState({ greska: false });
+                        if (res.data.success && res.data.userAutorizacija) {
+                            this.setState({
+                                greska: false,
+                                OK: true,
+                                msg: ""
+                            });
+                        }
+                        else if (!res.data.userAutorizacija) {
+                            //nema privilegiju
+                            this.setState({
+                                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                                OK: false
+                            })
+                        }
+                        else {
+                            //kod nas greska
+                            this.setState({
+                                msg: "Došlo je do greške!",
+                                OK: false
+                            })
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
                     });
-
             }
         }
 
     }
+    handleAuth = (event) => {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    //radi sta hoces
+                    this.handlePutEvent(event);
+                }
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handlePutEvent(event)
+    }
+
     renderujPotvrdu() {
         if (this.state.greska == false) {
             return (
@@ -113,6 +206,8 @@ class ModalComponent extends React.Component {
         }
         return null;
     }
+
+
     render() {
         ++this.brojac;
         return (
@@ -129,36 +224,35 @@ class ModalComponent extends React.Component {
                         {this.props.naslovModala}
                     </Modal.Title>
                 </Modal.Header>
-                <form onSubmit={this.handlePutEvent}>
+                <form onSubmit={this.handleAuth}>
                     <Modal.Body>
                         <h4>{this.props.nazivPromjene}</h4>
-                        <div class="form-group">
+                        <div className="form-group">
 
                             <br></br>
-                            <label class="col-form-label" for="inputDefault" >Telefon</label>
-                            <input type="text" class="form-control" name="brtel" onChange={this.handleChange} />
+                            <label className="col-form-label" for="inputDefault" >Telefon</label>
+                            <input type="text" className="form-control" name="brtel" onChange={this.handleChange} />
 
-                            <label class="col-form-label" for="inputDefault" >Adresa</label>
-                            <input type="text" class="form-control" name="adresa" onChange={this.handleChange} />
+                            <label className="col-form-label" for="inputDefault" >Adresa</label>
+                            <input type="text" className="form-control" name="adresa" onChange={this.handleChange} />
 
-                            <label class="col-form-label" for="inputDefault">Email</label>
-                            <input type="text" class="form-control" name="email" onChange={this.handleChange} />
-
+                            <label className="col-form-label" for="inputDefault">Email</label>
+                            <input type="text" className="form-control" name="email" onChange={this.handleChange} />
+                            {this.state.OK ? "" : <div className= "invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
 
                         </div>
-
                     </Modal.Body>
                     <Modal.Footer>
 
-                        <button type="submit" id="spasiBtn" class="btn btn-primary">Spasi Promjene</button>
-                        <button type="button" class="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
+                        <button type="submit" id="spasiBtn" className="btn btn-primary">Spasi Promjene</button>
+                        <button type="button" className="btn btn-secondary" onClick={this.handleClose}>Odustani</button>
                     </Modal.Footer>
                 </form>
             </Modal>
         );
     }
 }
-export default ModalComponent;
+export default withRouter(ModalComponent);
 
 //
 /*

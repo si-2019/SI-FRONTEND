@@ -54,7 +54,6 @@ class prikazAsistenta extends Component{
               <table>  
                 <thead className="table table-sm table-primary">
                   <tr>
-                      <th >ID</th>
                       <th >IME</th>
                       <th >PREZIME</th>
                       <th >IME RODITELJA</th>
@@ -75,7 +74,6 @@ class prikazAsistenta extends Component{
                 {
                     lista.length ? lista.map(list => 
                         <tr key={list.id}>
-                            <th>{list.id}</th>
                             <th>{list.ime}</th>
                             <th>{list.prezime}</th>
                             <th>

@@ -3,12 +3,17 @@ import "./bootstrap.css";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
+import { withRouter } from "react-router-dom";
 
 class modalnaKomponenta extends Component {
   state = {
     vrijednostInputa: "",
     greska: null,
-    trenutnoLogovaniStudentID: 1
+    trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
+    username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+    token: window.localStorage.getItem("token"),
+    OK: true,
+    msg: ""
   };
 
   constructor(props) {
@@ -24,33 +29,87 @@ class modalnaKomponenta extends Component {
       if (this.props.nazivpromjene == "LinkedIn") {
         axios
           .put(
-            `http://localhost:31918/studenti/update/linkedin/` +
-              this.state.trenutnoLogovaniStudentID,
+            `https://si2019siera.herokuapp.com/studenti/update/linkedin/` +
+            this.state.trenutnoLogovaniStudentID,
             { linkedin: this.state.vrijednostInputa }
           )
           .then(res => {
-            this.setState({ greska: false });
-            window.location.reload();
-            //console.log(res);
-            //console.log(res.data);
+            if (res.data.success && res.data.userAutorizacija) {
+              this.setState({ greska: false, OK: true, msg: "" });
+              window.location.reload();
+            }
+            else if (!res.data.userAutorizacija) {
+              //nema privilegiju
+              this.setState({
+                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                OK: false
+              })
+            }
+            else {
+              //kod nas greska
+              this.setState({
+                msg: "Došlo je do greške!",
+                OK: false
+              })
+            }
+
           });
       } else if (this.props.nazivpromjene == "Website") {
         axios
           .put(
-            `http://localhost:31918/studenti/update/website/` +
-              this.state.trenutnoLogovaniStudentID,
+            `https://si2019siera.herokuapp.com/studenti/update/website/` +
+            this.state.trenutnoLogovaniStudentID,
             { website: this.state.vrijednostInputa }
           )
           .then(res => {
-            this.setState({ greska: false });
-            window.location.reload();
-            //console.log(res);
-            //console.log(res.data);
+            if (res.data.success && res.data.userAutorizacija) {
+              this.setState({ greska: false, OK: true, msg: "" });
+              window.location.reload();
+            }
+            else if (!res.data.userAutorizacija) {
+              //nema privilegiju
+              this.setState({
+                msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                OK: false
+              })
+            }
+            else {
+              //kod nas greska
+              this.setState({
+                msg: "Došlo je do greške!",
+                OK: false
+              })
+            }
+          })
+          .catch(res=>{
+            this.setState({
+              OK:false,
+              msg:"Došlo je do greške!"
+            })
           });
       }
     }
   }
+  handleAuth = () => {
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+          //radi sta hoces
+          this.posaljiZahtjev();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+    }
+    else this.posaljiZahtjev();
 
+  }
   promjenaInputa(event) {
     this.setState({ vrijednostInputa: event.target.value });
   }
@@ -86,26 +145,27 @@ class modalnaKomponenta extends Component {
         centered
       >
         {this.renderujPotvrdu()}
-        <Modal.Header closeButton class="modal-header">
-          <Modal.Title id="contained-modal-title-vcenter" class="modal-title">
+        <Modal.Header closeButton className="modal-header">
+          <Modal.Title id="contained-modal-title-vcenter" className="modal-title">
             Unesite novu vrijednost polja
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body class="modal-body">
-          <label class="col-form-label">{this.props.nazivpromjene}:</label>
+        <Modal.Body className="modal-body">
+          <label className="col-form-label">{this.props.nazivpromjene}:</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder={this.props.nazivpromjene}
             id="inputDefault"
             onChange={this.promjenaInputa}
           />
+          {this.state.OK ? "" : <div className="invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
         </Modal.Body>
         <Modal.Footer>
-          <button class="btn btn-primary" onClick={() => this.posaljiZahtjev()}>
+          <button className="btn btn-primary" onClick={() => this.posaljiZahtjev()}>
             Pošalji zahtjev
           </button>
-          <button class="btn btn-secondary" onClick={this.props.onHide}>
+          <button className="btn btn-secondary" onClick={this.props.onHide}>
             Zatvori
           </button>
         </Modal.Footer>
@@ -114,4 +174,4 @@ class modalnaKomponenta extends Component {
   }
 }
 
-export default modalnaKomponenta;
+export default withRouter(modalnaKomponenta);

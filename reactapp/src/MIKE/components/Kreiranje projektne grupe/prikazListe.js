@@ -46,7 +46,9 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
       );
       else if(this.state.predmeti.length==0){
         return(
-          <p>Nema dostupnih predmeta za kreiranje grupe</p>
+          <div className="alert alert-dismissible alert-danger" style={{width:"100%"}}>
+        <strong>Nema dostupnih predmeta za kreiranje projektne grupe</strong> <br />
+      </div>
         )
       }
       else if(this.state.forma=="informacije") return(

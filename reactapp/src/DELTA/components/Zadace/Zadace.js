@@ -44,7 +44,7 @@ class Zadace extends Component {
                 </div>
             </div>
               <div className="col-3">
-              <a class="btn btn-primary btn-block" href="https://si2019frontend.herokuapp.com/KILO/student?idPredmeta=8&idStudenta=1&fbclid=IwAR3JhxrygHTZF3BlR1wU_6KEFJX8knLRQxccaf8jYcGtLLQBP2Tb5Gbf2wo" role="button">Zadaće</a>
+              <a class="btn btn-primary btn-block" href="https://si2019frontend.herokuapp.com/KILO/student?idPredmeta=1&idStudenta=1&fbclid=IwAR3JhxrygHTZF3BlR1wU_6KEFJX8knLRQxccaf8jYcGtLLQBP2Tb5Gbf2wo" role="button">Zadaće</a>
               <div className="row">
                         <p class="text-danger" style={{padding:"10px"}}>{this.state.zadaceObavjestenje}</p>
                   </div>

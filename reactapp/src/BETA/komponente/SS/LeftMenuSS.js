@@ -1,15 +1,15 @@
 import React from 'react';
 import AddNewCategoryModal from './AddNewCategoryModal.js'
+import ModalComponent from './SSNewIssueModal.js';
 
-
-class LeftMenuStudent extends React.Component {
+class LeftMenuSS extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             activeDivId: 1,
             showNoviIssue: false,
-            modalShowSS:false
-
+            modalShowSS:false,
+            modalShowAddCategory: false
         };
     };
 
@@ -24,7 +24,7 @@ class LeftMenuStudent extends React.Component {
                   type="button"
                   className="btn btn-primary left-buttons"
                   id="createNewIssue"
-                //  onClick={() => this.setState({ showNoviIssue: true })} >
+                  onClick={() => this.setState({ modalShowSS: true })} >
                  >
                   Kreiraj novi upit
               </button>
@@ -32,7 +32,7 @@ class LeftMenuStudent extends React.Component {
                   type="button"
                   className="btn btn-primary left-buttons"
                   id="createNewIssue"
-                  onClick={() => this.setState({ modalShowSS: true })} >
+                  onClick={() => this.setState({ modalShowAddCategory: true })} >
                   Dodaj novu kategoriju
               </button>
                 <button 
@@ -59,20 +59,21 @@ class LeftMenuStudent extends React.Component {
     
               
                  <AddNewCategoryModal
-                    
-                    show={this.state.modalShowSS}
+                    show={this.state.modalShowAddCategory}
                     naslovModala="Dodaj novu kategoriju"
                     btnPotvrdi="Dodaj kategoriju"
-                    onHide={() => this.setState({modalShowSS: false})}
-                    
-                    
-
+                    onHide={() => this.setState({modalShowAddCategory: false})}
                 />
-
+                <ModalComponent
+                    show={this.state.modalShowSS}
+                    naslovModala="Pošalji novi upit"
+                    btnPotvrdi="Pošalji upit"
+                    onHide={() => this.setState({modalShowSS: false})}
+                />
             </div>
             
         );
    }
 };
 
-export default LeftMenuStudent;
+export default LeftMenuSS;

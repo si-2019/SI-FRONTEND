@@ -158,9 +158,14 @@ const sveGrupeProjekta = (idProjekta) => {
   });
 }
 
+const oznaciZavrsenZadatak = (idZadatka) => {
+  return axios.post(`http://localhost:31913/services/progress/endtask/${idZadatka}`);
+}
+
 export { 
   sviProjektiTrenutnogUsera, 
   predmetiZaNovuProjektnuGrupu,
   sviPredmetiAsistenta,
-  sveGrupeProjekta
+  sveGrupeProjekta,
+  oznaciZavrsenZadatak
 };

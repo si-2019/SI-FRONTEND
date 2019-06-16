@@ -4,7 +4,7 @@ import SviPredmeti from './SviPredmeti';
 import Spinner from 'react-bootstrap/Spinner'
 
 axios.interceptors.request.use(function (config) {
-  if(config.url.substring(7,17)=="si2019golf"){
+  if(config.url.includes('si2019golf') || config.url.includes('9123')){
     config.params = { usernameGolf: window.localStorage.getItem("username") }
     const token = window.localStorage.getItem("token");
     config.headers.Authorization = token;
@@ -42,12 +42,16 @@ class mojiPredmeti extends Component {
               greska: false
             })
           }
-        }).catch(function (err) {
-          console.log(err)
+        }).catch(err => {
+          this.setState({
+            greska: true
+          })
         })
       }
-    }).catch(function (err) {
-      console.log(err)
+    }).catch(err => {
+      this.setState({
+        greska: true
+      })
     })
 
 
@@ -60,8 +64,10 @@ class mojiPredmeti extends Component {
           mojiPredmeti: res.data.predmeti
         })
       }
-    }).catch(function (err) {
-      console.log(err)
+    }).catch(err => {
+      this.setState({
+        greska: true
+      })
     })
 
   }

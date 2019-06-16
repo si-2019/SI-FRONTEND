@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 class FAQ extends React.Component {
     constructor() {
@@ -25,7 +26,7 @@ class FAQ extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: true });
-        axios.get('https://si2019beta.herokuapp.com/frequentIssue/get').then(res => {
+        axios.get('https://si2019beta.herokuapp.com/frequentIssue/get', standardHeaders()).then(res => {
             if (!(typeof res.data === 'string' || res.data instanceof String)) {
                 this.setState({
                     issues: res.data,

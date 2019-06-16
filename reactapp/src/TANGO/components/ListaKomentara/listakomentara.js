@@ -5,10 +5,12 @@ import Paginacija from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import Komentar from '../Komentar';
 import ObjaviKomentar from '../ObjaviKomentar';
+import {AZSortObrnutKom, AZSortKom, VrijemeSort,VrijemeSortObrnut} from '../sortovi/Sort.js';
 //import LISTA_PROBNA from './LISTA';
 import {Link} from 'react-router-dom';
+import {IdUSER} from '../id.js';
 
-const themesApi= 'http://localhost:31919/getReplys/'; //plus id teme
+const themesApi= 'http://si2019tango.herokuapp.com/getReplys/'; //plus id teme
 
 class ListaKomentara extends Component {
     constructor() {
@@ -34,58 +36,60 @@ class ListaKomentara extends Component {
         fetch(themesApi+idTeme) 
           .then(response=>response.json())
           .then(komentari=>{
-            var ts= this.state.trenutnaStranica - 1;
-            var leng= this.state.komentari.length;
-            this.setState({komentari:komentari, ucitavanje:true});
-            var ts= this.state.trenutnaStranica - 1;
-            var leng= this.state.komentari.length;
-            var pocetniPodniz = this.dajPodniz(ts,(leng>=10) ? 10 : leng);
-            this.setState({komentari:komentari, podnizKomentara: pocetniPodniz, ucitavanje:false})
+            var ts= this.state.trenutnaStranica * 10;
+            var leng= komentari.length;
+            var pocetniPodniz = komentari.slice(ts-10, ts);
+            this.setState({komentari:komentari, podnizKomentara: pocetniPodniz, ucitavanje:false, ukupno:leng});
           });
        // this.setState({komentari:LISTA_PROBNA,ucitavanje:false});
     }
 
-
-    promjeniStateNiza (niz, obrnut, vm) {
-        let newState = this.state;
-        const trSt= this.state.trenutnaStranica - 1;
-        const mPS= this.state.maxPoStranici;
-        const ukBrKom=this.state.komentari.length;
-        var poc = trSt*mPS;
-        if(poc + mPS > ukBrKom)
-          var kr = ukBrKom;
-        else var kr = poc + mPS;
-        var podnizKomentara = this.dajPodniz(trSt*mPS, kr);
-        newState = {
-          komentari:niz,
+    handlePromjenuStranice = stranica => {
+      let Nstranica= stranica * 10;
+      var podnizKomentara = this.state.komentari.slice(Nstranica-10, Nstranica);
+      this.setState({
           podnizKomentara: podnizKomentara,
-          obrnut: obrnut
-        }
-        this.setState(newState);        
-      }
-      
-      dajPodniz = (pocetak, kraj) =>{
-        var komentari=this.state.komentari;
-        var podnizKomentara= komentari.slice(pocetak, kraj);
-        return podnizKomentara;
-      }
+          trenutnaStranica: stranica,
+      })
+    }
 
-      handlePromjenuStranice = stranica => {
-        const trenutnaStranica= stranica - 1;
-        const maxPoStranici= this.state.maxPoStranici;
-        const ukupanBrojKomentara=this.state.komentari.length;
-        var pocetak = trenutnaStranica*maxPoStranici;
-        if(pocetak + maxPoStranici > ukupanBrojKomentara)
-          var kraj = ukupanBrojKomentara;
-        else var kraj = pocetak + maxPoStranici;
-        var podnizKomentara = this.dajPodniz(pocetak, kraj);
-        this.setState({ucitavanje:true});
-        this.setState({
-            podnizKomentara: podnizKomentara,
-            trenutnaStranica: stranica,
-            ucitavanje : false
-        })
-      }
+    handleSortiranje = (sort_1, sort_2) => {
+          let niz= this.state.komentari;
+          let obrnut= this.props.obrnut;
+          var noviNiz;
+          if(sort_1==='1' && sort_2==='1'){
+             noviNiz= AZSortKom(niz);
+               if(obrnut) { noviNiz=AZSortObrnutKom(niz);
+                  obrnut=false;}
+          }
+  
+          if(sort_1==='1' && sort_2==='2') {
+            noviNiz=VrijemeSort(niz);
+              if(obrnut) { noviNiz=VrijemeSortObrnut(niz);
+                  obrnut=false;}
+          }
+          
+          if(sort_1==='2' && sort_2==='1') {
+            noviNiz=AZSortKom(niz);
+              if(!obrnut) {noviNiz= AZSortObrnutKom(niz); obrnut=true;}
+          }
+  
+          if(sort_1==='2' && sort_2==='2'){
+            noviNiz=VrijemeSort(niz);
+              if(!obrnut) {  noviNiz=VrijemeSortObrnut(niz); obrnut=true;}
+          }
+  
+          let Nstranica= this.state.trenutnaStranica * 10;
+          var podnizKomentara = noviNiz.slice(Nstranica-10, Nstranica);
+          this.setState({
+              komentari:noviNiz,
+              podnizKomentara: podnizKomentara,
+              obrnut: obrnut
+          });
+    }
+
+
+    
     
       render(){
         
@@ -103,8 +107,8 @@ class ListaKomentara extends Component {
           </Link>
               <div>
                 <DugmeZaSort 
-                  komentari={this.state.komentari} 
-                  sortirajNiz={this.promjeniStateNiza.bind(this)}
+                 
+                  sortirajNiz={this.handleSortiranje}
                   obrnut={this.state.obrnut}
                 />
               </div>
@@ -112,7 +116,7 @@ class ListaKomentara extends Component {
                 <input type='text' class="form-control bg-white rounded" value="Search"></input>
               </div>
             <div>
-            <Komentari komentari={this.state.komentari}/>
+            <Komentari komentari={this.state.podnizKomentara}/>
             </div>
             <div>
             <ObjaviKomentar id={this.state.id} nazivTeme={this.state.nazivTeme}/>

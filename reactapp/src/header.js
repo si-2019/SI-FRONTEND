@@ -39,29 +39,20 @@ export default class App extends React.Component {
 
     render() {
 
-        let timovi = ["Administrator", "Student support", "Ispiti", "Predmeti", "Akademski kalendar", "Profesori", "Materijali", "Ankete", "India",
-                        "Chat", "Zadace", "Izvještaji", "Kolaboracija", "November", "Oscar", 
-                         "Dashboard", "Romeo", "Studenti", "Forum", "Raspored"];
+        let timovi = ["Alpha", "Beta", "Charlie", "Delta", "Echo", "Fox", "Golf", "Hotel", "India",
+                        "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", 
+                         "Papa", "Romeo", "Siera", "Tango", "Uniform"];
 
         if(this.PrikaziHeader()) {
             return (
             
                 <div className="Sve">
-                <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"83px", display:"inline", textAlign:"center" }} className="nav-link active">
-                    {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
-                    {this.JeLiLogiran()}
-                    <ModalChangeLog container={this} ref = "modal" />
-                    
-                    
+                    <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"22px", display:"inline", textAlign:"center" }} className="nav-link active">
+                        {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
+                        {this.JeLiLogiran()}
+                        <ModalChangeLog container={this} ref = "modal" />
+                    </div>
                 </div>
-                <div style={{marginLeft:"86%", display:"inline", width:"50px" }} className="header">
-                        <img 
-                    src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
-                    alt="new"
-                    data-placement="right"
-                />
-                </div>
-            </div>
     
             )
         }

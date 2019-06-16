@@ -10,30 +10,30 @@ import "./AppDelta.css";
 
 class Predmet extends Component {
 
-  state = {predmet:{naziv : "Kardkodirani", idProfesora : 1, opis : "nista", etcs: 23 }, 
+  /*state = {predmet:{naziv : "Kardkodirani", idProfesora : 1, opis : "nista", etcs: 23 }, 
           profesor:"",
           idPredmeta: 100,
           idStudenta: 230};
 
-  /*constructor(props) {
+  constructor(props) {
     super(props);
-    this.state = {predmet:"", profesor:""};
+    this.state = {predmet:"", profesor:"",email:""};
   }*/
-    /*async componentDidMount(){
+
+  state = {predmet:"", profesor:"",email:"", idPredmeta: 1, idStudenta: 230};
+    async componentDidMount(){
      
-      const idPredmet=62;
-      console.log(idPredmet);
+      const idPredmet=1;
       //console.log(this.props.idPredmeta);
       //const idPredmet=64;
 
-      const {data} = await axios.get('http://si2019delta.herokuapp.com/dohvatiPredmet/'+idPredmet); 
+      const {data} = await axios.get('https://si2019delta.herokuapp.com/dohvatiPredmet/'+idPredmet); 
       this.setState({predmet:data});
-      const idProf = this.state.predmet.idProfesora;
-      const {data1} = await axios.get('http://si2019delta.herokuapp.com/dohvatiProfesora/'+this.state.predmet.idProfesora); 
-      this.setState({profesor:data1});
-      
-      
-    }*/
+      axios.get('https://si2019delta.herokuapp.com/dohvatiProfesora/'+idPredmet)
+        .then(res => this.setState({profesor: res.data}))
+      const {data2} = await axios.get('https://si2019delta.herokuapp.com/dohvatiEmailProfesora/'+idPredmet); 
+      this.setState({email:data2});
+    }
 
   render() {
     return (
@@ -44,7 +44,7 @@ class Predmet extends Component {
               <b>Predmet:</b> {this.state.predmet.naziv}
             </div>
             <div className="row">
-              <b>Odgovorni nastavnik:</b> {this.state.predmet.idProfesora}
+              <b>Odgovorni nastavnik:</b> <a href="mailto:{this.state.profesor.email}">{this.state.profesor.ime} {this.state.profesor.prezime}</a>
             </div>
             <div className="row">
               <b>Opis predmeta:</b>{this.state.predmet.opis}

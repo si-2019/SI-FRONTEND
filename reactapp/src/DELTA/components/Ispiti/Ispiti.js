@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Ispiti extends Component {  
-    state = {postotakBodovaZadace:33, postotakBodovaIspiti:70, ispitiObavjestenje:"", ispit:""}
+    state = {ispitiObavjestenje:"", ispit:40}
 
     
     async componentDidMount(){
         //hardkoridana vrijednost dok se ne kreira bekend za listu predmeta
-        const idPredmeta=8;
+        const idPredmeta=1;
         const idStudent=1;
         
         const {data} = await axios.get('http://si2019delta.herokuapp.com/ispitObavjestenje/'+idPredmeta);
         this.setState({ispitiObavjestenje:data});
-        const {data1} = await axios.get('http://si2019delta.herokuapp.com/rezultatiIspita/'+idPredmeta+'/'+idStudent); 
+        const {data1} = await axios.get('http://localhost:31904/rezultatiIspita/'+idPredmeta+'/'+idStudent); 
          this.setState({ispit:data1});
       }
 

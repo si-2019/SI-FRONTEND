@@ -4,7 +4,7 @@ import axios from 'axios';
 export class prisustvoTabela extends Component {
     
     state = {
-        prisustvoPredavanja : [{brojSedmice: 1, prisutan: "DA"}, {brojSedmice: 2, prisutan: "NE"}],
+        prisustvoPredavanja : [{brojSedmice: 1, prisutan: "DA"}, {brojSedmice: 2, prisutan: "NE"}, {brojSedmice: 3, prisutan: "NE"}],
         prisustvoTutorijali : [{brojSedmice: 1, prisutan: "NE"}, {brojSedmice: 2, prisutan: "DA"}]
     };
 
@@ -13,10 +13,10 @@ export class prisustvoTabela extends Component {
         let idPredmeta = this.props.idPredmeta
         let idStudenta = this.props.idStudenta
 
-        axios.get("http://si2019delta.herokuapp.com/prisustvoPredavanja/" + idPredmeta + "/" + idStudenta)
+        axios.get("https://si2019delta.herokuapp.com/prisustvoPredavanja/" + idPredmeta + "/" + idStudenta)
         .then(res => this.setState({prisustvoPredavanja: res.data}))
 
-        axios.get("http://si2019delta.herokuapp.com/prisustvoTutorijala/" + idPredmeta + "/" + idStudenta)
+        axios.get("https://si2019delta.herokuapp.com/prisustvoTutorijala/" + idPredmeta + "/" + idStudenta)
         .then(res => this.setState({prisustvoTutorijali: res.data}))
     }
 

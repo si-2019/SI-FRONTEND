@@ -13,9 +13,6 @@ class DrugiModuli extends Component {
           <Materijali />
         </div>
         <div className='col-2'>
-          <Ankete />
-        </div>
-        <div className='col-2'>
           <Izvjestaji />
                   </div>  
         <div className='col-2'>

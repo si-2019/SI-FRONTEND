@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ObjavaProfesor from './objavaProfesor'
 import axios from 'axios'
+import Spinner from 'react-bootstrap/Spinner'
+
 
 class LiteraturaProfesor extends Component {
   constructor(props) {
@@ -10,7 +12,10 @@ class LiteraturaProfesor extends Component {
       showMe: false,
       tekst: "Dodaj objavu",
       x: false,
-      id: ""
+      id: "",
+      loading: true,
+      naziv: "",
+      dodavanjeUspjelo: true
     }
   }
 
@@ -20,9 +25,17 @@ class LiteraturaProfesor extends Component {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
-        this.setState({
-          objave: res.data.objave
-        })
+        if (res.data.error) {
+          this.setState({
+            loading: true
+          })
+        }
+        else {
+          this.setState({
+            loading: false,
+            objave: res.data.objave
+          })
+        }
       }
     })
 
@@ -31,41 +44,26 @@ class LiteraturaProfesor extends Component {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
+        if(res.data.error){
+       this.setState({loading: true})
+      }
+      else{
         let x = res.data.naziv == props.naziv
         this.setState({
           naziv: res.data.naziv,
+          x: x,
           id: res.data.id,
-          x: x
+          loading: false
         })
       }
+      }
+
     })
 
   }
 
   componentDidMount() {
-    axios.get(`http://si2019golf.herokuapp.com/r3/dajLiteraturuZaProfesora/${this.props.idPredmeta}/${encodeURIComponent(this.props.naziv)}`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        this.setState({
-          objave: res.data.objave
-        })
-      }
-    })
-    axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        let x = res.data.naziv == this.props.naziv
-        this.setState({
-          naziv: res.data.naziv,
-          x: x
-        })
-      }
-    })
-
+    this.ucitaj(this.props)
   }
 
   handleClick = e => {
@@ -74,9 +72,9 @@ class LiteraturaProfesor extends Component {
     data.append("napomena", document.getElementById("napomena").value)
     data.append("naziv", document.getElementById("naziv").value)
     data.append("idMaterijal", this.props.idMaterijala)
-    data.append("objavljeno", document.getElementById("objavljeno").checked)
+    data.append("objavljeno", !document.getElementById("objavljeno").checked)
     data.append("idPredmet", this.props.idPredmeta)
-    data.append("idTipMaterijala", 1)
+    data.append("idTipMaterijala", 2)
     data.append("idAkademskaGodina", this.state.id)
     let files = document.getElementById("fileovi").files
     for (let i = 0; i < files.length; i++) {
@@ -123,7 +121,17 @@ class LiteraturaProfesor extends Component {
     return (
       <div class="divsaokvirom">
         <h4 class='naslov'>Literatura</h4>
-        {this.state.objave.map(file => <ObjavaProfesor id={file.id} akademskaGodina={this.props.naziv} idpredmeta={this.props.idPredmeta} naslov={file.naziv} opis={file.opis} fileovi={file.datoteke} datumobjave={file.datum} objavljeno={file.objavljeno} idtip={2}></ObjavaProfesor>)}
+
+        {this.state.loading ?
+          <div class="spinerGolf"><Spinner animation='border' variant='primary' role='status'>
+            <span className="sr-only">Učitavanje...</span>
+          </Spinner></div>
+          :
+          <div>
+            {this.state.objave.map(file => <ObjavaProfesor id={file.id} akademskaGodina={this.props.naziv} trenutnaAkademskaGodina={this.state.naziv} idpredmeta={this.props.idPredmeta} naslov={file.naziv} opis={file.opis} fileovi={file.datoteke} datumobjave={file.datum} objavljeno={file.objavljeno} idtip={2}></ObjavaProfesor>)}
+          </div>
+        }
+
         {this.state.showMe ?
           <div>
             <div class="card sss">
@@ -141,10 +149,11 @@ class LiteraturaProfesor extends Component {
                     <label >Datoteke: </label>
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
+                    <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
                   </div>
 
                   <input type="checkbox" name="objavljeno" id="objavljeno"></input> Sakrij objavu
-                              <button type="button" class="btn btn-primary" id="dugmeObjavi" onClick={this.handleClick}>Objavi</button>
+                <button type="button" class="btn btn-primary" id="dugmeObjavi" onClick={this.handleClick}>Objavi</button>
                 </form>
               </div>
             </div>

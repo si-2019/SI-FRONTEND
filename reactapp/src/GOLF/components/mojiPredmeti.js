@@ -4,9 +4,11 @@ import SviPredmeti from './SviPredmeti';
 import Spinner from 'react-bootstrap/Spinner'
 
 axios.interceptors.request.use(function (config) {
-  config.params = { usernameGolf: window.localStorage.getItem("username") }
-  const token = window.localStorage.getItem("token");
-  config.headers.Authorization = token;
+  if(config.url.substring(7,17)=="si2019golf"){
+    config.params = { usernameGolf: window.localStorage.getItem("username") }
+    const token = window.localStorage.getItem("token");
+    config.headers.Authorization = token;
+  }
   return config;
 });
 

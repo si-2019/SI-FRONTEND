@@ -102,13 +102,23 @@ export default class App extends React.Component {
     }
     
     componentDidMount() {
-        fetch(url + '/dajOsnovno?idAnketa=' + this.state.idAnketa).then(res => res.json()).then(
+        fetch(url + '/dajOsnovno?idAnketa=' + this.state.idAnketa+'&username=' + window.localStorage.getItem("username"), {
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            },
+        }).then(res => res.json()).then(
             res => {
-                this.setState({
-                    anketa: res.anketa,
-                    datumIstekaAnkete: new Date(Date.parse(res.anketa.datumIstekaAnkete)),
-                    nazivAnkete: res.anketa.naziv
-                })
+                if(res.loginError) {
+                    window.location.href = window.location.origin + '/romeo/login'
+                    return
+                }
+                if(res.anketa) {
+                    this.setState({
+                        anketa: res.anketa,
+                        datumIstekaAnkete: new Date(Date.parse(res.anketa.datumIstekaAnkete)),
+                        nazivAnkete: res.anketa.naziv
+                    })
+                 }   
                 console.log(res)
             }
         )

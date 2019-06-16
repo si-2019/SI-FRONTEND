@@ -43,9 +43,9 @@ class KreirajIspitDetalji extends Component {
       }
       console.log(obj)
       const {status} = await axios.post('http://si2019charlie.herokuapp.com/ispit', obj)
-      status===200 ? window.alert('Uspjesno kreiran ispit') : window.alert('Greska pri kreiranju ispita')
       // const {status} = await axios.post('http://localhost:31903/ispit', obj)
-      console.log(status)
+      status===200 ? window.alert('Uspjesno kreiran ispit') : window.alert('Greska pri kreiranju ispita')
+      this.props.onChangeActiveId(1)
     } catch (error) {
       console.log(error)
     }

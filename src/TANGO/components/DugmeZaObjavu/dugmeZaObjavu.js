@@ -11,7 +11,7 @@ class DugmeZaObjavu extends Component {
         }
         const { idTeme, text } = this.props; 
           evt.preventDefault()
-        fetch("http://si2019tango.herokuapp.com/addComment", {
+        fetch("https://si2019tango.herokuapp.com/addComment", {
           method: 'POST',  
           body: JSON.stringify({
           idUser: '1',

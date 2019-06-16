@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import ObjavaStudent from './objavaStudent'
+import Spinner from 'react-bootstrap/Spinner'
+
 
 class SedmicaStudent extends Component {
 
   constructor(props){
     super(props);
     this.state={
-      objave: []
+      objave: [],
+      loading: true
     }
   }
 
@@ -17,11 +20,23 @@ class SedmicaStudent extends Component {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else{
+        if(res.data.error){
+          this.setState({
+            loading: true
+          })
+        }
+        else{
         this.setState({
-          objave: res.data.objave
+          objave: res.data.objave,
+          loading: false
         })
       }
-    })  
+      }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
+    })
   }
 
   componentDidMount(){
@@ -37,8 +52,13 @@ class SedmicaStudent extends Component {
       
         <div class='divsaokvirom'>
             <h4 class='naslov'>{this.props.naslov}</h4>
-            {this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
-          </div>
+            { this.state.loading ? <div class="spinerGolf">
+          <Spinner animation='border' role='status' variant='primary'>
+            <span className="sr-only">Učitavanje...</span>
+          </Spinner></div> :
+            <div>{this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}</div>
+            }
+            </div>
     );
   }
 }

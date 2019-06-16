@@ -14,13 +14,14 @@ class ListaPredmeta extends Component {
     };
 };
 
+
 changeActiveId(id){
     this.props.triggerChangeActiveId(id);
 }
 
 dohvatiIDPredmetaPrekoNaziva(naziv){
   setTimeout(() => {
-    axios.get("http://si2019delta.herokuapp.com/dohvatiIDPredmeta/"+naziv)
+    axios.get("https://si2019delta.herokuapp.com/dohvatiIDPredmeta/"+naziv)
     .then(response => {
       const id = response.data;
           this.setState({

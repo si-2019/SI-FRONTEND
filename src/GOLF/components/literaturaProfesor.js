@@ -3,7 +3,6 @@ import ObjavaProfesor from './objavaProfesor'
 import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner'
 
-
 class LiteraturaProfesor extends Component {
   constructor(props) {
     super(props)
@@ -15,7 +14,8 @@ class LiteraturaProfesor extends Component {
       id: "",
       loading: true,
       naziv: "",
-      dodavanjeUspjelo: true
+      dodavanjeUspjelo: true,
+      greskaVelicina: false
     }
   }
 
@@ -37,6 +37,10 @@ class LiteraturaProfesor extends Component {
           })
         }
       }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
     })
 
     axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
@@ -44,20 +48,26 @@ class LiteraturaProfesor extends Component {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
-        if(res.data.error){
-       this.setState({loading: true})
-      }
-      else{
-        let x = res.data.naziv == props.naziv
-        this.setState({
-          naziv: res.data.naziv,
-          x: x,
-          id: res.data.id,
-          loading: false
-        })
-      }
+        if (res.data.error) {
+          this.setState({
+            loading: true
+          })
+        }
+        else {
+          let x = res.data.naziv == props.naziv
+          this.setState({
+            naziv: res.data.naziv,
+            x: x,
+            id: res.data.id,
+            loading: false
+          })
+        }
       }
 
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
     })
 
   }
@@ -69,6 +79,7 @@ class LiteraturaProfesor extends Component {
   handleClick = e => {
     let data = new FormData()
     let imena = []
+    let greskaVelicina = false
     data.append("napomena", document.getElementById("napomena").value)
     data.append("naziv", document.getElementById("naziv").value)
     data.append("idMaterijal", this.props.idMaterijala)
@@ -78,22 +89,51 @@ class LiteraturaProfesor extends Component {
     data.append("idAkademskaGodina", this.state.id)
     let files = document.getElementById("fileovi").files
     for (let i = 0; i < files.length; i++) {
+      if (files[i].size > 2 * 1024 * 1024) {
+        greskaVelicina = true
+      }
       data.append('file', files[i])
       imena.push(files[i])
     }
-    axios.post("http://si2019golf.herokuapp.com/r1/dodajMaterijal", data).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        let objave = this.state.objave
-        objave.push(res.data.objava)
+    if (greskaVelicina) {
+      this.setState({
+        greskaVelicina: true
+      })
+    }
+    else {
+      axios.post("http://si2019golf.herokuapp.com/r1/dodajMaterijal", data).then(res => {
+        if (res.data.loginError) {
+          window.location.href = window.location.origin + '/romeo/login'
+        }
+        else {
+          if (res.data.error) {
+            this.setState({
+              dodavanjeUspjelo: false
+            })
+          }
+          else {
+            let objave = this.state.objave
+            objave.push(res.data.objava)
+            this.setState({
+              objave: objave,
+              showMe: !this.state.showMe,
+              tekst: "Dodaj objavu",
+              dodavanjeUspjelo: true,
+              greskaVelicina: false
+            })
+          }
+        }
+      }).catch(err => {
         this.setState({
-          objave: objave,
-          showMe: !this.state.showMe,
-          tekst: "Dodaj objavu"
+          dodavanjeUspjelo: false
         })
-      }
+      })
+    }
+  }
+
+  sakrij() {
+    this.setState({
+      dodavanjeUspjelo: !this.state.dodavanjeUspjelo
     })
   }
 
@@ -150,6 +190,12 @@ class LiteraturaProfesor extends Component {
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
                     <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
+                    {this.state.greskaVelicina &&
+                      <div class="alert alert-dismissible alert-danger golfw">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Veličina nekih datoteka je veća od dozvoljene!
+                  </div>
+                    }
                   </div>
 
                   <input type="checkbox" name="objavljeno" id="objavljeno"></input> Sakrij objavu
@@ -159,6 +205,10 @@ class LiteraturaProfesor extends Component {
             </div>
           </div>
           : null}
+        {!this.state.dodavanjeUspjelo && <div class="alert alert-dismissible alert-danger golfw">
+          <button type="button" class="close" onClick={() => this.sakrij()} data-dismiss="alert">&times;</button>
+          Dodavanje materijala nije uspjelo!
+        </div>}
         {this.state.x && <button type="button" onClick={() => this.prikaz()} class="btn btn-primary" id="dodajObjavu">{this.state.tekst}</button>}
       </div>
 

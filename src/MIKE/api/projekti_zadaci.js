@@ -6,7 +6,7 @@ const axios = require('axios')
 const sviProjektiTrenutnogUsera = () => {
   let idStudenta = dajIdTrenutnog();
 
-  return axios.get(`http://localhost:31913/services/viewS/user-projects/${idStudenta}`);
+  return axios.get(`https://si-mike-2019.herokuapp.com/services/viewS/user-projects/${idStudenta}`);
 
   //placeholder
   return new Promise(function(resolve, reject)
@@ -41,7 +41,7 @@ const sviProjektiTrenutnogUsera = () => {
 const predmetiZaNovuProjektnuGrupu = () => {
   let idStudenta = dajIdTrenutnog();
 
-  return axios.get(`http://localhost:31913/services/viewS/predmeti-za-generisanje-grupa/${idStudenta}`);
+  return axios.get(`https://si-mike-2019.herokuapp.com/services/viewS/predmeti-za-generisanje-grupa/${idStudenta}`);
 
   //placeholder
   return new Promise(function(resolve, reject)
@@ -71,7 +71,7 @@ const predmetiZaNovuProjektnuGrupu = () => {
 }
 
 const sviPredmetiAsistenta = (idAsistenta) => {
-  return axios.get(`http://localhost:31913/services/viewA/predmetiprojektiasistent/${idAsistenta}`);
+  return axios.get(`https://si-mike-2019.herokuapp.com/services/viewA/predmetiprojektiasistent/${idAsistenta}`);
 
   //placeholder
   return new Promise(function(resolve, reject)
@@ -115,7 +115,7 @@ const sviPredmetiAsistenta = (idAsistenta) => {
 }
 
 const sveGrupeProjekta = (idProjekta) => {
-  return axios.get(`http://localhost:31913/services/projects/getProjectGroups/${idProjekta}`);
+  return axios.get(`https://si-mike-2019.herokuapp.com/services/projects/getProjectGroups/${idProjekta}`);
   
   //placeholder
   return new Promise(function(resolve, reject)
@@ -158,9 +158,14 @@ const sveGrupeProjekta = (idProjekta) => {
   });
 }
 
+const oznaciZavrsenZadatak = (idZadatka) => {
+  return axios.post(`https://si-mike-2019.herokuapp.com/services/progress/endtask/${idZadatka}`);
+}
+
 export { 
   sviProjektiTrenutnogUsera, 
   predmetiZaNovuProjektnuGrupu,
   sviPredmetiAsistenta,
-  sveGrupeProjekta
+  sveGrupeProjekta,
+  oznaciZavrsenZadatak
 };

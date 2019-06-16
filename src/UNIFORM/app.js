@@ -12,6 +12,7 @@ import GrupeProfesor from './components/Grupe/grupeProfesor/grupeProfesor.js';
 import UniformHome from './components/Home/home.js';
 import LeftMenuStudent from './components/Home/LeftMenuStudent.js';
 import grupeProfesor from './components/Grupe/grupeProfesor/grupeProfesor.js';
+import axios from 'axios';
 export class App extends Component {
 
   state={ 
@@ -41,42 +42,40 @@ export class App extends Component {
       
       if(idItem==null)
       idItem="63813812";
-      fetch('https://cors-anywhere.herokuapp.com/'+'https://si2019oscar.herokuapp.com/pretragaId/' + idItem + '/dajUlogu', {
-        method: 'get',
-        headers: {
-            'Authorization': window.localStorage.getItem("token")
+      
+        
+      axios.get('https://si2019oscar.herokuapp.com/pretragaId/' + idItem + '/dajUlogu').then((res) => {
+        if(!res || res.data=="")
+        {
+          window.localStorage.setItem('uniformStanje','nista');
+          window.location.href = window.location.origin + '/romeo/login'
         }
-      }).then(res => {
-            console.log(res)
-            if(res.loginError) {
-                window.localStorage.setItem('uniformStanje','nista');
-                window.location.href = window.location.origin + '/romeo/login'
+        else
+        {
+            window.localStorage.setItem('uniformStanje','da');
+            console.log(res.data)
+            
+            if(res.data == "STUDENT")
+            {
+              this.setState({
+                provjerenToken:true,
+                uloga:1,
+                activeContentId:1
+              })
             }
-            else {
-                window.localStorage.setItem('uniformStanje','da');
-                console.log(res)
-                
-                if(res.uloga == "STUDENT")
-                {
-                  this.setState({
-                    provjerenToken:true,
-                    uloga:1,
-                    activeContentId:1
-                  })
-                }
-                else
-                {
-                  this.setState({
-                    provjerenToken:true,
-                    uloga:2,
-                    activeContentId:2
-                  })
-                }                
-            }
-        })
-        .catch(res => {
-          window.location.href = window.location.origin + '/romeo/login';
-          
+            else
+            {
+              this.setState({
+                provjerenToken:true,
+                uloga:2,
+                activeContentId:2
+              })
+            }                
+      }
+        
+    }).catch(res => {
+      window.location.href = window.location.origin + '/romeo/login';
+
       })
     }
   }

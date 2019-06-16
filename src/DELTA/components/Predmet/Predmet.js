@@ -20,21 +20,20 @@ class Predmet extends Component {
     super(props);
     this.state = {predmet:"", profesor:"",email:""};
   }*/
-
   state = {predmet:"", profesor:"",email:"", idPredmeta: 100, idStudenta: 230};
-    async componentDidMount(){
-     
-      const idPredmet=1;
-      //console.log(this.props.idPredmeta);
-      //const idPredmet=64;
+  async componentDidMount(){
+   
+    const idPredmet=64;
+    //console.log(this.props.idPredmeta);
+    //const idPredmet=64;
 
-      axios.get('https://si2019delta.herokuapp.com/dohvatiPredmet/'+idPredmet)
-        .then(res => this.setState({predmet: res.data}))
-      axios.get('https://si2019delta.herokuapp.com/dohvatiProfesora/'+idPredmet)
-        .then(res => this.setState({profesor: res.data}))
-      const {data2} = await axios.get('https://si2019delta.herokuapp.com/dohvatiEmailProfesora/'+idPredmet); 
-      this.setState({email:data2});
-    }
+    axios.get('https://si2019delta.herokuapp.com/dohvatiPredmet/'+idPredmet)
+      .then(res => this.setState({predmet: res.data}))
+    axios.get('https://si2019delta.herokuapp.com/dohvatiProfesora/'+idPredmet)
+      .then(res => this.setState({profesor: res.data}))
+    const {data2} = await axios.get('https://si2019delta.herokuapp.com/dohvatiEmailProfesora/'+idPredmet); 
+    this.setState({email:data2});
+  }
 
     provjeriToken = () => {
       axios({

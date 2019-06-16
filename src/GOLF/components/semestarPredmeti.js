@@ -8,7 +8,7 @@ class semestarPredmeti extends Component {
 
   state = {
     predmeti: [],
-    korisnik: localStorage.getItem("id"),
+    korisnik: window.localStorage.getItem("id"),
     greska: true
   }
 
@@ -22,7 +22,6 @@ class semestarPredmeti extends Component {
         const predmeti = res.data;
         if (res.data.error) {
           this.setState({
-            predmeti: predmeti.predmeti,
             greska: true
           })
         }
@@ -33,8 +32,10 @@ class semestarPredmeti extends Component {
           });
         }
       }
-    }).catch(function (err) {
-      console.log(err)
+    }).catch(err => {
+      this.setState({
+        greska: true
+      })
     })
 
   }

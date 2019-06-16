@@ -27,7 +27,7 @@ class OdgovoriNaKomentar extends Component {
     const { autor, komentar } = this.state; 
     const com = this.props.idComment;  
   	evt.preventDefault()
-    fetch("http://si2019tango.herokuapp.com/addReply", {
+    fetch("https://si2019tango.herokuapp.com/addReply", {
       method: 'POST',  
       body: JSON.stringify({
       idComment: com,

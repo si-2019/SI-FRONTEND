@@ -31,7 +31,7 @@ class App extends Component {
       <Router>
           <Header />
           <div >
-            <Route exact path="/" component={Alpha} />
+          <Route exact path="/" component={Alpha} />
             <Route path="/alpha" component={Alpha} />
             <Route exact path="/beta" component={Beta} />
             <Route path="/charlie" component={Charlie} />
@@ -52,7 +52,6 @@ class App extends Component {
             <Route path="/siera" component={Siera} />
             <Route path="/tango" component={Tango} />
             <Route path="/uniform" component={Uniform} />
-            
           </div>
           <Footer/>
       </Router>

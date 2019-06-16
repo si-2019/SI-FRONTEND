@@ -10,7 +10,7 @@ import {AZSortObrnutKom, AZSortKom, VrijemeSort,VrijemeSortObrnut} from '../sort
 import {Link} from 'react-router-dom';
 import {IdUSER} from '../id.js';
 
-const themesApi= 'http://si2019tango.herokuapp.com/getReplys/'; //plus id teme
+const themesApi= 'https://si2019tango.herokuapp.com/getReplys/'; //plus id teme
 
 class ListaKomentara extends Component {
     constructor() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 class CategoryComponentSS extends React.Component {
 
@@ -12,7 +13,7 @@ class CategoryComponentSS extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('https://si2019beta.herokuapp.com/category/get').then( res => {
+    axios.get('https://si2019beta.herokuapp.com/category/get', standardHeaders()).then( res => {
 
       let displayNames = [];
       for(let i = 0; i < res.data.length; i++)

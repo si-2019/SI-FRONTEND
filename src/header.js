@@ -29,8 +29,10 @@ export default class App extends React.Component {
     JeLiLogiran() {
         var logiran = localStorage.getItem("token");
         if(logiran) return ([
-            <button onClick={this.PrikaziLog} >Prikazi log</button>,
-            <button type="button" className="odjava" data-placement="right" margin-left="70%" text-align="center" onClick={this.Odjavi} >Odjavi se</button>
+            <div style={{marginLeft:"1%", display:"inline", width:"50px" }} className="dugmad">
+            <button type="button" className="btn btn-primary" onClick={this.PrikaziLog} >Prikazi log</button>
+            <button type="button" className="btn btn-primary" data-placement="right" margin-left="70%" text-align="center" onClick={this.Odjavi} >Odjavi se</button>
+            </div>
         ]);
         return;
     }
@@ -45,21 +47,12 @@ export default class App extends React.Component {
             return (
             
                 <div className="Sve">
-                <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"83px", display:"inline" }} className="nav-link active">
-                    {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
-                    {this.JeLiLogiran()}
-                    <ModalChangeLog container={this} ref = "modal" />
-                    
-                    
+                    <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"22px", display:"inline", textAlign:"center" }} className="nav-link active">
+                        {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
+                        {this.JeLiLogiran()}
+                        <ModalChangeLog container={this} ref = "modal" />
+                    </div>
                 </div>
-                <div style={{marginLeft:"86%", display:"inline", width:"50px" }} className="header">
-                        <img 
-                    src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
-                    alt="new"
-                    data-placement="right"
-                />
-                </div>
-            </div>
     
             )
         }

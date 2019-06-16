@@ -39,7 +39,7 @@ class NovaTema extends Component {
     const { naziv, opis } = this.state;
    
  evt.preventDefault()
- fetch("http://si2019tango.herokuapp.com/addTheme", {
+ fetch("https://si2019tango.herokuapp.com/addTheme", {
 method: 'POST',  
 body: JSON.stringify({
   IdPredmeta: '4',

@@ -21,7 +21,7 @@ class Tema extends Component{
       sticky: !this.state.sticky
   });
    evt.preventDefault()
-   fetch("http://si2019tango.herokuapp.com/setSticky", {
+   fetch("https://si2019tango.herokuapp.com/setSticky", {
      method: 'POST',  
     body: JSON.stringify({
       idTheme: this.props.tema.idTheme,

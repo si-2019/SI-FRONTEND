@@ -1,4 +1,167 @@
-import React, {Component} from 'react'; 
+import React, { Component, Fragment } from 'react';
+import { Form, FormGroup, Label, Input, Table, Button } from 'reactstrap';
+import UploadFiles from '../RadNaProjektu/UploadFiles/UploadFiles'
+
+import 'bootstrap/dist/css/bootstrap.css';
+//import './komponenta.css';
+
+import { sviProjektiTrenutnogUsera, oznaciZavrsenZadatak } from '../../api/projekti_zadaci';
+
+class PregledListeProjekata extends Component { 
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      projekti: [], 
+      selektani_projekat: null,
+      selektovanElement : {},
+      selektovanRed : false,
+      renderovanaTabela : false
+    };
+    
+    this.renderTabela = this.renderTabela.bind(this);
+    this.clickDetalji = this.clickDetalji.bind(this);
+    this.oznaciZavrseno = this.oznaciZavrseno.bind(this);
+  }
+
+  componentDidMount() {
+    sviProjektiTrenutnogUsera().then(res => {
+      let projekti = res.data.projekti;
+      let selektani_projekat = null;
+      if(projekti.length > 0) selektani_projekat = projekti[0];
+
+      this.setState({
+        projekti: projekti,
+        selektani_projekat: selektani_projekat,
+        selektovanElement : {},
+        selektovanRed : false,
+        renderovanaTabela : false
+      });
+    });
+  }
+
+  clickDetalji(idReda) {
+    this.setState({
+      selektovanElement: this.state.selektani_projekat.zadaci[idReda],
+      selektovanRed: true,
+      renderovanaTabela : true
+    });
+  }
+
+  renderTabela() {
+    let i = 1;
+    return (
+      <Table className="table table-dark table-bordered text-center border-solid">
+        <thead>
+          <tr className="bg-primary text-dark">
+            <th className="tabtip">#</th>
+            <th className="tabtip">Opis</th>
+            <th className="tabtip">Od kada</th>
+            <th className="tabtip">Do kada</th>
+            <th className="tabtip">Zavrsen</th>
+            <th className="tabtip">Komentar</th>
+          </tr>
+        </thead>
+        <tbody>
+          { 
+          this.state.selektani_projekat != null ?
+            this.state.selektani_projekat.zadaci.map((zadatak) => {
+                  return (
+                    <tr key={zadatak.idProjektnogZadatka} className="bg-primary text-dark" onClick={this.clickDetalji.bind(null, i-1)}>
+                      <th scope="row" className="tabtip">{i++}</th>
+                      <td>{zadatak.opis}</td>
+                      <td>{zadatak.otkad}</td>
+                      <td>{zadatak.dokad}</td>
+                      <td>{zadatak.zavrsen}</td>
+                      <td>{zadatak.komentarAsistenta}</td>
+                    </tr>)
+                }) : null
+          }
+        </tbody>
+      </Table>
+    );
+  }
+
+  selektan(val) {
+    for(let i=0; i<this.state.projekti.length; i++)
+    {
+      if(this.state.projekti[i].id == val)
+      {
+        this.setState({selektani_projekat: this.state.projekti[i], renderovanaTabela : true, selektovanRed : false});
+        return;
+      }
+    }    
+  }
+
+  oznaciZavrseno() {
+      oznaciZavrsenZadatak(this.state.selektovanElement.idProjektnogZadatka).then((res) => {
+        this.setState({
+            projekti: this.state.projekti
+        })
+      });
+  }
+
+  render() {
+    let detalji = <div id="detalji"></div>
+    if(this.state.selektovanRed && this.state.selektovanElement && this.state.renderovanaTabela){
+      /*detalji = (<div className="mini-card" id="detalji">
+        <h1>#Detalji:</h1>
+          <Label className="white"> {this.state.selektovanElement.opis} </Label><br></br>
+          <Label>Trajanje projekta: {this.state.selektovanElement.otkad} - {this.state.selektovanElement.dokad}</Label><br></br>
+          <Label>Završen projekat: {this.state.selektovanElement.zavrsen}</Label><br></br>
+          <Label>Komentar projektnog zadatka: {this.state.selektovanElement.komentarAsistenta}</Label><br></br>
+      </div>);*/
+
+      detalji = (
+        <div style={{float: "left", width:"100%"}}>
+            <label className="col-form-label col-form-label-lg" >Opis: {this.state.selektovanElement.opis}</label>
+            <hr/>
+            {this.state.selektovanElement && this.state.selektovanElement.zavrsen=="NE" ?
+                <Button onClick={() => {this.oznaciZavrseno()}}>
+                    Oznaci zadatak kao zavrsen
+                </Button> : null}
+
+            <hr/>
+
+            {this.state.selektovanElement && this.state.selektovanElement.zavrsen=="NE" ?
+                <UploadFiles idZadatka={this.state.selektovanElement.idProjektnogZadatka}/>
+                : null
+            }
+
+            <br/>
+        </div>
+      )
+    }
+
+    return (
+      <div className="card" style={{float: "left", width:"100%"}}>
+        <div className="card-body">
+            <Form>
+            <FormGroup>
+            <h4 className="card-title" style={{textAlign:"left"}}>Vaši projekti:</h4>
+              <Input type="select" name="select" onChange={(e)=>{this.selektan(e.target.value)}}>
+                {this.state.projekti.map((projekat) => {
+                    return (<option key={projekat.id} value={projekat.id}>{`${projekat.naziv_projekta} (${projekat.naziv_predmeta})`}</option>);
+                  })}
+              </Input>
+            </FormGroup>
+            </Form>
+
+            <hr/>
+
+            <label className="col-form-label col-form-label-lg">Zadaci za odabrani projekat:</label>
+            {this.renderTabela()}
+            {detalji}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default PregledListeProjekata;
+
+
+/*import React, {Component} from 'react'; 
 import ListaZadataka from './PrikazListeZadataka';
 import { thisExpression } from '@babel/types';
 
@@ -6,7 +169,7 @@ class PregledListeProjekata extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            projekti:[],
+            projekti:this.props.projekti,
             zadaci:[], 
             postoje_projekti:false, 
             lista:false,
@@ -32,7 +195,7 @@ class PregledListeProjekata extends Component {
         var z1={idProjektnogZadatka:1,idProjekta:1,opis:"Prvi zadatak, uvod opisi", otkad:"24.3.2015.",dokad:"6.5.2016.",zavrsen:0,komentarAsistenta:"Sve je ok."};
         var nizZadaci=[];
         nizZadaci.push(z1);
-        this.setState({projekti:this.props.projekti, postoje_projekti:true, odabrani_projekat:1, odabrani_zadatak:1});
+        this.setState({postoje_projekti:true, odabrani_projekat:1, odabrani_zadatak:1});
         //this.setState({id_odabranog_projekta:nizZadaci[0].idProjekta,opis_zadatka:nizZadaci[0].opis,datum_pocetka:nizZadaci[0].otkad,datum_zavrsetka:nizZadaci[0].dokad,komentar_asistenta:nizZadaci[0].komentarAsistenta});
     }
 
@@ -227,3 +390,4 @@ class PregledListeProjekata extends Component {
     }
 }
 export default PregledListeProjekata;
+*/

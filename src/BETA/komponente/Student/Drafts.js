@@ -4,6 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import Spinner from 'react-bootstrap/Spinner';
 import Issue from '../helpers/Draftt.js';
 import axios from 'axios';
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 class Drafts extends React.Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class Drafts extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('https://si2019beta.herokuapp.com/issues/draft/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/draft/get', standardHeaders());
 
         let dN = [];
         let dIP = [];
@@ -60,7 +61,7 @@ class Drafts extends React.Component {
 
         //new
         res.data.new.forEach( async (issue) => {
-            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dn = issue.messages;
             console.log("maida")
             console.log(dn[0].draftStatus)
@@ -74,7 +75,7 @@ class Drafts extends React.Component {
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
-            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dip = issue.messages;
             let novi = [];
             for(let i = 0; i < dip.length; i++){
@@ -86,7 +87,7 @@ class Drafts extends React.Component {
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
-            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dr = issue.messages;
             let novi = [];
             for(let i = 0; i < dr.length; i++){

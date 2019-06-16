@@ -26,7 +26,7 @@ class RedTabele extends Component {
     let st = this.props.student;
     return (
         <tr key={this.state.student.id} className="bg-primary text-dark">
-          <th scope="row" style={{bgcolor: "#FFFFFF"}}>{this.state.redniBroj}</th>
+          <th scope="row" className="tabtip">{this.state.redniBroj}</th>
           <td>{st.ime}</td>
           <td>{st.prezime}</td>
           <td>{st.indeks}</td>

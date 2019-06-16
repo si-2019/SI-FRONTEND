@@ -29,7 +29,7 @@ export default class App extends React.Component {
     JeLiLogiran() {
         var logiran = localStorage.getItem("token");
         if(logiran) return ([
-            <div style={{display:"inline", width:"50px" }} className="dugmad">
+            <div style={{marginLeft:"86%",marginTop:"20%", display:"inline", width:"50px" }} className="dugmad">
             <button type="button" className="btn btn-primary" onClick={this.PrikaziLog} >Prikazi log</button>
             <button type="button" className="btn btn-primary" data-placement="right" margin-left="70%" text-align="center" onClick={this.Odjavi} >Odjavi se</button>
             </div>

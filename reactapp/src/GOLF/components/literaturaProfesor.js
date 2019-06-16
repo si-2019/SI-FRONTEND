@@ -131,6 +131,12 @@ class LiteraturaProfesor extends Component {
     }
   }
 
+  sakrij() {
+    this.setState({
+      dodavanjeUspjelo: !this.state.dodavanjeUspjelo
+    })
+  }
+
   componentWillReceiveProps(props) {
     this.ucitaj(props)
   }

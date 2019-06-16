@@ -82,6 +82,12 @@ class oPredmetuStudent extends Component {
     this.ucitaj(props)
   }
 
+  sakrij() {
+    this.setState({
+      uspjesno: !this.state.uspjesno
+    })
+  }
+
 
   render() {
   

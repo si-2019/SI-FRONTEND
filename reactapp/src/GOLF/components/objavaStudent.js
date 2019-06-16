@@ -50,6 +50,12 @@ class objavaStudent extends Component {
     })
   }
 
+  sakrij() {
+    this.setState({
+      uspjesno: !this.state.uspjesno
+    })
+  }
+
   render() {
     return (
       <div class="card sss" id="objava">
@@ -60,7 +66,7 @@ class objavaStudent extends Component {
           <DodavanjeDatuma datumobjave={this.props.datumObjave}></DodavanjeDatuma>
           {!this.state.uspjesno && <div class="alert alert-dismissible alert-danger golfw">
           <button type="button" class="close" onClick={() => this.sakrij()} data-dismiss="alert">&times;</button>
-          Preuzimanje datoteke nije uspjelo!
+          Preuzimanje datoteke nije moguće!
         </div>}
         </div>
       </div>

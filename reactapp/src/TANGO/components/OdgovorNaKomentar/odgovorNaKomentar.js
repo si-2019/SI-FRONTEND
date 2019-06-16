@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from "react-bootstrap/Modal";
+import {IdUSER} from '../id.js';
 
 class OdgovoriNaKomentar extends Component {
   
@@ -26,11 +27,11 @@ class OdgovoriNaKomentar extends Component {
     const { autor, komentar } = this.state; 
     const com = this.props.idComment;  
   	evt.preventDefault()
-    fetch("http://localhost:31919/addReply", {
+    fetch("http://si2019tango.herokuapp.com/addReply", {
       method: 'POST',  
       body: JSON.stringify({
       idComment: com,
-      idUser: '1',
+      idUser: IdUSER,
       text: komentar,
       timeCreated: Date.now()
     }),  

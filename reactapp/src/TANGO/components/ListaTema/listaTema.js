@@ -4,6 +4,8 @@ import DugmeZaSort from '../DugmeZaSort';
 import Paginacija from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import LISTA_PROBNA from './LISTA';
+import {AZSortObrnut, AZSort, KomentariSort, KomentariSortObrnut, VrijemeSort,VrijemeSortObrnut} from '../sortovi/Sort.js';
+import {IdUSER} from '../id.js';
 
 
 import {
@@ -11,7 +13,7 @@ import {
 } from 'react-router-dom'
 import { resolve } from 'path';
 
-const themesApi= 'http://localhost:31919/getThemes/'; //plus id teme
+const themesApi= 'http://si2019tango.herokuapp.com/getThemes/'; //plus id teme
 
 
 
@@ -31,37 +33,18 @@ class Lista extends Component{
   
   componentWillMount(){
     this.setState({ucitavanje:true});
-    fetch(themesApi+"idPredmeta=4&idUser=1") 
+    fetch(themesApi+"idPredmeta=4&idUser="+IdUSER) 
       .then(response=>response.json())
       .then(teme=>{
-        var ts= this.state.trenutnaStranica - 1;
-        var leng= this.state.teme.length;
-        this.setState({teme:teme, ucitavanje:true});
-        var ts= this.state.trenutnaStranica - 1;
-        var leng= this.state.teme.length;
-        var pocetniPodniz = this.dajPodniz(ts,(leng>=10) ? 10 : leng);
+        var ts= this.state.trenutnaStranica * 10;
+        var leng= teme.length;
+        var pocetniPodniz = teme.slice(ts-10, ts);
         this.setState({teme:teme, podnizTema: pocetniPodniz, ucitavanje:false, ukupno:leng})
       });
     //this.setState({teme:LISTA_PROBNA,ucitavanje:false});
   }
  //                   dodaj ,obrnut
-  promjeniStateNiza (niz, obrnut, vm) {
-    let newState = this.state;
-    const trSt= this.state.trenutnaStranica - 1;
-    const mPS= this.state.maxPoStranici;
-    const ukBrTe=this.state.teme.length;
-    var poc = trSt*mPS;
-    if(poc + mPS > ukBrTe)
-      var kr = ukBrTe;
-    else var kr = poc + mPS;
-    var podnizTema = this.dajPodniz(trSt*mPS, kr);
-    newState = {
-      teme:niz,
-      podnizTema: podnizTema,
-      obrnut: obrnut
-    }
-    this.setState(newState);
-  }
+ 
   
   dajPodniz = (pocetak, kraj) =>{
     var teme=this.state.teme;
@@ -70,21 +53,14 @@ class Lista extends Component{
   }
 
   handlePromjenuStranice = stranica => {
-    const trenutnaStranica= stranica - 1;
-    const maxPoStranici= this.state.maxPoStranici;
-    const ukupanBrojTema=this.state.teme.length;
-    var pocetak = trenutnaStranica*maxPoStranici;
-    if(pocetak + maxPoStranici > ukupanBrojTema)
-      var kraj = ukupanBrojTema;
-    else var kraj = pocetak + maxPoStranici;
-    var podnizTema = this.dajPodniz(pocetak, kraj);
-    this.setState({ucitavanje:true});
+    let Nstranica= stranica * 10;
+    var podnizTema = this.state.teme.slice(Nstranica-10, Nstranica);
     this.setState({
         podnizTema: podnizTema,
         trenutnaStranica: stranica,
-        ucitavanje : false
     })
   }
+
   searchTema (evt) {
     var pom = this.state.teme;
     this.setState({trenutnaStranica: 1});
@@ -97,9 +73,54 @@ class Lista extends Component{
   this.setState({ukupno: pom.length});
 
     this.setState({podnizTema:pom});
-  
-
   }
+
+  handleSortiranje = (sort_1, sort_2) => {
+    console.log(sort_1 + sort_2);
+        let niz= this.state.teme;
+        let obrnut= this.props.obrnut;
+        var noviNiz;
+        if(sort_1==='1' && sort_2==='1'){
+           noviNiz= AZSort(niz);
+             if(obrnut) { noviNiz=AZSortObrnut(niz);
+                obrnut=false;}
+        }
+
+        if(sort_1==='1' && sort_2==='2') {
+          noviNiz=VrijemeSort(niz);
+            if(obrnut) { noviNiz=VrijemeSortObrnut(niz);
+                obrnut=false;}
+        }
+        
+        if(sort_1==='1' && sort_2==='3') {
+          noviNiz=KomentariSort(niz);
+            if(obrnut) { noviNiz=KomentariSortObrnut(niz);
+                obrnut=false;}
+        }
+
+        if(sort_1==='2' && sort_2==='1') {
+          noviNiz=AZSort(niz);
+            if(!obrnut) {noviNiz= AZSortObrnut(niz); obrnut=true;}
+        }
+
+        if(sort_1==='2' && sort_2==='2'){
+          noviNiz=VrijemeSort(niz);
+            if(!obrnut) {  noviNiz=VrijemeSortObrnut(niz); obrnut=true;}
+        }
+
+        if(sort_1==='2' && sort_2==='3') {
+          noviNiz=KomentariSort(niz);
+            if(!obrnut) { noviNiz=KomentariSortObrnut(niz); obrnut=true;}
+        }
+        let Nstranica= this.state.trenutnaStranica * 10;
+        var podnizTema = noviNiz.slice(Nstranica-10, Nstranica);
+        this.setState({
+            teme:noviNiz,
+            podnizTema: podnizTema,
+            obrnut: obrnut
+        });
+  }
+
 
   render(){
     if(this.state.ucitavanje){
@@ -110,9 +131,8 @@ class Lista extends Component{
           <div>< button type="button" class="btn btn-primary"><a href="/Tango/NovaTema">Dodaj novu temu</a></button>
  </div>
           <div>
-            <DugmeZaSort 
-              teme={this.state.teme} 
-              sortirajNiz={this.promjeniStateNiza.bind(this)}
+            <DugmeZaSort  
+              sortirajNiz={this.handleSortiranje}
               obrnut={this.state.obrnut}
             />
           </div>

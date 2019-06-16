@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table, Button } from 'reactstrap';
 
-import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap.css';
 
 import TabelaGrupa from '../BodovanjeProjekataStudenti/TabelaGrupa'
 import { sviPredmetiAsistenta, sveGrupeProjekta } from '../../api/projekti_zadaci';
@@ -11,11 +11,15 @@ class ListaPredmetaAsistenta extends Component {
   constructor(props) {
     super(props);
 
+    let predmeti = this.props.predmeti;
+    if(predmeti.message) predmeti = [];
+
     this.state = { 
       idAsistent:this.props.idAsistent,
-      predmeti:this.props.predmeti,
+      predmeti:predmeti,
       selektani_predmet: null,
       grupe: [],
+      refresh: 1
     };
 
     this.renderGrupe = this.renderGrupe.bind(this);
@@ -28,23 +32,40 @@ class ListaPredmetaAsistenta extends Component {
 
   componentDidMount() {
     sviPredmetiAsistenta(this.state.idAsistent).then(res => {
-      let predmeti = res.data;
-      let selektani_predmet = null;
-      if(predmeti.length > 0) selektani_predmet = predmeti[0];
-      if(selektani_predmet) {
-        sveGrupeProjekta(selektani_predmet.idProjekat).then((res) => {
-          console.log(`SVEGRUPEPROJEKTA: ${JSON.stringify(res)}`)
+      if(!res.data.message) {
+        let predmeti = res.data;
+        let selektani_predmet = null;
+        if(predmeti.length > 0) selektani_predmet = predmeti[0];
+        if(selektani_predmet) {
+          sveGrupeProjekta(selektani_predmet.idProjekat).then((res) => {
+            if(!res.data.message) {
+              this.setState({
+                predmeti: predmeti,
+                selektani_predmet: selektani_predmet,
+                grupe: res.data
+              });
+            }
+            else {
+              this.setState({
+                predmeti: predmeti,
+                selektani_predmet: selektani_predmet,
+                grupe: []
+              });
+            }
+          });
+        }
+        else {
           this.setState({
             predmeti: predmeti,
             selektani_predmet: selektani_predmet,
-            grupe: res.data
+            grupe: []
           });
-        });
+        }
       }
       else {
         this.setState({
-          predmeti: predmeti,
-          selektani_predmet: selektani_predmet,
+          predmeti: [],
+          selektani_predmet: null,
           grupe: []
         });
       }
@@ -54,15 +75,24 @@ class ListaPredmetaAsistenta extends Component {
   ucitajGrupe() {
     if(this.state.selektani_predmet) {
       sveGrupeProjekta(this.state.selektani_predmet.idProjekat).then((res) => {
-        this.setState({
-          grupe: res.data
-        });
-        console.log(`ucitani podaci o grupama: ${JSON.stringify(res.data)}`)
+        if(!res.data.message) {
+          this.setState({
+            grupe: res.data,
+            refresh: this.state.refresh + 1
+          });
+        }
+        else {
+          this.setState({
+            grupe: [],
+            refresh: this.state.refresh + 1
+          });
+        }
       });
     }
     else {
       this.setState({
-        grupe: []
+        grupe: [],
+        refresh: this.state.refresh + 1
       });
     }
   }
@@ -93,7 +123,6 @@ class ListaPredmetaAsistenta extends Component {
 
     upisBodovaPojedinacno(studenti, this.state.selektani_predmet.idProjekat).then((response) => {
       if(response.data.message == "Uspjesno bodovan svaki clan grupe za definisani projekat.") {
-        console.log(`Projekat uspjesno bodovan pojedinacno, pozivanje reloada grupa`);
         this.ucitajGrupe();
       }
       else {
@@ -115,7 +144,6 @@ class ListaPredmetaAsistenta extends Component {
 
     upisBodovaGrupno(idGrupaProjekta, bodovi).then((response) => {
       if(response.data.message == "Uspjesno bodovan projekat.") {
-        console.log(`Projekat uspjesno bodovan grupno, pozivanje reloada grupa`);
         this.ucitajGrupe();
       }
       else {
@@ -130,16 +158,25 @@ class ListaPredmetaAsistenta extends Component {
   }
 
   selektanPredmet(val) {
-    console.log(`selektan predmet: ${val}`)
     for(let i=0; i<this.state.predmeti.length; i++)
     {
       if(this.state.predmeti[i].idPredmet == val)
       {
         sveGrupeProjekta(this.state.predmeti[i].idProjekat).then((res) => {
-          this.setState({
-            selektani_predmet: this.state.predmeti[i],
-            grupe: res.data
-          });
+          if(!res.data.message) {
+            this.setState({
+              selektani_predmet: this.state.predmeti[i],
+              grupe: res.data,
+              refresh: this.state.refresh + 1
+            });
+          }
+          else {
+            this.setState({
+              selektani_predmet: this.state.predmeti[i],
+              grupe: [],
+              refresh: this.state.refresh + 1
+            });
+          }
         });
 
         return;
@@ -152,11 +189,11 @@ class ListaPredmetaAsistenta extends Component {
       <Fragment>
         {this.state.grupe && this.state.grupe.length > 0 ? 
           <Fragment> 
-            <Label>Projektne grupe:</Label>
+            <label className="col-form-label col-form-label-lg">Projektne grupe</label>
             <br></br>
             {this.renderGrupe()}
           </Fragment>
-          : <Label>Nema kreiranih projektnih grupa za ovaj predmet.</Label>}
+          : <label className="control-label">Nema kreiranih projektnih grupa za ovaj predmet.</label>}
       </Fragment>
     )
   }
@@ -164,62 +201,70 @@ class ListaPredmetaAsistenta extends Component {
   renderGrupe() {
     let i = 1;
     return (
-      <Fragment>
+      <div className ="card m1-3 h-100">
       {this.state.grupe.map((grupa) => {
         return (
-          <TabelaGrupa key={grupa.id} grupa={grupa} brojGrupe={i++} callbackPojedinacno={this.bodovanjePojedinacno} callbackGrupno={this.bodovanjeGrupno}></TabelaGrupa>
+          <TabelaGrupa key={grupa.id} grupa={grupa} brojGrupe={i++} callbackPojedinacno={this.bodovanjePojedinacno} callbackGrupno={this.bodovanjeGrupno} refresh={this.state.refresh} ></TabelaGrupa>
         );
       })}
-      </Fragment>
+      </div>
     );
   }
 
   renderDetalji() {
     return (
-      <Fragment>
+      <div style={{textAlign:"left"}}>
         {this.state.selektani_predmet ? 
           <Fragment>
-            <Label>Opis projekta:</Label>
+            <label className="col-form-label col-form-label-lg">Naziv projekta:</label>
             <br/>
-            <Label>{this.state.selektani_predmet.opis}</Label>
+            <label className="control-label">{this.state.selektani_predmet.nazivProjekta}</label>
 
             <hr/>
 
-            <Label>Broj mogućih bodova:</Label>
+            <label className="col-form-label col-form-label-lg">Opis projekta:</label>
             <br/>
-            <Label>{this.state.selektani_predmet.moguciBodovi}</Label>
+            <label className="control-label">{this.state.selektani_predmet.opis}</label>
+
+            <hr/>
+
+            <label className="col-form-label col-form-label-lg">Broj mogućih bodova:</label>
+            <br/>
+            <label className="control-label">{this.state.selektani_predmet.moguciBodovi}</label>
 
             <hr/>
 
           </Fragment>
         : null}
-      </Fragment>
+      </div>
     )
   }
 
   render() {
     return (
-      <Fragment>
-        <Form>
-        <FormGroup>
+      <div className="card" style={{float: "left", width:"100%"}}>
+        <div className="card-body">
+          <Form>
+          <FormGroup>
 
-          <Label >Pregled projekata: </Label>
+            <h4 className="card-title" style={{textAlign:"left"}}>Pregled projekata</h4>
 
-          <Input type="select" name="predmet" onChange={(e)=>{this.selektanPredmet(e.target.value)}}>
-            {this.state.predmeti.map((predmet) => {
-                return (<option key={predmet.idPredmet} value={predmet.idPredmet}>{`${predmet.naziv}`}</option>);
-              })}
-          </Input>
+            <Input type="select" name="predmet" onChange={(e)=>{this.selektanPredmet(e.target.value)}}>
+              {this.state.predmeti? this.state.predmeti.map((predmet) => {
+                  return (<option key={predmet.idPredmet} value={predmet.idPredmet}>{`${predmet.naziv}`}</option>);
+                }) : null}
+            </Input>
 
-          <hr/>
+            <hr/>
 
-          {this.renderDetalji()}
-          
-          {this.prikaziGrupe()}
-          
-        </FormGroup>
-        </Form>
-      </Fragment>
+            {this.renderDetalji()}
+              
+            {this.prikaziGrupe()}
+              
+          </FormGroup>
+          </Form>
+        </div>
+      </div>
     );
   }
 }

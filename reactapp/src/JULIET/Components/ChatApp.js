@@ -389,8 +389,12 @@ class ChatApp extends Component {
     }
 
     deleteClick(message, index){
+
+
         Axios.post('https://si2019juliet.herokuapp.com/deleteMessage', {
-            message_id: message.id
+            message_id: message.id,
+            sender: message.senderId,
+            fileName: message.text.substring(message.text.indexOf(': ') + 2, message.text.length)
         })
         .catch(e => console.log(e));
 

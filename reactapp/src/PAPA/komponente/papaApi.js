@@ -1,52 +1,65 @@
 import axios from 'axios';
-let id=1;
+import {dajUloguTrenutnog, dajIdTrenutnog} from './autentifikacija.js'
+let id=dajIdTrenutnog();
 
 class papaApi{
    
     static trenutniPredmeti(){
-        return axios.get('http://localhost:31916/papa/trenutniPredmeti', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/trenutniPredmeti', {params : {idStudent:id}});
     }
+    static odslusaniPredmeti(){
+        return axios.get('http://si2019papa.herokuapp.com/papa/odslusaniPredmeti', {params : {idStudent:id}});
+    }  
     static trenutniSaDrugihOdsjeka(){
-        return axios.get('http://localhost:31916/papa/trenutniSaDrugihOdsjeka', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/trenutniSaDrugihOdsjeka', {params : {idStudent:id}});
     }
     static trenutniSaDrugihSemestara(){
-        return axios.get('http://localhost:31916/papa/trenutniSaDrugihSemestara', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/trenutniSaDrugihSemestara', {params : {idStudent:id}});
     }
     static polozeniPredmeti(){
-        return axios.get('http://localhost:31916/papa/polozeniPredmeti', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/polozeniPredmeti', {params : {idStudent:id}});
     }
     static nePolozeniPredmeti(){
-        return axios.get('http://localhost:31916/papa/nePolozeniPredmeti', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/nePolozeniPredmeti', {params : {idStudent:id}});
     }
     static trenutniAsistenti(){
-        return axios.get('http://localhost:31916/papa/trenutniAsistenti', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/trenutniAsistenti', {params : {idStudent:id}});
+    }
+    static upisaneOcijene(){
+        return axios.get('http://si2019papa.herokuapp.com/papa/upisaneOcijene', {params : {idStudent:id}});
     }
     static ispitiPrijava(){
-        return axios.get('http://localhost:31916/papa/ispitiPrijava', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/ispitiPrijava', {params : {idStudent:id}});
     }
     static obavjestenjaAdmin(){
-        return axios.get('http://localhost:31916/papa/obavjestenjaAdmin', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/obavjestenjaAdmin', {params : {idStudent:id}});
     }
     static obavjestenjaStudentskaSluzba(){
-        return axios.get('http://localhost:31916/papa/obavjestenjaStudentskaSluzba', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/obavjestenjaStudentskaSluzba', {params : {idStudent:id}});
     }
     static obavjestenjaProfesor(){
-        return axios.get('http://localhost:31916/papa/obavjestenjaProfesor', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/obavjestenjaProfesor', {params : {idStudent:id}});
     }
     static obavjestenjaAsistent(){
-        return axios.get('http://localhost:31916/papa/obavjestenjaAsistent', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/obavjestenjaAsistent', {params : {idStudent:id}});
     }
     static rezultatiIspita(){
-        return axios.get('http://localhost:31916/papa/rezultatiIspita', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/rezultatiIspita', {params : {idStudent:id}});
     }
     static trenutniProfesori(){
-        return axios.get('http://localhost:31916/papa/trenutniProfesori', {params : {idStudent:id}});
+        return axios.get('http://si2019papa.herokuapp.com/papa/trenutniProfesori', {params : {idStudent:id}});
     }
     static sviIspita(){
-        return axios.get('http://localhost:31916/papa/sviIspiti');
+        return axios.get('http://si2019papa.herokuapp.com/papa/sviIspiti');
     }
     static neradniDani(){
-        return axios.get('http://localhost:31916/papa/neradniDani');
+        return axios.get('http://si2019papa.herokuapp.com/papa/neradniDani');
+    }
+    static sveGodine(){
+        return axios.get('http://si2019papa.herokuapp.com/papa/godine');
+    }
+    static sviPredmeti(){
+        return axios.get('http://si2019papa.herokuapp.com/papa/sviPredmeti');
     }
 
 }

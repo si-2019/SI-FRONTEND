@@ -12,8 +12,7 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
         predmeti:props.predmeti,
         trenutniPredmet:0,
         forma:"null",
-        naziv:"",
-        opis:""
+        korisnik:props.korisnik
       };
       this.informacije=this.informacije.bind(this);
     }
@@ -25,7 +24,7 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
       })
     }
     render(){
-      if(this.state.forma=="null") return (
+      if(this.state.forma=="null" && this.state.predmeti.length>0) return (
         <div className="card" style={{float: "left", width:"100%"}}>
           <div class="card-body"> 
          <h4 class="card-title" style={{textAlign:"left"}}>{this.state.tech}</h4>
@@ -35,18 +34,25 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
             <option className="list-group-item" value="Lista predmeta">Odaberite predmet</option>
             {
               this.state.predmeti.map(predmet=>{
-                return <option className="list-group-item" value={predmet.naziv}>{predmet.naziv}</option>
+                return <option className="list-group-item" value={predmet.naziv_predmeta}>{predmet.naziv_predmeta}</option>
               })
             }
           </select>
           {/*opis radi ako postoje predmeti, inace ne*/}
-        <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].opis} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].bodovi}/>
-        <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.props.submit}>Dalje</button>
+        <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].projekti[0].opisProjekta} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].projekti[0].moguciBodovi}/>
+        <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.informacije}>Dalje</button>
         </div>
         </div>
       );
+      else if(this.state.predmeti.length==0){
+        return(
+          <div className="alert alert-dismissible alert-danger" style={{width:"100%"}}>
+        <strong>Nema dostupnih predmeta za kreiranje projektne grupe</strong> <br />
+      </div>
+        )
+      }
       else if(this.state.forma=="informacije") return(
-        <UnosInformacija informacije={this.sacuvajInformacije}/>
+        <UnosInformacija korisnik={this.state.korisnik} predmet={this.state.predmeti[this.state.trenutniPredmet]}/>
       );
     }
     informacije(){

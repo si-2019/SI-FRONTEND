@@ -42,6 +42,7 @@ class KreiranjeZadace extends Component {
   }
 
   provjeriToken = () => {
+    try{
     axios({
       url: 'https://si2019romeo.herokuapp.com/users/validate',
       type: 'get',
@@ -60,8 +61,12 @@ class KreiranjeZadace extends Component {
           window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
         } 
       }  
-    });
+    });}
+    catch(e){
+
+    }
   }
+  
 
   handleChangeProps = props => {
     if (props.mainState) {
@@ -127,7 +132,7 @@ class KreiranjeZadace extends Component {
 
     if (data.naziv.length < 2 || data.naziv.length > 30) {
       // [0] validacija naziva
-      porukeGreske[0] = "Naziv mora sadrzavati izmedju 2 i 30 karaktera!";
+      porukeGreske[0] = "Naziv mora sadržavati između 2 i 30 karaktera!";
     } else {
       porukeGreske[0] = "";
     }
@@ -173,13 +178,13 @@ class KreiranjeZadace extends Component {
     }
     if (this.state.listaBodova.length != this.state.brojZadataka) {
       porukeGreske[5] =
-        "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+        "Bodovi moraju biti uneseni i broj bodova mora biti veći od 0!";
       return porukeGreske;
     }
 
     if (data.listaBodova.length == 0) {
       porukeGreske[5] =
-        "Bodovi moraju biti uneseni i broj bodova mora biti veci on 0!";
+        "Bodovi moraju biti uneseni i broj bodova mora biti veći od 0!";
       return porukeGreske;
     }
     for (var i = 0; i < data.listaBodova.length; i++) {
@@ -187,11 +192,11 @@ class KreiranjeZadace extends Component {
       if (parseFloat(element) <= 0) {
         // [5] validacija broja bodova po zadacima
         porukeGreske[5] =
-          "Bodovi moraju biti uneseni i broj bodova mora biti veci od 0!";
+          "Bodovi moraju biti uneseni i broj bodova mora biti veći od 0!";
         return porukeGreske;
       }
       if (isNaN(parseInt(element))) {
-        porukeGreske[5] = "Broj bodova mora biti broj!";
+        porukeGreske[5] = "Popunite polja za bodove ispravnim vrijednostima!";
         return porukeGreske;
       }
       if (parseFloat(element) > 100) {
@@ -199,7 +204,7 @@ class KreiranjeZadace extends Component {
         return porukeGreske;
       }
       if (parseInt(element * 100) !== element * 100) {
-        porukeGreske[5] = "Broj bodova moze imati najvise dvije decimale!";
+        porukeGreske[5] = "Broj bodova može imati najviše dvije decimale!";
         return porukeGreske;
       }
       porukeGreske[5] = "";
@@ -298,7 +303,7 @@ class KreiranjeZadace extends Component {
         if (this.state.radnja === "Kreiranje") {
           this.provjeriToken();
           axios
-            .post("http://localhost:31911/addZadaca", fData)
+            .post("https://si2019kilo.herokuapp.com/addZadaca", fData)
             .then(res => {
               if (res.status === 200) {
                 this.setState({ uspjehKreiranja: true });
@@ -313,7 +318,7 @@ class KreiranjeZadace extends Component {
           this.provjeriToken();
           axios
             .put(
-              `http://localhost:31911/zadaca/${this.props.mainState.idZadaca}`,
+              `https://si2019kilo.herokuapp.com/zadaca/${this.props.mainState.idZadaca}`,
               fData
             )
             .then(res => {
@@ -510,7 +515,7 @@ class KreiranjeZadace extends Component {
             color="info"
             class="btn btn-primary"
           >
-            Preview zadace
+            Preview zadaće
           </Button>
         </div>
         <div id="preview">

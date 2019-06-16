@@ -1,82 +1,52 @@
 import React, { Component } from "react";
 import "./bootstrap.min.css";
 import axios from "axios";
-import { FormGroup, Table } from "reactstrap";
+import {withRouter} from "react-router-dom";
 import "./tabela.css"
 
 class IspitiTabela extends Component {
   state = {
-    listaIspita: [
-      [
-        {
-          idGodine: 11,
-          nazivGodine: "2018/19",
-          predmeti: [
-            {
-              idPredmet: 4,
-              nazivPredmeta: "Projektovanje informacionih sistema",
-              ispiti: []
-            },
-            { idPredmet: 5, nazivPredmeta: "DS", ispiti: [] },
-            { idPredmet: 6, nazivPredmeta: "IEK", ispiti: [] },
-            { idPredmet: 7, nazivPredmeta: "VI", ispiti: [] },
-            {
-              idPredmet: 8,
-              nazivPredmeta: "ARM",
-              ispiti: [
-                {
-                  idIspita: 1,
-                  nazivIspita: "Prvi parcijalni",
-                  bodovi: 10,
-                  datum: "2019-05-01T09:00:00.000Z"
-                },
-                {
-                  idIspita: 4,
-                  nazivIspita: "Drugi parcijalni",
-                  bodovi: 12,
-                  datum: "2019-05-31T10:00:00.000Z"
-                }
-              ]
-            },
-            {
-              idPredmet: 9,
-              nazivPredmeta: "SI",
-              ispiti: [
-                {
-                  idIspita: 2,
-                  nazivIspita: "Prvi parcijalni",
-                  bodovi: 18,
-                  datum: "2019-05-05T10:00:00.000Z"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      [
-        {
-          idGodine: 12,
-          nazivGodine: "2017/18",
-          predmeti: [{ idPredmet: 12, nazivPredmeta: "RA", ispiti: [] }]
-        }
-      ]
-    ],
-    trenutnoLogovaniStudentID: 1
+    listaIspita: [],
+    trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+    username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
+    token: window.localStorage.getItem("token"),
   };
 
   componentDidMount() {
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+          if (this.readyState == 4 && this.status == 200) {
+              //radi sta hoces
+              this.handleGet();
+          }
+          else {
+              //vrati na login
+              this.props.history.push("/Romeo");
+          }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+  }
+  else this.handleGet();    
+  }
+  handleGet = ()=>{
     axios
       .get(
-        `http://localhost:31918/ispiti/` + this.state.trenutnoLogovaniStudentID
+        `https://si2019siera.herokuapp.com/ispiti/` + this.state.trenutnoLogovaniStudentID
       )
       .then(res => {
         if (res.data.akademskeGodine != undefined) {
           const lista = res.data.akademskeGodine;
           this.setState({ listaIspita: lista });
         }
-        else{
+        else {
           this.setState({ listaIspita: [] });
         }
+      })
+      .catch(err=>{
+        console.log(err);
       });
   }
 
@@ -93,7 +63,8 @@ class IspitiTabela extends Component {
       <div style={{ marginTop: "30px" }}>
         <h2 style={{ marginBottom: "30px" }}>Ispiti</h2>
         <div className="row justify-content-center" style={{ padding: "20px" }}>
-          {this.state.listaIspita.map((item, i) => (
+          {this.state.listaIspita.length==0 ? <span style={{ float: "left", marginLeft: "30px" }}>Student do sada nije polagao nijedan ispit.</span> : 
+          this.state.listaIspita.map((item, i) => (
             <div className="col-sm-12 col-xs-12 col-md-12 col-lg-10 ">
               <table className="table table-bordered text-center bg-active border-solid" key={i}>
                 <tbody>
@@ -186,4 +157,4 @@ class IspitiTabela extends Component {
   }
 }
 
-export default IspitiTabela;
+export default withRouter(IspitiTabela);

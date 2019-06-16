@@ -49,15 +49,14 @@ class prikazAsistenta extends Component{
           <div className="card">
             <div className="card-body">
               <br /> 
-                <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange} placeholder="Ime studenta"></input>  <br />
-                <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
+                <input type="text" className="form-control col-md-4" value={search} onChange={this.handleChange} placeholder="Ime studenta"></input>  <br />
+                <button className="btn btn-primary btn-block col-md-4" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
               <br />
               
                 
               <table>  
                 <thead className="table table-sm table-primary">
                   <tr>
-                      <th >ID</th>
                       <th >IME</th>
                       <th >PREZIME</th>
                       <th >IME RODITELJA</th>
@@ -76,7 +75,6 @@ class prikazAsistenta extends Component{
                 {
                     lista.length ? lista.map(list => 
                         <tr key={list.id}>
-                            <th>{list.id}</th>
                             <th>{list.ime}</th>
                             <th>{list.prezime}</th>
                             <th>

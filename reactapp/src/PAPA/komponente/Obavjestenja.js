@@ -18,6 +18,7 @@ class ObavjestenjaPapa extends Component {
                     naslov: "Izaberite nacin prikazivanja",
                     lista:[],
                     showPredmet:false,
+                    showIspiti:false,
                     clicked: false
                  };
     this.obavjestenjaAdmin = this.obavjestenjaAdmin.bind(this); 
@@ -31,6 +32,15 @@ class ObavjestenjaPapa extends Component {
     this.kliknutPredmet=this.kliknutPredmet.bind(this)
   }
 
+  kliknutPredmet(){
+    if(this.state.showPredmet){
+      window.location.replace("/Delta");
+    }
+    else if(this.state.showIspiti){
+      window.location.replace("/Charlie");
+    }
+  }
+
   promijeniBoju(novaBoja){
     this.setState({
       boja:novaBoja  
@@ -41,11 +51,13 @@ class ObavjestenjaPapa extends Component {
     papaApi.obavjestenjaAdmin().then((res) => {
         this.setState({
           showPredmet:false,
+          showIspiti:false,
           naslov:"Obajestenja od admina",
           lista:res.data});
     }).catch((err) => {
       this.setState({
         showPredmet:false,
+        showIspiti:false,
         naslov:"Obavjestenja od admin",
         lista:[]});
     });
@@ -55,13 +67,15 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Obavjestenja od studentske sluzbe",
         lista:res.data,
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     }).catch((err) => {
       this.setState({
         naslov:"Obavjestenja od studentske sluzbe",
         lista:[],
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     });
   }
@@ -70,12 +84,14 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Obajvestenja od profesora",
         lista:res.data,
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     }).catch((err) => {
       this.setState({
         naslov:"Obavjestenja od profesora",
         lista:[],
+        showIspiti:false,
         showPredmet:false
       });
     });
@@ -83,18 +99,38 @@ class ObavjestenjaPapa extends Component {
   obavjestenjaAsistent(){
     papaApi.obavjestenjaAsistent().then((res) => {
       this.setState({
+        showIspiti:false,
         showPredmet:false,
         naslov:"Obajvestenja od asistenta",
         lista:res.data});
     }).catch((err) => {
       this.setState({
+        showIspiti:false,
         showPredmet:false,
         naslov:"Obajvestenja od asistenta",
         lista:[]});
     });
   }
   upisaneOcijene(){
-   
+    papaApi.upisaneOcijene().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+           niz.push({
+            id:a+1,
+            obavjestenje:"Iz predmeta "+res.data[a].naziv + " upisali ste ocijenu " +res.data[a].ocjena +"."
+          });
+      }  
+
+      this.setState({
+        naslov:"Upisane ocijene",
+        showIspiti:false,
+        lista:niz});
+    }).catch((err)=>{
+      this.setState({
+        naslov:"Upisane ocijene",
+        showIspiti:false,
+        lista:[]});
+    });
   }
   ispitiPrijava(){
     papaApi.ispitiPrijava().then((res) => {
@@ -108,13 +144,15 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Trenutne prijeva za ispit",
         lista:niz,
+        showIspiti:true,
         showPredmet:false
       });
     }).catch((err) => {
       this.setState({
         naslov:"Trenutne prijave za ispit",
         lista:[],
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     });
   }
@@ -131,11 +169,13 @@ class ObavjestenjaPapa extends Component {
       }
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati parcijalnih ispita",
         lista:niz});
     }).catch((err) => {
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati parcijalnih ispita",
         lista:[]});
     });
@@ -154,29 +194,29 @@ class ObavjestenjaPapa extends Component {
       }
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati usmenih ispita",
         lista:niz});
     }).catch((err) =>{
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati usmenih ispita",
         lista:[]});
     });
   }
-  kliknutPredmet(){
-    if(this.state.showPredmet){
-        this.props.fija();      
-    }
-  }
   render() {
     return (
-      <div style={{ width: '100%', height: '22rem'}}>
-        <Card border="secondary" style={{ width: '100%', minHeight: '22rem', backgroundColor:this.state.boja}}>
+      <div style={{ width: '100%', height: '100%'}}>
+        <Card className="m-0" style={{ width: '100%', height: '100%', backgroundColor:this.state.boja}}>
         <Card.Header className='bg-primary'>
           <div style={{width: '100%',  display: 'flex',justifyContent:'space-between'}}>
             {<h3 style={{color:"white"}} >Obavijesti</h3>}
             <ButtonGroup vertical  style={{alignSelf: 'flex-end'}}>
-              <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
+              <DropdownButton as={ButtonGroup} 
+              alignRight
+              title="Filteri "
+              id="dropdown-menu-align-right">
                 <Dropdown.Item eventKey="1" onClick={this.obavjestenjaAdmin}>Obavjestenja admin</Dropdown.Item>
                 <Dropdown.Item eventKey="2" onClick={this.obavjestenjaStudentskaSluzba}>Obavjestenjas studentska sluzba </Dropdown.Item>
                 <Dropdown.Item eventKey="3" onClick={this.obavjestenjaProfesor}>Obavjestenja profesor</Dropdown.Item>

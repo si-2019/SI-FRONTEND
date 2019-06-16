@@ -5,6 +5,7 @@ import './grupeProfesor.css';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import TabelaGrupa from './tabelaGrupa.js';
 import TabelaNesvrstani from './tabelaNesvrstani.js';
+import jQuery from 'jquery'; 
 
 
 class Grupe extends Component {
@@ -14,23 +15,29 @@ state = {
     grupe:[],
     predmet:undefined,
     nesvrstani:[],
-    trenutniRedoslijed:undefined
+    trenutniRedoslijed:undefined,
+    provjerenToken:false
   }
 
+  
+
   componentDidMount = () =>{
-    fetch("http://si2019uniform.herokuapp.com/getRedoslijed")
+    
+    {
+      console.log("1111111111111111111111111111");
+      fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getRedoslijed")
       .then(resRedoslijed => resRedoslijed.json())
       .then(jsonRedoslijed => {
         var linkGrupe;
         if(jsonRedoslijed.naziv=="Redoslijed abecede")
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
         else
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
 
-          fetch("http://si2019uniform.herokuapp.com/getPredmet/4")
+          fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getPredmet/4")
             .then(resPredmet => resPredmet.json())
             .then(jsonPredmet => {
-                fetch("http://si2019uniform.herokuapp.com/getNesvrstaniStudentiNaPredmetu/4")
+                fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getNesvrstaniStudentiNaPredmetu/4")
                  .then(resNesvrstani => resNesvrstani.json())
                  .then(jsonNesvrstani => {
                     fetch(linkGrupe)
@@ -48,15 +55,31 @@ state = {
                 });
             });
         });
+    } 
+    
+
+        
   }
 
 render = () =>{ 
-    if(!this.state.isLoaded)
-    return <div>Loading...</div>;
-    
+   
     var spisakGrupe=this.state.grupe;
     var dataPredmet = this.state.predmet;
     var dataStudenti=this.state.nesvrstani;
+    if(!spisakGrupe || spisakGrupe==undefined)
+  {
+    spisakGrupe=[];
+  }
+  if(!dataPredmet || dataPredmet==undefined)
+  {
+    dataPredmet={
+      naziv: "Projektovanje informacionih sistema"      
+    };
+  }
+  if(!dataStudenti || dataStudenti==undefined)
+  {
+    dataStudenti=[];
+  }
     var idStudent=1;
 
     var indexGrupeLogovanogStudenta=-1;      
@@ -121,9 +144,13 @@ render = () =>{
         + " - " + dani[parseInt(spisakGrupe[i].danUSedmici)-1].title 
         + " "   + spisakGrupe[i].vrijeme 
         + " "   + spisakGrupe[i].kabinet;
-
+        var trenutniRedoslijed = this.state.trenutniRedoslijed;
+        if(!trenutniRedoslijed || trenutniRedoslijed==undefined)
+        {
+          trenutniRedoslijed=[];
+        }
         rendering.push(
-            <TabelaGrupa trenutniRedoslijed={this.state.trenutniRedoslijed} idPredmet={dataPredmet.id} lockState={lockState} redniBroj = {i} kapacitet={maxKapacitet} naziv={headTitle} grupa={spisakGrupe[i]} />
+            <TabelaGrupa trenutniRedoslijed={trenutniRedoslijed} idPredmet={dataPredmet.id} lockState={lockState} redniBroj = {i} kapacitet={maxKapacitet} naziv={headTitle} grupa={spisakGrupe[i]} />
         );
     }
 

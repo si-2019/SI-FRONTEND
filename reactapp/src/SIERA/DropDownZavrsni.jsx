@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
+import { withRouter } from "react-router-dom"
 import PrikaziStatus from "./PrikaziStatus";
 
 class DropDownZavrsni extends React.Component {
@@ -10,14 +11,19 @@ class DropDownZavrsni extends React.Component {
         this.state = {
             profesori: [],
             teme: [],
-            studentId: 1,
+            studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
+            token: window.localStorage.getItem("token"),
             profId: 1,
             temaId: null,
             otvori: false,
             selProf: null,
             selTema: null,
             greskaVisible: "hidden",
-            selectClass: "custom-select"
+            succVisible:"hidden",
+            selectClass: "custom-select",
+            OK: null,
+            msg: ""
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeProf = this.handleChangeProf.bind(this);
@@ -48,22 +54,43 @@ class DropDownZavrsni extends React.Component {
     handlePost(e) {
         e.preventDefault();
         axios
-            .post("http://localhost:31918/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
+            .post("https://si2019siera.herokuapp.com/temeZavrsni/" + this.state.studentId + "/" + this.state.temaId, {
                 isStudent: this.state.studentId,
                 idTema: this.state.temaId
             })
+
             .then(res => {
-                console.log("uspjesno poslan post");
+                if (res.data.success && res.data.userAutorizacija) {
+                    //radi sta hoces
+                    this.setState({
+                        msg: "",
+                        OK: true
+                    })
+                    
+                }
+                else if (!res.data.userAutorizacija) {
+                    //nema privilegiju
+                    this.setState({
+                        msg: "Nemate privilegiju da pristupite ovoj stranici.",
+                        OK: false
+                    })
+                }
+                else {
+                    //kod nas greska
+                    this.setState({
+                        msg: "Došlo je do greške!",
+                        OK: false
+                    })
+                }
+                this.handlePotvrda();
             })
             .catch(res => {
                 console.log("greska u postu: " + res.data);
             });
-
     }
-    componentDidMount() {
-
+    handleGet = () => {
         axios
-            .get("http://localhost:31918/profesori")
+            .get("https://si2019siera.herokuapp.com/profesori")
             .then(res => {
                 this.setState(
                     {
@@ -77,8 +104,9 @@ class DropDownZavrsni extends React.Component {
             });
         //teme koje se vezu za 1 mentora
         axios
-            .get("http://localhost:31918/profesori/temeZavrsni/" + this.state.profId)
+            .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + this.state.profId + "/" + this.state.studentId)
             .then(res => {
+                console.log("res.data.data iz temeZavrsni: " + res.data.data)
                 this.setState({
                     teme: res.data.data
                 });
@@ -101,36 +129,96 @@ class DropDownZavrsni extends React.Component {
                     console.log(res.error);
                 }
             );
-
     }
-    handleChangeProf(selectedId) {
-
-        axios
-            .get("http://localhost:31918/profesori/temeZavrsni/" + selectedId)
-            .then(res => {
-                this.setState({
-                    teme: res.data.data,
-                    profId: selectedId
-
-                });
-                if (this.state.teme.length == 0) {
-                    this.setState({
-                        temaId: null
-                    })
+    componentDidMount() {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    //radi sta hoces
+                    this.handleGet();
                 }
                 else {
-                    this.setState({
-                        temaId: res.data.data[0].id
-                    })
+                    //vrati na login
+                    this.props.history.push("/Romeo");
                 }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else this.handleGet();
 
-            })
-            .catch(
-                res => {
-                    console.log("nesto ne valja");
-                    console.log(res.error);
+    }
+
+    handleChangeProf(selectedId) {
+        if (window.localStorage.getItem("id") != null) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    axios
+                        .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId + "/" + this.state.studentId)
+                        .then(res => {
+                            this.setState({
+                                teme: res.data.data,
+                                profId: selectedId
+                            });
+                            if (this.state.teme.length == 0) {
+                                this.setState({
+                                    temaId: null
+                                })
+                            }
+                            else {
+                                this.setState({
+                                    temaId: res.data.data[0].id
+                                })
+                            }
+                        })
+                        .catch(
+                            res => {
+                                console.log("nesto ne valja");
+                                console.log(res.error);
+                            }
+                        );
                 }
-            );
+                else {
+                    //vrati na login
+                    this.props.history.push("/Romeo");
+                }
+            }
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.setRequestHeader("Authorization", this.state.token);
+            ajax.send();
+        }
+        else {
+            axios
+                .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId + "/" + this.state.studentId)
+                .then(res => {
+                    this.setState({
+                        teme: res.data.data,
+                        profId: selectedId
+
+                    });
+                    if (this.state.teme.length == 0) {
+                        this.setState({
+                            temaId: null
+                        })
+                    }
+                    else {
+                        this.setState({
+                            temaId: res.data.data[0].id
+                        })
+                    }
+
+                })
+                .catch(
+                    res => {
+                        console.log("nesto ne valja");
+                        console.log(res.error);
+                    }
+                );
+        }
+
 
     }
     handleClick() {
@@ -152,23 +240,37 @@ class DropDownZavrsni extends React.Component {
             })
         }
     }
+    handlePotvrda = ()=>{
+        if(this.state.OK){
+            this.setState({
+                greskaVisible:"hidden",
+                succVisible:"visible"
+            })
+        
+        }
+        else this.setState({
+            greskaVisible:"visible",
+            succVisible:"hidden"
+        })
+    }
     render() {
         let zatvoriModal = () => this.setState({ otvori: false });
         return (
             <>
                 <div className="container-fluid" style={{ marginTop: "30px" }}>
+
                     <h2 style={{ marginBottom: "30px" }}>Završni rad</h2>
-                    <div class="card align-items-center">
-                        <div class="card-body" style={{ minWidth: "100%" }}>
-                            <div class="row justify-content-lg-around justify-content-md-center">
-                                <div class="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
-                                    <h4 class="card-title">Prijava završnog rada</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
+                    <div className="card align-items-center">
+                        <div className="card-body" style={{ minWidth: "100%" }}>
+                            <div className="row justify-content-lg-around justify-content-md-center">
+                                <div className="col-lg-4 col-sm-12 col-md-6 justify-content-sm-center ">
+                                    <h4 className="card-title">Prijava završnog rada</h4>
+                                    <h6 className="card-subtitle mb-2 text-muted">Ovdje možete vidjeti sve profesore koje možete odabrati za svog mentora, kao i teme koje nude.</h6>
                                     <div style={{ textAlign: "left" }}>
-                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Mentori</label>
+                                        <label className="col-form-label col-form-label-lg" htmlFor="inputLarge">Mentori</label>
                                     </div>
 
-                                    <select class="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
+                                    <select className="custom-select" onChange={event => { this.handleChangeProf(event.target.value) }}>
                                         {this.state.profesori.map(
                                             (prof) =>
                                                 <option key={prof.id} value={prof.id}>{prof.ime} {prof.prezime}</option>
@@ -177,9 +279,9 @@ class DropDownZavrsni extends React.Component {
                                     </select>
 
                                     <div style={{ textAlign: "left" }}>
-                                        <label class="col-form-label col-form-label-lg" htmlFor="inputLarge">Teme</label>
+                                        <label className="col-form-label col-form-label-lg" htmlFor="inputLarge">Teme</label>
                                     </div>
-                                    <select class={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
+                                    <select className={this.state.selectClass} onChange={event => { this.validateTema(event.target.value) }} >
 
                                         {this.state.teme.map(
                                             (teme) =>
@@ -187,20 +289,23 @@ class DropDownZavrsni extends React.Component {
                                         )}
                                     </select>
 
-                                    <div class="invalid-feedback" style={{ visibility: this.state.greskaVisible }}>Morate odabrati temu!</div>
-
-                                    <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
-                                        <button type="button" class="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
+                                    <div className="invalid-feedback" style={{ visibility: this.state.greskaVisible }}>Morate odabrati temu!</div>
+                                    <div></div>
+                                    <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
+                                        <button type="button" className="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
                                     </div>
+                                    {this.state.OK ? "" : <div className= "invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
+                                    
                                     <hr></hr>
-                                    <h4 class="card-title">Status</h4>
-                                    <div class="d-flex align-items-end" style={{ flexDirection: "column" }}>
+                                    <h4 className="card-title">Status</h4>
+                                    <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
                                         <PrikaziStatus />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <Modal
                     {...this.props}
@@ -214,28 +319,31 @@ class DropDownZavrsni extends React.Component {
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Prijava završnog rada
-                        </Modal.Title>
+                </Modal.Title>
                     </Modal.Header>
                     <form onSubmit={this.handlePost}>
                         <Modal.Body>
                             <h4>Da li ste sigurni da želite prijaviti završni rad?</h4>
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <label class="col-form-label" htmlFor="inputDefault">Mentor: {this.state.selProf}</label>
+                            <div className="form-group">
+                                <div className="form-group">
+                                    <label className="col-form-label" htmlFor="inputDefault">Mentor: {this.state.selProf}</label>
                                     <br></br>
-                                    <label class="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
+                                    <label className="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
                                 </div>
+                                <div className="valid-feedback" style={{visibility:this.state.succVisible}} >Zahtjev je uspješno poslan.</div>
+                                <div className="invalid-feedback" style={{visibility:this.state.greskaVisible}}>Došlo je do greške!</div>
                             </div>
 
                         </Modal.Body>
                         <Modal.Footer>
-                            <button type="submit" id="spasiBtn" class="btn btn-primary">Potvrdi</button>
+                            <button type="submit" id="spasiBtn" className="btn btn-primary">Potvrdi</button>
                         </Modal.Footer>
                     </form>
                 </Modal>
             </>
+
         );
     }
 }
 
-export default DropDownZavrsni;
+export default withRouter(DropDownZavrsni);

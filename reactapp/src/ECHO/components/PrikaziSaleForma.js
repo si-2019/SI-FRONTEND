@@ -1,6 +1,4 @@
 import React, { Component }from 'react';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import './PrikaziSaleForma.css';
 import { Alert } from "reactstrap";
 class PrikaziSaleForma extends Component {
@@ -21,25 +19,37 @@ class PrikaziSaleForma extends Component {
       }
     
     componentDidMount() {
-        fetch("http://localhost:31905/si2019/echo/sveSale")
+        fetch("https://si-echo-2019.herokuapp.com/si2019/echo/sveSale")
         .then(res => res.json())
       .then(json => {
         this.setState({
           sale: json
         });
       });
-      }
+      
+    }
+
+    componentDidUpdate() {
+      fetch("https://si-echo-2019.herokuapp.com/si2019/echo/sveSale")
+      .then(res => res.json())
+      .then(json => {
+      this.setState({
+        sale: json
+      });
+    });
+    }
 
     handleChange(e) {
         this.setState({ id: e.target.value});
     }
+
     toggle(x) {
     this.setState({ alertVisible: !this.state.alertVisible });
     }
     validiraj(){
-      if(!this.state.id){
+      if(!this.state.id){    
         this.setState({
-          alertMessage: "Trenutno ne postoje sale za izbrisati! ",
+          alertMessage: "Nije odabrana sala za brisanje! ",
           alertMessageStatus: "Greška!",
           alertVisible: true,
           alertColor: "danger"
@@ -56,7 +66,7 @@ class PrikaziSaleForma extends Component {
     }
 
     postObrisi(event) {
-      fetch("http://localhost:31905/si2019/echo/obrisiSalu", {
+      fetch("https://si-echo-2019.herokuapp.com/si2019/echo/obrisiSalu", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -67,6 +77,7 @@ class PrikaziSaleForma extends Component {
         })
       }).then(
         this.setState({
+          id: '',
           alertMessage: "Sala uspješno izbrisana! ",
           alertMessageStatus: "Ok!",
           alertVisible: true,
@@ -75,48 +86,43 @@ class PrikaziSaleForma extends Component {
       );
     }
 
-    render() {
-
+  render() {
     return (
-
-      <div class="card" id="kartica">
-        <Alert
-          id="alertID"
-          color={this.state.alertColor}
-          toggle={this.toggle.bind(this)}
-          isOpen={this.state.alertVisible}
+      <div id="omotacECHO">
+        <div class="card" id="mojaKartica">
+          <Alert
+            id="alertID"
+            color={this.state.alertColor}
+            toggle={this.toggle.bind(this)}
+            isOpen={this.state.alertVisible}
           >
-          <strong> {this.state.alertMessageStatus}</strong> <br />
-          {this.state.alertMessage}
-        </Alert>
-        <div class="card-body">
-          <h4 class="card-title">Prikaz sala</h4>
-          <form>
-          <Form.Row>
-            <Col style={{textAlign: "left"}}>
-              <Form.Label> Sale: </Form.Label>
-            </Col>
-          </Form.Row>
-              <select
-                className="custom-select" 
-                id="naslovSelect"
-                onChange={this.handleChange}>
-                {this.state.sale.map(item => (<option value={item.id}>{item.naziv}</option>))}</select>
-          <div className="form-group">
+            <strong> {this.state.alertMessageStatus}</strong> <br />
+            {this.state.alertMessage}
+          </Alert>
+          <div class="card-body" id="mojaKarticaBody">
+            <h4 class="card-title">Prikaz sala</h4>
+            <select
+              className="custom-select"
+              id="naslovSelectAjla"
+              onChange={this.handleChange}
+            >
+              <option>Odaberite salu</option>
+              {this.state.sale.map(item => (
+                <option value={item.id}>{item.naziv}</option>
+              ))}
+            </select>
             <button
               id="dugme1"
               type="button"
               className="btn btn-danger"
-              onClick={this.handleSubmit}>
-              
+              onClick={this.handleSubmit}
+            >
               Obriši salu
-              </button>
-
-            </div>
-          </form>
+            </button>
+          </div>
         </div>
       </div>
     );
- }
+  }
 }
 export default PrikaziSaleForma;

@@ -13,10 +13,13 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
-      korisnik:10,
+
+      
+      korisnik:window.localStorage.getItem("id"),
+
       forma:"null",
       predmeti:[],
-      token:0
+      uloga:"null"
     }
  
 
@@ -29,24 +32,74 @@ class Mike extends Component {
     this.generisanjeGrupe=this.generisanjeGrupe.bind(this);
     this.token=this.token.bind(this);
   }
- 
-  render() {   
-    if(this.state.forma=="null") return (
-        <div>
+  componentDidMount(){
+    if(this.state.uloga=="null"){
+      let ajax=new XMLHttpRequest();
+      var komponenta=this;
+      var username=window.localStorage.getItem("username");
+
+      ajax.onreadystatechange=function(){
+        if(ajax.readyState==4 && ajax.status=="200"){
+          var tekst=ajax.responseText;
+          if(tekst=="STUDENT"){
+            komponenta.setState(state=>({
+              forma:"null",
+              uloga:"student"
+            }));
+          }
+          else if(tekst=="ASISTENT"){
+            komponenta.setState(state=>({
+              forma:"null",
+              uloga:"asistent"
+            }));
+          }
+          else if(tekst=="ADMIN"){
+            komponenta.setState(state=>({
+              forma:"null",
+              uloga:"admin"
+            }));
+          }
+        }
+        else if(ajax.status>=500){
+          
+        }
+    }
+    ajax.open("GET","https://si2019oscar.herokuapp.com/pretragaUsername/"+username+"/dajUlogu");
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
+    ajax.send();
+    }
+  }
+  render() {
+    if(this.state.forma=="null" && this.state.uloga=="null") return(
+      <div>
           <div className="App">
             <div className="row">
-            { /* <div id="head_meni">
-    { /*  <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>}
-                <div id="odabrana_opcija"></div>
-              </div>*/
-            }
+              <div id="glavni_meni1">
+                <div id="left">
+                  <div>
+                  </div>
+                </div>
+                <div id="right">
+                <div className="alert alert-dismissible alert-danger" style={{width:"100%"}}>
+                  <strong>Molimo vas da se prijavite kao asistent ili kao student</strong> <br />
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    ) 
+    else if(this.state.uloga=="admin") return(
+      <div>
+          <div className="App">
+            <div className="row">
               <div id="glavni_meni1">
                 <div id="left">
                   <div>
                     <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                    <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                    <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                    {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                    <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata</button>
+                    <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata</button>
                     <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
                     <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
                   </div>
@@ -58,28 +111,58 @@ class Mike extends Component {
             </div>
           </div>
         </div>
+    )  
+    else if(this.state.forma=="null" && this.state.uloga=="student") return (
+        <div>
+          <div className="App">
+            <div className="row">
+              <div id="glavni_meni1">
+                <div id="left">
+                  <div>
+                    <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                    <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata</button>
+                  </div>
+                </div>
+                <div id="right">
+                  
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
     );
-    else if (this.state.forma=="kreiranjeGrupe") return (
-    <div>
+    else if(this.state.forma=="null" && this.state.uloga=="asistent") return(
+      <div>
       <div className="App">
         <div className="row">
-       { /*  <div id="head_meni">
-            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
-            <div id="odabrana_opcija"></div>
-    </div> */}
           <div id="glavni_meni1">
             <div id="left">
               <div>
-                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+               <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata</button>
                 <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
                 <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
               </div>
             </div>
             <div id="right">
-              <Lista submit={this.unosInformacija} predmeti={this.state.predmeti}/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    )
+    else if (this.state.forma=="kreiranjeGrupe") return (
+    <div>
+      <div className="App">
+        <div className="row">
+          <div id="glavni_meni1">
+            <div id="left">
+              <div>
+                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata</button>
+               </div>
+            </div>
+            <div id="right">
+              <Lista submit={this.unosInformacija} predmeti={this.state.predmeti} korisnik={this.state.korisnik}/>
             </div>
           </div>
         </div>
@@ -90,23 +173,15 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-        { /* <div id="head_meni">
-            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
-            <div id="odabrana_opcija"></div>
-    </div> */}
           <div id="glavni_meni">
             <div id="left">
               <div>
                 <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
-                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
-              </div>
+                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata</button>
+                 </div>
             </div>
             <div id="right">
-              <PregledListeProjekata />
+              <PregledListeProjekata projekti={this.state.predmeti}/>
             </div>
           </div>
         </div>
@@ -117,50 +192,16 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-      {  /*  <div id="head_meni">
-            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
-            <div id="odabrana_opcija"></div>
-    </div> */}
           <div id="glavni_meni">
             <div id="left">
               <div>
-                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata</button>
                 <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
                 <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
               </div>
             </div>
             <div id="right">
-              <ListaPredmetaAsistenta idAsistent={41} predmeti={this.state.predmeti} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    );
-    else if(this.state.forma == "projektniZadaci") return (
-      <div>
-      <div className="App">
-        <div className="row">
-         { /*<div id="head_meni">
-            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
-            <div id="odabrana_opcija"></div>
-    </div> */}
-          <div id="glavni_meni">
-            <div id="left">
-              <div>
-                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
-                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
-              </div>
-            </div>
-            <div id="right">
-              <PregledZadatakaProjekta/>
+              <ListaPredmetaAsistenta idAsistent={10} predmeti={this.state.predmeti} />
             </div>
           </div>
         </div>
@@ -171,17 +212,10 @@ class Mike extends Component {
       <div>
       <div className="App">
         <div className="row">
-         {/* <div id="head_meni">
-            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
-            <div id="odabrana_opcija"></div>
-    </div> */}
           <div id="glavni_meni">
             <div id="left">
               <div>
-                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+               <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata</button>
                 <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
                 <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
               </div>
@@ -194,127 +228,146 @@ class Mike extends Component {
       </div>
     </div>
     );
-    else if(this.state.forma=="unosInformacija") return(
-      <div>
-      <div className="App">
-        <div className="row">
-         {/* <div id="head_meni">
-            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
-            <div id="odabrana_opcija"></div>
-    </div> */}
-          <div id="glavni_meni1">
-            <div id="left">
-              <div>
-                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
-                <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
-              </div>
-            </div>
-            <div id="right">
-              <UnosInformacija/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    )
     else if(this.state.forma=="generisanjeGrupe") return(
       <div>
       <div className="App">
         <div className="row">
-      {/*    <div id="head_meni">
-            <div id="naslov" className="left-buttons"><div id="text">Opcije kolaboracije</div></div>
-            <div id="odabrana_opcija"></div>
-    </div> */}
           <div id="glavni_meni1">
             <div id="left">
               <div>
-                <button className="btn btn-primary left-buttons" onClick={this.kreiranjeGrupe}>Kreiranje projektne grupe</button>
-                <button className="btn btn-primary left-buttons" onClick={this.listaProjekata}>Pregled projekata studenta</button>
-                <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata asistenta</button>
-                {/*<button className="btn btn-primary left-buttons" onClick={this.pregledZadatakaProjektaCall}>Rad na projektu (zadaci na projektu)</button>*/}
+               <button className="btn btn-primary left-buttons" onClick={this.pregledDetaljaPredmeta}>Pregled projekata</button>
                 <button className="btn btn-primary left-buttons" onClick={this.KreiranjeProjektaAsistent}>Kreiranje projekta na nivou predmeta</button>
                 <button className="btn btn-primary left-buttons" onClick={this.generisanjeGrupe}>Generisanje projektne grupe</button>
               </div>
             </div>
             <div id="right">
-              <GenerisanjeGrupa idAsistent={4} predmeti={this.state.predmeti}/>
+              <GenerisanjeGrupa idAsistent={this.state.korisnik} predmeti={this.state.predmeti}/>
             </div>
           </div>
         </div>
       </div>
     </div>
     );
+    //else return(<p>greska</p>);
   }
   kreiranjeGrupe(){
     let ajax=new XMLHttpRequest();
     var komponenta=this;
-    var jsonNovi=[{id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20},
-    {id:2,naziv:"Projektovanje informacionih sistema*",opis:"Informacioni sistem Crvenog Križa FBiH*",bodovi:30}];
+    ajax.onreadystatechange=function(){
+      console.log(ajax.status);
+        if(ajax.readyState==4 && ajax.status=="200"){
+          var tekst=JSON.parse(ajax.responseText);
+          var json;
+          if(!tekst.message){
+            json=tekst.predmeti;
+          }
+          else{
+            json=[{
+              "id": 64,
+              "naziv_predmeta": "Softver inzenjering",
+              "projekti": [
+              {
+                "idProjekat": 4,
+                "nazivProjekta": "Zamger 2.0",
+                "progress": null,
+                "opisProjekta": "Informacioni sistem fakulteta",
+                "moguciBodovi": 40,
+                "rokProjekta": null
+              }]
+            }];
+          }
+          komponenta.setState(state=>({
+            forma:"kreiranjeGrupe",
+            predmeti:json
+          })); 
+        }
+        else if(ajax.status>=500){
+          komponenta.setState(state=>({
+            forma:"kreiranjeGrupe",
+            predmeti:json
+          }));
+        }
+      }
+      //console.log(window.localStorage.getItem("username"));
+      //console.log(window.localStorage.getItem("id"));
+      //console.log(window.localStorage.getItem("token"));
+      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewS/predmeti-za-generisanje-grupa/"
+      +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
+      ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
+      ajax.send();
+  }
+  listaProjekata(){
+    let ajax=new XMLHttpRequest();
+    var komponenta=this;
+    var jsonNovi=[{idProjekat:1,nazivPredmeta:"predmet",opis:"opis",nazivProjekta:"projekt"}];
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4 && ajax.status=="200"){
           var tekst=ajax.responseText;
           if(tekst.length==0) return;
-          var json=JSON.parse(tekst).predmeti;
-          jsonNovi=[];
-          for(var i=0;i<json.length;i++){
-            var jsonProjekti=json[i].projekti;
-            if(jsonProjekti.length>0)
-              jsonNovi.push({id:json[i].id,naziv:json[i].naziv_predmeta,opis:jsonProjekti[0].opisProjekta,bodovi:jsonProjekti[0].moguciBodovi});
+          var json=JSON.parse(tekst);
+          if(json.message){
+            json=[{
+              idPredmet:64,
+              naziv:"Softver Inženjering",
+              idProjekat:1,
+              nazivProjekta:"Zamger 2.0",
+              opis:"Informacioni sistem za fakultet",
+              idProjektnaGrupa:1
+            }]
           }
-          jsonNovi.push({id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20});
-          komponenta.setState(state=>({
-            forma:"kreiranjeGrupe",
-            predmeti:jsonNovi
+        komponenta.setState(state=>({
+            forma:"listaProjekata",
+            predmeti:json
           }));
         }
         else if(ajax.status>=500){
           komponenta.setState(state=>({
-            forma:"kreiranjeGrupe",
-            predmeti:jsonNovi
+            forma:"listaProjekata",
+            predmeti:json
           }));
         }
       }
-      ajax.open("GET","http://localhost:31913/services/viewS/predmeti-za-generisanje-grupa/"+this.state.korisnik,true);
+      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/getProjects/"
+      +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
       ajax.send();
-  }
-  listaProjekata(){
-    this.setState({forma:"listaProjekata"});
   }
   pregledDetaljaPredmeta(){
 		let ajax=new XMLHttpRequest();
     var komponenta=this;
-    var jsonNovi=[
-      {nazivPredmeta:"Softver Inženjering*",idProjekat:1, brojStudenata:50},
-      {nazivPredmeta:"Vještačka inteligencija*",idProjekat:2, brojStudenata:30}];
     ajax.onreadystatechange=function(){
-        if(ajax.readyState==4 && ajax.status=="200"){
-					var tekst=ajax.responseText;
-          if(tekst.length==0) return;
-					var json=JSON.parse(tekst);
-					jsonNovi=[];
-					for(var i=0;i<json.length;i++){
-							jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
-					}
-					komponenta.setState(state=>({
-            forma:"PregledAsistent",
-            predmeti:jsonNovi
-          }));
-        }
-        else if(ajax.status>=500){
-          komponenta.setState(state=>({
-            forma:"PregledAsistent",
-            predmeti:jsonNovi
-          }));
-        }
+      if(ajax.readyState==4 && ajax.status=="200"){
+        var tekst=ajax.responseText;
+        var json=JSON.parse(tekst);
+        if(json.message){
+          json=[{
+            idPredmet:64,
+            naziv:"Softver Inženjering",
+            idProjekat:1,
+            nazivProjekta:"Zamger 2.0",
+            opis:"Informacioni sistem za fakultet",
+            moguciBodovi:40
+          }]
+        };
+        komponenta.setState(state=>({
+          forma:"PregledAsistent",
+          predmeti:json
+        }));
+      }
+      else if(ajax.status>=500){
+        komponenta.setState(state=>({
+          forma:"PregledAsistent",
+          predmeti:json
+        }));
+      }
 		}
-		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+    ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/predmetiprojektiasistent/"
+    +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("idKorisnik=41");
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
+    ajax.send();
   }
   pregledZadatakaProjektaCall(){
     this.setState({forma:"projektniZadaci"});
@@ -346,8 +399,10 @@ class Mike extends Component {
         }));
       }
     }
-		ajax.open("GET","http://localhost:31913/services/projects/getPredmeti/"+this.state.korisnik,true);
+    ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getPredmeti/"
+    +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
     ajax.send();
   }
   unosInformacija(){
@@ -365,26 +420,25 @@ class Mike extends Component {
       if(ajax.readyState==4 && ajax.status=="200"){
         var tekst=ajax.responseText;
         if(tekst.length==0) return;
+        console.log(tekst);
         var json=JSON.parse(tekst);
-        jsonNovi=[];
-        for(var i=0;i<json.length;i++){
-            jsonNovi.push({idPredmet:json[i].idPredmet,naziv:json[i].naziv});
-        }
         komponenta.setState(state=>({
           forma:"generisanjeGrupe",
-          predmeti:jsonNovi
+          predmeti:json
         }));
       }
-      else if(ajax.status!="200"){
+      else if(ajax.status>=500){
         komponenta.setState(state=>({
           forma:"generisanjeGrupe",
-          predmeti:jsonNovi
+          predmeti:json
         }));
       }
     }
-		ajax.open("POST","http://localhost:31913/services/outsourced/getPredmetiKorisnik",true);
+    ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getInfoPredmeti/"
+    +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("idKorisnik="+this.state.korisnik);
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
+    ajax.send();
   }
 
   token(){

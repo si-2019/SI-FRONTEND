@@ -104,13 +104,13 @@ class ChatApp extends Component {
             .then(currentUser => {
                 this.setState({ currentUser: currentUser }, () => { 
                     
-                    Axios.get('http://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
+                    Axios.get('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                         if (res.data === 0) { // korisnik nema svoj colorscheme
                             this.setState({
                                 colorForUser: null
                             });
                         } else { 
-                            Axios.get('http://si2019juliet.herokuapp.com/colorschemeUser/' + this.state.currentUser.id).then(res => {
+                            Axios.get('https://si2019juliet.herokuapp.com/colorschemeUser/' + this.state.currentUser.id).then(res => {
                                 this.setState({
                                     colorForUser: res.data.colorId
                                 })
@@ -134,11 +134,11 @@ class ChatApp extends Component {
             .then(() => {
                 
             })
-        const url = 'http://si2019juliet.herokuapp.com/pinovanePoruke';
+        const url = 'https://si2019juliet.herokuapp.com/pinovanePoruke';
             
         Axios.get(url).then(res => {
             this.setState({ 
-                pinnedMessages: this.state.pinnedMessages.concat(res.data)
+                pinnedMessages: res.data
             }, () => {
                 //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages));
             });
@@ -147,7 +147,7 @@ class ChatApp extends Component {
         
     }
     getUserRole(){
-        Axios.get('http://si2019juliet.herokuapp.com/users/'+this.state.currentUser.id +'/roles').then(res=>{
+        Axios.get('https://si2019juliet.herokuapp.com/users/'+this.state.currentUser.id +'/roles').then(res=>{
             this.setState({
                 currentUserRole : res.data[0].role_name
             })
@@ -226,8 +226,10 @@ class ChatApp extends Component {
             this.setState({
                 currentRoom: room,
                 room_users: room.users,
-                users: CU.users,
+                users: CU.users
             })
+
+            this.forceUpdate();
         })
     }
 
@@ -273,7 +275,7 @@ class ChatApp extends Component {
             }
             else if(text.substr(0,11) === '@setAvatar '){
                 let url = text.substr(text.indexOf(' ') +1,text.length); 
-                Axios.post('http://si2019juliet.herokuapp.com/updateAvatar', {
+                Axios.post('https://si2019juliet.herokuapp.com/updateAvatar', {
                     url: url,
                     currentUId:this.state.currentUser.id
                 }).then(res => {
@@ -300,7 +302,7 @@ class ChatApp extends Component {
         }).catch(error => console.error('error', error));
     }
     banUser(userID){
-        Axios.post('http://si2019juliet.herokuapp.com/blockedUser', {
+        Axios.post('https://si2019juliet.herokuapp.com/blockedUser', {
             user_id: userID
         }).then(res =>{
             console.log("otisao u bazu i vratio se");
@@ -364,7 +366,7 @@ class ChatApp extends Component {
             }
         }
 
-        Axios.post('http://si2019juliet.herokuapp.com/upload', fData, config).then(res => {
+        Axios.post('https://si2019juliet.herokuapp.com/upload', fData, config).then(res => {
             window.alert('Uspješno upisano u bazu!');
             this.addMessage('Downloaduj file: ' + file.name);
             
@@ -372,7 +374,7 @@ class ChatApp extends Component {
     }
 
     downloadClick(name){
-        const url = 'http://si2019juliet.herokuapp.com/download/' + name;
+        const url = 'https://si2019juliet.herokuapp.com/download/' + name;
 
         Axios.get(url).then(res => {
             let resultByte = res.data.file.data;
@@ -387,8 +389,12 @@ class ChatApp extends Component {
     }
 
     deleteClick(message, index){
-        Axios.post('http://si2019juliet.herokuapp.com/deleteMessage', {
-            message_id: message.id
+
+
+        Axios.post('https://si2019juliet.herokuapp.com/deleteMessage', {
+            message_id: message.id,
+            sender: message.senderId,
+            fileName: message.text.substring(message.text.indexOf(': ') + 2, message.text.length)
         })
         .catch(e => console.log(e));
 
@@ -404,7 +410,7 @@ class ChatApp extends Component {
     }
 
     pinMessage(message) {
-        const url = 'http://si2019juliet.herokuapp.com/pinovanePoruke/' + message.id;
+        const url = 'https://si2019juliet.herokuapp.com/pinovanePoruke/' + message.id;
         //console.log(url);
         Axios.get(url).then(res => {
             if (res.data === 0) { // ne postoji u bazi
@@ -419,13 +425,14 @@ class ChatApp extends Component {
                     pinnedMessages: this.state.pinnedMessages.concat([trenutnaPoruka])
                 }, () => {
                     //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages));
-                    Axios.post('http://si2019juliet.herokuapp.com/pinujPoruku', {
+                    const reqBody = {
                         messageCreatedAt: message.createdAt,
                         messageId: message.id + '',
                         roomId: message.roomId,
                         senderId: message.senderId,
                         text: message.text
-                    })
+                    }
+                    Axios.post('https://si2019juliet.herokuapp.com/pinujPoruku', reqBody)
                     .then(res => {})
                     .catch(e => console.log(e));
                 });
@@ -439,7 +446,7 @@ class ChatApp extends Component {
                 )}, () => { 
                     //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages)); 
                 });
-                const url2 = 'http://si2019juliet.herokuapp.com/pinujPoruku/' + message.id;
+                const url2 = 'https://si2019juliet.herokuapp.com/pinujPoruku/' + message.id;
                 Axios.delete(url2).then(res => {}).catch(e => {console.log(e)});
             } 
         });
@@ -448,16 +455,16 @@ class ChatApp extends Component {
         this.setState({
             colorForUser: color.hex
         }, () => {
-            Axios.get('http://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
+            Axios.get('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
                 if (res.data === 0) {
-                    Axios.post('http://si2019juliet.herokuapp.com/colorscheme', {
-                        colorId: color, 
+                    Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
+                        colorId: color.hex, 
                         userId: this.state.currentUser.id
                     });
                 } else {
-                    Axios.delete('http://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
-                        Axios.post('http://si2019juliet.herokuapp.com/colorscheme', {
-                            colorId: color, 
+                    Axios.delete('https://si2019juliet.herokuapp.com/colorscheme/' + this.state.currentUser.id).then(res => {
+                        Axios.post('https://si2019juliet.herokuapp.com/colorscheme', {
+                            colorId: color.hex, 
                             userId: this.state.currentUser.id
                         });
                     }).catch(e => console.log(e));
@@ -531,6 +538,7 @@ class ChatApp extends Component {
         const {
             showColorPicker,
         } = this.state;
+
         return ( 
             <div className="juliet-chat-app-wrapper">
 
@@ -563,13 +571,17 @@ class ChatApp extends Component {
                     </div>
                     
                     <div className="juliet-input-all">
-                        <Input onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
-                        <UploadFile onSubmit={this.uploadFile} />
+                        <div style={{height: '60%'}}>
+                            <Input onSubmit={this.addMessage} onChange={this.sendTypingEvent} replyingTo={this.state.messageToSend}/>
+                        </div>
+                        <div style={{height: '40%'}}>
+                            <UploadFile onSubmit={this.uploadFile} colorScheme={colorScheme} />
+                        </div>
                     </div>
                     
                 </div>
                 <div style={{'background': colorScheme}} className="juliet-list-wrapper juliet-right-wrapper">
-                    <BlockedUsers currentUserRole={this.state.currentUserRole} banUser={this.banUser} getUserRole={this.getUserRole} blockAUser={this.blockAUser}/>
+                    <BlockedUsers currentUserRole={this.state.currentUserRole} banUser={this.banUser} getUserRole={this.getUserRole} blockAUser={this.blockAUser} colorScheme={colorScheme}/>
                     <Members 
                         openPrivateChat={this.openPrivateChat} 
                         room_users={this.state.room_users}
@@ -578,9 +590,9 @@ class ChatApp extends Component {
                         chatkit={this.props.chatkit}
                         addUser={this.addUser}
                     />
-                    <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id}/>
-                    <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
-                    <EventPlanner currentId={this.props.currentId}/> 
+                    <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id} />
+                    <PinnedMessages pinnedMessages={this.state.pinnedMessages} roomId={this.state.currentRoom.id} />
+                    <EventPlanner currentId={this.props.currentId} colorScheme={colorScheme}/> 
                     <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >
                         {this.state.showColorPicker ? 
                             <SwatchesPicker onChange={this.handleColorChange}/> 
@@ -589,7 +601,7 @@ class ChatApp extends Component {
                     <div style={{width: '100%', padding: '10px 0'}}>   
                         <div className="juliet-section-h">
                         <div className="juliet-section-header" style={{width: 'calc(100% - 24px)'}}>
-                            <h5 style={{display: 'inline-block'}}>Choose theme:</h5>
+                            <h5 style={{display: 'inline-block'}}>Izaberi temu:</h5>
                         </div>
                         <button
                             style={{display: 'inline-block'}}

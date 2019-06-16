@@ -14,18 +14,18 @@ export class tabela extends Component {
   odjaviStudenta = (index) =>
   {     
     
-      axios.post("http://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina).then()
+      axios.post('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina).then()
       {
-          console.log("http://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina)
+          console.log('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/removeStudentFromGroup/"+this.props.grupa.studenti[index].idStudent+"/"+this.props.grupa.idGrupaTermina)
           document.location.reload();
       };
   } 
 
   izbrisiGrupu = () =>
   {        
-      axios.post("http://si2019uniform.herokuapp.com/removeGroup/"+this.props.grupa.idGrupaTermina).then()
+      axios.post('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/removeGroup/"+this.props.grupa.idGrupaTermina).then()
       {
-          console.log("http://si2019uniform.herokuapp.com/removeGroup/"+this.props.grupa.idGrupaTermina)
+          console.log('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/removeGroup/"+this.props.grupa.idGrupaTermina)
           document.location.reload();
       };
   }

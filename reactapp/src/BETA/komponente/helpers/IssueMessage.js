@@ -18,7 +18,7 @@ const IssueMessage = (props) => {
                     </div>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                    <div className="row">
+                    <div className="row" id="BETA_divMessageText">
                         <div className="col-11">{message.tekst}</div>
                     </div>
                 </ListGroup.Item>

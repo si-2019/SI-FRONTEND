@@ -28,6 +28,7 @@ class AzuriranjeZadace extends Component {
   }
 
   provjeriToken = () => {
+    try{
     axios({
       url: 'https://si2019romeo.herokuapp.com/users/validate',
       type: 'get',
@@ -46,9 +47,11 @@ class AzuriranjeZadace extends Component {
           window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
         } 
       }  
-    });
-  }
+    });}
+    catch(e){
 
+    }
+  }
 componentDidMount() {
   this.pokupiIzBaze(this.state.idPredmet);
 }
@@ -61,7 +64,7 @@ toggle() {
 
 pokupiIzBaze = (idPredmeta) => {
   this.provjeriToken();
-  axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
+  axios.get(`https://si2019kilo.herokuapp.com/getZadace/${idPredmeta}`).then(res => {
     this.setState({
       listaZadacaZaAzuriranje: res.data
     });
@@ -77,9 +80,11 @@ render() {
 
   return (
     <div>
-      <div class="card w-25 ml-3 mt-4">
+      <div class="card p-3 w-50 ml-5">
         <div class="card-title" id="azuriranjeT">
-          Lista zadaća koje je moguće ažurirati:
+          <h4>
+              <b>Lista zadaća koje je moguće ažurirati: </b>
+            </h4>
           </div>
         <ButtonDropdown
           isOpen={this.state.dropdownOpen}
@@ -87,7 +92,7 @@ render() {
           id="azsel"
           multiple=""
         >
-          <DropdownToggle caret>Lista zadaća</DropdownToggle>
+          <DropdownToggle caret color="white" id="bbb2">Lista zadaća</DropdownToggle>
 
           <DropdownMenu>
             {lista.map(item => (
@@ -123,7 +128,7 @@ getZadacaById = async zadacaId => {
   try {
     this.provjeriToken();
     const res = await axios.get(
-      `http://localhost:31911/getZadacaById/${zadacaId}`
+      `http://:31911/getZadacaById/${zadacaId}`
     );
     this.setState({
       azuriranjeState: res.data

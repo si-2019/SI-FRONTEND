@@ -90,7 +90,7 @@ class IssueListSS extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <Spinner animation='border' role='status'>
+                <Spinner animation='border' role='status' id="issue-tabs-Spinner">
                     <span className="sr-only">Učitavanje...</span>
                 </Spinner>
             );

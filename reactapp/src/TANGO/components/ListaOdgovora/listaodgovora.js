@@ -4,7 +4,7 @@ import Komentar from '../Komentar'
 import { randomBytes } from 'crypto';
 import LISTA_PROBNA from './LISTA'
 
-const themesApi= 'http://localhost:31919/getReplys/'
+const themesApi= 'http://si2019tango.herokuapp.com/getReplys/'
 
 
 class Odgovor extends Component {   

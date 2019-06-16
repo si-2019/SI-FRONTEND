@@ -3,10 +3,11 @@ import ListaZadataka from './PrikazListeZadataka';
 import { thisExpression } from '@babel/types';
 
 class PregledListeProjekata extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { 
-            projekti:[], 
+            projekti:[],
+            zadaci:[], 
             postoje_projekti:false, 
             lista:false,
             zadatak:false,
@@ -22,6 +23,8 @@ class PregledListeProjekata extends Component {
             };
 
         this.popuniPodatke=this.popuniPodatke.bind(this);
+        this.klik=this.klik.bind(this);
+        this.promjenaZadatka=this.promjenaZadatka.bind(this);
     }
 
     componentDidMount() {
@@ -29,17 +32,8 @@ class PregledListeProjekata extends Component {
         var z1={idProjektnogZadatka:1,idProjekta:1,opis:"Prvi zadatak, uvod opisi", otkad:"24.3.2015.",dokad:"6.5.2016.",zavrsen:0,komentarAsistenta:"Sve je ok."};
         var nizZadaci=[];
         nizZadaci.push(z1);
-        var niz=[];
-        var objekat={idProjekat:1, nazivProjekta:"Projekat 1",naziv:"Softverski inzenjering",opisProjekta:"Ovo je proba opisa.",zadaci:nizZadaci};
-        niz.push(objekat);
-        var objekat2={idProjekat:2,nazivProjekta:"Projekat 2",naziv:"Projektovanje informacionih sistema",opisProjekta:"Ovo je novi opis.",zadaci:nizZadaci};
-        niz.push(objekat2);
-        this.setState({projekti:niz, postoje_projekti:true, odabrani_projekat:1, odabrani_zadatak:1});
-        this.setState({id_odabranog_projekta:nizZadaci[0].idProjekta,opis_zadatka:nizZadaci[0].opis,datum_pocetka:nizZadaci[0].otkad,datum_zavrsetka:nizZadaci[0].dokad,komentar_asistenta:nizZadaci[0].komentarAsistenta});
-       /* var sviProjektiTrenutnogUsera=['Projekat1', 'Projekat2'];
-        let proj=sviProjektiTrenutnogUsera;
-        this.setState({projekti:proj});
-        if (proj.length != null) this.setState({ postoje_projekti:true});*/
+        this.setState({projekti:this.props.projekti, postoje_projekti:true, odabrani_projekat:1, odabrani_zadatak:1});
+        //this.setState({id_odabranog_projekta:nizZadaci[0].idProjekta,opis_zadatka:nizZadaci[0].opis,datum_pocetka:nizZadaci[0].otkad,datum_zavrsetka:nizZadaci[0].dokad,komentar_asistenta:nizZadaci[0].komentarAsistenta});
     }
 
     kreirajTabelu() {
@@ -60,9 +54,9 @@ class PregledListeProjekata extends Component {
                         this.state.projekti.map((projekti) => {
                             return (
                                 <tr className="bg-primary text-dark">
-                                    <td onClick={()=>{this.setState((state)=>({projekti:state.projekti,postoje_projekti:state.postoje_projekti,lista:true, odabrani_projekat:projekti.idProjekat-1}))}}>{projekti.nazivProjekta}</td>
+                                    <td onClick={()=>this.klik(projekti.idProjektnaGrupa)}>{projekti.nazivProjekta}</td>
                                     <td>{projekti.naziv}</td>
-                                    <td>{projekti.opisProjekta}</td>
+                                    <td>{projekti.opis}</td>
                                 </tr>
                             )
                         }):""
@@ -80,11 +74,10 @@ class PregledListeProjekata extends Component {
             <form>
                 <fieldset>
                 <div>
-                    <select class="custom-select" style={{align:"left"}} id="lista" onChange={()=>(
-                        this.setState({odabrani_zadatak:document.getElementById("lista").selectedIndex+1,zadatak:true}))}>
+                    <select class="custom-select" style={{align:"left"}} id="lista" onChange={this.promjenaZadatka}>
 							{
-								this.state.projekti[this.state.odabrani_projekat].zadaci.map(zadatak=>{
-									return <option>Zadatak {zadatak.idProjektnogZadatka}</option>
+								this.state.zadaci.map(zadatak=>{
+									return <option>Zadatak {zadatak.idProjektniZadatak}</option>
 								})
 							}
 					</select>      
@@ -97,10 +90,6 @@ class PregledListeProjekata extends Component {
     kreirajDetaljeZadatka() {
         return (
             <form id="detaljiZadatka" style={{textAlign:"left"}}>
-                <label className="col-form-label col-form-label-lg">idProjekta:</label>
-                <br/>
-                <label>  {this.state.id_odabranog_projekta}</label> 
-                <br/>
                 <label className="col-form-label col-form-label-lg">Opis zadatka:</label>
                 <br/>
                 <label> {this.state.opis_zadatka}</label>
@@ -155,12 +144,13 @@ class PregledListeProjekata extends Component {
     popuniPodatke() {
         var ajax=new XMLHttpRequest();
         var id_usera=1;
-        ajax.open('GET', 'http://localhost:31913/services/viewS/user-projects/:id'+id_usera, true);
+        ajax.open('GET', 'http://localhost:31913/services/viewS/user-projects/'+id_usera, true);
         ajax.setRequestHeader("Content-type", "application/json");
         ajax.send();
         ajax.onreadystatechange= function() {
             if (ajax.readyState==4 && ajax.status==200) {
                 var podaci= JSON.parse(ajax.responseText);
+                console.log(podaci);
                 if(podaci.length==0) this.nafilujPodatke();
                 else this.setState({projekti:podaci});
                 if (podaci.length != null) this.setState({postoje_projekti:true});
@@ -178,7 +168,62 @@ class PregledListeProjekata extends Component {
             }
         }
     }
-    
-
+    klik(grupa){
+        var ajax=new XMLHttpRequest();
+        ajax.open('GET', 'https://si-mike-2019.herokuapp.com/services/viewA/getZadaci/'+grupa+"?username="+window.localStorage.getItem("username"), true);
+        ajax.setRequestHeader("Content-type", "application/json");
+        ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
+        ajax.send();
+        var komponenta=this;
+        ajax.onreadystatechange= function() {
+            if (ajax.readyState==4 && ajax.status==200) {
+                var podaci= JSON.parse(ajax.responseText);
+                if(podaci.message) {
+                    podaci=[{
+                        idProjektniZadatak:1,
+                        opis:"Kreiranje forme za login",
+                        datumPocetka:"10.5.2019",
+                        datumZavrsetka:"15.5.2019",
+                        komentarAsistenta:"Odlicno uradjeno",
+                        zavrsen:true
+                    }]
+                    komponenta.setState({
+                        zadaci:podaci, 
+                        lista:true, 
+                        opis_zadatka:podaci[0].opis,
+                        datum_pocetka:podaci[0].datumPocetka,
+                        datum_zavrsetka:podaci[0].datumZavrsetka,
+                        komentar_asistenta:podaci[0].komentarAsistenta,
+                        zavrsen:"Da" 
+                    });
+                }
+                else {
+                    var zavrsenTekst="Da";
+                    if(!podaci[0].zavrsen) zavrsenTekst="Ne";
+                    komponenta.setState({
+                        zadaci:podaci, 
+                        lista:true, 
+                        opis_zadatka:podaci[0].opis,
+                        datum_pocetka:podaci[0].datumPocetka,
+                        datum_zavrsetka:podaci[0].datumZavrsetka,
+                        komentar_asistenta:podaci[0].komentarAsistenta,
+                        zavrsen:zavrsenTekst  
+                    });
+                }
+            }
+        }
+    }
+    promjenaZadatka(){
+        var o=document.getElementById("lista").selectedIndex;
+        var zavrsenTekst="Da";
+        if(!this.state.zadaci[o].zavrsen) zavrsenTekst="Ne";
+        this.setState(state=>({
+            opis_zadatka:state.zadaci[o].opis,
+            datum_pocetka:state.zadaci[o].datumPocetka,
+            datum_zavrsetka:state.zadaci[o].datumZavrsetka,
+            komentar_asistenta:state.zadaci[o].komentarAsistenta,
+            zavrsen:zavrsenTekst  
+        }));
+    }
 }
 export default PregledListeProjekata;

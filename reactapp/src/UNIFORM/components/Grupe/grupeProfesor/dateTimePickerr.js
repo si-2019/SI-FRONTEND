@@ -23,9 +23,9 @@ export class dateTimePickerr extends Component {
       console.log(ddNew);
      
 
-      axios.post("http://si2019uniform.herokuapp.com/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew).then()
+      axios.post('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew).then()
       {
-        console.log("http://si2019uniform.herokuapp.com/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew)
+        console.log('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/promjenaRoka/"+this.props.idPredmet+"/"+yyyyNew+"/"+mmNew+"/"+ddNew)
         document.location.reload();
       };
       

@@ -59,15 +59,14 @@ class prikazOdsjeka extends Component{
             <div className="card">
             <div className="card-body col-md-7">
                 <br /> 
-                    <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange} placeholder="Naziv"></input>  <br />
-                    <button className="btn btn-primary btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
+                    <input type="text" className="form-control col-md-5" value={search} onChange={this.handleChange} placeholder="Naziv"></input>  <br />
+                    <button className="btn btn-primary btn-block col-md-5" onClick={()=> this.componentDidMount(search)}>Pretraži</button>
                 <br />
                 
 
                 <table >
                     <thead className="table table-sm table-primary">
                         <tr>
-                            <th>ID</th>
                             <th>NAZIV</th>
                             <th>OBRIŠI</th>
                         </tr>
@@ -76,7 +75,6 @@ class prikazOdsjeka extends Component{
                         {
                             lista.length ? lista.map(list => 
                                 <tr key={list.idOdsjek}>
-                                    <th>{list.idOdsjek}</th>
                                     <th>{list.naziv}</th>
                                     <th><button className="btn btn-primary btn-block"  onClick={()=>this.obrisi(list.naziv)}>Obriši</button></th>
                                 </tr>

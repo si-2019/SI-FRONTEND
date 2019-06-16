@@ -8,24 +8,40 @@ export default class App extends React.Component {
         super(props)
         this.state = {
             idAnketa: props.match.params.id,
-            datumIstekaAnkete: new Date()
+            datumIstekaAnkete: new Date(),
+            nazivAnkete: '',
+            showError: '',
+            showSuccess: '',
+            error: ''
         }
         this.handleDateChange = this.handleDateChange.bind(this)
         this.promijeni = this.promijeni.bind(this)
     }
-    
+
     promijeni() {
-       fetch(url + '/promijeniDatumIsteka', {
+        fetch(url + '/promijeniDatumIsteka?username=' + window.localStorage.getItem("username") + "&idKorisnik=" + window.localStorage.getItem("id"), {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': window.localStorage.getItem("token")
+            },
             body: JSON.stringify({
                 datumIstekaAnkete: this.state.datumIstekaAnkete,
-                idAnketa: this.state.idAnketa
-            })  
+                idAnketa: this.state.idAnketa,
+            })
         }).then((res, err) => {
-            if(res.error) {
+            if (res.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
+            if (res.error) {
                 this.setState({
-                    error: res.error
+                    showError: "Došlo je do greške!"
+                })
+            }
+            else {
+                this.setState({
+                    showSuccess: "Uspješno ste promijenili datum roka za popunjavanje."
                 })
             }
         })
@@ -34,27 +50,57 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="okvirListe">
-                <div className="naslovliste">
-                    <h1>Promijeni datum isteka</h1>
+                {this.state.error ?
+
+                <div className="alert alert-dismissible alert-danger" style={{marginTop: "10px"}}>
+                  <button type="button" className="close" data-dismiss="alert" onClick={() => {}}>&times;</button>
+                  {this.state.error}
                 </div>
-                <div id="urediBody">
-                    <h5>Datum isteka ankete:</h5>
-                    <div>  
-                        <DatePicker
-                                onChange={this.handleDateChange} 
-                                selected={this.state.datumIstekaAnkete} 
-                                showTimeSelect
-                                dateFormat="yyyy-MM-dd HH:mm:ss"
-                                timeCaption="time"
+                    :
+                    <div>
+                        <div className="naslovliste">
+                            <h1>Promijeni datum isteka</h1>
+                        </div>
+                        <div id="urediBody">
+                            <div>
+                                <h5>Anketa: {this.state.nazivAnkete}</h5>
+                                <br />
+                            </div>
+                            <h5>Datum isteka ankete:</h5>
+                            <div>
+                                <DatePicker
+                                    onChange={this.handleDateChange}
+                                    selected={this.state.datumIstekaAnkete}
+                                    showTimeSelect
+                                    dateFormat="yyyy-MM-dd HH:mm:ss"
+                                    timeCaption="time"
                                 />
-                    </div>
-                    <button className="btn btn-primary" onClick={this.promijeni} style={{
-                        width: "30%",
-                        marginTop: "10px"
-                    }}>
-                        Promijeni
+                            </div>
+                            <button className="btn btn-primary" onClick={this.promijeni} style={{
+                                width: "30%",
+                                marginTop: "10px",
+                                marginBottom: "10px"
+                            }}>
+                                Promijeni
                     </button>
-                 </div>
+                            {
+                                this.state.showSuccess &&
+                                <div class="alert alert-dismissible alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" onClick={() => { this.setState({ showSuccess: '' }); window.location.reload(); }}>&times;</button>
+                                    <strong>{this.state.showSuccess}</strong>
+                                </div>
+                            }
+                            {
+                                this.state.showError &&
+                                <div className="alert alert-dismissible alert-danger">
+                                    <button type="button" className="close" data-dismiss="alert" onClick={() => { this.setState({ showError: '' }); }}>&times;</button>
+                                    {this.state.showError}
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                }
             </div>
         )
     }
@@ -65,17 +111,35 @@ export default class App extends React.Component {
             dateChanged: true
         });
     }
-    
+
     componentDidMount() {
-        fetch(url + '/dajOsnovno?idAnketa=' + this.state.idAnketa).then(res => res.json()).then(
-            res => {
-                this.setState({
-                    anketa: res.anketa,
-                    datumIstekaAnkete: new Date(Date.parse(res.anketa.datumIstekaAnkete))
-                })
-                console.log(res)
-            }
-        )
+        fetch(url + '/dajOsnovno?idAnketa=' + this.state.idAnketa + '&username=' + window.localStorage.getItem("username") +
+            '&idKorisnik=' + window.localStorage.getItem("id"), {
+                headers: {
+                    'Authorization': window.localStorage.getItem("token")
+                },
+            }).then(res => res.json()).then(
+                res => {
+                    if (res.accessError) {
+                        this.setState({
+                            error: res.accessError
+                        })
+                        return
+                    }
+                    if (res.loginError) {
+                        window.location.href = window.location.origin + '/romeo/login'
+                        return
+                    }
+                    if (res.anketa) {
+                        this.setState({
+                            anketa: res.anketa,
+                            datumIstekaAnkete: new Date(Date.parse(res.anketa.datumIstekaAnkete)),
+                            nazivAnkete: res.anketa.naziv
+                        })
+                    }
+                    console.log(res)
+                }
+            )
     }
 
 }

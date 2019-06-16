@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 export class NewEventForm extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props);
+
         this.state={
             eventName:'',
             startDate:new Date(),
@@ -29,32 +30,32 @@ export class NewEventForm extends Component {
     handleSubmit(e){
         e.preventDefault();
         this.props.addEvent(this.state.eventName, this.state.startDate, this.state.endDate);
-        this.setState({eventName:'NewEvent...'})
+        this.setState({eventName:''})
     }
   render() {
     return (
       <div className="new-event-form" style={{padding: '10px'}}>
         <form onSubmit={this.handleSubmit}>
             <input onChange={this.handleChangeName} type='text' placeholder='Choose event name...' value={this.state.eventName} style={{padding: '3px 6px'}}/>
-            <p style={{marginTop: '5px', marginBottom: '2px'}}>Event start</p>
+            <p style={{marginTop: '5px', marginBottom: '2px'}}>Početak događaja</p>
             <DatePicker style={{padding:'2px 6px'}}
                 selected={this.state.startDate}
                 timeInputLabel="Time:"
                 showTimeInput
-                dateFormat="dd/mm/yyyy hh:mm aa"
-                timeFormat="hh:mm aa"
+                dateFormat="MMMM d, yyyy h:mm aa"
+                timeFormat="HH:mm"
                 selectsStart
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
                 onChange={this.handleChangeStart}
             />
-            <p style={{marginTop: '5px', marginBottom: '2px'}}>Event end</p>
+            <p style={{marginTop: '5px', marginBottom: '2px'}}>Završetak događaja</p>
              <DatePicker style={{padding:'2px 6px'}}
               selected={this.state.endDate}
               timeInputLabel="Time:"
               showTimeInput
-              dateFormat="dd/mm/yyyy hh:mm aa"
-              timeFormat="hh:mm aa"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              timeFormat="HH:mm"
               selectsEnd
               startDate={this.state.startDate}
               endDate={this.state.endDate}

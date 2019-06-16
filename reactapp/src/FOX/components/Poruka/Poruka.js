@@ -34,6 +34,14 @@ function Poruka(props) {
             </div>
         );
     }
+    if (greska === 3) {
+        return (
+            <div id="alertUspjeh" class="alert alert-dismissible alert-secondary">
+                <button type="button" class="close" data-dismiss="alert" onClick={zatvoriAlert}>&times;</button>
+                <strong>Sačekajte...</strong> <br/> Uspostavlja se veza sa bazom podataka.
+            </div>
+        );
+    }
     return ""
 }
 

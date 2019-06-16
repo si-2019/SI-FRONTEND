@@ -4,29 +4,47 @@
 
 #terminCardBody {
   display: flex;
+  align-self: center;
+  width: 50%;
   flex-direction: column;
 }
 
 #terminCard {
-  width: 50%;
-  position: absolute;
-  left: 50%;
-  top: 10%;
-  transform: translate(-50%, -10%) perspective(1px);
+  display: flex;
 }
 
+#omotacECHO {
+  padding: 15px;
+}
+
+#listaGodina,
 #listaDana,
+#brCasova,
 #satnica,
-#brCasova {
+#odabirSemestra {
   align-self: flex-start;
   width: 97%;
 }
-
-#dugme {
+.labelECHO {
+  align-self: flex-start;
+  margin: unset;
+  margin-left: 10px;
+}
+#dugmeECHO1 {
+  width: fit-content;
+  align-self: flex-end;
+}
+#dugmeECHO2 {
   width: fit-content;
   align-self: flex-end;
 }
 
 #alertID {
   text-align: left;
+}
+
+#buttonsDivECHO {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
 }

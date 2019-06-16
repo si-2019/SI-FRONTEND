@@ -5,8 +5,11 @@ import axios from 'axios';
 import Body_Cell from './body_cell.js';
 import Head_cell from './head_cell.js';
 import './raspored.css';
+import jQuery from 'jquery'; 
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
   
+
+
 const sortCriteria = (a,b) =>
   {  
     // sortiramo hronoloski  
@@ -100,14 +103,18 @@ class Raspored extends Component {
 
 state={
   isLoaded:false,
-  raspored:[]
+  raspored:[],
+  provjerenToken:false
 }
 
 componentDidMount = () =>{
-  fetch("http://si2019uniform.herokuapp.com/getProfesorTermini/1")
+  
+  {
+    console.log("1111111111111111111111111111");
+    fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getProfesorTermini/1")
       .then(resTermini => resTermini.json())
       .then(jsonTermini => {
-        fetch("http://si2019uniform.herokuapp.com/getProfesorIspiti/1")
+        fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getProfesorIspiti/1")
           .then(resIspiti => resIspiti.json())
           .then(jsonIspiti => {
             var raspored=[];
@@ -128,14 +135,20 @@ componentDidMount = () =>{
             })
           });
         });
+  }  
+  
+        
 }
   
 render = () =>{  
 
-  if(!this.state.isLoaded)
-  return <div>Loading...</div>;
+  
   
   var raspored=this.state.raspored;
+  if(!raspored || raspored==undefined)
+  {
+    raspored=[];
+  }
 
   var vremenaRasporeda=[];
   var rendering=[];
@@ -156,7 +169,7 @@ render = () =>{
 
    for(var u=0;u<vremenaRasporeda.length;u++)
   {
-    console.log("////////////////////////// "+ vremenaRasporeda[u]);
+    
   }
   raspored.forEach((val,index) => {
    vrijemeObaveze = val.vrijeme;

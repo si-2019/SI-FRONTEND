@@ -10,7 +10,9 @@ class PrikazTermina extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:31905/si2019/echo/getZeljeniTerminByKorisnikId")
+    fetch(
+      "https://si-echo-2019.herokuapp.com/api/si2019/echo/getZeljeniTerminByKorisnikId"
+    ) ////localhost:31905:
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -30,7 +32,9 @@ class PrikazTermina extends Component {
               item.danUSedmici == "Pon" ? (
                 <p>
                   {item.vrijeme} -{" "}
-                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  {item.brCasova != null
+                    ? parseInt(item.vrijeme.substring(0), 10) + item.brCasova
+                    : parseInt(item.vrijeme.substring(0), 10) + 3}
                   :00
                 </p>
               ) : (
@@ -48,7 +52,9 @@ class PrikazTermina extends Component {
               item.danUSedmici == "Uto" ? (
                 <p>
                   {item.vrijeme} -{" "}
-                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  {item.brCasova != null
+                    ? parseInt(item.vrijeme.substring(0), 10) + item.brCasova
+                    : parseInt(item.vrijeme.substring(0), 10) + 3}
                   :00
                 </p>
               ) : (
@@ -65,7 +71,9 @@ class PrikazTermina extends Component {
               item.danUSedmici == "Sri" ? (
                 <p>
                   {item.vrijeme} -{" "}
-                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  {item.brCasova != null
+                    ? parseInt(item.vrijeme.substring(0), 10) + item.brCasova
+                    : parseInt(item.vrijeme.substring(0), 10) + 3}
                   :00
                 </p>
               ) : (
@@ -82,7 +90,9 @@ class PrikazTermina extends Component {
               item.danUSedmici == "Cet" ? (
                 <p>
                   {item.vrijeme} -{" "}
-                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  {item.brCasova != null
+                    ? parseInt(item.vrijeme.substring(0), 10) + item.brCasova
+                    : parseInt(item.vrijeme.substring(0), 10) + 3}
                   :00
                 </p>
               ) : (
@@ -99,7 +109,9 @@ class PrikazTermina extends Component {
               item.danUSedmici == "Pet" ? (
                 <p>
                   {item.vrijeme} -{" "}
-                  {parseInt(item.vrijeme.substring(0), 10) + item.brCasova}
+                  {item.brCasova != null
+                    ? parseInt(item.vrijeme.substring(0), 10) + item.brCasova
+                    : parseInt(item.vrijeme.substring(0), 10) + 3}
                   :00
                 </p>
               ) : (

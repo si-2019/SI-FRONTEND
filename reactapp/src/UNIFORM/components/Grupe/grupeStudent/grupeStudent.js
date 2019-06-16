@@ -6,6 +6,7 @@ import { Combobox } from 'react-widgets'
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import Tabela from './tabela.js';
 import { link } from "fs";
+import jQuery from 'jquery'; 
 
 class Grupe extends Component {
 
@@ -13,22 +14,28 @@ state={
     isLoaded:false,
     grupe:[],
     predmet:undefined,
-    trenutniRedoslijed:undefined    
+    trenutniRedoslijed:undefined,
+    provjerenToken:false    
 };
 
+
+
 componentDidMount = () =>{
-  fetch("http://si2019uniform.herokuapp.com/getRedoslijed")
+  
+  {
+    console.log("1111111111111111111111111111");
+    fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getRedoslijed")
       .then(resRedoslijed => resRedoslijed.json())
       .then(jsonRedoslijed => {
         var linkGrupe;
         if(jsonRedoslijed.naziv=="Redoslijed abecede")
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
         else
-          linkGrupe="http://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
     fetch(linkGrupe)
         .then(resGrupe => resGrupe.json())
         .then(jsonGrupe => {
-          fetch("http://si2019uniform.herokuapp.com/getPredmet/4")
+          fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getPredmet/4")
             .then(resPredmet => resPredmet.json())
             .then(jsonPredmet => {
 
@@ -41,11 +48,14 @@ componentDidMount = () =>{
             });
           });
         }); 
+  } 
+  
+
+        
   }
 
 render = () =>{ 
-    if(!this.state.isLoaded)
-    return <div>Loading...</div>;
+    
 
     var dataPredmet = this.state.predmet;   
     
@@ -58,6 +68,16 @@ render = () =>{
 
     var maxKapacitet=0;
     var rendering=[];
+    if(!spisakGrupe || spisakGrupe==undefined)
+  {
+    spisakGrupe=[];
+  }
+  if(!dataPredmet || dataPredmet==undefined)
+  {
+    dataPredmet={
+      naziv: "Projektovanje informacionih sistema"      
+    };
+  }
 
     for(var i=0;i<spisakGrupe.length;i++)
     {

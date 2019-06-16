@@ -51,25 +51,52 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajMojeAnkete?idNapravio=1', {
-            method: 'GET'
+        fetch(url + '/dajMojeAnkete?idNapravio=' + window.localStorage.getItem("id") + '&username=' + window.localStorage.getItem("username"), {
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             this.setState({
                 items: result
             })
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+            }
         }, error => {
             this.setState({
-                items: [error, "error"]
+                error: [error, "error"]
             })
         })
     }
     obrisiAnketu(anketaZaBrisanje){
         console.log("Morel")
-        fetch(url + '/obrisiAnketu?idKorisnik=1&idAnketa=' + anketaZaBrisanje.idAnketa, { 
-            method: 'POST'
-        }).then(() => this.componentDidMount())
+        fetch(url + '/obrisiAnketu?idKorisnik=' + window.localStorage.getItem("id") + '&idAnketa=' + anketaZaBrisanje.idAnketa + '&username=' + window.localStorage.getItem("username"), { 
+            method: 'POST',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
+        }).then(res => res.json())
+          .then((res) => {
+            if(res.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
+            console.log(res)
+             if(res.error) {
+                 alert("Nije obrisana anketa")
+             }
+             else {
+                 alert("Anketa uspješno obrisana")
+             }
+             this.componentDidMount()
+        })
     }
 }
 

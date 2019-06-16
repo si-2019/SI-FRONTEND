@@ -1,35 +1,58 @@
 import React, { Component } from 'react';
 import ObjavaStudent from './objavaStudent.js'
 import axios from 'axios'
+import Spinner from 'react-bootstrap/Spinner'
+
 
 class LiteraturaStudent extends Component {
 
-  state={
-    objave: []
+  state = {
+    objave: [],
+    loading: true
   }
 
-  ubicuseopet(props){
-    axios.get(`http://localhost:31907/r3/dajLiteraturuZaStudenta/${this.props.idPredmeta}/${encodeURIComponent(props.naziv)}`).then(res =>{
-      this.setState({
-        objave: res.data.objave
-            })
-  })
+  ucitaj(props) {
+    axios.get(`http://si2019golf.herokuapp.com/r3/dajLiteraturuZaStudenta/${this.props.idPredmeta}/${encodeURIComponent(props.naziv)}`).then(res => {
+      if (res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else {
+        if (res.data.error) {
+          this.setState({
+            loading: true
+          })
+        }
+        else {
+          this.setState({
+            objave: res.data.objave,
+            loading: false
+          })
+        }
+      }
+    })
 
   }
 
-  componentWillReceiveProps(props){
-    this.ubicuseopet(props)
+  componentWillReceiveProps(props) {
+    this.ucitaj(props)
   }
 
- render(){
+  render() {
 
 
     return (
-        <div class="divsaokvirom">
-        	<h4 class='naslov'>Literatura</h4>
-          {this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
-        </div>
-        
+      <div class="divsaokvirom">
+        <h4 class='naslov'>Literatura</h4>
+        {this.state.loading ?
+          <div class="spinerGolf"><Spinner animation='border' variant='primary' role='status'>
+            <span className="sr-only">Učitavanje...</span>
+          </Spinner></div>
+          :
+          <div>
+            {this.state.objave.map(file => <ObjavaStudent idpredmeta={this.props.idpredmeta} naslov={file.naziv} opisMaterijala={file.opis} fileovi={file.datoteke} datumobjave={file.datum}></ObjavaStudent>)}
+          </div>}
+      </div>
+
     );
   }
 }

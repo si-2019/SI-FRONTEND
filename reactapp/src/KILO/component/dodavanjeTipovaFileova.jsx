@@ -34,7 +34,7 @@ class DodavanjeTipovaFileova extends Component {
     }
 
     return (
-      <div class="card ml-3 h-100" style={{ width: "25rem", height: "50%" }}>
+      <div /*class="card ml-3 h-100"*/ style={{ width: "25rem", height: "50%" }}>
         <Form>
           <div id="tipoviT" className="card-title p-2">
             <h4>
@@ -65,7 +65,7 @@ class DodavanjeTipovaFileova extends Component {
               <Table bordered className="table table-bordered text-center">
                 <thead>
                   <tr className="text-dark">
-                    <th class="tabtip">Naziv zadace</th>
+                    <th class="tabtip">Naziv zadaće</th>
 
                     {kolone.map(jedno => (
                       <th class="tabtip" scope="col" key={jedno}>

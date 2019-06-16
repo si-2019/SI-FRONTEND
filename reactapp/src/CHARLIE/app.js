@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import axios from 'axios'
 
 import InformacijeOIspitu from "./components/InformacijeOIspitu";
 import KreirajIspit from "./components/KreirajIspit";
@@ -10,6 +11,7 @@ import PrijavaIspita from "./components/PrijavaIspita";
 import PrijavljeniIspiti from "./components/PrijavljeniIspiti";
 import UrediIspit from "./components/UrediIspit";
 
+
 import LeftMenuCharlie from "./LeftMenuCharlie";
 import "./appCharlie.css";
 class App extends Component {
@@ -17,19 +19,38 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      profesor: false,
+      fetched: false,
       activeContentId: 0,
+      error: '',
+      data: {},
       menuButtonTitles: [, "Ispiti"],
       menuButtonsProfesor: [{
         btnText: "Kreiraj ispit",
         component: <KreirajIspit onChangeActiveId={this.onChangeActiveId}/>
-        
       }, {
         btnText: "Kreirani ispiti",
         component: <KreiraniIspiti />
-      }, {
-        btnText: "Kreiraj ispit detalji",
-        component: <KreirajIspitDetalji />
-      }, {
+      },
+      {
+        naziv: "Profil",
+        changeId: 2,
+        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} data={this.getData}/> //Prof
+      }],
+      menuComponentsProfesor: [{
+        naziv: "Profil",
+        changeId: 0,
+        component: <KreirajIspit /> //Prof
+      },{
+        naziv: "Profil",
+        changeId: 1,
+        component: <KreiraniIspiti /> //Prof
+      },{
+        naziv: "Profil",
+        changeId: 2,
+        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} data={this.getData}/> //Prof
+      }],
+      menuButtonsStudent: [{
         btnText: "Informacije o ispitu",
         component: <InformacijeOIspitu />
       }, {
@@ -39,47 +60,27 @@ class App extends Component {
         btnText: "Prijavljeni ispiti",
         component: <PrijavljeniIspiti />
       }],
-      menuComponentsProfesor: [{
-        naziv: "Profil",
-        changeId: 0,
-        component: <KreirajIspit />
-      },{
-        naziv: "Profil",
-        changeId: 1,
-        component: <KreiraniIspiti />
-      },{
-        naziv: "Profil",
-        changeId: 2,
-        component: <KreirajIspitDetalji/>
-      },{
-        naziv: "Profil",
-        changeId: 3,
-        component: <InformacijeOIspitu />
-      }, {
-        naziv: "Profil",
-        changeId: 4,
-        component: <PrijavaIspita />
-      }, {
-        naziv: "Profil",
-        changeId: 5,
-        component: <PrijavljeniIspiti />
-      }],
-      menuButtonsStudent: [{
-        btnText: "Prijava ispita",
-        component: <PrijavaIspita />
-      }, {
-        btnText: "Prijavljeni ispiti",
-        component: <PrijavljeniIspiti />
-      }],
       menuComponentsStudent: [{
         naziv: "Profil",
         changeId: 0,
-        component: <PrijavaIspita />
+        component: <PrijavaIspita  onChangeActiveId={this.onChangeActiveId}/> // Stud
+      }, {
+        naziv: "Profil",
+        changeId: 1,
+        component: <PrijavljeniIspiti onChangeActiveId={this.onChangeActiveId}/> //Stud
+      },
+      {
+        naziv: "Profil",
+        changeId: 2,
+        component: <InformacijeOIspitu onChangeActiveId={this.onChangeActiveId} /> // Stud
       }],
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
-  }
-  componentDidMount() {
+  } 
+
+  getData = () => this.state.data
+  
+  async componentDidMount() {
     var help = [];
     var i = 0;
     var helps = [];
@@ -108,18 +109,45 @@ class App extends Component {
       menuComponentsStudent: helps
     });
 
+    const id = window.localStorage.getItem("id");
+    const token = window.localStorage.getItem("token");
+    const username = window.localStorage.getItem("username");
+
+    if(!id || !token || !username){
+      this.setState({error:'Neautorizovan pristup'})
+      return
+    }
+
+
+    const uloga = 'PROFESOR';
+    try {
+      // const {status} = await axios.get('https://si2019romeo.herokuapp.com/users/validate', username, {
+      //   headers : {"Authorization": token}
+      // })
+      // console.log(status)
+
+      const {data} = await axios.get(`https://si2019oscar.herokuapp.com/pretragaId/imaUlogu/${id}/${uloga}`)
+      this.setState({fetched:true})
+      this.setState({profesor:data}) //Staviti true ako hocete profesora
+    } catch (error) {
+      console.log('Greska')
+      console.log(error.message)
+    }
+
   }
-  onChangeActiveId = (id) => {
+  onChangeActiveId = (id, data={}) => {
     this.setState({
       activeContentId: id,
+      data
     })
   };
+
   render() {
+    const {fetched, profesor, menuComponentsProfesor, activeContentId, menuComponentsStudent, error} = this.state
     return (
       <>
       
         <div className="App" id="appCharlie">
-      
           <div className="containter-fluid">
             <div className="row" id="rowCharlie" style={{ margin: "0px", padding: "0px"}}>
               <div className="col-lg-2 col-md-3 col-sm-12" style={{
@@ -130,7 +158,7 @@ class App extends Component {
               }}>
                 <LeftMenuCharlie
                   triggerChangeActiveId={this.onChangeActiveId}
-                  btnList={this.state.menuComponentsProfesor}
+                  btnList={this.state.fetched && (this.state.profesor ? this.state.menuComponentsProfesor : this.state.menuComponentsStudent) || []}
                 />
               </div>
               <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
@@ -139,10 +167,10 @@ class App extends Component {
                 margin: "0px",
                 padding: "0px"
               }}>
-
-                {this.state.menuComponentsProfesor[this.state.activeContentId].component}
-
-
+                { error.length > 0 && <div>{error}</div> || fetched && (profesor ? menuComponentsProfesor[activeContentId].component
+                  : menuComponentsStudent[activeContentId].component)
+                }
+                
               </div>
             </div>
           </div>

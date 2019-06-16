@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import Lista from '../ListaTema/listaTema';
 import {Link} from 'react-router-dom';
+import {IdUSER} from '../id.js';
 
 class NovaTema extends Component {
   constructor() {
@@ -38,11 +39,11 @@ class NovaTema extends Component {
     const { naziv, opis } = this.state;
    
  evt.preventDefault()
- fetch("http://localhost:31919/addTheme", {
+ fetch("http://si2019tango.herokuapp.com/addTheme", {
 method: 'POST',  
 body: JSON.stringify({
   IdPredmeta: '4',
-  IdUser:'1',
+  IdUser:IdUSER,
   title:  naziv,
   description: opis,
   timeCreated: Date.now()

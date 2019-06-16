@@ -52,7 +52,7 @@ class ChatApp extends Component {
             joinableRooms:[],
             blockedUsers: [],
             presenceUser: [],
-            currentUserRole: null
+            currentUserRole: null,
         }
         this.addMessage = this.addMessage.bind(this);
         this.openPrivateChat = this.openPrivateChat.bind(this);
@@ -226,10 +226,10 @@ class ChatApp extends Component {
             this.setState({
                 currentRoom: room,
                 room_users: room.users,
-                users: CU.users,
+                users: CU.users
             })
 
-            console.log(room, this.currentRoom, room.id);
+            this.forceUpdate();
         })
     }
 
@@ -533,6 +533,7 @@ class ChatApp extends Component {
         const {
             showColorPicker,
         } = this.state;
+
         return ( 
             <div className="juliet-chat-app-wrapper">
 
@@ -584,7 +585,7 @@ class ChatApp extends Component {
                         chatkit={this.props.chatkit}
                         addUser={this.addUser}
                     />
-                    <FileSidebar downloadClick={this.downloadClick} roomId={this.testRoomId}/>
+                    <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id} />
                     <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
                     <EventPlanner currentId={this.props.currentId} colorScheme={colorScheme}/> 
                     <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >

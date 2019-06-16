@@ -16,7 +16,30 @@ class FileSidebar extends Component {
     }
 
     componentWillMount(){
+        console.log(this.props);
+
         Axios.get('https://si2019juliet.herokuapp.com/files/' + this.props.roomId)
+        .then(res => {
+            if(res.data === null){
+                this.setState({
+                    files: new Array(0)
+                })
+            }
+            else{
+                console.log(res.data);
+
+                this.setState({
+                    files: res.data
+                })
+            }
+        }
+            
+        )
+        .catch(err => console.log(err));
+    }
+
+    componentDidUpdate(nP){
+        Axios.get('https://si2019juliet.herokuapp.com/files/' + nP.roomId)
         .then(res => {
             if(res.data === null){
                 this.setState({

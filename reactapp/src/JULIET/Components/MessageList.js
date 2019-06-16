@@ -163,7 +163,7 @@ class MessageList extends Component {
                             <RoomName currentRoom={this.props.currentRoom}/>
                         </h4>
                     </div>
-                    <input className="juliet-pretraga-text" placeholder="Pretraži poruke po frazama, pošiljaocu ili po datumu (DD.MM.YYYY)" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
+                    <input className="juliet-pretraga-text" placeholder="Traži po frazi,pošiljaocu,datumu (DD.MM.YYYY)" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
                 <ul style={listStyle} className="list-group juliet-message-list">
                     {listSrc.map((message, index) => (

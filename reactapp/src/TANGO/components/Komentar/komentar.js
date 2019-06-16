@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import OdgovorNaKomentar from '../OdgovorNaKomentar';
 import ListaOdgovora from '../ListaOdgovora';
 
-const userApi = 'http://si2019tango.herokuapp.com/getUser/';
+const userApi = 'https://si2019tango.herokuapp.com/getUser/';
 
 
 class Komentar extends Component {

@@ -13,7 +13,7 @@ import {
 } from 'react-router-dom'
 import { resolve } from 'path';
 
-const themesApi= 'http://si2019tango.herokuapp.com/getThemes/'; //plus id teme
+const themesApi= 'https://si2019tango.herokuapp.com/getThemes/'; //plus id teme
 
 
 

@@ -7,10 +7,8 @@ import Rezultati from './rezultati/app'
 import Liste from './liste/app'
 import Uredi from './uredi'
 import PopunjenaAnketa from './popunjenaAnketa'
+import MojeAnkete from './liste/mojeAnkete'
 import {Redirect} from 'react-router'
-let Home = function () { 
-    return <Redirect to='/hotel/liste/mojeankete' />
-}
 export default class Hotel extends React.Component {
 
     meniStudent = ['mojeAnkete', 'javneAnkete', 'anketePoPredmetimaStudent', 'rezultatiAnketa', 'kreirajAnketu']
@@ -23,7 +21,8 @@ export default class Hotel extends React.Component {
         console.log(this.meniStudent)
         this.state = {
             page: 'moje ankete',
-            meni: this.meniStudent
+            meni: this.meniStudent,
+            uloga: 'STUDENT'
         }
     }
     stranice = {
@@ -105,7 +104,7 @@ export default class Hotel extends React.Component {
                     </ul>
                 </div>
                 <div class="col-9" style={{padding: "0"}}>
-                    <Route exact path="/hotel" component={Home} />
+                    <Route exact path="/hotel" component={MojeAnkete} />
                     <Route path="/hotel/kreiranje/" component={Kreiranje} />
                     <Route path="/hotel/popunjavanje/:id" component={Popunjavanje} />
                     <Route path="/hotel/rezultati/:id" component={Rezultati} />
@@ -115,5 +114,33 @@ export default class Hotel extends React.Component {
                 </div>
             </div>
         )
+    }
+
+    componentDidMount() {
+        fetch('http://si2019golf.herokuapp.com/r1/uloga/' + window.localStorage.getItem("id"), {
+            method: 'get',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
+        }).then(res => res.json())
+          .then(res => {
+                console.log(res)
+                if(res.loginError) {
+                    window.location.href = window.location.origin + '/romeo/login'
+                }
+                else {
+                    console.log(res)
+                    let meni = this.meniStudent 
+                    if(res.uloga == "ADMIN")
+                        meni = this.meniAdmin
+                    else if(res.uloga == "PROFESOR" || res.uloga == "ASISTENT")
+                        meni = this.meniProfesor
+                    console.log(res.uloga, "-1-2-2")
+                    this.setState({
+                        uloga: res.uloga,
+                        meni
+                    })
+                }
+          })
     }
 }

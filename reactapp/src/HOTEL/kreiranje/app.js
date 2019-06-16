@@ -25,7 +25,8 @@ class App extends Component {
       idPredmet: null,
       svePopunjeno: true,
       dateChanged: false,
-      upozorenje: ""
+      upozorenje: "",
+      uloga: "STUDENT"
     }
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -122,15 +123,19 @@ class App extends Component {
               <input type="radio" id="customRadio1" name="vrstaAnketeRadio" value="javna anketa" className="custom-control-input" onChange={this.handleRadioChange} defaultChecked/>
               <label className="custom-control-label" for="customRadio1">Javna anketa</label>
             </div>
+            {
+              (this.state.uloga == "PROFESOR" || this.state.uloga == "ASISTENT") &&
             <div className="custom-control custom-radio">
               <input type="radio" id="customRadio2" name="vrstaAnketeRadio" value="anketa za predmet" className="custom-control-input" onChange={this.handleRadioChange}/>
               <label className="custom-control-label" for="customRadio2">Anketa za predmet</label>
             </div>
+            }
+            { this.state.uloga == "ADMIN" &&
             <div className="custom-control custom-radio">
               <input type="radio" id="customRadio3" name="vrstaAnketeRadio" value="anketa za sve predmete"className="custom-control-input" onChange={this.handleRadioChange}/>
               <label className="custom-control-label" for="customRadio3">Anketa za sve predmete</label>
             </div>
-            
+            }
             { this.state.vrstaAnkete != 'anketa za predmet' || (
               <div>
                 <div className="form-group row">
@@ -208,6 +213,24 @@ class App extends Component {
         predmeti: res.data
       })
     })
+
+    
+      fetch('http://si2019golf.herokuapp.com/r1/uloga/' + window.localStorage.getItem("id"), {
+          method: 'get',
+          headers: {
+              'Authorization': window.localStorage.getItem("token")
+          }
+      }).then(res => res.json())
+        .then(res => {
+              if(res.loginError) {
+                  window.location.href = window.location.origin + '/romeo/login'
+              }
+              else {
+                  this.setState({
+                    uloga: res.uloga
+                  })
+              }
+        })
   }
 
   nijePrazno(s) {
@@ -256,7 +279,6 @@ class App extends Component {
       }
 
       console.log("==============")
-      e.preventDefault()
       fetch(url + '/createAnketa?username=' + window.localStorage.getItem("username"), {
         method: 'post',
         headers: {
@@ -276,7 +298,9 @@ class App extends Component {
       .then((res, err) => {
         console.log(res.loginError)
         if(res.loginError) {
+          e.preventDefault()
           window.location.href = window.location.origin + '/romeo/login'
+          return
         }
         else {
 

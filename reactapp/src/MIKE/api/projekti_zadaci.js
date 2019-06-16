@@ -70,8 +70,8 @@ const predmetiZaNovuProjektnuGrupu = () => {
   });
 }
 
-const sviPredmetiAsistenta = () => {
-  //potreban api na backendu
+const sviPredmetiAsistenta = (idAsistenta) => {
+  return axios.get(`http://localhost:31913/services/viewA/predmetiprojektiasistent/${idAsistenta}`);
 
   //placeholder
   return new Promise(function(resolve, reject)
@@ -115,7 +115,7 @@ const sviPredmetiAsistenta = () => {
 }
 
 const sveGrupeProjekta = (idProjekta) => {
-  //potreban api na backendu
+  return axios.get(`http://localhost:31913/services/projects/getProjectGroups/${idProjekta}`);
   
   //placeholder
   return new Promise(function(resolve, reject)

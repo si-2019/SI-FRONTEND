@@ -1,16 +1,20 @@
+
 export const inicijalizirajBrojZadataka = noviBrojZadataka => {
   if (noviBrojZadataka > 10) noviBrojZadataka = 10;
   if (noviBrojZadataka < 1) noviBrojZadataka = 1;
-  const novaListaTipova = [];
+  const novaListaTipova = [], novaListaBodova = [];
 
   for (let i = 0; i < noviBrojZadataka; i++) {
     novaListaTipova.push([false, false, false, false, false]);
+    novaListaBodova.push("");
   }
 
   return {
     brojZadataka: noviBrojZadataka,
     listaTipova: novaListaTipova,
-    sviTipoviIsti: false
+    sviTipoviIsti: false,
+    listaBodova: novaListaBodova,
+    ukupnoBodova: 0
   };
 };
 

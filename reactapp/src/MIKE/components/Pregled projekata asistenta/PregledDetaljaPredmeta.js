@@ -23,9 +23,6 @@ class PregledDetaljaPredmeta extends Component {
                 <br/>
                 <label className="control-label">{this.props.bodovi}</label>
                 <br/>
-                <label className="col-form-label col-form-label-lg">Broj grupa:</label>
-                <br/>
-                <label className="control-label">{this.props.brojGrupa}</label>
             </div>
         );
     }

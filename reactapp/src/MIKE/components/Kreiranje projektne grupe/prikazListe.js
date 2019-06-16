@@ -12,8 +12,7 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
         predmeti:props.predmeti,
         trenutniPredmet:0,
         forma:"null",
-        naziv:"",
-        opis:""
+        korisnik:props.korisnik
       };
       this.informacije=this.informacije.bind(this);
     }
@@ -41,7 +40,7 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
           </select>
           {/*opis radi ako postoje predmeti, inace ne*/}
         <PrikazPredmeta opisProjekta={this.state.predmeti[this.state.trenutniPredmet].projekti[0].opisProjekta} brojMogucihBodova={this.state.predmeti[this.state.trenutniPredmet].projekti[0].moguciBodovi}/>
-        <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.props.submit}>Dalje</button>
+        <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.informacije}>Dalje</button>
         </div>
         </div>
       );
@@ -51,7 +50,7 @@ import InterfejsUredjivanjeClanovaGrupe from './InterfejsUredjivanjeClanovaGrupe
         )
       }
       else if(this.state.forma=="informacije") return(
-        <UnosInformacija informacije={this.sacuvajInformacije}/>
+        <UnosInformacija korisnik={this.state.korisnik} predmet={this.state.predmeti[this.state.trenutniPredmet]}/>
       );
     }
     informacije(){

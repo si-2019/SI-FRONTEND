@@ -58,27 +58,18 @@ class SSFAQ extends React.Component {
     }
 
     render() {
-        if (this.state.isLoading) {
-            return (
-                <Spinner animation='border' role='status'>
-                    <span className="sr-only">Učitavanje...</span>
-                </Spinner>
-            );
-        }
-
-
-        let issues = this.state.issues.map(x => (
+         let issues = this.state.issues.map(x => (
             {
                 naziv: x.naziv,
                 tekst: x.tekst
             }))
         return (
-            <div className="col-12" >
+            <div className="col-12"  id="listaFAQBeta">
 
 
                 <br></br>
 
-                <h4 >Često postavljani upiti</h4>
+                <h4 id="FAQGlavniNaslov">Često postavljani upiti</h4>
 
 
                 <div className="faq-issue">

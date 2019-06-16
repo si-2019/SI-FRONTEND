@@ -1,5 +1,6 @@
 import React from 'react';
 import url from '../url'
+import {Link} from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class App extends React.Component {
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
                         <th class="tabtip1">{anketa.naziv}</th>
-                        <th class="tabtip1"><a href={"/Hotel/popunjenaanketa/" + anketa.idPopunjenaAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></a></th>
+                        <th class="tabtip1"><Link to={"/Hotel/popunjenaanketa/" + anketa.idPopunjenaAnketa}><button type="button" class="btn btn-primary" id="prikaziButton">Prikaži</button></Link></th>
                     </tr>
                 )) : "Loading..."}
                 </table>
@@ -34,7 +35,7 @@ class App extends React.Component {
     }
     componentDidMount() { 
         console.log(1234567)
-        fetch(url + '/dajPopunjeneAnketeProfesor?idKorisnik=1', {
+        fetch(url + '/dajPopunjeneAnketeProfesor?idKorisnik='+window.localStorage.getItem("id") + "&username=" + window.localStorage.getItem("username"), {
             method: 'GET',
             headers: {
                 'Authorization': window.localStorage.getItem("token")
@@ -42,13 +43,17 @@ class App extends React.Component {
         })
         .then(res => res.json())
         .then(result => {
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             console.log(4322123)
             this.setState({
                 items: result
             })
         }, error => {
             this.setState({
-                items: [error, "error"]
+                error: [error, "error"]
             })
         })
     }

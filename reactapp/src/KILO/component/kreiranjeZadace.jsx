@@ -196,7 +196,7 @@ class KreiranjeZadace extends Component {
         return porukeGreske;
       }
       if (isNaN(parseInt(element))) {
-        porukeGreske[5] = "Broj bodova mora biti broj!";
+        porukeGreske[5] = "Popunite polja za bodove ispravnim vrijednostima!";
         return porukeGreske;
       }
       if (parseFloat(element) > 100) {

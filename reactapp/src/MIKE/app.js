@@ -13,7 +13,10 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
+
+      
       korisnik:window.localStorage.getItem("id"),
+
       forma:"null",
       predmeti:[],
       token:0
@@ -133,7 +136,7 @@ class Mike extends Component {
               </div>
             </div>
             <div id="right">
-              <ListaPredmetaAsistenta idAsistent={41} predmeti={this.state.predmeti} />
+              <ListaPredmetaAsistenta idAsistent={10} predmeti={this.state.predmeti} />
             </div>
           </div>
         </div>

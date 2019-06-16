@@ -32,6 +32,11 @@ class App extends Component {
         btnText: "Kreirani ispiti",
         component: <KreiraniIspiti />
       },
+      {
+        naziv: "Profil",
+        changeId: 2,
+        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} data={this.getData}/> //Prof
+      }],
       menuComponentsProfesor: [{
         naziv: "Profil",
         changeId: 0,
@@ -123,7 +128,7 @@ class App extends Component {
 
       const {data} = await axios.get(`https://si2019oscar.herokuapp.com/pretragaId/imaUlogu/${id}/${uloga}`)
       this.setState({fetched:true})
-      this.setState({profesor:data})
+      this.setState({profesor:data}) //Staviti true ako hocete profesora
     } catch (error) {
       console.log('Greska')
       console.log(error.message)

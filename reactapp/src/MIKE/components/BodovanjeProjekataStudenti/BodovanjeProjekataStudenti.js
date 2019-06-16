@@ -1,21 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table, Button } from 'reactstrap';
 
-import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap.css';
 
 import TabelaGrupa from './TabelaGrupa.js'
-import { sviPredmetiAsistenta, sveGrupeProjekta } from '../../api/projekti_zadaci';
+import { sveGrupeProjekta } from '../../api/projekti_zadaci';
 import { upisBodovaPojedinacno, upisBodovaGrupno } from '../../api/bodovanje';
 
 class BodovanjeProjekataStudenti extends Component { 
   constructor(props) {
     super(props);
 
-    this.state = { 
-      predmeti: [], 
-      selektani_predmet: null,
-      selektani_projekat: null,
+    this.state = {
+      selektani_projekat: this.props.selektani_projekat,
       grupe: [],
+      moguciBodovi: this.props.moguciBodovi
     };
 
     this.renderGrupe = this.renderGrupe.bind(this);
@@ -25,43 +24,21 @@ class BodovanjeProjekataStudenti extends Component {
   }
 
   componentDidMount() {
-    sviPredmetiAsistenta().then(res => {
-      let predmeti = res.data.predmeti;
-      let selektani_predmet = null;
-      if(predmeti.length > 0) selektani_predmet = predmeti[0];
-
-      let selektani_projekat = null;
-      if(selektani_predmet && selektani_predmet.projekti.length > 0) {
-        selektani_projekat = selektani_predmet.projekti[0];
-      }
-
-      if(selektani_projekat) {
-        sveGrupeProjekta(selektani_projekat.idProjekat).then((res) => {
-          this.setState({
-            predmeti: predmeti,
-            selektani_predmet: selektani_predmet,
-            selektani_projekat: selektani_projekat,
-            grupe: res.data.grupe
-          });
-        });
-      }
-      else {
-        this.setState({
-          predmeti: predmeti,
-          selektani_predmet: selektani_predmet,
-          selektani_projekat: selektani_projekat,
-          grupe: []
-        });
-      }
-    });
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    console.log(`USERNAME: ${window.localStorage.getItem("username")}`)
+    console.log(`ID: ${window.localStorage.getItem("id")}`)
+    console.log(`TOKEN: ${window.localStorage.getItem("token")}`)
+    this.ucitajGrupe();
   }
 
   ucitajGrupe() {
     if(this.state.selektani_projekat) {
-      sveGrupeProjekta(this.state.selektani_projekat.idProjekat).then((res) => {
+      sveGrupeProjekta(this.state.selektani_projekat).then((res) => {
         this.setState({
-          grupe: res.data.grupe
+          grupe: res.data
         });
+        console.log("UCITANE GRUPE:")
+        console.log(JSON.stringify(this.state.grupe))
       });
     }
     else {
@@ -72,7 +49,7 @@ class BodovanjeProjekataStudenti extends Component {
   }
 
   validacijaBodova(bodovi) {
-    let maxBodova = this.state.selektani_projekat.moguciBodovi;
+    let maxBodova = this.state.moguciBodovi;
     if(isNaN(bodovi)) {
       // prikaz errora - neispravan unos
       console.log("Broj bodova mora biti cijeli broj");
@@ -95,7 +72,7 @@ class BodovanjeProjekataStudenti extends Component {
       }
     }
 
-    upisBodovaPojedinacno(studenti, this.state.selektani_projekat.idProjekat).then((response) => {
+    upisBodovaPojedinacno(studenti, this.state.selektani_projekat).then((response) => {
       if(response.data.message == "Uspjesno bodovan svaki clan grupe za definisani projekat.") {
         this.ucitajGrupe();
       }
@@ -131,53 +108,6 @@ class BodovanjeProjekataStudenti extends Component {
     });
   }
 
-  selektanPredmet(val) {
-    for(let i=0; i<this.state.predmeti.length; i++)
-    {
-      if(this.state.predmeti[i].id == val)
-      {
-        let selektani_projekat = null;
-        if(this.state.predmeti[i].projekti.length > 0) {
-          selektani_projekat = this.state.predmeti[i].projekti[0];
-        }
-
-        if(selektani_projekat) {
-          sveGrupeProjekta(selektani_projekat.idProjekat).then((res) => {
-            this.setState({
-              selektani_predmet: this.state.predmeti[i],
-              selektani_projekat: selektani_projekat,
-              grupe: res.data.grupe
-            });
-          });
-        }
-        else {
-          this.setState({
-            selektani_predmet: this.state.predmeti[i],
-            selektani_projekat: selektani_projekat,
-            grupe: []
-          });
-        }
-        return;
-      }
-    }    
-  }
-
-  selektanProjekat(val) {
-    for(let i=0; i<this.state.selektani_predmet.projekti.length; i++)
-    {
-      if(this.state.selektani_predmet.projekti[i].idProjekat == val)
-      {
-        sveGrupeProjekta(val).then((res) => {
-          this.setState({
-            selektani_projekat: this.state.selektani_predmet.projekti[i],
-            grupe: res.data.grupe
-          });
-        });
-        return;
-      }
-    }
-  }
-
   renderGrupe() {
     let i = 1;
     return (
@@ -197,27 +127,12 @@ class BodovanjeProjekataStudenti extends Component {
         <Form>
         <FormGroup>
 
-          <Label >Vaši predmeti: </Label>
-          <Input type="select" name="predmet" onChange={(e)=>{this.selektanPredmet(e.target.value)}}>
-            {this.state.predmeti.map((predmet) => {
-                return (<option key={predmet.id} value={predmet.id}>{`${predmet.naziv_predmeta}`}</option>);
-              })}
-          </Input>
-
-          <hr/>
-
-          <Label >Projekti za dati predmet: </Label>
-          <Input type="select" name="projekat" onChange={(e)=>{this.selektanProjekat(e.target.value)}}>
-            {this.state.selektani_predmet != null ?
-            this.state.selektani_predmet.projekti.map((projekat) => {
-                return (<option key={projekat.idProjekat} value={projekat.idProjekat}>{`${projekat.nazivProjekta}`}</option>);
-            }) : null }
-          </Input>
-
           <hr/>
 
           <Label>Projektne grupe:</Label>
+
           <br></br>
+
           {this.renderGrupe()}
           
         </FormGroup>

@@ -17,6 +17,15 @@ import DetaljiProjektneGrupe from './PrikazDetaljaProjektneGrupe';
       })
     }
     render(){
+      return (
+        <div style={{textAlign:"left"}}>
+         <h6 class="card-subtitle mb-2 text-muted">{this.state.tech}</h6>
+          
+          
+        </div>
+      )
+
+      /*
       if(this.state.detalji) return(
         <div style={{textAlign:"left"}}>
          <h6 class="card-subtitle mb-2 text-muted">{this.state.tech}</h6>
@@ -27,9 +36,9 @@ import DetaljiProjektneGrupe from './PrikazDetaljaProjektneGrupe';
             <option className="list-group-item" value="Grupa 3">Grupa 3</option>
             <option className="list-group-item" value="Grupa 3">Grupa 4</option>
           </select>
-          {/*
-          <button id="dugme" style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
-          */}
+          {
+          //<button id="dugme" style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
+          }
           <DetaljiProjektneGrupe/>
         </div>
       )
@@ -43,11 +52,11 @@ import DetaljiProjektneGrupe from './PrikazDetaljaProjektneGrupe';
             <option className="list-group-item" value="Grupa 3">Grupa 3</option>
             <option className="list-group-item" value="Grupa 3">Grupa 4</option>
           </select>
-          {/*
-          <button id="dugme" style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
-          */}
+          {
+          //<button id="dugme" style={{ "margin": "2%", "height":"20px" , "width": "80px"}}  onClick={this.setRedirect}> OK</button>
+          }
         </div>
-      )
+      )*/
     }
   }
 

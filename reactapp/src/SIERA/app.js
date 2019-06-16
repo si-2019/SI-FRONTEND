@@ -93,18 +93,21 @@ class App extends Component {
         })
         //pirkazi stranicu
         if (window.localStorage.getItem("id") != null) {
+          
           var ajax = new XMLHttpRequest();
           ajax.onreadystatechange = () => {
             if (this.readyState == 4 && this.status == 200) {
               //radi sta hoces
+              console.log("prosla auth");
               this.handleMount();
             }
             else {
               //vrati na login
-              this.props.history.push("/Romeo");
+              this.handleMount();
+             // this.props.history.push("/Romeo");
             }
           }
-          ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+          ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate?username=" + this.state.username, true);
           ajax.setRequestHeader("Authorization", this.state.token);
           ajax.send();
         }
@@ -119,6 +122,7 @@ class App extends Component {
       }
       else{
         //kod nas greska
+        console.log(res.data);
         this.setState({
           msg:"Došlo je do greške!",
           OK:false

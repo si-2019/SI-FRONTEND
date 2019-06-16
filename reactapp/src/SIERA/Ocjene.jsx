@@ -23,10 +23,11 @@ class Ocjene extends React.Component {
                 }
                 else {
                     //vrati na login
-                    this.props.history.push("/Romeo");
+                  //  this.props.history.push("/Romeo");
+                  this.handleMount();
                 }
             }
-            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate?username=" + this.state.username, true);
             ajax.setRequestHeader("Authorization", this.state.token);
             ajax.send();
         }

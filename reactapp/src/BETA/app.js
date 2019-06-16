@@ -25,7 +25,7 @@ class App extends Component {
     super(props);
     this.state = {
       activeContentId: 1,
-      role: ROLES.STUDENTSKA_SLUZBA,
+      role: ROLES.STUDENT,
       loading: true,
       error: false
     };
@@ -65,11 +65,14 @@ class App extends Component {
           error: true
         })
       } else {
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('id')
-        window.localStorage.removeItem('username')
+        this.setState({
+          loading: false
+        })
+        // window.localStorage.removeItem('token')
+        // window.localStorage.removeItem('id')
+        // window.localStorage.removeItem('username')
 
-        window.location.href = '/romeo'
+        // window.location.href = '/romeo'
       }
     }
   }

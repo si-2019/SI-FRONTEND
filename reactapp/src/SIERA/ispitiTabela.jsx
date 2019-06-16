@@ -3,6 +3,7 @@ import "./bootstrap.min.css";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
 import "./tabela.css"
+import jQuery from "jquery"
 
 class IspitiTabela extends Component {
   state = {
@@ -14,21 +15,22 @@ class IspitiTabela extends Component {
 
   componentDidMount() {
     if (window.localStorage.getItem("id") != null) {
-      var ajax = new XMLHttpRequest();
-      ajax.onreadystatechange = () => {
-          if (this.readyState == 4 && this.status == 200) {
-              //radi sta hoces
-              this.handleGet();
-          }
-          else {
-              //vrati na login
-              //this.props.history.push("/Romeo");
-              this.handleMount();
-          }
-      }
-      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate?username=" + this.state.username, true);
-      ajax.setRequestHeader("Authorization", this.state.token);
-      ajax.send();
+      axios({
+        url: 'https://si2019romeo.herokuapp.com/users/validate',
+        type: 'get',
+        dataType: 'json',
+        data: jQuery.param({
+          username: window.localStorage.getItem("username")
+        }),
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+        },
+        complete: function (response) {
+          if (response.status == 200) this.handleGet();
+          else this.props.history.push("/Romeo");
+
+        }
+    })
   }
   else this.handleGet();    
   }

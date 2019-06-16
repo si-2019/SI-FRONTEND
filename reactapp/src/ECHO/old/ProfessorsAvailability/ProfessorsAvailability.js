@@ -31,8 +31,8 @@ class ProfessorsAvailability extends Component {
         this.setState({
             input: e.target.value,
             page: 1,
-        });
-        this.componentDidMount();
+        },
+        this.componentDidMount);
     }
     onChange(current, pageSize){
         this.setState({
@@ -43,8 +43,8 @@ class ProfessorsAvailability extends Component {
         this.changeActiveId(1);
         this.changeProfessorId(id);
     }
-    componentDidMount() {
-        fetch("http://localhost:31905/si2019/echo/getTeachingStaff", {
+    componentDidMount(prevState) {
+        fetch("https://si-echo-2019.herokuapp.com/api/si2019/echo/getTeachingStaff", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -83,7 +83,7 @@ class ProfessorsAvailability extends Component {
                         <td class="tabtip1">{prof.ime} {prof.prezime}</td>
                         <td class="tabtip1">{prof.email}</td>
                         <td class="tabtip1">{prof.titula}</td>
-                        <td class="tabtip1"><a onClick={this.onStaffEdit(prof.id)}><EditIcon/></a></td>
+                        <td class="tabtip1"><a onClick={()=>this.onStaffEdit(prof.id)}><EditIcon/></a></td>
                     </tr>
                 </Fragment>
             )
@@ -91,7 +91,7 @@ class ProfessorsAvailability extends Component {
         return (
             <div className="container">
                 <div className="row search-teachers shadow-border">
-                    <input id="searchTeachingStaff" type="text" placeholder="Search.." onChange={this.onChangeHandler.bind(this)}/>
+                    <input id="searchTeachingStaff" type="text" placeholder="Search.." onChange={() => this.onChangeHandler.bind(this)}/>
 
                 </div>
                 <div className="row">
@@ -116,7 +116,7 @@ class ProfessorsAvailability extends Component {
                     pageSize={this.state.size}
                     showPrevNextJumpers
                     locale={localeInfo}
-                    onChange={this.onChange.bind(this)}
+                    onChange={() => this.onChange.bind(this)}
                 />
             </div>
         );

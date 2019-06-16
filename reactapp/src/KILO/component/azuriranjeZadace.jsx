@@ -128,7 +128,7 @@ getZadacaById = async zadacaId => {
   try {
     this.provjeriToken();
     const res = await axios.get(
-      `http://:31911/getZadacaById/${zadacaId}`
+      `https://si2019kilo.herokuapp.com/getZadacaById/${zadacaId}`
     );
     this.setState({
       azuriranjeState: res.data

@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Predmet from "./components/Predmet";
 
 class App extends React.Component {
+  
   constructor(props) {
     super(props)
     const token = localStorage.getItem("token")
@@ -29,6 +30,7 @@ class App extends React.Component {
         return <Redirect to="/Romeo" />
     }
   }
+
   //provjera tokena na frontendu, dio za backend uraditi tj. dio vezan za validnost tokena
 
   render() {

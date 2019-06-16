@@ -24,7 +24,8 @@ class objavaProfesor extends Component {
       datum: props.datumobjave,
       uspjesno: true,
       tekstGreske: "",
-      tekstUredi: "Uredi"
+      tekstUredi: "Uredi",
+      greskaVelicina: false
     }
     this.handleNazivChange = this.handleNazivChange.bind(this)
     this.handleOpisChange = this.handleOpisChange.bind(this)
@@ -87,7 +88,7 @@ class objavaProfesor extends Component {
         if(res.data.error){
           this.setState({
             uspjesno: false,
-            tekstGreske: "Nije moguće obrisati materijal"
+            tekstGreske: "Brisanje materijala nije moguće!"
           })
         }
         else{
@@ -99,6 +100,11 @@ class objavaProfesor extends Component {
         window.location.reload()
         }
       }
+    }).catch(err => {
+      this.setState({
+        uspjesno: false,
+        tekstGreske: "Brisanje materijala nije moguće!"
+      })
     })
 
   }
@@ -122,14 +128,24 @@ class objavaProfesor extends Component {
 
   handleClick = e => {
     let data = new FormData()
+    let greskaVelicina = false
     data.append("napomena", document.getElementById("napomena").value)
     data.append("naziv", document.getElementById("naziv").value)
     data.append("idMaterijal", this.props.id)
     data.append("objavljeno", !document.getElementById("objavljeno").checked)
     let files = document.getElementById("fileovi").files
     for (let i = 0; i < files.length; i++) {
+      if(files[i].size>1024*1024*2){
+        greskaVelicina = true
+      }
       data.append('file', files[i])
     }
+    if(greskaVelicina){
+      this.setState({
+        greskaVelicina: true
+      })
+    }
+    else{
     axios.post("http://si2019golf.herokuapp.com/r1/updateMaterijal", data).then(res => {
       if (res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
@@ -138,7 +154,7 @@ class objavaProfesor extends Component {
         if(res.data.error){
           this.setState({
             uspjesno: false,
-            tekstGreske: "Nije moguće urediti materijal"
+            tekstGreske: "Uređivanje materijala nije moguće"
           })
         }
         else{
@@ -149,31 +165,56 @@ class objavaProfesor extends Component {
           objavljeno: res.data.objava.objavljeno,
           fileovi: res.data.objava.datoteke,
           showMe: !this.state.showMe,
-          datum: res.data.objava.datum
+          datum: res.data.objava.datum,
+          greskaVelicina: false,
+          tekst: "Uredi"
         })
       }
       }
+    }).catch(err => {
+      this.setState({
+        uspjesno: false,
+        tekstGreske: "Uređivanje materijala nije moguće!"
+      })
     })
+  }
   }
 
   skiniFile(naziv, id) {
     axios({
       url: `http://si2019golf.herokuapp.com/r1/dajFile?id=${id}`,
       method: 'GET',
-      responseType: 'stream'
+      responseType: 'blob'
     }).then((res) => {
       if (res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
+        if(res.data.error){
+          this.setState({
+            uspjesno: false,
+            tekstGreske: "Preuzimanje datoteke nije moguće!"
+          })
+        }
+        else{
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement('a');
         link.href = url;
         link.setAttribute('download', naziv);
         document.body.appendChild(link);
         link.click();
+        this.setState({
+          uspjesno: true,
+          tekstGreske: ""
+        })
+        }
       }
-    });
+    }).catch(err => {
+      this.setState({
+        uspjesno: false,
+        tekstGreske: "Preuzimanje datoteke nije moguće!"
+      })
+    })
   }
 
   render() {
@@ -219,6 +260,12 @@ class objavaProfesor extends Component {
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
                     <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
+                    {this.state.greskaVelicina && 
+                    <div class="alert alert-dismissible alert-danger golfw">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Veličina nekih datoteka je veća od dozvoljene!
+                  </div>
+                    }
                   </div>
                   <input type="checkbox" checked={this.state.uChecked} id="objavljeno" onChange={this.handleObjavljenoChange}></input> Sakrij objavu
                   <button type="button" class="btn btn-primary" id="dugmeObjavi" onClick={this.handleClick}>Izmijeni</button>

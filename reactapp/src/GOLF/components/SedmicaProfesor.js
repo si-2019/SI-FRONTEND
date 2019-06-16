@@ -16,6 +16,8 @@ class SedmicaProfesor extends Component {
       id: "",
       dodavanjeUspjelo: true,
       loading: true,
+      tekstGreska: "",
+      greskaVelicina: false
     }
   }
 
@@ -25,24 +27,48 @@ class SedmicaProfesor extends Component {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
+        if(res.data.error){
+          this.setState({
+            loading: true
+          })
+        }
+        else{
         this.setState({
           objave: res.data.objave,
           loading: false
         })
       }
+      }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
     })
+
     axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
       if (res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
+        if(res.data.error){
+          this.setState({
+            loading: true
+          })
+        }
+        else{
         let x = res.data.naziv == props.naziv
         this.setState({
           naziv: res.data.naziv,
           id: res.data.id,
-          x: x
+          x: x,
+          loading: false
         })
       }
+      }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
     })
   }
 
@@ -53,44 +79,7 @@ class SedmicaProfesor extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://si2019golf.herokuapp.com/r3/dajMaterijaleZaProfesora/${this.props.idPredmet}/${this.props.sedmice}/${encodeURIComponent(this.props.naziv)}`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        this.setState({
-          objave: res.data.objave,
-          loading: false
-        })
-      }
-    })
-    axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        let x = res.data.naziv == this.props.naziv
-        this.setState({
-          naziv: res.data.naziv,
-          id: res.data.id,
-          x: x
-        })
-      }
-    })
-
-
-    axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        this.setState({
-          naziv: res.data.naziv,
-          id: res.data.id
-        })
-      }
-    })
-
+    this.ucitaj(this.props)
   }
 
   componentWillReceiveProps(props) {
@@ -100,6 +89,7 @@ class SedmicaProfesor extends Component {
   handleClick = e => {
     let data = new FormData()
     let imena = []
+    let greskaVelicina = false
     data.append("napomena", document.getElementById("napomena").value)
     data.append("naziv", document.getElementById("naziv").value)
     data.append("idMaterijal", this.props.idMaterijala)
@@ -110,9 +100,18 @@ class SedmicaProfesor extends Component {
     data.append("idAkademskaGodina", this.state.id)
     let files = document.getElementById("fileovi").files
     for (let i = 0; i < files.length; i++) {
+      if(files[i].size>2*1024*1024){
+        greskaVelicina=true
+      }
       data.append('file', files[i])
       imena.push(files[i])
     }
+    if(greskaVelicina){
+      this.setState({
+        greskaVelicina: true
+      })
+    }
+    else{
     axios.post("http://si2019golf.herokuapp.com/r1/dodajMaterijal", data).then(res => {
       if (res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
@@ -130,11 +129,17 @@ class SedmicaProfesor extends Component {
             objave: objave,
             showMe: !this.state.showMe,
             tekst: "Dodaj objavu",
-            dodavanjeUspjelo: true
+            dodavanjeUspjelo: true,
+            greskaVelicina: false
           })
         }
       }
+    }).catch( err => {
+      this.setState({
+        dodavanjeUspjelo: false
+      })
     })
+  }
   }
 
   prikaz() {
@@ -157,7 +162,8 @@ class SedmicaProfesor extends Component {
       <div class='divsaokvirom'>
         <h4 class='naslov'>{this.props.naslov}</h4>
         {
-          this.state.loading ? <div class="spinerGolf">
+          this.state.loading ? 
+          <div class="spinerGolf">
           <Spinner animation='border' role='status' variant='primary'>
             <span className="sr-only">Učitavanje...</span>
           </Spinner></div> : <div>
@@ -181,6 +187,12 @@ class SedmicaProfesor extends Component {
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
                     <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
+                    {this.state.greskaVelicina && 
+                    <div class="alert alert-dismissible alert-danger golfw">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Veličina nekih datoteka je veća od dozvoljene!
+                  </div>
+                    }
                   </div>
 
                   <input type="checkbox" name="objavljeno" id="objavljeno"></input> Sakrij objavu

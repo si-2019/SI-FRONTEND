@@ -29,6 +29,10 @@ class LiteraturaStudent extends Component {
           })
         }
       }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
     })
 
   }

@@ -30,6 +30,11 @@ class JedanPredmet extends Component {
         })
       }
       }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
+      console.log(err)
     })
   }
 

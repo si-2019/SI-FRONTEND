@@ -18,7 +18,9 @@ class oPredmetuProfesor extends Component {
       uOpis: "",
       loading: true,
       uredjivanjeUspjelo: true,
-      tekstUredi: "Uredi"
+      tekstUredi: "Uredi",
+      tekstGreska: "",
+      greskaVelicina: false
     }
     this.handleOpisChange = this.handleOpisChange.bind(this)
   }
@@ -44,6 +46,10 @@ class oPredmetuProfesor extends Component {
         })
       }
       }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
     })
 
     axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
@@ -51,42 +57,30 @@ class oPredmetuProfesor extends Component {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
+        if(res.data.error){
+          this.setState({
+            loading: true
+          })
+        }
+        else{
         let x = res.data.naziv == props.naziv
         this.setState({
           naziv: res.data.naziv,
-          x: x
+          x: x,
+          id: res.data.id,
+          loading: false
         })
       }
+      }
+    }).catch(err => {
+      this.setState({
+        loading: true
+      })
     })
   }
 
   componentDidMount() {
-    axios.get(`http://si2019golf.herokuapp.com/r3/dajOPredmetu/${this.props.idPredmeta}/${encodeURIComponent(this.props.naziv)}`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        this.setState({
-          objave: res.data.objave[0],
-          fileovi: res.data.objave[0].datoteke,
-          opis: res.data.objave[0].opis,
-          loading: true
-        })
-      }
-    })
-
-    axios.get(`http://si2019golf.herokuapp.com/r1/nazivTrenutneAkademskeGodine`).then(res => {
-      if (res.data.loginError) {
-        window.location.href = window.location.origin + '/romeo/login'
-      }
-      else {
-        let x = res.data.naziv == this.props.naziv
-        this.setState({
-          naziv: res.data.naziv,
-          x: x
-        })
-      }
-    })
+    this.ucitaj(this.props)
 
   }
 
@@ -114,14 +108,22 @@ class oPredmetuProfesor extends Component {
 
   handleClick = e => {
     let data = new FormData()
+    let greskaVelicina = false
     data.append("napomena", document.getElementById("napomena").value)
     data.append("idMaterijal", this.state.objave.id)
-    console.log(this.state.objave.id)
     let files = document.getElementById("fileovi").files
     for (let i = 0; i < files.length; i++) {
+      if(files[i].size>2*1024*1024){
+        greskaVelicina = true
+      }
       data.append('file', files[i])
-      console.log(files[i].name)
     }
+    if(greskaVelicina){
+      this.setState({
+        greskaVelicina: true
+      })
+    }
+    else{
     axios.post("http://si2019golf.herokuapp.com/r1/updateMaterijal", data).then(res => {
       if (res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
@@ -129,7 +131,8 @@ class oPredmetuProfesor extends Component {
       else {
         if(res.data.error){
             this.setState({
-              uredjivanjeUspjelo: false
+              uredjivanjeUspjelo: false,
+              tekstGreska: "Uređivanje materijala nije uspjelo"
             })
         }
         else{
@@ -137,31 +140,57 @@ class oPredmetuProfesor extends Component {
           objave: res.data.objava,
           fileovi: res.data.objava.datoteke,
           showMe: !this.state.showMe,
-          uredjivanjeUspjelo: true
+          uredjivanjeUspjelo: true,
+          tekstGreska: "",
+          tekstUredi: "Uredi",
+          greskaVelicina: false
         })
       }
       }
+    }).catch(err => {
+      this.setState({
+        uredjivanjeUspjelo: false,
+        tekstGreska: "Uređivanje materijala nije uspjelo"
+      })
     })
+  }
   }
 
   skiniFile(naziv, id) {
     axios({
       url: `http://si2019golf.herokuapp.com/r1/dajFile?id=${id}`,
       method: 'GET',
-      responseType: 'stream'
+      responseType: 'blob'
     }).then((res) => {
       if (res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
       }
       else {
+        if(res.data.error){
+          this.setState({
+            uredjivanjeUspjelo: false,
+            tekstGreska: "Preuzimanje materijala nije uspjelo!"
+          })
+        }
+        else {
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement('a');
         link.href = url;
         link.setAttribute('download', naziv);
         document.body.appendChild(link);
         link.click();
+        this.setState({
+          uredjivanjeUspjelo: true,
+          tekstGreska: ""
+        })
+        }
       }
-    });
+    }).catch(err => {
+      this.setState({
+        uredjivanjeUspjelo: false,
+        tekstGreska: "Preuzimanje materijala nije uspjelo!"
+      })
+    })
   }
 
   sakrij(){
@@ -207,6 +236,12 @@ class oPredmetuProfesor extends Component {
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
                     <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
+                    {this.state.greskaVelicina && 
+                    <div class="alert alert-dismissible alert-danger golfw">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Veličina nekih datoteka je veća od dozvoljene!
+                  </div>
+                    }
                   </div>
                   <button type="button" class="btn btn-primary" id="dugmeObjavi" onClick={this.handleClick}>Izmijeni</button>
                 </form>
@@ -215,7 +250,7 @@ class oPredmetuProfesor extends Component {
           </div>}
           {!this.state.uredjivanjeUspjelo && <div class="alert alert-dismissible alert-danger golfw">
   <button type="button" class="close" onClick={() => this.sakrij()} data-dismiss="alert">&times;</button>
- Uređivanje nije uspjelo!
+ {this.state.tekstGreska}
 </div>}
 
       </div>

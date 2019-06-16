@@ -251,22 +251,38 @@ class Mike extends Component {
       </div>
     </div>
     );
+    //else return(<p>greska</p>);
   }
   kreiranjeGrupe(){
     let ajax=new XMLHttpRequest();
     var komponenta=this;
-    //var jsonNovi=[{id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20},
-    //{id:2,naziv:"Projektovanje informacionih sistema*",opis:"Informacioni sistem Crvenog Križa FBiH*",bodovi:30}];
     ajax.onreadystatechange=function(){
+      console.log(ajax.status);
         if(ajax.readyState==4 && ajax.status=="200"){
-          var tekst=ajax.responseText;
-          if(tekst.length==0) return;
-          var json=JSON.parse(tekst).predmeti;
-          //jsonNovi.push({id:1,naziv:"Softverski inzenjering*",opis:"Projekat informacionog sistema za fakultet*",bodovi:20});
+          var tekst=JSON.parse(ajax.responseText);
+          var json;
+          if(!tekst.message){
+            json=tekst.predmeti;
+          }
+          else{
+            json=[{
+              "id": 64,
+              "naziv_predmeta": "Softver inzenjering",
+              "projekti": [
+              {
+                "idProjekat": 4,
+                "nazivProjekta": "Zamger 2.0",
+                "progress": null,
+                "opisProjekta": "Informacioni sistem fakulteta",
+                "moguciBodovi": 40,
+                "rokProjekta": null
+              }]
+            }];
+          }
           komponenta.setState(state=>({
             forma:"kreiranjeGrupe",
             predmeti:json
-          }));
+          })); 
         }
         else if(ajax.status>=500){
           komponenta.setState(state=>({
@@ -293,6 +309,16 @@ class Mike extends Component {
           var tekst=ajax.responseText;
           if(tekst.length==0) return;
           var json=JSON.parse(tekst);
+          if(json.message){
+            json=[{
+              idPredmet:64,
+              naziv:"Softver Inženjering",
+              idProjekat:1,
+              nazivProjekta:"Zamger 2.0",
+              opis:"Informacioni sistem za fakultet",
+              idProjektnaGrupa:1
+            }]
+          }
         komponenta.setState(state=>({
             forma:"listaProjekata",
             predmeti:json
@@ -314,25 +340,31 @@ class Mike extends Component {
   pregledDetaljaPredmeta(){
 		let ajax=new XMLHttpRequest();
     var komponenta=this;
-    var jsonNovi=[
-      {nazivPredmeta:"Softver Inženjering*",idProjekat:1, brojStudenata:50},
-      {nazivPredmeta:"Vještačka inteligencija*",idProjekat:2, brojStudenata:30}];
     ajax.onreadystatechange=function(){
-        if(ajax.readyState==4 && ajax.status=="200"){
-					var tekst=ajax.responseText;
-          if(tekst.length==0) return;
-					var json=JSON.parse(tekst);
-					komponenta.setState(state=>({
-            forma:"PregledAsistent",
-            predmeti:json
-          }));
-        }
-        else if(ajax.status>=500){
-          komponenta.setState(state=>({
-            forma:"PregledAsistent",
-            predmeti:json
-          }));
-        }
+      if(ajax.readyState==4 && ajax.status=="200"){
+        var tekst=ajax.responseText;
+        var json=JSON.parse(tekst);
+        if(json.message){
+          json=[{
+            idPredmet:64,
+            naziv:"Softver Inženjering",
+            idProjekat:1,
+            nazivProjekta:"Zamger 2.0",
+            opis:"Informacioni sistem za fakultet",
+            moguciBodovi:40
+          }]
+        };
+        komponenta.setState(state=>({
+          forma:"PregledAsistent",
+          predmeti:json
+        }));
+      }
+      else if(ajax.status>=500){
+        komponenta.setState(state=>({
+          forma:"PregledAsistent",
+          predmeti:json
+        }));
+      }
 		}
     ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/predmetiprojektiasistent/"
     +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);

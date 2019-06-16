@@ -62,7 +62,8 @@ class Raspored extends Component {
       })
     }).then(
       this.setState({
-        alertMessage: "Uspješno ste kreirali raspored",
+        alertMessage:
+          "Uspješno ste kreirali raspored. Potrebno je sačekati par minuta da sačuvate raspored kao .txt datoteku.",
         alertMessageStatus: "Ok!",
         alertVisible: true,
         alertColor: "success"

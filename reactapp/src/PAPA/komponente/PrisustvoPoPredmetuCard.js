@@ -12,8 +12,9 @@ class PrisustvoPoPredmetuCard extends React.Component {
     constructor(){
         super();
         this.state={
-            idGodina:"",
-            idPredmet:"",
+            
+            idGodina:null,
+            idPredmet:null,
             nizPredmeta:[],
             nizGodina:[],
             boja:"white",

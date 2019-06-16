@@ -18,6 +18,7 @@ class ObavjestenjaPapa extends Component {
                     naslov: "Izaberite nacin prikazivanja",
                     lista:[],
                     showPredmet:false,
+                    showIspiti:false,
                     clicked: false
                  };
     this.obavjestenjaAdmin = this.obavjestenjaAdmin.bind(this); 
@@ -31,6 +32,15 @@ class ObavjestenjaPapa extends Component {
     this.kliknutPredmet=this.kliknutPredmet.bind(this)
   }
 
+  kliknutPredmet(){
+    if(this.state.showPredmet){
+      window.location.replace("/Delta");
+    }
+    else if(this.state.showIspiti){
+      window.location.replace("/Charlie");
+    }
+  }
+
   promijeniBoju(novaBoja){
     this.setState({
       boja:novaBoja  
@@ -41,11 +51,13 @@ class ObavjestenjaPapa extends Component {
     papaApi.obavjestenjaAdmin().then((res) => {
         this.setState({
           showPredmet:false,
+          showIspiti:false,
           naslov:"Obajestenja od admina",
           lista:res.data});
     }).catch((err) => {
       this.setState({
         showPredmet:false,
+        showIspiti:false,
         naslov:"Obavjestenja od admin",
         lista:[]});
     });
@@ -55,13 +67,15 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Obavjestenja od studentske sluzbe",
         lista:res.data,
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     }).catch((err) => {
       this.setState({
         naslov:"Obavjestenja od studentske sluzbe",
         lista:[],
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     });
   }
@@ -70,12 +84,14 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Obajvestenja od profesora",
         lista:res.data,
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     }).catch((err) => {
       this.setState({
         naslov:"Obavjestenja od profesora",
         lista:[],
+        showIspiti:false,
         showPredmet:false
       });
     });
@@ -83,11 +99,13 @@ class ObavjestenjaPapa extends Component {
   obavjestenjaAsistent(){
     papaApi.obavjestenjaAsistent().then((res) => {
       this.setState({
+        showIspiti:false,
         showPredmet:false,
         naslov:"Obajvestenja od asistenta",
         lista:res.data});
     }).catch((err) => {
       this.setState({
+        showIspiti:false,
         showPredmet:false,
         naslov:"Obajvestenja od asistenta",
         lista:[]});
@@ -105,10 +123,12 @@ class ObavjestenjaPapa extends Component {
 
       this.setState({
         naslov:"Upisane ocijene",
+        showIspiti:false,
         lista:niz});
     }).catch((err)=>{
       this.setState({
         naslov:"Upisane ocijene",
+        showIspiti:false,
         lista:[]});
     });
   }
@@ -124,13 +144,15 @@ class ObavjestenjaPapa extends Component {
       this.setState({
         naslov:"Trenutne prijeva za ispit",
         lista:niz,
+        showIspiti:true,
         showPredmet:false
       });
     }).catch((err) => {
       this.setState({
         naslov:"Trenutne prijave za ispit",
         lista:[],
-        showPredmet:false
+        showPredmet:false,
+        showIspiti:false
       });
     });
   }
@@ -147,11 +169,13 @@ class ObavjestenjaPapa extends Component {
       }
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati parcijalnih ispita",
         lista:niz});
     }).catch((err) => {
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati parcijalnih ispita",
         lista:[]});
     });
@@ -170,17 +194,16 @@ class ObavjestenjaPapa extends Component {
       }
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati usmenih ispita",
         lista:niz});
     }).catch((err) =>{
       this.setState({
         showPredmet:true,
+        showIspiti:false,
         naslov:"Rezultati usmenih ispita",
         lista:[]});
     });
-  }
-  kliknutPredmet(){
-      
   }
   render() {
     return (

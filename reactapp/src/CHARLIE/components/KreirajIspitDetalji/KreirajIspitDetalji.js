@@ -84,7 +84,7 @@ class KreirajIspitDetalji extends Component {
                     Sala:
                   </label>
                 </div>
-                <select multiple class='custom-select' id='sala' value={this.state.sale} onChange={(e) => this.setState({sala: e.target.value})}>
+                <select multiple class='custom-select' id='sala' value={this.state.sala} onChange={(e) => this.setState({sala: e.target.value})}>
                   <option>VA</option>
                   <option>MA</option>
                   <option>S0</option>

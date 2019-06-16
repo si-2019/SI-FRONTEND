@@ -39,8 +39,16 @@ class Modal3 extends React.Component {
         //ukoliko neki rezultira greskom, postavite greska na true
        
     }
-    onConfirm = e => {
+    onConfirm = async e => {
         this.props.onConfirm && this.props.onConfirm(e);
+    try {
+        const idKorisnika = window.localStorage.getItem('id') || 1
+      const {status} = await axios.post('http://si2019charlie.herokuapp.com/prijava/' + this.props.idIspit + '/' + idKorisnika)
+      status===200 ? window.alert('Uspjesno prijavljen ispit') : window.alert('Greska pri prijavi na ispit')
+      this.props.onChangeActiveId(3)
+    } catch (error) {
+      console.log(error)
+    }
       };
 
     handleClose = () => {

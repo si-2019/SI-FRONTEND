@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Korisnik from '../Korisnik';
 import OpenDialog from './openDialog';
 import {Link} from 'react-router-dom';
+import {IdUSER} from '../id.js';
 
 class Tema extends Component{
 
@@ -20,11 +21,11 @@ class Tema extends Component{
       sticky: !this.state.sticky
   });
    evt.preventDefault()
-   fetch("http://localhost:31919/setSticky", {
+   fetch("http://si2019tango.herokuapp.com/setSticky", {
      method: 'POST',  
     body: JSON.stringify({
       idTheme: this.props.tema.idTheme,
-      IdUser:'1', //logovan user
+      IdUser:IdUSER, //logovan user
       sticky:  !this.state.sticky
     }),  
    headers:{
@@ -58,7 +59,7 @@ class Tema extends Component{
         
           <div className='naziv_teme' >
             <a className="nav-link" href={'/TANGO/Komentari/?idTheme='+ idTheme}>{title}</a>
-            <input  className='btn btn-primary btn-sm' type='button' value="S" onClick={this.setSticky}/>
+            <button type="button" class="btn btn-primary px-1"  onClick={this.setSticky}><i class="fas fa-thumbtack" aria-hidden="true"></i></button>
           </div>
           <div className='datum_komentari'>
             <p className='brKom' >
@@ -75,7 +76,7 @@ class Tema extends Component{
                     state: { nazivTeme:{title},
                               id: {idTheme} }
                   }}>
-          <button type="button" class="btn btn-link" id="commentBtn" >Komentarisi</button>
+          <a className="nav-link" href={'/TANGO/Komentari/?idTheme='+ idTheme}>Komentarisi</a>
           </Link>
             <OpenDialog key={idTheme} naziv={title} id={this.props.tema.idTheme} show={this.state.show} close={this.handleClose}/>
           </div>

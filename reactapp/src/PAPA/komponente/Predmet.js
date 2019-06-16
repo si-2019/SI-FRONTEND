@@ -8,6 +8,7 @@ import ColorPicker from './manjeKomponente/ColorPicker';
 
 
 
+
 class PredmetOne extends Component {
 
   constructor(props) {
@@ -25,7 +26,14 @@ class PredmetOne extends Component {
     this.trenutniSaDrugihOdsjeka = this.trenutniSaDrugihOdsjeka.bind(this); 
     this.trenutniSaDrugihSemestara = this.trenutniSaDrugihSemestara.bind(this); 
     this.trenutniProfesori = this.trenutniProfesori.bind(this); 
-    this.trenutniAsistenti = this.trenutniAsistenti.bind(this); 
+    this.trenutniAsistenti = this.trenutniAsistenti.bind(this);
+    this.kliknutPredmet=this.kliknutPredmet.bind(this);
+  }
+
+  kliknutPredmet(){
+    if(this.state.showPredmet){
+      window.location.replace("/DELTA");
+    }
   }
 
   promijeniBoju(novaBoja){
@@ -155,10 +163,6 @@ class PredmetOne extends Component {
         showPredmet:false
       });
     });
-  }
-
-  kliknutPredmet(){
-    
   }
 
   render() {

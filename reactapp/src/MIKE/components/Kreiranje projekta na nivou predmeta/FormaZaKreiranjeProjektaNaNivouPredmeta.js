@@ -92,7 +92,9 @@ class KreiranjeProjekta extends Component {
             </Fragment>
         );
         else return(
-            <p>Nema predmeta</p>
+            <div className="alert alert-dismissible alert-danger" style={{width:"100%"}}>
+        <strong>Nemate predmete za koje možete kreirati projekat</strong> <br />
+      </div>
         )
     }
     notDone() {

@@ -81,7 +81,9 @@ class GenerisanjeGrupa extends Component {
 		</div>
 		);
 	else return(
-		<p>Nema projekata</p>
+		<div className="alert alert-dismissible alert-danger" style={{width:"100%"}}>
+        <strong>Nema projekata za koji možete generisati grupe</strong> <br />
+      </div>
 	)
   };
   notDone(){

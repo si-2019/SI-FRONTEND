@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 
-import Axios from 'axios';
+import axios from 'axios';
 import DatePicker from "react-datetime";
 
 class InformacijeOIspitu extends Component {
 
-  state ={ispit:{}}
+  state ={ispit:{
+    rokPrijave: new Date(),
+    termin: new Date(),
+    vrijemeTrajanja:0,
+    kapacitet: 0,
+    napomena: ''
+  }}
 
   async componentDidMount() {
     // vratit ce ispit kad se uradi backend
-    // this.setState({ ispit: Axios.get("http://si2019charlie.herokuapp.com/ispiti/:idIspit") });
+    const {data} = await axios.get(`http://si2019charlie.herokuapp.com/ispit/${this.props.idIspit}`)
+    console.log(data)
+    this.setState({ ispit: data});
   }
 
   render() {
@@ -21,7 +29,7 @@ class InformacijeOIspitu extends Component {
             </div>
               <DatePicker
                         id="rokPrijave"
-                        value={this.state.ispit.rokPrijave}
+                        value={this.state.ispit && this.state.ispit.rokPrijave || new Date()}
                         disabled
                 
               /> 
@@ -45,24 +53,25 @@ class InformacijeOIspitu extends Component {
             </div>
               <DatePicker
                         id="termin2"                        
-                        disabled                
+                        disabled        
+                        value={this.state.ispit && this.state.ispit.termin || new Date()}        
               /> 
                <div style={{textAlign: "left"}}>                
               <label class="col-form-label col-form-label-lg" htmlFor="vrijemeTrajanja">Vrijeme trajanja: </label> </div>
-              <input type="number" className="form-control" id="vrijemeT2" disabled />
+              <input type="number" className="form-control" id="vrijemeT2" disabled value={this.state.ispit && this.state.ispit.vrijemeTrajanja || 0}/>
               <div style={{textAlign: "left"}}>
-              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet">Kapacitet: </label> </div>
-              <input type="number" className="form-control" id="kapacitet2" disabled/>
+              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet" >Kapacitet: </label> </div>
+              <input type="number" className="form-control" id="kapacitet2" disabled value={this.state.ispit && this.state.ispit.kapacitet || 0}/>
               <div style={{textAlign: "left"}}>
-              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet">Napomena: </label> </div>
+              <label class="col-form-label col-form-label-lg" htmlFor="Kapacitet" >Napomena: </label> </div>
               
            <textarea
                     
                     className="form-control"
                     id="ispitnaNapomena2"
-                    placeholder="Ovdje unesite napomenu..."
                     rows="15"
                     disabled
+                    value={this.state.ispit && this.state.ispit.napomena}
                    
         />
           

@@ -94,7 +94,23 @@ class ObavjestenjaPapa extends Component {
     });
   }
   upisaneOcijene(){
-   
+    papaApi.upisaneOcijene().then((res) => {
+      let niz=[];
+      for (let a = 0; a < res.data.length; a++ ) {
+           niz.push({
+            id:a+1,
+            obavjestenje:"Iz predmeta "+res.data[a].naziv + " upisali ste ocijenu " +res.data[a].ocjena +"."
+          });
+      }  
+
+      this.setState({
+        naslov:"Upisane ocijene",
+        lista:niz});
+    }).catch((err)=>{
+      this.setState({
+        naslov:"Upisane ocijene",
+        lista:[]});
+    });
   }
   ispitiPrijava(){
     papaApi.ispitiPrijava().then((res) => {
@@ -164,19 +180,20 @@ class ObavjestenjaPapa extends Component {
     });
   }
   kliknutPredmet(){
-    if(this.state.showPredmet){
-        this.props.fija();      
-    }
+      
   }
   render() {
     return (
-      <div style={{ width: '100%', height: '22rem'}}>
-        <Card border="secondary" style={{ width: '100%', minHeight: '22rem', backgroundColor:this.state.boja}}>
+      <div style={{ width: '100%', height: '100%'}}>
+        <Card className="m-0" style={{ width: '100%', height: '100%', backgroundColor:this.state.boja}}>
         <Card.Header className='bg-primary'>
           <div style={{width: '100%',  display: 'flex',justifyContent:'space-between'}}>
             {<h3 style={{color:"white"}} >Obavijesti</h3>}
             <ButtonGroup vertical  style={{alignSelf: 'flex-end'}}>
-              <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
+              <DropdownButton as={ButtonGroup} 
+              alignRight
+              title="Filteri "
+              id="dropdown-menu-align-right">
                 <Dropdown.Item eventKey="1" onClick={this.obavjestenjaAdmin}>Obavjestenja admin</Dropdown.Item>
                 <Dropdown.Item eventKey="2" onClick={this.obavjestenjaStudentskaSluzba}>Obavjestenjas studentska sluzba </Dropdown.Item>
                 <Dropdown.Item eventKey="3" onClick={this.obavjestenjaProfesor}>Obavjestenja profesor</Dropdown.Item>

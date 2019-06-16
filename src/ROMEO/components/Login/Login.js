@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import ReactDOM from 'react-dom'
 import './login.css';
 import axios from 'axios';
+import App from '../../../header';
 
 var error = 'Greska';
 

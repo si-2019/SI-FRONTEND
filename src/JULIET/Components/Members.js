@@ -49,13 +49,13 @@ class Members extends Component {
                         let innerHTML = node.innerHTML; 
                         node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
                     }}>
-                    <div className="juliet-section-header"><h5>Members</h5></div>
+                    <div className="juliet-section-header"><h5>Članovi</h5></div>
                     <i id="arrow-members" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                 </div> 
                 <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="all-members">
                 <form onSubmit={this.handleSubmit} style={{width: '100%'}}>
                     <input className="input-group mb-3 juliet-message-input" type="text" style={inputStyle}
-                    placeholder="Add user to the room..." onChange={this.handleChange} value={this.state.userName} />
+                    placeholder="Dodajte korisnika u sobu" onChange={this.handleChange} value={this.state.userName} />
                 </form>
                     
                     { this.props.room_users && this.props.currentUser ? 

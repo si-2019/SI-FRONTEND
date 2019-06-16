@@ -10,6 +10,7 @@ import PrijavaIspita from "./components/PrijavaIspita";
 import PrijavljeniIspiti from "./components/PrijavljeniIspiti";
 import UrediIspit from "./components/UrediIspit";
 
+
 import LeftMenuCharlie from "./LeftMenuCharlie";
 import "./appCharlie.css";
 class App extends Component {
@@ -28,16 +29,13 @@ class App extends Component {
         component: <KreiraniIspiti />
       }, {
         btnText: "Kreiraj ispit detalji",
-        component: <KreirajIspitDetalji />
-      }, {
-        btnText: "Informacije o ispitu",
-        component: <InformacijeOIspitu />
+        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} />
       }, {
         btnText: "Prijava ispita",
-        component: <PrijavaIspita />
+        component: <PrijavaIspita onChangeActiveId={this.onChangeActiveId} />
       }, {
         btnText: "Prijavljeni ispiti",
-        component: <PrijavljeniIspiti />
+        component: <PrijavljeniIspiti onChangeActiveId={this.onChangeActiveId}/>
       }],
       menuComponentsProfesor: [{
         naziv: "Profil",
@@ -51,17 +49,13 @@ class App extends Component {
         naziv: "Profil",
         changeId: 2,
         component: <KreirajIspitDetalji/>
-      },{
-        naziv: "Profil",
-        changeId: 3,
-        component: <InformacijeOIspitu />
       }, {
         naziv: "Profil",
-        changeId: 4,
+        changeId: 3,
         component: <PrijavaIspita />
       }, {
         naziv: "Profil",
-        changeId: 5,
+        changeId: 4,
         component: <PrijavljeniIspiti />
       }],
       menuButtonsStudent: [{

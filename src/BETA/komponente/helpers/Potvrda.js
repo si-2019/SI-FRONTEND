@@ -28,7 +28,7 @@ class Potvrda extends React.Component {
     if (successful == "true") {
       obj = (
 
-        <div >
+        <div id="PopUp-Beta">
           <PopUp
             class="alert alert-dismissible alert-success"
             style={{

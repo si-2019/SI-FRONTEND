@@ -117,6 +117,16 @@
     margin-left: 4pt;
 }
 
+.gdugme{
+    right:0%;
+}
+
+.dugmeDesno{
+    float: right;
+    margin-top: 10pt;
+    margin-right: 10pt;
+}
+
 .vanjski{
     background-color: #ffffff;
 }
@@ -125,5 +135,14 @@
     float: left;
 }
 
+.spinerGolf{
+    width:50px;
+    margin:0 auto;
+}
+
+.golfw{
+    width:80%;
+    margin: auto;
+}
 
 

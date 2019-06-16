@@ -1,7 +1,6 @@
 import React from 'react';
 import './AppDelta.css';
 import { BrowserRouter, Route } from "react-router-dom";
-import Modal from 'react-responsive-modal'; 
 import Predmet from "./components/Predmet/Predmet";
 import ListaPredmeta from "./components/ListaPredmeta/ListaPredmeta"
 
@@ -9,32 +8,31 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeContentId: 0,
+      IDaktivnog: 0,
+      //DODANO JE OVO
       open: false,  //open pokazuje da li formu treba prikazati ili ne
       activeContentId: 1
     };
   }
 
-  //Funkcija kojom se otvara forma
-  onOpenModal = () => {
-    this.setState({ open: true });
+  IdPredmetaZaPrikazivanje = (id) => {
+    this.setState({
+      IDaktivnog: id
+    })
+    console.log(id);
   };
 
-  onCloseModal = () => {
-    window.confirm('Prekinuti pisanje issuea?') && this.setState({ open: false });
-  };
 
-  onCloseModalAndSaveAsDraft = () => {
-    window.confirm('Save issue as draft and close?') && this.setState({ open: false });
-  };
 
   onChangeActiveId = (id) => {
     this.setState({
-      activeContentId: id,
+      activeContentId: id
     })
   };
 
   render() {
-    const { open } = this.state;
+    
     return (
       <div>
         <div className="App">
@@ -43,50 +41,42 @@ class App extends React.Component {
 
             <div id = "main">
               <div id = "left">
-                <ListaPredmeta triggerChangeActiveId = {this.onChangeActiveId}/>
+                <ListaPredmeta triggerChangeActiveId = {this.onChangeActiveId} idAktivnog = {this.IdPredmetaZaPrikazivanje}/>
               </div>
-              <div id = "right">
-                <div 
-                    id = "TrackIssuesContent" 
-                    style={{display : this.state.activeContentId == 1 ? 'inherit' : 'none'}}
-                ><Predmet/>
-                </div>
-                <div 
-                    id = "DraftsContent" 
-                    style={{display : this.state.activeContentId == 2 ? 'inherit' : 'none'}}
-                ><Predmet/>
-                </div>
-                <div 
-                    id = "Archived" 
-                    style={{display : this.state.activeContentId == 3 ? 'inherit' : 'none'}}
-                > <Predmet/>
-                </div>
+              <div id = "right">            
+              <div
+              id="prviPredmet"
+              style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
+            ><Predmet idPredmeta={this.state.IDaktivnog}/>
+            </div>
+            <div
+              id="drugiPredmet"
+              style={{ display: this.state.activeContentId == 2 ? 'inherit' : 'none' }}
+            > <Predmet idPredmeta={this.state.IDaktivnog}/>
+            </div>
+            <div
+              id="treciPredmet"
+              style={{ display: this.state.activeContentId == 3 ? 'inherit' : 'none' }}
+            > <Predmet idPredmeta={this.state.IDaktivnog}/>
+            </div>
 
-                <div 
-                    id = "FAQContent" 
-                    style={{display : this.state.activeContentId == 4 ? 'inherit' : 'none'}}
-                >
-                 <Predmet/>
-                 </div>
-
-                 
-                
+            <div
+              id="cetvrtiPredmet"
+              style={{ display: this.state.activeContentId == 4 ? 'inherit' : 'none' }}
+            > <Predmet idPredmeta={this.state.IDaktivnog}/>
+            </div>
+              
+              <div
+              id="petiPredmet"
+              style={{ display: this.state.activeContentId == 5 ? 'inherit' : 'none' }}
+            >
+              <Predmet idPredmeta={this.state.IDaktivnog}/>
+            </div>
               </div>
             </div>
 
           </div>    
-          
-          <Modal
-            open={open}
-            center
-            id ="modal"
-            onClose={() => {}}
-            showCloseIcon={false}
-          >
-            <div id="overlay">
-            </div>
-          </Modal>
-          
+
         </div>
       </div>
     );

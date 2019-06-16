@@ -4,7 +4,7 @@
     max-width: 5000px;
 }
 #containerKreiranje {
-    background-color:#d9d9d9;
+    background-color: white;
     position: absolute;
     height: 100%;
     width: 100%; 
@@ -13,5 +13,6 @@
 
 #headerKreiranje{
     height: 10%;
-    background-color: #2C3E50
+    background-color: #2C3E50;
+    text-align: center
  }

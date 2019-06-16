@@ -96,7 +96,7 @@ class Ocjenjivanje extends Component {
   };
 
   pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
-    this.provjeriToken();
+    //this.provjeriToken();
     axios.get(`https://si2019kilo.herokuapp.com/getStudenteKojiSuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiPregledano: res.data
@@ -105,7 +105,7 @@ class Ocjenjivanje extends Component {
 }
 
   pokupiStudenteKojiNisuPoslaliZadacu = (idZadace) => {
-    this.provjeriToken();
+    //this.provjeriToken();
     axios.get(`https://si2019kilo.herokuapp.com/getStudenteKojiNisuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiNisuPoslali: res.data
@@ -114,7 +114,7 @@ class Ocjenjivanje extends Component {
 };
 
   pokupiStudenteKojimaNijePregledanaZadaca = (idZadace) => {
-    this.provjeriToken();
+    //this.provjeriToken();
     axios.get(`https://si2019kilo.herokuapp.com/getStudenteKojimaNijePregledanaZadaca/${idZadace}`).then(res => {
       this.setState({
         studentiNijePregledano: res.data
@@ -123,7 +123,7 @@ class Ocjenjivanje extends Component {
 };
 
   pokupiZadace = () => {
-    this.provjeriToken();
+    //this.provjeriToken();
     axios.get(`https://si2019kilo.herokuapp.com/getZadaceZaOcjenjivanje/${this.state.idPredmeta}`).then(res => {
       this.setState({
         listaZadaca: res.data
@@ -147,7 +147,7 @@ class Ocjenjivanje extends Component {
     console.log("pokupi zadacu studenta");
     //idStudenta = 1;
     try {
-      this.provjeriToken();
+      //this.provjeriToken();
       const res = await axios.get(
         `https://si2019kilo.herokuapp.com/getZadacuStudenta/${idZadace}/${idStudenta}`
       );
@@ -180,7 +180,7 @@ class Ocjenjivanje extends Component {
         var idStudent = this.state.idStudenta;
         var idZadatak = this.state.idZadatak;
 
-        this.provjeriToken();
+        //this.provjeriToken();
         axios.get(`https://si2019kilo.herokuapp.com/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
           
           let resultByte = res.data.datoteka.data;
@@ -235,7 +235,7 @@ class Ocjenjivanje extends Component {
         */
         infoOcjenjivanje.append("prepisanZadatak", prepisan);
         infoOcjenjivanje.append("stanjeZadatka", stanjeZadatka);
-        this.provjeriToken();
+        //this.provjeriToken();
         axios
           .post("https://si2019kilo.herokuapp.com/ocijeniZadatak", infoOcjenjivanje)
           .then(res => {

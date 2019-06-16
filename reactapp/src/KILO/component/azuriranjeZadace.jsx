@@ -63,7 +63,7 @@ toggle() {
 }
 
 pokupiIzBaze = (idPredmeta) => {
-  this.provjeriToken();
+  //this.provjeriToken();
   axios.get(`https://si2019kilo.herokuapp.com/getZadace/${idPredmeta}`).then(res => {
     this.setState({
       listaZadacaZaAzuriranje: res.data
@@ -126,7 +126,7 @@ handleDropdownClick = zadacaId => () => {
 
 getZadacaById = async zadacaId => {
   try {
-    this.provjeriToken();
+    //this.provjeriToken();
     const res = await axios.get(
       `https://si2019kilo.herokuapp.com/getZadacaById/${zadacaId}`
     );

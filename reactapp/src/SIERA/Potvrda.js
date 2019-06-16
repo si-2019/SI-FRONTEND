@@ -6,7 +6,7 @@ class Potvrda extends React.Component {
   constructor() {
     super();
     this.state = {
-      idLogovanogStudenta: 1, //placeholder - treba API od autentifikacije
+      idLogovanogStudenta: 2, 
       isActive: false,
       prikazi: true
     };

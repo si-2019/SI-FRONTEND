@@ -8,8 +8,8 @@ class KontaktPod extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
             token: window.localStorage.getItem("token"),
             adresa: "",
             email: "",
@@ -45,17 +45,20 @@ class KontaktPod extends Component {
             this.state.StudentID
         )
         .then(res => {
-
-            const br = res.data.map(obj => obj.telefon);
-            this.setState({ brtel: br });
-            const eml = res.data.map(obj => obj.email);
-            this.setState({ email: eml });
-            const adr = res.data.map(obj => obj.adresa);
-            this.setState({ adresa: adr });
+            console.log("res.data: " + res.data.user[0].id);
+            var data = res.data.user[0];
+            this.setState({
+                brtel: data.telefon,
+                email:data.email,
+                adresa:data.adresa
+            })
+            
         })
         .catch(res => {
             console.log("usao u catch");
+            console.log(res);
         });
+        console.log("localstorage: " + window.localStorage.getItem("id"));
     }
     componentDidMount() {
         if (window.localStorage.getItem("id") != null) {

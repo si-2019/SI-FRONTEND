@@ -9,8 +9,8 @@ class modalnaKomponenta extends Component {
   state = {
     vrijednostInputa: "",
     greska: null,
-    trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-    username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+    trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+    username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
     token: window.localStorage.getItem("token"),
     OK: true,
     msg: ""

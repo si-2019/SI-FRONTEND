@@ -4,7 +4,7 @@ import "./bootstrap.min.css"
 import ModalComponent from "./ModalLicni"
 import Kontakt from "./kontaktPod"
 import Stranice from "./stranice";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class LicniPod extends Component {
     constructor(...args) {
@@ -19,7 +19,7 @@ class LicniPod extends Component {
             imePrezimeMajke: "",
             Drzavljanstvo: "",
             StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
-            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
             token: window.localStorage.getItem("token"),
             fotka: null,
             modalShow: false,
@@ -44,31 +44,26 @@ class LicniPod extends Component {
                 break;
         }
     }
-    handleGet = ()=>{
-         axios
+    handleGet = () => {
+        axios
             .get(
                 `https://si2019siera.herokuapp.com/studenti/` +
                 this.state.StudentID
             )
             .then(res => {
-                const ime = res.data.map(obj => obj.ime);
-                this.setState({ ime: ime });
-                const prezime = res.data.map(obj => obj.prezime);
-                this.setState({ prezime: prezime });
-                const datumRodjenja = res.data.map(obj => obj.datumRodjenja);
-                this.setState({ datumRodjenja: datumRodjenja });
-                const mjestoRodjenja = res.data.map(obj => obj.mjestoRodjenja);
-                this.setState({ mjestoRodjenja: mjestoRodjenja });
-                const index = res.data.map(obj => obj.indeks);
-                this.setState({ Index: index });
-                const imePrezimeOca = res.data.map(obj => obj.imePrezimeOca);
-                this.setState({ imePrezimeOca: imePrezimeOca });
-                const imePrezimeMajke = res.data.map(obj => obj.imePrezimeMajke);
-                this.setState({ imePrezimeMajke: imePrezimeMajke });
-                const drz = res.data.map(obj => obj.drzavljanstvo);
-                this.setState({ Drzavljanstvo: drz });
-                const help = res.data.map(obj => obj.fotografija);
-                this.setState({ fotka: help });
+                
+                var data = res.data.user[0];
+                this.setState({
+                    ime: data.ime,
+                    prezime: data.prezime,
+                    datumRodjenja: data.datumRodjenja,
+                    mjestoRodjenja: data.mjestoRodjenja,
+                    Index: data.indeks,
+                    imePrezimeMajke: data.imePrezimeMajke,
+                    imePrezimeOca: data.imePrezimeOca,
+                    Drzavljanstvo: data.drzavljanstvo,
+                    fotka: data.fotografija
+                })
             })
             .catch(err => {
                 console.log(err);

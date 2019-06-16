@@ -6,8 +6,8 @@ class Prosjek extends Component {
     constructor() {
         super();
         this.state = {
-            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+            StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+            username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
             token: window.localStorage.getItem("token"),
             ukupanProsjek: 2.0,
             prosjekGodina: [],

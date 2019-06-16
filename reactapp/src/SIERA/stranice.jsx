@@ -7,8 +7,8 @@ class Stranice extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
       token: window.localStorage.getItem("token"),
       LinkedIn: "",
       Website: "",
@@ -41,11 +41,12 @@ class Stranice extends Component {
       .get(`https://si2019siera.herokuapp.com/studenti/` + this.state.StudentID)
       .then(res => {
         if (res.data.success) {
-          const In = res.data.map(obj => obj.linkedin);
-          this.setState({ LinkedIn: In });
-
-          const web = res.data.map(obj => obj.website);
-          this.setState({ Website: web });
+       
+         var data = res.data.user[0];
+         this.setState({
+           LinkedIn: data.linkedin,
+           Website: data.website
+         })
         }
       })
       .catch(err => {

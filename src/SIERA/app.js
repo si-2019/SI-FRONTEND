@@ -17,7 +17,7 @@ class App extends Component {
     super();
     this.state = {
       studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
-      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
       token: window.localStorage.getItem("token"),
       activeContentId: 0,
       OK:null,

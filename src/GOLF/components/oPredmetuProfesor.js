@@ -17,7 +17,8 @@ class oPredmetuProfesor extends Component {
       fileovi: [],
       uOpis: "",
       loading: true,
-      uredjivanjeUspjelo: true
+      uredjivanjeUspjelo: true,
+      tekstUredi: "Uredi"
     }
     this.handleOpisChange = this.handleOpisChange.bind(this)
   }
@@ -90,8 +91,13 @@ class oPredmetuProfesor extends Component {
   }
 
   prikaziUredjivanje() {
+    let tekst="Uredi"
+    if(!this.state.showMe){
+      tekst="Poništi"
+    }
     this.setState({
-      showMe: !this.state.showMe
+      showMe: !this.state.showMe,
+      tekstUredi: tekst 
     })
   }
 
@@ -178,7 +184,7 @@ class oPredmetuProfesor extends Component {
         <div class="card sss">
           {this.state.x &&
             <div class="gdugme">
-              <button type="button" class="btn btn-primary dugmeDesno" onClick={() => this.prikaziUredjivanje()}>Uredi</button></div>
+              <button type="button" class="btn btn-primary dugmeDesno" onClick={() => this.prikaziUredjivanje()}>{this.state.tekstUredi}</button></div>
           }
           <div class="card-body">
             <div>{this.state.objave.opis}</div>
@@ -200,6 +206,7 @@ class oPredmetuProfesor extends Component {
                     <label for="exampleInputFile">Datoteke: </label>
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
+                    <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
                   </div>
                   <button type="button" class="btn btn-primary" id="dugmeObjavi" onClick={this.handleClick}>Izmijeni</button>
                 </form>

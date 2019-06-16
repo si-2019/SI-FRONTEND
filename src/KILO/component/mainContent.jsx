@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect, Switch }from "react-router-dom";
+import {  Router, Route, Redirect, Switch }from "react-router-dom";
 import KreiranjeZadace from "./kreiranjeZadace";
 import AzuriranjeZadace from "./azuriranjeZadace";
 import BrisanjeZadace from "./brisanje";

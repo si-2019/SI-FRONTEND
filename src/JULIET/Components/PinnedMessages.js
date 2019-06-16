@@ -4,15 +4,6 @@ import '../styles/UsersList.css'
 class PinnedMessages extends Component {
     constructor(props){
         super(props);
-
-        this.state = {
-            pinnedMessages: []
-        }
-    }
-
-    componentWillMount(){
-        this.props.pinnedMessages ? 
-            this.state.pinnedMessages = this.props.pinnedMessages : this.state.pinnedMessages = []
     }
 
     render(){
@@ -30,7 +21,7 @@ class PinnedMessages extends Component {
                     <i id="arrow-pinned" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                 </div> 
                 <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="pinned-messages">
-                    {this.state.pinnedMessages.filter(message => message.roomId === this.state.currentRoom.id).map((message,index) => (
+                    {this.props.pinnedMessages.filter(message => message.roomId === this.props.roomId).map((message,index) => (
                         <div key={index} style={{
                             'border' : '1px solid white'
                         }}><li>{message.senderId + ' : ' + message.text}</li></div>

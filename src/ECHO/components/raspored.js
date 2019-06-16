@@ -17,6 +17,7 @@ class Raspored extends Component {
     this.handleSelectGodina = this.handleSelectGodina.bind(this);
     this.handleSelectSemestar = this.handleSelectSemestar.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.dajRaspored = this.dajRaspored.bind(this);
   }
 
   handleSelectGodina(event) {
@@ -33,9 +34,23 @@ class Raspored extends Component {
     this.postRaspored();
     event.preventDefault();
   }
+  dajRaspored(event) {
+    fetch("https://si-echo-2019.herokuapp.com/si2019/echo/dajRaspored")
+      .then(res => res.text())
+      .then(res => {
+        const element = document.createElement("a");
+        const file = new Blob([res], {
+          type: "text/plain"
+        });
+        element.href = URL.createObjectURL(file);
+        element.download = "raspored.txt";
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+      });
+  }
 
   postRaspored(event) {
-    fetch("http://localhost:31905/si2019/echo/kreirajRaspored", {
+    fetch("https://si-echo-2019.herokuapp.com/si2019/echo/kreirajRaspored", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -93,20 +108,28 @@ class Raspored extends Component {
               id="listaGodina"
               onChange={this.handleSelectGodina}
             >
-              <option selected="" value="RI1">
-                Računarstvo i informatika - 1. godina
+              <option selected="" value="RI3">
+                Računarstvo i informatika - 3. godina
               </option>
-              <option value="RI2">Računarstvo i informatika - 2. godina</option>
-              <option value="RI3">Računarstvo i informatika - 3. godina</option>
             </select>
-            <button
-              id="dugmeECHO2"
-              type="button"
-              className="btn btn-primary m-2"
-              onClick={this.handleSubmit}
-            >
-              Kreiraj
-            </button>
+            <div id="buttonsDivECHO">
+              <button
+                id="dugmeECHO2"
+                type="button"
+                className="btn btn-primary m-2"
+                onClick={this.handleSubmit}
+              >
+                Kreiraj
+              </button>
+              <button
+                id="dugmeECHO2"
+                type="button"
+                className="btn btn-primary m-2"
+                onClick={this.dajRaspored}
+              >
+                Sačuvaj kao .txt
+              </button>
+            </div>
           </div>
         </div>
       </div>

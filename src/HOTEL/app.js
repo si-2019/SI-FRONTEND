@@ -7,10 +7,8 @@ import Rezultati from './rezultati/app'
 import Liste from './liste/app'
 import Uredi from './uredi'
 import PopunjenaAnketa from './popunjenaAnketa'
+import MojeAnkete from './liste/mojeAnkete'
 import {Redirect} from 'react-router'
-let Home = function () { 
-    return <Redirect to='/hotel/liste/mojeankete' />
-}
 export default class Hotel extends React.Component {
 
     meniStudent = ['mojeAnkete', 'javneAnkete', 'anketePoPredmetimaStudent', 'rezultatiAnketa', 'kreirajAnketu']
@@ -106,7 +104,7 @@ export default class Hotel extends React.Component {
                     </ul>
                 </div>
                 <div class="col-9" style={{padding: "0"}}>
-                    <Route exact path="/hotel" component={Home} />
+                    <Route exact path="/hotel" component={MojeAnkete} />
                     <Route path="/hotel/kreiranje/" component={Kreiranje} />
                     <Route path="/hotel/popunjavanje/:id" component={Popunjavanje} />
                     <Route path="/hotel/rezultati/:id" component={Rezultati} />

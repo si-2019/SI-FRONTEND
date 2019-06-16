@@ -97,7 +97,7 @@ class Ocjenjivanje extends Component {
 
   pokupiStudenteKojimaJePregledanaZadaca = (idZadace) => {
     this.provjeriToken();
-    axios.get(`http://localhost:31911/getStudenteKojiSuPoslaliZadacu/${idZadace}`).then(res => {
+    axios.get(`https://si2019kilo.herokuapp.com/getStudenteKojiSuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiPregledano: res.data
       });
@@ -106,7 +106,7 @@ class Ocjenjivanje extends Component {
 
   pokupiStudenteKojiNisuPoslaliZadacu = (idZadace) => {
     this.provjeriToken();
-    axios.get(`http://localhost:31911/getStudenteKojiNisuPoslaliZadacu/${idZadace}`).then(res => {
+    axios.get(`https://si2019kilo.herokuapp.com/getStudenteKojiNisuPoslaliZadacu/${idZadace}`).then(res => {
       this.setState({
         studentiNisuPoslali: res.data
       });
@@ -115,7 +115,7 @@ class Ocjenjivanje extends Component {
 
   pokupiStudenteKojimaNijePregledanaZadaca = (idZadace) => {
     this.provjeriToken();
-    axios.get(`http://localhost:31911/getStudenteKojimaNijePregledanaZadaca/${idZadace}`).then(res => {
+    axios.get(`https://si2019kilo.herokuapp.com/getStudenteKojimaNijePregledanaZadaca/${idZadace}`).then(res => {
       this.setState({
         studentiNijePregledano: res.data
       });
@@ -124,7 +124,7 @@ class Ocjenjivanje extends Component {
 
   pokupiZadace = () => {
     this.provjeriToken();
-    axios.get(`http://localhost:31911/getZadaceZaOcjenjivanje/${this.state.idPredmeta}`).then(res => {
+    axios.get(`https://si2019kilo.herokuapp.com/getZadaceZaOcjenjivanje/${this.state.idPredmeta}`).then(res => {
       this.setState({
         listaZadaca: res.data
       });
@@ -132,14 +132,14 @@ class Ocjenjivanje extends Component {
 };
   /*
   preuzmiDatoteku = () => {
-    axios.get("http://localhost:31911/getDatoteku").then(res => {
+    axios.get("https://si2019kilo.herokuapp.com/getDatoteku").then(res => {
     });
   }
 */
 
   /*
   pregledDatoteke = () => {
-    axios.get("http://localhost:31911/getPregledDatoteke").then(res => {
+    axios.get("https://si2019kilo.herokuapp.com/getPregledDatoteke").then(res => {
     });
   }
 */
@@ -149,7 +149,7 @@ class Ocjenjivanje extends Component {
     try {
       this.provjeriToken();
       const res = await axios.get(
-        `http://localhost:31911/getZadacuStudenta/${idZadace}/${idStudenta}`
+        `https://si2019kilo.herokuapp.com/getZadacuStudenta/${idZadace}/${idStudenta}`
       );
       this.setState({
         zadacaState: res.data
@@ -181,7 +181,7 @@ class Ocjenjivanje extends Component {
         var idZadatak = this.state.idZadatak;
 
         this.provjeriToken();
-        axios.get(`http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
+        axios.get(`https://si2019kilo.herokuapp.com/downloadZadatak/${idStudent}/${idZadatak}`).then(res => {
           
           let resultByte = res.data.datoteka.data;
           var bytes = new Uint8Array(resultByte);
@@ -237,7 +237,7 @@ class Ocjenjivanje extends Component {
         infoOcjenjivanje.append("stanjeZadatka", stanjeZadatka);
         this.provjeriToken();
         axios
-          .post("http://localhost:31911/ocijeniZadatak", infoOcjenjivanje)
+          .post("https://si2019kilo.herokuapp.com/ocijeniZadatak", infoOcjenjivanje)
           .then(res => {
             if (res.status === 200) {
               this.setState({ uspjehOcjenjivanja: true });
@@ -276,7 +276,7 @@ class Ocjenjivanje extends Component {
 
   handleBackNaJednaZadaca = (student, idStudenta) => {
     /*const res =  axios.get(
-      `http://localhost:31911/getZadacuStudenta/${this.state.idZadace}/${this.state.idStudenta}`
+      `https://si2019kilo.herokuapp.com/getZadacuStudenta/${this.state.idZadace}/${this.state.idStudenta}`
     );
     this.setState({
       zadacaState: res.data

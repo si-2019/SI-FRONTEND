@@ -89,8 +89,9 @@ class UnosInformacija extends Component {
 
           }
       }
-      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/group/getProjectStudents/"+this.state.predmet.id,true);
+      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/group/getProjectStudents/"+this.state.predmet.id+this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
       ajax.send();
     }
     lista() {

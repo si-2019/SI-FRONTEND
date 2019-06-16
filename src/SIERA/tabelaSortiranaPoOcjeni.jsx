@@ -8,8 +8,8 @@ class TabelaSortiranaPoOcjeni extends Component {
     this.state = {
       sortiraniPredmetiPoOcjeni: [],
       ocjene: [],
-      trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      trenutnoLogovaniStudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
       token: window.localStorage.getItem("token")
     }
   };
@@ -40,12 +40,19 @@ class TabelaSortiranaPoOcjeni extends Component {
         this.state.trenutnoLogovaniStudentID + "/sort"
       )
       .then(res => {
-        if (res.data.success) {
+        if (res.data.succes) {
           const sortiraniPredmeti = res.data.ocjene.map(obj => obj.naziv);
           const ocjene = res.data.ocjene.map(obj => obj.ocjena);
-          this.setState({ sortiraniPredmetiPoOcjeni: sortiraniPredmeti, ocjene: ocjene });
+          this.setState({ 
+            sortiraniPredmetiPoOcjeni: sortiraniPredmeti, 
+            ocjene: ocjene 
+          });
         }
-      });
+        else console.log("greska")
+      })
+      .catch(res=>{
+        console.log("Doslo je do greske: " + res)
+      })
   }
 
   render() {

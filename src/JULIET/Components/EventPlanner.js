@@ -15,8 +15,10 @@ class EventPlanner extends Component {
             traje:null
         }
         this.addEvent = this.addEvent.bind(this);
-        this.getEvents=this.getEvents.bind(this);
-        this.isToday=this.isToday.bind(this);
+        this.getEvents = this.getEvents.bind(this);
+        this.isToday = this.isToday.bind(this);
+        this.didPass= this.didPass.bind(this);
+        this.isNow = this.isNow.bind(this);
     }
     showEventForm(){
         this.setState({
@@ -45,14 +47,20 @@ class EventPlanner extends Component {
         .catch(err => console.log(err));
     }
     addEvent = (ime,pocinje,kraj)=>{
-        Axios.post('https://si2019juliet.herokuapp.com' , {
+        const reqBody = {
             kreirao:this.props.currentId,
             naziv:ime,
             pocetak:pocinje,
             kraj:kraj
-        })
+        }
+        console.log(reqBody);
+
+        Axios.post('https://si2019juliet.herokuapp.com/event' , reqBody)
         .then(res => {
-            this.setState({ events: [] });
+            let nizTmp = this.state.events;
+            nizTmp.push(reqBody);
+
+            this.setState({ events: nizTmp });
             this.getEvents();
         }).catch(err => {
             console.error(err);
@@ -61,7 +69,7 @@ class EventPlanner extends Component {
     }
     isToday(event){
         
-        if( ((Date.parse(event.pocetak)<=(86400000+this.state.ulaz))||(Date.parse(event.kraj)<=(86400000+this.state.ulaz))) && Date.parse(event.kraj)>=this.state.ulaz) return true;
+        if( ((Date.parse(event.pocetak)<=(86400000+this.state.ulaz))||(Date.parse(event.kraj)<=(86400000+this.state.ulaz)) ))return true;
         return false
     }
     didPass(event){

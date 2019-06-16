@@ -3,7 +3,6 @@ import axios from 'axios'
 import ObjavaProfesor from './objavaProfesor'
 import Spinner from 'react-bootstrap/Spinner'
 
-
 class SedmicaProfesor extends Component {
 
   constructor(props) {
@@ -16,7 +15,7 @@ class SedmicaProfesor extends Component {
       naziv: "",
       id: "",
       dodavanjeUspjelo: true,
-      loading: true
+      loading: true,
     }
   }
 
@@ -162,7 +161,7 @@ class SedmicaProfesor extends Component {
           <Spinner animation='border' role='status' variant='primary'>
             <span className="sr-only">Učitavanje...</span>
           </Spinner></div> : <div>
-        {this.state.objave.map(file => <ObjavaProfesor akademskaGodina={this.props.naziv} trenutnaAkademskaGodina={this.props.trenutnaAkademskaGodina} id={file.id} idtip={1} idpredmeta={this.props.idpredmeta} naslov={file.naziv} opis={file.opis} fileovi={file.datoteke} datumobjave={file.datum} objavljeno={file.objavljeno}></ObjavaProfesor>)}</div>}
+        {this.state.objave.map(file => <ObjavaProfesor akademskaGodina={this.props.naziv} trenutnaAkademskaGodina={this.state.naziv} id={file.id} idtip={1} idpredmeta={this.props.idpredmeta} naslov={file.naziv} opis={file.opis} fileovi={file.datoteke} datumobjave={file.datum} objavljeno={file.objavljeno}></ObjavaProfesor>)}</div>}
         {this.state.showMe ?
 
           <div>
@@ -181,6 +180,7 @@ class SedmicaProfesor extends Component {
                     <label >Datoteke: </label>
                     <br></br>
                     <input type="file" name="fileovi" id="fileovi" multiple></input>
+                    <small id="fileHelp" class="form-text text-muted">Maksimalna veličina datoteke je 2MB</small>
                   </div>
 
                   <input type="checkbox" name="objavljeno" id="objavljeno"></input> Sakrij objavu

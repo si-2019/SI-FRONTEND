@@ -7,8 +7,8 @@ class PrikaziStatus extends Component {
   constructor() {
     super();
     this.state = {
-      StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 1,
-      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "Neki user",
+      StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
       token: window.localStorage.getItem("token"),
       status: [],
       teme: [],
@@ -56,9 +56,9 @@ class PrikaziStatus extends Component {
   }
 
   Provjeri = provjeri => {
-    if (provjeri == null) return <p>Na čekanju</p>
-    else if (provjeri == 1) return <p>Odobreno</p>
-    return <p>Neodobreno</p>
+    if (provjeri == null) return "Na čekanju"
+    else if (provjeri == 1) return "Odobreno"
+    return "Neodobreno"
   }
 
   handleOdobreno() {

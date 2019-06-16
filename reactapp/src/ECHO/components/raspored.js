@@ -35,7 +35,7 @@ class Raspored extends Component {
   }
   
   postRaspored(event) {
-    fetch("http://si-echo-2019.herokuapp.com/si2019/echo/kreirajRaspored", {
+    fetch("https://si-echo-2019.herokuapp.com/si2019/echo/kreirajRaspored", {
       method: "POST",
       headers: {
         Accept: "application/json",

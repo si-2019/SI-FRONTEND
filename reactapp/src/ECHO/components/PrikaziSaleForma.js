@@ -20,7 +20,7 @@ class PrikaziSaleForma extends Component {
   }
 
   componentDidMount() {
-    fetch("http://si-echo-2019.herokuapp.com/si2019/echo/sveSale")
+    fetch("https://si-echo-2019.herokuapp.com/si2019/echo/sveSale")
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -55,7 +55,7 @@ class PrikaziSaleForma extends Component {
   }
 
   postObrisi(event) {
-    fetch("http://si-echo-2019.herokuapp.com/si2019/echo/obrisiSalu", {
+    fetch("https://si-echo-2019.herokuapp.com/si2019/echo/obrisiSalu", {
       method: "POST",
       headers: {
         Accept: "application/json",

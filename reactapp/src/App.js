@@ -32,26 +32,26 @@ class App extends Component {
           <Header />
           <div >
             <Route exact path="/" component={Alpha} />
-            <Route path="/alpha" component={Alpha} />
-            <Route exact path="/beta" component={Beta} />
-            <Route path="/charlie" component={Charlie} />
-            <Route path="/delta" component={Delta} />
-            <Route path="/echo" component={Echo} />
-            <Route path="/fox" component={Fox} />
-            <Route path="/golf" component={Golf} />
-            <Route path="/hotel" component={Hotel} />
+            <Route path="/Administrator" component={Alpha} />
+            <Route exact path="/Student support" component={Beta} />
+            <Route path="/Ispiti" component={Charlie} />
+            <Route path="/Predmeti" component={Delta} />
+            <Route path="/Akademski kalendar" component={Echo} />
+            <Route path="/Profesori" component={Fox} />
+            <Route path="/Materijali" component={Golf} />
+            <Route path="/Ankete" component={Hotel} />
             <Route path="/india" component={India} />
-            <Route path="/juliet" component={Juliet} />
-            <Route path="/kilo" component={Kilo} />
-            <Route path="/lima" component={Lima} />
-            <Route path="/mike" component={Mike} />
+            <Route path="/Chat" component={Juliet} />
+            <Route path="/Zadace" component={Kilo} />
+            <Route path="/Izvjestaji" component={Lima} />
+            <Route path="/Kolabracija" component={Mike} />
             <Route path="/november" component={November} />
             <Route path="/oscar" component={Oscar} />
-            <Route path="/papa" component={Papa} />
-            <Route path="/romeo" component={Romeo} />
-            <Route path="/siera" component={Siera} />
-            <Route path="/tango" component={Tango} />
-            <Route path="/uniform" component={Uniform} />
+            <Route path="/Dashboard" component={Papa} />
+            <Route path="/Login" component={Romeo} />
+            <Route path="/Studenti" component={Siera} />
+            <Route path="/Forum" component={Tango} />
+            <Route path="/Raspored" component={Uniform} />
             
           </div>
           <Footer/>

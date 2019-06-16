@@ -37,9 +37,9 @@ export default class App extends React.Component {
 
     render() {
 
-        let timovi = ["Alpha", "Beta", "Charlie", "Delta", "Echo", "Fox", "Golf", "Hotel", "India",
-                        "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", 
-                         "Papa", "Romeo", "Siera", "Tango", "Uniform"];
+        let timovi = ["Administrator", "Student support", "Ispiti", "Predmeti", "Akademski kalendar", "Profesori", "Materijali", "Ankete", "India",
+                        "Chat", "Zadace", "Izvještaji", "Kolaboracija", "November", "Oscar", 
+                         "Dashboard", "Login", "Studenti", "Forum", "Raspored"];
 
         if(this.PrikaziHeader()) {
             return (

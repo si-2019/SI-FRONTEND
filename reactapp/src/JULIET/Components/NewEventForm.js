@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 export class NewEventForm extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props);
+
         this.state={
             eventName:'',
             startDate:new Date(),
@@ -29,7 +30,7 @@ export class NewEventForm extends Component {
     handleSubmit(e){
         e.preventDefault();
         this.props.addEvent(this.state.eventName, this.state.startDate, this.state.endDate);
-        this.setState({eventName:'NewEvent...'})
+        this.setState({eventName:''})
     }
   render() {
     return (
@@ -41,8 +42,8 @@ export class NewEventForm extends Component {
                 selected={this.state.startDate}
                 timeInputLabel="Time:"
                 showTimeInput
-                dateFormat="dd/mm/yyyy hh:mm aa"
-                timeFormat="hh:mm aa"
+                dateFormat="MMMM d, yyyy h:mm aa"
+                timeFormat="HH:mm"
                 selectsStart
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
@@ -53,8 +54,8 @@ export class NewEventForm extends Component {
               selected={this.state.endDate}
               timeInputLabel="Time:"
               showTimeInput
-              dateFormat="dd/mm/yyyy hh:mm aa"
-              timeFormat="hh:mm aa"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              timeFormat="HH:mm"
               selectsEnd
               startDate={this.state.startDate}
               endDate={this.state.endDate}

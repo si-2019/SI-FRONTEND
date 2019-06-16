@@ -20,26 +20,10 @@ export class Raspored extends Component {
   
 
   componentDidMount = () =>{
-    if(!this.state.provjerenToken  && window.localStorage.getItem("uniformStanje")!='da')
+    
     {
-      var idItem  = window.localStorage.getItem("id");
-      if(idItem==null)
-      idItem="63813812";
-      fetch('https://cors-anywhere.herokuapp.com/'+'https://si2019oscar.herokuapp.com/pretragaId/' + idItem + '/dajUlogu', {
-        method: 'get',
-        headers: {
-            'Authorization': window.localStorage.getItem("token")
-        }
-      }).then(res => {
-            console.log(res)
-            if(res.loginError) {
-                window.location.href = window.location.origin + '/romeo/login'
-            }
-            else {
-                this.setState({
-                    provjerenToken:true
-                })
-                fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getTerminiSala/1/9")
+      console.log("1111111111111111111111111111");
+      fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getTerminiSala/1/9")
         .then(resTermini => resTermini.json())
         .then(jsonTermini => {
           fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getIspitiSala/1/9")
@@ -63,8 +47,6 @@ export class Raspored extends Component {
               })
             });
           });
-            }
-        })
     }
     
           

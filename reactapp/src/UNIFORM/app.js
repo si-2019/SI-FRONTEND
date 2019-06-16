@@ -47,8 +47,9 @@ export class App extends Component {
             'Authorization': window.localStorage.getItem("token")
         }
       }).then(res => {
-            console.log(res)
-            if(res.loginError) {
+            console.log("tttttttttttt");
+            console.log(res.body)
+            if(res=="") {
                 window.localStorage.setItem('uniformStanje','nista');
                 window.location.href = window.location.origin + '/romeo/login'
             }
@@ -56,7 +57,7 @@ export class App extends Component {
                 window.localStorage.setItem('uniformStanje','da');
                 console.log(res)
                 
-                if(res.uloga == "STUDENT")
+                if(res == "STUDENT")
                 {
                   this.setState({
                     provjerenToken:true,

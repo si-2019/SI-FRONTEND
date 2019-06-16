@@ -20,7 +20,7 @@ changeActiveId(id){
 
 dohvatiIDPredmetaPrekoNaziva(naziv){
   setTimeout(() => {
-    axios.get("http://si2019kilo.herokuapp.com/dohvatiIDPredmeta/"+naziv)
+    axios.get("http://si2019delta.herokuapp.com/dohvatiIDPredmeta/"+naziv)
     .then(response => {
       const id = response.data;
           this.setState({

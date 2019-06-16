@@ -12,37 +12,21 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 export class Raspored extends Component {
 
   state={
-    isLoaded:true,
-    raspored:[]
+    isLoaded:false,
+    raspored:[],
+    provjerenToken:false
   }
 
-  provjeriToken = () => {
-    axios({
-      url: 'https://si2019romeo.herokuapp.com/users/validate',
-      type: 'get',
-      dataType: 'json',
-      data: jQuery.param({
-        username: window.localStorage.getItem("username")
-      }),
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
-      },
-      complete: function (response) {
-        if (response.status == 200) {
-          return true;
-        }
-        else{
-          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
-        } 
-      }  
-    });
-  }
+  
 
   componentDidMount = () => {  
-    fetch("https://si2019uniform.herokuapp.com/getTerminiSala/1/9")
+    
+  {
+    console.log("1111111111111111111111111111");
+    fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getTerminiSala/1/9")
       .then(resTermini => resTermini.json())
       .then(jsonTermini => {
-        fetch("https://si2019uniform.herokuapp.com/getIspitiSala/1/9")
+        fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getIspitiSala/1/9")
           .then(resIspiti => resIspiti.json())
           .then(jsonIspiti => {
             var raspored=[];
@@ -63,14 +47,17 @@ export class Raspored extends Component {
             })
           });
         });
-        this.provjeriToken();
+    }
   }
 
   render() {
-    if(!this.state.isLoaded)
-    return <div>Loading...</div>;
+    
 
     var raspored=this.state.raspored;
+  if(!raspored || raspored==undefined)
+  {
+    raspored=[];
+  }
 
   var vremenaRasporeda=[];
   var rendering=[];

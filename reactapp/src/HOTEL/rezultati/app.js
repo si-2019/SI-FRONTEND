@@ -28,7 +28,8 @@ class Rezultati extends Component {
     singleChoicePitanjaState: {},
     textboxPitanjaState: {},
     multipleChoicePitanjaState: {},
-    starRatingPitanjaState: {}
+    starRatingPitanjaState: {},
+    error: ''
 
   }
    formatDate (string) {
@@ -68,6 +69,13 @@ class Rezultati extends Component {
     });
     axios.get(`${url}/getRezultatiAnkete/?idAnketa=${params.id}&username=` + window.localStorage.getItem("username"))
     .then((res) => {
+      if (res.data.accessError) {
+        this.setState({
+            error: res.data.accessError
+        })
+        return
+      }
+
       if(res.data.loginError) {
         window.location.href = window.location.origin + '/romeo/login'
         return
@@ -101,6 +109,16 @@ class Rezultati extends Component {
   }
 
   render() {
+
+    if(this.state.error) {
+      return (
+        <div className="alert alert-dismissible alert-danger" style={{ marginTop: "10px" }}>
+          <button type="button" className="close" data-dismiss="alert" onClick={() => { }}>&times;</button>
+          {this.state.error}
+        </div>
+      )
+    }
+
     const itemsSingle = this.state.singleChoicePitanjaState;
     const itemsTextbox = this.state.textboxPitanjaState;
     const itemsMultiple = this.state.multipleChoicePitanjaState;

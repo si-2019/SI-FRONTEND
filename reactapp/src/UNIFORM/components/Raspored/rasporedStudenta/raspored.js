@@ -101,37 +101,20 @@ class Raspored extends Component {
 
 state={
   raspored: [],
-  isLoaded: false
+  isLoaded: false,
+  provjerenToken:false
 }
 
-provjeriToken = () => {
-  axios({
-    url: 'https://si2019romeo.herokuapp.com/users/validate',
-    type: 'get',
-    dataType: 'json',
-    data: jQuery.param({
-      username: window.localStorage.getItem("username")
-    }),
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
-    },
-    complete: function (response) {
-      if (response.status == 200) {
-        return true;
-      }
-      else{
-        window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
-      } 
-    }  
-  });
-  this.provjeriToken();
-}
 
-componentDidMount = () => {  
-  fetch("https://si2019uniform.herokuapp.com/getStudentTermini/1")
+
+componentDidMount = () => { 
+  
+  {
+    console.log("1111111111111111111111111111");
+    fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getStudentTermini/1")
     .then(resTermini => resTermini.json())
     .then(jsonTermini => {
-      fetch("https://si2019uniform.herokuapp.com/getStudentIspiti/1")
+      fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getStudentIspiti/1")
         .then(resIspiti => resIspiti.json())
         .then(jsonIspiti => {
           var raspored=[];
@@ -152,15 +135,21 @@ componentDidMount = () => {
           })
         });
       });
+    }
+      
+   
+  
 }
 
 render = () =>{
-  if(!this.state.isLoaded)
-  return <div>Loading...</div>;
-
+  
   var vremenaRasporeda=[];
   var rendering=[];
   var raspored=this.state.raspored;
+  if(!raspored || raspored==undefined)
+  {
+    raspored=[];
+  }
 
   //vremenaRasporeda su sva vremena sa lijeve strane rasporeda(samo polusatna) pri cemu su neovisno od
   //termina koje imamo uvijek puni satovi od 08:00 do 20:00

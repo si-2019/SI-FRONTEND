@@ -103,36 +103,18 @@ class Raspored extends Component {
 
 state={
   isLoaded:false,
-  raspored:[]
-}
-
-provjeriToken = () => {
-  axios({
-    url: 'https://si2019romeo.herokuapp.com/users/validate',
-    type: 'get',
-    dataType: 'json',
-    data: jQuery.param({
-      username: window.localStorage.getItem("username")
-    }),
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
-    },
-    complete: function (response) {
-      if (response.status == 200) {
-        return true;
-      }
-      else{
-        window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
-      } 
-    }  
-  });
+  raspored:[],
+  provjerenToken:false
 }
 
 componentDidMount = () =>{
-  fetch("https://si2019uniform.herokuapp.com/getProfesorTermini/1")
+  
+  {
+    console.log("1111111111111111111111111111");
+    fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getProfesorTermini/1")
       .then(resTermini => resTermini.json())
       .then(jsonTermini => {
-        fetch("https://si2019uniform.herokuapp.com/getProfesorIspiti/1")
+        fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getProfesorIspiti/1")
           .then(resIspiti => resIspiti.json())
           .then(jsonIspiti => {
             var raspored=[];
@@ -153,15 +135,20 @@ componentDidMount = () =>{
             })
           });
         });
-        this.provjeriToken();
+  }  
+  
+        
 }
   
 render = () =>{  
 
-  if(!this.state.isLoaded)
-  return <div>Loading...</div>;
+  
   
   var raspored=this.state.raspored;
+  if(!raspored || raspored==undefined)
+  {
+    raspored=[];
+  }
 
   var vremenaRasporeda=[];
   var rendering=[];
@@ -182,7 +169,7 @@ render = () =>{
 
    for(var u=0;u<vremenaRasporeda.length;u++)
   {
-    console.log("////////////////////////// "+ vremenaRasporeda[u]);
+    
   }
   raspored.forEach((val,index) => {
    vrijemeObaveze = val.vrijeme;

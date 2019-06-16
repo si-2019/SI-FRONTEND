@@ -11,6 +11,7 @@ import Prosjek from "./Prosjek.jsx";
 import Statistika from "./statistika.jsx";
 import Zadace from "./Zadace";
 import axios from "axios";
+import jQuery from "jquery"
 
 class App extends Component {
   constructor() {
@@ -92,24 +93,32 @@ class App extends Component {
           OK:true
         })
         //pirkazi stranicu
+        console.log("usao u if");
         if (window.localStorage.getItem("id") != null) {
-          var ajax = new XMLHttpRequest();
-          ajax.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
-              //radi sta hoces
-              this.handleMount();
-            }
-            else {
-              //vrati na login
-              this.props.history.push("/Romeo");
-            }
-          }
-          ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-          ajax.setRequestHeader("Authorization", this.state.token);
-          ajax.send();
-        }
-        else this.handleMount();
+         console.log("drugi if");
+          axios({
+            url: 'https://si2019romeo.herokuapp.com/users/validate',
+            type: 'get',
+            dataType: 'json',
+            data: jQuery.param({
+              username: window.localStorage.getItem("username")
+            }),
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+            },
+           
+        })
+        .then(res=>{
+          console.log("res: " + res)
+          this.handleMount();
+        })
+        .catch(res=>{
+          console.log("catch: " + res);
+          this.props.history.push("/Romeo");
+        })
       }
+        else this.handleMount();
+    }
       else if(!res.data.userAutorizacija){
         //nema privilegiju
         this.setState({
@@ -119,6 +128,7 @@ class App extends Component {
       }
       else{
         //kod nas greska
+        console.log(res.data);
         this.setState({
           msg:"Došlo je do greške!",
           OK:false

@@ -3,7 +3,9 @@ import axios from "axios";
 import "./bootstrap.min.css";
 import { pdfjs } from "react-pdf";
 import { withRouter } from "react-router-dom"
+import jQuery from "jquery"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
 
 class UgovorOUcenju extends Component {
   //fali api za dobavljanje smjerova iz baze
@@ -41,19 +43,24 @@ class UgovorOUcenju extends Component {
   handleCreate() {
     //kreiranje ugovora
     if (window.localStorage.getItem("id") != null) {
-      var ajax = new XMLHttpRequest();
-      ajax.onreadystatechange = () => {
-        if (this.readyState == 4 && this.status == 200) {
-          this.handleGetKreiraj();
-        }
-        else {
-          //vrati na login
-          this.props.history.push("/Romeo");
-        }
-      }
-      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-      ajax.setRequestHeader("Authorization", this.state.token);
-      ajax.send();
+      axios({
+        url: 'https://si2019romeo.herokuapp.com/users/validate',
+        type: 'get',
+        dataType: 'json',
+        data: jQuery.param({
+          username: window.localStorage.getItem("username")
+        }),
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+        },
+    })
+    
+    .then(res => {
+      this.handleGetKreiraj();
+  })
+  .catch(res=>{
+    this.props.history.push("/Romeo");
+  })
     }
     else this.handleGetKreiraj();
   }
@@ -126,20 +133,25 @@ class UgovorOUcenju extends Component {
 
   prikaziIzborne() {
     if (window.localStorage.getItem("id") != null) {
-      var ajax = new XMLHttpRequest();
-      ajax.onreadystatechange = () => {
-        if (this.readyState == 4 && this.status == 200) {
-          this.handleGetIzborni();
-        }
-        else {
-          //vrati na login
-          this.props.history.push("/Romeo");
-        }
-      }
-      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-      ajax.setRequestHeader("Authorization", this.state.token);
-      ajax.send();
-    }
+      axios({
+        url: 'https://si2019romeo.herokuapp.com/users/validate',
+        type: 'get',
+        dataType: 'json',
+        data: jQuery.param({
+          username: window.localStorage.getItem("username")
+        }),
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+        },
+    })
+    
+    .then(res => {
+      this.handleGetIzborni();
+    })
+    .catch(res=>{
+      this.props.history.push("/Romeo");
+    })
+  }
     else this.handleGetIzborni();
   }
 
@@ -203,19 +215,24 @@ class UgovorOUcenju extends Component {
     this.prikaziIzborne();
     //dobavljanje ugovora za prikaz
     if (window.localStorage.getItem("id") != null) {
-      var ajax = new XMLHttpRequest();
-      ajax.onreadystatechange = () => {
-        if (this.readyState == 4 && this.status == 200) {
-          this.handleGetGlavni();
-        }
-        else {
-          //vrati na login
-          this.props.history.push("/Romeo");
-        }
-      }
-      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-      ajax.setRequestHeader("Authorization", this.state.token);
-      ajax.send();
+      axios({
+        url: 'https://si2019romeo.herokuapp.com/users/validate',
+        type: 'get',
+        dataType: 'json',
+        data: jQuery.param({
+          username: window.localStorage.getItem("username")
+        }),
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+        },
+    })
+    
+    .then(res => {
+      this.handleGetGlavni();
+  })
+  .catch(res=>{
+    this.props.history.push("/Romeo");
+  })
     }
     else this.handleGetGlavni();
   }

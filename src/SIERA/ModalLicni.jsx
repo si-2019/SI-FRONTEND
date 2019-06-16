@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "./Potvrda";
 import { withRouter } from "react-router-dom";
+import jQuery from "jquery"
 class ModalComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -59,20 +60,25 @@ class ModalComponent extends React.Component {
     }
     handleAuth = (event) => {
         if (window.localStorage.getItem("id") != null) {
-            var ajax = new XMLHttpRequest();
-            ajax.onreadystatechange = () => {
-                if (this.readyState == 4 && this.status == 200) {
-                    //radi sta hoces
-                    this.handlePutEvent(event);
-                }
-                else {
-                    //vrati na login
-                    this.props.history.push("/Romeo");
-                }
-            }
-            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-            ajax.setRequestHeader("Authorization", this.state.token);
-            ajax.send();
+            axios({
+                url: 'https://si2019romeo.herokuapp.com/users/validate',
+                type: 'get',
+                dataType: 'json',
+                data: jQuery.param({
+                  username: window.localStorage.getItem("username")
+                }),
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+                },
+               
+            })
+            
+            .then(res => {
+                 this.handlePutEvent(event);
+            })
+            .catch(res=>{
+                this.props.history.push("/Romeo");
+              })
         }
         else this.handlePutEvent(event)
     }

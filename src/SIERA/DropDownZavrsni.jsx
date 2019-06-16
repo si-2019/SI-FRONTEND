@@ -3,6 +3,7 @@ import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "react-router-dom"
 import PrikaziStatus from "./PrikaziStatus";
+import jQuery from "jquery"
 
 class DropDownZavrsni extends React.Component {
 
@@ -20,7 +21,7 @@ class DropDownZavrsni extends React.Component {
             selProf: null,
             selTema: null,
             greskaVisible: "hidden",
-            succVisible:"hidden",
+            succVisible: "hidden",
             selectClass: "custom-select",
             OK: null,
             msg: ""
@@ -66,7 +67,7 @@ class DropDownZavrsni extends React.Component {
                         msg: "",
                         OK: true
                     })
-                    
+
                 }
                 else if (!res.data.userAutorizacija) {
                     //nema privilegiju
@@ -132,20 +133,24 @@ class DropDownZavrsni extends React.Component {
     }
     componentDidMount() {
         if (window.localStorage.getItem("id") != null) {
-            var ajax = new XMLHttpRequest();
-            ajax.onreadystatechange = () => {
-                if (this.readyState == 4 && this.status == 200) {
-                    //radi sta hoces
+            axios({
+                url: 'https://si2019romeo.herokuapp.com/users/validate',
+                type: 'get',
+                dataType: 'json',
+                data: jQuery.param({
+                    username: window.localStorage.getItem("username")
+                }),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+                },
+
+            })
+                .then(res => {
                     this.handleGet();
-                }
-                else {
-                    //vrati na login
+                })
+                .catch(res=>{
                     this.props.history.push("/Romeo");
-                }
-            }
-            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-            ajax.setRequestHeader("Authorization", this.state.token);
-            ajax.send();
+                  })
         }
         else this.handleGet();
 
@@ -153,10 +158,21 @@ class DropDownZavrsni extends React.Component {
 
     handleChangeProf(selectedId) {
         if (window.localStorage.getItem("id") != null) {
-            var ajax = new XMLHttpRequest();
-            ajax.onreadystatechange = () => {
-                if (this.readyState == 4 && this.status == 200) {
-                    axios
+            
+            axios({
+                url: 'https://si2019romeo.herokuapp.com/users/validate',
+                type: 'get',
+                dataType: 'json',
+                data: jQuery.param({
+                    username: window.localStorage.getItem("username")
+                }),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+                },
+
+            })
+                .then(res => {
+                        axios
                         .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId + "/" + this.state.studentId)
                         .then(res => {
                             this.setState({
@@ -180,15 +196,11 @@ class DropDownZavrsni extends React.Component {
                                 console.log(res.error);
                             }
                         );
-                }
-                else {
-                    //vrati na login
+                    
+                })
+                .catch(res=>{
                     this.props.history.push("/Romeo");
-                }
-            }
-            ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
-            ajax.setRequestHeader("Authorization", this.state.token);
-            ajax.send();
+                  })
         }
         else {
             axios
@@ -240,17 +252,17 @@ class DropDownZavrsni extends React.Component {
             })
         }
     }
-    handlePotvrda = ()=>{
-        if(this.state.OK){
+    handlePotvrda = () => {
+        if (this.state.OK) {
             this.setState({
-                greskaVisible:"hidden",
-                succVisible:"visible"
+                greskaVisible: "hidden",
+                succVisible: "visible"
             })
-        
+
         }
         else this.setState({
-            greskaVisible:"visible",
-            succVisible:"hidden"
+            greskaVisible: "visible",
+            succVisible: "hidden"
         })
     }
     render() {
@@ -294,8 +306,8 @@ class DropDownZavrsni extends React.Component {
                                     <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
                                         <button type="button" className="btn btn-primary" style={{ marginTop: "20px" }} onClick={this.handleClick}>Prijavi završni</button>
                                     </div>
-                                    {this.state.OK ? "" : <div className= "invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
-                                    
+                                    {this.state.OK ? "" : <div className="invalid-feedback" style={{ marginTop: "10px" }}>{this.state.msg}</div>}
+
                                     <hr></hr>
                                     <h4 className="card-title">Status</h4>
                                     <div className="d-flex align-items-end" style={{ flexDirection: "column" }}>
@@ -330,8 +342,8 @@ class DropDownZavrsni extends React.Component {
                                     <br></br>
                                     <label className="col-form-label" htmlFor="inputDefault">Tema: {this.state.selTema}</label>
                                 </div>
-                                <div className="valid-feedback" style={{visibility:this.state.succVisible}} >Zahtjev je uspješno poslan.</div>
-                                <div className="invalid-feedback" style={{visibility:this.state.greskaVisible}}>Došlo je do greške!</div>
+                                <div className="valid-feedback" style={{ visibility: this.state.succVisible }} >Zahtjev je uspješno poslan.</div>
+                                <div className="invalid-feedback" style={{ visibility: this.state.greskaVisible }}>Došlo je do greške!</div>
                             </div>
 
                         </Modal.Body>

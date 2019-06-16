@@ -26,8 +26,6 @@ class FileSidebar extends Component {
                 })
             }
             else{
-                console.log(res.data);
-
                 this.setState({
                     files: res.data
                 })
@@ -47,8 +45,6 @@ class FileSidebar extends Component {
                 })
             }
             else{
-                console.log(res.data);
-
                 this.setState({
                     files: res.data
                 })

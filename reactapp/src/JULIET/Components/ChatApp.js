@@ -52,7 +52,7 @@ class ChatApp extends Component {
             joinableRooms:[],
             blockedUsers: [],
             presenceUser: [],
-            currentUserRole: null,
+            currentUserRole: null
         }
         this.addMessage = this.addMessage.bind(this);
         this.openPrivateChat = this.openPrivateChat.bind(this);
@@ -138,7 +138,7 @@ class ChatApp extends Component {
             
         Axios.get(url).then(res => {
             this.setState({ 
-                pinnedMessages: this.state.pinnedMessages.concat(res.data)
+                pinnedMessages: res.data
             }, () => {
                 //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages));
             });
@@ -421,13 +421,14 @@ class ChatApp extends Component {
                     pinnedMessages: this.state.pinnedMessages.concat([trenutnaPoruka])
                 }, () => {
                     //localStorage.setItem('PinovanePoruke', JSON.stringify(this.state.pinnedMessages));
-                    Axios.post('https://si2019juliet.herokuapp.com/pinujPoruku', {
+                    const reqBody = {
                         messageCreatedAt: message.createdAt,
                         messageId: message.id + '',
                         roomId: message.roomId,
                         senderId: message.senderId,
                         text: message.text
-                    })
+                    }
+                    Axios.post('https://si2019juliet.herokuapp.com/pinujPoruku', reqBody)
                     .then(res => {})
                     .catch(e => console.log(e));
                 });
@@ -586,7 +587,7 @@ class ChatApp extends Component {
                         addUser={this.addUser}
                     />
                     <FileSidebar downloadClick={this.downloadClick} roomId={this.state.currentRoom.id} />
-                    <PinnedMessages pinnedMessages={this.state.pinnedMessages}/>
+                    <PinnedMessages pinnedMessages={this.state.pinnedMessages} roomId={this.state.currentRoom.id} />
                     <EventPlanner currentId={this.props.currentId} colorScheme={colorScheme}/> 
                     <ul className="juliet-colors-popup" onMouseLeave={this.toggleColorPicker} >
                         {this.state.showColorPicker ? 

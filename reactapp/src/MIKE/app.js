@@ -275,9 +275,9 @@ class Mike extends Component {
           }));
         }
       }
-      console.log(window.localStorage.getItem("username"));
-      console.log(window.localStorage.getItem("id"));
-      console.log(window.localStorage.getItem("token"));
+      //console.log(window.localStorage.getItem("username"));
+      //console.log(window.localStorage.getItem("id"));
+      //console.log(window.localStorage.getItem("token"));
       ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewS/predmeti-za-generisanje-grupa/"
       +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -305,8 +305,10 @@ class Mike extends Component {
           }));
         }
       }
-      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/getProjects/"+this.state.korisnik,true);
+      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/getProjects/"
+      +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
       ajax.send();
   }
   pregledDetaljaPredmeta(){
@@ -332,8 +334,10 @@ class Mike extends Component {
           }));
         }
 		}
-		ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/predmetiprojektiasistent/"+this.state.korisnik,true);
+    ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/predmetiprojektiasistent/"
+    +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
     ajax.send();
   }
   pregledZadatakaProjektaCall(){
@@ -366,8 +370,10 @@ class Mike extends Component {
         }));
       }
     }
-		ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getPredmeti/"+this.state.korisnik,true);
+    ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getPredmeti/"
+    +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
     ajax.send();
   }
   unosInformacija(){
@@ -399,8 +405,10 @@ class Mike extends Component {
         }));
       }
     }
-		ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getInfoPredmeti/"+this.state.korisnik,true);
+    ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getInfoPredmeti/"
+    +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
     ajax.send();
   }
 

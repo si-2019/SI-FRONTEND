@@ -29,23 +29,25 @@ export default class App extends React.Component {
     JeLiLogiran() {
         var logiran = localStorage.getItem("token");
         if(logiran) return ([
-            <button onClick={this.PrikaziLog} >Prikazi log</button>,
-            <button type="button" className="odjava" data-placement="right" margin-left="70%" text-align="center" onClick={this.Odjavi} >Odjavi se</button>
+            <div style={{marginLeft:"1%", display:"inline", width:"50px" }} className="dugmad">
+            <button type="button" className="btn btn-primary" onClick={this.PrikaziLog} >Prikazi log</button>
+            <button type="button" className="btn btn-primary" data-placement="right" margin-left="70%" text-align="center" onClick={this.Odjavi} >Odjavi se</button>
+            </div>
         ]);
         return;
     }
 
     render() {
 
-        let timovi = ["Alpha", "Beta", "Charlie", "Delta", "Echo", "Fox", "Golf", "Hotel", "India",
-                        "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", 
-                         "Papa", "Romeo", "Siera", "Tango", "Uniform"];
+        let timovi = ["Administrator", "Student support", "Ispiti", "Predmeti", "Akademski kalendar", "Profesori", "Materijali", "Ankete", "India",
+                        "Chat", "Zadace", "Izvještaji", "Kolaboracija", "November", "Oscar", 
+                         "Dashboard", "Romeo", "Studenti", "Forum", "Raspored"];
 
         if(this.PrikaziHeader()) {
             return (
             
                 <div className="Sve">
-                <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"83px", display:"inline" }} className="nav-link active">
+                <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"83px", display:"inline", textAlign:"center" }} className="nav-link active">
                     {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
                     {this.JeLiLogiran()}
                     <ModalChangeLog container={this} ref = "modal" />

@@ -47,7 +47,7 @@ export default class App extends React.Component {
             return (
             
                 <div className="Sve">
-                    <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"22px", display:"inline", textAlign:"center" }} className="nav-link active">
+                    <div style={{backgroundColor: "#00203f", paddingTop:"5px", paddingBottom:"5px", textAlign:"center" }}>
                         {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
                         {this.JeLiLogiran()}
                         <ModalChangeLog container={this} ref = "modal" />

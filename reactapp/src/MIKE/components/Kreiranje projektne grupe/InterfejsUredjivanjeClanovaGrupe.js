@@ -167,6 +167,9 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
         for(var i=0;i<komponenta.nizUnutra.length;i++){
           payload.push({idStudent:komponenta.nizUnutra[i].id,idGrupaProjekta:id})
         }
+        var jsonSend;
+        jsonSend["username"]=window.localStorage.getItem("username");
+        jsonSend["clanovi"]=payload;
         let ajax2=new XMLHttpRequest();
         ajax2.onreadystatechange=function(){
           if(ajax2.readyState==4 && ajax2.status=="200"){
@@ -174,13 +177,15 @@ class InterfejsUredjivanjeClanovaGrupe extends Component {
         }
         ajax2.open("POST","https://si-mike-2019.herokuapp.com/services/group/addmembers",true);
         ajax2.setRequestHeader("Content-Type", "application/json");
+        ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
         ajax2.setRequestHeader("Accept","application/json");
-        ajax2.send(JSON.stringify(payload));  
+        ajax2.send(JSON.stringify(jsonSend));  
       }
     }
     ajax.open("POST","https://si-mike-2019.herokuapp.com/services/group/",true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("idProjekat="+this.state.projektID+"&nazivGrupe="+this.props.naziv+"&ostvareniBodovi=0&komentarAsistenta= ");
+    ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
+    ajax.send("idProjekat="+this.state.projektID+"&nazivGrupe="+this.props.naziv+"&ostvareniBodovi=0&komentarAsistenta= &username="+window.localStorage.getItem("username"));
   }
 }
 

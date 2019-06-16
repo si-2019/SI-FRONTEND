@@ -4,6 +4,7 @@ import Countdown from './Countdown'
 import axios from 'axios';
 import url from '../url'
 import StarRatingComponent from 'react-star-rating-component';
+import {Redirect} from 'react-router'
 
 class Popunjavanje extends Component {
   constructor(props) {
@@ -21,6 +22,8 @@ class Popunjavanje extends Component {
     odgovori: [],
     showSucess: false,
     showError: '',
+    error: '',
+    popunjeno: false
   }
 
   onStarClick(nextValue, prevValue, name) {
@@ -78,6 +81,17 @@ class Popunjavanje extends Component {
       });
     axios.get(`${url}/getAnketa/?id=${params.id}`)
       .then((res) => {
+        console.log(res, "-.--")
+        if(res.data.loginError) {
+          window.location.href = window.location.origin + '/romeo/login'
+          return
+      } else if(res.data.accessError) {
+        this.setState({
+          error: res.data.accessError
+        })
+        return
+      }
+
         const pit = [];
         const odg = [];
         for (let key in res.data) {
@@ -157,14 +171,8 @@ class Popunjavanje extends Component {
         .then((res, err) => {
           console.log("radiiiiii", res);
           if (res.message === 'OKic') {
-            this.setState({ showSucess: true });
-            setTimeout(
-              function () {
-                window.location.reload();
-              }
-                .bind(this),
-              2000
-            );
+            console.log("OKKKK")
+            this.setState({ showSucess: true, popunjeno: true });
           }
           else {
             this.setState({ showError: res.message });
@@ -188,6 +196,19 @@ class Popunjavanje extends Component {
   }
 
   render() {
+    if(this.state.error) {
+      return (
+        <div style={{
+          width: "100%",
+          height: "100%",
+          background: "white",
+          margin: "auto"
+        }}>
+          {this.state.error}
+        </div>
+      )
+    }
+
     const pitanjaa = [];
     for (const [index, value] of this.state.pitanja.entries()) {
       pitanjaa.push(
@@ -235,8 +256,9 @@ class Popunjavanje extends Component {
     return (
 
       <div className="App" id="containerPopuni">
-        
+        {this.state.error ? this.state.error : 
         <div id="proradi">
+          {this.state.popunjeno && <Redirect to='/hotel'/>}
           <div className="naslovliste">
             <h1>Popunjavanje</h1>
           </div >
@@ -296,7 +318,7 @@ class Popunjavanje extends Component {
             </div>
           </div>
         </div>
-
+        }
       </div >
     );
   }

@@ -153,7 +153,8 @@ class MessageList extends Component {
       }
 
     render() {
-        const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input));
+        const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) 
+                || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input) || d.senderId === this.state.input.toLowerCase());
         return (
             <div className="juliet-container">
                 <div className="juliet-message-header" style={{'background': this.props.colorScheme}}>
@@ -162,7 +163,7 @@ class MessageList extends Component {
                             <RoomName currentRoom={this.props.currentRoom}/>
                         </h4>
                     </div>
-                    <input className="juliet-pretraga-text" placeholder="Pretraži poruke (ili po datumu DD.MM.YYYY)" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
+                    <input className="juliet-pretraga-text" placeholder="Pretraži poruke po frazama, pošiljaocu ili po datumu (DD.MM.YYYY)" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
                 <ul style={listStyle} className="list-group juliet-message-list">
                     {listSrc.map((message, index) => (

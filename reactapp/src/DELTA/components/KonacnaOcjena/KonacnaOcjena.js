@@ -7,8 +7,8 @@ class Ankete extends Component {
 
     async componentDidMount(){
      //hardkodirane vrijednosti
-      const idStudent=1;
-      const idPredmet=8;
+      const idStudent=7;
+      const idPredmet=259;
       const {data} = await axios.get('https://si2019delta.herokuapp.com/ocjena/'+idPredmet+'/'+idStudent); 
       this.setState({konacnaOcj:data})
       

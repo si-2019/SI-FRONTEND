@@ -23,7 +23,7 @@ class Predmet extends Component {
   state = {predmet:"", profesor:"",email:"", idPredmeta: 100, idStudenta: 230};
   async componentDidMount(){
    
-    const idPredmet=1;
+    const idPredmet=64;
     //console.log(this.props.idPredmeta);
     //const idPredmet=64;
 

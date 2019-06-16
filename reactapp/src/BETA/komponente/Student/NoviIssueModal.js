@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Potvrda from "../helpers/Potvrda.js";
 import CategoryComponent from './CategoryComponent.js';
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 class ModalComponent extends React.Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class ModalComponent extends React.Component {
         //ukoliko neki rezultira greskom, postavite greska na true
         const { issueTitle, issueText } = this.state;
 
-        axios.post('https://si2019beta.herokuapp.com/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText)
+        axios.post('https://si2019beta.herokuapp.com/issue/send/s?issueTitle='+issueTitle+'&issueText='+issueText, null, standardHeaders())
             .then(result => {
                 if (result.data === "Uspjesan upis!") { { this.setState({ greska: false, draft:false ,issueTitle:"",issueText:""}); } }
                 else{
@@ -62,7 +63,7 @@ class ModalComponent extends React.Component {
             
         const {issueTitle, issueText, procitaoStudent, procitalaSS} = this.state;
            this.setState({draft:true})
-            axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS})
+            axios.post('https://si2019beta.herokuapp.com/issues/draft/add', { issueTitle, issueText, procitaoStudent, procitalaSS}, standardHeaders())
             .then((result) => {if (result.data === "Successfully saved issue as draft!") { { this.setState({ greska: false,draft: true }); } }
             else{
                 { this.setState({ greska: true})}

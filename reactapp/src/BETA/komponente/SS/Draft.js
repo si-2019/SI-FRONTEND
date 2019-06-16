@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 export default class Draft extends React.Component {
 
@@ -31,6 +32,7 @@ export default class Draft extends React.Component {
     deleteIssue = (idIssue) => {
 
         axios.delete('https://si2019beta.herokuapp.com/issues/draft/delete', { 
+            ...standardHeaders(),
             params: {
                 id: idIssue
             }

@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 export default class Draft extends React.Component {
 
@@ -29,7 +30,7 @@ export default class Draft extends React.Component {
     resloveIssue = (idIssue) => {
 
         const { trashStudent, trashSS } = this.state;
-        axios.put('http://localhost:31902/issues/reslove', { trashStudent, trashSS, idIssue })
+        axios.put('https://si2019beta.herokuapp.com/issues/reslove', { trashStudent, trashSS, idIssue }, standardHeaders())
             .then((result) => {
 
                 for (let i = 0; i < this.props.data.length; i++) {
@@ -51,6 +52,7 @@ export default class Draft extends React.Component {
     deleteIssue = (idIssue) => {
 
         axios.delete('https://si2019beta.herokuapp.com/issues/draft/delete', { 
+            ...standardHeaders(),
             params: {
                 id: idIssue
             }

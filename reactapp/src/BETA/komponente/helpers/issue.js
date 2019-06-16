@@ -5,6 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import ModalComponent from './OdgovorForma.js'
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 export default class Issue extends React.Component {
 
@@ -47,7 +48,7 @@ export default class Issue extends React.Component {
     archiveIssue = (idIssue) => {
 
         const { trashStudent, trashSS } = this.state;
-        axios.put('https://si2019beta.herokuapp.com/issues/archived/add', { trashStudent, trashSS, idIssue })
+        axios.put('https://si2019beta.herokuapp.com/issues/archived/add', { trashStudent, trashSS, idIssue }, standardHeaders())
             .then((result) => {
 
                 for (let i = 0; i < this.props.data.length; i++) {
@@ -67,7 +68,7 @@ export default class Issue extends React.Component {
     resloveIssue = (idIssue) => {
 
         const { trashStudent, trashSS } = this.state;
-        axios.put('http://localhost:31902/issues/reslove', { trashStudent, trashSS, idIssue })
+        axios.put('https://si2019beta.herokuapp.com/issues/reslove', { trashStudent, trashSS, idIssue }, standardHeaders())
             .then((result) => {
 
                 for (let i = 0; i < this.props.data.length; i++) {

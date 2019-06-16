@@ -5,6 +5,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button'
 import Issue from './Archived.js';
 import axios from 'axios';
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 class ArchivedPart extends React.Component {
     constructor(props) {
@@ -61,7 +62,7 @@ class ArchivedPart extends React.Component {
         for(let i = 0; i < data.length; i++){
             const id = data[i].id;
             
-            axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id })
+            axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id }, standardHeaders())
             .then((result) => {
             });
         }
@@ -86,7 +87,7 @@ class ArchivedPart extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('https://si2019beta.herokuapp.com/issues/archived/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/archived/get', standardHeaders());
 
         let dN = [];
         let dIP = [];
@@ -94,21 +95,21 @@ class ArchivedPart extends React.Component {
 
         //new
         res.data.new.forEach( async (issue) => {
-            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dn = issue.messages;
             dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
         });
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
-            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dip = issue.messages;
             dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
-            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dr = issue.messages;
             dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
         });

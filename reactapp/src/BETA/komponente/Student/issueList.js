@@ -4,6 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import Spinner from 'react-bootstrap/Spinner';
 import Issue from '../helpers/issue.js';
 import axios from 'axios';
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 class IssueList extends React.Component {
     constructor(props) {
@@ -36,9 +37,9 @@ class IssueList extends React.Component {
 
     async componentDidMount() {
         this.setState({isLoading: true});
-        const res = await axios.get('https://si2019beta.herokuapp.com/issues/get');
+        const res = await axios.get('https://si2019beta.herokuapp.com/issues/get', standardHeaders());
 
-        axios.get('https://si2019beta.herokuapp.com/category/get').then( res => {
+        axios.get('https://si2019beta.herokuapp.com/category/get', standardHeaders()).then( res => {
 
             
 
@@ -56,7 +57,7 @@ class IssueList extends React.Component {
 
         //new
         res.data.new.forEach( async (issue) => {
-            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dn = issue.messages;
             dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
         });
@@ -64,14 +65,14 @@ class IssueList extends React.Component {
 
         //inProgress
         res.data.inProgress.forEach( async (issue) => {
-            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dip = issue.messages;
             dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
         });
 
         //resolved
         res.data.resolved.forEach( async (issue) => {
-            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+            let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
             let dr = issue.messages;
             dR.push({id: issue.id, title: cr.data.naziv, messages: dr});
         });
@@ -87,8 +88,8 @@ class IssueList extends React.Component {
         // this.setState({kategorija : sljedecaKategorija});
                 //alert(sljedecaKategorija.category);
                 this.setState({isLoading: true});
-                const res = await axios.get('https://si2019beta.herokuapp.com/issues/get');
-                //const kategorija = await axios.get('http://localhost:31902/category/get/naziv?categoryNaziv='+'Da');
+                const res = await axios.get('https://si2019beta.herokuapp.com/issues/get', standardHeaders());
+                //const kategorija = await axios.get('https://si2019beta.herokuapp.com/category/get/naziv?categoryNaziv='+'Da');
                 //alert(kategorija.data);
 
                 let dN = [];
@@ -97,7 +98,7 @@ class IssueList extends React.Component {
 
                 //new
                 res.data.new.forEach( async (issue) => {
-                    let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+                    let cn = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
                     if(this.state.categoryTitle == 'Sve' ||  cn.data.naziv == this.state.categoryTitle){
                     let dn = issue.messages;
                     dN.push({id: issue.id, title: cn.data.naziv, messages: dn});
@@ -106,7 +107,7 @@ class IssueList extends React.Component {
 
                 //inProgress
                 res.data.inProgress.forEach( async (issue) => {
-                    let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+                    let cip = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
                     if(this.state.categoryTitle == 'Sve' ||  cip.data.naziv == this.state.categoryTitle){
                     let dip = issue.messages;
                     dIP.push({id: issue.id, title: cip.data.naziv, messages: dip});
@@ -115,7 +116,7 @@ class IssueList extends React.Component {
 
                 //resolved
                 res.data.resolved.forEach( async (issue) => {
-                    let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`);
+                    let cr = await axios.get(`https://si2019beta.herokuapp.com/category/get/${issue.categoryID}`, standardHeaders());
                     if(this.state.categoryTitle == 'Sve' ||  cr.data.naziv == this.state.categoryTitle){
                     let dr = issue.messages;
                     dR.push({id: issue.id, title: cr.data.naziv, messages: dr});

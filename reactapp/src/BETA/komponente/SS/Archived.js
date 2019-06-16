@@ -3,6 +3,7 @@ import ArchivedMessage from "./ArchivedMessage";
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import {standardHeaders} from '../helpers/getStandardHeaders'
 
 export default class Archived extends React.Component {
 
@@ -32,7 +33,7 @@ export default class Archived extends React.Component {
         const {trashStudent, trashSS} = this.state;
         const id = id_Issue;
             
-        axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id })
+        axios.put('https://si2019beta.herokuapp.com/issues/archived/delete', { trashStudent, trashSS, id }, standardHeaders())
         .then((result) => {
 
             for(let i = 0; i < this.props.data.length; i++){

@@ -57,13 +57,6 @@ class HomePage extends Component {
     }
     return (
       <div className="App" >
-
-        <div className="header" >
-          <img 
-            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
-            alt="new"
-          />
-        </div>
         <div className="main">
           <h1 ref="dobroDosli" ></h1>
         </div>

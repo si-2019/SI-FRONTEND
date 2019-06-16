@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
-import PrisustvoPoPredmetu from '../../LIMA/Izvjestaji/components/Dijagrami/PrisustvoPoPredmetu.js';
+import PrisustvoPoPredmetu from '../../LIMA/Student/Izvjestaji/components/Dijagrami/PrisustvoPoPredmetu.js';
 import './manjeKomponente/stil.css'
 import ColorPicker from './manjeKomponente/ColorPicker.js'
 import papaApi from './papaApi';

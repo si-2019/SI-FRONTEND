@@ -95,7 +95,7 @@ export default class Archived extends React.Component {
                 return (
                     
                     <div className="row">
-                        <div key={index} className="card issue-card" >
+                        <div key={index} className="card issue-card" style={{minWidth: "100%"}} >
                             <div className="card-title">
                                 <div className="issue-body card-body">
                                     <div className = "issueID">id:{issue.id}</div>

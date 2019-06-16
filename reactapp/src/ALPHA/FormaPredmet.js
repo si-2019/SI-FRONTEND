@@ -40,7 +40,14 @@ class FormaPredmet extends Component {
         const xhr = new XMLHttpRequest();
 
         const body = JSON.stringify(data);
-        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/predmet/AddNewPredmet', true);
+
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/predmet/AddNewPredmet?currentUsername=' + currentUsername + '&token=' + token,true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {

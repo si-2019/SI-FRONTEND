@@ -16,6 +16,12 @@ class prikazAsistenta extends Component{
     componentDidMount(param){
       var xhttp = new XMLHttpRequest();
       var self = this;
+
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
       
      xhttp.onreadystatechange = function(){
         if (xhttp.readyState == 4 && xhttp.status == 200){
@@ -25,8 +31,8 @@ class prikazAsistenta extends Component{
         }
       }
     
-     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchProfessor?ime="+param, true);
-     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors", true);
+     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchProfessor?ime="+param + '&currentUsername=' + currentUsername + '&token=' + token, true);
+     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors?currentUsername=" + currentUsername + "&token=" + token, true);
      
       xhttp.send();
     }

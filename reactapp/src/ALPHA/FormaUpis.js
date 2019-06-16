@@ -28,9 +28,15 @@ class FormaUpis extends Component {
 
      componentDidMount(param){
        console.log(param);
+
+       var token1 = window.localStorage.getItem("token");
+       var token = encodeURI(token1);
+       var currentUsername = window.localStorage.getItem("username");  
+       console.log(token);
+       console.log(currentUsername);
        
        //"http://localhost:31901/api/korisnik/searchStudent?ime="+param
-       axios.get ("https://si2019alpha.herokuapp.com/api/korisnik/searchStudent?ime="+param)
+       axios.get ("https://si2019alpha.herokuapp.com/api/korisnik/searchStudent?ime="+param + "&currentUsername" + currentUsername + "&token=" + token)
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({lista: response.data});    
@@ -69,8 +75,14 @@ class FormaUpis extends Component {
        const body = JSON.stringify(json);
 
        console.log(body);
-       //NOVI API CE BITI
-       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/enrollStudentToSemester', true);
+
+       var token1 = window.localStorage.getItem("token");
+       var token = encodeURI(token1);
+       var currentUsername = window.localStorage.getItem("username");  
+       console.log(token);
+       console.log(currentUsername);
+
+       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/enrollStudentToSemester?currentUsername=' + currentUsername + '&token=' + token, true);
        xhr.setRequestHeader('Content-Type', 'application/json');
        xhr.onload = () => {
          if(xhr.status === 200) {

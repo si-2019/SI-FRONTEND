@@ -20,8 +20,13 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        //http://localhost:31901/api/korisnik/getAllStudents
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -65,12 +70,19 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
 
-        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateStudent', true);
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateStudent?currentUsername=' + currentUsername + '&token=' + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
             const resp = xhr.responseText;
-            alert(resp);
+           // alert(resp);
+           alert("Uspješno izvršene izmjene!");
           }
         }
         xhr.onerror = () => {
@@ -83,9 +95,17 @@ class Forma extends Component {
      
       promote(id){
         const json={id};
-        axios.post("https://si2019alpha.herokuapp.com/api/korisnik/promoteStudentToAssistant", json)
+
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+        
+        axios.post("https://si2019alpha.herokuapp.com/api/korisnik/promoteStudentToAssistant?currentUsername=" + currentUsername + "&token=" + token, json)
         .then(response=>{
           console.log(response);
+          alert("Student uspješno unaprijeđen u asistenta!");
         })
         .catch(error=>{
           console.log(error)

@@ -16,7 +16,13 @@ class FormaProfPred extends Component {
       }
 
       componentDidMount(){
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaProfesora: response.data});
@@ -25,7 +31,7 @@ class FormaProfPred extends Component {
             console.log(error)
         })
 
-        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
+        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaPredmeta: response.data});
@@ -51,12 +57,18 @@ class FormaProfPred extends Component {
 
     spoji(predmet, profesor){
       console.log(predmet, profesor)
+      var token1 = window.localStorage.getItem("token");
+      var token = encodeURI(token1);
+      var currentUsername = window.localStorage.getItem("username");  
+      console.log(token);
+      console.log(currentUsername);
+
       if(profesor=='' || predmet=="" || profesor==undefined || predmet==undefined || profesor=="--Profesori--" || predmet=="--Predmeti--")
       alert("Izaberite profesora i predmet!")
       else {
         console.log(profesor,predmet);
         const json={"idPredmet":predmet, "idProfesor":profesor}
-        axios.post("https://si2019alpha.herokuapp.com/api/povezivanje/linkProfessorSubject", json)
+        axios.post("https://si2019alpha.herokuapp.com/api/povezivanje/linkProfessorSubject?currentUsername=" + currentUsername + "&token=" + token, json)
         .then(response => {
             console.log(response);
         })

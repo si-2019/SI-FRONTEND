@@ -71,12 +71,18 @@ class Forma extends Component {
           "website":null,
           "titula":null
         }
-        const body = JSON.stringify(json);
 
+        const body = JSON.stringify(json);
         console.log(body);
 
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
        //http://localhost:31901/api/korisnik/AddNewStudent
-       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewStudent', true);
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewStudent?currentUsername=' + currentUsername + '&token=' + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {

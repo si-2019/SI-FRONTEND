@@ -19,7 +19,13 @@ class promijeniLozinku extends Component {
       }
 
       componentDidMount(){
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -56,7 +62,13 @@ class promijeniLozinku extends Component {
     }
      
     dajProfesore() {
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -67,7 +79,13 @@ class promijeniLozinku extends Component {
 
     }
     dajStudente() {
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllStudents?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -78,7 +96,13 @@ class promijeniLozinku extends Component {
 
     }
     dajAsistente() {
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -101,8 +125,14 @@ class promijeniLozinku extends Component {
 
      
       promijeni(username){
-          if(username!="") {
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/GetNewPassword?username='+username)
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        if(username!="") {
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/GetNewPassword?username='+username + '&currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             alert("Novi password korisnika je: " + response.data.password);

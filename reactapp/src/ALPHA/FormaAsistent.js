@@ -33,8 +33,13 @@ class FormaAsistent extends Component {
       }
 
       componentDidMount(){
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
        
-        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
+        axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -90,7 +95,14 @@ class FormaAsistent extends Component {
         const xhr = new XMLHttpRequest();
 
         const body1 = JSON.stringify(body);
-        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewAssistant', true);
+
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/korisnik/AddNewAssistant?currentUsername=' + currentUsername + '&token=' + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {

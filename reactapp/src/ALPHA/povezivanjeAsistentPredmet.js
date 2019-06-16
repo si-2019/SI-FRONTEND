@@ -16,7 +16,13 @@ class FormaProfPred extends Component {
       }
 
       componentDidMount(){
-        axios.get ('http://localhost:31901/api/korisnik/GetAllAssistants')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('http://localhost:31901/api/korisnik/GetAllAssistants?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaAsistenata: response.data});
@@ -25,7 +31,7 @@ class FormaProfPred extends Component {
             console.log(error)
         })
 
-        axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+        axios.get ('http://localhost:31901/api/predmet/GetPredmeti?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaPredmeta: response.data});
@@ -52,7 +58,14 @@ class FormaProfPred extends Component {
     spoji(asistent, predmet){
         console.log(asistent,predmet);
         const json={"idUloga":asistent, "idPredmet":predmet, "godina":null, "ciklus":null, "obavezan":null}
-        axios.post("http://localhost:31901/api/povezivanje/linkAssistantSubject", json)
+
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.post("http://localhost:31901/api/povezivanje/linkAssistantSubject?currentUsername=" + currentUsername + "&token=" + token, json)
         .then(response => {
             console.log(response);
         })

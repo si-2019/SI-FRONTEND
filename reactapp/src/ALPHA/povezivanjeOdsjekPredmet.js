@@ -21,7 +21,13 @@ class FormaProfPred extends Component {
      }
 
      componentDidMount(){
-       axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
+      var token1 = window.localStorage.getItem("token");
+      var token = encodeURI(token1);
+      var currentUsername = window.localStorage.getItem("username");  
+      console.log(token);
+      console.log(currentUsername);
+
+       axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci?currentUsername=' + currentUsername + '&token=' + token)
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({listaOdsjeka: response.data});
@@ -30,7 +36,7 @@ class FormaProfPred extends Component {
            console.log(error)
        })
 
-       axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
+       axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti?currentUsername=' + currentUsername + '&token=' + token)
        .then(response => {
            console.log("Lista: ", response.data);
            this.setState({listaPredmeta: response.data});
@@ -65,7 +71,13 @@ class FormaProfPred extends Component {
 
        const xhr = new XMLHttpRequest();
 
-       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/povezivanje/SpojiOdsjekPredmet', true);
+       var token1 = window.localStorage.getItem("token");
+       var token = encodeURI(token1);
+       var currentUsername = window.localStorage.getItem("username");  
+       console.log(token);
+       console.log(currentUsername);
+
+       xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/povezivanje/SpojiOdsjekPredmet?currentUsername=' + currentUsername + '&token=' + token, true);
        xhr.setRequestHeader('Content-Type', 'application/json');
        xhr.onload = () => {
          if(xhr.status === 200) {

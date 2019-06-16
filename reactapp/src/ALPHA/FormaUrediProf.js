@@ -34,7 +34,13 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllProfessors?currentUsername='+currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -43,7 +49,7 @@ class Forma extends Component {
             console.log(error)
         })
 		
-		axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci')
+		axios.get ('https://si2019alpha.herokuapp.com/api/odsjek/GetOdsjeci?currentUsername='+currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({listaOdsjeka: response.data});     
@@ -121,7 +127,13 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
 
-        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateProfessor', true);
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateProfessor?currentUsername=' + currentUsername + '&token=' + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -139,7 +151,14 @@ class Forma extends Component {
       obrisi(id){
         const json={id};
         console.log(id);
-        axios.delete('https://si2019alpha.herokuapp.com/api/korisnik/deleteProfessor?id='+id)
+
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.delete('https://si2019alpha.herokuapp.com/api/korisnik/deleteProfessor?id='+id + '&currentUsername=' + currentUsername + '&token=' + token)
         .then(response=>{
           console.log(response);
         })

@@ -14,8 +14,14 @@ class prikazAsistenta extends Component{
    
 
     componentDidMount(search){
+      var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
       if(search==''){
-        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti')
+        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmeti?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});
@@ -25,7 +31,7 @@ class prikazAsistenta extends Component{
         })
       }
       else{
-        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmet?naziv='+search)
+        axios.get ('https://si2019alpha.herokuapp.com/api/predmet/GetPredmet?naziv='+search + '&currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: [response.data]});
@@ -44,7 +50,13 @@ class prikazAsistenta extends Component{
 
     obrisi(naziv){
         console.log(naziv);
-        axios.delete("https://si2019alpha.herokuapp.com/api/predmet/deleteSubject?naziv="+naziv)
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.delete("https://si2019alpha.herokuapp.com/api/predmet/deleteSubject?naziv="+naziv + "&currentUsername=" + currentUsername + "&token=" + token)
         .then(response => {
             console.log(response);    
         })

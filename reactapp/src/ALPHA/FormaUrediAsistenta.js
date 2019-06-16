@@ -20,7 +20,13 @@ class Forma extends Component {
       }
 
       componentDidMount(){
-        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants')
+        var token1 = window.localStorage.getItem("token");
+        var token = encodeURI(token1);
+        var currentUsername = window.localStorage.getItem("username");  
+        console.log(token);
+        console.log(currentUsername);
+
+        axios.get ('https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants?currentUsername=' + currentUsername + '&token=' + token)
         .then(response => {
             console.log("Lista: ", response.data);
             this.setState({lista: response.data});     
@@ -71,7 +77,13 @@ class Forma extends Component {
         const body1=JSON.stringify(body);
         console.log("Body1: ", body1);
 
-        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateAssistant', true);
+       var token1 = window.localStorage.getItem("token");
+       var token = encodeURI(token1);
+       var currentUsername = window.localStorage.getItem("username");  
+       console.log(token);
+       console.log(currentUsername);
+
+        xhr.open('POST','https://si2019alpha.herokuapp.com/api/korisnik/updateAssistant?currentUsername=' + currentUsername + "&token=" + token, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           if(xhr.status === 200) {
@@ -88,7 +100,14 @@ class Forma extends Component {
 
       promote(id){
         const json={id};
-        axios.post('https://si2019alpha.herokuapp.com/api/korisnik/promoteAssistantToProfessor', json)
+
+       var token1 = window.localStorage.getItem("token");
+       var token = encodeURI(token1);
+       var currentUsername = window.localStorage.getItem("username");  
+       console.log(token);
+       console.log(currentUsername);
+
+        axios.post('https://si2019alpha.herokuapp.com/api/korisnik/promoteAssistantToProfessor?currentUsername=' + currentUsername + "&token=" + token, json)
         .then(response=>{
           console.log(response);
         })

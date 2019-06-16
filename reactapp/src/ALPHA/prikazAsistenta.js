@@ -16,6 +16,12 @@ class prikazAsistenta extends Component{
     componentDidMount(param){
       var xhttp = new XMLHttpRequest();
       var self = this;
+
+      var token1 = window.localStorage.getItem("token");
+      var token = encodeURI(token1);
+      var currentUsername = window.localStorage.getItem("username");  
+      console.log(token);
+      console.log(currentUsername);
       
      xhttp.onreadystatechange = function(){
         if (xhttp.readyState == 4 && xhttp.status == 200){
@@ -25,8 +31,8 @@ class prikazAsistenta extends Component{
         }
       }
     
-     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchAssistant?ime="+param, true);
-     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants", true);
+     if(param!='') xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/searchAssistant?ime="+param + "&currentUsername=" + currentUsername + "&token=" + token, true);
+     else xhttp.open("get", "https://si2019alpha.herokuapp.com/api/korisnik/getAllAssistants?currentUsername=" + currentUsername + "&token=" + token, true);
      
       xhttp.send();
     }
@@ -39,7 +45,13 @@ class prikazAsistenta extends Component{
 
     obrisi(id){
       console.log(id);
-      axios.delete("https://si2019alpha.herokuapp.com/api/korisnik/deleteAssistant?id="+id)
+      var token1 = window.localStorage.getItem("token");
+      var token = encodeURI(token1);
+      var currentUsername = window.localStorage.getItem("username");  
+      console.log(token);
+      console.log(currentUsername);
+
+      axios.delete("https://si2019alpha.herokuapp.com/api/korisnik/deleteAssistant?id="+id +"&currentUsername=" + currentUsername + "&token=" + token)
       .then(response => {
           console.log(response);    
       })

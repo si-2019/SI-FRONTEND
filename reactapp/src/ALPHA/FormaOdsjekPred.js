@@ -35,8 +35,6 @@ class FormaOdsjekPred extends Component {
               <select className="form-control"  name="predmet" value={predmet} onChange={this.handleInputChange} > </select>
               <br />
 
-        
-              
               <input type="submit" value="Dodaj" className="btn btn-success btn-block" />
             </form>
             </div>

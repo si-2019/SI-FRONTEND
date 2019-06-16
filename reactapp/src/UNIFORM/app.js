@@ -11,26 +11,76 @@ import GrupeStudent from './components/Grupe/grupeStudent/grupeStudent.js';
 import GrupeProfesor from './components/Grupe/grupeProfesor/grupeProfesor.js';
 import UniformHome from './components/Home/home.js';
 import LeftMenuStudent from './components/Home/LeftMenuStudent.js';
+import grupeProfesor from './components/Grupe/grupeProfesor/grupeProfesor.js';
 export class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {      
-      activeContentId: 1
-    };
+  state={ 
+    activeContentId: 1,   
+    provjerenToken:false,
+    uloga:0,
+    activeDivId: 0// 1 je student, 2 je profesor
   }
 
   onChangeActiveId = (id) => {
     this.setState({
-      activeContentId: id,
+      activeContentId: id
     })
   };
 
   onChangeActiveIdS = () => {
     this.setState({
-      activeContentId: 1,
+      activeContentId: 1
     })
   };
+
+  componentDidMount = () => {
+    if(!this.state.provjerenToken)
+    {
+      window.localStorage.setItem('uniformStanje','nista');
+      var idItem  = window.localStorage.getItem("id");
+      
+      if(idItem==null)
+      idItem="63813812";
+      fetch('https://cors-anywhere.herokuapp.com/'+'https://si2019oscar.herokuapp.com/pretragaId/' + idItem + '/dajUlogu', {
+        method: 'get',
+        headers: {
+            'Authorization': window.localStorage.getItem("token")
+        }
+      }).then(res => {
+            console.log(res)
+            if(res.loginError) {
+                window.localStorage.setItem('uniformStanje','nista');
+                window.location.href = window.location.origin + '/romeo/login'
+            }
+            else {
+                window.localStorage.setItem('uniformStanje','da');
+                console.log(res)
+                
+                if(res.uloga == "STUDENT")
+                {
+                  this.setState({
+                    provjerenToken:true,
+                    uloga:1,
+                    activeContentId:1
+                  })
+                }
+                else
+                {
+                  this.setState({
+                    provjerenToken:true,
+                    uloga:2,
+                    activeContentId:2
+                  })
+                }                
+            }
+        })
+        .catch(res => {
+          window.location.href = window.location.origin + '/romeo/login';
+          
+      })
+    }
+  }
+
 
   render() {
 
@@ -47,7 +97,57 @@ export class App extends Component {
                 padding: "0px",
                 margin: "0px"
               }}>
-                 <LeftMenuStudent triggerChangeActiveId={this.onChangeActiveId} />
+
+
+              <div >
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons" 
+                    id = "moj"
+                    
+                    onClick = {()=>this.onChangeActiveId(1)}
+                    style={{width:"100%",
+                    display: (this.state.uloga== 1) ? 'inherit' : 'none'}}>Raspored studenta
+                </button>               
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons" 
+                    id = "moj"
+                    onClick = {()=>this.onChangeActiveId(2)}
+                    style={{width:"100%",
+                    display: (this.state.uloga== 2) ? 'inherit' : 'none'}}>Raspored profesora
+                </button>
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons"
+                    onClick = {()=>this.onChangeActiveId(3)}
+                    style={{width:"100%",
+                    display: (this.state.uloga== 1) ? 'inherit' : 'none'}}>Raspored sale za studenta
+                </button>
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons"
+                    onClick = {()=>this.onChangeActiveId(4)}
+                    style={{width:"100%",
+                    display: (this.state.uloga== 2) ? 'inherit' : 'none'}}>Raspored sale za profesora
+                </button>
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons"
+                    onClick = {()=>this.onChangeActiveId(5)}
+                    style={{width:"100%",
+                    display: (this.state.uloga== 1) ? 'inherit' : 'none'}}>Grupe za studenta
+                </button>
+                <button 
+                    type="button" 
+                    className="btn btn-primary left-buttons"
+                    onClick = {()=>this.onChangeActiveId(6)}
+                    style={{width:"100%",
+                    display: (this.state.uloga== 2) ? 'inherit' : 'none'}}>Grupe za profesora
+                </button>    
+            </div>
+
+
               </div>
               <div className="col-lg flex-grow-1 col-sm-12 col-md" style={{
                 backgroundColor: "white",
@@ -57,41 +157,42 @@ export class App extends Component {
               }}>
                 <div
                   id="RasporedStudenta"
-                  style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
+                  style={{ display: (this.state.activeContentId==1 && this.state.uloga== 1) ? 'inherit' : 'none' }}
                 >
                   <RasporedStudent />
                 </div>
                 <div
                   id="RasporedProfesora"
-                  style={{ display: this.state.activeContentId == 2 ? 'inherit' : 'none' }}
+                  style={{ display: (this.state.activeContentId==2 && this.state.uloga== 2) ? 'inherit' : 'none' }}
                 >
                   <RasporedProfesor />
                 </div>
                 <div
                   id="RasporedSaleZaStudenta"
-                  style={{ display: this.state.activeContentId == 3 ? 'inherit' : 'none' }}
+                  style={{ display: (this.state.activeContentId==3 && this.state.uloga== 1) ? 'inherit' : 'none' }}
                 >
                   <RasporedSalaStudent />
                 </div>
                 <div
                   id="RasporedSaleZaProfesora"
-                  style={{ display: this.state.activeContentId == 4 ? 'inherit' : 'none' }}
+                  style={{ display: (this.state.activeContentId==4 && this.state.uloga== 2) ? 'inherit' : 'none' }}
                 > 
                   <RasporedSalaProfesor />
                 </div>
 
                 <div
                   id="GrupeStudenta"
-                  style={{ display: this.state.activeContentId == 5 ? 'inherit' : 'none' }}
+                  style={{ display: (this.state.activeContentId==5 && this.state.uloga== 1) ? 'inherit' : 'none' }}
                 >
                   <GrupeStudent />
                 </div>
                 <div
                   id="GrupeProfesora"
-                  style={{ display: this.state.activeContentId == 6 ? 'inherit' : 'none' }}
+                  style={{ display: (this.state.activeContentId==6 && this.state.uloga== 2) ? 'inherit' : 'none' }}
                 >
                   <GrupeProfesor />
                 </div>
+                
                              
 
 
@@ -101,6 +202,18 @@ export class App extends Component {
         </div>
         </div>
     );
+    /*<div class="col-9" style={{padding: "0"}}>
+                    <Route exact path="/uniform" component={RasporedStudent} />
+                    <Route path="/uniform/rasporedStudent/" component={RasporedStudent} />
+                    <Route path="/uniform/rasporedProfesor/" component={RasporedProfesor} />
+                    <Route path="/uniform/rasporedSalaStudent" component={RasporedSalaStudent} />
+                    <Route path="/uniform/rasporedSalaProfesor" component={RasporedSalaProfesor} />
+                    <Route path="/uniform/grupeStudent" component={GrupeStudent} />
+                    <Route path="/uniform/grupeProfesor" component={grupeProfesor} />
+                </div>*/
+
+
+
 /*<>
       
       <div className="App">

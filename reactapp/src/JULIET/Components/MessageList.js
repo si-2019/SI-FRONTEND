@@ -153,7 +153,8 @@ class MessageList extends Component {
       }
 
     render() {
-        const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input));
+        const listSrc = this.props.messages.filter(d => this.state.input === '' || d.text.toLowerCase().includes(this.state.input.toLowerCase()) 
+                || format(new Date(d.createdAt), 'DD.MM.YYYY').includes(this.state.input) || d.senderId === this.state.input.toLowerCase());
         return (
             <div className="juliet-container">
                 <div className="juliet-message-header" style={{'background': this.props.colorScheme}}>
@@ -162,7 +163,7 @@ class MessageList extends Component {
                             <RoomName currentRoom={this.props.currentRoom}/>
                         </h4>
                     </div>
-                    <input className="juliet-pretraga-text" placeholder="Pretraži poruke po frazi ili po datumu u formatu DD.MM.YYYY" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
+                    <input className="juliet-pretraga-text" placeholder="Traži po frazi,pošiljaocu,datumu (DD.MM.YYYY)" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
                 <ul style={listStyle} className="list-group juliet-message-list">
                     {listSrc.map((message, index) => (
@@ -177,17 +178,17 @@ class MessageList extends Component {
                                 {
                                     message.text.substr(0, 16) === 'Downloaduj file:' ?
                                     <div>
-                                        <Tooltip title="Download file">
-                                            <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDownloadClick(message)}
-                                                style={{ float: 'right' }}>
+                                        <Tooltip title="Skinite fajl">
+                                            <IconButton onClick={() => this.handleDownloadClick(message)}
+                                                style={{ float: 'right', color: this.props.colorScheme }}>
                                                 <CloudDownload />
                                             </IconButton>
                                         </Tooltip>
                                         {
                                             message.senderId === this.props.currentId || this.state.adminUser ?
-                                            <Tooltip title="Delete file">
-                                                <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDeleteClick(message, index)}
-                                                    style={{ float: 'right' }}>
+                                            <Tooltip title="Izbrišite fajl">
+                                                <IconButton onClick={() => this.handleDeleteClick(message, index)}
+                                                    style={{ float: 'right' , color: this.props.colorScheme}}>
                                                     <Delete />
                                                 </IconButton>
                                             </Tooltip>
@@ -197,21 +198,21 @@ class MessageList extends Component {
                                     : null
                                 }
 
-                                <Tooltip title="Pin message">
+                                <Tooltip title="Pinujte poruku">
                                     <IconButton onClick={() => this.handlePinMessage(message)}
-                                        style={{ float: 'right', color: '#2C3E50' }}>
+                                        style={{ float: 'right', color: this.props.colorScheme }}>
                                         <Place />
                                     </IconButton>
                                 </Tooltip>
-                                <Tooltip title="Reply">
-                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.replyToMessage(message)}
-                                        style={{ float: 'right', color: '#2C3E50' }}>
+                                <Tooltip title="Odgovorite">
+                                    <IconButton onClick={() => this.replyToMessage(message)}
+                                        style={{ float: 'right', color: this.props.colorScheme }}>
                                         <Reply />
                                     </IconButton>
                                 </Tooltip>
-                                <Tooltip title="Start thread">
-                                    <IconButton style={{color: '#2C3E50'}} onClick={() => this.handleDialogOpen(message)}
-                                        style={{ float: 'right', color: '#2C3E50' }}>
+                                <Tooltip title="Pokrenite thread">
+                                    <IconButton onClick={() => this.handleDialogOpen(message)}
+                                        style={{ float: 'right', color: this.props.colorScheme }}>
                                         <Message />
                                     </IconButton>
                                 </Tooltip>
@@ -223,6 +224,7 @@ class MessageList extends Component {
                                     message={this.state.selectedMessage}
                                     messagelist={this.state.threadMessages}
                                     current={this.props.currentId}
+                                    colorScheme={this.props.colorScheme}
                                 />
                             </div>
                         </li>
@@ -253,7 +255,7 @@ const imgStyle = {
     height: '50px',
     width: '50px',
     borderRadius: '50%',
-    border: '1px solid #2C3E50',
+    border: '1px solid black',
     marginTop:'6px'
 }
 

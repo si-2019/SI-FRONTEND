@@ -1,31 +1,27 @@
 import React, { Component } from "react";
-
-import { BrowserRouter, Route } from "react-router-dom"
 import LicniPod from "./licniPod.jsx";
 import Ocjene from "./Ocjene";
-import ProfilStudenta from "./ProfilStudenta";
 import DropDownZavrsni from "./DropDownZavrsni.jsx";
 import "./AppSiera.css";
-import PrikaziStatus from "./PrikaziStatus";
 import LeftMenuStudentSiera from "./LeftMenuStudentSiera";
-
-import ListaTrenutnihPredmeta from "./listaTrenutnihPredmeta";
-import Kontakt from "./kontaktPod";
-import ListaOdslusanihPredmeta from "./listaOdslusanihPredmeta";
 import UgovorOUcenju from "./ugovorOUcenju";
 import IspitiTabela from "./ispitiTabela";
 import Predmeti from "./predmeti";
 import Prosjek from "./Prosjek.jsx";
 import Statistika from "./statistika.jsx";
 import Zadace from "./Zadace";
-//vrati rutu za grupu tango!
+import axios from "axios";
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      studentId: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
+      token: window.localStorage.getItem("token"),
       activeContentId: 0,
-      menuButtonTitles: [, "Ispiti"],
-      komponente: [<ListaTrenutnihPredmeta />],
+      OK:null,
+      msg:"",
       menuButtons: [{
         btnText: "Profil",
         component:
@@ -42,7 +38,7 @@ class App extends Component {
       }, {
         btnText: "Ispiti po godinama",
         component: <IspitiTabela />
-      }, 
+      },
       {
         btnText: "Zadaće po godinama",
         component: <Zadace />
@@ -59,8 +55,8 @@ class App extends Component {
         btnText: "Statistika",
         component: <Statistika />
       }
-    
-    ],
+
+      ],
       menuComponents: [{
         naziv: "Profil",
         changeId: 0,
@@ -70,7 +66,7 @@ class App extends Component {
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
   }
-  componentDidMount() {
+  handleMount = () => {
     var help = [];
     var i = 0;
     this.state.menuButtons.forEach(x => {
@@ -84,7 +80,56 @@ class App extends Component {
     this.setState({
       menuComponents: help
     });
+  }
+  componentDidMount() {
+    //autorizacija
+    axios
+    .get("https://si2019siera.herokuapp.com/studenti/" + this.state.studentId)
+    .then(res=>{
+      if(res.data.success && res.data.userAutorizacija){
+        this.setState({
+          msg:"",
+          OK:true
+        })
+        //pirkazi stranicu
+        if (window.localStorage.getItem("id") != null) {
+          var ajax = new XMLHttpRequest();
+          ajax.onreadystatechange = () => {
+            if (this.readyState == 4 && this.status == 200) {
+              //radi sta hoces
+              this.handleMount();
+            }
+            else {
+              //vrati na login
+              this.props.history.push("/Romeo");
+            }
+          }
+          ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+          ajax.setRequestHeader("Authorization", this.state.token);
+          ajax.send();
+        }
+        else this.handleMount();
+      }
+      else if(!res.data.userAutorizacija){
+        //nema privilegiju
+        this.setState({
+          msg:"Nemate privilegiju da pristupite ovoj stranici.",
+          OK:false
+        })
+      }
+      else{
+        //kod nas greska
+        this.setState({
+          msg:"Došlo je do greške!",
+          OK:false
+        })
+      }
+    })
+    .catch(err=>{
+      console.log(err);
+    });
 
+    
   }
   onChangeActiveId = (id) => {
     this.setState({
@@ -96,8 +141,7 @@ class App extends Component {
     return (
       <>
         <div className="App">
-
-          <div className="containter-fluid">
+          {this.state.OK ? <div className="containter-fluid">
             <div className="row" style={{ margin: "0px", padding: "0px" }}>
               <div className="col-lg-2 col-md-3 col-sm-12" style={{
                 backgroundColor: "#2C3E50",
@@ -122,7 +166,8 @@ class App extends Component {
 
               </div>
             </div>
-          </div>
+          </div> : <span>{this.state.msg}</span> }
+          
 
 
         </div>

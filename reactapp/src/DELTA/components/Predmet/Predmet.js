@@ -10,13 +10,18 @@ import "./AppDelta.css";
 
 class Predmet extends Component {
 
-  constructor(props) {
+  state = {predmet:{naziv : "Kardkodirani", idProfesora : 1, opis : "nista", etcs: 23 }, 
+          profesor:"",
+          idPredmeta: 100,
+          idStudenta: 230};
+
+  /*constructor(props) {
     super(props);
     this.state = {predmet:"", profesor:""};
-  }
-    async componentDidMount(){
+  }*/
+    /*async componentDidMount(){
      
-      const idPredmet=this.props.idPredmeta;
+      const idPredmet=62;
       console.log(idPredmet);
       //console.log(this.props.idPredmeta);
       //const idPredmet=64;
@@ -28,7 +33,7 @@ class Predmet extends Component {
       this.setState({profesor:data1});
       
       
-    }
+    }*/
 
   render() {
     return (
@@ -52,7 +57,7 @@ class Predmet extends Component {
             <br />
             <Ispiti />
             <br />
-            <Prisustvo/>
+            <Prisustvo idStudenta = {this.state.idStudenta} idPredmeta = {this.state.idPredmeta}/>
             <br/>
             <div className="row">
               <div className="col-3" />

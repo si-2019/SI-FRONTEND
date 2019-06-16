@@ -2,21 +2,38 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './homePage.css';
 import ModalChangeLog from './ModalChangeLog.js'
+import axios from 'axios';
 
 class HomePage extends Component {
 
   constructor(props) {
-      super(props)
-
-      let logiran = true
-      const token = localStorage.getItem("token");
-      if(token == null) {
-          logiran = false
-      }
-
+    super(props)
+    const token = localStorage.getItem("token");
+    let logiran = true;
+    this.state = {
+      logiran
+    }
+    if(token == null) {
+      logiran = false;
       this.state = {
-          logiran
-      }  
+        logiran
+      }
+      return;
+    }
+
+    let korisnickoIme = localStorage.getItem("username");
+    let id = localStorage.getItem("id");
+    var baseUrl = 'https://si2019oscar.herokuapp.com';
+    axios.get(baseUrl + '/pretragaId/' + id + '/dajUlogu').then((res) => {
+      var rola = res.data;
+      this.state = {
+        logiran,
+        korisnickoIme,
+        rola
+      }
+      this.refs.dobroDosli.textContent = "Dobro došli, " + this.state.korisnickoIme;
+      this.refs.viSte.textContent = "Vi ste " + this.state.rola;
+    });
   }
 
   componentDidMount() {
@@ -40,21 +57,11 @@ class HomePage extends Component {
     }
     return (
       <div className="App" >
-      <button onClick={() => this.refs.modal.show()} >Prikazi log</button>
-
-        <div className="header" >
-          <img 
-            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
-            alt="new"
-          />
-          <h1>Dobro dosli na home page</h1>
-          <input type="button" name="odjava" id="odjava" value="Odjavi se" onClick={this.Odjavi} />
-        </div>
         <div className="main">
-          
+          <h1 ref="dobroDosli" ></h1>
         </div>
         <div className="menu">
-          
+          <div ref="viSte" ></div>
         </div>
         <div className="footer">
           Elektrotehnički fakultet u Sarajevu

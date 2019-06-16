@@ -47,7 +47,7 @@ class Student extends Component {
       idZadatak: 0,
       idPredmeta: urlParams.get("idPredmeta")
       ? Number(urlParams.get("idPredmeta"))
-      : 3,
+      : 1,
       uploadZadatka: [null],
       velicinaFajla: "",
       nazivFajla: "",
@@ -56,6 +56,32 @@ class Student extends Component {
       vrijemeSlanja: ""
     };
   }
+  provjeriToken = () => {
+    try{
+    axios({
+      url: 'https://si2019romeo.herokuapp.com/users/validate',
+      type: 'get',
+      dataType: 'json',
+      data: jQuery.param({
+        username: window.localStorage.getItem("username")
+      }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
+      },
+      complete: function (response) {
+        if (response.status == 200) {
+          return true;
+        }
+        else{
+          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
+        } 
+      }  
+    });}
+    catch(e){
+
+    }
+  }
+
   testirajVrijeme = r => {
     var povratna_vrijednost;
     var danas = new Date();
@@ -148,7 +174,7 @@ class Student extends Component {
     try {
       this.provjeriToken();
       const res = await axios.get(
-        `http://localhost:31911/dajZadaceZaStudenta/${this.state.idStudenta}/${
+        `https://si2019kilo.herokuapp.com/dajZadaceZaStudenta/${this.state.idStudenta}/${
           this.state.idPredmeta
         }`
       );
@@ -184,7 +210,7 @@ class Student extends Component {
       this.provjeriToken();
       await axios
         .get(
-          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+          `https://si2019kilo.herokuapp.com/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
         )
         .then(res => {
           this.setState({ listaTipova: res.data });
@@ -219,7 +245,7 @@ class Student extends Component {
       this.provjeriToken();
       await axios
         .get(
-          `http://localhost:31911/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
+          `https://si2019kilo.herokuapp.com/dozvoljeniTipoviZadatka/${vrijednostIdZadatka}`
         )
         .then(res => {
           this.setState({ listaTipova: res.data });
@@ -238,7 +264,7 @@ class Student extends Component {
     this.provjeriToken();
     await axios
       .get(
-        `http://localhost:31911/popuniZadatakVecPoslan/${vrijednostIdZadatka}`
+        `https://si2019kilo.herokuapp.com/popuniZadatakVecPoslan/${vrijednostIdZadatka}`
       )
       .then(res => {
         this.setState({
@@ -269,7 +295,7 @@ class Student extends Component {
     var nazivZadace = this.state.zadacaState.listaZadaca[r];
     this.provjeriToken();
     axios
-      .get(`http://localhost:31911/downloadPostavka/${nazivZadace}`)
+      .get(`https://si2019kilo.herokuapp.com/downloadPostavka/${nazivZadace}`)
       .then(res => {
         let resultByte = res.data.postavka.data;
         var bytes = new Uint8Array(resultByte);
@@ -402,7 +428,7 @@ class Student extends Component {
         if (document.getElementById("uploadButton2").value === "") {
           // prvi put slanje
           this.provjeriToken();
-          await axios.post("http://localhost:31911/slanjeZadatka", fData).then(res => {
+          await axios.post("https://si2019kilo.herokuapp.com/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
               alert("Čestitamo! Uspješno ste poslali zadatak!");
             }
@@ -427,7 +453,7 @@ class Student extends Component {
         } else {
           // ponovno slanje zadatka
           this.provjeriToken();
-          axios.put("http://localhost:31911/slanjeZadatka", fData).then(res => {
+          axios.put("https://si2019kilo.herokuapp.com/slanjeZadatka", fData).then(res => {
             if (res.status === 200) {
               alert("Uspjesno ste poslati zadatak");
             } else if (res.status === 201) {
@@ -470,7 +496,7 @@ class Student extends Component {
         this.provjeriToken();
         axios
           .get(
-            `http://localhost:31911/downloadZadatak/${idStudent}/${idZadatak}`
+            `https://si2019kilo.herokuapp.com/downloadZadatak/${idStudent}/${idZadatak}`
           )
           .then(res => {
             let resultByte = res.data.datoteka.data;
@@ -492,7 +518,7 @@ class Student extends Component {
         
         this.provjeriToken();
         await axios
-          .get("http://localhost:31911/getPregledDatoteke")
+          .get("https://si2019kilo.herokuapp.com/getPregledDatoteke")
           .then(res => {});
         break;
       }

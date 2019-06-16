@@ -42,3 +42,9 @@
 #alertID {
   text-align: left;
 }
+
+#buttonsDivECHO {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+}

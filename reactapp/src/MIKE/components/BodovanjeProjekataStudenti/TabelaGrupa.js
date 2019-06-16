@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table, Button } from 'reactstrap';
 
-import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap.css';
 
 import RedTabele from './RedTabele.js'
 
@@ -47,7 +47,7 @@ class TabelaGrupa extends Component {
     return (
       <Fragment key={this.state.grupa.id}>
         
-        <Label>{this.state.grupa.nazivGrupe}</Label>
+        <label className="col-form-label col-form-label-lg">Naziv grupe: {this.state.grupa.nazivGrupe}</label>
 
         <Input type="number" min="0" placeholder="Bodovi za svakog člana..." onChange={val => this.updateInputValue(val)}></Input>
 
@@ -59,23 +59,23 @@ class TabelaGrupa extends Component {
 
         <hr/>
 
-        <Table>
+        <Table className="table table-dark table-bordered text-center border-solid">
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Ime</th>
-              <th>Prezime</th>
-              <th>Indeks</th>
-              <th>Broj bodova</th>
-              <th>Novi bodovi</th>
-              <th></th>
+            <tr className="bg-primary text-dark">
+              <th className="tabtip">#</th>
+              <th className="tabtip">Ime</th>
+              <th className="tabtip">Prezime</th>
+              <th className="tabtip">Indeks</th>
+              <th className="tabtip">Broj bodova</th>
+              <th className="tabtip">Novi bodovi</th>
+              <th className="tabtip"></th>
             </tr>
           </thead>
           <tbody>
             { 
-              this.state.grupa.studenti.map((student) => {
+              this.props.grupa.studenti.map((student) => {
                     return (
-                      <RedTabele key={student.id} redniBroj={i++} student={student} callback={this.bodovanjePojedinacno}></RedTabele>
+                      <RedTabele key={student.id} refresh={this.props.refresh} redniBroj={i++} student={student} bodovi={student.brojBodova} callback={this.bodovanjePojedinacno}></RedTabele>
                     )
                   })
             }

@@ -85,7 +85,7 @@ class TabelaUnosa extends Component {
                         student: null,
                         opisUspjeh: "Bodovi su upisani.",
                         naslovUspjeh: student !== null ?
-                            student.ime + " " + student.prezime + " " + "(" + student.indeks + ")" + ", " + this.ocjena.current.value : ""
+                            student.ime + " " + student.prezime + ", " + this.ocjena.current.value : ""
                     });
                     this.ocjena.current.value = null;
                     this.indeks.current.value = null;

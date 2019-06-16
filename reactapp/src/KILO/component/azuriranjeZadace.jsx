@@ -28,6 +28,7 @@ class AzuriranjeZadace extends Component {
   }
 
   provjeriToken = () => {
+    try{
     axios({
       url: 'https://si2019romeo.herokuapp.com/users/validate',
       type: 'get',
@@ -46,9 +47,11 @@ class AzuriranjeZadace extends Component {
           window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
         } 
       }  
-    });
-  }
+    });}
+    catch(e){
 
+    }
+  }
 componentDidMount() {
   this.pokupiIzBaze(this.state.idPredmet);
 }
@@ -61,7 +64,7 @@ toggle() {
 
 pokupiIzBaze = (idPredmeta) => {
   this.provjeriToken();
-  axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
+  axios.get(`https://si2019kilo.herokuapp.com/getZadace/${idPredmeta}`).then(res => {
     this.setState({
       listaZadacaZaAzuriranje: res.data
     });
@@ -125,7 +128,7 @@ getZadacaById = async zadacaId => {
   try {
     this.provjeriToken();
     const res = await axios.get(
-      `http://localhost:31911/getZadacaById/${zadacaId}`
+      `http://:31911/getZadacaById/${zadacaId}`
     );
     this.setState({
       azuriranjeState: res.data

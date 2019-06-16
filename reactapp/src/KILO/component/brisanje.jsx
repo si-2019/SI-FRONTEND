@@ -31,6 +31,7 @@ class BrisanjeZadace extends Component {
   }
 
   provjeriToken = () => {
+    try{
     axios({
       url: 'https://si2019romeo.herokuapp.com/users/validate',
       type: 'get',
@@ -49,9 +50,11 @@ class BrisanjeZadace extends Component {
           window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
         } 
       }  
-    });
-  }
+    });}
+    catch(e){
 
+    }
+  }
   componentDidMount() {
     this.pokupiIzBaze(this.state.idPredmet);
   }
@@ -64,7 +67,7 @@ class BrisanjeZadace extends Component {
 
   pokupiIzBaze = (idPredmeta) => {
     this.provjeriToken();
-    axios.get(`http://localhost:31911/getZadace/${idPredmeta}`).then(res => {
+    axios.get(`https://si2019kilo.herokuapp.com/getZadace/${idPredmeta}`).then(res => {
       this.setState({
         listaZadacaZaBrisanje: res.data
       });
@@ -78,7 +81,7 @@ class BrisanjeZadace extends Component {
     try {
       this.provjeriToken();
       const res = await axios.get(
-        `http://localhost:31911/getZadacaById/${zadacaId}`
+        `https://si2019kilo.herokuapp.com/getZadacaById/${zadacaId}`
       );
       this.setState({
         brisanjeState: res.data
@@ -91,7 +94,7 @@ class BrisanjeZadace extends Component {
     this.provjeriToken();
     axios
       .delete(
-        `http://localhost:31911/zadaca/${this.state.brisanjeState.idZadaca}`
+        `https://si2019kilo.herokuapp.com/zadaca/${this.state.brisanjeState.idZadaca}`
       )
       .then(res => {
         if (res.status === 200) {

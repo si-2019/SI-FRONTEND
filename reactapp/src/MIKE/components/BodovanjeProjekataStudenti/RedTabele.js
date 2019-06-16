@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Form, FormGroup, Label, Input, Table, Button } from 'reactstrap';
 
-import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap.css';
 
 class RedTabele extends Component { 
   constructor(props) {
@@ -10,7 +10,9 @@ class RedTabele extends Component {
     this.state = { 
       redniBroj: props.redniBroj,
       student: props.student,
-      callback: props.callback
+      callback: props.callback,
+      bodovi: props.bodovi,
+      refresh: props.refresh
     };
   }
 
@@ -21,14 +23,14 @@ class RedTabele extends Component {
   }
 
   render() {
-    let st = this.state.student;
+    let st = this.props.student;
     return (
-        <tr key={this.state.student.id}>
+        <tr key={this.state.student.id} className="bg-primary text-dark">
           <th scope="row">{this.state.redniBroj}</th>
           <td>{st.ime}</td>
           <td>{st.prezime}</td>
           <td>{st.indeks}</td>
-          <td>{st.brojBodova}</td>
+          <td>{this.props.bodovi}</td>
           <td>
             <Input type="number" min="0" onChange={val => this.updateInputValue(val)}></Input>
           </td>

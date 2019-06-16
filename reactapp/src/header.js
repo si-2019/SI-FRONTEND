@@ -18,6 +18,14 @@ export default class App extends React.Component {
         this.refs.modal.show()
     }
 
+    PrikaziHeader() {
+        var logiran = localStorage.getItem("token");
+        if((window.location.pathname.includes("romeo") || window.location.pathname.includes("Romeo")) && logiran == null) {
+            return false;
+        }
+        return true;
+    }
+
     JeLiLogiran() {
         var logiran = localStorage.getItem("token");
         if(logiran) return ([
@@ -33,14 +41,29 @@ export default class App extends React.Component {
                         "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", 
                          "Papa", "Romeo", "Siera", "Tango", "Uniform"];
 
-        return (
+        if(this.PrikaziHeader()) {
+            return (
             
-            <div style={{backgroundColor: "#00203f", height:"40px"}} className="nav-link active"> 
-                {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
-                {this.JeLiLogiran()}
-                <ModalChangeLog container={this} ref = "modal" />
+                <div className="Sve">
+                <div style={{backgroundColor: "#00203f",marginTop:"25px", paddingBottom:"83px", display:"inline" }} className="nav-link active">
+                    {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
+                    {this.JeLiLogiran()}
+                    <ModalChangeLog container={this} ref = "modal" />
+                    
+                    
+                </div>
+                <div style={{marginLeft:"86%", display:"inline", width:"50px" }} className="header">
+                        <img 
+                    src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
+                    alt="new"
+                    data-placement="right"
+                />
+                </div>
             </div>
-
-        )
+    
+            )
+        }
+        return null;
+        
     }
 }

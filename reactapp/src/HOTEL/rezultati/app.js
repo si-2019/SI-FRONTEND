@@ -3,6 +3,20 @@ import './style.css';
 import {ProgressBar} from 'react-bootstrap'
 import Colors from './colorPalette'
 import axios from 'axios'; 
+import url from '../url'
+
+axios.interceptors.request.use(function (config) {
+  const token = window.localStorage.getItem("token");
+  config.headers.Authorization = token;
+  if(config.url.includes('si2019hotel') || config.url.includes('9123')) {
+    console.log(config.url)
+    config.params = {
+      username: window.localStorage.getItem("username"),
+      idKorisnik: window.localStorage.getItem("id")
+    }
+  }
+  return config;
+});
 
 class Rezultati extends Component {
   state= {
@@ -23,37 +37,42 @@ class Rezultati extends Component {
 }
   componentDidMount() {
     const { match: { params } } = this.props;
-    axios.get(`http://localhost:9123/getKreator/?idAnketa=${params.id}`)
+    axios.get(`${url}/getKreator/?idAnketa=${params.id}`)
     .then((res) => {
       this.setState({imeKreator:res.data.kreator}); 
       console.log('res1', res);
     });
-    axios.get(`http://localhost:9123/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumKreiranjaAnkete/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({datumKreiranjaAnkete:this.formatDate(res.data.datumKreiranja)}); 
       console.log('res2', res);
     });
-    axios.get(`http://localhost:9123/getDatumIstekaAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getDatumIstekaAnkete/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({datumIstekaAnkete:this.formatDate(res.data.datumIstekaAnkete)}); 
       console.log('res3', res);
     });
-    axios.get(`http://localhost:9123/getTipAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getTipAnkete/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({tipAnkete:res.data.tipAnkete}); 
       console.log('res4', res);
     });
-    axios.get(`http://localhost:9123/getPredmet/?idAnketa=${params.id}`)
+    axios.get(`${url}/getPredmet/?idAnketa=${params.id}`)
     .then((res) => {
       
       this.setState({nazivPredmeta:res.data.nazivPredmeta}); 
       console.log('res5', res);
     });
-    axios.get(`http://localhost:9123/getRezultatiAnkete/?idAnketa=${params.id}`)
+    axios.get(`${url}/getRezultatiAnkete/?idAnketa=${params.id}&username=` + window.localStorage.getItem("username"))
     .then((res) => {
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+        return
+      }
+
       var pitanja = res.data;
       var textboxPitanja = [];
       var singleChoicePitanja = [];
@@ -75,6 +94,12 @@ class Rezultati extends Component {
       console.log('res6', res);
     });
   }
+
+  styleProgress = {
+    height: "30px",
+    fontSize: "12px"
+  }
+
   render() {
     const itemsSingle = this.state.singleChoicePitanjaState;
     const itemsTextbox = this.state.textboxPitanjaState;
@@ -84,8 +109,8 @@ class Rezultati extends Component {
     return (
       <div className="App"  id="containerRezultati">
 
-        <div id="headerRezultati">
-        <h1 style={{color: "white"}}>Rezultati</h1>
+        <div className="naslovliste">
+        <h1>Rezultati</h1>
         </div>       
 
         <div id="contentRezultati">
@@ -93,8 +118,9 @@ class Rezultati extends Component {
             <div id="infoRezultati">
               <div id ="info1Rezultati">
 
-                <div class="card text-white bg-secondary mb-3" >
-                            <div class="card-header"><h4 class="card-title">Info</h4></div>
+                <div class="card border-primary mb-3" >
+                            <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Info</h4></div>
+                  
                             <div class="card-body">
                               <h6 class="card-title">Predmet</h6>
                               <p class="card-text">{this.state.nazivPredmeta}</p>
@@ -123,9 +149,10 @@ class Rezultati extends Component {
             <div id="showRezultati">
               <div id="show1Rezultati">
 
-                <div class="card border-light mb-3" style={{padding:15}}>
-                  <div class="card-header"><h4 class="card-title">Anketa</h4></div>
-                    <br></br>
+                <div class="card">
+                <div class="card-header" style={{ backgroundColor: '#2C3E50' }}><h4 style={{ color: 'white' }} class="card-title">Anketa</h4></div>
+                    
+                    <div style={{padding: "3%"}}>
                     <div>
                       {itemsSingle.singleChoicePitanja ? itemsSingle.singleChoicePitanja.map(pitanje => (
                         <div class="card-body-pitanje" style={{backgroundColor:'white'}}>
@@ -134,17 +161,17 @@ class Rezultati extends Component {
                           <p class="card-text">Najčešći odgovor : {pitanje.prosjecniOdgovor}</p>
               
                           <div>
-                            <ProgressBar>
+                            <ProgressBar style={this.styleProgress}>
                               {
                                 (pitanje.odgovori && Colors.getRandom(pitanje.odgovori.length)) ? pitanje.odgovori.map((odgovor, i) => (
-                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} />
+                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} label={odgovor.postotak + "%"} />
                               )): null}
                             </ProgressBar>
                           </div>
-                          <div>
+                          <div >
                             {pitanje.odgovori ? pitanje.odgovori.map((odgovor, i) => (
                               <div style={{color: Colors.colors[i]}}>
-                                <p class="card-text">Odgovor : {odgovor.odgovor} ( {odgovor.postotak} %)</p>
+                                <p class="card-text">Odgovor : {odgovor.odgovor} </p>
                                  
                               </div>
                             )) : "..."}
@@ -160,17 +187,17 @@ class Rezultati extends Component {
                           <p class="card-text">Najčešći odgovor : {pitanje.prosjecniOdgovor}</p>
               
                           <div>
-                            <ProgressBar>
+                            <ProgressBar style={this.styleProgress}>
                               {
                                 (pitanje.odgovori && Colors.getRandom(pitanje.odgovori.length)) ? pitanje.odgovori.map((odgovor, i) => (
-                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} />
+                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} label={odgovor.postotak + "%"} />
                               )): null}
                             </ProgressBar>
                           </div>
-                          <div>
+                          <div >
                             {pitanje.odgovori ? pitanje.odgovori.map((odgovor, i) => (
                               <div style={{color: Colors.colors[i]}}>
-                                <p class="card-text">Odgovor : {odgovor.odgovor} ( {odgovor.postotak} %)</p>
+                                <p class="card-text">Odgovor : {odgovor.odgovor} </p>
                                  
                               </div>
                             )) : "..."}
@@ -186,17 +213,17 @@ class Rezultati extends Component {
                           <p class="card-text">Najčešći odgovor : {pitanje.prosjecniOdgovor}</p>
               
                           <div>
-                            <ProgressBar>
+                            <ProgressBar style={this.styleProgress}>
                               {
                                 (pitanje.odgovori && Colors.getRandom(pitanje.odgovori.length)) ? pitanje.odgovori.map((odgovor, i) => (
-                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} />
+                                <ProgressBar style={{backgroundColor: Colors.colors[i]}} now={odgovor.postotak} key={i} label={odgovor.postotak + "%"} />
                               )): null}
                             </ProgressBar>
                           </div>
                           <div>
                             {pitanje.odgovori ? pitanje.odgovori.map((odgovor, i) => (
                               <div style={{color: Colors.colors[i]}}>
-                                <p class="card-text">Odgovor : {odgovor.odgovor} ( {odgovor.postotak} %)</p>
+                                <p class="card-text">Odgovor : {odgovor.odgovor} </p>
                                  
                               </div>
                             )) : "..."}
@@ -220,6 +247,7 @@ class Rezultati extends Component {
                           </div>
                         </div>
                       )) : "Loading..."}
+                    </div>
                     </div>
                 </div>
 

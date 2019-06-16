@@ -9,10 +9,10 @@ class UnosInformacija extends Component {
       super(props);
       this.state={
         forma:"null",
-        idStudent:2,
-        idProjekt:1,
+        korisnik:props.korisnik,
+        predmet:props.predmet,
         naziv:"",
-        opis:""
+        studenti:[]
       }
   
       this.handleChange = this.handleChange.bind(this);
@@ -41,10 +41,8 @@ class UnosInformacija extends Component {
           <h6 class="card-subtitle mb-2 text-muted" style={{textAlign:"left"}}>Unijeti potrebne informacije za opis projekta</h6> 
           <br/>
           <label class="col-form-label" style={{float:"left"}}>Naziv projektne grupe:</label>
-          <input type="text" className="form-control inputText"  style={{textAlign:"left"}} />
           <br/>
-          <label class="col-form-label" style={{float:"left"}}> Opis projekta:</label>
-          <input type="text" className="form-control inputText" style={{textAlign:"left"}} />
+          <input type="text" id="nazivP" className="form-control inputText"  style={{textAlign:"left"}} />
           <br/>
           {/*<input type="submit" value="Submit" />*/}
           <button className="btn btn-primary" style={{float:"right", margin:"10px"}} onClick={this.uredjivanjeClanova}>Dalje</button>
@@ -54,7 +52,12 @@ class UnosInformacija extends Component {
       );
     }
      else if (this.state.forma=="uredjivanjeClanova") return (
-        <InterfejsUredjivanjeClanovaGrupe studentID={this.state.idStudent} projektID={this.state.idProjekt}/>
+        <InterfejsUredjivanjeClanovaGrupe studentID={this.state.korisnik} 
+        projektID={this.state.predmet.projekti[0].idProjekat} 
+        predmetID={this.state.predmet.id} 
+        studenti={this.state.studenti}
+        naziv={this.state.naziv}
+        predmet={this.state.predmet}/>
         
        );
 
@@ -64,13 +67,30 @@ class UnosInformacija extends Component {
 
     }
     uredjivanjeClanova(){
-      var naziv=document.getElementById("naziv").value;
-      var opis=document.getElementById("opis").value;
-      this.setState({
-        forma:"uredjivanjeClanova",
-        naziv:naziv,
-        opis:opis}
-      );
+      var naziv=document.getElementById("nazivP").value;
+
+      var ajax=new XMLHttpRequest();
+      var komponenta=this;
+      ajax.onreadystatechange=function(){
+          if(ajax.readyState==4 && ajax.status=="200"){
+              var tekst=ajax.responseText;
+              var json=JSON.parse(tekst);
+              if(json.message){
+                json=[{id:4,ime:"Dzejlan",prezime:"Sabic"},{id:5,ime:"Nerma",prezime:"Hanic"},{id:6,ime:"Lamija",prezime:"Alagic"}]
+              }; 
+              komponenta.setState(state=>({
+                forma:"uredjivanjeClanova",
+                studenti:json,
+                naziv:naziv}));
+          }
+          else if(ajax.status>=500){
+
+          }
+      }
+      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/group/getProjectStudents/"+this.state.predmet.id+"?username="+window.localStorage.getItem("username"),true);
+      ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
+      ajax.send();
     }
     lista() {
       this.setState({forma:"lista"});

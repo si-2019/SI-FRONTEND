@@ -137,9 +137,7 @@ class UnosPrisustva extends React.Component {
     }
 
     handleClickSedmica = (brojSedmice) => {
-        this.setState({sedmica: brojSedmice});
-
-        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 101;
+        const idPredmeta = window.localStorage.getItem('idPredmeta') !== null ? window.localStorage.getItem("idPredmeta") : 100;
 
         axios.get(`https://si2019fox.herokuapp.com/api/fox/prisustvo?idPredmeta=${idPredmeta}&brojSedmice=${brojSedmice}`).then(response => {
             let studenti = response.data.map(s => {
@@ -151,11 +149,15 @@ class UnosPrisustva extends React.Component {
                     tutorijal: s.tutorijal === null ? "-" : s.tutorijal,
                     vjezbe: s.vjezbe === null ? "-" : s.vjezbe 
                 };
+                
             })
-             this.setState({studenti: studenti, idPredmeta: idPredmeta});
+            console.log(response.data);
+            this.setState({studenti: studenti, idPredmeta: idPredmeta});
         })
         .catch(()=> {
         });
+
+        this.setState({sedmica: brojSedmice});
     }
 
     handleNazad = () => {

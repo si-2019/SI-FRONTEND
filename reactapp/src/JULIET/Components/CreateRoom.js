@@ -27,8 +27,8 @@ class CreateRoom extends Component{
         // <button id='create-room-btn' type="submit">+</button>
             <form onSubmit={this.handleSubmit} className="new-room-form">
                 <input className="input-group mb-3 juliet-message-input" type="text" style={inputStyle}
-                placeholder="Create private room..." onChange={this.handleChange} value={this.state.roomName} />
-                <button id='create-private-room-btn' type="submit" style={{width: '10%'}}>+</button>
+                placeholder="Kreirajte privatnu sobu" onChange={this.handleChange} value={this.state.roomName} />
+                <button id='create-private-room-btn' type="submit" style={{width: '30px%', height: '30px', borderRadius: '0.25rem', fontWeight: 'bold'}}>+</button>
                 {/* <input className="btn btn-outline-primary" style={buttonStyle} type="submit" value="Create" /> */}
             </form>
         )
@@ -36,8 +36,14 @@ class CreateRoom extends Component{
 }
 
 const inputStyle = {
-    width: '90%',
-    padding: '0',
-    display: 'inline-block'
+    width: '80%',
+    padding: '3px 6px',
+    marginRight: '5px',
+    display: 'inline-block',
+    borderRadius : '0.25rem',
+    height: '30px',
+    marginBottom: '4px',
+
 }
+
 export default CreateRoom;

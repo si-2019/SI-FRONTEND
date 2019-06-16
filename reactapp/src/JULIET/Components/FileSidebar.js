@@ -8,8 +8,7 @@ class FileSidebar extends Component {
 
         this.state = {
             files: [],
-            input:''
-
+            input:'',
         }
 
         this.handleItemClick = this.handleItemClick.bind(this);
@@ -17,7 +16,9 @@ class FileSidebar extends Component {
     }
 
     componentWillMount(){
-        Axios.get('https://si2019juliet.herokuapp.com/files' + this.props.roomId)
+        console.log(this.props);
+
+        Axios.get('https://si2019juliet.herokuapp.com/files/' + this.props.roomId)
         .then(res => {
             if(res.data === null){
                 this.setState({
@@ -25,8 +26,6 @@ class FileSidebar extends Component {
                 })
             }
             else{
-                console.log(res.data);
-
                 this.setState({
                     files: res.data
                 })
@@ -35,6 +34,28 @@ class FileSidebar extends Component {
             
         )
         .catch(err => console.log(err));
+    }
+
+    componentDidUpdate(prevProps){
+
+        if(prevProps.roomId !== this.props.roomId){
+            Axios.get('https://si2019juliet.herokuapp.com/files/' + this.props.roomId)
+            .then(res => {
+                if(res.data === null){
+                    this.setState({
+                        files: new Array(0)
+                    })
+                }
+                else{
+                    this.setState({
+                        files: res.data
+                    })
+                }
+            }
+                
+            )
+            .catch(err => console.log(err));
+        }
     }
 
     handleItemClick(name){
@@ -59,15 +80,17 @@ class FileSidebar extends Component {
                         let node = document.getElementById('shared-files')
                         let display = node.style.display;
                         node.style.display = display === "block" ? 'none' : "block";
-                        node = document.getElementById('arrow-files');
-                        let innerHTML = node.innerHTML; 
-                        node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
-                    }}>
-                    <div className="juliet-section-header"><h5>Shared files</h5></div>
-                    <i id="arrow-files" class="material-icons-outlined md-14">keyboard_arrow_right</i>
+                        node = document.getElementsByClassName('arrow-files')[0]; 
+                        if (node) {
+                            let innerHTML = node.innerHTML; 
+                            node.innerHTML = innerHTML === "keyboard_arrow_right" ? "keyboard_arrow_down" : "keyboard_arrow_right"
+                        }
+                   }}>
+                    <div className="juliet-section-header"><h5>Podijeljene datoteke</h5></div>
+                    <i className="arrow-files" class="material-icons-outlined md-14">keyboard_arrow_right</i>
                 </div> 
                 <ul style={{overflowX: 'hidden', height:'80%', margin: '0', display: 'none'}} id="shared-files">
-                <input className="pretragaFajlovaText" placeholder="Search files..." value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)} style={fileSearchCSS}/>
+                <input className="pretragaFajlovaText" placeholder="Tražite" value={this.state.input} type="text" onChange={this.onChangeHandler.bind(this)} style={fileSearchCSS}/>
                 {resultFiles ? 
                         resultFiles.map((file, index) => (
                             <li key={index} className='user' onClick={() => {this.handleItemClick(file.naziv)}}> 

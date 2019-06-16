@@ -1,34 +1,48 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 import { Route, Link } from "react-router-dom";
-import PotvrdeRouter from './Potvrde/PotvrdeRouter.js';
-import IzvjestajiRouter from './Izvjestaji/IzvjestajiRouter.js';
+import { Spinner } from 'reactstrap';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import StudentRouter from './Student/app.js';
+import StudentskaSluzbaRouter from './StudentskaSluzba/app.js';
+import ProfesorRouter from './Profesor/app.js'
+
+import { user } from './api.js'
+
 import './app.css';
 
-function App() {
-  return (
-    <div id="main">
-      <ToastContainer />
-      {Paths()}
-      <div id="rightBeta" className="p-2">
-        <Route path="/Lima/potvrde" component={PotvrdeRouter}/>
-        <Route path="/Lima/izvjestaji" component={IzvjestajiRouter} />
-      </div>
-    </div>
-  );
+const routeri = {
+  "STUDENT": StudentRouter,
+  "PROFESOR": ProfesorRouter,
+  "STUDENTSKA_SLUZBA": StudentskaSluzbaRouter,
 }
 
-function Paths() {
-  return (
-    <div id="leftBeta">
-      <div>
-        <Link to="/Lima/izvjestaji"><button className="btn btn-primary left-buttons">Izvjestaji</button></Link>
-        <Link to="/Lima/potvrde"><button className="btn btn-primary left-buttons">Potvrde</button></Link>
-      </div>
-    </div>
-  );
+class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            tipUsera: null
+        }
+    }
+    componentDidMount(){
+        let userId = window.localStorage.getItem("id");
+        user.getUloga(userId).then((res) => {
+            this.setState({
+              tipUsera: res
+            })
+        }).catch(err => {
+            this.setState({
+                tipUsera: "nemapravo"
+            })
+        })
+    }
+    render(){
+        if(this.state.tipUsera == null) return <div className="w-100 d-flex justify-content-center"><Spinner /></div>
+        if(this.state.tipUsera == "nemapravo") return <div className="w-100 d-flex justify-content-center">Ulogujte se prvo na Romeo.</div>
+        const Router = routeri[this.state.tipUsera]
+        return (
+            <Router />
+        );
+    }
 }
 
 export default App;

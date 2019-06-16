@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
+import { withRouter } from "react-router-dom";
 
 class PrikaziStatus extends Component {
   constructor() {
     super();
     this.state = {
-      StudentID: 1,
+      StudentID: (window.localStorage.getItem("id") != null && window.localStorage.getItem("username") != null) ? window.localStorage.getItem("id") : 2,
+      username: window.localStorage.getItem("username") != null ? window.localStorage.getItem("username") : "stest1",
+      token: window.localStorage.getItem("token"),
       status: [],
       teme: [],
       od: "Odobreno",
@@ -17,26 +20,45 @@ class PrikaziStatus extends Component {
   }
 
   componentDidMount() {
+    if (window.localStorage.getItem("id") != null) {
+      var ajax = new XMLHttpRequest();
+      ajax.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+          this.handleGet();
+        }
+        else {
+          //vrati na login
+          this.props.history.push("/Romeo");
+        }
+      }
+      ajax.open("GET", "https://si2019romeo.herokuapp.com/users/validate/data?username=" + this.state.username, true);
+      ajax.setRequestHeader("Authorization", this.state.token);
+      ajax.send();
+    }
+    else this.handleGet();
+  }
+
+  handleGet = () => {
     axios
       .get(
-        `http://localhost:31918/temezavrsni/` +
+        `https://si2019siera.herokuapp.com/temezavrsni/` +
         this.state.StudentID
       )
       .then(res => {
+        if (res.data.success) {
+          const Teme = res.data.teme.map(obj => obj.naziv);
+          this.setState({ teme: Teme });
 
-        const Teme = res.data.teme.map(obj => obj.naziv);
-        this.setState({ teme: Teme });
-
-        const Status = res.data.teme.map(obj => obj.odobreno);
-        this.setState({ status: Status });
-
+          const Status = res.data.teme.map(obj => obj.odobreno);
+          this.setState({ status: Status });
+        }
       });
   }
 
   Provjeri = provjeri => {
-    if (provjeri == null) return <p>Na čekanju</p>
-    else if (provjeri == 1) return <p>Odobreno</p>
-    return <p>Neodobreno</p>
+    if (provjeri == null) return "Na čekanju"
+    else if (provjeri == 1) return "Odobreno"
+    return "Neodobreno"
   }
 
   handleOdobreno() {
@@ -80,7 +102,7 @@ class PrikaziStatus extends Component {
 
     return (
       <>
-        <button type="submit" class="btn btn-primary" onClick={this.handleShow}>Prikaži status</button>
+        <button type="submit" className="btn btn-primary" onClick={this.handleShow}>Prikaži status</button>
         <Modal show={this.state.show}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
@@ -96,7 +118,7 @@ class PrikaziStatus extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button type="submit" onClick={this.handleClose} class="btn btn-secondary">Zatvori</button>
+            <button type="submit" onClick={this.handleClose} className="btn btn-secondary">Zatvori</button>
 
           </Modal.Footer>
         </Modal>
@@ -105,4 +127,4 @@ class PrikaziStatus extends Component {
   }
 }
 
-export default PrikaziStatus;
+export default withRouter(PrikaziStatus);

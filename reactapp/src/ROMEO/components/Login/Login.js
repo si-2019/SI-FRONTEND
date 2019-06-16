@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import ReactDOM from 'react-dom'
 import './login.css';
 import axios from 'axios';
+import App from '../../../header';
 
 var error = 'Greska';
 
@@ -138,13 +140,6 @@ class Login extends Component {
 
     return (
       <div className="body">
-        <div className="header">
-          <img 
-            src="http://etf.unsa.ba/etf/css/images/etf-dugi.gif"
-            alt="new"
-            data-placement="right"
-          />
-        </div>
         <div className="card text-white bg-primary " >
           <form className="loginForma">
           <label htmlFor="exampleInputEmail1">Korisničko ime:</label>

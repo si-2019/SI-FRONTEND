@@ -11,6 +11,7 @@ import PrijavaIspita from "./components/PrijavaIspita";
 import PrijavljeniIspiti from "./components/PrijavljeniIspiti";
 import UrediIspit from "./components/UrediIspit";
 
+
 import LeftMenuCharlie from "./LeftMenuCharlie";
 import "./appCharlie.css";
 class App extends Component {
@@ -22,18 +23,15 @@ class App extends Component {
       fetched: false,
       activeContentId: 0,
       error: '',
+      data: {},
       menuButtonTitles: [, "Ispiti"],
       menuButtonsProfesor: [{
         btnText: "Kreiraj ispit",
         component: <KreirajIspit onChangeActiveId={this.onChangeActiveId}/>
-        
       }, {
         btnText: "Kreirani ispiti",
         component: <KreiraniIspiti />
-      }, {
-        btnText: "Kreiraj ispit detalji",
-        component: <KreirajIspitDetalji />
-      }],
+      },
       menuComponentsProfesor: [{
         naziv: "Profil",
         changeId: 0,
@@ -45,7 +43,7 @@ class App extends Component {
       },{
         naziv: "Profil",
         changeId: 2,
-        component: <KreirajIspitDetalji/> //Prof
+        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} data={this.getData}/> //Prof
       }],
       menuButtonsStudent: [{
         btnText: "Informacije o ispitu",
@@ -60,20 +58,23 @@ class App extends Component {
       menuComponentsStudent: [{
         naziv: "Profil",
         changeId: 0,
-        component: <PrijavaIspita /> // Stud
+        component: <PrijavaIspita  onChangeActiveId={this.onChangeActiveId}/> // Stud
       }, {
         naziv: "Profil",
         changeId: 1,
-        component: <PrijavljeniIspiti /> //Stud
+        component: <PrijavljeniIspiti onChangeActiveId={this.onChangeActiveId}/> //Stud
       },
       {
         naziv: "Profil",
         changeId: 2,
-        component: <InformacijeOIspitu /> // Stud
+        component: <InformacijeOIspitu onChangeActiveId={this.onChangeActiveId} /> // Stud
       }],
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
-  }
+  } 
+
+  getData = () => this.state.data
+  
   async componentDidMount() {
     var help = [];
     var i = 0;
@@ -129,9 +130,10 @@ class App extends Component {
     }
 
   }
-  onChangeActiveId = (id) => {
+  onChangeActiveId = (id, data={}) => {
     this.setState({
       activeContentId: id,
+      data
     })
   };
 

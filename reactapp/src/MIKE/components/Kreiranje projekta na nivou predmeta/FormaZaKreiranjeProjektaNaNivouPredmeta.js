@@ -116,12 +116,13 @@ class KreiranjeProjekta extends Component {
 				else if(ajax.status!="200"){
 				}
 		}
-	    ajax.open("POST","http://localhost:31913/services/projects/newp",true);
+	    ajax.open("POST","https://si-mike-2019.herokuapp.com/services/projects/newp",true);
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
         ajax.send("naziv_projekta="+naziv + 
         "&id_predmeta="+komponenta.state.idPredmeta+"&id_asistenta="+komponenta.state.idAsistenta+
         "&opis_projekta=" +opis + 
-        "&moguci_bodovi="+ bodovi+ "&progress=0&rok_projekta='30.06.2019.'");
+        "&moguci_bodovi="+ bodovi+ "&progress=0&rok_projekta='30.06.2019.'&username="+window.localStorage.getItem("username"));
         alert("Upisano u bazu");
 	}
 

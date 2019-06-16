@@ -24,7 +24,7 @@ class UploadFiles extends Component {
         <div >
           <label className="col-form-label col-form-label-lg" >Odaberite projektne fajlove za upload: </label>
             <div >
-              <Form method="post" action="http://localhost:31913/api/work/addfile" enctype="multipart/Form-data">
+              <Form method="post" action="https://si-mike-2019.herokuapp.com/api/work/addfile" enctype="multipart/Form-data">
                 <FormGroup>
 
                   <Input name="idProjektnogZadatka" type="hidden" value={this.state.idZadatka}></Input>

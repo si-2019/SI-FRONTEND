@@ -120,7 +120,8 @@ const formStyle = {
     // marginRight: '1em',
     margin: 'auto',
     height: '100%',
-    padding: '4px 0 4px 0'
+    padding: '4px 0 4px 0',
+    color: 'darkgrey'
 }
 
 const fileStyle = {

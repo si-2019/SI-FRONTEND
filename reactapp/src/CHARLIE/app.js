@@ -19,6 +19,7 @@ class App extends Component {
     super();
     this.state = {
       activeContentId: 0,
+      data: {},
       menuButtonTitles: [, "Ispiti"],
       menuButtonsProfesor: [{
         btnText: "Kreiraj ispit",
@@ -29,7 +30,7 @@ class App extends Component {
         component: <KreiraniIspiti />
       }, {
         btnText: "Kreiraj ispit detalji",
-        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} />
+        component: <KreirajIspitDetalji onChangeActiveId={this.onChangeActiveId} data={this.getData}/>
       }, {
         btnText: "Prijava ispita",
         component: <PrijavaIspita onChangeActiveId={this.onChangeActiveId} />
@@ -73,6 +74,10 @@ class App extends Component {
     }
     this.onChangeActiveId = this.onChangeActiveId.bind(this);
   }
+
+  getData = () => this.state.data
+  
+
   componentDidMount() {
     var help = [];
     var i = 0;
@@ -103,9 +108,10 @@ class App extends Component {
     });
 
   }
-  onChangeActiveId = (id) => {
+  onChangeActiveId = (id, data={}) => {
     this.setState({
       activeContentId: id,
+      data
     })
   };
   render() {

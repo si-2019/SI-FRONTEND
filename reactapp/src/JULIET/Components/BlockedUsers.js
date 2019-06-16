@@ -48,8 +48,8 @@ class BlockedUsers extends Component {
     render(){
         return(
             <form  onSubmit={this.onSubmit.bind(this)} style={{width: '100%', paddingTop: '5px'}}>
-                <input  type="text" style={inpStyle} placeholder="Block User" onChange={this.handleChange} value={this.state.user} />
-                <input  id="juliet-event-button" className="btn btn-outline-primary" type="submit" value="Block this user" style={{width: '100%', background: 'white', color: '#2C3E50', fontWeight: 'bold'}}/>
+                <input  type="text" style={inpStyle} placeholder="Blokiraj korisnika" onChange={this.handleChange} value={this.state.user} />
+                <input  id="juliet-event-button" className="btn btn-outline-primary" type="submit" value="Blokirajte korisnika" style={{width: '100%', background: 'white', color: this.props.colorScheme, fontWeight: 'bold'}}/>
             </form>
         )
     }

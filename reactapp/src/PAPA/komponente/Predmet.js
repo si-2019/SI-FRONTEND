@@ -48,7 +48,16 @@ class PredmetOne extends Component {
     });
   }
   odslusaniPredmeti(){
-    
+    papaApi.odslusaniPredmeti().then((res) => {
+      this.setState({
+        showPredmet:true,
+        naslov:"Odslusani predmeti",
+        lista:res.data});
+    }).catch((err) => {
+      this.setState({
+        naslov:"Odslusani predmeti",
+        lista:[]});
+    });
   }
   polozeniPredmeti(){
     papaApi.polozeniPredmeti().then((res) => {
@@ -149,20 +158,21 @@ class PredmetOne extends Component {
   }
 
   kliknutPredmet(){
-    if(this.state.showPredmet){
-        this.props.fija();      
-    }
+    
   }
 
   render() {
     return (
-      <div style={{ width: '100%', minHeight: '22rem'}}>
-        <Card border="secondary" style={{ width: '100%', minHeight: '22rem', backgroundColor:this.state.boja}}>
+      <div style={{ width: '100%', height: '100%'}}>
+        <Card className="m-0" style={{ width: '100%', height: '100%', backgroundColor:this.state.boja}}>
         <Card.Header className='bg-primary' >
           <div style={{width: '100%',  display: 'flex',justifyContent:'space-between'}}>
             {<h3 style={{color:"white"}} >Predmeti</h3>}
             <ButtonGroup vertical  style={{alignSelf: 'flex-end'}}>
-              <DropdownButton as={ButtonGroup} title="" id="bg-vertical-dropdown-1">
+              <DropdownButton as={ButtonGroup} 
+                alignRight
+                title="Filteri "
+                id="dropdown-menu-align-right">
                 <Dropdown.Item eventKey="1" onClick={this.trenutniPredmeti}>Trenutni predmeti</Dropdown.Item>
                 <Dropdown.Item eventKey="2" onClick={this.odslusaniPredmeti}>Odslusani predmeti </Dropdown.Item>
                 <Dropdown.Item eventKey="3" onClick={this.polozeniPredmeti}>Polozeni predmeti</Dropdown.Item>

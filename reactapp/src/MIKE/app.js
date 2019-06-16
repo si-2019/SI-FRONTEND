@@ -13,7 +13,10 @@ class Mike extends Component {
   constructor(props){
     super(props);
     this.state={
-      korisnik:10,
+
+      
+      korisnik:window.localStorage.getItem("id"),
+
       forma:"null",
       predmeti:[],
       token:0
@@ -79,7 +82,7 @@ class Mike extends Component {
               </div>
             </div>
             <div id="right">
-              <Lista submit={this.unosInformacija} predmeti={this.state.predmeti}/>
+              <Lista submit={this.unosInformacija} predmeti={this.state.predmeti} korisnik={this.state.korisnik}/>
             </div>
           </div>
         </div>
@@ -272,8 +275,13 @@ class Mike extends Component {
           }));
         }
       }
-      ajax.open("GET","http://localhost:31913/services/viewS/predmeti-za-generisanje-grupa/"+this.state.korisnik,true);
+      console.log(window.localStorage.getItem("username"));
+      console.log(window.localStorage.getItem("id"));
+      console.log(window.localStorage.getItem("token"));
+      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewS/predmeti-za-generisanje-grupa/"
+      +this.state.korisnik+"?username="+window.localStorage.getItem("username"),true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
       ajax.send();
   }
   listaProjekata(){
@@ -297,7 +305,7 @@ class Mike extends Component {
           }));
         }
       }
-      ajax.open("GET","http://localhost:31913/services/viewA/getProjects/"+this.state.korisnik,true);
+      ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/getProjects/"+this.state.korisnik,true);
       ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       ajax.send();
   }
@@ -324,7 +332,7 @@ class Mike extends Component {
           }));
         }
 		}
-		ajax.open("GET","http://localhost:31913/services/viewA/predmetiprojektiasistent/"+this.state.korisnik,true);
+		ajax.open("GET","https://si-mike-2019.herokuapp.com/services/viewA/predmetiprojektiasistent/"+this.state.korisnik,true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send();
   }
@@ -358,7 +366,7 @@ class Mike extends Component {
         }));
       }
     }
-		ajax.open("GET","http://localhost:31913/services/projects/getPredmeti/"+this.state.korisnik,true);
+		ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getPredmeti/"+this.state.korisnik,true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send();
   }
@@ -391,7 +399,7 @@ class Mike extends Component {
         }));
       }
     }
-		ajax.open("GET","http://localhost:31913/services/projects/getInfoPredmeti/"+this.state.korisnik,true);
+		ajax.open("GET","https://si-mike-2019.herokuapp.com/services/projects/getInfoPredmeti/"+this.state.korisnik,true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send();
   }

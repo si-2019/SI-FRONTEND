@@ -37,11 +37,18 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent=1', {
-            method: 'GET'
+        fetch(url + '/dajAnketeNaPredmetimaZaStudenta?idStudent='+window.localStorage.getItem("id")+ '&username=' + window.localStorage.getItem("username"), {
+            method: 'GET',
+            headers: {
+                'Authorization': window.localStorage.getItem("token")
+            }
         })
         .then(res => res.json())
         .then(result => {
+            if(result.loginError) {
+                window.location.href = window.location.origin + '/romeo/login'
+                return
+            }
             console.log("hoce")
             this.setState({
                 items: {
@@ -50,7 +57,7 @@ class App extends React.Component {
             })
         }, error => {
             this.setState({
-                items: [error, "error"]
+                error: [error, "error"]
             })
         })
     }

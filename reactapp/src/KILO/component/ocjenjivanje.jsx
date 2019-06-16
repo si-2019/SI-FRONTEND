@@ -55,6 +55,7 @@ class Ocjenjivanje extends Component {
   }
   
   provjeriToken = () => {
+    try{
     axios({
       url: 'https://si2019romeo.herokuapp.com/users/validate',
       type: 'get',
@@ -73,7 +74,10 @@ class Ocjenjivanje extends Component {
           window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
         } 
       }  
-    });
+    });}
+    catch(e){
+
+    }
   }
 
   componentDidMount = () => {

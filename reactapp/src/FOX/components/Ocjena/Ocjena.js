@@ -83,7 +83,7 @@ class Ocjena extends Component {
                         student: null,
                         opisUspjeh: "Ocjena je upisana.",
                         naslovUspjeh: student !== null ?
-                            student.ime + " " + student.prezime + " " + "(" + student.indeks + ")" + ", " + this.ocjena.current.value : ""
+                            student.ime + " " + student.prezime + ", " + this.ocjena.current.value : ""
                     });
                     this.ocjena.current.value = null;
                     this.indeks.current.value = null;

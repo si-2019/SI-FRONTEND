@@ -31,7 +31,7 @@ class App extends React.Component {
             })
         }, error => {
             this.setState({
-                items: [error, "error"]
+                error: [error, "error"]
             })
         })
     }

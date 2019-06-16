@@ -12,15 +12,25 @@ class StranicaPredmetaUredjivanje extends Component {
     }
 
     componentDidMount(){
-      axios.get(`http://localhost:31907/r5/dajNaziv/${this.props.idPredmeta}`).then(res =>{
+      axios.get(`http://si2019golf.herokuapp.com/r5/dajNaziv/${this.props.idPredmeta}`).then(res =>{
+        if(res.data.loginError) {
+          window.location.href = window.location.origin + '/romeo/login'
+        }
+        else{
         this.setState({
           naziv: res.data.naziv
         })
+      }
     })
-    axios.get(`http://localhost:31907/r8/getAkademskaGodina/`).then(res =>{  
+    axios.get(`http://si2019golf.herokuapp.com/r8/getAkademskaGodina/`).then(res =>{  
+      if(res.data.loginError) {
+        window.location.href = window.location.origin + '/romeo/login'
+      }
+      else{
       this.setState({
         godine:res.data.godine
       })
+    }
     })
   }
 
@@ -34,7 +44,7 @@ class StranicaPredmetaUredjivanje extends Component {
         <div>
           <Dropdown godine={this.state.godine} nazivAg = {this.props.akademskaGodina} idKorisnika={this.props.idKorisnika} idPredmeta={this.props.idPredmeta}/>
         </div>
-        <ObjaveProfesor idPredmeta={this.props.idPredmeta} akademskaGodina={this.props.akademskaGodina}></ObjaveProfesor>
+        <ObjaveProfesor idPredmeta={this.props.idPredmeta} akademskaGodina={this.props.akademskaGodina} trenutnaAkademskaGodina={this.props.trenutnaAkademskaGodina}></ObjaveProfesor>
       </div>
     )
   }

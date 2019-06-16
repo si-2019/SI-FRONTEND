@@ -18,6 +18,14 @@ export default class App extends React.Component {
         this.refs.modal.show()
     }
 
+    PrikaziHeader() {
+        var logiran = localStorage.getItem("token");
+        if((window.location.pathname.includes("romeo") || window.location.pathname.includes("Romeo")) && logiran == null) {
+            return false;
+        }
+        return true;
+    }
+
     JeLiLogiran() {
         var logiran = localStorage.getItem("token");
         if(logiran) return ([
@@ -33,14 +41,18 @@ export default class App extends React.Component {
                         "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", 
                          "Papa", "Romeo", "Siera", "Tango", "Uniform"];
 
-        return (
+        if(this.PrikaziHeader()) {
+            return (
             
-            <div style={{backgroundColor: "#00203f", height:"40px"}} className="nav-link active"> 
-                {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
-                {this.JeLiLogiran()}
-                <ModalChangeLog container={this} ref = "modal" />
-            </div>
-
-        )
+                <div style={{backgroundColor: "#00203f", height:"40px"}} className="nav-link active"> 
+                    {timovi.map(t => <div style={{display: "inline"}}> <Link style={{color: "#adefd1"}} to={`/${t}`}> {t} </Link> </div>)}
+                    {this.JeLiLogiran()}
+                    <ModalChangeLog container={this} ref = "modal" />
+                </div>
+    
+            )
+        }
+        return null;
+        
     }
 }

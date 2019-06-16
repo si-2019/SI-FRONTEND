@@ -93,9 +93,9 @@ class App extends Component {
           OK:true
         })
         //pirkazi stranicu
-        
+        console.log("usao u if");
         if (window.localStorage.getItem("id") != null) {
-         
+         console.log("drugi if");
           axios({
             url: 'https://si2019romeo.herokuapp.com/users/validate',
             type: 'get',
@@ -106,11 +106,11 @@ class App extends Component {
             beforeSend: function (xhr) {
               xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
             },
-            complete: function (response) {
-              if (response.status == 200) this.handleMount();
-              else this.props.history.push("/Romeo");
-
-            }
+           
+        })
+        .then(res=>{
+          if(res.status==200) this.handleMount();
+          else this.props.history.push("/Romeo")
         })
       }
         else this.handleMount();

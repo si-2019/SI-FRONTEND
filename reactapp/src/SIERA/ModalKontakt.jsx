@@ -179,11 +179,12 @@ class ModalComponent extends React.Component {
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
                 },
-                complete: function (response) {
-                  if (response.status == 200) this.handlePutEvent();
-                  else this.props.history.push("/Romeo");
-    
-                }
+               
+            })
+            
+            .then(res => {
+                if (res.status == 200) this.handlePutEvent(event);
+                else this.props.history.push("/Romeo")
             })
         }
         else this.handlePutEvent(event)

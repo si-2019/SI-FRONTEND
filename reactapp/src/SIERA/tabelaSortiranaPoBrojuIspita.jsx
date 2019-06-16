@@ -27,11 +27,11 @@ class TabelaSortiranaPoBrojuIspita extends Component {
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
                 },
-                complete: function (response) {
-                  if (response.status == 200) this.handleGet();
-                  else this.props.history.push("/Romeo");
-    
-                }
+            })
+            
+            .then(res => {
+                if (res.status == 200) this.handleGet();
+                else this.props.history.push("/Romeo")
             })
         }
         else this.handleGet();

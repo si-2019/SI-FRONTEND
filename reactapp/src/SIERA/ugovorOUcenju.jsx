@@ -53,12 +53,12 @@ class UgovorOUcenju extends Component {
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
         },
-        complete: function (response) {
-          if (response.status == 200) this.handleGetKreiraj();
-          else this.props.history.push("/Romeo");
-
-        }
     })
+    
+    .then(res => {
+      if (res.status == 200) this.handleGetKreiraj();
+      else this.props.history.push("/Romeo")
+  })
     }
     else this.handleGetKreiraj();
   }
@@ -141,12 +141,12 @@ class UgovorOUcenju extends Component {
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
         },
-        complete: function (response) {
-          if (response.status == 200) this.handleGetIzborni();
-          else this.props.history.push("/Romeo");
-
-        }
     })
+    
+    .then(res => {
+      if (res.status == 200) this.handleGetIzborni();
+      else this.props.history.push("/Romeo")
+  })
     }
     else this.handleGetIzborni();
   }
@@ -221,12 +221,12 @@ class UgovorOUcenju extends Component {
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
         },
-        complete: function (response) {
-          if (response.status == 200) this.handleGetGlavni();
-          else this.props.history.push("/Romeo");
-
-        }
     })
+    
+    .then(res => {
+      if (res.status == 200) this.handleGetGlavni();
+      else this.props.history.push("/Romeo")
+  })
     }
     else this.handleGetGlavni();
   }

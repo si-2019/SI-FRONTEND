@@ -7,14 +7,16 @@ class Modal2 extends React.Component {
         super(props);
         this.state = {
             korisnikID: 1,
-            greska: 0,
+            // greska: 0,
             brojac: 0,
+            greska:undefined
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
    
     renderujPotvrdu() {
-        if (!this.state.greska) {
+        if(this.state.greska === undefined) return ""
+        else if (!this.state.greska) {
             return (
                 <Potvrda
                     key={this.brojac}
@@ -35,13 +37,14 @@ class Modal2 extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        this.props.handleSubmit();
+        // this.props.handleSubmit();
         //ovjde saljete post/put zahtjeve
         //ukoliko neki rezultira greskom, postavite greska na true
        
     }
     onConfirm = e => {
-        this.props.onConfirm && this.props.onConfirm(e);
+        if (this.props.onConfirm) 
+            this.setState({greska:this.props.onConfirm(e)});
       };
 
     handleClose = () => {
@@ -58,7 +61,7 @@ class Modal2 extends React.Component {
                 centered
             >
                 {this.renderujPotvrdu()}
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
                         {this.props.naslovModala}
                     </Modal.Title>

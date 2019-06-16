@@ -69,9 +69,9 @@ class Rezultati extends Component {
     });
     axios.get(`${url}/getRezultatiAnkete/?idAnketa=${params.id}&username=` + window.localStorage.getItem("username"))
     .then((res) => {
-      if (res.accessError) {
+      if (res.data.accessError) {
         this.setState({
-            error: res.accessError
+            error: res.data.accessError
         })
         return
       }

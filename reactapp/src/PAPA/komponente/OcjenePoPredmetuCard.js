@@ -12,6 +12,7 @@ class OcjenePoPredmetuCard extends React.Component {
     constructor(){
         super();
         this.state={
+            
             idGodina:null,
             idPredmet:null,
             nizPredmeta:[],

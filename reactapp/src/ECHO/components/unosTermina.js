@@ -60,7 +60,7 @@ class UnosTermina extends Component {
     return true;
   }
   postTermin(event) {
-    fetch("http://localhost:31905/si2019/echo/unesiTermine", {
+    fetch("http://si-echo-2019.herokuapp.com/api/si2019/echo/unesiTermine", {
       method: "POST",
       headers: {
         Accept: "application/json",

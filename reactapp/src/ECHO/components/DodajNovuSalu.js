@@ -64,7 +64,7 @@ class DodajNovuSalu extends Component {
   }
 
   postSala(event) {
-    fetch("http://localhost:31905/si2019/echo/unesiSalu", {
+    fetch("http://si-echo-2019.herokuapp.com/si2019/echo/unesiSalu", { // localhost:31905
       method: "POST",
       headers: {
         Accept: "application/json",

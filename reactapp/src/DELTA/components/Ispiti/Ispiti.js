@@ -12,7 +12,7 @@ class Ispiti extends Component {
         
         const {data} = await axios.get('http://si2019delta.herokuapp.com/ispitObavjestenje/'+idPredmeta);
         this.setState({ispitiObavjestenje:data});
-        const {data1} = await axios.get('http://localhost:31904/rezultatiIspita/'+idPredmeta+'/'+idStudent); 
+        const {data1} = await axios.get('http://si2019delta.herokuapp.com/rezultatiIspita/'+idPredmeta+'/'+idStudent); 
          this.setState({ispit:data1});
       }
 

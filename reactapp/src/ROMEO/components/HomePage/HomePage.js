@@ -52,7 +52,7 @@ class HomePage extends Component {
   }
 
   render () {
-    if (!this.state.logiran) {
+     if (!this.state.logiran) {
       return <Redirect to="/romeo/login" />
     }
     return (

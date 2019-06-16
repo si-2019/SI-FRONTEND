@@ -48,7 +48,7 @@ class App extends Component {
             <Route path="/november" component={November} />
             <Route path="/oscar" component={Oscar} />
             <Route path="/Dashboard" component={Papa} />
-            <Route path="/Login" component={Romeo} />
+            <Route path="/Romeo" component={Romeo} />
             <Route path="/Studenti" component={Siera} />
             <Route path="/Forum" component={Tango} />
             <Route path="/Raspored" component={Uniform} />

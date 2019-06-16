@@ -15,7 +15,7 @@ class KreirajIspit extends Component {
   async componentDidMount() {
     const idKorisnika = window.localStorage.getItem('id') || 5;
     // const { data } = await axios.get(
-    //   'https://si2019alpha.herokuapp.com/api/korisnik/getPredmetiAsisProf?idKorisnik=' +
+    //   'http://si2019alpha.herokuapp.com/api/korisnik/getPredmetiAsisProf?idKorisnik=' +
     //     idKorisnika +
     //     '&Uloga=3'
     // );

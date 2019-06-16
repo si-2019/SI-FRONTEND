@@ -57,7 +57,7 @@ class TabelaGrupa extends Component {
               Unesi iste bodove za sve članove projektne grupe
         </Button>
 
-        <hr/>
+         <br/>
 
         <Table className="table table-dark table-bordered text-center border-solid">
           <thead>
@@ -81,9 +81,7 @@ class TabelaGrupa extends Component {
             }
           </tbody>
         </Table>
-
-        <hr/>
-
+        <br/>
       </Fragment>
     );
   }

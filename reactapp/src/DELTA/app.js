@@ -9,10 +9,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       activeContentId: 0,
-      IDaktivnog: 0,
-      //DODANO JE OVO
-      open: false,  //open pokazuje da li formu treba prikazati ili ne
-      activeContentId: 1
+      IDaktivnog: 64,
+
     };
   }
 
@@ -47,30 +45,30 @@ class App extends React.Component {
               <div
               id="prviPredmet"
               style={{ display: this.state.activeContentId == 1 ? 'inherit' : 'none' }}
-            ><Predmet idPredmeta={this.state.IDaktivnog}/>
+            >{this.state.activeContentId == 1 ? <Predmet idPredmeta={this.state.IDaktivnog}/> : 'aa'}
             </div>
             <div
               id="drugiPredmet"
               style={{ display: this.state.activeContentId == 2 ? 'inherit' : 'none' }}
-            > <Predmet idPredmeta={this.state.IDaktivnog}/>
+            > {this.state.activeContentId == 2 ? <Predmet idPredmeta={this.state.IDaktivnog}/> : 'aa'}
             </div>
             <div
               id="treciPredmet"
               style={{ display: this.state.activeContentId == 3 ? 'inherit' : 'none' }}
-            > <Predmet idPredmeta={this.state.IDaktivnog}/>
+            > {this.state.activeContentId == 3 ? <Predmet idPredmeta={this.state.IDaktivnog}/> : 'aa'}
             </div>
 
             <div
               id="cetvrtiPredmet"
               style={{ display: this.state.activeContentId == 4 ? 'inherit' : 'none' }}
-            > <Predmet idPredmeta={this.state.IDaktivnog}/>
+            > {this.state.activeContentId == 4 ? <Predmet idPredmeta={this.state.IDaktivnog}/> : 'aa'}
             </div>
               
               <div
               id="petiPredmet"
               style={{ display: this.state.activeContentId == 5 ? 'inherit' : 'none' }}
             >
-              <Predmet idPredmeta={this.state.IDaktivnog}/>
+            {this.state.activeContentId == 5 ? <Predmet idPredmeta={this.state.IDaktivnog}/> : 'aa'}
             </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-
+import {IdUSER} from '../id.js';
 
 class DugmeZaObjavu extends Component {
 
@@ -11,11 +11,11 @@ class DugmeZaObjavu extends Component {
         }
         const { idTeme, text } = this.props; 
           evt.preventDefault()
-        fetch("http://localhost:31919/addComment", {
+        fetch("http://si2019tango.herokuapp.com/addComment", {
           method: 'POST',  
           body: JSON.stringify({
           idUser: '1',
-          idTheme: idTeme,
+          idTheme: IdUSER,
           text: text,
           timeCreated: Date.now()
         }),  

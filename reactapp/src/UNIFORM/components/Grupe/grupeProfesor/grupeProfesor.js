@@ -15,45 +15,45 @@ state = {
     grupe:[],
     predmet:undefined,
     nesvrstani:[],
-    trenutniRedoslijed:undefined
+    trenutniRedoslijed:undefined,
+    provjerenToken:false
   }
 
-  provjeriToken = () => {
-    axios({
-      url: 'https://si2019romeo.herokuapp.com/users/validate',
-      type: 'get',
-      dataType: 'json',
-      data: jQuery.param({
-        username: window.localStorage.getItem("username")
-      }),
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader("Authorization", window.localStorage.getItem("token"));
-      },
-      complete: function (response) {
-        if (response.status == 200) {
-          return true;
-        }
-        else{
-          window.location.href = 'https://si2019frontend.herokuapp.com/ROMEO'
-        } 
-      }  
-    });
-  }
+  
 
   componentDidMount = () =>{
-    fetch("https://si2019uniform.herokuapp.com/getRedoslijed")
+    if(!this.state.provjerenToken && window.localStorage.getItem("uniformStanje")!='da')
+    {
+      var idItem  = window.localStorage.getItem("id");
+      if(idItem==null)
+      idItem="63813812";
+      fetch('https://cors-anywhere.herokuapp.com/'+'https://si2019oscar.herokuapp.com/pretragaId/' + idItem + '/dajUlogu', {
+        method: 'get',
+        headers: {
+            'Authorization': window.localStorage.getItem("token")
+        }
+      }).then(res => {
+            console.log(res)
+            if(res=="") {
+                window.location.href = window.location.origin + '/romeo/login'
+            }
+            else {
+                this.setState({
+                    provjerenToken:true
+                })
+                fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getRedoslijed")
       .then(resRedoslijed => resRedoslijed.json())
       .then(jsonRedoslijed => {
         var linkGrupe;
         if(jsonRedoslijed.naziv=="Redoslijed abecede")
-          linkGrupe="https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupeAbeceda/4";
         else
-          linkGrupe="https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
+          linkGrupe='https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getGrupePrijavljivanje/4";
 
-          fetch("https://si2019uniform.herokuapp.com/getPredmet/4")
+          fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getPredmet/4")
             .then(resPredmet => resPredmet.json())
             .then(jsonPredmet => {
-                fetch("https://si2019uniform.herokuapp.com/getNesvrstaniStudentiNaPredmetu/4")
+                fetch('https://cors-anywhere.herokuapp.com/'+"https://si2019uniform.herokuapp.com/getNesvrstaniStudentiNaPredmetu/4")
                  .then(resNesvrstani => resNesvrstani.json())
                  .then(jsonNesvrstani => {
                     fetch(linkGrupe)
@@ -71,17 +71,33 @@ state = {
                 });
             });
         });
+            }
+        })
+    } 
+    
 
-        this.provjeriToken();
+        
   }
 
 render = () =>{ 
-    if(!this.state.isLoaded)
-    return <div>Loading...</div>;
-    
+   
     var spisakGrupe=this.state.grupe;
     var dataPredmet = this.state.predmet;
     var dataStudenti=this.state.nesvrstani;
+    if(!spisakGrupe || spisakGrupe==undefined)
+  {
+    spisakGrupe=[];
+  }
+  if(!dataPredmet || dataPredmet==undefined)
+  {
+    dataPredmet={
+      naziv: "Projektovanje informacionih sistema"      
+    };
+  }
+  if(!dataStudenti || dataStudenti==undefined)
+  {
+    dataStudenti=[];
+  }
     var idStudent=1;
 
     var indexGrupeLogovanogStudenta=-1;      
@@ -146,9 +162,13 @@ render = () =>{
         + " - " + dani[parseInt(spisakGrupe[i].danUSedmici)-1].title 
         + " "   + spisakGrupe[i].vrijeme 
         + " "   + spisakGrupe[i].kabinet;
-
+        var trenutniRedoslijed = this.state.trenutniRedoslijed;
+        if(!trenutniRedoslijed || trenutniRedoslijed==undefined)
+        {
+          trenutniRedoslijed=[];
+        }
         rendering.push(
-            <TabelaGrupa trenutniRedoslijed={this.state.trenutniRedoslijed} idPredmet={dataPredmet.id} lockState={lockState} redniBroj = {i} kapacitet={maxKapacitet} naziv={headTitle} grupa={spisakGrupe[i]} />
+            <TabelaGrupa trenutniRedoslijed={trenutniRedoslijed} idPredmet={dataPredmet.id} lockState={lockState} redniBroj = {i} kapacitet={maxKapacitet} naziv={headTitle} grupa={spisakGrupe[i]} />
         );
     }
 

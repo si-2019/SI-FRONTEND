@@ -150,6 +150,7 @@ class PregledListeProjekata extends Component {
         ajax.onreadystatechange= function() {
             if (ajax.readyState==4 && ajax.status==200) {
                 var podaci= JSON.parse(ajax.responseText);
+                console.log(podaci);
                 if(podaci.length==0) this.nafilujPodatke();
                 else this.setState({projekti:podaci});
                 if (podaci.length != null) this.setState({postoje_projekti:true});
@@ -169,7 +170,7 @@ class PregledListeProjekata extends Component {
     }
     klik(grupa){
         var ajax=new XMLHttpRequest();
-        ajax.open('GET', 'http://localhost:31913/services/viewA/getZadaci/'+grupa+"?username="+window.localStorage.getItem("username"), true);
+        ajax.open('GET', 'https://si-mike-2019.herokuapp.com/services/viewA/getZadaci/'+grupa+"?username="+window.localStorage.getItem("username"), true);
         ajax.setRequestHeader("Content-type", "application/json");
         ajax.setRequestHeader("Authorization",window.localStorage.getItem("token"));
         ajax.send();
@@ -177,7 +178,25 @@ class PregledListeProjekata extends Component {
         ajax.onreadystatechange= function() {
             if (ajax.readyState==4 && ajax.status==200) {
                 var podaci= JSON.parse(ajax.responseText);
-                if(podaci.length==0) this.nafilujPodatke();
+                if(podaci.message) {
+                    podaci=[{
+                        idProjektniZadatak:1,
+                        opis:"Kreiranje forme za login",
+                        datumPocetka:"10.5.2019",
+                        datumZavrsetka:"15.5.2019",
+                        komentarAsistenta:"Odlicno uradjeno",
+                        zavrsen:true
+                    }]
+                    komponenta.setState({
+                        zadaci:podaci, 
+                        lista:true, 
+                        opis_zadatka:podaci[0].opis,
+                        datum_pocetka:podaci[0].datumPocetka,
+                        datum_zavrsetka:podaci[0].datumZavrsetka,
+                        komentar_asistenta:podaci[0].komentarAsistenta,
+                        zavrsen:"Da" 
+                    });
+                }
                 else {
                     var zavrsenTekst="Da";
                     if(!podaci[0].zavrsen) zavrsenTekst="Ne";

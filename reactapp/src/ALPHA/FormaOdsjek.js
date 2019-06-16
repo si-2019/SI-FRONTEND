@@ -32,7 +32,7 @@ class FormaOdsjek extends Component {
         //Drugi URL
         xhr.open('POST', 'https://si2019alpha.herokuapp.com/api/odsjek/AddNewOdsjek', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onload = () => {'
+        xhr.onload = () => {
           if(xhr.status === 200) {
             const resp = xhr.responseText;
             alert(resp);

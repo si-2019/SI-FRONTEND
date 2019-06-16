@@ -107,8 +107,10 @@ class modalnaKomponenta extends Component {
     })
     
     .then(res => {
-      if (res.status == 200) this.posaljiZahtjev();
-      else this.props.history.push("/Romeo")
+     this.posaljiZahtjev();
+  })
+  .catch(res=>{
+    this.props.history.push("/Romeo");
   })
     }
     else this.posaljiZahtjev();

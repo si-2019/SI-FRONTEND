@@ -30,7 +30,9 @@ class IspitiTabela extends Component {
 
         .then(res => {
           if (res.status == 200) this.handleGet();
-          else this.props.history.push("/Romeo")
+        })
+        .catch(res=>{
+          this.props.history.push("/Romeo");
         })
     }
     else this.handleGet();

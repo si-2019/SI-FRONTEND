@@ -74,9 +74,11 @@ class ModalComponent extends React.Component {
             })
             
             .then(res => {
-                if (res.status == 200) this.handlePutEvent(event);
-                else this.props.history.push("/Romeo")
+                 this.handlePutEvent(event);
             })
+            .catch(res=>{
+                this.props.history.push("/Romeo");
+              })
         }
         else this.handlePutEvent(event)
     }

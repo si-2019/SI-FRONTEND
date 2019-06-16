@@ -146,9 +146,11 @@ class DropDownZavrsni extends React.Component {
 
             })
                 .then(res => {
-                    if (res.status == 200) this.handleGet();
-                    else this.props.history.push("/Romeo")
+                    this.handleGet();
                 })
+                .catch(res=>{
+                    this.props.history.push("/Romeo");
+                  })
         }
         else this.handleGet();
 
@@ -170,7 +172,6 @@ class DropDownZavrsni extends React.Component {
 
             })
                 .then(res => {
-                    if (res.status == 200) {
                         axios
                         .get("https://si2019siera.herokuapp.com/profesori/temeZavrsni/" + selectedId + "/" + this.state.studentId)
                         .then(res => {
@@ -195,9 +196,11 @@ class DropDownZavrsni extends React.Component {
                                 console.log(res.error);
                             }
                         );
-                    }
-                    else this.props.history.push("/Romeo")
+                    
                 })
+                .catch(res=>{
+                    this.props.history.push("/Romeo");
+                  })
         }
         else {
             axios

@@ -85,9 +85,11 @@ class LicniPod extends Component {
                 },
             })
             .then(res => {
-                if (res.status == 200) this.handleGet();
-                else this.props.history.push("/Romeo")
+                 this.handleGet();
             })
+            .catch(res=>{
+                this.props.history.push("/Romeo");
+              })
         }
         else this.handleGet();
     }

@@ -109,8 +109,12 @@ class App extends Component {
            
         })
         .then(res=>{
-          if(res.status==200) this.handleMount();
-          else this.props.history.push("/Romeo")
+          console.log("res: " + res)
+          this.handleMount();
+        })
+        .catch(res=>{
+          console.log("catch: " + res);
+          this.props.history.push("/Romeo");
         })
       }
         else this.handleMount();

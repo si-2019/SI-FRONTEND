@@ -36,23 +36,26 @@ class FileSidebar extends Component {
         .catch(err => console.log(err));
     }
 
-    componentDidUpdate(nP){
-        Axios.get('https://si2019juliet.herokuapp.com/files/' + nP.roomId)
-        .then(res => {
-            if(res.data === null){
-                this.setState({
-                    files: new Array(0)
-                })
+    componentDidUpdate(prevProps){
+
+        if(prevProps.roomId !== this.props.roomId){
+            Axios.get('https://si2019juliet.herokuapp.com/files/' + this.props.roomId)
+            .then(res => {
+                if(res.data === null){
+                    this.setState({
+                        files: new Array(0)
+                    })
+                }
+                else{
+                    this.setState({
+                        files: res.data
+                    })
+                }
             }
-            else{
-                this.setState({
-                    files: res.data
-                })
-            }
+                
+            )
+            .catch(err => console.log(err));
         }
-            
-        )
-        .catch(err => console.log(err));
     }
 
     handleItemClick(name){
